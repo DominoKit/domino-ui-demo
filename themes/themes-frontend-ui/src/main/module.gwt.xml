@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <inherits name="com.google.gwt.user.User" />
+  <inherits name="org.jboss.gwt.elemento.Core"/>
+  <inherits name="org.jboss.gwt.elemento.Template"/>
+
+  <source path="" />
+
+  <entry-point class="com.progressoft.brix.domino.themes.client.ThemesUIClientModule" />
+
+  <set-configuration-property name="CssResource.enableGss" value="true"/>
+
+</module>
