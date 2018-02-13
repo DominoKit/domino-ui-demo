@@ -150,11 +150,6 @@
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
-        <dependency>
-            <groupId>me.rjb</groupId>
-            <artifactId>syntax-highlighter</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
     </dependencies>
     <build>
         <plugins>
