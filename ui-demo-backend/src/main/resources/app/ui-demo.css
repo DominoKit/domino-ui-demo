@@ -33,10 +33,25 @@ h1 {
   margin: 15px 6px 6px;
 }
 
+
+pre {
+  display: block !important;
+  padding: 9.5px !important;
+  margin: 0 0 10px !important;
+  font-size: 13px !important;
+  line-height: 1.42857143 !important;
+  color: #333 !important;
+  word-break: break-all !important;
+  word-wrap: break-word !important;
+  background-color: #f5f5f5 !important;
+  border: 1px solid #cecece !important;
+   border-radius: 0px !important;
+}
+
 code {
-  padding: 2px 4px !important;
-  font-size: 100% !important;
-  color: #c7254e !important;
-  background-color: #f9f2f4 !important;
+  padding: 2px 0px !important;
+  font-size: 130% !important;
+  color: #051142 !important;
+  background-color: #f5f5f5 !important;
   border-radius: 4px !important;
 }

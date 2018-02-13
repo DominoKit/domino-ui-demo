@@ -2,7 +2,6 @@
 <module>
   <inherits name="com.google.gwt.user.User" />
   <inherits name="com.google.gwt.user.theme.clean.Clean" />
-  <inherits name="me.rjb.Highlighter"/>
 
 
   <source path="" />
