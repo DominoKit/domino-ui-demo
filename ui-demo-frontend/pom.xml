@@ -160,6 +160,9 @@
                     <extra>${extra.directory}/gwt/extra</extra>
                     <moduleName>com.progressoft.brix.domino.ui.demo.AppClientModule</moduleName>
                     <moduleShortName>app</moduleShortName>
+                    <compilerArgs>
+                        <compilerArg>-compileReport</compilerArg>
+                    </compilerArgs>
                 </configuration>
             </plugin>
             <plugin>

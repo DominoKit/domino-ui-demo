@@ -32,4 +32,7 @@ public interface IsLayout {
     Content addActionItem(String icon);
 
     void setRightPanelContent(Content content);
+
+    IsLayout fixLeftPanelPosition();
+    IsLayout unfixLeftPanelPosition();
 }
