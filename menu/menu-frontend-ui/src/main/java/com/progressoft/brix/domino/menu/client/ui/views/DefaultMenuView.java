@@ -8,6 +8,7 @@ import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.icons.Icons;
 import com.progressoft.brix.domino.ui.menu.Menu;
 import com.progressoft.brix.domino.ui.menu.MenuItem;
+import com.progressoft.brix.domino.ui.style.Color;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
@@ -19,7 +20,7 @@ import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.*;
 public class DefaultMenuView implements MenuView{
 
     private Menu menu;
-    private Icon lockIcon=Icons.ALL.lock_open();
+    private Icon lockIcon=Icons.ALL.lock_open().setColor(Color.GREY);
     private boolean locked=true;
 
     public DefaultMenuView() {

@@ -8,7 +8,15 @@ import com.progressoft.brix.domino.layout.shared.extension.LayoutContext;
 public interface ThemesView extends View {
     void setLayout(IsLayout layout);
     Content themesContent();
+    void applyTheme(String theme);
 
     void registerTheme(String theme);
     void registerTheme(String theme, boolean active);
+
+    void onThemeApplied(ThemeAppliedHandler themeAppliedHandler);
+
+    @FunctionalInterface
+    interface ThemeAppliedHandler {
+        void onThemeApplied(String theme);
+    }
 }

@@ -6,6 +6,6 @@ import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseC
 
 public interface ComponentsContext extends Context {
 
-    ComponentCaseContext getDemoPageContext();
+    ComponentCaseContext getComponentCaseContext();
 
 }

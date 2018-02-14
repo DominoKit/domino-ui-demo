@@ -64,6 +64,7 @@
                 <groupId>com.progressoft.brix.domino</groupId>
                 <artifactId>domino-ui-components</artifactId>
                 <version>1.0-SNAPSHOT</version>
+                <type>gwt-lib</type>
             </dependency>
         </dependencies>
     </dependencyManagement>
@@ -142,16 +143,18 @@
         </plugins>
 
     </build>
-  <modules>
-    <module>ui-demo-frontend</module>
-    <module>ui-demo-backend</module>
-    <module>layout</module>
-    <module>themes</module>
-    <module>profile</module>
-    <module>menu</module>
-    <module>component-case</module>
-    <module>home</module>
-    <module>components</module>
-    <module>cards</module>
+    <modules>
+        <module>domino-ui-components</module>
+        <module>ui-demo-frontend</module>
+        <module>ui-demo-backend</module>
+        <module>layout</module>
+        <module>themes</module>
+        <module>profile</module>
+        <module>menu</module>
+        <module>component-case</module>
+        <module>home</module>
+        <module>components</module>
+        <module>cards</module>
+    <module>infobox</module>
   </modules>
 </project>

@@ -16,7 +16,7 @@ public class DefaultCardsPresenter extends BaseClientPresenter<CardsView> implem
 
     @Override
     public void contributeToComponentsModule(ComponentsContext context) {
-        context.getDemoPageContext().addDemoPage(new ComponentCase() {
+        context.getComponentCaseContext().addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
                 return "components/cards";
