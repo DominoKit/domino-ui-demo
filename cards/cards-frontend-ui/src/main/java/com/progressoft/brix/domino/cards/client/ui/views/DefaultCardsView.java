@@ -11,14 +11,13 @@ import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.icons.Icons;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
 import jsinterop.base.Js;
 
 import static com.progressoft.brix.domino.ui.column.Column.*;
-import static elemental2.dom.DomGlobal.*;
+import static elemental2.dom.DomGlobal.console;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = CardsPresenter.class)
@@ -28,10 +27,8 @@ public class DefaultCardsView implements CardsView{
     private HTMLDivElement root=div().asElement();
 
     public DefaultCardsView() {
-
-        noHeaderCards();
         cardsWithHeaders();
-
+        noHeaderCards();
     }
 
     private void noHeaderCards() {
@@ -45,9 +42,9 @@ public class DefaultCardsView implements CardsView{
         root.appendChild(Row.create()
                 .addColumn(column.addElement(Card.create()
                         .appendContent(new Text(SAMPLE_CONTENT)).asElement()))
-                .addColumn(column.duplicate().addElement(Card.create()
+                .addColumn(column.copy().addElement(Card.create()
                         .setBackground(Background.THEME).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
-                .addColumn(column.duplicate().addElement(Card.create()
+                .addColumn(column.copy().addElement(Card.create()
                         .setBackground(Background.CYAN).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
                 .asElement());
 
@@ -61,10 +58,10 @@ public class DefaultCardsView implements CardsView{
                 "        .addColumn(column.addElement(Card.create()\n" +
                 "                .appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
                 "\n" +
-                "        .addColumn(column.duplicate().addElement(Card.create()\n" +
+                "        .addColumn(column.copy().addElement(Card.create()\n" +
                 "                .setBackground(Background.THEME).appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
                 "\n" +
-                "        .addColumn(column.duplicate().addElement(Card.create()\n" +
+                "        .addColumn(column.copy().addElement(Card.create()\n" +
                 "                .setBackground(Background.CYAN).appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
                 "        .asElement());").asElement());
 
@@ -74,25 +71,24 @@ public class DefaultCardsView implements CardsView{
     private void cardsWithHeaders() {
         root.appendChild(BlockHeader.create("CARDS WITH HEADERS").asElement());
 
-        Column column = Column.create().onLarge(OnLarge.four)
+        Column column = Column.create()
+                .onLarge(OnLarge.four)
                 .onMedium(OnMedium.four)
                 .onSmall(OnSmall.twelve)
                 .onXSmall(OnXSmall.twelve);
 
         root.appendChild(Row.create()
-                .addColumn(column.addElement(Card.create("Card Title")
+                .addColumn(column.addElement(Card.create("Card Title", "Description text here...")
                         .appendContent(new Text(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> console.info("More action selected"))
                         .asElement()))
 
-                .addColumn(column.duplicate().addElement(Card.create("Card Title", "Description text here...")
-                        .setBackground(Background.THEME)
+                .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
                         .appendContent(new Text(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info("Play sound"))
                         .asElement()))
 
-                .addColumn(column.duplicate().addElement(Card.create("Card Title", "Description text here...")
-                        .setHeaderBackground(Background.CYAN)
+                .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
                         .appendContent(new Text(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info("More action selected"))
@@ -100,25 +96,24 @@ public class DefaultCardsView implements CardsView{
                 .asElement());
 
         Card codeCard=Card.create("Code");
-        codeCard.getBody().appendChild(Code.block("Column column = Column.create().onLarge(OnLarge.four)\n" +
+        codeCard.getBody().appendChild(Code.block("Column column = Column.create()\n" +
+                "        .onLarge(OnLarge.four)\n" +
                 "        .onMedium(OnMedium.four)\n" +
                 "        .onSmall(OnSmall.twelve)\n" +
                 "        .onXSmall(OnXSmall.twelve);\n" +
                 "\n" +
                 "root.appendChild(Row.create()\n" +
-                "        .addColumn(column.addElement(Card.create(\"Card Title\")\n" +
+                "        .addColumn(column.addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
                 "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
                 "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
                 "                .asElement()))\n" +
                 "\n" +
-                "        .addColumn(column.duplicate().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .setBackground(Background.THEME)\n" +
+                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
                 "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
                 "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
                 "                .asElement()))\n" +
                 "\n" +
-                "        .addColumn(column.duplicate().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.CYAN)\n" +
+                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
                 "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
                 "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
                 "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +

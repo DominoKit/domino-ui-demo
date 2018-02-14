@@ -9,6 +9,7 @@ import com.progressoft.brix.domino.layout.shared.extension.LayoutContext;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.layout.Layout;
 import com.progressoft.brix.domino.ui.themes.Theme;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
@@ -113,6 +114,18 @@ public class DefaultLayoutView implements LayoutView {
     @Override
     public IsLayout hideRightPanel() {
         layout.hideRightPanel();
+        return this;
+    }
+
+    @Override
+    public IsLayout fixLeftPanelPosition() {
+        layout.fixLeftPanelPosition();
+        return this;
+    }
+
+    @Override
+    public IsLayout unfixLeftPanelPosition() {
+        layout.unfixLeftPanelPosition();
         return this;
     }
 }

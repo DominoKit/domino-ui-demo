@@ -5,8 +5,11 @@ import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 import com.progressoft.brix.domino.menu.client.presenters.MenuPresenter;
 import com.progressoft.brix.domino.menu.client.views.MenuView;
 import com.progressoft.brix.domino.ui.icons.Icon;
+import com.progressoft.brix.domino.ui.icons.Icons;
 import com.progressoft.brix.domino.ui.menu.Menu;
 import com.progressoft.brix.domino.ui.menu.MenuItem;
+import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
@@ -16,8 +19,14 @@ import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.*;
 public class DefaultMenuView implements MenuView{
 
     private Menu menu;
+    private Icon lockIcon=Icons.ALL.lock_open();
+    private boolean locked=true;
 
     public DefaultMenuView() {
+        lockIcon.asElement().style.marginBottom= CSSProperties.MarginBottomUnionType.of(0);
+        lockIcon.asElement().style.marginTop= CSSProperties.MarginTopUnionType.of(0);
+        lockIcon.asElement().classList.add("pull-right");
+        lockIcon.asElement().style.cursor="pointer";
     }
 
     @Override
@@ -25,12 +34,28 @@ public class DefaultMenuView implements MenuView{
         menu = Menu.create("Demo menu");
         HTMLElement leftPanel= Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
+        menu.getHeader().appendChild(lockIcon.asElement());
+        lockIcon.asElement().addEventListener("click", evt -> {
+
+            if(locked){
+                layout.unfixLeftPanelPosition();
+                lockIcon.asElement().textContent=Icons.ALL.lock().getName();
+                layout.hideLeftPanel();
+                locked=false;
+            }else{
+                layout.fixLeftPanelPosition();
+                lockIcon.asElement().textContent=Icons.ALL.lock_open().getName();
+                locked=true;
+            }
+        });
+
+        layout.fixLeftPanelPosition();
     }
 
     @Override
     public CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler) {
         MenuItem menuItem = menu.addMenuItem(title, Icon.create(iconName));
-        menuItem.clickableElement().addEventListener("click", e-> selectionHandler.onMenuSelected());
+        menuItem.getClickableElement().addEventListener("click", e-> selectionHandler.onMenuSelected());
         return new SubMenu(menuItem);
     }
 
@@ -57,7 +82,7 @@ public class DefaultMenuView implements MenuView{
         @Override
         public CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler) {
             MenuItem item=menuItem.addMenuItem(title);
-            item.clickableElement().addEventListener("click", e->selectionHandler.onMenuSelected());
+            item.getClickableElement().addEventListener("click", e->selectionHandler.onMenuSelected());
             return new SubMenu(item);
         }
     }
