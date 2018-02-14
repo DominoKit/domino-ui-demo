@@ -59,15 +59,13 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
     }
 
     @Override
-    public void addDemoPage(ComponentCase componentCase) {
+    public void addComponentCase(ComponentCase componentCase) {
 
         boolean rootPage = componentCase.getMenuPath().split("/").length <= 1;
         if (componentCase.hasContent()) {
-            history().listen(TokenFilter.exactMatch(componentCase.getHistoryToken()), state -> {
-                showPage(componentCase);
-            }).onDirectUrl(state -> {
-                showPage(componentCase);
-            });
+            history()
+                    .listen(TokenFilter.startsWith(componentCase.getHistoryToken()), state -> showPage(componentCase))
+                    .onDirectUrl(state -> showPage(componentCase));
         }
 
         if (rootPage) {
@@ -96,7 +94,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
             canAddMenuItem = root.menuItem.addMenuItem(path, () -> {
-                history().pushState(componentCase.getHistoryToken());
+                history().pushState(history().currentToken().replaceAllPaths(componentCase.getHistoryToken()).value());
                 showPage(componentCase);
             });
         } else {
@@ -119,7 +117,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
             canAddMenuItem = menuContext.get().addMenuItem(componentCase.getMenuPath(), componentCase.getIconName(), () -> {
-                history().pushState(componentCase.getHistoryToken());
+                history().pushState(history().currentToken().replaceAllPaths(componentCase.getHistoryToken()).value());
                 showPage(componentCase);
             });
         } else {

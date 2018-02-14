@@ -17,7 +17,7 @@ public class DefaultHomePresenter extends BaseClientPresenter<HomeView> implemen
 
     @Override
     public void contributeToDemoPageModule(ComponentCaseContext context) {
-        context.addDemoPage(new ComponentCase() {
+        context.addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
                 return "home";

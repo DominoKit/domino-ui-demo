@@ -17,6 +17,9 @@ import jsinterop.base.Js;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -28,7 +31,9 @@ public class DefaultThemesView implements ThemesView {
     private ThemesPanel themesPanel = ThemesPanel.create();
 
     private HTMLLIElement activeTheme;
+    private Map<String, HTMLLIElement> themesElements=new HashMap<>();
     private Card card=Card.create("Themes", "Select theme to apply.");
+    private ThemeAppliedHandler themeAppliedHandler;
 
     public DefaultThemesView() {
 
@@ -77,21 +82,41 @@ public class DefaultThemesView implements ThemesView {
 
     private HTMLLIElement addTheme(Theme theme, boolean active) {
 
-        HTMLLIElement themeElement = li().add(div().css(theme.getKey().toLowerCase())).add(span().textContent(theme.getName())).asElement();
+        HTMLLIElement themeElement = li().add(div().css(theme.getThemeStyle().replace("theme-",""))).add(span().textContent(theme.getName())).asElement();
+        themesElements.put(theme.getKey(), themeElement);
         if (active) {
             themeElement.classList.add("active");
             activeTheme = themeElement;
-            theme.apply();
+            applyTheme(theme);
         }
         themesPanel.themesContainer.appendChild(themeElement);
         themeElement.addEventListener("click", evt -> {
-            if (nonNull(activeTheme))
-                activeTheme.classList.remove("active");
-            activeTheme = themeElement;
-            themeElement.classList.add("active");
-            theme.apply();
-
+            applyTheme(theme);
         });
+
         return themeElement;
+    }
+
+    private void applyTheme(Theme theme) {
+        if (nonNull(activeTheme))
+            activeTheme.classList.remove("active");
+        HTMLLIElement themeElement = themesElements.get(theme.getKey());
+        this.activeTheme = themeElement;
+        themeElement.classList.add("active");
+        theme.apply();
+        if(nonNull(themeAppliedHandler)){
+            themeAppliedHandler.onThemeApplied(theme.getKey());
+        }
+    }
+
+    @Override
+    public void applyTheme(String theme) {
+        if(nonNull(Theme.of(theme)))
+            applyTheme(Theme.of(theme));
+    }
+
+    @Override
+    public void onThemeApplied(ThemeAppliedHandler themeAppliedHandler) {
+        this.themeAppliedHandler=themeAppliedHandler;
     }
 }
