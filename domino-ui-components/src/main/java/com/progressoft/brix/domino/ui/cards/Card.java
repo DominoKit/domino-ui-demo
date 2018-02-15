@@ -15,10 +15,9 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.li;
-import static org.jboss.gwt.elemento.core.Elements.tr;
 
 @Templated
-public abstract class Card implements IsElement<HTMLDivElement>{
+public abstract class Card implements IsElement<HTMLDivElement> {
 
     private Text title = new Text("");
     private Text description = new Text("");
@@ -38,9 +37,9 @@ public abstract class Card implements IsElement<HTMLDivElement>{
     @DataElement
     HTMLDivElement body;
 
-    private boolean collapsible=false;
+    private boolean collapsible = false;
     private HTMLLIElement collapseAction;
-    private boolean collapsed=false;
+    private boolean collapsed = false;
     private Icon collapseIcon;
 
     public static Card create() {
@@ -63,19 +62,18 @@ public abstract class Card implements IsElement<HTMLDivElement>{
         return templated_basicCard;
     }
 
-    public static Card createProfile(String name, String info){
+    public static Card createProfile(String name, String info) {
         Card profileCard = Card.create(name, info);
-        profileCard.asElement().style.marginBottom= CSSProperties.MarginBottomUnionType.of(0);
+        profileCard.asElement().style.marginBottom = CSSProperties.MarginBottomUnionType.of(0);
         profileCard.setBackground(Background.THEME);
 
         return profileCard;
     }
 
-    public static Card createCodeCard(String codeBlock){
-        return  Card.create("CODE")
+    public static Card createCodeCard(String codeBlock) {
+        return Card.create("CODE")
                 .setCollapsible()
                 .collapse()
-                .setHeaderBackground(Background.THEME)
                 .appendContent(Code.block(codeBlock).asElement());
     }
 
@@ -95,7 +93,7 @@ public abstract class Card implements IsElement<HTMLDivElement>{
         return this;
     }
 
-    public Card appendContent(Node content){
+    public Card appendContent(Node content) {
         getBody().appendChild(content);
         return this;
     }
@@ -153,9 +151,9 @@ public abstract class Card implements IsElement<HTMLDivElement>{
     }
 
     private void putAction(HTMLLIElement actionItem) {
-        if(nonNull(collapseAction) && collapsible) {
+        if (nonNull(collapseAction) && collapsible) {
             headerBar.insertBefore(actionItem, collapseAction);
-        }else {
+        } else {
             headerBar.appendChild(actionItem);
         }
     }
@@ -166,48 +164,48 @@ public abstract class Card implements IsElement<HTMLDivElement>{
                 .asElement();
     }
 
-    public Card setCollapsible(){
+    public Card setCollapsible() {
 
         collapseIcon = Icons.ALL.keyboard_arrow_up();
-        if(isNull(collapseAction)){
-            collapseAction =createHeaderAction(collapseIcon);
+        if (isNull(collapseAction)) {
+            collapseAction = createHeaderAction(collapseIcon);
         }
         collapseAction.addEventListener("click", evt -> {
-            if(collapsible)
-                if(collapsed){
+            if (collapsible)
+                if (collapsed) {
                     expand();
-                }else{
+                } else {
                     collapse();
                 }
         });
 
         putAction(collapseAction);
 
-        this.collapsible=true;
+        this.collapsible = true;
 
         return this;
     }
 
     public Card collapse() {
-        if(collapsible) {
-            collapseIcon.asElement().textContent=Icons.ALL.keyboard_arrow_down().getName();
+        if (collapsible) {
+            collapseIcon.asElement().textContent = Icons.ALL.keyboard_arrow_down().getName();
             getBody().style.display = "none";
-            this.collapsed=true;
+            this.collapsed = true;
         }
         return this;
     }
 
     public Card expand() {
-        if(collapsible) {
-            collapseIcon.asElement().textContent=Icons.ALL.keyboard_arrow_up().getName();
+        if (collapsible) {
+            collapseIcon.asElement().textContent = Icons.ALL.keyboard_arrow_up().getName();
             getBody().style.display = "block";
-            this.collapsed=false;
+            this.collapsed = false;
         }
 
         return this;
     }
 
-    public interface OnClick{
+    public interface OnClick {
         void onClick(Event e);
     }
 }

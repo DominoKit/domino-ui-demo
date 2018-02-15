@@ -23,11 +23,11 @@ public class DropdownButton implements Justifiable {
     private JustifyHandler handler;
 
     private DropdownButton(String content, ButtonType type) {
-        this(Button.create(content, type));
+        this(Button.create(content).setButtonType(type));
     }
 
     private DropdownButton(String content, Background background) {
-        this(Button.create(content, background));
+        this(Button.create(content).setBackground(background));
     }
 
     private DropdownButton(String content) {
