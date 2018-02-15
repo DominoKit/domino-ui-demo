@@ -10,11 +10,11 @@ public class SplitButton implements IsElement<HTMLElement> {
     private HTMLElement groupElement = ButtonsGroup.create().asElement();
 
     private SplitButton(String content, ButtonType type) {
-        addButton(Button.create(content, type));
+        addButton(Button.create(content).setButtonType(type));
     }
 
     private SplitButton(String content, Background background) {
-        addButton(Button.create(content, background));
+        addButton(Button.create(content).setBackground(background));
     }
 
     private SplitButton(String content) {
