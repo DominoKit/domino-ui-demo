@@ -7,7 +7,7 @@ import org.jboss.gwt.elemento.core.IsElement;
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-public class Column implements IsElement<HTMLDivElement>, Cloneable{
+public class Column implements IsElement<HTMLDivElement>, Cloneable {
 
     private HTMLDivElement column;
     private OnLarge onLargeStyle;
@@ -19,56 +19,56 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable{
         this.column = htmlDivElement;
     }
 
-    public static Column create(){
+    public static Column create() {
         return new Column(div().asElement());
     }
 
-    public Column copy(){
+    public Column copy() {
         Column column = Column.create();
-        if(nonNull(this.onLargeStyle))
+        if (nonNull(this.onLargeStyle))
             column.onLarge(this.onLargeStyle);
-        if(nonNull(this.onMediumStyle))
+        if (nonNull(this.onMediumStyle))
             column.onMedium(this.onMediumStyle);
-        if(nonNull(this.onSmallStyle))
+        if (nonNull(this.onSmallStyle))
             column.onSmall(this.onSmallStyle);
-        if(nonNull(this.onXSmallStyle))
+        if (nonNull(this.onXSmallStyle))
             column.onXSmall(this.onXSmallStyle);
         return column;
     }
 
-    public Column addElement(HTMLElement element){
+    public Column addElement(HTMLElement element) {
         this.asElement().appendChild(element);
         return this;
     }
 
-    public Column onLarge(OnLarge onLarge){
-        if(nonNull(this.onLargeStyle))
+    public Column onLarge(OnLarge onLarge) {
+        if (nonNull(this.onLargeStyle))
             column.classList.remove(this.onLargeStyle.getStyle());
-        this.onLargeStyle =onLarge;
+        this.onLargeStyle = onLarge;
         column.classList.add(this.onLargeStyle.getStyle());
         return this;
     }
 
-    public Column onMedium(OnMedium onMedium){
-        if(nonNull(this.onMediumStyle))
+    public Column onMedium(OnMedium onMedium) {
+        if (nonNull(this.onMediumStyle))
             column.classList.remove(this.onMediumStyle.getStyle());
-        this.onMediumStyle =onMedium;
+        this.onMediumStyle = onMedium;
         column.classList.add(this.onMediumStyle.getStyle());
         return this;
     }
 
-    public Column onSmall(OnSmall onSmall){
-        if(nonNull(this.onSmallStyle))
+    public Column onSmall(OnSmall onSmall) {
+        if (nonNull(this.onSmallStyle))
             column.classList.remove(this.onSmallStyle.getStyle());
-        this.onSmallStyle =onSmall;
+        this.onSmallStyle = onSmall;
         column.classList.add(this.onSmallStyle.getStyle());
         return this;
     }
 
-    public Column onXSmall(OnXSmall onXSmall){
-        if(nonNull(this.onXSmallStyle))
+    public Column onXSmall(OnXSmall onXSmall) {
+        if (nonNull(this.onXSmallStyle))
             column.classList.remove(this.onXSmallStyle.getStyle());
-        this.onXSmallStyle =onXSmall;
+        this.onXSmallStyle = onXSmall;
         column.classList.add(this.onXSmallStyle.getStyle());
         return this;
     }
@@ -80,7 +80,7 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable{
 
     public enum OnLarge {
         one("col-lg-1"),
-        tow("col-lg-2"),
+        two("col-lg-2"),
         three("col-lg-3"),
         four("col-lg-4"),
         five("col-lg-5"),
@@ -105,7 +105,7 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable{
 
     public enum OnMedium {
         one("col-md-1"),
-        tow("col-md-2"),
+        two("col-md-2"),
         three("col-md-3"),
         four("col-md-4"),
         five("col-md-5"),
@@ -130,7 +130,7 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable{
 
     public enum OnSmall {
         one("col-sm-1"),
-        tow("col-sm-2"),
+        two("col-sm-2"),
         three("col-sm-3"),
         four("col-sm-4"),
         five("col-sm-5"),
@@ -155,7 +155,7 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable{
 
     public enum OnXSmall {
         one("col-xs-1"),
-        tow("col-xs-2"),
+        two("col-xs-2"),
         three("col-xs-3"),
         four("col-xs-4"),
         five("col-xs-5"),

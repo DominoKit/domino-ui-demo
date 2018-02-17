@@ -14,7 +14,6 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @UiView(presentable = LayoutPresenter.class)
@@ -24,6 +23,9 @@ public class DefaultLayoutView implements LayoutView {
 
     private Content rightPanelContent;
 
+    public DefaultLayoutView() {
+        DomGlobal.document.body.style.background = "#e9e9e9";
+    }
 
     @Override
     public void addActionItem(String iconName, LayoutContext.SelectionHandler selectionHandler) {
