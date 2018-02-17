@@ -102,7 +102,7 @@ public class Alert implements IsElement<HTMLDivElement> {
         return this;
     }
 
-    public Alert appendAlertLink(HTMLAnchorElement anchorElement) {
+    public Alert appendLink(HTMLAnchorElement anchorElement) {
         if (nonNull(anchorElement)) {
             anchorElement.classList.add("alert-link");
             alertElement.appendChild(anchorElement);

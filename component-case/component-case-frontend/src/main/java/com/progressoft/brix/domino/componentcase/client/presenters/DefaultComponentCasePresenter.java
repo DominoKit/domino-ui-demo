@@ -131,6 +131,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         view.clear();
         layoutContext.get().getLayout().hideLeftPanel();
         componentCase.showIn(layoutContext.get().getLayout().getContentPanel());
+        view.scrollTop();
     }
 
     private class NoRootMenuException extends RuntimeException {

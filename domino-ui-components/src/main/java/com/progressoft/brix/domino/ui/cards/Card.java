@@ -71,7 +71,7 @@ public abstract class Card implements IsElement<HTMLDivElement> {
     }
 
     public static Card createCodeCard(String codeBlock) {
-        return Card.create("CODE")
+        return Card.create("Source Code")
                 .setCollapsible()
                 .collapse()
                 .appendContent(Code.block(codeBlock).asElement());
