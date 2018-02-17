@@ -7,6 +7,7 @@ import com.progressoft.brix.domino.ui.utils.Selectable;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLHeadingElement;
 import elemental2.dom.HTMLParagraphElement;
+import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.isNull;
@@ -136,6 +137,11 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
 
     public ListItem<T> setText(String content) {
         setBodyText(content);
+        return this;
+    }
+
+    public ListItem<T> appendContent(Node node){
+        this.asElement().appendChild(node);
         return this;
     }
 }
