@@ -1,6 +1,5 @@
 package com.progressoft.brix.domino.ui.button;
 
-import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Waves;
 import com.progressoft.brix.domino.ui.style.WavesElement;
@@ -14,11 +13,12 @@ import static java.util.Objects.nonNull;
 
 public class Button extends WavesElement<Button, HTMLElement> implements Justifiable, HasClickableElement {
 
-    private final HTMLElement buttonElement = Elements.button().css("btn").asElement();
+    final HTMLElement buttonElement = Elements.button().css("btn").asElement();
     private ButtonType type;
     private Background background;
     private ButtonSize size;
     private JustifyHandler handler;
+    protected String content;
 
     private static Button create(String content, ButtonType type) {
         return new Button(content, type);
@@ -30,10 +30,6 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
 
     public static Button create(String content) {
         return new Button(content);
-    }
-
-    public static Button createIcon(Icon icon) {
-        return new Button(icon);
     }
 
     public static Button createDefault(String content) {
@@ -60,28 +56,24 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
         return create(content, ButtonType.DANGER);
     }
 
-    private Button() {
+    protected Button() {
         super.init(this, buttonElement);
         Waves.init();
     }
 
-    private Button(String content) {
+    protected Button(String content) {
         this();
         setContent(content);
     }
 
-    private Button(Icon icon) {
-        this();
-        setIcon(icon);
-    }
-
-    public Button(String content, ButtonType type) {
+    protected Button(String content, ButtonType type) {
         this(content);
         setButtonType(type);
     }
 
     public Button setContent(String content) {
-        buttonElement.textContent = content;
+        this.content = content;
+        buttonElement.textContent = this.content;
         return this;
     }
 
@@ -117,11 +109,6 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
         return this;
     }
 
-    public Button setIcon(Icon icon) {
-        buttonElement.appendChild(icon.asElement());
-        return this;
-    }
-
     public Button disable() {
         buttonElement.setAttribute("disabled", "disabled");
         return this;
@@ -129,16 +116,6 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
 
     public Button enable() {
         buttonElement.removeAttribute("disabled");
-        return this;
-    }
-
-    public Button circle() {
-        buttonElement.classList.add("btn-circle");
-        return this;
-    }
-
-    public Button largeCircle() {
-        buttonElement.classList.add("btn-circle-lg");
         return this;
     }
 
