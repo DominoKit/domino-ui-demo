@@ -4,16 +4,17 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.componentcase.client.presenters.ComponentCasePresenter;
 import com.progressoft.brix.domino.componentcase.client.views.CompponentCaseView;
 import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
 @UiView(presentable = ComponentCasePresenter.class)
-public class DefaultCompponentCaseView implements CompponentCaseView {
+public class DefaultComponentCaseView implements CompponentCaseView {
 
 
     private HTMLElement contentPanel;
 
-    public DefaultCompponentCaseView() {
+    public DefaultComponentCaseView() {
     }
 
     @Override
@@ -23,6 +24,12 @@ public class DefaultCompponentCaseView implements CompponentCaseView {
 
     @Override
     public void clear() {
-        contentPanel.textContent="";
+        contentPanel.textContent = "";
+    }
+
+    @Override
+    public void scrollTop() {
+        DomGlobal.document.body.scrollTop = 0;
+        DomGlobal.document.documentElement.scrollTop = 0;
     }
 }

@@ -554,6 +554,6 @@ public class DefaultButtonsView implements ButtonsView {
     }
 
     private void createCodeBlock(String s) {
-        element.appendChild(Card.createCodeCard(s).setTitle("Source code").setHeaderBackground(Background.WHITE).asElement());
+        element.appendChild(Card.createCodeCard(s).asElement());
     }
 }

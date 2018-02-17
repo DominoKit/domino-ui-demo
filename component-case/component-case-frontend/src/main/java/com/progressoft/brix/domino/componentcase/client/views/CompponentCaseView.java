@@ -6,4 +6,6 @@ import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 public interface CompponentCaseView extends View{
     void init(IsLayout layout);
     void clear();
+
+    void scrollTop();
 }
