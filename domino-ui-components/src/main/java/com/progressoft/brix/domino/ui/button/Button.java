@@ -7,6 +7,7 @@ import com.progressoft.brix.domino.ui.utils.HasClickableElement;
 import com.progressoft.brix.domino.ui.utils.Justifiable;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static java.util.Objects.nonNull;
@@ -145,5 +146,30 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
     @Override
     public HTMLElement getClickableElement() {
         return asElement();
+    }
+
+    public Button appendContent(Node node){
+        this.asElement().appendChild(node);
+        return this;
+    }
+
+    public Button large(){
+        setSize(ButtonSize.LARGE);
+        return this;
+    }
+
+    public Button small(){
+        setSize(ButtonSize.SMALL);
+        return this;
+    }
+
+    public Button xSmall(){
+        setSize(ButtonSize.XSMALL);
+        return this;
+    }
+
+    public Button block(){
+        setBlock(true);
+        return this;
     }
 }

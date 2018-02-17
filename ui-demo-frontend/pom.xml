@@ -186,6 +186,18 @@
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>badges-frontend</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>badges-frontend-ui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

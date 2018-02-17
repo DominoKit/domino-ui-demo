@@ -158,5 +158,6 @@
         <module>infobox</module>
         <module>buttons</module>
     <module>alerts</module>
+    <module>badges</module>
   </modules>
 </project>
