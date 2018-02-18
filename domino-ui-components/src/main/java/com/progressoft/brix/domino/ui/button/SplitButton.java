@@ -59,6 +59,10 @@ public class SplitButton implements IsElement<HTMLElement> {
         return create(content, ButtonType.INFO);
     }
 
+    public static SplitButton createWarning(String content) {
+        return create(content, ButtonType.WARNING);
+    }
+
     public static SplitButton createDanger(String content) {
         return create(content, ButtonType.DANGER);
     }
@@ -71,5 +75,4 @@ public class SplitButton implements IsElement<HTMLElement> {
         groupElement.appendChild(dropdownElement);
         return this;
     }
-
 }

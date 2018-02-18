@@ -4,10 +4,8 @@ import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.utils.HasContent;
 import com.progressoft.brix.domino.ui.utils.Justifiable;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLLIElement;
-import elemental2.dom.HTMLUListElement;
+import elemental2.dom.*;
+import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 import java.util.LinkedList;
@@ -38,15 +36,16 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
     }
 
     private void configureButton() {
-        HTMLElement buttonElement = asDropDown(button.asElement(), groupElement);
-        addHideListener(groupElement);
-        groupElement.appendChild(buttonElement);
+        addHideListener();
+        groupElement.appendChild(asDropDown(button.asElement(), groupElement));
         groupElement.appendChild(actionsElement);
     }
 
-    private void addHideListener(HTMLElement groupElement) {
-        DomGlobal.document.addEventListener("click", evt -> {
-            groupElement.classList.remove("open");
+    private void addHideListener() {
+        DomGlobal.window.addEventListener("click", evt -> {
+            HTMLElement element = Js.cast(evt.target);
+            if (!element.classList.contains("btn"))
+                closeAllGroups();
         });
     }
 
@@ -58,10 +57,32 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
         buttonElement.appendChild(Elements.span().css("caret").asElement());
         buttonElement.setAttribute("type", "button");
         buttonElement.addEventListener("click", event -> {
-            groupElement.classList.add("open");
+            closeAllGroups();
+            open(groupElement);
             event.stopPropagation();
         });
         return buttonElement;
+    }
+
+    private void closeAllGroups() {
+        NodeList<Element> elementsByName = DomGlobal.document.body.getElementsByClassName(groupElement.className);
+        for (int i = 0; i < elementsByName.length; i++) {
+            Element item = elementsByName.item(i);
+            if (isOpened(item))
+                close(item);
+        }
+    }
+
+    private boolean isOpened(Element item) {
+        return item.classList.contains("open");
+    }
+
+    private void open(HTMLElement groupElement) {
+        groupElement.classList.add("open");
+    }
+
+    private void close(Element item) {
+        item.classList.remove("open");
     }
 
     public static DropdownButton create(String content) {
@@ -90,6 +111,10 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
 
     public static DropdownButton createInfo(String content) {
         return create(content, ButtonType.INFO);
+    }
+
+    public static DropdownButton createWarning(String content) {
+        return create(content, ButtonType.WARNING);
     }
 
     public static DropdownButton createDanger(String content) {
@@ -137,6 +162,16 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
     @Override
     public DropdownButton setContent(String content) {
         button.setContent(content);
+        return this;
+    }
+
+    public DropdownButton dropup() {
+        groupElement.classList.add("dropup");
+        return this;
+    }
+
+    public DropdownButton dropdown() {
+        groupElement.classList.remove("dropup");
         return this;
     }
 
