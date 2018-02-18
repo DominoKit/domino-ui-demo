@@ -13,6 +13,7 @@ import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.icons.Icons;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.style.StyleType;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
@@ -304,27 +305,27 @@ public class DefaultButtonsView implements ButtonsView {
     private void initNestingGroup() {
         Card card = Card.create("SIZING", "Dropdown can be used inside a group of buttons.");
 
-        HTMLElement defaultGroup = numbersNestedGroup(ButtonType.DEFAULT);
+        HTMLElement defaultGroup = numbersNestedGroup(StyleType.DEFAULT);
         defaultGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         defaultGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
-        HTMLElement primaryGroup = numbersNestedGroup(ButtonType.PRIMARY);
+        HTMLElement primaryGroup = numbersNestedGroup(StyleType.PRIMARY);
         primaryGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         primaryGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
-        HTMLElement infoGroup = numbersNestedGroup(ButtonType.INFO);
+        HTMLElement infoGroup = numbersNestedGroup(StyleType.INFO);
         infoGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         infoGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
-        HTMLElement successGroup = numbersNestedGroup(ButtonType.SUCCESS);
+        HTMLElement successGroup = numbersNestedGroup(StyleType.SUCCESS);
         successGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         successGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
-        HTMLElement dangerGroup = numbersNestedGroup(ButtonType.DANGER);
+        HTMLElement dangerGroup = numbersNestedGroup(StyleType.DANGER);
         dangerGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         dangerGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
-        HTMLElement warningGroup = numbersNestedGroup(ButtonType.WARNING);
+        HTMLElement warningGroup = numbersNestedGroup(StyleType.WARNING);
         warningGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
         warningGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
@@ -347,7 +348,7 @@ public class DefaultButtonsView implements ButtonsView {
                 "                .addDropDown(defaultDropDown).asElement());").asElement());
     }
 
-    private HTMLElement numbersNestedGroup(ButtonType type) {
+    private HTMLElement numbersNestedGroup(StyleType type) {
         DropdownButton primaryDropDown = DropdownButton.create("Dropdown")
                 .setButtonType(type)
                 .addAction(DropdownAction.create("Dropdown link"))
@@ -711,12 +712,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row = Row.create();
 
-        HTMLElement homeIcon = IconButton.createDefault(Icons.ALL.home()).setButtonType(ButtonType.DEFAULT).asElement();
-        HTMLElement micIcon = IconButton.createPrimary(Icons.ALL.mic()).setButtonType(ButtonType.PRIMARY).asElement();
-        HTMLElement moreIcon = IconButton.createInfo(Icons.ALL.more()).setButtonType(ButtonType.INFO).asElement();
-        HTMLElement keyboardIcon = IconButton.createSuccess(Icons.ALL.keyboard()).setButtonType(ButtonType.SUCCESS).asElement();
-        HTMLElement acUnitIcon = IconButton.createWarning(Icons.ALL.ac_unit()).setButtonType(ButtonType.WARNING).asElement();
-        HTMLElement accessAlarmIcon = IconButton.createDanger(Icons.ALL.access_alarm()).setButtonType(ButtonType.DANGER).asElement();
+        HTMLElement homeIcon = IconButton.createDefault(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement micIcon = IconButton.createPrimary(Icons.ALL.mic()).setButtonType(StyleType.PRIMARY).asElement();
+        HTMLElement moreIcon = IconButton.createInfo(Icons.ALL.more()).setButtonType(StyleType.INFO).asElement();
+        HTMLElement keyboardIcon = IconButton.createSuccess(Icons.ALL.keyboard()).setButtonType(StyleType.SUCCESS).asElement();
+        HTMLElement acUnitIcon = IconButton.createWarning(Icons.ALL.ac_unit()).setButtonType(StyleType.WARNING).asElement();
+        HTMLElement accessAlarmIcon = IconButton.createDanger(Icons.ALL.access_alarm()).setButtonType(StyleType.DANGER).asElement();
 
         homeIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
         micIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
@@ -741,12 +742,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row1 = Row.create();
 
-        HTMLElement addCircleIconCRL = IconButton.createDefault(Icons.ALL.add_circle()).circle(CircleSize.SMALL).setButtonType(ButtonType.DEFAULT).asElement();
-        HTMLElement placeIconCRL = IconButton.createPrimary(Icons.ALL.place()).circle(CircleSize.SMALL).setButtonType(ButtonType.PRIMARY).asElement();
-        HTMLElement airplaneModeActiveIconCRL = IconButton.createInfo(Icons.ALL.airplanemode_active()).circle(CircleSize.SMALL).setButtonType(ButtonType.INFO).asElement();
-        HTMLElement albumIconCRL = IconButton.createSuccess(Icons.ALL.album()).circle(CircleSize.SMALL).setButtonType(ButtonType.SUCCESS).asElement();
-        HTMLElement weekendIconCRL = IconButton.createWarning(Icons.ALL.weekend()).circle(CircleSize.SMALL).setButtonType(ButtonType.WARNING).asElement();
-        HTMLElement airplayIconCRL = IconButton.createDanger(Icons.ALL.airplay()).circle(CircleSize.SMALL).setButtonType(ButtonType.DANGER).asElement();
+        HTMLElement addCircleIconCRL = IconButton.createDefault(Icons.ALL.add_circle()).circle(CircleSize.SMALL).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement placeIconCRL = IconButton.createPrimary(Icons.ALL.place()).circle(CircleSize.SMALL).setButtonType(StyleType.PRIMARY).asElement();
+        HTMLElement airplaneModeActiveIconCRL = IconButton.createInfo(Icons.ALL.airplanemode_active()).circle(CircleSize.SMALL).setButtonType(StyleType.INFO).asElement();
+        HTMLElement albumIconCRL = IconButton.createSuccess(Icons.ALL.album()).circle(CircleSize.SMALL).setButtonType(StyleType.SUCCESS).asElement();
+        HTMLElement weekendIconCRL = IconButton.createWarning(Icons.ALL.weekend()).circle(CircleSize.SMALL).setButtonType(StyleType.WARNING).asElement();
+        HTMLElement airplayIconCRL = IconButton.createDanger(Icons.ALL.airplay()).circle(CircleSize.SMALL).setButtonType(StyleType.DANGER).asElement();
 
         addCircleIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
         placeIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
@@ -771,12 +772,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row2 = Row.create();
 
-        HTMLElement adjustIconCRL = IconButton.createDefault(Icons.ALL.adjust()).circle(CircleSize.LARGE).setButtonType(ButtonType.DEFAULT).asElement();
-        HTMLElement alloutIconCRL = IconButton.createPrimary(Icons.ALL.all_out()).circle(CircleSize.LARGE).setButtonType(ButtonType.PRIMARY).asElement();
-        HTMLElement appsIconCRL = IconButton.createInfo(Icons.ALL.apps()).circle(CircleSize.LARGE).setButtonType(ButtonType.INFO).asElement();
-        HTMLElement artTrackIconCRL = IconButton.createSuccess(Icons.ALL.art_track()).circle(CircleSize.LARGE).setButtonType(ButtonType.SUCCESS).asElement();
-        HTMLElement assessmentIconCRL = IconButton.createWarning(Icons.ALL.assessment()).circle(CircleSize.LARGE).setButtonType(ButtonType.WARNING).asElement();
-        HTMLElement assistantIconCRL = IconButton.createDanger(Icons.ALL.assistant()).circle(CircleSize.LARGE).setButtonType(ButtonType.DANGER).asElement();
+        HTMLElement adjustIconCRL = IconButton.createDefault(Icons.ALL.adjust()).circle(CircleSize.LARGE).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement alloutIconCRL = IconButton.createPrimary(Icons.ALL.all_out()).circle(CircleSize.LARGE).setButtonType(StyleType.PRIMARY).asElement();
+        HTMLElement appsIconCRL = IconButton.createInfo(Icons.ALL.apps()).circle(CircleSize.LARGE).setButtonType(StyleType.INFO).asElement();
+        HTMLElement artTrackIconCRL = IconButton.createSuccess(Icons.ALL.art_track()).circle(CircleSize.LARGE).setButtonType(StyleType.SUCCESS).asElement();
+        HTMLElement assessmentIconCRL = IconButton.createWarning(Icons.ALL.assessment()).circle(CircleSize.LARGE).setButtonType(StyleType.WARNING).asElement();
+        HTMLElement assistantIconCRL = IconButton.createDanger(Icons.ALL.assistant()).circle(CircleSize.LARGE).setButtonType(StyleType.DANGER).asElement();
 
         adjustIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
         alloutIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
@@ -798,28 +799,28 @@ public class DefaultButtonsView implements ButtonsView {
         element.appendChild(card.asElement());
 
         element.appendChild(Card.createCodeCard("// NORMAL\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.home()).setButtonType(ButtonType.DEFAULT).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.mic()).setButtonType(ButtonType.PRIMARY).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.more()).setButtonType(ButtonType.INFO).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.keyboard()).setButtonType(ButtonType.SUCCESS).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.ac_unit()).setButtonType(ButtonType.WARNING).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.access_alarm()).setButtonType(ButtonType.DANGER).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.mic()).setButtonType(StyleType.PRIMARY).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.more()).setButtonType(StyleType.INFO).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.keyboard()).setButtonType(StyleType.SUCCESS).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.ac_unit()).setButtonType(StyleType.WARNING).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.access_alarm()).setButtonType(StyleType.DANGER).asElement());\n" +
                 "\n" +
                 "// SMALL CIRCLE\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.add_circle()).setButtonType(ButtonType.DEFAULT).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.place()).setButtonType(ButtonType.PRIMARY).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.airplanemode_active()).setButtonType(ButtonType.INFO).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.album()).setButtonType(ButtonType.SUCCESS).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.weekend()).setButtonType(ButtonType.WARNING).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.airplay()).setButtonType(ButtonType.DANGER).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.add_circle()).setButtonType(StyleType.DEFAULT).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.place()).setButtonType(StyleType.PRIMARY).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.airplanemode_active()).setButtonType(StyleType.INFO).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.album()).setButtonType(StyleType.SUCCESS).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.weekend()).setButtonType(StyleType.WARNING).circle(CircleSize.SMALL).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.airplay()).setButtonType(StyleType.DANGER).circle(CircleSize.SMALL).asElement());\n" +
                 "\n" +
                 "// LARGE CIRCLE\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.adjust()).setButtonType(ButtonType.DEFAULT).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.all_out()).setButtonType(ButtonType.PRIMARY).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.apps()).setButtonType(ButtonType.INFO).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.art_track()).setButtonType(ButtonType.SUCCESS).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.assessment()).setButtonType(ButtonType.WARNING).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.assistant()).setButtonType(ButtonType.DANGER).circle(CircleSize.LARGE).asElement());\n").asElement());
+                "element.appendChild(IconButton.create(Icons.ALL.adjust()).setButtonType(StyleType.DEFAULT).circle(CircleSize.LARGE).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.all_out()).setButtonType(StyleType.PRIMARY).circle(CircleSize.LARGE).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.apps()).setButtonType(StyleType.INFO).circle(CircleSize.LARGE).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.art_track()).setButtonType(StyleType.SUCCESS).circle(CircleSize.LARGE).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.assessment()).setButtonType(StyleType.WARNING).circle(CircleSize.LARGE).asElement());\n" +
+                "element.appendChild(IconButton.create(Icons.ALL.assistant()).setButtonType(StyleType.DANGER).circle(CircleSize.LARGE).asElement());\n").asElement());
     }
 
     private HTMLHeadingElement heading(String content) {

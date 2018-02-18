@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.ui.button;
 
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.style.StyleType;
 import com.progressoft.brix.domino.ui.style.Waves;
 import com.progressoft.brix.domino.ui.style.WavesElement;
 import com.progressoft.brix.domino.ui.utils.*;
@@ -14,12 +15,12 @@ public class Button extends WavesElement<Button, HTMLElement> implements
         Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>, HasContent<Button> {
 
     final HTMLElement buttonElement = Elements.button().css("btn").asElement();
-    private ButtonType type;
+    private StyleType type;
     private Background background;
     private ButtonSize size;
     protected String content;
 
-    private static Button create(String content, ButtonType type) {
+    private static Button create(String content, StyleType type) {
         return new Button(content, type);
     }
 
@@ -32,27 +33,27 @@ public class Button extends WavesElement<Button, HTMLElement> implements
     }
 
     public static Button createDefault(String content) {
-        return create(content, ButtonType.DEFAULT);
+        return create(content, StyleType.DEFAULT);
     }
 
     public static Button createPrimary(String content) {
-        return create(content, ButtonType.PRIMARY);
+        return create(content, StyleType.PRIMARY);
     }
 
     public static Button createSuccess(String content) {
-        return create(content, ButtonType.SUCCESS);
+        return create(content, StyleType.SUCCESS);
     }
 
     public static Button createInfo(String content) {
-        return create(content, ButtonType.INFO);
+        return create(content, StyleType.INFO);
     }
 
     public static Button createWarning(String content) {
-        return create(content, ButtonType.WARNING);
+        return create(content, StyleType.WARNING);
     }
 
     public static Button createDanger(String content) {
-        return create(content, ButtonType.DANGER);
+        return create(content, StyleType.DANGER);
     }
 
     protected Button() {
@@ -65,7 +66,7 @@ public class Button extends WavesElement<Button, HTMLElement> implements
         setContent(content);
     }
 
-    protected Button(String content, ButtonType type) {
+    protected Button(String content, StyleType type) {
         this(content);
         setButtonType(type);
     }
@@ -102,7 +103,7 @@ public class Button extends WavesElement<Button, HTMLElement> implements
         return this;
     }
 
-    public Button setButtonType(ButtonType type) {
+    public Button setButtonType(StyleType type) {
         if (nonNull(this.type))
             buttonElement.classList.remove("btn-" + this.type.getStyle());
         buttonElement.classList.add("btn-" + type.getStyle());

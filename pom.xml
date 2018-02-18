@@ -159,5 +159,6 @@
         <module>buttons</module>
     <module>alerts</module>
     <module>badges</module>
-  </modules>
+        <module>labels</module>
+    </modules>
 </project>

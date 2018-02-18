@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.ui.button;
 
 import com.progressoft.brix.domino.ui.icons.Icon;
+import com.progressoft.brix.domino.ui.style.StyleType;
 import com.progressoft.brix.domino.ui.style.WaveStyle;
 import org.jboss.gwt.elemento.core.Elements;
 
@@ -12,10 +13,10 @@ public class IconButton extends Button {
     private String content;
 
     private IconButton(Icon icon) {
-        this(icon, ButtonType.DEFAULT);
+        this(icon, StyleType.DEFAULT);
     }
 
-    private IconButton(Icon icon, ButtonType type) {
+    private IconButton(Icon icon, StyleType type) {
         setButtonType(type);
         setIcon(icon);
     }
@@ -24,32 +25,32 @@ public class IconButton extends Button {
         return new IconButton(icon);
     }
 
-    private static IconButton create(Icon icon, ButtonType type) {
+    private static IconButton create(Icon icon, StyleType type) {
         return new IconButton(icon, type);
     }
 
     public static IconButton createDefault(Icon icon) {
-        return create(icon, ButtonType.DEFAULT);
+        return create(icon, StyleType.DEFAULT);
     }
 
     public static IconButton createPrimary(Icon icon) {
-        return create(icon, ButtonType.PRIMARY);
+        return create(icon, StyleType.PRIMARY);
     }
 
     public static IconButton createSuccess(Icon icon) {
-        return create(icon, ButtonType.SUCCESS);
+        return create(icon, StyleType.SUCCESS);
     }
 
     public static IconButton createInfo(Icon icon) {
-        return create(icon, ButtonType.INFO);
+        return create(icon, StyleType.INFO);
     }
 
     public static IconButton createWarning(Icon icon) {
-        return create(icon, ButtonType.WARNING);
+        return create(icon, StyleType.WARNING);
     }
 
     public static IconButton createDanger(Icon icon) {
-        return create(icon, ButtonType.DANGER);
+        return create(icon, StyleType.DANGER);
     }
 
     public IconButton setIcon(Icon icon) {

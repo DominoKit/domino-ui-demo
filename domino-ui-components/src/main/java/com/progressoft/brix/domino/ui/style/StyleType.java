@@ -1,6 +1,6 @@
-package com.progressoft.brix.domino.ui.button;
+package com.progressoft.brix.domino.ui.style;
 
-public enum ButtonType {
+public enum StyleType {
     DEFAULT("default"),
     PRIMARY("primary"),
     SUCCESS("success"),
@@ -10,7 +10,7 @@ public enum ButtonType {
 
     private String style;
 
-    ButtonType(String style) {
+    StyleType(String style) {
         this.style = style;
     }
 
