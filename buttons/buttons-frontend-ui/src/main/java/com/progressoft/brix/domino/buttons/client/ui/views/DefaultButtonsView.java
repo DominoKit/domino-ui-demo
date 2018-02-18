@@ -20,9 +20,6 @@ import elemental2.dom.HTMLHeadingElement;
 import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static com.progressoft.brix.domino.ui.button.IconButton.CircleSize;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -47,6 +44,203 @@ public class DefaultButtonsView implements ButtonsView {
         initNestingGroup();
         initVerticalGroup();
         initJustifyGroup();
+        element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
+        initSingleDropdownButtons();
+        initSplitButton();
+        initDropUp();
+    }
+
+    private void initDropUp() {
+        Card card = Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.");
+
+        HTMLElement element = DropdownButton.createDefault("DEFAULT")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .dropup().asElement();
+
+        HTMLElement primary = DropdownButton.createPrimary("PRIMARY")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .dropup().asElement();
+
+        HTMLElement success = DropdownButton.createSuccess("SUCCESS")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .dropup().asElement();
+
+        HTMLElement info = DropdownButton.createInfo("INFO")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .dropup().asElement();
+
+        DropdownButton danger = DropdownButton.createDanger("Dropdown")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .dropup();
+
+
+        HTMLElement group = ButtonsGroup.create()
+                .addButton(Button.createDanger("DANGER"))
+                .addDropDown(danger).asElement();
+
+        element.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primary.style.margin = CSSProperties.MarginUnionType.of("5px");
+        success.style.margin = CSSProperties.MarginUnionType.of("5px");
+        info.style.margin = CSSProperties.MarginUnionType.of("5px");
+        group.style.margin = CSSProperties.MarginUnionType.of("5px");
+
+        card.appendContent(element);
+        card.appendContent(primary);
+        card.appendContent(success);
+        card.appendContent(info);
+        card.appendContent(group);
+
+        this.element.appendChild(card.asElement());
+
+        this.element.appendChild(Card.createCodeCard("element.appendChild(DropdownButton.createDanger(\"Dropdown\")\n" +
+                "                .addAction(DropdownAction.create(\"Action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
+                "                .dropup());\n" +
+                "                \n" +
+                "// in group\n" +
+                "DropdownButton danger = DropdownButton.createDanger(\"Dropdown\")\n" +
+                "                .addAction(DropdownAction.create(\"Action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
+                "                .dropup();\n" +
+                "\n" +
+                "\n" +
+                "element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDanger(\"DANGER\"))\n" +
+                "                .addDropDown(danger).asElement());").asElement());
+    }
+
+    private void initSplitButton() {
+        Card card = Card.create("SPLITE BUTTON DROPDOWNS", "Similarly, create split button dropdowns with the same markup changes, only with a separate button.");
+
+        DropdownButton defaultDropdown = DropdownButton.createDefault("Toggle Dropdown")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        HTMLElement defaultSplit = SplitButton.createDefault("DEFAULT")
+                .addDropdown(defaultDropdown).asElement();
+
+        card.appendContent(defaultSplit);
+
+        DropdownButton primaryDropdown = DropdownButton.createPrimary("Toggle Dropdown")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        HTMLElement primarySplit = SplitButton.createPrimary("PRIMARY")
+                .addDropdown(primaryDropdown).asElement();
+
+        card.appendContent(primarySplit);
+
+        DropdownButton warningDropdown = DropdownButton.createWarning("Toggle Dropdown")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        HTMLElement warningSplit = SplitButton.createWarning("WARNING")
+                .addDropdown(warningDropdown).asElement();
+
+        card.appendContent(warningSplit);
+
+        DropdownButton infoDropdown = DropdownButton.createInfo("Toggle Dropdown")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        HTMLElement infoSplit = SplitButton.createInfo("INFO")
+                .addDropdown(infoDropdown).asElement();
+
+        card.appendContent(infoSplit);
+
+        defaultSplit.style.margin = CSSProperties.MarginUnionType.of("10px");
+        primarySplit.style.margin = CSSProperties.MarginUnionType.of("10px");
+        warningSplit.style.margin = CSSProperties.MarginUnionType.of("10px");
+        infoSplit.style.margin = CSSProperties.MarginUnionType.of("10px");
+
+        this.element.appendChild(card.asElement());
+
+        element.appendChild(Card.createCodeCard("DropdownButton infoDropdown = DropdownButton.createInfo(\"Toggle Dropdown\")\n" +
+                "                .addAction(DropdownAction.create(\"Action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Something else here\"))\n" +
+                "                .separator()\n" +
+                "                .addAction(DropdownAction.create(\"Separated link\"));\n" +
+                "\n" +
+                "element.appendChild(SplitButton.createInfo(\"INFO\")\n" +
+                "                .addDropdown(infoDropdown).asElement());").asElement());
+    }
+
+    private void initSingleDropdownButtons() {
+        Card card = Card.create("SINGLE BUTTON DROPDOWNS", "Turn a button into a dropdown toggle with some basic markup changes.");
+
+        DropdownButton defaultDropdown = DropdownButton.createDefault("DEFAULT")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        DropdownButton primaryDropdown = DropdownButton.createPrimary("PRIMARY")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        DropdownButton infoDropdown = DropdownButton.createInfo("INFO")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        DropdownButton dangerButton = DropdownButton.createDanger("DANGER")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        DropdownButton warningDropdown = DropdownButton.createWarning("WARNING")
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
+        defaultDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerButton.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+        card.appendContent(defaultDropdown.asElement());
+        card.appendContent(primaryDropdown.asElement());
+        card.appendContent(infoDropdown.asElement());
+        card.appendContent(warningDropdown.asElement());
+        card.appendContent(dangerButton.asElement());
+
+        element.appendChild(card.asElement());
+
+        element.appendChild(Card.createCodeCard("element.appendChild(DropdownButton.createWarning(\"WARNING\")\n" +
+                "                .addAction(DropdownAction.create(\"Action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
+                "                .addAction(DropdownAction.create(\"Something else here\"))\n" +
+                "                .separator()\n" +
+                "                .addAction(DropdownAction.create(\"Separated link\")));").asElement());
     }
 
     private void initJustifyGroup() {
@@ -64,18 +258,20 @@ public class DefaultButtonsView implements ButtonsView {
         justifiedGroup.addButton(Button.createDanger("RIGHT"));
         justifiedGroup.addDropDown(dropDown);
 
-        setStyle(justifiedGroup.asElement());
+        HTMLElement element1 = justifiedGroup.asElement();
+        element1.style.margin = CSSProperties.MarginUnionType.of("5px");
+        element1.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         justifiedGroupCard.getBody().appendChild(justifiedGroup.asElement());
 
         element.appendChild(justifiedGroupCard.asElement());
 
-        createCodeBlock("JustifiedGroup justifiedGroup = JustifiedGroup.create();\n" +
+        element.appendChild(Card.createCodeCard("JustifiedGroup justifiedGroup = JustifiedGroup.create();\n" +
                 "justifiedGroup.addButton(Button.createPrimary(\"LEFT\"));\n" +
                 "justifiedGroup.addButton(Button.createInfo(\"MIDDLE\"));\n" +
                 "justifiedGroup.addButton(Button.createDanger(\"RIGHT\"));\n" +
                 "justifiedGroup.addDropDown(dropDown);\n" +
-                "element.appendChild(justifiedGroup.asElement());");
+                "element.appendChild(justifiedGroup.asElement());").asElement());
     }
 
     private void initVerticalGroup() {
@@ -89,42 +285,48 @@ public class DefaultButtonsView implements ButtonsView {
                         .addAction(DropdownAction.create("Dropdown link")))
                 .addButton(Button.createDanger("Button"))
                 .verticalAlign();
-        setMargin(group.asElement());
+        group.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         verticalGroupCard.getBody().appendChild(group.asElement());
 
         element.appendChild(verticalGroupCard.asElement());
 
-        createCodeBlock("element.appendChild(ButtonsGroup.create()\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(ButtonsGroup.create()\n" +
                 "                .addButton(Button.createDefault(\"Button\"))\n" +
                 "                .addButton(Button.createPrimary(\"Button\"))\n" +
                 "                .addDropDown(DropdownButton.createInfo(\"Dropdown\")\n" +
                 "                        .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
                 "                        .addAction(DropdownAction.create(\"Dropdown link\")))\n" +
                 "                .addButton(Button.createDanger(\"Button\"))\n" +
-                "                .verticalAlign());");
+                "                .verticalAlign());").asElement());
     }
 
     private void initNestingGroup() {
         Card card = Card.create("SIZING", "Dropdown can be used inside a group of buttons.");
 
         HTMLElement defaultGroup = numbersNestedGroup(ButtonType.DEFAULT);
-        setStyle(defaultGroup);
+        defaultGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         HTMLElement primaryGroup = numbersNestedGroup(ButtonType.PRIMARY);
-        setStyle(primaryGroup);
+        primaryGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         HTMLElement infoGroup = numbersNestedGroup(ButtonType.INFO);
-        setStyle(infoGroup);
+        infoGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         HTMLElement successGroup = numbersNestedGroup(ButtonType.SUCCESS);
-        setStyle(successGroup);
+        successGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        successGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         HTMLElement dangerGroup = numbersNestedGroup(ButtonType.DANGER);
-        setStyle(dangerGroup);
+        dangerGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         HTMLElement warningGroup = numbersNestedGroup(ButtonType.WARNING);
-        setStyle(warningGroup);
+        warningGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(defaultGroup);
         card.appendContent(primaryGroup);
@@ -135,14 +337,14 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("DropdownButton defaultDropDown = DropdownButton.createDefault(\"Dropdown\")\n" +
+        element.appendChild(Card.createCodeCard("DropdownButton defaultDropDown = DropdownButton.createDefault(\"Dropdown\")\n" +
                 "                .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
                 "                .addAction(DropdownAction.create(\"Dropdown link\"));\n" +
                 "\n" +
                 "element.appendChild(ButtonsGroup.create()\n" +
                 "                .addButton(Button.createDefault(\"1\"))\n" +
                 "                .addButton(Button.createDefault(\"2\"))\n" +
-                "                .addDropDown(defaultDropDown).asElement());");
+                "                .addDropDown(defaultDropDown).asElement());").asElement());
     }
 
     private HTMLElement numbersNestedGroup(ButtonType type) {
@@ -164,9 +366,9 @@ public class DefaultButtonsView implements ButtonsView {
 
         Column column1 = Column.create()
                 .onLarge(Column.OnLarge.three)
-                .onMedium(Column.OnMedium.three)
-                .onSmall(Column.OnSmall.four)
-                .onXSmall(Column.OnXSmall.six);
+                .onMedium(Column.OnMedium.four)
+                .onSmall(Column.OnSmall.nine)
+                .onXSmall(Column.OnXSmall.twelve);
 
         HTMLElement largeGroup = ButtonsGroup.create()
                 .addButton(Button.createDefault("LEFT"))
@@ -175,7 +377,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .setSize(ButtonSize.LARGE)
                 .asElement();
 
-        setMargin(largeGroup, "20px");
+        largeGroup.style.margin = CSSProperties.MarginUnionType.of("15px");
 
         column1.asElement().appendChild(heading("Large Button Group"));
         column1.asElement().appendChild(largeGroup);
@@ -188,7 +390,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createDefault("RIGHT"))
                 .asElement();
 
-        setMargin(defaultGroup, "20px");
+        defaultGroup.style.margin = CSSProperties.MarginUnionType.of("15px");
 
         column2.asElement().appendChild(heading("Default Button Group"));
         column2.asElement().appendChild(defaultGroup);
@@ -201,7 +403,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .setSize(ButtonSize.SMALL)
                 .asElement();
 
-        setMargin(smallGroup, "20px");
+        smallGroup.style.margin = CSSProperties.MarginUnionType.of("15px");
 
         column3.asElement().appendChild(heading("Small Button Group"));
         column3.asElement().appendChild(smallGroup);
@@ -214,7 +416,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .setSize(ButtonSize.XSMALL)
                 .asElement();
 
-        setMargin(xsmallGroup, "20px");
+        xsmallGroup.style.margin = CSSProperties.MarginUnionType.of("15px");
 
         column4.asElement().appendChild(heading("Extra-Small Button Group"));
         column4.asElement().appendChild(xsmallGroup);
@@ -231,7 +433,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("element.appendChild(ButtonsGroup.create()\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(ButtonsGroup.create()\n" +
                 "                .addButton(Button.createDefault(\"LEFT\"))\n" +
                 "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
                 "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
@@ -256,7 +458,7 @@ public class DefaultButtonsView implements ButtonsView {
                 "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
                 "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
                 "                .setSize(ButtonSize.XSMALL)\n" +
-                "                .asElement());");
+                "                .asElement());").asElement());
     }
 
     private void initButtonsToolbar() {
@@ -282,7 +484,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .addGroup(secondDefaultGroup)
                 .addGroup(thirdDefaultGroup);
 
-        setMargin(defaultButtonsToolbar.asElement());
+        defaultButtonsToolbar.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row.asElement().appendChild(defaultButtonsToolbar.asElement());
 
@@ -304,7 +506,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .addGroup(secondPrimaryGroup)
                 .addGroup(thirdPrimaryGroup);
 
-        setMargin(primaryButtonsToolbar.asElement());
+        primaryButtonsToolbar.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row.asElement().appendChild(primaryButtonsToolbar.asElement());
 
@@ -326,7 +528,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .addGroup(secondInfoGroup)
                 .addGroup(thirdInfoGroup);
 
-        setMargin(infoButtonsToolbar.asElement());
+        infoButtonsToolbar.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row.asElement().appendChild(infoButtonsToolbar.asElement());
 
@@ -348,7 +550,7 @@ public class DefaultButtonsView implements ButtonsView {
                 .addGroup(secondColorGroup)
                 .addGroup(thirdColorGroup);
 
-        setMargin(colorButtonsToolbar.asElement());
+        colorButtonsToolbar.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row.asElement().appendChild(colorButtonsToolbar.asElement());
 
@@ -359,7 +561,7 @@ public class DefaultButtonsView implements ButtonsView {
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        createCodeBlock("ButtonsGroup firstGroup = ButtonsGroup.create()\n" +
+        element.appendChild(Card.createCodeCard("ButtonsGroup firstGroup = ButtonsGroup.create()\n" +
                 "                .addButton(Button.createDefault(\"1\"))\n" +
                 "                .addButton(Button.createDefault(\"2\"))\n" +
                 "                .addButton(Button.createDefault(\"3\"));\n" +
@@ -377,7 +579,7 @@ public class DefaultButtonsView implements ButtonsView {
                 "                .addGroup(secondGroup)\n" +
                 "                .addGroup(thirdGroup);\n" +
                 "                \n" +
-                "element.appendChild(buttonsToolbar.asElement());");
+                "element.appendChild(buttonsToolbar.asElement());").asElement());
     }
 
     private void initButtonsBasicGroup() {
@@ -389,7 +591,8 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createDefault("RIGHT"))
                 .asElement();
 
-        setStyle(defaultGroup);
+        defaultGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(defaultGroup);
 
@@ -399,7 +602,8 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createPrimary("RIGHT"))
                 .asElement();
 
-        setStyle(primaryGroup);
+        primaryGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(primaryGroup);
 
@@ -409,7 +613,8 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createSuccess("RIGHT"))
                 .asElement();
 
-        setStyle(successGroup);
+        successGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        successGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(successGroup);
 
@@ -419,7 +624,8 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createInfo("RIGHT"))
                 .asElement();
 
-        setStyle(infoGroup);
+        infoGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(infoGroup);
 
@@ -429,7 +635,8 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.createDanger("RIGHT"))
                 .asElement();
 
-        setStyle(dangerGroup);
+        dangerGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(dangerGroup);
 
@@ -439,18 +646,19 @@ public class DefaultButtonsView implements ButtonsView {
                 .addButton(Button.create("RIGHT").setBackground(Background.PURPLE))
                 .asElement();
 
-        setStyle(purpleGroup);
+        purpleGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
+        purpleGroup.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(purpleGroup);
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("ButtonsGroup group = ButtonsGroup.create()\n" +
+        element.appendChild(Card.createCodeCard("ButtonsGroup group = ButtonsGroup.create()\n" +
                 "                .addButton(Button.createDefault(\"LEFT\"))\n" +
                 "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
                 "                .addButton(Button.createDefault(\"RIGHT\"));\n" +
                 "\n" +
-                "element.appendChild(group.asElement());");
+                "element.appendChild(group.asElement());").asElement());
     }
 
     private void initTextIconButtons() {
@@ -463,12 +671,18 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement takeOff = IconButton.createWarning(Icons.ALL.flight_takeoff()).setContent("TAKE OFF").asElement();
         HTMLElement print = IconButton.createDanger(Icons.ALL.print()).setContent("PRINT").asElement();
 
-        setStyle(extension);
-        setStyle(home);
-        setStyle(lock);
-        setStyle(scanWifi);
-        setStyle(takeOff);
-        setStyle(print);
+        extension.style.margin = CSSProperties.MarginUnionType.of("5px");
+        extension.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        home.style.margin = CSSProperties.MarginUnionType.of("5px");
+        home.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        lock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        lock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        scanWifi.style.margin = CSSProperties.MarginUnionType.of("5px");
+        scanWifi.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        takeOff.style.margin = CSSProperties.MarginUnionType.of("5px");
+        takeOff.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        print.style.margin = CSSProperties.MarginUnionType.of("5px");
+        print.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(extension);
         card.appendContent(home);
@@ -479,12 +693,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("element.appendChild(Button.createDefault(\"EXTENSION\").setIcon(Icons.ALL.extension()).asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"EXTENSION\").setIcon(Icons.ALL.extension()).asElement());\n" +
                 "element.appendChild(Button.createPrimary(\"HOME\").setIcon(Icons.ALL.home()).asElement());\n" +
                 "element.appendChild(Button.createSuccess(\"LOCK\").setIcon(Icons.ALL.lock()).asElement());\n" +
                 "element.appendChild(Button.createInfo(\"SCAN WIFI\").setIcon(Icons.ALL.perm_scan_wifi()).asElement());\n" +
                 "element.appendChild(Button.createWarning(\"TAKE OFF\").setIcon(Icons.ALL.flight_takeoff()).asElement());\n" +
-                "element.appendChild(Button.createDanger(\"PRINT\").setIcon(Icons.ALL.print()).asElement());");
+                "element.appendChild(Button.createDanger(\"PRINT\").setIcon(Icons.ALL.print()).asElement());").asElement());
     }
 
     private void initIconButtons() {
@@ -504,12 +718,12 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement acUnitIcon = IconButton.createWarning(Icons.ALL.ac_unit()).setButtonType(ButtonType.WARNING).asElement();
         HTMLElement accessAlarmIcon = IconButton.createDanger(Icons.ALL.access_alarm()).setButtonType(ButtonType.DANGER).asElement();
 
-        setMargin(homeIcon);
-        setMargin(micIcon);
-        setMargin(moreIcon);
-        setMargin(keyboardIcon);
-        setMargin(acUnitIcon);
-        setMargin(accessAlarmIcon);
+        homeIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
+        micIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
+        moreIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
+        keyboardIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
+        acUnitIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
+        accessAlarmIcon.style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row.asElement().appendChild(homeIcon);
         row.asElement().appendChild(micIcon);
@@ -534,12 +748,12 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement weekendIconCRL = IconButton.createWarning(Icons.ALL.weekend()).circle(CircleSize.SMALL).setButtonType(ButtonType.WARNING).asElement();
         HTMLElement airplayIconCRL = IconButton.createDanger(Icons.ALL.airplay()).circle(CircleSize.SMALL).setButtonType(ButtonType.DANGER).asElement();
 
-        setMargin(addCircleIconCRL);
-        setMargin(placeIconCRL);
-        setMargin(airplaneModeActiveIconCRL);
-        setMargin(albumIconCRL);
-        setMargin(weekendIconCRL);
-        setMargin(airplayIconCRL);
+        addCircleIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        placeIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        airplaneModeActiveIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        albumIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        weekendIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        airplayIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row1.asElement().appendChild(addCircleIconCRL);
         row1.asElement().appendChild(placeIconCRL);
@@ -564,12 +778,12 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement assessmentIconCRL = IconButton.createWarning(Icons.ALL.assessment()).circle(CircleSize.LARGE).setButtonType(ButtonType.WARNING).asElement();
         HTMLElement assistantIconCRL = IconButton.createDanger(Icons.ALL.assistant()).circle(CircleSize.LARGE).setButtonType(ButtonType.DANGER).asElement();
 
-        setMargin(adjustIconCRL);
-        setMargin(alloutIconCRL);
-        setMargin(appsIconCRL);
-        setMargin(artTrackIconCRL);
-        setMargin(assessmentIconCRL);
-        setMargin(assistantIconCRL);
+        adjustIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        alloutIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        appsIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        artTrackIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        assessmentIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
+        assistantIconCRL.style.margin = CSSProperties.MarginUnionType.of("5px");
 
         row2.asElement().appendChild(adjustIconCRL);
         row2.asElement().appendChild(alloutIconCRL);
@@ -583,7 +797,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("// NORMAL\n" +
+        element.appendChild(Card.createCodeCard("// NORMAL\n" +
                 "element.appendChild(IconButton.create(Icons.ALL.home()).setButtonType(ButtonType.DEFAULT).asElement());\n" +
                 "element.appendChild(IconButton.create(Icons.ALL.mic()).setButtonType(ButtonType.PRIMARY).asElement());\n" +
                 "element.appendChild(IconButton.create(Icons.ALL.more()).setButtonType(ButtonType.INFO).asElement());\n" +
@@ -605,7 +819,7 @@ public class DefaultButtonsView implements ButtonsView {
                 "element.appendChild(IconButton.create(Icons.ALL.apps()).setButtonType(ButtonType.INFO).circle(CircleSize.LARGE).asElement());\n" +
                 "element.appendChild(IconButton.create(Icons.ALL.art_track()).setButtonType(ButtonType.SUCCESS).circle(CircleSize.LARGE).asElement());\n" +
                 "element.appendChild(IconButton.create(Icons.ALL.assessment()).setButtonType(ButtonType.WARNING).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.assistant()).setButtonType(ButtonType.DANGER).circle(CircleSize.LARGE).asElement());\n");
+                "element.appendChild(IconButton.create(Icons.ALL.assistant()).setButtonType(ButtonType.DANGER).circle(CircleSize.LARGE).asElement());\n").asElement());
     }
 
     private HTMLHeadingElement heading(String content) {
@@ -628,11 +842,16 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement warningDisabled = Button.createWarning("WARNING").disable().asElement();
         HTMLElement dangerDisabled = Button.createDanger("DANGER").disable().asElement();
 
-        setStyle(defaultDisabled);
-        setStyle(primaryDisabled);
-        setStyle(infoDisabled);
-        setStyle(warningDisabled);
-        setStyle(dangerDisabled);
+        defaultDisabled.style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultDisabled.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        primaryDisabled.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryDisabled.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        infoDisabled.style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoDisabled.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        warningDisabled.style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningDisabled.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        dangerDisabled.style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerDisabled.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(defaultDisabled);
         card.appendContent(primaryDisabled);
@@ -642,11 +861,11 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).disbale().asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).disbale().asElement());\n" +
                 "element.appendChild(Button.createPrimary(\"PRIMARY\").setBlock(true).disbale().asElement());\n" +
                 "element.appendChild(Button.createInfo(\"INFO\").setBlock(true).disbale().asElement());\n" +
                 "element.appendChild(Button.createWarning(\"WARNING\").setBlock(true).disbale().asElement());\n" +
-                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).disbale().asElment());");
+                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).disbale().asElment());").asElement());
     }
 
     private void initBlockButtons() {
@@ -658,11 +877,16 @@ public class DefaultButtonsView implements ButtonsView {
         HTMLElement warningBlock = Button.createWarning("WARNING").setBlock(true).asElement();
         HTMLElement dangerBlock = Button.createDanger("DANGER").setBlock(true).asElement();
 
-        setStyle(defaultBlock);
-        setStyle(primaryBlock);
-        setStyle(infoBlock);
-        setStyle(warningBlock);
-        setStyle(dangerBlock);
+        defaultBlock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultBlock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        primaryBlock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryBlock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        infoBlock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoBlock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        warningBlock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningBlock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
+        dangerBlock.style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerBlock.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
 
         card.appendContent(defaultBlock);
         card.appendContent(primaryBlock);
@@ -672,168 +896,226 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).asElement());\n" +
                 "element.appendChild(Button.createPrimary(\"PRIMARY\").setBlock(true).asElement());\n" +
                 "element.appendChild(Button.createInfo(\"INFO\").setBlock(true).asElement());\n" +
                 "element.appendChild(Button.createWarning(\"WARNING\").setBlock(true).asElement());\n" +
-                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).asElment());");
+                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).asElment());").asElement());
 
     }
 
     private void initButtonSizes() {
         Card card = Card.create("BUTTON SIZES", "You can resize the buttons");
 
-        List<Button> defaultList = Arrays.asList(Button.createDefault("DEFAULT LARGE").setSize(ButtonSize.LARGE),
-                Button.createDefault("DEFAULT"),
-                Button.createDefault("DEFAULT SMALL").setSize(ButtonSize.SMALL),
-                Button.createDefault("DEFAULT XSMALL").setSize(ButtonSize.XSMALL));
+        Column column = Column.create()
+                .onLarge(Column.OnLarge.three)
+                .onSmall(Column.OnSmall.six)
+                .onXSmall(Column.OnXSmall.twelve);
+        // -----------------------------------------------
 
-        Column defaultColumn = verticalButtons(defaultList);
 
-        List<Button> primaryList = Arrays.asList(Button.createPrimary("PRIMARY LARGE").setSize(ButtonSize.LARGE),
-                Button.createPrimary("PRIMARY"),
-                Button.createPrimary("PRIMARY SMALL").setSize(ButtonSize.SMALL),
-                Button.createPrimary("PRIMARY XSMALL").setSize(ButtonSize.XSMALL));
+        Button defaultLarge = Button.createDefault("LARGE").setSize(ButtonSize.LARGE);
+        Button defaultBtn = Button.createDefault("DEFAULT");
+        Button defaultSmall = Button.createDefault("SMALL").setSize(ButtonSize.SMALL);
+        Button defaultXsmall = Button.createDefault("XSMALL").setSize(ButtonSize.XSMALL);
 
-        Column primaryColumn = verticalButtons(primaryList);
+        defaultLarge.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultBtn.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultSmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultXsmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
-        List<Button> dangerList = Arrays.asList(Button.createDanger("DANGER LARGE").setSize(ButtonSize.LARGE),
-                Button.createDanger("DANGER"),
-                Button.createDanger("DANGER SMALL").setSize(ButtonSize.SMALL),
-                Button.createDanger("DANGER XSMALL").setSize(ButtonSize.XSMALL));
+        defaultLarge.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        defaultBtn.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        defaultSmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        defaultXsmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
 
-        Column dangerColumn = verticalButtons(dangerList);
+        column.addElement(Row.create().appendContent(defaultLarge.asElement()).asElement())
+                .addElement(Row.create().appendContent(defaultBtn.asElement()).asElement())
+                .addElement(Row.create().appendContent(defaultSmall.asElement()).asElement())
+                .addElement(Row.create().appendContent(defaultXsmall.asElement()).asElement());
 
-        List<Button> warningList = Arrays.asList(Button.createWarning("DANGER LARGE").setSize(ButtonSize.LARGE),
-                Button.createWarning("DANGER"),
-                Button.createWarning("DANGER SMALL").setSize(ButtonSize.SMALL),
-                Button.createWarning("DANGER XSMALL").setSize(ButtonSize.XSMALL));
+        card.appendContent(column.asElement());
 
-        Column warningColumn = verticalButtons(warningList);
+        // -----------------------------------------------
 
-        List<Button> colorList = Arrays.asList(Button.create("PURPLE LARGE").setBackground(Background.PURPLE).setSize(ButtonSize.LARGE),
-                Button.create("PURPLE").setBackground(Background.PURPLE),
-                Button.create("PURPLE SMALL").setBackground(Background.PURPLE).setSize(ButtonSize.SMALL),
-                Button.create("PURPLE XSMALL").setBackground(Background.PURPLE).setSize(ButtonSize.XSMALL));
 
-        Column colorColumn = verticalButtons(colorList);
+        Column column2 = column.copy();
 
+        Button primaryLarge = Button.createPrimary("LARGE").setSize(ButtonSize.LARGE);
+        Button primaryBtn = Button.createPrimary("DEFAULT");
+        Button primarySmall = Button.createPrimary("SMALL").setSize(ButtonSize.SMALL);
+        Button primaryXsmall = Button.createPrimary("XSMALL").setSize(ButtonSize.XSMALL);
+
+        primaryLarge.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryBtn.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        primarySmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryXsmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+        primaryLarge.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        primaryBtn.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        primarySmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        primaryXsmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+
+        column2.addElement(Row.create().appendContent(primaryLarge.asElement()).asElement())
+                .addElement(Row.create().appendContent(primaryBtn.asElement()).asElement())
+                .addElement(Row.create().appendContent(primarySmall.asElement()).asElement())
+                .addElement(Row.create().appendContent(primaryXsmall.asElement()).asElement());
+
+        card.appendContent(column2.asElement());
+
+        // -----------------------------------------------
+
+
+        Column column3 = column.copy();
+
+        Button warningLarge = Button.createWarning("LARGE").setSize(ButtonSize.LARGE);
+        Button warningBtn = Button.createWarning("DEFAULT");
+        Button warningSmall = Button.createWarning("SMALL").setSize(ButtonSize.SMALL);
+        Button warningXsmall = Button.createWarning("XSMALL").setSize(ButtonSize.XSMALL);
+
+        warningLarge.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningBtn.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningSmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningXsmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+        warningLarge.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        warningBtn.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        warningSmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        warningXsmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+
+        column3.addElement(Row.create().appendContent(warningLarge.asElement()).asElement())
+                .addElement(Row.create().appendContent(warningBtn.asElement()).asElement())
+                .addElement(Row.create().appendContent(warningSmall.asElement()).asElement())
+                .addElement(Row.create().appendContent(warningXsmall.asElement()).asElement());
+
+        card.appendContent(column3.asElement());
+
+        // -----------------------------------------------
+
+
+        Column column4 = column.copy();
+
+        Button infoLarge = Button.createInfo("LARGE").setSize(ButtonSize.LARGE);
+        Button infoBtn = Button.createInfo("DEFAULT");
+        Button infoSmall = Button.createInfo("SMALL").setSize(ButtonSize.SMALL);
+        Button infoXsmall = Button.createInfo("XSMALL").setSize(ButtonSize.XSMALL);
+
+        infoLarge.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoBtn.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoSmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoXsmall.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+        infoLarge.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        infoBtn.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        infoSmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+        infoXsmall.asElement().style.minWidth = CSSProperties.MinWidthUnionType.of("200px");
+
+        column4.addElement(Row.create().appendContent(infoLarge.asElement()).asElement())
+                .addElement(Row.create().appendContent(infoBtn.asElement()).asElement())
+                .addElement(Row.create().appendContent(infoSmall.asElement()).asElement())
+                .addElement(Row.create().appendContent(infoXsmall.asElement()).asElement());
+
+
+        card.appendContent(column4.asElement());
+
+        // -----------------------------------------------
         Row row = Row.create()
-                .addColumn(defaultColumn)
-                .addColumn(primaryColumn)
-                .addColumn(dangerColumn)
-                .addColumn(warningColumn)
-                .addColumn(colorColumn);
+                .addColumn(column)
+                .addColumn(column2)
+                .addColumn(column3)
+                .addColumn(column4);
+
+        row.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
 
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        createCodeBlock("element.appendChild(Button.create(\"PURPLE LARGE\").setBackground(Background.PURPLE).setSize(ButtonSize.LARGE).asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.create(\"PURPLE LARGE\").setBackground(Background.PURPLE).setSize(ButtonSize.LARGE).asElement());\n" +
                 "element.appendChild(Button.create(\"PURPLE\").setBackground(Background.PURPLE).asElement());\n" +
                 "element.appendChild(Button.create(\"PURPLE SMALL\").setBackground(Background.PURPLE).setSize(Buttonize.SMALL).asElement());\n" +
-                "element.appendChild(Button.create(\"PURPLE XSMALL\").setBackground(Background.PURPLE).setSize(ButtonSize.XSMALL).asElement());");
+                "element.appendChild(Button.create(\"PURPLE XSMALL\").setBackground(Background.PURPLE).setSize(ButtonSize.XSMALL).asElement());").asElement());
 
-    }
-
-    private Column verticalButtons(List<Button> buttons) {
-        Column column = createColumn();
-
-        for (Button button : buttons) {
-            setStyle(button.asElement());
-            column.asElement().appendChild(button.asElement());
-        }
-        return column;
-    }
-
-    private Column createColumn() {
-        return Column.create()
-                .onLarge(Column.OnLarge.two)
-                .onMedium(Column.OnMedium.two)
-                .onSmall(Column.OnSmall.three)
-                .onXSmall(Column.OnXSmall.six);
     }
 
     private void initBootstrapButtons() {
         Card card = Card.create("BOOTSTRAP DEFAULT BUTTONS", "Use any of the available button classes to quickly create a styled button");
 
         HTMLElement defaultBtn = Button.createDefault("DEFAULT").asElement();
-        setStyle(defaultBtn);
+        HTMLElement primaryBtn = Button.createPrimary("PRIMARY").asElement();
+        HTMLElement successBtn = Button.createSuccess("SUCCESS").asElement();
+        HTMLElement infoBtn = Button.createInfo("INFO").asElement();
+        HTMLElement warningBtn = Button.createWarning("WARNING").asElement();
+        HTMLElement dangerBtn = Button.createDanger("DANGER").asElement();
+
+        defaultBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        defaultBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(defaultBtn);
 
-        HTMLElement primaryBtn = Button.createPrimary("PRIMARY").asElement();
-        setStyle(primaryBtn);
+        primaryBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        primaryBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(primaryBtn);
 
-        HTMLElement successBtn = Button.createSuccess("SUCCESS").asElement();
-        setStyle(successBtn);
+        successBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        successBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(successBtn);
 
-        HTMLElement infoBtn = Button.createInfo("INFO").asElement();
-        setStyle(infoBtn);
+        infoBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        infoBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(infoBtn);
 
-        HTMLElement warningBtn = Button.createWarning("WARNING").asElement();
-        setStyle(warningBtn);
+        warningBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        warningBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(warningBtn);
 
-        HTMLElement dangerBtn = Button.createDanger("DANGER").asElement();
-        setStyle(dangerBtn);
+        dangerBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        dangerBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(dangerBtn);
 
         element.appendChild(card.asElement());
 
-
-        createCodeBlock("element.appendContent(Button.createDefault(\"DEFAULT\").asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendContent(Button.createDefault(\"DEFAULT\").asElement());\n" +
                 "element.appendContent(Button.createPrimary(\"PRIMARY\").asElement());\n" +
                 "element.appendContent(Button.createSuccess(\"SUCCESS\").asElement());\n" +
                 "element.appendContent(Button.createInfo(\"INFO\").asElement());\n" +
                 "element.appendContent(Button.createWarning(\"WARNING\").asElement());\n" +
-                "element.appendContent(Button.createDanger(\"DANGER\").asElement());");
+                "element.appendContent(Button.createDanger(\"DANGER\").asElement());").asElement());
     }
 
     private void initMaterialDesignButtons() {
         Card card = Card.create("METARIAL DESIGN BUTTONS", "Use any of the available button classes to quickly create a styled button");
 
         HTMLElement redBtn = Button.create("RED").setBackground(Background.RED).asElement();
-        setStyle(redBtn);
+        redBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        redBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(redBtn);
 
         HTMLElement purpleBtn = Button.create("PURPLE").setBackground(Background.PURPLE).asElement();
-        setStyle(purpleBtn);
+        purpleBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        purpleBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(purpleBtn);
 
         HTMLElement indigoBtn = Button.create("INDIGO").setBackground(Background.INDIGO).asElement();
-        setStyle(indigoBtn);
+        indigoBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        indigoBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(indigoBtn);
 
         HTMLElement lightBlueBtn = Button.create("LIGHT BLUE").setBackground(Background.LIGHT_BLUE).asElement();
-        setStyle(lightBlueBtn);
+        lightBlueBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        lightBlueBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(lightBlueBtn);
 
         HTMLElement greenBtn = Button.create("GREEN").setBackground(Background.GREEN).asElement();
-        setStyle(greenBtn);
+        greenBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
+        greenBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(greenBtn);
 
         element.appendChild(card.asElement());
 
-        createCodeBlock("card.appendContent(Button.create(\"RED\").setBackground(Background.RED).asElement());\n" +
+        element.appendChild(Card.createCodeCard("card.appendContent(Button.create(\"RED\").setBackground(Background.RED).asElement());\n" +
                 "card.appendContent(Button.create(\"PURPLE\").setBackground(Background.PURPLE).asElement());\n" +
                 "card.appendContent(Button.create(\"INDIGO\").setBackground(Background.INDIGO).asElement());\n" +
                 "card.appendContent(Button.create(\"LIGHT BLUE\").setBackground(Background.LIGHT_BLUE).asElement());\n" +
-                "card.appendContent(Button.create(\"GREEN\").setBackground(Background.GREEN).asElement());");
-    }
-
-    private void setStyle(HTMLElement element) {
-        setMargin(element);
-        element.style.minWidth = CSSProperties.MinWidthUnionType.of("140px");
-    }
-
-    private void setMargin(HTMLElement element) {
-        setMargin(element, "5px");
-    }
-
-    private void setMargin(HTMLElement element, String margin) {
-        element.style.margin = CSSProperties.MarginUnionType.of(margin);
+                "card.appendContent(Button.create(\"GREEN\").setBackground(Background.GREEN).asElement());").asElement());
     }
 
     @Override
@@ -842,7 +1124,4 @@ public class DefaultButtonsView implements ButtonsView {
         contentElement.appendChild(element);
     }
 
-    private void createCodeBlock(String s) {
-        element.appendChild(Card.createCodeCard(s).asElement());
-    }
 }
