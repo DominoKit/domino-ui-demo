@@ -5,6 +5,8 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.buttons.client.presenters.ButtonsPresenter;
 import com.progressoft.brix.domino.buttons.client.views.ButtonsView;
 import com.progressoft.brix.domino.ui.button.*;
+import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
+import com.progressoft.brix.domino.ui.button.group.JustifiedGroup;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
@@ -41,14 +43,226 @@ public class DefaultButtonsView implements ButtonsView {
         element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
         initButtonsBasicGroup();
         initButtonsToolbar();
+        initSizingGroup();
+        initNestingGroup();
+        initVerticalGroup();
+        initJustifyGroup();
+    }
+
+    private void initJustifyGroup() {
+        Card justifiedGroupCard = Card.create("JUSTIFIED BUTTON GROUPS", "Make a group of buttons stretch at equal sizes to span the entire width of its parent. Also works with button dropdowns within the button group.");
+
+        DropdownButton dropDown = DropdownButton.createDefault("Drop down")
+                .addAction(DropdownAction.create("Action"))
+                .separator()
+                .addAction(DropdownAction.create("Action2"));
+
+
+        JustifiedGroup justifiedGroup = JustifiedGroup.create();
+        justifiedGroup.addButton(Button.createPrimary("LEFT"));
+        justifiedGroup.addButton(Button.createInfo("MIDDLE"));
+        justifiedGroup.addButton(Button.createDanger("RIGHT"));
+        justifiedGroup.addDropDown(dropDown);
+
+        setStyle(justifiedGroup.asElement());
+
+        justifiedGroupCard.getBody().appendChild(justifiedGroup.asElement());
+
+        element.appendChild(justifiedGroupCard.asElement());
+
+        createCodeBlock("JustifiedGroup justifiedGroup = JustifiedGroup.create();\n" +
+                "justifiedGroup.addButton(Button.createPrimary(\"LEFT\"));\n" +
+                "justifiedGroup.addButton(Button.createInfo(\"MIDDLE\"));\n" +
+                "justifiedGroup.addButton(Button.createDanger(\"RIGHT\"));\n" +
+                "justifiedGroup.addDropDown(dropDown);\n" +
+                "element.appendChild(justifiedGroup.asElement());");
+    }
+
+    private void initVerticalGroup() {
+        Card verticalGroupCard = Card.create("VERTICAL VARIATION", "Make a set of buttons appear vertically stacked rather than horizontally.");
+
+        ButtonsGroup group = ButtonsGroup.create()
+                .addButton(Button.createDefault("Button"))
+                .addButton(Button.createPrimary("Button"))
+                .addDropDown(DropdownButton.createInfo("Dropdown")
+                        .addAction(DropdownAction.create("Dropdown link"))
+                        .addAction(DropdownAction.create("Dropdown link")))
+                .addButton(Button.createDanger("Button"))
+                .verticalAlign();
+        setMargin(group.asElement());
+
+        verticalGroupCard.getBody().appendChild(group.asElement());
+
+        element.appendChild(verticalGroupCard.asElement());
+
+        createCodeBlock("element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"Button\"))\n" +
+                "                .addButton(Button.createPrimary(\"Button\"))\n" +
+                "                .addDropDown(DropdownButton.createInfo(\"Dropdown\")\n" +
+                "                        .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
+                "                        .addAction(DropdownAction.create(\"Dropdown link\")))\n" +
+                "                .addButton(Button.createDanger(\"Button\"))\n" +
+                "                .verticalAlign());");
+    }
+
+    private void initNestingGroup() {
+        Card card = Card.create("SIZING", "Dropdown can be used inside a group of buttons.");
+
+        HTMLElement defaultGroup = numbersNestedGroup(ButtonType.DEFAULT);
+        setStyle(defaultGroup);
+
+        HTMLElement primaryGroup = numbersNestedGroup(ButtonType.PRIMARY);
+        setStyle(primaryGroup);
+
+        HTMLElement infoGroup = numbersNestedGroup(ButtonType.INFO);
+        setStyle(infoGroup);
+
+        HTMLElement successGroup = numbersNestedGroup(ButtonType.SUCCESS);
+        setStyle(successGroup);
+
+        HTMLElement dangerGroup = numbersNestedGroup(ButtonType.DANGER);
+        setStyle(dangerGroup);
+
+        HTMLElement warningGroup = numbersNestedGroup(ButtonType.WARNING);
+        setStyle(warningGroup);
+
+        card.appendContent(defaultGroup);
+        card.appendContent(primaryGroup);
+        card.appendContent(infoGroup);
+        card.appendContent(successGroup);
+        card.appendContent(dangerGroup);
+        card.appendContent(warningGroup);
+
+        element.appendChild(card.asElement());
+
+        createCodeBlock("DropdownButton defaultDropDown = DropdownButton.createDefault(\"Dropdown\")\n" +
+                "                .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
+                "                .addAction(DropdownAction.create(\"Dropdown link\"));\n" +
+                "\n" +
+                "element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"1\"))\n" +
+                "                .addButton(Button.createDefault(\"2\"))\n" +
+                "                .addDropDown(defaultDropDown).asElement());");
+    }
+
+    private HTMLElement numbersNestedGroup(ButtonType type) {
+        DropdownButton primaryDropDown = DropdownButton.create("Dropdown")
+                .setButtonType(type)
+                .addAction(DropdownAction.create("Dropdown link"))
+                .addAction(DropdownAction.create("Dropdown link"));
+
+        return ButtonsGroup.create()
+                .addButton(Button.create("1").setButtonType(type))
+                .addButton(Button.create("2").setButtonType(type))
+                .addDropDown(primaryDropDown).asElement();
+    }
+
+    private void initSizingGroup() {
+        Card card = Card.create("SIZING", "Instead of applying button sizing classes to every button in a group, size can be applied to the group and will be applied to every button.");
+
+        Row row = Row.create();
+
+        Column column1 = Column.create()
+                .onLarge(Column.OnLarge.three)
+                .onMedium(Column.OnMedium.three)
+                .onSmall(Column.OnSmall.four)
+                .onXSmall(Column.OnXSmall.six);
+
+        HTMLElement largeGroup = ButtonsGroup.create()
+                .addButton(Button.createDefault("LEFT"))
+                .addButton(Button.createDefault("MIDDLE"))
+                .addButton(Button.createDefault("RIGHT"))
+                .setSize(ButtonSize.LARGE)
+                .asElement();
+
+        setMargin(largeGroup, "20px");
+
+        column1.asElement().appendChild(heading("Large Button Group"));
+        column1.asElement().appendChild(largeGroup);
+
+
+        Column column2 = column1.copy();
+        HTMLElement defaultGroup = ButtonsGroup.create()
+                .addButton(Button.createDefault("LEFT"))
+                .addButton(Button.createDefault("MIDDLE"))
+                .addButton(Button.createDefault("RIGHT"))
+                .asElement();
+
+        setMargin(defaultGroup, "20px");
+
+        column2.asElement().appendChild(heading("Default Button Group"));
+        column2.asElement().appendChild(defaultGroup);
+
+        Column column3 = column1.copy();
+        HTMLElement smallGroup = ButtonsGroup.create()
+                .addButton(Button.createDefault("LEFT"))
+                .addButton(Button.createDefault("MIDDLE"))
+                .addButton(Button.createDefault("RIGHT"))
+                .setSize(ButtonSize.SMALL)
+                .asElement();
+
+        setMargin(smallGroup, "20px");
+
+        column3.asElement().appendChild(heading("Small Button Group"));
+        column3.asElement().appendChild(smallGroup);
+
+        Column column4 = column1.copy();
+        HTMLElement xsmallGroup = ButtonsGroup.create()
+                .addButton(Button.createDefault("LEFT"))
+                .addButton(Button.createDefault("MIDDLE"))
+                .addButton(Button.createDefault("RIGHT"))
+                .setSize(ButtonSize.XSMALL)
+                .asElement();
+
+        setMargin(xsmallGroup, "20px");
+
+        column4.asElement().appendChild(heading("Extra-Small Button Group"));
+        column4.asElement().appendChild(xsmallGroup);
+
+
+        column1.asElement().classList.add("align-center");
+        column2.asElement().classList.add("align-center");
+        column3.asElement().classList.add("align-center");
+        column4.asElement().classList.add("align-center");
+
+        row.addColumn(column1).addColumn(column2).addColumn(column3).addColumn(column4);
+
+        card.appendContent(row.asElement());
+
+        element.appendChild(card.asElement());
+
+        createCodeBlock("element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
+                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
+                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
+                "                .setSize(ButtonSize.LARGE)\n" +
+                "                .asElement());\n" +
+                "\n" +
+                "element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
+                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
+                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
+                "                .asElement());\n" +
+                "                \n" +
+                "element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
+                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
+                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
+                "                .setSize(ButtonSize.SMALL)\n" +
+                "                .asElement());\n" +
+                "                \n" +
+                "element.appendChild(ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
+                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
+                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
+                "                .setSize(ButtonSize.XSMALL)\n" +
+                "                .asElement());");
     }
 
     private void initButtonsToolbar() {
         Card card = Card.create("BUTTON TOOLBAR", "Create buttons toolbar");
 
         Row row = Row.create();
-
-//        Column column = createColumn();
 
         ButtonsGroup firstDefaultGroup = ButtonsGroup.create()
                 .addButton(Button.createDefault("1"))
@@ -72,8 +286,6 @@ public class DefaultButtonsView implements ButtonsView {
 
         row.asElement().appendChild(defaultButtonsToolbar.asElement());
 
-//        Column column1 = column.copy();
-
         ButtonsGroup firstPrimaryGroup = ButtonsGroup.create()
                 .addButton(Button.createPrimary("1"))
                 .addButton(Button.createPrimary("2"))
@@ -96,10 +308,76 @@ public class DefaultButtonsView implements ButtonsView {
 
         row.asElement().appendChild(primaryButtonsToolbar.asElement());
 
-//        row.addColumn(column)
-//                .addColumn(column1);
+        ButtonsGroup firstInfoGroup = ButtonsGroup.create()
+                .addButton(Button.createInfo("1"))
+                .addButton(Button.createInfo("2"))
+                .addButton(Button.createInfo("3"));
+
+        ButtonsGroup secondInfoGroup = ButtonsGroup.create()
+                .addButton(Button.createInfo("4"))
+                .addButton(Button.createInfo("5"))
+                .addButton(Button.createInfo("6"));
+
+        ButtonsGroup thirdInfoGroup = ButtonsGroup.create()
+                .addButton(Button.createInfo("7"));
+
+        ButtonsToolbar infoButtonsToolbar = ButtonsToolbar.create()
+                .addGroup(firstInfoGroup)
+                .addGroup(secondInfoGroup)
+                .addGroup(thirdInfoGroup);
+
+        setMargin(infoButtonsToolbar.asElement());
+
+        row.asElement().appendChild(infoButtonsToolbar.asElement());
+
+        ButtonsGroup firstColorGroup = ButtonsGroup.create()
+                .addButton(Button.create("1").setBackground(Background.PURPLE))
+                .addButton(Button.create("2").setBackground(Background.PURPLE))
+                .addButton(Button.create("3").setBackground(Background.PURPLE));
+
+        ButtonsGroup secondColorGroup = ButtonsGroup.create()
+                .addButton(Button.create("4").setBackground(Background.PURPLE))
+                .addButton(Button.create("5").setBackground(Background.PURPLE))
+                .addButton(Button.create("6").setBackground(Background.PURPLE));
+
+        ButtonsGroup thirdColorGroup = ButtonsGroup.create()
+                .addButton(Button.create("7").setBackground(Background.PURPLE));
+
+        ButtonsToolbar colorButtonsToolbar = ButtonsToolbar.create()
+                .addGroup(firstColorGroup)
+                .addGroup(secondColorGroup)
+                .addGroup(thirdColorGroup);
+
+        setMargin(colorButtonsToolbar.asElement());
+
+        row.asElement().appendChild(colorButtonsToolbar.asElement());
+
+        infoButtonsToolbar.asElement().style.cssFloat = "left";
+        defaultButtonsToolbar.asElement().style.cssFloat = "left";
+        primaryButtonsToolbar.asElement().style.cssFloat = "left";
+        colorButtonsToolbar.asElement().style.cssFloat = "left";
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
+
+        createCodeBlock("ButtonsGroup firstGroup = ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"1\"))\n" +
+                "                .addButton(Button.createDefault(\"2\"))\n" +
+                "                .addButton(Button.createDefault(\"3\"));\n" +
+                "\n" +
+                "ButtonsGroup secondGroup = ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"4\"))\n" +
+                "                .addButton(Button.createDefault(\"5\"))\n" +
+                "                .addButton(Button.createDefault(\"6\"));\n" +
+                "\n" +
+                "ButtonsGroup thirdGroup = ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"7\"));\n" +
+                "\n" +
+                "ButtonsToolbar buttonsToolbar = ButtonsToolbar.create()\n" +
+                "                .addGroup(firstGroup)\n" +
+                "                .addGroup(secondGroup)\n" +
+                "                .addGroup(thirdGroup);\n" +
+                "                \n" +
+                "element.appendChild(buttonsToolbar.asElement());");
     }
 
     private void initButtonsBasicGroup() {
@@ -166,17 +444,24 @@ public class DefaultButtonsView implements ButtonsView {
         card.appendContent(purpleGroup);
 
         element.appendChild(card.asElement());
+
+        createCodeBlock("ButtonsGroup group = ButtonsGroup.create()\n" +
+                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
+                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
+                "                .addButton(Button.createDefault(\"RIGHT\"));\n" +
+                "\n" +
+                "element.appendChild(group.asElement());");
     }
 
     private void initTextIconButtons() {
         Card card = Card.create("ICON & TEXT BUTTONS", "Make icon & text buttons");
 
         HTMLElement extension = IconButton.createDefault(Icons.ALL.extension()).setContent("EXTENSION").asElement();
-        HTMLElement home = IconButton.createDefault(Icons.ALL.home()).setContent("HOME").asElement();
-        HTMLElement lock = IconButton.createDefault(Icons.ALL.lock()).setContent("LOCK").asElement();
-        HTMLElement scanWifi = IconButton.createDefault(Icons.ALL.perm_scan_wifi()).setContent("SCAN WIFI").asElement();
-        HTMLElement takeOff = IconButton.createDefault(Icons.ALL.flight_takeoff()).setContent("TAKE OFF").asElement();
-        HTMLElement print = IconButton.createDefault(Icons.ALL.print()).setContent("PRINT").asElement();
+        HTMLElement home = IconButton.createPrimary(Icons.ALL.home()).setContent("HOME").asElement();
+        HTMLElement lock = IconButton.createSuccess(Icons.ALL.lock()).setContent("LOCK").asElement();
+        HTMLElement scanWifi = IconButton.createInfo(Icons.ALL.perm_scan_wifi()).setContent("SCAN WIFI").asElement();
+        HTMLElement takeOff = IconButton.createWarning(Icons.ALL.flight_takeoff()).setContent("TAKE OFF").asElement();
+        HTMLElement print = IconButton.createDanger(Icons.ALL.print()).setContent("PRINT").asElement();
 
         setStyle(extension);
         setStyle(home);
@@ -242,12 +527,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row1 = Row.create();
 
-        HTMLElement addCircleIconCRL = IconButton.createDefault(Icons.ALL.add_circle()).setButtonType(ButtonType.DEFAULT).circle(CircleSize.SMALL).asElement();
-        HTMLElement placeIconCRL = IconButton.createPrimary(Icons.ALL.place()).setButtonType(ButtonType.PRIMARY).circle(CircleSize.SMALL).asElement();
-        HTMLElement airplaneModeActiveIconCRL = IconButton.createInfo(Icons.ALL.airplanemode_active()).setButtonType(ButtonType.INFO).circle(CircleSize.SMALL).asElement();
-        HTMLElement albumIconCRL = IconButton.createSuccess(Icons.ALL.album()).setButtonType(ButtonType.SUCCESS).circle(CircleSize.SMALL).asElement();
-        HTMLElement weekendIconCRL = IconButton.createWarning(Icons.ALL.weekend()).setButtonType(ButtonType.WARNING).circle(CircleSize.SMALL).asElement();
-        HTMLElement airplayIconCRL = IconButton.createDanger(Icons.ALL.airplay()).setButtonType(ButtonType.DANGER).circle(CircleSize.SMALL).asElement();
+        HTMLElement addCircleIconCRL = IconButton.createDefault(Icons.ALL.add_circle()).circle(CircleSize.SMALL).setButtonType(ButtonType.DEFAULT).asElement();
+        HTMLElement placeIconCRL = IconButton.createPrimary(Icons.ALL.place()).circle(CircleSize.SMALL).setButtonType(ButtonType.PRIMARY).asElement();
+        HTMLElement airplaneModeActiveIconCRL = IconButton.createInfo(Icons.ALL.airplanemode_active()).circle(CircleSize.SMALL).setButtonType(ButtonType.INFO).asElement();
+        HTMLElement albumIconCRL = IconButton.createSuccess(Icons.ALL.album()).circle(CircleSize.SMALL).setButtonType(ButtonType.SUCCESS).asElement();
+        HTMLElement weekendIconCRL = IconButton.createWarning(Icons.ALL.weekend()).circle(CircleSize.SMALL).setButtonType(ButtonType.WARNING).asElement();
+        HTMLElement airplayIconCRL = IconButton.createDanger(Icons.ALL.airplay()).circle(CircleSize.SMALL).setButtonType(ButtonType.DANGER).asElement();
 
         setMargin(addCircleIconCRL);
         setMargin(placeIconCRL);
@@ -272,12 +557,12 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row2 = Row.create();
 
-        HTMLElement adjustIconCRL = IconButton.createDefault(Icons.ALL.adjust()).setButtonType(ButtonType.DEFAULT).circle(CircleSize.LARGE).asElement();
-        HTMLElement alloutIconCRL = IconButton.createPrimary(Icons.ALL.all_out()).setButtonType(ButtonType.PRIMARY).circle(CircleSize.LARGE).asElement();
-        HTMLElement appsIconCRL = IconButton.createInfo(Icons.ALL.apps()).setButtonType(ButtonType.INFO).circle(CircleSize.LARGE).asElement();
-        HTMLElement artTrackIconCRL = IconButton.createSuccess(Icons.ALL.art_track()).setButtonType(ButtonType.SUCCESS).circle(CircleSize.LARGE).asElement();
-        HTMLElement assessmentIconCRL = IconButton.createWarning(Icons.ALL.assessment()).setButtonType(ButtonType.WARNING).circle(CircleSize.LARGE).asElement();
-        HTMLElement assistantIconCRL = IconButton.createDanger(Icons.ALL.assistant()).setButtonType(ButtonType.DANGER).circle(CircleSize.LARGE).asElement();
+        HTMLElement adjustIconCRL = IconButton.createDefault(Icons.ALL.adjust()).circle(CircleSize.LARGE).setButtonType(ButtonType.DEFAULT).asElement();
+        HTMLElement alloutIconCRL = IconButton.createPrimary(Icons.ALL.all_out()).circle(CircleSize.LARGE).setButtonType(ButtonType.PRIMARY).asElement();
+        HTMLElement appsIconCRL = IconButton.createInfo(Icons.ALL.apps()).circle(CircleSize.LARGE).setButtonType(ButtonType.INFO).asElement();
+        HTMLElement artTrackIconCRL = IconButton.createSuccess(Icons.ALL.art_track()).circle(CircleSize.LARGE).setButtonType(ButtonType.SUCCESS).asElement();
+        HTMLElement assessmentIconCRL = IconButton.createWarning(Icons.ALL.assessment()).circle(CircleSize.LARGE).setButtonType(ButtonType.WARNING).asElement();
+        HTMLElement assistantIconCRL = IconButton.createDanger(Icons.ALL.assistant()).circle(CircleSize.LARGE).setButtonType(ButtonType.DANGER).asElement();
 
         setMargin(adjustIconCRL);
         setMargin(alloutIconCRL);
@@ -544,7 +829,11 @@ public class DefaultButtonsView implements ButtonsView {
     }
 
     private void setMargin(HTMLElement element) {
-        element.style.margin = CSSProperties.MarginUnionType.of("5px");
+        setMargin(element, "5px");
+    }
+
+    private void setMargin(HTMLElement element, String margin) {
+        element.style.margin = CSSProperties.MarginUnionType.of(margin);
     }
 
     @Override

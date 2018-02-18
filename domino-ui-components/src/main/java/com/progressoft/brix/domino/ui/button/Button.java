@@ -3,22 +3,20 @@ package com.progressoft.brix.domino.ui.button;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Waves;
 import com.progressoft.brix.domino.ui.style.WavesElement;
-import com.progressoft.brix.domino.ui.utils.HasClickableElement;
-import com.progressoft.brix.domino.ui.utils.Justifiable;
-import elemental2.dom.HTMLAnchorElement;
+import com.progressoft.brix.domino.ui.utils.*;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static java.util.Objects.nonNull;
 
-public class Button extends WavesElement<Button, HTMLElement> implements Justifiable, HasClickableElement {
+public class Button extends WavesElement<Button, HTMLElement> implements
+        Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>, HasContent<Button> {
 
     final HTMLElement buttonElement = Elements.button().css("btn").asElement();
     private ButtonType type;
     private Background background;
     private ButtonSize size;
-    private JustifyHandler handler;
     protected String content;
 
     private static Button create(String content, ButtonType type) {
@@ -72,6 +70,7 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
         setButtonType(type);
     }
 
+    @Override
     public Button setContent(String content) {
         this.content = content;
         buttonElement.textContent = this.content;
@@ -94,6 +93,7 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
         return this;
     }
 
+    @Override
     public Button setBackground(Background background) {
         if (nonNull(this.background))
             buttonElement.classList.remove(this.background.getStyle());
@@ -127,48 +127,42 @@ public class Button extends WavesElement<Button, HTMLElement> implements Justifi
 
     @Override
     public HTMLElement justify() {
-        HTMLAnchorElement justifiedElement = Elements.a()
+        return Elements.a()
                 .attr("href", "javascript:void(0);")
                 .css(asElement().className)
                 .attr("role", "button")
                 .textContent(asElement().textContent).asElement();
-        if (nonNull(handler))
-            handler.onJustifiy(justifiedElement);
-        return justifiedElement;
     }
-
-    @Override
-    public void addJustifyHandler(JustifyHandler handler) {
-        this.handler = handler;
-    }
-
 
     @Override
     public HTMLElement getClickableElement() {
         return asElement();
     }
 
-    public Button appendContent(Node node){
+    public Button appendContent(Node node) {
         this.asElement().appendChild(node);
         return this;
     }
 
-    public Button large(){
+    @Override
+    public Button large() {
         setSize(ButtonSize.LARGE);
         return this;
     }
 
-    public Button small(){
+    @Override
+    public Button small() {
         setSize(ButtonSize.SMALL);
         return this;
     }
 
-    public Button xSmall(){
+    @Override
+    public Button xSmall() {
         setSize(ButtonSize.XSMALL);
         return this;
     }
 
-    public Button block(){
+    public Button block() {
         setBlock(true);
         return this;
     }

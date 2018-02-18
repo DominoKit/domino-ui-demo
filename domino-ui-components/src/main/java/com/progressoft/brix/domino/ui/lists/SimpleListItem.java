@@ -1,16 +1,14 @@
 package com.progressoft.brix.domino.ui.lists;
 
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.HTMLLIElement;
 import org.jboss.gwt.elemento.core.IsElement;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static org.jboss.gwt.elemento.core.Elements.h;
 import static org.jboss.gwt.elemento.core.Elements.li;
-import static org.jboss.gwt.elemento.core.Elements.p;
 
-public class SimpleListItem extends BaseListItem implements IsElement<HTMLLIElement> {
+public class SimpleListItem extends BaseListItem implements IsElement<HTMLLIElement>, HasBackground<SimpleListItem> {
 
     private final HTMLLIElement element;
     private String style;
@@ -37,6 +35,7 @@ public class SimpleListItem extends BaseListItem implements IsElement<HTMLLIElem
         return this;
     }
 
+    @Override
     public SimpleListItem setBackground(Background background) {
         setStyle("list-group-" + background.getStyle());
         return this;

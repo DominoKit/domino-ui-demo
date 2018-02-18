@@ -4,6 +4,7 @@ import com.progressoft.brix.domino.ui.code.Code;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.icons.Icons;
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.*;
 import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.template.DataElement;
@@ -17,7 +18,7 @@ import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.li;
 
 @Templated
-public abstract class Card implements IsElement<HTMLDivElement> {
+public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<Card> {
 
     private Text title = new Text("");
     private Text description = new Text("");
@@ -116,6 +117,7 @@ public abstract class Card implements IsElement<HTMLDivElement> {
         return this;
     }
 
+    @Override
     public Card setBackground(Background background) {
         setHeaderBackground(background);
         setBodyBackground(background);
