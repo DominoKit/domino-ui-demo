@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.ui.lists;
 
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import com.progressoft.brix.domino.ui.utils.HasMultiSelectSupport;
 import com.progressoft.brix.domino.ui.utils.HasValue;
 import com.progressoft.brix.domino.ui.utils.Selectable;
@@ -10,17 +11,17 @@ import elemental2.dom.HTMLParagraphElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.IsElement;
 
-import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.gwt.elemento.core.Elements.a;
 
-public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorElement>, HasValue<T>, Selectable<ListItem<T>>{
+public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorElement>, HasValue<T>
+        , Selectable<ListItem<T>>, HasBackground<ListItem<T>> {
 
     private final HTMLAnchorElement element;
     private T value;
     private HasMultiSelectSupport<ListItem<T>> parent;
-    private boolean selected =false;
-    private boolean disabled=false;
+    private boolean selected = false;
+    private boolean disabled = false;
     private String style;
     private HTMLHeadingElement header;
     private HTMLParagraphElement body;
@@ -28,15 +29,15 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
     private ListItem(HTMLAnchorElement element, T value, HasMultiSelectSupport<ListItem<T>> parent) {
         super(element);
         this.element = element;
-        this.value=value;
-        this.parent=parent;
+        this.value = value;
+        this.parent = parent;
     }
 
-    static <T> ListItem<T> create(HasMultiSelectSupport<ListItem<T>> parent, T value){
+    static <T> ListItem<T> create(HasMultiSelectSupport<ListItem<T>> parent, T value) {
         HTMLAnchorElement element = a().css("list-group-item").asElement();
         ListItem<T> listItem = new ListItem<>(element, value, parent);
-        element.addEventListener("click", e->{
-            if(!listItem.disabled) {
+        element.addEventListener("click", e -> {
+            if (!listItem.disabled) {
                 if (listItem.isSelected()) {
                     listItem.deselect();
                 } else {
@@ -55,7 +56,7 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
 
     @Override
     public void setValue(T value) {
-        this.value=value;
+        this.value = value;
     }
 
     @Override
@@ -65,11 +66,11 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
 
     @Override
     public ListItem<T> select() {
-        if(!parent.isMultiSelect())
+        if (!parent.isMultiSelect())
             parent.getItems().forEach(ListItem::deselect);
-        if(!selected){
+        if (!selected) {
             asElement().classList.add("active");
-            this.selected=true;
+            this.selected = true;
         }
 
         return this;
@@ -77,34 +78,34 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
 
     @Override
     public ListItem<T> deselect() {
-        if(selected) {
+        if (selected) {
             asElement().classList.remove("active");
-            this.selected=false;
+            this.selected = false;
         }
 
         return this;
     }
 
-    public ListItem<T> disable(){
-        if(!disabled) {
+    public ListItem<T> disable() {
+        if (!disabled) {
             deselect();
             element.classList.add("disabled");
-            this.disabled=true;
+            this.disabled = true;
         }
 
         return this;
     }
 
-    public ListItem<T> enable(){
-        if(disabled) {
+    public ListItem<T> enable() {
+        if (disabled) {
             element.classList.remove("disabled");
-            this.disabled=false;
+            this.disabled = false;
         }
 
         return this;
     }
 
-    public boolean isDisabled(){
+    public boolean isDisabled() {
         return disabled;
     }
 
@@ -113,20 +114,21 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
         return selected;
     }
 
-    public ListItem<T> setStyle(ListGroupStyle itemStyle){
+    public ListItem<T> setStyle(ListGroupStyle itemStyle) {
         return setStyle(itemStyle.getStyle());
     }
 
     private ListItem<T> setStyle(String itemStyle) {
-        if(nonNull(this.style))
+        if (nonNull(this.style))
             element.classList.remove(this.style);
         element.classList.add(itemStyle);
-        this.style=itemStyle;
+        this.style = itemStyle;
         return this;
     }
 
-    public ListItem<T> setBackground(Background background){
-        setStyle("list-group-"+background.getStyle());
+    @Override
+    public ListItem<T> setBackground(Background background) {
+        setStyle("list-group-" + background.getStyle());
         return this;
     }
 
@@ -140,7 +142,7 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
         return this;
     }
 
-    public ListItem<T> appendContent(Node node){
+    public ListItem<T> appendContent(Node node) {
         this.asElement().appendChild(node);
         return this;
     }

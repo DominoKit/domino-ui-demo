@@ -1,21 +1,22 @@
 package com.progressoft.brix.domino.ui.badges;
 
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.HTMLElement;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.span;
 
-public class Badge implements IsElement<HTMLElement>{
+public class Badge implements IsElement<HTMLElement>, HasBackground<Badge> {
 
-    private HTMLElement badgeElement=span().css("badge").asElement();
-    private boolean pulledRight=false;
+    private HTMLElement badgeElement = span().css("badge").asElement();
+    private boolean pulledRight = false;
     private Background badgeBackground;
 
-    public static Badge create(String content){
-        Badge badge=new Badge();
-        badge.badgeElement.textContent=content;
+    public static Badge create(String content) {
+        Badge badge = new Badge();
+        badge.badgeElement.textContent = content;
         return badge;
     }
 
@@ -24,20 +25,21 @@ public class Badge implements IsElement<HTMLElement>{
         return badgeElement;
     }
 
-    public Badge setText(String text){
-        badgeElement.textContent=text;
+    public Badge setText(String text) {
+        badgeElement.textContent = text;
         return this;
     }
 
-    public Badge pullRight(){
-        if(!pulledRight)
+    public Badge pullRight() {
+        if (!pulledRight)
             badgeElement.classList.add("pull-right");
 
         return this;
     }
 
-    public Badge setBackground(Background badgeBackground){
-        if(nonNull(this.badgeBackground))
+    @Override
+    public Badge setBackground(Background badgeBackground) {
+        if (nonNull(this.badgeBackground))
             badgeElement.classList.remove(this.badgeBackground.getStyle());
 
         this.badgeBackground = badgeBackground;

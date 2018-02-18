@@ -1,6 +1,8 @@
 package com.progressoft.brix.domino.ui.button;
 
+import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasContent;
 import com.progressoft.brix.domino.ui.utils.Justifiable;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
@@ -11,16 +13,12 @@ import org.jboss.gwt.elemento.core.Elements;
 import java.util.LinkedList;
 import java.util.List;
 
-import static java.util.Objects.nonNull;
-
-public class DropdownButton implements Justifiable {
+public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
 
     private HTMLElement groupElement = ButtonsGroup.create().asElement();
     private HTMLUListElement actionsElement = Elements.ul().css("dropdown-menu").asElement();
     private Button button;
     private List<Justifiable> items = new LinkedList<>();
-    private HTMLElement justifiedElement;
-    private JustifyHandler handler;
 
     private DropdownButton(String content, ButtonType type) {
         this(Button.create(content).setButtonType(type));
@@ -128,30 +126,27 @@ public class DropdownButton implements Justifiable {
         for (Justifiable item : items) {
             cloneDropdownButton.actionsElement.appendChild(item.justify());
         }
-        justifiedElement = cloneDropdownButton.asElement();
-        if (nonNull(handler))
-            handler.onJustifiy(justifiedElement);
-        return justifiedElement;
+        return cloneDropdownButton.asElement();
+    }
+
+    public DropdownButton setButtonType(ButtonType type) {
+        button.setButtonType(type);
+        return this;
     }
 
     @Override
-    public void addJustifyHandler(JustifyHandler handler) {
-        this.handler = handler;
+    public DropdownButton setContent(String content) {
+        button.setContent(content);
+        return this;
     }
 
     private class JustifiableSeparator implements Justifiable {
 
         private HTMLLIElement separator = Elements.li().attr("role", "separator").css("divider").asElement();
-        private JustifyHandler handler;
 
         @Override
         public HTMLElement justify() {
             return (HTMLElement) separator.cloneNode(true);
-        }
-
-        @Override
-        public void addJustifyHandler(JustifyHandler handler) {
-            // nothing
         }
 
         @Override

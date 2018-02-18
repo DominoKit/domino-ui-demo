@@ -1,5 +1,6 @@
 package com.progressoft.brix.domino.ui.button;
 
+import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.style.Background;
 import elemental2.dom.HTMLElement;
 import org.jboss.gwt.elemento.core.Elements;

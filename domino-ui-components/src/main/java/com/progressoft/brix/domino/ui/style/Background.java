@@ -1,6 +1,6 @@
 package com.progressoft.brix.domino.ui.style;
 
-public enum  Background {
+public enum Background {
 
     RED("bg-red"),
     PINK("bg-pink"),
@@ -28,7 +28,7 @@ public enum  Background {
     private final String style;
 
     Background(String style) {
-        this.style=style;
+        this.style = style;
     }
 
     public String getStyle() {

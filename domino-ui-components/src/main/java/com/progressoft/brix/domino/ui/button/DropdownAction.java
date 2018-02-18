@@ -7,13 +7,10 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import org.jboss.gwt.elemento.core.Elements;
 
-import static java.util.Objects.nonNull;
-
 public class DropdownAction implements Justifiable, HasClickableElement {
 
     private HTMLLIElement iElement = Elements.li().asElement();
     private HTMLAnchorElement aElement;
-    private JustifyHandler handler;
 
     private DropdownAction(String content) {
         aElement = Elements.a()
@@ -34,15 +31,7 @@ public class DropdownAction implements Justifiable, HasClickableElement {
 
     @Override
     public HTMLElement justify() {
-        HTMLLIElement justifiedAElement = (HTMLLIElement) asElement().cloneNode(true);
-        if (nonNull(handler))
-            handler.onJustifiy(justifiedAElement);
-        return justifiedAElement;
-    }
-
-    @Override
-    public void addJustifyHandler(JustifyHandler handler) {
-        this.handler = handler;
+        return (HTMLLIElement) asElement().cloneNode(true);
     }
 
     @Override

@@ -1,23 +1,23 @@
 package com.progressoft.brix.domino.ui.button;
 
 import com.progressoft.brix.domino.ui.icons.Icon;
-import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.WaveStyle;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static java.util.Objects.nonNull;
 
 public class IconButton extends Button {
+
     private Icon icon;
+    private String content;
 
     private IconButton(Icon icon) {
-        super();
-        setIcon(icon);
+        this(icon, ButtonType.DEFAULT);
     }
 
     private IconButton(Icon icon, ButtonType type) {
-        this(icon);
         setButtonType(type);
+        setIcon(icon);
     }
 
     public static IconButton create(Icon icon) {
@@ -75,32 +75,12 @@ public class IconButton extends Button {
     }
 
     @Override
-    public IconButton setBackground(Background background) {
-        return (IconButton) super.setBackground(background);
-    }
-
-    @Override
-    public IconButton setBlock(boolean block) {
-        return (IconButton) super.setBlock(block);
-    }
-
-    @Override
-    public IconButton setButtonType(ButtonType type) {
-        return (IconButton) super.setButtonType(type);
-    }
-
-    @Override
     public IconButton setContent(String content) {
         this.content = content;
         buttonElement.textContent = "";
         buttonElement.appendChild(icon.asElement());
         buttonElement.appendChild(Elements.span().textContent(content).asElement());
         return this;
-    }
-
-    @Override
-    public IconButton setSize(ButtonSize size) {
-        return (IconButton) super.setSize(size);
     }
 
     public enum CircleSize {

@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.ui.alerts;
 
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLButtonElement;
 import elemental2.dom.HTMLDivElement;
@@ -10,7 +11,7 @@ import org.jboss.gwt.elemento.core.IsElement;
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-public class Alert implements IsElement<HTMLDivElement> {
+public class Alert implements IsElement<HTMLDivElement>, HasBackground<Alert> {
 
     public enum AlertType {
         SUCCESS("alert-success"),
@@ -27,18 +28,13 @@ public class Alert implements IsElement<HTMLDivElement> {
 
     private String style;
     private boolean dismissible = false;
-    private HTMLDivElement alertElement=div().css("alert").asElement();
+    private HTMLDivElement alertElement = div().css("alert").asElement();
 
     private HTMLButtonElement closeButton = button().attr("type", "button").css("close")
             .attr("aria-label", "Close")
             .add(span().attr("aria-hidden", "true")
                     .textContent("×").asElement()).asElement();
 
-    /**
-     *
-     * @param style
-     * @return
-     */
     private static Alert create(String style) {
         Alert alert = create();
         alert.alertElement.classList.add(style);
@@ -46,29 +42,16 @@ public class Alert implements IsElement<HTMLDivElement> {
         return alert;
     }
 
-    /**
-     *
-     * @param background
-     * @return
-     */
     public static Alert create(Background background) {
         return create(background.getStyle());
     }
 
-    /**
-     *
-     * @return
-     */
     public static Alert create() {
         Alert alert = new Alert();
         alert.closeButton.addEventListener("click", e -> alert.asElement().remove());
         return alert;
     }
 
-    /**
-     *
-     * @return
-     */
     public static Alert success() {
         return create(AlertType.SUCCESS.typeStyle);
     }
@@ -85,11 +68,13 @@ public class Alert implements IsElement<HTMLDivElement> {
         return create(AlertType.ERROR.typeStyle);
     }
 
-    public void setBackground(Background background) {
+    @Override
+    public Alert setBackground(Background background) {
         if (nonNull(style))
             alertElement.classList.remove(style);
         this.style = background.getStyle();
         alertElement.classList.add(this.style);
+        return this;
     }
 
     public Alert appendStrong(String text) {
@@ -118,7 +103,7 @@ public class Alert implements IsElement<HTMLDivElement> {
             else
                 alertElement.appendChild(closeButton);
         }
-        dismissible=true;
+        dismissible = true;
         return this;
     }
 
@@ -127,7 +112,7 @@ public class Alert implements IsElement<HTMLDivElement> {
             alertElement.classList.remove("alert-dismissible");
             alertElement.removeChild(closeButton);
         }
-        dismissible=false;
+        dismissible = false;
         return this;
     }
 

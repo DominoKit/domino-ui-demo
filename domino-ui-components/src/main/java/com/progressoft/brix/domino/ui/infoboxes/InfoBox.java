@@ -3,6 +3,7 @@ package com.progressoft.brix.domino.ui.infoboxes;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Color;
+import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.HTMLDivElement;
 import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.template.DataElement;
@@ -11,7 +12,7 @@ import org.jboss.gwt.elemento.template.Templated;
 import static java.util.Objects.nonNull;
 
 @Templated
-public abstract class InfoBox implements IsElement<HTMLDivElement> {
+public abstract class InfoBox implements IsElement<HTMLDivElement>, HasBackground<InfoBox> {
 
     public enum HoverEffect {
         ZOOM("hover-zoom-effect"),
@@ -25,7 +26,7 @@ public abstract class InfoBox implements IsElement<HTMLDivElement> {
 
     }
 
-    public enum Flip{
+    public enum Flip {
         RIGHT("info-box-3"),
         LEFT("info-box");
 
@@ -50,7 +51,7 @@ public abstract class InfoBox implements IsElement<HTMLDivElement> {
     private Background counterBackground;
     private Background iconBackground;
     private HoverEffect hoverEffect;
-    private Flip flip=Flip.LEFT;
+    private Flip flip = Flip.LEFT;
     private Color iconColor;
 
     public static InfoBox create(Icon icon, String title, String value) {
@@ -59,13 +60,12 @@ public abstract class InfoBox implements IsElement<HTMLDivElement> {
         templated_InfoBox.iconElement.appendChild(icon.asElement());
         templated_InfoBox.titleElement.textContent = title;
         templated_InfoBox.valueElement.textContent = value;
-        templated_InfoBox.icon=icon;
+        templated_InfoBox.icon = icon;
 
         return templated_InfoBox;
     }
 
-
-
+    @Override
     public InfoBox setBackground(Background background) {
         if (nonNull(counterBackground))
             this.asElement().classList.remove(counterBackground.getStyle());
@@ -102,37 +102,37 @@ public abstract class InfoBox implements IsElement<HTMLDivElement> {
         return this;
     }
 
-    public InfoBox flipLeft(){
+    public InfoBox flipLeft() {
         this.asElement().classList.remove(flip.flipStyle);
-        this.flip=Flip.LEFT;
+        this.flip = Flip.LEFT;
         this.asElement().classList.add(this.flip.flipStyle);
 
         return this;
     }
 
-    public InfoBox flipRight(){
+    public InfoBox flipRight() {
         this.asElement().classList.remove(flip.flipStyle);
-        this.flip=Flip.RIGHT;
+        this.flip = Flip.RIGHT;
         this.asElement().classList.add(this.flip.flipStyle);
         return this;
     }
 
-    public InfoBox flip(){
+    public InfoBox flip() {
         this.asElement().classList.remove(flip.flipStyle);
-        if(Flip.LEFT.equals(this.flip)){
-            this.flip=Flip.RIGHT;
-        }else {
-            this.flip=Flip.LEFT;
+        if (Flip.LEFT.equals(this.flip)) {
+            this.flip = Flip.RIGHT;
+        } else {
+            this.flip = Flip.LEFT;
         }
         this.asElement().classList.add(this.flip.flipStyle);
 
         return this;
     }
 
-    public InfoBox setIconColor(Color color){
-        if(nonNull(iconColor) && nonNull(icon))
+    public InfoBox setIconColor(Color color) {
+        if (nonNull(iconColor) && nonNull(icon))
             icon.asElement().classList.remove(iconColor.getStyle());
-        if(nonNull(icon)) {
+        if (nonNull(icon)) {
             this.iconColor = color;
             icon.asElement().classList.add(this.iconColor.getStyle());
         }
