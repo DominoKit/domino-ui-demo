@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.ui.button;
 
 import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.style.Background;
+import com.progressoft.brix.domino.ui.style.StyleType;
 import com.progressoft.brix.domino.ui.utils.HasContent;
 import com.progressoft.brix.domino.ui.utils.Justifiable;
 import elemental2.dom.*;
@@ -18,7 +19,7 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
     private Button button;
     private List<Justifiable> items = new LinkedList<>();
 
-    private DropdownButton(String content, ButtonType type) {
+    private DropdownButton(String content, StyleType type) {
         this(Button.create(content).setButtonType(type));
     }
 
@@ -93,32 +94,32 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
         return new DropdownButton(content, background);
     }
 
-    public static DropdownButton create(String content, ButtonType type) {
+    public static DropdownButton create(String content, StyleType type) {
         return new DropdownButton(content, type);
     }
 
     public static DropdownButton createDefault(String content) {
-        return create(content, ButtonType.DEFAULT);
+        return create(content, StyleType.DEFAULT);
     }
 
     public static DropdownButton createPrimary(String content) {
-        return create(content, ButtonType.PRIMARY);
+        return create(content, StyleType.PRIMARY);
     }
 
     public static DropdownButton createSuccess(String content) {
-        return create(content, ButtonType.SUCCESS);
+        return create(content, StyleType.SUCCESS);
     }
 
     public static DropdownButton createInfo(String content) {
-        return create(content, ButtonType.INFO);
+        return create(content, StyleType.INFO);
     }
 
     public static DropdownButton createWarning(String content) {
-        return create(content, ButtonType.WARNING);
+        return create(content, StyleType.WARNING);
     }
 
     public static DropdownButton createDanger(String content) {
-        return create(content, ButtonType.DANGER);
+        return create(content, StyleType.DANGER);
     }
 
     public DropdownButton addAction(DropdownAction action) {
@@ -154,7 +155,7 @@ public class DropdownButton implements Justifiable, HasContent<DropdownButton> {
         return cloneDropdownButton.asElement();
     }
 
-    public DropdownButton setButtonType(ButtonType type) {
+    public DropdownButton setButtonType(StyleType type) {
         button.setButtonType(type);
         return this;
     }
