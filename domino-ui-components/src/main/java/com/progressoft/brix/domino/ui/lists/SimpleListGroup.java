@@ -29,6 +29,11 @@ public class SimpleListGroup implements IsElement<HTMLUListElement>{
         return this;
     }
 
+    public SimpleListGroup appendItem(SimpleListItem item){
+        element.appendChild(item.asElement());
+        return this;
+    }
+
     @Override
     public HTMLUListElement asElement() {
         return element;
