@@ -138,4 +138,29 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
         modalHeader.style.display="block";
         return this;
     }
+
+    public ModalDialog setTitle(String title){
+        modalHeader.textContent=title;
+        return this;
+    }
+
+    public HTMLDivElement getDialogElement() {
+        return modalDialog;
+    }
+
+    public HTMLDivElement getContentElement() {
+        return modalContent;
+    }
+
+    public HTMLHeadingElement getHeaderElement() {
+        return modalHeader;
+    }
+
+    public HTMLDivElement getBodyElement() {
+        return modalBody;
+    }
+
+    public HTMLDivElement getFooterElement() {
+        return modalFooter;
+    }
 }
