@@ -2,9 +2,8 @@ package com.progressoft.brix.domino.layout.client.presenters;
 
 import com.progressoft.brix.domino.api.client.annotations.Presenter;
 import com.progressoft.brix.domino.api.client.mvp.presenter.BaseClientPresenter;
-import com.progressoft.brix.domino.api.shared.extension.Content;
-import com.progressoft.brix.domino.layout.client.views.LayoutView;
 import com.progressoft.brix.domino.api.shared.extension.MainContext;
+import com.progressoft.brix.domino.layout.client.views.LayoutView;
 import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 import com.progressoft.brix.domino.layout.shared.extension.LayoutContext;
 import com.progressoft.brix.domino.layout.shared.extension.LayoutExtensionPoint;

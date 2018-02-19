@@ -13,7 +13,7 @@ public class ComponentsClientModule implements EntryPoint {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ComponentsClientModule.class);
 
 	public void onModuleLoad() {
-		LOGGER.info("Initializing Components frontend module ...");
+		LOGGER.info("Initializing Components frontend module ... ");
 		new ModuleConfigurator().configureModule(new ComponentsModuleConfiguration());
 	}
 }

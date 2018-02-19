@@ -1,15 +1,16 @@
 package com.progressoft.brix.domino.componentcase.client.ui.views;
 
+import com.google.gwt.core.client.GWT;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.componentcase.client.presenters.ComponentCasePresenter;
-import com.progressoft.brix.domino.componentcase.client.views.CompponentCaseView;
+import com.progressoft.brix.domino.componentcase.client.views.ComponentCaseView;
 import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
 @UiView(presentable = ComponentCasePresenter.class)
-public class DefaultComponentCaseView implements CompponentCaseView {
+public class DefaultComponentCaseView implements ComponentCaseView {
 
 
     private HTMLElement contentPanel;

@@ -1,5 +1,8 @@
 package com.progressoft.brix.domino.layout.client.ui.views;
 
+import com.google.gwt.core.client.GWT;
+import com.progressoft.brix.domino.api.client.ClientApp;
+import com.progressoft.brix.domino.api.client.Domino;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.layout.client.presenters.LayoutPresenter;
