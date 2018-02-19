@@ -1031,10 +1031,10 @@ public class DefaultButtonsView implements ButtonsView {
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.create(\"PURPLE LARGE\").setBackground(Background.PURPLE).setSize(ButtonSize.LARGE).asElement());\n" +
-                "element.appendChild(Button.create(\"PURPLE\").setBackground(Background.PURPLE).asElement());\n" +
-                "element.appendChild(Button.create(\"PURPLE SMALL\").setBackground(Background.PURPLE).setSize(Buttonize.SMALL).asElement());\n" +
-                "element.appendChild(Button.create(\"PURPLE XSMALL\").setBackground(Background.PURPLE).setSize(ButtonSize.XSMALL).asElement());").asElement());
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"LARGE\").setSize(ButtonSize.LARGE).asElement());\n" +
+                "element.appendChild(Button.createDefault(\"DEFAULT\").asElement());\n" +
+                "element.appendChild(Button.createDefault(\"SMALL\").setSize(Buttonize.SMALL).asElement());\n" +
+                "element.appendChild(Button.createDefault(\"XSMALL\").setSize(ButtonSize.XSMALL).asElement());").asElement());
 
     }
 
