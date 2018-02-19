@@ -1,6 +1,5 @@
 package com.progressoft.brix.domino.labels.client.ui.views;
 
-import com.google.gwt.user.client.ui.Composite;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.labels.client.presenters.LabelsPresenter;
@@ -18,7 +17,7 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LabelsPresenter.class)
-public class DefaultLabelsView extends Composite implements LabelsView {
+public class DefaultLabelsView implements LabelsView {
 
     private HTMLElement element = Elements.div().asElement();
 

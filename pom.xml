@@ -160,5 +160,6 @@
     <module>alerts</module>
     <module>badges</module>
         <module>labels</module>
+        <module>modals</module>
     </modules>
 </project>
