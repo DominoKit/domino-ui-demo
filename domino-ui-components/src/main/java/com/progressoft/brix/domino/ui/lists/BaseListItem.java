@@ -20,13 +20,13 @@ public class BaseListItem {
 
     void setHeaderText(String heading) {
         if (isNull(header)) {
+            body = p().css("list-group-item-text").asElement();
+            body.textContent = element.textContent;
             element.textContent = "";
             header = h(4).css("list-group-item-heading").asElement();
             header.textContent = heading;
             element.appendChild(header);
-            body = p().css("list-group-item-text").asElement();
             element.appendChild(body);
-            body.textContent = element.textContent;
         } else {
             header.textContent = heading;
         }

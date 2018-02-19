@@ -293,7 +293,7 @@ public class DefaultButtonsView implements ButtonsView {
         element.appendChild(verticalGroupCard.asElement());
 
         element.appendChild(Card.createCodeCard("element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"Button\"))\n" +
+                "                .addButton(Button.create(\"Button\"))\n" +
                 "                .addButton(Button.createPrimary(\"Button\"))\n" +
                 "                .addDropDown(DropdownButton.createInfo(\"Dropdown\")\n" +
                 "                        .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
@@ -338,13 +338,13 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("DropdownButton defaultDropDown = DropdownButton.createDefault(\"Dropdown\")\n" +
+        element.appendChild(Card.createCodeCard("DropdownButton defaultDropDown = DropdownButton.create(\"Dropdown\")\n" +
                 "                .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
                 "                .addAction(DropdownAction.create(\"Dropdown link\"));\n" +
                 "\n" +
                 "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"1\"))\n" +
-                "                .addButton(Button.createDefault(\"2\"))\n" +
+                "                .addButton(Button.create(\"1\"))\n" +
+                "                .addButton(Button.create(\"2\"))\n" +
                 "                .addDropDown(defaultDropDown).asElement());").asElement());
     }
 
@@ -665,7 +665,7 @@ public class DefaultButtonsView implements ButtonsView {
     private void initTextIconButtons() {
         Card card = Card.create("ICON & TEXT BUTTONS", "Make icon & text buttons");
 
-        HTMLElement extension = IconButton.createDefault(Icons.ALL.extension()).setContent("EXTENSION").asElement();
+        HTMLElement extension = IconButton.create(Icons.ALL.extension()).setContent("EXTENSION").asElement();
         HTMLElement home = IconButton.createPrimary(Icons.ALL.home()).setContent("HOME").asElement();
         HTMLElement lock = IconButton.createSuccess(Icons.ALL.lock()).setContent("LOCK").asElement();
         HTMLElement scanWifi = IconButton.createInfo(Icons.ALL.perm_scan_wifi()).setContent("SCAN WIFI").asElement();
@@ -694,7 +694,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"EXTENSION\").setIcon(Icons.ALL.extension()).asElement());\n" +
+        element.appendChild(Card.createCodeCard("element.appendChild(Button.create(\"EXTENSION\").setIcon(Icons.ALL.extension()).asElement());\n" +
                 "element.appendChild(Button.createPrimary(\"HOME\").setIcon(Icons.ALL.home()).asElement());\n" +
                 "element.appendChild(Button.createSuccess(\"LOCK\").setIcon(Icons.ALL.lock()).asElement());\n" +
                 "element.appendChild(Button.createInfo(\"SCAN WIFI\").setIcon(Icons.ALL.perm_scan_wifi()).asElement());\n" +
@@ -712,7 +712,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row = Row.create();
 
-        HTMLElement homeIcon = IconButton.createDefault(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement homeIcon = IconButton.create(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement();
         HTMLElement micIcon = IconButton.createPrimary(Icons.ALL.mic()).setButtonType(StyleType.PRIMARY).asElement();
         HTMLElement moreIcon = IconButton.createInfo(Icons.ALL.more()).setButtonType(StyleType.INFO).asElement();
         HTMLElement keyboardIcon = IconButton.createSuccess(Icons.ALL.keyboard()).setButtonType(StyleType.SUCCESS).asElement();
@@ -742,7 +742,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row1 = Row.create();
 
-        HTMLElement addCircleIconCRL = IconButton.createDefault(Icons.ALL.add_circle()).circle(CircleSize.SMALL).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement addCircleIconCRL = IconButton.create(Icons.ALL.add_circle()).circle(CircleSize.SMALL).setButtonType(StyleType.DEFAULT).asElement();
         HTMLElement placeIconCRL = IconButton.createPrimary(Icons.ALL.place()).circle(CircleSize.SMALL).setButtonType(StyleType.PRIMARY).asElement();
         HTMLElement airplaneModeActiveIconCRL = IconButton.createInfo(Icons.ALL.airplanemode_active()).circle(CircleSize.SMALL).setButtonType(StyleType.INFO).asElement();
         HTMLElement albumIconCRL = IconButton.createSuccess(Icons.ALL.album()).circle(CircleSize.SMALL).setButtonType(StyleType.SUCCESS).asElement();
@@ -772,7 +772,7 @@ public class DefaultButtonsView implements ButtonsView {
 
         Row row2 = Row.create();
 
-        HTMLElement adjustIconCRL = IconButton.createDefault(Icons.ALL.adjust()).circle(CircleSize.LARGE).setButtonType(StyleType.DEFAULT).asElement();
+        HTMLElement adjustIconCRL = IconButton.create(Icons.ALL.adjust()).circle(CircleSize.LARGE).setButtonType(StyleType.DEFAULT).asElement();
         HTMLElement alloutIconCRL = IconButton.createPrimary(Icons.ALL.all_out()).circle(CircleSize.LARGE).setButtonType(StyleType.PRIMARY).asElement();
         HTMLElement appsIconCRL = IconButton.createInfo(Icons.ALL.apps()).circle(CircleSize.LARGE).setButtonType(StyleType.INFO).asElement();
         HTMLElement artTrackIconCRL = IconButton.createSuccess(Icons.ALL.art_track()).circle(CircleSize.LARGE).setButtonType(StyleType.SUCCESS).asElement();

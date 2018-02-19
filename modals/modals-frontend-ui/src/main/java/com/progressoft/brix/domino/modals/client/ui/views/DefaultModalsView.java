@@ -4,21 +4,25 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.modals.client.presenters.ModalsPresenter;
 import com.progressoft.brix.domino.modals.client.views.ModalsView;
+import com.progressoft.brix.domino.ui.button.Button;
 import com.progressoft.brix.domino.ui.cards.Card;
+import com.progressoft.brix.domino.ui.code.Code;
+import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
-import com.progressoft.brix.domino.ui.modals.Link;
-import com.progressoft.brix.domino.ui.modals.Modal;
+import com.progressoft.brix.domino.ui.modals.ModalDialog;
+import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Color;
-import elemental2.dom.CSSProperties;
-import elemental2.dom.HTMLElement;
+import elemental2.dom.*;
 import jsinterop.base.Js;
-import org.jboss.gwt.elemento.core.Elements;
+
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = ModalsPresenter.class)
 public class DefaultModalsView implements ModalsView {
 
-    private HTMLElement element = Elements.div().asElement();
+    private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
+    private HTMLElement element = div().asElement();
 
     public DefaultModalsView() {
         element.appendChild(BlockHeader.create("MODALS").asElement());
@@ -29,255 +33,303 @@ public class DefaultModalsView implements ModalsView {
     private void initModalColor() {
         Card card = Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors.");
 
-        Link redClose = Link.create("CLOSE");
-        Modal redModal = Modal.create("RED")
-                .setBackground(Background.RED)
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(redClose)
-                .setModalColor(Color.RED)
-                .autoHide();
+        HTMLDivElement buttonsContainer = div().css("button-demo").asElement();
+        card.appendContent(buttonsContainer);
 
-        redClose.asElement().addEventListener("click", event -> {
-            redModal.hide();
-        });
+        //------------ Red ------------
+        ModalDialog modalDialogRed=createModalDialog().setModalColor(Color.RED);
+        Button redButton=Button.create("RED").setBackground(Background.RED);
+        redButton.getClickableElement().addEventListener("click", e-> modalDialogRed.open());
 
-        // --------------------
+        buttonsContainer.appendChild(redButton.asElement());
+        element.appendChild(modalDialogRed.asElement());
 
-        Link purpleClose = Link.create("CLOSE");
-        Modal purpleModal = Modal.create("PURPLE")
-                .setBackground(Background.PURPLE)
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(purpleClose)
-                .setModalColor(Color.PURPLE)
-                .autoHide();
+        //------------ Pink ------------
+        ModalDialog modalDialogPink=createModalDialog().setModalColor(Color.PINK);
+        Button pinkButton=Button.create("PINK").setBackground(Background.PINK);
+        pinkButton.getClickableElement().addEventListener("click", e-> modalDialogPink.open());
 
-        purpleClose.asElement().addEventListener("click", event -> {
-            purpleModal.hide();
-        });
+        buttonsContainer.appendChild(pinkButton.asElement());
+        element.appendChild(modalDialogPink.asElement());
 
-        // --------------------
+        //------------ Purple ------------
+        ModalDialog modalDialogPurple=createModalDialog().setModalColor(Color.PURPLE);
+        Button purpleButton=Button.create("PURPLE").setBackground(Background.PURPLE);
+        purpleButton.getClickableElement().addEventListener("click", e-> modalDialogPurple.open());
 
-        Link indigoClose = Link.create("CLOSE");
-        Modal indigoModal = Modal.create("INDIGO")
-                .setBackground(Background.INDIGO)
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(indigoClose)
-                .setModalColor(Color.INDIGO)
-                .autoHide();
+        buttonsContainer.appendChild(purpleButton.asElement());
+        element.appendChild(modalDialogPurple.asElement());
 
-        indigoClose.asElement().addEventListener("click", event -> {
-            indigoModal.hide();
-        });
+        //------------ Deep Purple ------------
+        ModalDialog modalDialogDeepPurple=createModalDialog().setModalColor(Color.DEEP_PURPLE);
+        Button deepPurpleButton=Button.create("DEEP PURPLE").setBackground(Background.DEEP_PURPLE);
+        deepPurpleButton.getClickableElement().addEventListener("click", e-> modalDialogDeepPurple.open());
 
-        // --------------------
+        buttonsContainer.appendChild(deepPurpleButton.asElement());
+        element.appendChild(modalDialogDeepPurple.asElement());
 
-        Link blueClose = Link.create("CLOSE");
-        Modal blueModal = Modal.create("BLUE")
-                .setBackground(Background.BLUE)
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(blueClose)
-                .setModalColor(Color.BLUE)
-                .autoHide();
+        //------------ Indigo ------------
+        ModalDialog modalDialogIndigo=createModalDialog().setModalColor(Color.INDIGO);
+        Button indigoButton=Button.create("INDIGO").setBackground(Background.INDIGO);
+        indigoButton.getClickableElement().addEventListener("click", e-> modalDialogIndigo.open());
 
-        blueClose.asElement().addEventListener("click", event -> {
-            blueModal.hide();
-        });
+        buttonsContainer.appendChild(indigoButton.asElement());
+        element.appendChild(modalDialogIndigo.asElement());
 
-        redModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
-        purpleModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
-        indigoModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
-        blueModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
+        //------------ Blue ------------
+        ModalDialog modalDialogBlue=createModalDialog().setModalColor(Color.BLUE);
+        Button blueButton=Button.create("BLUE").setBackground(Background.BLUE);
+        blueButton.getClickableElement().addEventListener("click", e-> modalDialogBlue.open());
 
-        card.appendContent(redModal.asElement());
-        card.appendContent(purpleModal.asElement());
-        card.appendContent(indigoModal.asElement());
-        card.appendContent(blueModal.asElement());
+        buttonsContainer.appendChild(blueButton.asElement());
+        element.appendChild(modalDialogBlue.asElement());
+
+        //------------ Orange ------------
+        ModalDialog modalDialogOrange=createModalDialog().setModalColor(Color.ORANGE);
+        Button orangeButton=Button.create("ORANGE").setBackground(Background.ORANGE);
+        orangeButton.getClickableElement().addEventListener("click", e-> modalDialogOrange.open());
+
+        buttonsContainer.appendChild(orangeButton.asElement());
+        element.appendChild(modalDialogOrange.asElement());
+
+
+        //------------ Green ------------
+        ModalDialog modalDialogGreen=createModalDialog().setModalColor(Color.GREEN);
+        Button greenButton=Button.create("GREEN").setBackground(Background.GREEN);
+        greenButton.getClickableElement().addEventListener("click", e-> modalDialogGreen.open());
+
+        buttonsContainer.appendChild(greenButton.asElement());
+        element.appendChild(modalDialogGreen.asElement());
+
+
+        //------------ Teal ------------
+        ModalDialog modalDialogTeal=createModalDialog().setModalColor(Color.TEAL);
+        Button tealButton=Button.create("TEAL").setBackground(Background.TEAL);
+        tealButton.getClickableElement().addEventListener("click", e-> modalDialogTeal.open());
+
+        buttonsContainer.appendChild(tealButton.asElement());
+        element.appendChild(modalDialogTeal.asElement());
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("Link redClose = Link.create(\"CLOSE\");\n" +
-                "Modal redModal = Modal.create(\"RED\")\n" +
-                "        .setBackground(Background.RED)\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(redClose)\n" +
-                "        .setModalColor(Color.RED)\n" +
-                "        .autoHide();\n" +
+        Card codeCard = Card.createCodeCard("//------------ Red ------------\n" +
+                "ModalDialog modalDialogRed=createModalDialog().setModalColor(Color.RED);\n" +
+                "Button redButton=Button.create(\"RED\").setBackground(Background.RED);\n" +
+                "redButton.getClickableElement().addEventListener(\"click\", e-> modalDialogRed.open());\n" +
                 "\n" +
-                "redClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    redModal.hide();\n" +
-                "});\n" +
+                "buttonsContainer.appendChild(redButton.asElement());\n" +
+                "element.appendChild(modalDialogRed.asElement());\n" +
                 "\n" +
-                "element.appendChild(redModal.asElement());\n" +
+                "//------------ Pink ------------\n" +
+                "ModalDialog modalDialogPink=createModalDialog().setModalColor(Color.PINK);\n" +
+                "Button pinkButton=Button.create(\"PINK\").setBackground(Background.PINK);\n" +
+                "pinkButton.getClickableElement().addEventListener(\"click\", e-> modalDialogPink.open());\n" +
                 "\n" +
-                "// --------------------\n" +
+                "buttonsContainer.appendChild(pinkButton.asElement());\n" +
+                "element.appendChild(modalDialogPink.asElement());\n" +
                 "\n" +
-                "Link purpleClose = Link.create(\"CLOSE\");\n" +
-                "Modal purpleModal = Modal.create(\"PURPLE\")\n" +
-                "        .setBackground(Background.PURPLE)\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(purpleClose)\n" +
-                "        .setModalColor(Color.PURPLE)\n" +
-                "        .autoHide();\n" +
+                "//------------ Purple ------------\n" +
+                "ModalDialog modalDialogPurple=createModalDialog().setModalColor(Color.PURPLE);\n" +
+                "Button purpleButton=Button.create(\"PURPLE\").setBackground(Background.PURPLE);\n" +
+                "purpleButton.getClickableElement().addEventListener(\"click\", e-> modalDialogPurple.open());\n" +
                 "\n" +
-                "purpleClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    purpleModal.hide();\n" +
-                "});\n" +
+                "buttonsContainer.appendChild(purpleButton.asElement());\n" +
+                "element.appendChild(modalDialogPurple.asElement());\n" +
                 "\n" +
-                "element.appendChild(purpleModal.asElement());\n" +
+                "//------------ Deep Purple ------------\n" +
+                "ModalDialog modalDialogDeepPurple=createModalDialog().setModalColor(Color.DEEP_PURPLE);\n" +
+                "Button deepPurpleButton=Button.create(\"DEEP PURPLE\").setBackground(Background.DEEP_PURPLE);\n" +
+                "deepPurpleButton.getClickableElement().addEventListener(\"click\", e-> modalDialogDeepPurple.open());\n" +
                 "\n" +
-                "// --------------------\n" +
+                "buttonsContainer.appendChild(deepPurpleButton.asElement());\n" +
+                "element.appendChild(modalDialogDeepPurple.asElement());\n" +
                 "\n" +
-                "Link indigoClose = Link.create(\"CLOSE\");\n" +
-                "Modal indigoModal = Modal.create(\"INDIGO\")\n" +
-                "        .setBackground(Background.INDIGO)\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(indigoClose)\n" +
-                "        .setModalColor(Color.INDIGO)\n" +
-                "        .autoHide();\n" +
+                "//------------ Indigo ------------\n" +
+                "ModalDialog modalDialogIndigo=createModalDialog().setModalColor(Color.INDIGO);\n" +
+                "Button indigoButton=Button.create(\"INDIGO\").setBackground(Background.INDIGO);\n" +
+                "indigoButton.getClickableElement().addEventListener(\"click\", e-> modalDialogIndigo.open());\n" +
                 "\n" +
-                "indigoClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    indigoModal.hide();\n" +
-                "});\n" +
+                "buttonsContainer.appendChild(indigoButton.asElement());\n" +
+                "element.appendChild(modalDialogIndigo.asElement());\n" +
                 "\n" +
-                "element.appendChild(indigoModal.asElement());\n" +
+                "//------------ Blue ------------\n" +
+                "ModalDialog modalDialogBlue=createModalDialog().setModalColor(Color.BLUE);\n" +
+                "Button blueButton=Button.create(\"BLUE\").setBackground(Background.BLUE);\n" +
+                "blueButton.getClickableElement().addEventListener(\"click\", e-> modalDialogBlue.open());\n" +
                 "\n" +
-                "// --------------------\n" +
+                "buttonsContainer.appendChild(blueButton.asElement());\n" +
+                "element.appendChild(modalDialogBlue.asElement());\n" +
                 "\n" +
-                "Link blueClose = Link.create(\"CLOSE\");\n" +
-                "Modal blueModal = Modal.create(\"BLUE\")\n" +
-                "        .setBackground(Background.BLUE)\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(blueClose)\n" +
-                "        .setModalColor(Color.BLUE)\n" +
-                "        .autoHide();\n" +
+                "//------------ Orange ------------\n" +
+                "ModalDialog modalDialogOrange=createModalDialog().setModalColor(Color.ORANGE);\n" +
+                "Button orangeButton=Button.create(\"ORANGE\").setBackground(Background.ORANGE);\n" +
+                "orangeButton.getClickableElement().addEventListener(\"click\", e-> modalDialogOrange.open());\n" +
                 "\n" +
-                "blueClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    blueModal.hide();\n" +
-                "});\n" +
+                "buttonsContainer.appendChild(orangeButton.asElement());\n" +
+                "element.appendChild(modalDialogOrange.asElement());\n" +
                 "\n" +
-                "element.appendChild(blueModal.asElement());").asElement());
+                "\n" +
+                "//------------ Green ------------\n" +
+                "ModalDialog modalDialogGreen=createModalDialog().setModalColor(Color.GREEN);\n" +
+                "Button greenButton=Button.create(\"GREEN\").setBackground(Background.GREEN);\n" +
+                "greenButton.getClickableElement().addEventListener(\"click\", e-> modalDialogGreen.open());\n" +
+                "\n" +
+                "buttonsContainer.appendChild(greenButton.asElement());\n" +
+                "element.appendChild(modalDialogGreen.asElement());\n" +
+                "\n" +
+                "\n" +
+                "//------------ Teal ------------\n" +
+                "ModalDialog modalDialogTeal=createModalDialog().setModalColor(Color.TEAL);\n" +
+                "Button tealButton=Button.create(\"TEAL\").setBackground(Background.TEAL);\n" +
+                "tealButton.getClickableElement().addEventListener(\"click\", e-> modalDialogTeal.open());\n" +
+                "\n" +
+                "buttonsContainer.appendChild(tealButton.asElement());\n" +
+                "element.appendChild(modalDialogTeal.asElement());");
+        element.appendChild(codeCard.asElement());
+        codeCard.appendContent(Code.block("private ModalDialog createModalDialog() {\n" +
+                "    ModalDialog modal = ModalDialog.create(\"Modal title\");\n" +
+                "    modal.appendContent(new Text(SAMPLE_CONTENT));\n" +
+                "    Button closeButton = Button.create(\"CLOSE\").linkify();\n" +
+                "    Button saveButton = Button.create(\"SAVE CHANGES\").linkify();\n" +
+                "\n" +
+                "    EventListener closeModalListener = evt -> modal.close();\n" +
+                "\n" +
+                "    closeButton.getClickableElement().addEventListener(\"click\", closeModalListener);\n" +
+                "    saveButton.getClickableElement().addEventListener(\"click\", closeModalListener);\n" +
+                "    modal.appendFooterContent(saveButton.asElement());\n" +
+                "    modal.appendFooterContent(closeButton.asElement());\n" +
+                "    return modal;\n" +
+                "}\n").asElement());
+
     }
 
     private void initModalsSize() {
-        Card card = Card.create("MODAL SIZE EXAMPLE", "Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.");
+        Row row = Row.create();
+        Column column = Column.create()
+                .onLarge(Column.OnLarge.four)
+                .onMedium(Column.OnMedium.four)
+                .onSmall(Column.OnSmall.twelve)
+                .onXSmall(Column.OnXSmall.twelve);
 
-        Link defaultClose = Link.create("CLOSE");
-        Modal defaultModal = Modal.createDefault("MODAL - DEFAULT SIZE")
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(defaultClose)
-                .autoHide();
+        // ------------ Default size -------------
 
-        defaultClose.asElement().addEventListener("click", event -> {
-            defaultModal.hide();
-        });
+        ModalDialog defaultSizeModal = createModalDialog();
 
-        // --------------------------------
+        Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
+        defaultSizeButton.getClickableElement().addEventListener("click", e -> defaultSizeModal.open());
 
-        Link largeClose = Link.create("CLOSE");
-        Modal largeModal = Modal.createDefault("MODAL - LARGE SIZE")
-                .largeSize()
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(largeClose)
-                .autoHide();
+        element.appendChild(defaultSizeModal.asElement());
 
-        largeClose.asElement().addEventListener("click", event -> {
-            largeModal.hide();
-        });
+        row.addColumn(column.addElement(defaultSizeButton.asElement()));
 
-        // --------------------------------
+        // ------------ Large size -------------
 
-        Link smallClose = Link.create("CLOSE");
-        Modal smallModal = Modal.createDefault("MODAL - SMALL SIZE")
-                .smallSize()
-                .setTitle("Modal title")
-                .setDescription("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.")
-                .addLink(Link.create("SAVE CHANGES"))
-                .addLink(smallClose)
-                .autoHide();
+        ModalDialog largeSizeModal = createModalDialog().large();
 
-        smallClose.asElement().addEventListener("click", event -> {
-            smallModal.hide();
-        });
+        Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
+        largeSizeButton.getClickableElement().addEventListener("click", e -> largeSizeModal.open());
 
-        defaultModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
-        largeModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
-        smallModal.asElement().style.margin = CSSProperties.MarginUnionType.of("10px");
 
-        card.appendContent(defaultModal.asElement());
-        card.appendContent(largeModal.asElement());
-        card.appendContent(smallModal.asElement());
+        element.appendChild(largeSizeModal.asElement());
 
-        this.element.appendChild(card.asElement());
+        row.addColumn(column.copy().addElement(largeSizeButton.asElement()));
 
-        element.appendChild(Card.createCodeCard("// ------------------------ DEAFULT SIZE\n" +
+        // ------------ Small size -------------
+
+        ModalDialog smallSizeModal = createModalDialog().small();
+
+        Button smallSizeButton = Button.createDefault("MODAL - LARGE SIZE");
+        smallSizeButton.getClickableElement().addEventListener("click", e -> smallSizeModal.open());
+
+
+        element.appendChild(smallSizeModal.asElement());
+
+        row.addColumn(column.copy().addElement(smallSizeButton.asElement()));
+
+        element.appendChild(Card.create("MODAL SIZE EXAMPLE", "Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.")
+                .appendContent(row.asElement())
+                .asElement());
+
+        Card codeCard = Card.createCodeCard("Row row = Row.create();\n" +
+                "Column column = Column.create()\n" +
+                "        .onLarge(Column.OnLarge.four)\n" +
+                "        .onMedium(Column.OnMedium.four)\n" +
+                "        .onSmall(Column.OnSmall.twelve)\n" +
+                "        .onXSmall(Column.OnXSmall.twelve);\n" +
                 "\n" +
-                "Link defaultClose = Link.create(\"CLOSE\");\n" +
-                "Modal defaultModal = Modal.createDefault(\"MODAL - DEFAULT SIZE\")\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam     scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(defaultClose)\n" +
-                "        .autoHide();\n" +
+                "// ------------ Default size -------------\n" +
                 "\n" +
-                "defaultClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    defaultModal.hide();\n" +
-                "});\n" +
+                "ModalDialog defaultSizeModal = createModalDialog();\n" +
                 "\n" +
-                "element.appendChild(defaultModal.asElement());\n" +
+                "Button defaultSizeButton = Button.create(\"MODAL - DEFAULT SIZE\");\n" +
+                "defaultSizeButton.getClickableElement().addEventListener(\"click\", e -> defaultSizeModal.open());\n" +
                 "\n" +
-                "// ------------------------ LARGE SIZE\n" +
+                "element.appendChild(defaultSizeModal.asElement());\n" +
                 "\n" +
-                "Link largeClose = Link.create(\"CLOSE\");\n" +
-                "Modal largeModal = Modal.createDefault(\"MODAL - LARGE SIZE\")\n" +
-                "        .largeSize()\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(largeClose)\n" +
-                "        .autoHide();\n" +
+                "row.addColumn(column.addElement(defaultSizeButton.asElement()));\n" +
                 "\n" +
-                "largeClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    largeModal.hide();\n" +
-                "});\n" +
+                "// ------------ Large size -------------\n" +
                 "\n" +
-                "element.appendChild(largeModal.asElement());\n" +
+                "ModalDialog largeSizeModal = createModalDialog().large();\n" +
                 "\n" +
-                "// ------------------------ SMALL SIZE\n" +
+                "Button largeSizeButton = Button.create(\"MODAL - LARGE SIZE\");\n" +
+                "largeSizeButton.getClickableElement().addEventListener(\"click\", e -> largeSizeModal.open());\n" +
                 "\n" +
-                "Link smallClose = Link.create(\"CLOSE\");\n" +
-                "Modal smallModal = Modal.createDefault(\"MODAL - SMALL SIZE\")\n" +
-                "        .smallSize()\n" +
-                "        .setTitle(\"Modal title\")\n" +
-                "        .setDescription(\"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.\")\n" +
-                "        .addLink(Link.create(\"SAVE CHANGES\"))\n" +
-                "        .addLink(smallClose)\n" +
-                "        .autoHide();\n" +
                 "\n" +
-                "smallClose.asElement().addEventListener(\"click\", event -> {\n" +
-                "    smallModal.hide();\n" +
-                "});\n" +
+                "element.appendChild(largeSizeModal.asElement());\n" +
                 "\n" +
-                "element.appendChild(smallModal.asElement());").asElement());
+                "row.addColumn(column.copy().addElement(largeSizeButton.asElement()));\n" +
+                "\n" +
+                "// ------------ Small size -------------\n" +
+                "\n" +
+                "ModalDialog smallSizeModal = createModalDialog().small();\n" +
+                "\n" +
+                "Button smallSizeButton = Button.create(\"MODAL - LARGE SIZE\");\n" +
+                "smallSizeButton.getClickableElement().addEventListener(\"click\", e -> smallSizeModal.open());\n" +
+                "\n" +
+                "\n" +
+                "element.appendChild(smallSizeModal.asElement());\n" +
+                "\n" +
+                "row.addColumn(column.copy().addElement(smallSizeButton.asElement()));\n" +
+                "\n" +
+                "element.appendChild(Card.create(\"MODAL SIZE EXAMPLE\", \"Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.\")\n" +
+                "        .appendContent(row.asElement())\n" +
+                "        .asElement());");
+
+        codeCard.appendContent(Code.block("private ModalDialog createModalDialog() {\n" +
+                "    ModalDialog modal = ModalDialog.create(\"Modal title\");\n" +
+                "    modal.appendContent(new Text(SAMPLE_CONTENT));\n" +
+                "    Button closeButton = Button.create(\"CLOSE\").linkify();\n" +
+                "    Button saveButton = Button.create(\"SAVE CHANGES\").linkify();\n" +
+                "\n" +
+                "    EventListener closeModalListener = evt -> modal.close();\n" +
+                "\n" +
+                "    closeButton.getClickableElement().addEventListener(\"click\", closeModalListener);\n" +
+                "    saveButton.getClickableElement().addEventListener(\"click\", closeModalListener);\n" +
+                "    modal.appendFooterContent(saveButton.asElement());\n" +
+                "    modal.appendFooterContent(closeButton.asElement());\n" +
+                "    return modal;\n" +
+                "}").asElement());
+
+        element.appendChild(codeCard
+                .asElement());
+
+
+    }
+
+    private ModalDialog createModalDialog() {
+        ModalDialog modal = ModalDialog.create("Modal title");
+        modal.appendContent(new Text(SAMPLE_CONTENT));
+        Button closeButton = Button.create("CLOSE").linkify();
+        Button saveButton = Button.create("SAVE CHANGES").linkify();
+
+        EventListener closeModalListener = evt -> modal.close();
+
+        closeButton.getClickableElement().addEventListener("click", closeModalListener);
+        saveButton.getClickableElement().addEventListener("click", closeModalListener);
+        modal.appendFooterContent(saveButton.asElement());
+        modal.appendFooterContent(closeButton.asElement());
+        return modal;
     }
 
     @Override

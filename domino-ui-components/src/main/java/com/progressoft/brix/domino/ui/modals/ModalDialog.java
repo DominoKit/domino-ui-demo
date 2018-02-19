@@ -60,7 +60,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
         templated_modalDialog.modalDialog.addEventListener("click", Event::stopPropagation);
         templated_modalDialog.asElement().addEventListener("click", event -> {
             if (templated_modalDialog.autoHide)
-                templated_modalDialog.hide();
+                templated_modalDialog.close();
         });
 
         return templated_modalDialog;
@@ -102,7 +102,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
         return this;
     }
 
-    public ModalDialog show(){
+    public ModalDialog open(){
 
         MODAL_BACKDROP.remove();
         DomGlobal.document.body.appendChild(MODAL_BACKDROP);
@@ -112,7 +112,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
         return this;
     }
 
-    public ModalDialog hide(){
+    public ModalDialog close(){
         MODAL_BACKDROP.remove();
         asElement().classList.remove("in");
         asElement().style.display="none";

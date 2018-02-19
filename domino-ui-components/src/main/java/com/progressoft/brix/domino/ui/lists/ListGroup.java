@@ -39,6 +39,22 @@ public class ListGroup<T> implements IsElement<HTMLDivElement> , HasMultiSelectS
         return listItem;
     }
 
+    public ListGroup<T> appendItem(ListItem<T> listItem){
+        allItems.add(listItem);
+        asElement().appendChild(listItem.asElement());
+        return this;
+    }
+
+    public ListItem<T> createItem(T value, String text){
+        ListItem<T> listItem = ListItem.create(this, value);
+        listItem.setText(text);
+        return listItem;
+    }
+
+    public ListGroup<T> multiSelect(){
+        setMultiSelect(true);
+        return this;
+    }
 
     @Override
     public List<ListItem<T>> getSelectedItems() {

@@ -3,6 +3,7 @@ package com.progressoft.brix.domino.ui.lists;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.utils.HasBackground;
 import elemental2.dom.HTMLLIElement;
+import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.nonNull;
@@ -48,6 +49,11 @@ public class SimpleListItem extends BaseListItem implements IsElement<HTMLLIElem
 
     public SimpleListItem setText(String content) {
         setBodyText(content);
+        return this;
+    }
+
+    public SimpleListItem appendContent(Node content) {
+        asElement().appendChild(content);
         return this;
     }
 

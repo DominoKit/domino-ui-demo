@@ -36,6 +36,7 @@ public class Button extends WavesElement<Button, HTMLElement> implements
         return create(content, StyleType.DEFAULT);
     }
 
+
     public static Button createPrimary(String content) {
         return create(content, StyleType.PRIMARY);
     }
@@ -96,6 +97,8 @@ public class Button extends WavesElement<Button, HTMLElement> implements
 
     @Override
     public Button setBackground(Background background) {
+        if (nonNull(this.type))
+            buttonElement.classList.remove("btn-" + this.type.getStyle());
         if (nonNull(this.background))
             buttonElement.classList.remove(this.background.getStyle());
         buttonElement.classList.add(background.getStyle());

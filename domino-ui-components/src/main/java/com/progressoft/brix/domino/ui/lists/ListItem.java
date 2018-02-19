@@ -126,6 +126,26 @@ public class ListItem<T> extends BaseListItem implements IsElement<HTMLAnchorEle
         return this;
     }
 
+    public ListItem<T> success(){
+        setStyle(ListGroupStyle.SUCCESS);
+        return this;
+    }
+
+    public ListItem<T> warning(){
+        setStyle(ListGroupStyle.WARNING);
+        return this;
+    }
+
+    public ListItem<T> info(){
+        setStyle(ListGroupStyle.INFO);
+        return this;
+    }
+
+    public ListItem<T> error(){
+        setStyle(ListGroupStyle.ERROR);
+        return this;
+    }
+
     @Override
     public ListItem<T> setBackground(Background background) {
         setStyle("list-group-" + background.getStyle());
