@@ -3,8 +3,9 @@ package com.progressoft.brix.domino.componentcase.client.presenters;
 import com.progressoft.brix.domino.api.client.annotations.Presenter;
 import com.progressoft.brix.domino.api.client.extension.ContextAggregator;
 import com.progressoft.brix.domino.api.client.mvp.presenter.BaseClientPresenter;
+import com.progressoft.brix.domino.api.shared.history.HistoryToken;
 import com.progressoft.brix.domino.api.shared.history.TokenFilter;
-import com.progressoft.brix.domino.componentcase.client.views.CompponentCaseView;
+import com.progressoft.brix.domino.componentcase.client.views.ComponentCaseView;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseContext;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseExtensionPoint;
@@ -20,18 +21,25 @@ import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.*;
 import static java.util.Objects.isNull;
 
 @Presenter
-public class DefaultComponentCasePresenter extends BaseClientPresenter<CompponentCaseView> implements ComponentCasePresenter, ComponentCaseContext {
+public class DefaultComponentCasePresenter extends BaseClientPresenter<ComponentCaseView> implements ComponentCasePresenter, ComponentCaseContext {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DefaultComponentCasePresenter.class);
 
     private ContextAggregator.ContextWait<MenuContext> menuContext = ContextAggregator.ContextWait.create();
     private ContextAggregator.ContextWait<LayoutContext> layoutContext = ContextAggregator.ContextWait.create();
 
+
     @Override
-    public void initView(CompponentCaseView view) {
+    public void initView(ComponentCaseView view) {
         ContextAggregator.waitFor(menuContext).and(layoutContext).onReady(() -> {
             view.init(layoutContext.get().getLayout());
             applyContributions(ComponentCaseExtensionPoint.class, () -> DefaultComponentCasePresenter.this);
+            if(history().currentToken().fragment().isEmpty()) {
+                HistoryToken historyToken=history().currentToken();
+                historyToken.appendFragment("home");
+                history().pushState(historyToken.value());
+                history().forward();
+            }
         });
     }
 
@@ -64,7 +72,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         boolean rootPage = componentCase.getMenuPath().split("/").length <= 1;
         if (componentCase.hasContent()) {
             history()
-                    .listen(TokenFilter.startsWith(componentCase.getHistoryToken()), state -> showPage(componentCase))
+                    .listen(TokenFilter.startsWithFragment(componentCase.getHistoryToken()), state -> showPage(componentCase))
                     .onDirectUrl(state -> showPage(componentCase));
         }
 
@@ -94,7 +102,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
             canAddMenuItem = root.menuItem.addMenuItem(path, () -> {
-                history().pushState(history().currentToken().replaceAllPaths(componentCase.getHistoryToken()).value());
+                applyHistory(componentCase);
                 showPage(componentCase);
             });
         } else {
@@ -102,6 +110,10 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         }
 
         root.leaves.put(path, new MenuBranch(path, canAddMenuItem));
+    }
+
+    private void applyHistory(ComponentCase componentCase) {
+            history().pushState(history().currentToken().replaceAllFragments(componentCase.getHistoryToken()).value());
     }
 
     private MenuBranch getOrAddMenuBranch(MenuBranch root, String pathElement) {
@@ -117,7 +129,7 @@ public class DefaultComponentCasePresenter extends BaseClientPresenter<Compponen
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
             canAddMenuItem = menuContext.get().addMenuItem(componentCase.getMenuPath(), componentCase.getIconName(), () -> {
-                history().pushState(history().currentToken().replaceAllPaths(componentCase.getHistoryToken()).value());
+                applyHistory(componentCase);
                 showPage(componentCase);
             });
         } else {

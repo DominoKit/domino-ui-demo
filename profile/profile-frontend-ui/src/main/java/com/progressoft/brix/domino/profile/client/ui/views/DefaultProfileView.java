@@ -1,5 +1,6 @@
 package com.progressoft.brix.domino.profile.client.ui.views;
 
+import com.google.gwt.core.client.GWT;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 import com.progressoft.brix.domino.profile.client.presenters.ProfilePresenter;
@@ -8,6 +9,7 @@ import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.icons.Icons;
 import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
 import jsinterop.base.Js;
@@ -33,7 +35,7 @@ public class DefaultProfileView implements ProfileView{
         else
             leftPanel.appendChild(profile.asElement());
 
-        profile.getBody().appendChild(img("/static/images/user.png").asElement());
+        profile.getBody().appendChild(img(GWT.getModuleBaseURL()+"/images/user.png").asElement());
         profile.getHeaderBar().appendChild(createIcon(Icons.ALL.more_vert()));
         profile.asElement().style.height= CSSProperties.HeightUnionType.of(300);
     }

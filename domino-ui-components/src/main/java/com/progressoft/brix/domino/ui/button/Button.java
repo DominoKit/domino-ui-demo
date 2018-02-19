@@ -167,4 +167,9 @@ public class Button extends WavesElement<Button, HTMLElement> implements
         setBlock(true);
         return this;
     }
+
+    public Button linkify(){
+        buttonElement.classList.add("btn-link");
+        return this;
+    }
 }
