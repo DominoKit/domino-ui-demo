@@ -3,10 +3,7 @@ package com.progressoft.brix.domino.ui.menu;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.style.Waves;
 import com.progressoft.brix.domino.ui.utils.HasActiveItem;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLLIElement;
-import elemental2.dom.HTMLUListElement;
+import elemental2.dom.*;
 import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.template.DataElement;
 import org.jboss.gwt.elemento.template.Templated;
@@ -28,6 +25,8 @@ public abstract class Menu implements IsElement<HTMLDivElement>, HasActiveItem<M
     public static Menu create(String title) {
         Templated_Menu menu = new Templated_Menu();
         menu.title.textContent = title;
+        menu.root.style.height= CSSProperties.HeightUnionType.of("calc(100vh - 83px)");
+        menu.asElement().style.height= CSSProperties.HeightUnionType.of("calc(100vh - 70px)");
         return menu;
     }
 
@@ -50,5 +49,13 @@ public abstract class Menu implements IsElement<HTMLDivElement>, HasActiveItem<M
 
     public HTMLLIElement getHeader() {
         return header;
+    }
+
+    public HTMLUListElement getRoot() {
+        return root;
+    }
+
+    public HTMLElement getTitle() {
+        return title;
     }
 }

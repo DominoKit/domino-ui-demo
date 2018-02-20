@@ -138,14 +138,13 @@ public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<C
 
     public static HTMLLIElement createIcon(Icon icon) {
         return li().add(
-                a().attr("href", "javascript:void(0);")
-                        .add(icon.asElement()))
+                a().add(icon.asElement()))
                 .asElement();
     }
 
-    public Card addHeaderAction(Icon icon, OnClick onClick) {
+    public Card addHeaderAction(Icon icon, EventListener eventListener) {
         HTMLLIElement actionItem = createHeaderAction(icon);
-        actionItem.addEventListener("click", onClick::onClick);
+        actionItem.addEventListener("click", eventListener);
 
         putAction(actionItem);
 
@@ -205,9 +204,5 @@ public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<C
         }
 
         return this;
-    }
-
-    public interface OnClick {
-        void onClick(Event e);
     }
 }

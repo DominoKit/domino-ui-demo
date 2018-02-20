@@ -26,6 +26,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 public class DefaultInfoBoxView extends Composite implements InfoBoxView{
 
     private HTMLDivElement element=div().asElement();
+    private Counter counter;
 
     public DefaultInfoBoxView() {
         basicInfoBoxes();
@@ -70,16 +71,17 @@ public class DefaultInfoBoxView extends Composite implements InfoBoxView{
                         .setIconBackground(Background.DEEP_PURPLE).asElement()))
                 .asElement());
 
-        Counter.countFrom(0)
+        counter = Counter.countFrom(0)
                 .countTo(125)
                 .every(40)
                 .incrementBy(5)
                 .onCount(count -> {
-                    new_orders.getValueElement().textContent=Integer.toString(count);
-                    new_members.getValueElement().textContent=Integer.toString(count);
-                    bookmarks.getValueElement().textContent=Integer.toString(count);
-                    likes.getValueElement().textContent=Integer.toString(count);
-                }).startCounting();
+                    new_orders.getValueElement().textContent = Integer.toString(count);
+                    new_members.getValueElement().textContent = Integer.toString(count);
+                    bookmarks.getValueElement().textContent = Integer.toString(count);
+                    likes.getValueElement().textContent = Integer.toString(count);
+                });
+
 
         element.appendChild(Card.createCodeCard("Column column=Column.create()\n" +
                 "        .onLarge(Column.OnLarge.three)\n" +
@@ -318,5 +320,6 @@ public class DefaultInfoBoxView extends Composite implements InfoBoxView{
     public void showIn(Content content) {
         HTMLElement contentElement= Js.cast(content.get());
         contentElement.appendChild(this.element);
+        counter.startCounting();
     }
 }

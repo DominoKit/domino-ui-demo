@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.ui.style.StyleType;
 import com.progressoft.brix.domino.ui.style.Waves;
 import com.progressoft.brix.domino.ui.style.WavesElement;
 import com.progressoft.brix.domino.ui.utils.*;
+import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.Elements;
@@ -132,7 +133,6 @@ public class Button extends WavesElement<Button, HTMLElement> implements
     @Override
     public HTMLElement justify() {
         return Elements.a()
-                .attr("href", "javascript:void(0);")
                 .css(asElement().className)
                 .attr("role", "button")
                 .textContent(asElement().textContent).asElement();
@@ -173,6 +173,11 @@ public class Button extends WavesElement<Button, HTMLElement> implements
 
     public Button linkify(){
         buttonElement.classList.add("btn-link");
+        return this;
+    }
+
+    public Button addClickListener(EventListener listener){
+        getClickableElement().addEventListener("click", listener);
         return this;
     }
 }

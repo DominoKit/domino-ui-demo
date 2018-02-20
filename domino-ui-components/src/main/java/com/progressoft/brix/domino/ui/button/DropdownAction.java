@@ -14,7 +14,6 @@ public class DropdownAction implements Justifiable, HasClickableElement {
 
     private DropdownAction(String content) {
         aElement = Elements.a()
-                .attr("href", "javascript:void(0);")
                 .textContent(content)
                 .asElement();
         iElement.appendChild(aElement);

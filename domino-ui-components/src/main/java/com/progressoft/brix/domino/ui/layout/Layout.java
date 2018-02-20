@@ -204,7 +204,7 @@ public class Layout implements IsLayout {
     @Override
     public HTMLElement addActionItem(Icon icon){
         HTMLLIElement li = li().css("pull-right").add(
-                a().attr("href", "javascript:void(0);").css("js-right-sidebar")
+                a().css("js-right-sidebar")
                         .add(icon.asElement())).asElement();
         getTopBar().appendChild(li);
         return li;

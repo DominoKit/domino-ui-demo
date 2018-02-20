@@ -40,7 +40,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
     @DataElement
     HTMLDivElement modalFooter;
 
-    boolean autoHide=true;
+    boolean autoClose =true;
 
     private ModalSize modalSize;
 
@@ -59,7 +59,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
         templated_modalDialog.modalHeader.style.display="none";
         templated_modalDialog.modalDialog.addEventListener("click", Event::stopPropagation);
         templated_modalDialog.asElement().addEventListener("click", event -> {
-            if (templated_modalDialog.autoHide)
+            if (templated_modalDialog.autoClose)
                 templated_modalDialog.close();
         });
 
@@ -99,6 +99,11 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement>{
             modalContent.classList.remove("modal-"+this.color.getStyle());
         modalContent.classList.add("modal-"+color.getStyle());
         this.color=color;
+        return this;
+    }
+
+    public ModalDialog setAutoClose(boolean autoClose){
+        this.autoClose=autoClose;
         return this;
     }
 
