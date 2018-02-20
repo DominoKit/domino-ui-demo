@@ -60,8 +60,7 @@ public class DefaultThemesView implements ThemesView {
 
     private HTMLLIElement makeIcon(Icon icon) {
         return li().add(
-                a().attr("href", "javascript:void(0);")
-                        .add(icon.asElement()))
+                a().add(icon.asElement()))
                 .asElement();
     }
 

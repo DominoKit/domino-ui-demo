@@ -42,8 +42,7 @@ public class DefaultProfileView implements ProfileView{
 
     private HTMLLIElement createIcon(Icon icon) {
         return li().add(
-                a().attr("href", "javascript:void(0);")
-                        .add(icon.asElement()))
+                a().add(icon.asElement()))
                 .asElement();
     }
 }

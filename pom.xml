@@ -162,5 +162,6 @@
         <module>labels</module>
         <module>modals</module>
     <module>lists</module>
+    <module>loaders</module>
   </modules>
 </project>
