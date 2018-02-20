@@ -30,6 +30,14 @@ public class DefaultLabelsView implements LabelsView {
     private void initMaterialLabels() {
         Card labels = Card.create("LABELS WITH MATERIAL DESIGN COLORS", "You can use material design color with labels");
 
+        Row row = Row.create();
+
+        Column column = Column.create()
+                .onLarge(Column.OnLarge.one)
+                .onMedium(Column.OnMedium.two)
+                .onSmall(Column.OnSmall.six)
+                .onXSmall(Column.OnXSmall.twelve);
+
         HTMLElement red = Label.create("Red").setBackground(Background.RED).asElement();
         HTMLElement pink = Label.create("Pink").setBackground(Background.PINK).asElement();
         HTMLElement purple = Label.create("Purple").setBackground(Background.PURPLE).asElement();
@@ -39,6 +47,9 @@ public class DefaultLabelsView implements LabelsView {
         HTMLElement lightBlue = Label.create("Light Blue").setBackground(Background.LIGHT_BLUE).asElement();
         HTMLElement cyan = Label.create("Cyan").setBackground(Background.CYAN).asElement();
         HTMLElement teal = Label.create("Teal").setBackground(Background.TEAL).asElement();
+        HTMLElement green = Label.create("Teal").setBackground(Background.GREEN).asElement();
+        HTMLElement orange = Label.create("Teal").setBackground(Background.ORANGE).asElement();
+        HTMLElement yellow = Label.create("Teal").setBackground(Background.YELLOW).asElement();
 
         red.style.margin = CSSProperties.MarginUnionType.of("10px");
         pink.style.margin = CSSProperties.MarginUnionType.of("10px");
@@ -49,16 +60,24 @@ public class DefaultLabelsView implements LabelsView {
         lightBlue.style.margin = CSSProperties.MarginUnionType.of("10px");
         cyan.style.margin = CSSProperties.MarginUnionType.of("10px");
         teal.style.margin = CSSProperties.MarginUnionType.of("10px");
+        green.style.margin = CSSProperties.MarginUnionType.of("10px");
+        orange.style.margin = CSSProperties.MarginUnionType.of("10px");
+        yellow.style.margin = CSSProperties.MarginUnionType.of("10px");
 
-        labels.appendContent(red)
-                .appendContent(pink)
-                .appendContent(purple)
-                .appendContent(deepPurple)
-                .appendContent(indigo)
-                .appendContent(blue)
-                .appendContent(lightBlue)
-                .appendContent(cyan)
-                .appendContent(teal);
+        row.addColumn(column.addElement(red))
+                .addColumn(column.copy().addElement(pink))
+                .addColumn(column.copy().addElement(purple))
+                .addColumn(column.copy().addElement(deepPurple))
+                .addColumn(column.copy().addElement(indigo))
+                .addColumn(column.copy().addElement(blue))
+                .addColumn(column.copy().addElement(lightBlue))
+                .addColumn(column.copy().addElement(cyan))
+                .addColumn(column.copy().addElement(teal))
+                .addColumn(column.copy().addElement(green))
+                .addColumn(column.copy().addElement(orange))
+                .addColumn(column.copy().addElement(yellow));
+
+        labels.appendContent(row.asElement());
 
         element.appendChild(labels.asElement());
 
@@ -79,9 +98,9 @@ public class DefaultLabelsView implements LabelsView {
         Row row = Row.create();
 
         Column column = Column.create()
-                .onLarge(Column.OnLarge.twelve)
-                .onMedium(Column.OnMedium.twelve)
-                .onSmall(Column.OnSmall.twelve)
+                .onLarge(Column.OnLarge.one)
+                .onMedium(Column.OnMedium.two)
+                .onSmall(Column.OnSmall.six)
                 .onXSmall(Column.OnXSmall.twelve);
 
         HTMLElement defaultLabel = Label.createDefault("DEFAULT").asElement();
@@ -99,12 +118,14 @@ public class DefaultLabelsView implements LabelsView {
         warningLabel.style.margin = CSSProperties.MarginUnionType.of("10px");
         dangerLabel.style.margin = CSSProperties.MarginUnionType.of("10px");
 
-        labels.appendContent(defaultLabel);
-        labels.appendContent(primaryLabel);
-        labels.appendContent(successLabel);
-        labels.appendContent(infoLabel);
-        labels.appendContent(warningLabel);
-        labels.appendContent(dangerLabel);
+        row.addColumn(column.addElement(defaultLabel))
+                .addColumn(column.copy().addElement(primaryLabel))
+                .addColumn(column.copy().addElement(successLabel))
+                .addColumn(column.copy().addElement(infoLabel))
+                .addColumn(column.copy().addElement(warningLabel))
+                .addColumn(column.copy().addElement(dangerLabel));
+
+        labels.appendContent(row.asElement());
 
         labels.appendContent(Elements.hr().asElement());
 
@@ -131,9 +152,7 @@ public class DefaultLabelsView implements LabelsView {
                 .appendContent(h5)
                 .appendContent(h6);
 
-        column.asElement().appendChild(labels.asElement());
-        row.addColumn(column);
-        this.element.appendChild(row.asElement());
+        this.element.appendChild(labels.asElement());
 
         element.appendChild(Card.createCodeCard("element.appendChild(Label.createDefault(\"DEFAULT\").asElement());\n" +
                 "element.appendChild(Label.createPrimary(\"PRIMARY\").asElement());\n" +
