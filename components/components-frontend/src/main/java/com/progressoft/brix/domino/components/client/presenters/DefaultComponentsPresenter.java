@@ -34,7 +34,7 @@ public class DefaultComponentsPresenter extends BaseClientPresenter<ComponentsVi
 
             @Override
             public String getIconName() {
-                return "text_fields";
+                return "widgets";
             }
         });
 
