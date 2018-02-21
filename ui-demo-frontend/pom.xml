@@ -258,6 +258,8 @@
                     <moduleShortName>app</moduleShortName>
                     <compilerArgs>
                         <compilerArg>-compileReport</compilerArg>
+                        <compilerArg>-extra</compilerArg>
+                        <compilerArg>${build.directory}/gwt/extra</compilerArg>
                     </compilerArgs>
                 </configuration>
             </plugin>
