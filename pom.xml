@@ -165,5 +165,6 @@
         <module>lists</module>
         <module>loaders</module>
         <module>icons</module>
+        <module>breadcrumb</module>
     </modules>
 </project>
