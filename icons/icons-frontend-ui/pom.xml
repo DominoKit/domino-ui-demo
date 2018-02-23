@@ -69,6 +69,11 @@
             <artifactId>icons-frontend</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>domino-ui-components</artifactId>
+            <type>gwt-lib</type>
+        </dependency>
     </dependencies>
 
     <build>
