@@ -40,6 +40,5 @@
   <modules>
     <module>loaders-frontend</module>
     <module>loaders-frontend-ui</module>
-    <module>loaders-shared</module>
   </modules>
 </project>

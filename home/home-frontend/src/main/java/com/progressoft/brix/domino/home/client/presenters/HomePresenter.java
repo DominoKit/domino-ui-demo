@@ -8,12 +8,11 @@ import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseContext;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseExtensionPoint;
 import com.progressoft.brix.domino.home.client.views.HomeView;
-import com.progressoft.brix.domino.home.shared.extension.HomeContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Presenter
-public class HomePresenter extends BaseClientPresenter<HomeView> implements HomeContext {
+public class HomePresenter extends BaseClientPresenter<HomeView> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HomePresenter.class);
 

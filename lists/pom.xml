@@ -40,6 +40,5 @@
   <modules>
     <module>lists-frontend</module>
     <module>lists-frontend-ui</module>
-    <module>lists-shared</module>
   </modules>
 </project>

@@ -65,6 +65,5 @@
     <modules>
         <module>profile-frontend</module>
         <module>profile-frontend-ui</module>
-        <module>profile-shared</module>
     </modules>
 </project>

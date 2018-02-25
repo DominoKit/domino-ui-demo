@@ -40,6 +40,5 @@
   <modules>
     <module>themes-frontend</module>
     <module>themes-frontend-ui</module>
-    <module>themes-shared</module>
   </modules>
 </project>

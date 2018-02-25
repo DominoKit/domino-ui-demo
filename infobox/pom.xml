@@ -40,6 +40,5 @@
   <modules>
     <module>infobox-frontend</module>
     <module>infobox-frontend-ui</module>
-    <module>infobox-shared</module>
   </modules>
 </project>

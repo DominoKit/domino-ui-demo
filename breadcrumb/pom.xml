@@ -40,6 +40,5 @@
   <modules>
     <module>breadcrumb-frontend</module>
     <module>breadcrumb-frontend-ui</module>
-    <module>breadcrumb-shared</module>
   </modules>
 </project>
