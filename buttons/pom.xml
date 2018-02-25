@@ -41,6 +41,5 @@
     <modules>
         <module>buttons-frontend</module>
         <module>buttons-frontend-ui</module>
-        <module>buttons-shared</module>
     </modules>
 </project>

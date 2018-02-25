@@ -40,6 +40,5 @@
   <modules>
     <module>badges-frontend</module>
     <module>badges-frontend-ui</module>
-    <module>badges-shared</module>
   </modules>
 </project>

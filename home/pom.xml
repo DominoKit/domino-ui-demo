@@ -40,6 +40,5 @@
   <modules>
     <module>home-frontend</module>
     <module>home-frontend-ui</module>
-    <module>home-shared</module>
   </modules>
 </project>

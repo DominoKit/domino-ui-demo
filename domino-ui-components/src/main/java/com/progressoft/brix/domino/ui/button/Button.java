@@ -9,17 +9,19 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.nonNull;
 
 public class Button extends WavesElement<Button, HTMLElement> implements
-        Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>, HasContent<Button> {
+        Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>, HasContent<Button>, IsElement<HTMLElement>, IsHtmlComponent<HTMLElement, Button>{
 
     final HTMLElement buttonElement = Elements.button().css("btn").asElement();
     private StyleType type;
     private Background background;
     private ButtonSize size;
     protected String content;
+    private HtmlComponentBuilder<HTMLElement, Button> buttonComponentBuilder =new HtmlComponentBuilder<>(this);
 
     private static Button create(String content, StyleType type) {
         return new Button(content, type);
@@ -179,5 +181,10 @@ public class Button extends WavesElement<Button, HTMLElement> implements
     public Button addClickListener(EventListener listener){
         getClickableElement().addEventListener("click", listener);
         return this;
+    }
+
+    @Override
+    public HtmlComponentBuilder<HTMLElement, Button> htmlBuilder() {
+        return buttonComponentBuilder;
     }
 }

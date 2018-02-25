@@ -40,6 +40,5 @@
   <modules>
     <module>alerts-frontend</module>
     <module>alerts-frontend-ui</module>
-    <module>alerts-shared</module>
   </modules>
 </project>

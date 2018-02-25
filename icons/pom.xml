@@ -40,6 +40,5 @@
   <modules>
     <module>icons-frontend</module>
     <module>icons-frontend-ui</module>
-    <module>icons-shared</module>
   </modules>
 </project>

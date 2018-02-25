@@ -41,6 +41,5 @@
     <modules>
         <module>labels-frontend</module>
         <module>labels-frontend-ui</module>
-        <module>labels-shared</module>
     </modules>
 </project>

@@ -166,5 +166,6 @@
         <module>loaders</module>
         <module>icons</module>
         <module>breadcrumb</module>
+        <module>collapse</module>
     </modules>
 </project>

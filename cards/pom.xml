@@ -40,6 +40,5 @@
   <modules>
     <module>cards-frontend</module>
     <module>cards-frontend-ui</module>
-    <module>cards-shared</module>
   </modules>
 </project>

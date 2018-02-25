@@ -41,6 +41,5 @@
     <modules>
         <module>modals-frontend</module>
         <module>modals-frontend-ui</module>
-        <module>modals-shared</module>
     </modules>
 </project>

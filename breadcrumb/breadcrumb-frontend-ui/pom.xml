@@ -49,17 +49,6 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>breadcrumb-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>breadcrumb-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
             <artifactId>breadcrumb-frontend</artifactId>
             <version>1.0-SNAPSHOT</version>
             <classifier>sources</classifier>
