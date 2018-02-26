@@ -1,6 +1,5 @@
 package com.progressoft.brix.domino.ui.lists;
 
-import elemental2.dom.HTMLLIElement;
 import elemental2.dom.HTMLUListElement;
 import org.jboss.gwt.elemento.core.IsElement;
 

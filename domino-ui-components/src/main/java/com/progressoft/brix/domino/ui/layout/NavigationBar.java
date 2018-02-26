@@ -1,6 +1,9 @@
 package com.progressoft.brix.domino.ui.layout;
 
-import elemental2.dom.*;
+import elemental2.dom.HTMLAnchorElement;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLUListElement;
 import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.template.DataElement;
 import org.jboss.gwt.elemento.template.Templated;

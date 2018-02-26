@@ -6,7 +6,6 @@ import elemental2.dom.*;
 
 import static elemental2.dom.DomGlobal.document;
 import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.i;
 import static org.jboss.gwt.elemento.core.Elements.li;
 
 public class Layout implements IsLayout {
