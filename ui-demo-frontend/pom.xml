@@ -68,40 +68,25 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>themes-frontend</artifactId>
+            <artifactId>themes</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
+
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>themes-frontend-ui</artifactId>
+            <artifactId>profile</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>profile-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>profile-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
+
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
             <artifactId>menu-frontend</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>menu-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
+
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
             <artifactId>component-case-frontend</artifactId>
@@ -116,13 +101,13 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>home-frontend</artifactId>
+            <artifactId>home</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>home-frontend-ui</artifactId>
+            <artifactId>typography</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
@@ -140,145 +125,73 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>cards-frontend</artifactId>
+            <artifactId>cards</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>cards-frontend-ui</artifactId>
+            <artifactId>infobox</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>infobox-frontend</artifactId>
+            <artifactId>buttons</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>infobox-frontend-ui</artifactId>
+            <artifactId>alerts</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>buttons-frontend</artifactId>
+            <artifactId>badges</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>buttons-frontend-ui</artifactId>
+            <artifactId>labels</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>alerts-frontend</artifactId>
+            <artifactId>modals</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>alerts-frontend-ui</artifactId>
+            <artifactId>lists</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>badges-frontend</artifactId>
+            <artifactId>loaders</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>badges-frontend-ui</artifactId>
+            <artifactId>icons</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>labels-frontend</artifactId>
+            <artifactId>breadcrumb</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>labels-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>modals-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>modals-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>lists-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>lists-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>loaders-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>loaders-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>icons-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>icons-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>breadcrumb-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>breadcrumb-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>collapse-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>collapse-frontend-ui</artifactId>
+            <artifactId>collapse</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>

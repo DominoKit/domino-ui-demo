@@ -3,11 +3,11 @@ package com.progressoft.brix.domino.components.client.presenters;
 import com.progressoft.brix.domino.api.client.annotations.InjectContext;
 import com.progressoft.brix.domino.api.client.annotations.Presenter;
 import com.progressoft.brix.domino.api.client.mvp.presenter.BaseClientPresenter;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseContext;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCaseExtensionPoint;
 import com.progressoft.brix.domino.components.client.views.ComponentsView;
 import com.progressoft.brix.domino.components.shared.extension.ComponentsExtensionPoint;
-import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

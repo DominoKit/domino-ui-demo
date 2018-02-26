@@ -4,7 +4,6 @@ import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Color;
 import com.progressoft.brix.domino.ui.utils.HasBackground;
-import elemental2.dom.Event;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLOListElement;
 import org.jboss.gwt.elemento.core.IsElement;

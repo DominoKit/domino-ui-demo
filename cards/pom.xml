@@ -1,30 +1,61 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <parent>
-    <artifactId>domino-ui-demo</artifactId>
-    <groupId>com.progressoft.brix.domino</groupId>
-    <version>1.0-SNAPSHOT</version>
-  </parent>
+        <groupId>com.progressoft.brix.domino</groupId>
+        <artifactId>domino-ui-demo</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 
     <artifactId>cards</artifactId>
-    <packaging>pom</packaging>
-
-    <name>cards</name>
-    <url>http://maven.apache.org</url>
+    <packaging>gwt-lib</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.8.0</version>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino.api</groupId>
+            <artifactId>domino-api-client</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino.api</groupId>
+            <artifactId>domino-api-client</artifactId>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino.logging</groupId>
+            <artifactId>domino-gwt-logger</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino.apt</groupId>
+            <artifactId>apt-client</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino.test</groupId>
+            <artifactId>domino-client-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>components-shared</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>components-shared</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>domino-ui-components</artifactId>
+            <type>gwt-lib</type>
         </dependency>
     </dependencies>
 
@@ -33,12 +64,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>net.ltgt.gwt.maven</groupId>
+                <artifactId>gwt-maven-plugin</artifactId>
+                <extensions>true</extensions>
+                <configuration>
+                    <moduleName>com.progressoft.brix.domino.cards.CardsClientModule</moduleName>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
             </plugin>
         </plugins>
     </build>
-
-  <modules>
-    <module>cards-frontend</module>
-    <module>cards-frontend-ui</module>
-  </modules>
 </project>

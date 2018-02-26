@@ -20,7 +20,7 @@ import org.slf4j.LoggerFactory;
 import java.util.HashMap;
 import java.util.Map;
 
-import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.*;
+import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static java.util.Objects.isNull;
 
 @Presenter

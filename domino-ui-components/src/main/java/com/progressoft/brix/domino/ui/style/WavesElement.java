@@ -2,7 +2,6 @@ package com.progressoft.brix.domino.ui.style;
 
 import elemental2.dom.HTMLElement;
 import org.jboss.gwt.elemento.core.IsElement;
-import static java.util.Objects.isNull;
 
 public class WavesElement<T extends IsElement, E extends HTMLElement> implements HasWaveEffect<T> {
 

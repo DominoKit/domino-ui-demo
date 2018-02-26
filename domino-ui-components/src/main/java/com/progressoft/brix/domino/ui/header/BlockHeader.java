@@ -5,9 +5,7 @@ import org.jboss.gwt.elemento.core.IsElement;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
 import static java.util.Objects.isNull;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.h;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 public class BlockHeader implements IsElement<HTMLDivElement>{
 
