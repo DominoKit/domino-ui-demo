@@ -94,6 +94,11 @@ public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<C
         return this;
     }
 
+    public Card appendDescriptionContent(Node content){
+        headerDescription.appendChild(content);
+        return this;
+    }
+
     public Card appendContent(Node content) {
         getBody().appendChild(content);
         return this;
