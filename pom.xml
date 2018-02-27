@@ -162,5 +162,6 @@
         <module>collapse</module>
         <module>typography</module>
     <module>helpers</module>
+    <module>colors</module>
   </modules>
 </project>
