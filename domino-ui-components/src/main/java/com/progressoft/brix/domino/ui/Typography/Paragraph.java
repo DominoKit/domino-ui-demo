@@ -1,7 +1,7 @@
 package com.progressoft.brix.domino.ui.Typography;
 
 import com.progressoft.brix.domino.ui.style.Color;
-import com.progressoft.brix.domino.ui.style.Typography;
+import com.progressoft.brix.domino.ui.style.Styles;
 import elemental2.dom.HTMLParagraphElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.IsElement;
@@ -13,6 +13,7 @@ public class Paragraph implements IsElement<HTMLParagraphElement>{
 
     private HTMLParagraphElement element=p().asElement();
     private Color colorStyle;
+    private String alignment= Styles.align_left;
 
     public Paragraph(){
 
@@ -36,7 +37,7 @@ public class Paragraph implements IsElement<HTMLParagraphElement>{
     }
 
     public Paragraph lead(){
-        element.classList.add(Typography.LEAD);
+        element.classList.add(Styles.LEAD);
         return this;
     }
 
@@ -60,32 +61,55 @@ public class Paragraph implements IsElement<HTMLParagraphElement>{
     }
 
     public Paragraph bold() {
-        element.classList.remove(Typography.BOLD);
-        element.classList.add(Typography.BOLD);
+        element.classList.remove(Styles.font_bold);
+        element.classList.add(Styles.font_bold);
         return this;
     }
 
     public Paragraph italic() {
-        element.classList.remove(Typography.ITALIC);
-        element.classList.add(Typography.ITALIC);
+        element.classList.remove(Styles.font_italic);
+        element.classList.add(Styles.font_italic);
         return this;
     }
 
     public Paragraph underLine() {
-        element.classList.remove(Typography.UNDER_LINE);
-        element.classList.add(Typography.UNDER_LINE);
+        element.classList.remove(Styles.font_under_line);
+        element.classList.add(Styles.font_under_line);
         return this;
     }
 
     public Paragraph overLine() {
-        element.classList.remove(Typography.OVER_LINE);
-        element.classList.add(Typography.OVER_LINE);
+        element.classList.remove(Styles.font_over_line);
+        element.classList.add(Styles.font_over_line);
         return this;
     }
 
     public Paragraph lineThrough() {
-        element.classList.remove(Typography.LINE_THROUGH);
-        element.classList.add(Typography.LINE_THROUGH);
+        element.classList.remove(Styles.font_line_through);
+        element.classList.add(Styles.font_line_through);
+        return this;
+    }
+
+    public Paragraph alignLeft(){
+        return align(Styles.align_left);
+    }
+
+    public Paragraph alignRight(){
+        return align(Styles.align_right);
+    }
+
+    public Paragraph alignCenter(){
+        return align(Styles.align_center);
+    }
+
+    public Paragraph alignJustify(){
+        return align(Styles.align_justify);
+    }
+
+    private Paragraph align(String alignment){
+        element.classList.remove(this.alignment);
+        element.classList.add(alignment);
+        this.alignment=alignment;
         return this;
     }
 }

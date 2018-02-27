@@ -1,7 +1,6 @@
 package com.progressoft.brix.domino.ui.Typography;
 
 import com.progressoft.brix.domino.ui.style.Styles;
-import com.progressoft.brix.domino.ui.style.Typography;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import elemental2.dom.Text;
@@ -64,8 +63,8 @@ public class Blockquote implements IsElement<HTMLElement>{
     }
 
     public Blockquote reverse(){
-        element.classList.remove(Typography.BLOCKQUOTE_REVERSE);
-        element.classList.add(Typography.BLOCKQUOTE_REVERSE);
+        element.classList.remove(Styles.BLOCKQUOTE_REVERSE);
+        element.classList.add(Styles.BLOCKQUOTE_REVERSE);
         return this;
     }
 

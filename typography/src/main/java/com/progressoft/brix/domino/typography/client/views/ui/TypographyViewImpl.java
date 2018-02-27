@@ -11,7 +11,7 @@ import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Color;
-import com.progressoft.brix.domino.ui.style.Typography;
+import com.progressoft.brix.domino.ui.style.Styles;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
@@ -91,7 +91,7 @@ public class TypographyViewImpl implements TypographyView {
                                 .asElement()))
                 .addColumn(column.copy()
                         .addElement(Card.create("UNSTYLED LIST")
-                                .appendContent(ul().css(Typography.LIST_UNSTYLED)
+                                .appendContent(ul().css(Styles.LIST_UNSTYLED)
                                         .add(li().textContent("Lorem ipsum dolor sit amet"))
                                         .add(li().textContent("Consectetur adipiscing elit"))
                                         .add(li().textContent("Integer molestie lorem at massa"))
@@ -154,7 +154,7 @@ public class TypographyViewImpl implements TypographyView {
                 "                        .asElement()))\n" +
                 "        .addColumn(column.copy()\n" +
                 "                .addElement(Card.create(\"UNSTYLED LIST\")\n" +
-                "                        .appendContent(ul().css(Typography.LIST_UNSTYLED)\n" +
+                "                        .appendContent(ul().css(Styles.LIST_UNSTYLED)\n" +
                 "                                .add(li().textContent(\"Lorem ipsum dolor sit amet\"))\n" +
                 "                                .add(li().textContent(\"Consectetur adipiscing elit\"))\n" +
                 "                                .add(li().textContent(\"Integer molestie lorem at massa\"))\n" +
@@ -178,13 +178,13 @@ public class TypographyViewImpl implements TypographyView {
 
     private void bodyCopy() {
         element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
-                .appendContent(p().css(Typography.LEAD).textContent(SMALLER_PARAGRAPH).asElement())
+                .appendContent(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH).asElement())
                 .appendContent(p().textContent(LARGE_PARAGRAPH).asElement())
                 .appendContent(p().textContent(SMALL_PARAGRAPH).asElement())
                 .asElement());
 
         element.appendChild(Card.createCodeCard("element.appendChild(Card.create(\"BODY COPY\",\"Use LEAD style make a paragraph with larger fonts on big screens.\")\n" +
-                "        .appendContent(p().css(Typography.LEAD).textContent(SMALLER_PARAGRAPH).asElement())\n" +
+                "        .appendContent(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH).asElement())\n" +
                 "        .appendContent(p().textContent(LARGE_PARAGRAPH).asElement())\n" +
                 "        .appendContent(p().textContent(SMALL_PARAGRAPH).asElement())\n" +
                 "        .asElement());")
@@ -255,7 +255,7 @@ public class TypographyViewImpl implements TypographyView {
                         )
 
                         .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Bold").asElement()).asElement())
+                                .addElement(Paragraph.create().appendContent(b().textContent("Italic").asElement()).asElement())
                                 .addElement(Paragraph.create("Default text").italic().asElement())
                                 .addElement(Paragraph.create("Text pink color").italic().setColor(Color.PINK).asElement())
                                 .addElement(Paragraph.create("Text cyan color").italic().setColor(Color.CYAN).asElement())
@@ -265,7 +265,7 @@ public class TypographyViewImpl implements TypographyView {
                         )
 
                         .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Bold").asElement()).asElement())
+                                .addElement(Paragraph.create().appendContent(b().textContent("Under line").asElement()).asElement())
                                 .addElement(Paragraph.create("Default text").underLine().asElement())
                                 .addElement(Paragraph.create("Text pink color").underLine().setColor(Color.PINK).asElement())
                                 .addElement(Paragraph.create("Text cyan color").underLine().setColor(Color.CYAN).asElement())
@@ -275,7 +275,7 @@ public class TypographyViewImpl implements TypographyView {
                         )
 
                         .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Bold").asElement()).asElement())
+                                .addElement(Paragraph.create().appendContent(b().textContent("Line through").asElement()).asElement())
                                 .addElement(Paragraph.create("Default text").lineThrough().asElement())
                                 .addElement(Paragraph.create("Text pink color").lineThrough().setColor(Color.PINK).asElement())
                                 .addElement(Paragraph.create("Text cyan color").lineThrough().setColor(Color.CYAN).asElement())
@@ -285,7 +285,7 @@ public class TypographyViewImpl implements TypographyView {
                         )
 
                         .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Bold").asElement()).asElement())
+                                .addElement(Paragraph.create().appendContent(b().textContent("Over line").asElement()).asElement())
                                 .addElement(Paragraph.create("Default text").overLine().asElement())
                                 .addElement(Paragraph.create("Text pink color").overLine().setColor(Color.PINK).asElement())
                                 .addElement(Paragraph.create("Text cyan color").overLine().setColor(Color.CYAN).asElement())
@@ -319,7 +319,7 @@ public class TypographyViewImpl implements TypographyView {
                 "                )\n" +
                 "\n" +
                 "                .addColumn(column.copy()\n" +
-                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Bold\").asElement()).asElement())\n" +
+                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Italic\").asElement()).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Default text\").italic().asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text pink color\").italic().setColor(Color.PINK).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text cyan color\").italic().setColor(Color.CYAN).asElement())\n" +
@@ -329,7 +329,7 @@ public class TypographyViewImpl implements TypographyView {
                 "                )\n" +
                 "\n" +
                 "                .addColumn(column.copy()\n" +
-                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Bold\").asElement()).asElement())\n" +
+                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Under line\").asElement()).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Default text\").underLine().asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text pink color\").underLine().setColor(Color.PINK).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text cyan color\").underLine().setColor(Color.CYAN).asElement())\n" +
@@ -339,7 +339,7 @@ public class TypographyViewImpl implements TypographyView {
                 "                )\n" +
                 "\n" +
                 "                .addColumn(column.copy()\n" +
-                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Bold\").asElement()).asElement())\n" +
+                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Line through\").asElement()).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Default text\").lineThrough().asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text pink color\").lineThrough().setColor(Color.PINK).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text cyan color\").lineThrough().setColor(Color.CYAN).asElement())\n" +
@@ -349,7 +349,7 @@ public class TypographyViewImpl implements TypographyView {
                 "                )\n" +
                 "\n" +
                 "                .addColumn(column.copy()\n" +
-                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Bold\").asElement()).asElement())\n" +
+                "                        .addElement(Paragraph.create().appendContent(b().textContent(\"Over line\").asElement()).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Default text\").overLine().asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text pink color\").overLine().setColor(Color.PINK).asElement())\n" +
                 "                        .addElement(Paragraph.create(\"Text cyan color\").overLine().setColor(Color.CYAN).asElement())\n" +

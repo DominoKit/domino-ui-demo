@@ -7,10 +7,10 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
 
-    <artifactId>typography</artifactId>
+    <artifactId>helpers</artifactId>
     <packaging>gwt-lib</packaging>
 
-    <name>typography</name>
+    <name>helpers</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -86,7 +86,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>com.progressoft.brix.domino.typography.TypographyClientModule</moduleName>
+                    <moduleName>com.progressoft.brix.domino.helpers.HelpersClientModule</moduleName>
                 </configuration>
             </plugin>
             <plugin>

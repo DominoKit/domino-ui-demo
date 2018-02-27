@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.ui.column;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.nonNull;
@@ -36,7 +37,7 @@ public class Column implements IsElement<HTMLDivElement>, Cloneable {
         return column;
     }
 
-    public Column addElement(HTMLElement element) {
+    public Column addElement(Node element) {
         this.asElement().appendChild(element);
         return this;
     }
