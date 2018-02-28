@@ -63,4 +63,5 @@ public class Styles {
 
     public static String padding_0 = "padding-0";
 
+    public static String img_responsive ="img-responsive";
 }

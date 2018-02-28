@@ -107,18 +107,6 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>typography</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
-            <artifactId>helpers</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>com.progressoft.brix.domino</groupId>
             <artifactId>components-frontend</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
@@ -131,7 +119,25 @@
         </dependency>
         <dependency>
             <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>typography</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>helpers</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
             <artifactId>colors</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>com.progressoft.brix.domino</groupId>
+            <artifactId>animation</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
