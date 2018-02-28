@@ -163,5 +163,6 @@
         <module>typography</module>
     <module>helpers</module>
     <module>colors</module>
+    <module>animation</module>
   </modules>
 </project>
