@@ -164,5 +164,6 @@
     <module>helpers</module>
     <module>colors</module>
     <module>animation</module>
+    <module>notifications</module>
   </modules>
 </project>
