@@ -1,0 +1,64 @@
+Row row = Row.create();
+Column column = Column.create()
+        .onLarge(Column.OnLarge.four)
+        .onMedium(Column.OnMedium.four)
+        .onSmall(Column.OnSmall.twelve)
+        .onXSmall(Column.OnXSmall.twelve);
+
+// ------------ Default size -------------
+
+ModalDialog defaultSizeModal = createModalDialog();
+
+Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
+defaultSizeButton.getClickableElement().addEventListener("click", e -> defaultSizeModal.open());
+
+element.appendChild(defaultSizeModal.asElement());
+
+row.addColumn(column.addElement(defaultSizeButton.asElement()));
+
+// ------------ Large size -------------
+
+ModalDialog largeSizeModal = createModalDialog().large();
+
+Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
+largeSizeButton.getClickableElement().addEventListener("click", e -> largeSizeModal.open());
+
+
+element.appendChild(largeSizeModal.asElement());
+
+row.addColumn(column.copy().addElement(largeSizeButton.asElement()));
+
+// ------------ Small size -------------
+
+ModalDialog smallSizeModal = createModalDialog().small();
+
+Button smallSizeButton = Button.createDefault("MODAL - LARGE SIZE");
+smallSizeButton.getClickableElement().addEventListener("click", e -> smallSizeModal.open());
+
+
+element.appendChild(smallSizeModal.asElement());
+
+row.addColumn(column.copy().addElement(smallSizeButton.asElement()));
+
+element.appendChild(Card.create("MODAL SIZE EXAMPLE", "Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.")
+        .appendContent(row.asElement())
+        .asElement());
+
+
+
+//------------------------
+
+private ModalDialog createModalDialog() {
+    ModalDialog modal = ModalDialog.create("Modal title");
+    modal.appendContent(new Text(SAMPLE_CONTENT));
+    Button closeButton = Button.create("CLOSE").linkify();
+    Button saveButton = Button.create("SAVE CHANGES").linkify();
+
+    EventListener closeModalListener = evt -> modal.close();
+
+    closeButton.getClickableElement().addEventListener("click", closeModalListener);
+    saveButton.getClickableElement().addEventListener("click", closeModalListener);
+    modal.appendFooterContent(saveButton.asElement());
+    modal.appendFooterContent(closeButton.asElement());
+    return modal;
+}

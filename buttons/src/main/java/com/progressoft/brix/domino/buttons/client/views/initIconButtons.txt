@@ -1,0 +1,23 @@
+// NORMAL
+IconButton.create(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement();
+IconButton.create(Icons.ALL.mic()).setButtonType(StyleType.PRIMARY).asElement();
+IconButton.create(Icons.ALL.more()).setButtonType(StyleType.INFO).asElement();
+IconButton.create(Icons.ALL.keyboard()).setButtonType(StyleType.SUCCESS).asElement();
+IconButton.create(Icons.ALL.ac_unit()).setButtonType(StyleType.WARNING).asElement();
+IconButton.create(Icons.ALL.access_alarm()).setButtonType(StyleType.DANGER).asElement();
+
+// SMALL CIRCLE
+IconButton.create(Icons.ALL.add_circle()).setButtonType(StyleType.DEFAULT).circle(CircleSize.SMALL).asElement();
+IconButton.create(Icons.ALL.place()).setButtonType(StyleType.PRIMARY).circle(CircleSize.SMALL).asElement();
+IconButton.create(Icons.ALL.airplanemode_active()).setButtonType(StyleType.INFO).circle(CircleSize.SMALL).asElement();
+IconButton.create(Icons.ALL.album()).setButtonType(StyleType.SUCCESS).circle(CircleSize.SMALL).asElement();
+IconButton.create(Icons.ALL.weekend()).setButtonType(StyleType.WARNING).circle(CircleSize.SMALL).asElement();
+IconButton.create(Icons.ALL.airplay()).setButtonType(StyleType.DANGER).circle(CircleSize.SMALL).asElement();
+
+// LARGE CIRCLE
+IconButton.create(Icons.ALL.adjust()).setButtonType(StyleType.DEFAULT).circle(CircleSize.LARGE).asElement();
+IconButton.create(Icons.ALL.all_out()).setButtonType(StyleType.PRIMARY).circle(CircleSize.LARGE).asElement();
+IconButton.create(Icons.ALL.apps()).setButtonType(StyleType.INFO).circle(CircleSize.LARGE).asElement();
+IconButton.create(Icons.ALL.art_track()).setButtonType(StyleType.SUCCESS).circle(CircleSize.LARGE).asElement();
+IconButton.create(Icons.ALL.assessment()).setButtonType(StyleType.WARNING).circle(CircleSize.LARGE).asElement();
+IconButton.create(Icons.ALL.assistant()).setButtonType(StyleType.DANGER).circle(CircleSize.LARGE).asElement();

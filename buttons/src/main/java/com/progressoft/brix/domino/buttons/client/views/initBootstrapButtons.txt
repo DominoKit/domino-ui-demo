@@ -1,0 +1,6 @@
+Button.createDefault("DEFAULT").asElement();
+Button.createPrimary("PRIMARY").asElement();
+Button.createSuccess("SUCCESS").asElement();
+Button.createInfo("INFO").asElement();
+Button.createWarning("WARNING").asElement();
+Button.createDanger("DANGER").asElement();

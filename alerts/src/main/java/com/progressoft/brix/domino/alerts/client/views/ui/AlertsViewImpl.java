@@ -1,8 +1,5 @@
 package com.progressoft.brix.domino.alerts.client.views.ui;
 
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
 import com.progressoft.brix.domino.alerts.client.presenters.AlertsPresenter;
 import com.progressoft.brix.domino.alerts.client.views.AlertsView;
 import com.progressoft.brix.domino.alerts.client.views.CodeResource;
@@ -10,10 +7,8 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.ui.alerts.Alert;
 import com.progressoft.brix.domino.ui.cards.Card;
-import com.progressoft.brix.domino.ui.cards.CodeCard;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.style.Background;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
@@ -26,40 +21,20 @@ public class AlertsViewImpl implements AlertsView {
 
     public AlertsViewImpl() {
         element.appendChild(BlockHeader.create("Alerts").asElement());
-
-        try {
-            basicAlerts();
-            customBackground();
-            dismissibleAlerts();
-            linksInAlerts();
-        } catch (ResourceException e) {
-            DomGlobal.console.error("could not load code");
-        }
-
-
+        basicAlerts();
+        customBackground();
+        dismissibleAlerts();
+        linksInAlerts();
     }
 
-
-    private void basicAlerts() throws ResourceException {
+    private void basicAlerts() {
         element.appendChild(Card.create("BASIC ALERTS", "Use one of the pre-customized alert types.")
                 .appendContent(Alert.success().appendStrong("Well done! ").appendText("You successfully read this important alert message.").asElement())
                 .appendContent(Alert.info().appendStrong("Heads up! ").appendText("This alert needs your attention, but it's not super important.").asElement())
                 .appendContent(Alert.warning().appendStrong("Warning! ").appendText("Better check yourself, you're not looking too good.").asElement())
                 .appendContent(Alert.error().appendStrong("Oh snap! ").appendText("Change a few things up and try submitting again.").asElement()).asElement());
 
-        CodeCard codeCard = CodeCard.create();
-        element.appendChild(codeCard.asElement());
-        CodeResource.INSTANCE.basicAlerts().getText(new ResourceCallback<TextResource>() {
-            @Override
-            public void onError(ResourceException e) {
-                DomGlobal.console.error("could not load code");
-            }
-
-            @Override
-            public void onSuccess(TextResource resource) {
-                codeCard.setCode(resource.getText());
-            }
-        });
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
     }
 
     private void customBackground() {
@@ -76,20 +51,7 @@ public class AlertsViewImpl implements AlertsView {
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Alert.create(Background.PINK)\n" +
-                "        .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "        .asElement());\n" +
-                "element.appendChild(Alert.create(Background.ORANGE)\n" +
-                "        .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "        .asElement());\n" +
-                "element.appendChild(Alert.create(Background.TEAL)\n" +
-                "        .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "        .asElement());\n" +
-                "element.appendChild(Alert.create(Background.GREEN)\n" +
-                "        .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "        .asElement());\n" +
-                "element.appendChild(Alert.create(Background.RED).appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "        .asElement());")
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.customBackgrounds())
                 .asElement());
 
     }
@@ -115,24 +77,7 @@ public class AlertsViewImpl implements AlertsView {
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Alert.warning()\n" +
-                "            .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "            .dismissible()\n" +
-                "            .asElement());\n" +
-                "element.appendChild(Alert.create(Background.PINK)\n" +
-                "            .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "            .dismissible()\n" +
-                "            .asElement());\n" +
-                "element.appendChild(Alert.create(Background.TEAL)\n" +
-                "            .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "            .dismissible()\n" +
-                "            .asElement());\n" +
-                "element.appendChild(Alert.create(Background.GREEN)\n" +
-                "            .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id\")\n" +
-                "            .dismissible()\n" +
-                "            .asElement());").asElement());
-
-
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
     }
 
     private void linksInAlerts() {
@@ -164,32 +109,7 @@ public class AlertsViewImpl implements AlertsView {
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Alert.success()\n" +
-                "                .appendStrong(\"Well done! \")\n" +
-                "                .appendText(\"You successfully read \")\n" +
-                "                .appendLink(a().add(\"important alert message.\").asElement())\n" +
-                "                .asElement());\n" +
-                "element.appendChild(Alert.info()\n" +
-                "                .appendStrong(\"Heads up! \")\n" +
-                "                .appendText(\"This \")\n" +
-                "                .appendLink(a().add(\"alert needs your attention, \").asElement())\n" +
-                "                .appendText(\"but it's not super important.\")\n" +
-                "                .asElement());\n" +
-                "element.appendChild(Alert.warning()\n" +
-                "                .appendStrong(\"Warning! \")\n" +
-                "                .appendText(\"Better check yourself, \")\n" +
-                "                .appendLink(a().add(\"you're not looking too good.\").asElement())\n" +
-                "                .asElement());\n" +
-                "element.appendChild(Alert.error()\n" +
-                "                .appendStrong(\"Oh snap! \")\n" +
-                "                .appendLink(a().add(\"Change a few things up\").asElement())\n" +
-                "                .appendText(\" and try submitting again.\")\n" +
-                "                .asElement());\n" +
-                "element.appendChild(Alert.create(Background.PINK)\n" +
-                "                .appendText(\"Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id \")\n" +
-                "                .appendLink(a().add(\"alert link.\").asElement())\n" +
-                "                .asElement());").asElement());
-
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
     }
 
     @Override

@@ -1,0 +1,15 @@
+DropdownButton.createDanger("Dropdown")
+    .addAction(DropdownAction.create("Action"))
+    .addAction(DropdownAction.create("Another action"))
+    .dropup();
+
+// in group
+DropdownButton danger = DropdownButton.createDanger("Dropdown")
+    .addAction(DropdownAction.create("Action"))
+    .addAction(DropdownAction.create("Another action"))
+    .dropup();
+
+
+ButtonsGroup.create()
+    .addButton(Button.createDanger("DANGER"))
+    .addDropDown(danger);

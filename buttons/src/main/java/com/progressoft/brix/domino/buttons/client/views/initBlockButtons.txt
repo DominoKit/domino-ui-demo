@@ -1,0 +1,5 @@
+Button.createDefault(DEFAULT).setBlock(true).asElement();
+Button.createPrimary(PRIMARY).setBlock(true).asElement();
+Button.createInfo(INFO).setBlock(true).asElement();
+Button.createWarning(WARNING).setBlock(true).asElement();
+Button.createDanger(DANGER).setBlock(true).asElment();

@@ -4,6 +4,7 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.buttons.client.presenters.ButtonsPresenter;
 import com.progressoft.brix.domino.buttons.client.views.ButtonsView;
+import com.progressoft.brix.domino.buttons.client.views.CodeResource;
 import com.progressoft.brix.domino.ui.button.*;
 import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.button.group.JustifiedGroup;
@@ -97,21 +98,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         this.element.appendChild(card.asElement());
 
-        this.element.appendChild(Card.createCodeCard("element.appendChild(DropdownButton.createDanger(\"Dropdown\")\n" +
-                "                .addAction(DropdownAction.create(\"Action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
-                "                .dropup());\n" +
-                "                \n" +
-                "// in group\n" +
-                "DropdownButton danger = DropdownButton.createDanger(\"Dropdown\")\n" +
-                "                .addAction(DropdownAction.create(\"Action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
-                "                .dropup();\n" +
-                "\n" +
-                "\n" +
-                "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDanger(\"DANGER\"))\n" +
-                "                .addDropDown(danger).asElement());").asElement());
+        this.element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initDropUp()).asElement());
     }
 
     private void initSplitButton() {
@@ -172,15 +159,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         this.element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("DropdownButton infoDropdown = DropdownButton.createInfo(\"Toggle Dropdown\")\n" +
-                "                .addAction(DropdownAction.create(\"Action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Something else here\"))\n" +
-                "                .separator()\n" +
-                "                .addAction(DropdownAction.create(\"Separated link\"));\n" +
-                "\n" +
-                "element.appendChild(SplitButton.createInfo(\"INFO\")\n" +
-                "                .addDropdown(infoDropdown).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSplitButton()).asElement());
     }
 
     private void initSingleDropdownButtons() {
@@ -235,12 +214,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(DropdownButton.createWarning(\"WARNING\")\n" +
-                "                .addAction(DropdownAction.create(\"Action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Another action\"))\n" +
-                "                .addAction(DropdownAction.create(\"Something else here\"))\n" +
-                "                .separator()\n" +
-                "                .addAction(DropdownAction.create(\"Separated link\")));").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).asElement());
     }
 
     private void initJustifyGroup() {
@@ -266,12 +240,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(justifiedGroupCard.asElement());
 
-        element.appendChild(Card.createCodeCard("JustifiedGroup justifiedGroup = JustifiedGroup.create();\n" +
-                "justifiedGroup.addButton(Button.createPrimary(\"LEFT\"));\n" +
-                "justifiedGroup.addButton(Button.createInfo(\"MIDDLE\"));\n" +
-                "justifiedGroup.addButton(Button.createDanger(\"RIGHT\"));\n" +
-                "justifiedGroup.addDropDown(dropDown);\n" +
-                "element.appendChild(justifiedGroup.asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initJustifyGroup()).asElement());
     }
 
     private void initVerticalGroup() {
@@ -291,14 +260,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(verticalGroupCard.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.create(\"Button\"))\n" +
-                "                .addButton(Button.createPrimary(\"Button\"))\n" +
-                "                .addDropDown(DropdownButton.createInfo(\"Dropdown\")\n" +
-                "                        .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
-                "                        .addAction(DropdownAction.create(\"Dropdown link\")))\n" +
-                "                .addButton(Button.createDanger(\"Button\"))\n" +
-                "                .verticalAlign());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).asElement());
     }
 
     private void initNestingGroup() {
@@ -337,14 +299,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("DropdownButton defaultDropDown = DropdownButton.create(\"Dropdown\")\n" +
-                "                .addAction(DropdownAction.create(\"Dropdown link\"))\n" +
-                "                .addAction(DropdownAction.create(\"Dropdown link\"));\n" +
-                "\n" +
-                "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.create(\"1\"))\n" +
-                "                .addButton(Button.create(\"2\"))\n" +
-                "                .addDropDown(defaultDropDown).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initNestingGroup()).asElement());
     }
 
     private HTMLElement numbersNestedGroup(StyleType type) {
@@ -433,32 +388,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
-                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
-                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
-                "                .setSize(ButtonSize.LARGE)\n" +
-                "                .asElement());\n" +
-                "\n" +
-                "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
-                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
-                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
-                "                .asElement());\n" +
-                "                \n" +
-                "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
-                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
-                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
-                "                .setSize(ButtonSize.SMALL)\n" +
-                "                .asElement());\n" +
-                "                \n" +
-                "element.appendChild(ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
-                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
-                "                .addButton(Button.createDefault(\"RIGHT\"))\n" +
-                "                .setSize(ButtonSize.XSMALL)\n" +
-                "                .asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSizingGroup()).asElement());
     }
 
     private void initButtonsToolbar() {
@@ -561,25 +491,7 @@ public class ButtonsViewImpl implements ButtonsView {
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("ButtonsGroup firstGroup = ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"1\"))\n" +
-                "                .addButton(Button.createDefault(\"2\"))\n" +
-                "                .addButton(Button.createDefault(\"3\"));\n" +
-                "\n" +
-                "ButtonsGroup secondGroup = ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"4\"))\n" +
-                "                .addButton(Button.createDefault(\"5\"))\n" +
-                "                .addButton(Button.createDefault(\"6\"));\n" +
-                "\n" +
-                "ButtonsGroup thirdGroup = ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"7\"));\n" +
-                "\n" +
-                "ButtonsToolbar buttonsToolbar = ButtonsToolbar.create()\n" +
-                "                .addGroup(firstGroup)\n" +
-                "                .addGroup(secondGroup)\n" +
-                "                .addGroup(thirdGroup);\n" +
-                "                \n" +
-                "element.appendChild(buttonsToolbar.asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).asElement());
     }
 
     private void initButtonsBasicGroup() {
@@ -653,12 +565,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("ButtonsGroup group = ButtonsGroup.create()\n" +
-                "                .addButton(Button.createDefault(\"LEFT\"))\n" +
-                "                .addButton(Button.createDefault(\"MIDDLE\"))\n" +
-                "                .addButton(Button.createDefault(\"RIGHT\"));\n" +
-                "\n" +
-                "element.appendChild(group.asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).asElement());
     }
 
     private void initTextIconButtons() {
@@ -693,12 +600,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.create(\"EXTENSION\").setIcon(Icons.ALL.extension()).asElement());\n" +
-                "element.appendChild(Button.createPrimary(\"HOME\").setIcon(Icons.ALL.home()).asElement());\n" +
-                "element.appendChild(Button.createSuccess(\"LOCK\").setIcon(Icons.ALL.lock()).asElement());\n" +
-                "element.appendChild(Button.createInfo(\"SCAN WIFI\").setIcon(Icons.ALL.perm_scan_wifi()).asElement());\n" +
-                "element.appendChild(Button.createWarning(\"TAKE OFF\").setIcon(Icons.ALL.flight_takeoff()).asElement());\n" +
-                "element.appendChild(Button.createDanger(\"PRINT\").setIcon(Icons.ALL.print()).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initTextIconButtons()).asElement());
     }
 
     private void initIconButtons() {
@@ -797,29 +699,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("// NORMAL\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.home()).setButtonType(StyleType.DEFAULT).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.mic()).setButtonType(StyleType.PRIMARY).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.more()).setButtonType(StyleType.INFO).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.keyboard()).setButtonType(StyleType.SUCCESS).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.ac_unit()).setButtonType(StyleType.WARNING).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.access_alarm()).setButtonType(StyleType.DANGER).asElement());\n" +
-                "\n" +
-                "// SMALL CIRCLE\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.add_circle()).setButtonType(StyleType.DEFAULT).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.place()).setButtonType(StyleType.PRIMARY).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.airplanemode_active()).setButtonType(StyleType.INFO).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.album()).setButtonType(StyleType.SUCCESS).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.weekend()).setButtonType(StyleType.WARNING).circle(CircleSize.SMALL).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.airplay()).setButtonType(StyleType.DANGER).circle(CircleSize.SMALL).asElement());\n" +
-                "\n" +
-                "// LARGE CIRCLE\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.adjust()).setButtonType(StyleType.DEFAULT).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.all_out()).setButtonType(StyleType.PRIMARY).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.apps()).setButtonType(StyleType.INFO).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.art_track()).setButtonType(StyleType.SUCCESS).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.assessment()).setButtonType(StyleType.WARNING).circle(CircleSize.LARGE).asElement());\n" +
-                "element.appendChild(IconButton.create(Icons.ALL.assistant()).setButtonType(StyleType.DANGER).circle(CircleSize.LARGE).asElement());\n").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initIconButtons()).asElement());
     }
 
     private HTMLHeadingElement heading(String content) {
@@ -861,11 +741,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).disbale().asElement());\n" +
-                "element.appendChild(Button.createPrimary(\"PRIMARY\").setBlock(true).disbale().asElement());\n" +
-                "element.appendChild(Button.createInfo(\"INFO\").setBlock(true).disbale().asElement());\n" +
-                "element.appendChild(Button.createWarning(\"WARNING\").setBlock(true).disbale().asElement());\n" +
-                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).disbale().asElment());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).asElement());
     }
 
     private void initBlockButtons() {
@@ -896,11 +772,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"DEFAULT\").setBlock(true).asElement());\n" +
-                "element.appendChild(Button.createPrimary(\"PRIMARY\").setBlock(true).asElement());\n" +
-                "element.appendChild(Button.createInfo(\"INFO\").setBlock(true).asElement());\n" +
-                "element.appendChild(Button.createWarning(\"WARNING\").setBlock(true).asElement());\n" +
-                "element.appendChild(Button.createDanger(\"DANGER\").setBlock(true).asElment());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initBlockButtons()).asElement());
 
     }
 
@@ -1030,10 +902,7 @@ public class ButtonsViewImpl implements ButtonsView {
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Button.createDefault(\"LARGE\").setSize(ButtonSize.LARGE).asElement());\n" +
-                "element.appendChild(Button.createDefault(\"DEFAULT\").asElement());\n" +
-                "element.appendChild(Button.createDefault(\"SMALL\").setSize(Buttonize.SMALL).asElement());\n" +
-                "element.appendChild(Button.createDefault(\"XSMALL\").setSize(ButtonSize.XSMALL).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonSizes()).asElement());
 
     }
 
@@ -1073,12 +942,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendContent(Button.createDefault(\"DEFAULT\").asElement());\n" +
-                "element.appendContent(Button.createPrimary(\"PRIMARY\").asElement());\n" +
-                "element.appendContent(Button.createSuccess(\"SUCCESS\").asElement());\n" +
-                "element.appendContent(Button.createInfo(\"INFO\").asElement());\n" +
-                "element.appendContent(Button.createWarning(\"WARNING\").asElement());\n" +
-                "element.appendContent(Button.createDanger(\"DANGER\").asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).asElement());
     }
 
     private void initMaterialDesignButtons() {
@@ -1111,11 +975,7 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard("card.appendContent(Button.create(\"RED\").setBackground(Background.RED).asElement());\n" +
-                "card.appendContent(Button.create(\"PURPLE\").setBackground(Background.PURPLE).asElement());\n" +
-                "card.appendContent(Button.create(\"INDIGO\").setBackground(Background.INDIGO).asElement());\n" +
-                "card.appendContent(Button.create(\"LIGHT BLUE\").setBackground(Background.LIGHT_BLUE).asElement());\n" +
-                "card.appendContent(Button.create(\"GREEN\").setBackground(Background.GREEN).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
     }
 
     @Override

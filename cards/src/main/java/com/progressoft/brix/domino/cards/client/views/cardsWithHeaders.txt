@@ -1,0 +1,23 @@
+Column column = Column.create()
+                .onLarge(OnLarge.four)
+                .onMedium(OnMedium.four)
+                .onSmall(OnSmall.twelve)
+                .onXSmall(OnXSmall.twelve);
+
+element.appendChild(Row.create()
+        .addColumn(column.addElement(Card.create("Card Title", "Description text here...")
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+        .asElement());

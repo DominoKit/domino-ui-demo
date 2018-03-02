@@ -1,0 +1,6 @@
+Button.create(EXTENSION).setIcon(Icons.ALL.extension()).asElement();
+Button.createPrimary(HOME).setIcon(Icons.ALL.home()).asElement();
+Button.createSuccess(LOCK).setIcon(Icons.ALL.lock()).asElement();
+Button.createInfo(SCAN WIFI).setIcon(Icons.ALL.perm_scan_wifi()).asElement();
+Button.createWarning(TAKE OFF).setIcon(Icons.ALL.flight_takeoff()).asElement();
+Button.createDanger(PRINT).setIcon(Icons.ALL.print()).asElement();

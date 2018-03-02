@@ -1,0 +1,5 @@
+Button.create("RED").setBackground(Background.RED).asElement();
+Button.create("PURPLE").setBackground(Background.PURPLE).asElement();
+Button.create("INDIGO").setBackground(Background.INDIGO).asElement();
+Button.create("LIGHT BLUE").setBackground(Background.LIGHT_BLUE).asElement();
+Button.create("GREEN").setBackground(Background.GREEN).asElement();

@@ -4,6 +4,7 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.breadcrumb.client.presenters.BreadcrumbPresenter;
 import com.progressoft.brix.domino.breadcrumb.client.views.BreadcrumbView;
+import com.progressoft.brix.domino.breadcrumb.client.views.CodeResource;
 import com.progressoft.brix.domino.ui.breadcrumbs.Breadcrumb;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
@@ -80,36 +81,7 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Row row = Row.create();\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"BASIC EXAMPLES\", \"Separators are automatically added for breadcrumb elements\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(\" Home \", evt -> {}).asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {}).asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());\n" +
-                "\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"WITH ICONS\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {}).asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {}).asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());")
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
                 .asElement());
     }
 
@@ -205,68 +177,7 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Row row = Row.create();\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"WITH MATERIAL DESIGN COLORS\", \"You can use material design colors\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.PINK)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.CYAN)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.TEAL)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .addItem(\" File \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.ORANGE)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .addItem(\" File \", evt -> {})\n" +
-                "                        .addItem(\" Extensions \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());\n" +
-                "\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"WITH ICONS & MATERIAL DESIGN COLORS\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.PINK)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.CYAN)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.TEAL)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.attachment(), \" File \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setColor(Color.ORANGE)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.attachment(), \" File \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.extension(), \" Extensions \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());")
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
                 .asElement());
     }
 
@@ -362,68 +273,7 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Row row = Row.create();\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"WITH MATERIAL DESIGN COLORS\", \"You can use material design colors\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.PINK)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.CYAN)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.TEAL)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .addItem(\" File \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.ORANGE)\n" +
-                "                        .addItem(\" Home \", evt -> {})\n" +
-                "                        .addItem(\" Library \", evt -> {})\n" +
-                "                        .addItem(\" Data \", evt -> {})\n" +
-                "                        .addItem(\" File \", evt -> {})\n" +
-                "                        .addItem(\" Extensions \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());\n" +
-                "\n" +
-                "element.appendChild(row\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"WITH ICONS & MATERIAL DESIGN COLORS\")\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.PINK)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.CYAN)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.TEAL)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.attachment(), \" File \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .appendContent(Breadcrumb.create()\n" +
-                "                        .setBackground(Background.ORANGE)\n" +
-                "                        .addItem(Icons.ALL.home(), \" Home \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.library_books(), \" Library \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.archive(), \" Data \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.attachment(), \" File \", evt -> {})\n" +
-                "                        .addItem(Icons.ALL.extension(), \" Extensions \", evt -> {})\n" +
-                "                        .asElement())\n" +
-                "                .asElement()))\n" +
-                "        .asElement());")
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
                 .asElement());
     }
 
@@ -460,37 +310,7 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Card.create(\"ALIGNMENTS\")\n" +
-                "        .appendContent(Breadcrumb.create()\n" +
-                "                .setBackground(Background.PINK)\n" +
-                "                .addItem(Icons.ALL.home(), \" Home \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.library_books(), \" Library \", evt -> {\n" +
-                "                })\n" +
-                "                .asElement())\n" +
-                "        .appendContent(Breadcrumb.create()\n" +
-                "                .alignCenter()\n" +
-                "                .setBackground(Background.CYAN)\n" +
-                "                .addItem(Icons.ALL.home(), \" Home \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.library_books(), \" Library \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.archive(), \" Data \", evt -> {\n" +
-                "                })\n" +
-                "                .asElement())\n" +
-                "        .appendContent(Breadcrumb.create()\n" +
-                "                .alignRight()\n" +
-                "                .setBackground(Background.TEAL)\n" +
-                "                .addItem(Icons.ALL.home(), \" Home \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.library_books(), \" Library \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.archive(), \" Data \", evt -> {\n" +
-                "                })\n" +
-                "                .addItem(Icons.ALL.attachment(), \" File \", evt -> {\n" +
-                "                })\n" +
-                "                .asElement())\n" +
-                "        .asElement());")
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.alignment())
                 .asElement());
 
     }

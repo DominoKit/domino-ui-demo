@@ -1,0 +1,6 @@
+ButtonsGroup group = ButtonsGroup.create()
+    .addButton(Button.createDefault(LEFT))
+    .addButton(Button.createDefault(MIDDLE))
+    .addButton(Button.createDefault(RIGHT));
+    
+element.appendChild(group.asElement());

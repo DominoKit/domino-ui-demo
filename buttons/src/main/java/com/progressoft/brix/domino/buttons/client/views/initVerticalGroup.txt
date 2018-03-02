@@ -1,0 +1,8 @@
+ButtonsGroup.create()
+    .addButton(Button.create("Button"))
+    .addButton(Button.createPrimary("Button"))
+    .addDropDown(DropdownButton.createInfo("Dropdown")
+            .addAction(DropdownAction.create("Dropdown link"))
+            .addAction(DropdownAction.create("Dropdown link")))
+    .addButton(Button.createDanger("Button"))
+    .verticalAlign();

@@ -1,0 +1,13 @@
+element.appendChild(Card.create("BLOCKQUOTES")
+        .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                .asElement())
+        .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                .appendFooterContent(new Text("Someone famous in "))
+                .appendFooterContent(cite().textContent("source title.").asElement())
+                .asElement())
+        .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                .appendFooterContent(new Text("Someone famous in "))
+                .appendFooterContent(cite().textContent("source title.").asElement())
+                .reverse()
+                .asElement())
+        .asElement());

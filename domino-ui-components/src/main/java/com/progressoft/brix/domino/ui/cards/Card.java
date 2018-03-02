@@ -1,5 +1,9 @@
 package com.progressoft.brix.domino.ui.cards;
 
+import com.google.gwt.resources.client.ExternalTextResource;
+import com.google.gwt.resources.client.ResourceCallback;
+import com.google.gwt.resources.client.ResourceException;
+import com.google.gwt.resources.client.TextResource;
 import com.progressoft.brix.domino.ui.code.Code;
 import com.progressoft.brix.domino.ui.icons.Icon;
 import com.progressoft.brix.domino.ui.icons.Icons;
@@ -78,6 +82,29 @@ public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<C
                 .appendContent(Code.block(codeBlock).asElement());
     }
 
+    public static Card createCodeCard(ExternalTextResource codeResource) {
+        Code.Block block = Code.block();
+        try {
+            codeResource.getText(new ResourceCallback<TextResource>() {
+                @Override
+                public void onError(ResourceException e) {
+                    DomGlobal.console.error("could not load code from external resource", e);
+                }
+
+                @Override
+                public void onSuccess(TextResource resource) {
+                    block.setCode(resource.getText());
+                }
+            });
+        } catch (ResourceException e) {
+            DomGlobal.console.error("could not load code from external resource", e);
+        }
+        return Card.create("Source Code")
+                .setCollapsible()
+                .collapse()
+                .appendContent(block.asElement());
+    }
+
     @PostConstruct
     void init() {
         headerTitle.insertBefore(title, headerDescription);
@@ -94,7 +121,7 @@ public abstract class Card implements IsElement<HTMLDivElement>, HasBackground<C
         return this;
     }
 
-    public Card appendDescriptionContent(Node content){
+    public Card appendDescriptionContent(Node content) {
         headerDescription.appendChild(content);
         return this;
     }

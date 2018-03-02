@@ -1,0 +1,5 @@
+Button.createDefault(DEFAULT).setBlock(true).disbale().asElement();
+Button.createPrimary(PRIMARY).setBlock(true).disbale().asElement();
+Button.createInfo(INFO).setBlock(true).disbale().asElement();
+Button.createWarning(WARNING).setBlock(true).disbale().asElement();
+Button.createDanger(DANGER).setBlock(true).disbale().asElment();

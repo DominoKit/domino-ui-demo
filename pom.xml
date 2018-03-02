@@ -165,5 +165,6 @@
     <module>colors</module>
     <module>animation</module>
     <module>notifications</module>
+    <module>media</module>
   </modules>
 </project>

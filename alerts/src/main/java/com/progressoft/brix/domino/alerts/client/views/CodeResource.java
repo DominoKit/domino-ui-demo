@@ -10,4 +10,13 @@ public interface CodeResource extends ClientBundle{
 
     @Source("basicAlerts.txt")
     ExternalTextResource basicAlerts();
+
+    @Source("customBackgrounds.txt")
+    ExternalTextResource customBackgrounds();
+
+    @Source("dismissibleAlerts.txt")
+    ExternalTextResource dismissibleAlerts();
+
+    @Source("linksInAlerts.txt")
+    ExternalTextResource linksInAlerts();
 }

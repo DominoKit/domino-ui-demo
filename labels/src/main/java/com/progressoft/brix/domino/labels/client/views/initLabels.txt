@@ -1,0 +1,6 @@
+Label.createDefault("DEFAULT").asElement();
+Label.createPrimary("PRIMARY").asElement();
+Label.createSuccess("SUCCESS").asElement();
+Label.createInfo("INFO").asElement();
+Label.createWarning("WARNING").asElement();
+Label.createDanger("DANGER").asElement();

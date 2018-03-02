@@ -1,0 +1,43 @@
+Column column=Column.create()
+        .onLarge(Column.OnLarge.three)
+        .onMedium(Column.OnMedium.three)
+        .onSmall(Column.OnSmall.six)
+        .onXSmall(Column.OnXSmall.twelve);
+
+element.appendChild(Row.create()
+        .addColumn(column.addElement(InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "125")
+                .setIconBackground(Background.RED).asElement()))
+        .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.face(), "NEW MEMBERS", "257")
+                .setIconBackground(Background.INDIGO).asElement()))
+        .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.shopping_cart(), "BOOKMARKS", "117")
+                .setIconBackground(Background.PURPLE).asElement()))
+        .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.favorite(), "LIKES", "1432")
+                .setIconBackground(Background.DEEP_PURPLE).asElement()))
+        .asElement());
+
+InfoBox new_orders = InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "0");
+InfoBox new_members = InfoBox.create(Icons.ALL.face(), "NEW MEMBERS", "0");
+InfoBox bookmarks = InfoBox.create(Icons.ALL.shopping_cart(), "BOOKMARKS", "0");
+InfoBox likes = InfoBox.create(Icons.ALL.favorite(), "LIKES", "0");
+
+element.appendChild(Row.create()
+        .addColumn(column.copy().addElement(new_orders
+                .setIconBackground(Background.RED).asElement()))
+        .addColumn(column.copy().addElement(new_members
+                .setIconBackground(Background.INDIGO).asElement()))
+        .addColumn(column.copy().addElement(bookmarks
+                .setIconBackground(Background.PURPLE).asElement()))
+        .addColumn(column.copy().addElement(likes
+                .setIconBackground(Background.DEEP_PURPLE).asElement()))
+        .asElement());
+
+counter = Counter.countFrom(0)
+        .countTo(125)
+        .every(40)
+        .incrementBy(5)
+        .onCount(count -> {
+            new_orders.getValueElement().textContent = Integer.toString(count);
+            new_members.getValueElement().textContent = Integer.toString(count);
+            bookmarks.getValueElement().textContent = Integer.toString(count);
+            likes.getValueElement().textContent = Integer.toString(count);
+        });

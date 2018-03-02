@@ -1,0 +1,5 @@
+JustifiedGroup justifiedGroup = JustifiedGroup.create();
+justifiedGroup.addButton(Button.createPrimary("LEFT"));
+justifiedGroup.addButton(Button.createInfo("MIDDLE"));
+justifiedGroup.addButton(Button.createDanger("RIGHT"));
+justifiedGroup.addDropDown(dropDown);

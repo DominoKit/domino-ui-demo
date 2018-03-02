@@ -4,6 +4,7 @@ import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.cards.client.presenters.CardsPresenter;
 import com.progressoft.brix.domino.cards.client.views.CardsView;
+import com.progressoft.brix.domino.cards.client.views.CodeResource;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
@@ -59,29 +60,7 @@ public class CardsViewImpl implements CardsView{
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Column column = Column.create()\n" +
-                "        .onLarge(OnLarge.four)\n" +
-                "        .onMedium(OnMedium.four)\n" +
-                "        .onSmall(OnSmall.twelve)\n" +
-                "        .onXSmall(OnXSmall.twelve);\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "        .asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
     }
 
     private void coloredCards() {
@@ -159,77 +138,7 @@ public class CardsViewImpl implements CardsView{
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Column column = Column.create()\n" +
-                "        .onLarge(OnLarge.four)\n" +
-                "        .onMedium(OnMedium.four)\n" +
-                "        .onSmall(OnSmall.twelve)\n" +
-                "        .onXSmall(OnXSmall.twelve);\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.addElement(Card.create(\"Light Blue Card\", \"Description text here...\")\n" +
-                "                .setBackground(Background.LIGHT_BLUE)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Light Green Card\", \"Description text here...\")\n" +
-                "                .setBackground(Background.LIGHT_GREEN)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Amber card\", \"Description text here...\")\n" +
-                "                .setBackground(Background.AMBER)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "        .asElement());\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Pink Card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.PINK)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Blue Grey Card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.BLUE_GREY)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Deep Orange card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.DEEP_ORANGE)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "        .asElement());\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Light Blue Card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.BLUE)\n" +
-                "                .setBodyBackground(Background.LIGHT_BLUE)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Light Green Card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.GREEN)\n" +
-                "                .setBodyBackground(Background.LIGHT_GREEN)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Amber card\", \"Description text here...\")\n" +
-                "                .setHeaderBackground(Background.ORANGE)\n" +
-                "                .setBodyBackground(Background.AMBER)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "        .asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
     }
 
     private void collapsibleCards() {
@@ -266,36 +175,7 @@ public class CardsViewImpl implements CardsView{
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Column column = Column.create()\n" +
-                "        .onLarge(OnLarge.four)\n" +
-                "        .onMedium(OnMedium.four)\n" +
-                "        .onSmall(OnSmall.twelve)\n" +
-                "        .onXSmall(OnXSmall.twelve);\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .setCollapsible()\n" +
-                "                .setHeaderBackground(Background.THEME)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.ALL.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .setCollapsible()\n" +
-                "                .setHeaderBackground(Background.BROWN)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create(\"Card Title\", \"Description text here...\")\n" +
-                "                .setCollapsible()\n" +
-                "                .collapse()\n" +
-                "                .setHeaderBackground(Background.CYAN)\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT))\n" +
-                "                .addHeaderAction(Icons.AV_ICONS.mic(), event -> console.info(\"Play sound\"))\n" +
-                "                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> console.info(\"More action selected\"))\n" +
-                "                .asElement()))\n" +
-                "        .asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
     }
 
     private void noHeaderCards() {
@@ -316,21 +196,7 @@ public class CardsViewImpl implements CardsView{
                         .setBackground(Background.PURPLE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("Column column = Column.create().onLarge(OnLarge.four)\n" +
-                "        .onMedium(OnMedium.four)\n" +
-                "        .onSmall(OnSmall.twelve)\n" +
-                "        .onXSmall(OnXSmall.twelve);\n" +
-                "\n" +
-                "element.appendChild(Row.create()\n" +
-                "        .addColumn(column.addElement(Card.create()\n" +
-                "                .appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create()\n" +
-                "                .setBackground(Background.THEME).appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
-                "\n" +
-                "        .addColumn(column.copy().addElement(Card.create()\n" +
-                "                .setBackground(Background.CYAN).appendContent(new Text(SAMPLE_CONTENT)).asElement()))\n" +
-                "        .asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
     }
 
     @Override

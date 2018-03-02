@@ -1,0 +1,24 @@
+Button.create("GREEN").setBackground(Background.GREEN).large().block()
+        .appendContent(Badge.create("2").asElement())
+        .asElement();
+Button.create("BLUE").setBackground(Background.BLUE).large().block()
+        .appendContent(Badge.create("10+").asElement())
+        .asElement();
+Button.create("RED").setBackground(Background.RED).large().block()
+        .appendContent(Badge.create("13").asElement())
+        .asElement();
+Button.create("ORANGE").setBackground(Background.ORANGE).large().block()
+        .appendContent(Badge.create("5").asElement())
+        .asElement();
+Button.create("PINK").setBackground(Background.PINK).large().block()
+        .appendContent(Badge.create("14").asElement())
+        .asElement();
+Button.create("CYAN").setBackground(Background.CYAN).large().block()
+        .appendContent(Badge.create("99+").asElement())
+        .asElement();
+Button.create("TEAL").setBackground(Background.TEAL).large().block()
+        .appendContent(Badge.create("26").asElement())
+        .asElement();
+Button.create("PURPLE").setBackground(Background.PURPLE).large().block()
+        .appendContent(Badge.create("47").asElement())
+        .asElement();
