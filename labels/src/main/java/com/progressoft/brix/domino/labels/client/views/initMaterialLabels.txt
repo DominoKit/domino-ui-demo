@@ -1,0 +1,9 @@
+Label.create("Red").setBackground(Background.RED).asElement();
+Label.create("Pink").setBackground(Background.PINK).asElement();
+Label.create("Purple").setBackground(Background.PURPLE).asElement();
+Label.create("Deep Purple").setBackground(Background.DEEP_PURPLE).asElement();
+Label.create("Indigo").setBackground(Background.INDIGO).asElement();
+Label.create("Blue").setBackground(Background.BLUE).asElement();
+Label.create("Light Blue").setBackground(Background.LIGHT_BLUE).asElement();
+Label.create("Cyan").setBackground(Background.CYAN).asElement();
+Label.create("Teal").setBackground(Background.TEAL).asElement();

@@ -1,0 +1,6 @@
+DropdownButton.createWarning("WARNING")
+    .addAction(DropdownAction.create("Action"))
+    .addAction(DropdownAction.create("Another action"))
+        .addAction(DropdownAction.create("Something else here"))
+            separator()
+            .addAction(DropdownAction.create("Separated link"));

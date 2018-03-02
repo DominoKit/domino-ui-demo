@@ -3,6 +3,7 @@ package com.progressoft.brix.domino.labels.client.views.ui;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.labels.client.presenters.LabelsPresenter;
+import com.progressoft.brix.domino.labels.client.views.CodeResource;
 import com.progressoft.brix.domino.labels.client.views.LabelsView;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
@@ -47,9 +48,9 @@ public class LabelsViewImpl implements LabelsView {
         HTMLElement lightBlue = Label.create("Light Blue").setBackground(Background.LIGHT_BLUE).asElement();
         HTMLElement cyan = Label.create("Cyan").setBackground(Background.CYAN).asElement();
         HTMLElement teal = Label.create("Teal").setBackground(Background.TEAL).asElement();
-        HTMLElement green = Label.create("Teal").setBackground(Background.GREEN).asElement();
-        HTMLElement orange = Label.create("Teal").setBackground(Background.ORANGE).asElement();
-        HTMLElement yellow = Label.create("Teal").setBackground(Background.YELLOW).asElement();
+        HTMLElement green = Label.create("Green").setBackground(Background.GREEN).asElement();
+        HTMLElement orange = Label.create("Orange").setBackground(Background.ORANGE).asElement();
+        HTMLElement yellow = Label.create("Yellow").setBackground(Background.YELLOW).asElement();
 
         red.style.margin = CSSProperties.MarginUnionType.of("10px");
         pink.style.margin = CSSProperties.MarginUnionType.of("10px");
@@ -81,15 +82,7 @@ public class LabelsViewImpl implements LabelsView {
 
         element.appendChild(labels.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Label.create(\"Red\").setBackground(Background.RED).asElement());\n" +
-                "element.appendChild(Label.create(\"Pink\").setBackground(Background.PINK).asElement());\n" +
-                "element.appendChild(Label.create(\"Purple\").setBackground(Background.PURPLE).asElement());\n" +
-                "element.appendChild(Label.create(\"Deep Purple\").setBackground(Background.DEEP_PURPLE).asElement());\n" +
-                "element.appendChild(Label.create(\"Indigo\").setBackground(Background.INDIGO).asElement());\n" +
-                "element.appendChild(Label.create(\"Blue\").setBackground(Background.BLUE).asElement());\n" +
-                "element.appendChild(Label.create(\"Light Blue\").setBackground(Background.LIGHT_BLUE).asElement());\n" +
-                "element.appendChild(Label.create(\"Cyan\").setBackground(Background.CYAN).asElement());\n" +
-                "element.appendChild(Label.create(\"Teal\").setBackground(Background.TEAL).asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
     }
 
     private void initLabels() {
@@ -154,12 +147,7 @@ public class LabelsViewImpl implements LabelsView {
 
         this.element.appendChild(labels.asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Label.createDefault(\"DEFAULT\").asElement());\n" +
-                "element.appendChild(Label.createPrimary(\"PRIMARY\").asElement());\n" +
-                "element.appendChild(Label.createSuccess(\"SUCCESS\").asElement());\n" +
-                "element.appendChild(Label.createInfo(\"INFO\").asElement());\n" +
-                "element.appendChild(Label.createWarning(\"WARNING\").asElement());\n" +
-                "element.appendChild(Label.createDanger(\"DANGER\").asElement());").asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
     }
 
     @Override

@@ -1,0 +1,4 @@
+Button.createDefault(LARGE).setSize(ButtonSize.LARGE).asElement();
+Button.createDefault(DEFAULT).asElement();
+Button.createDefault(SMALL).setSize(Buttonize.SMALL).asElement();
+Button.createDefault(XSMALL).setSize(ButtonSize.XSMALL).asElement();

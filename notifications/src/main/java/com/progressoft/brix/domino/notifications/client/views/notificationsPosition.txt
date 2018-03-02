@@ -1,0 +1,11 @@
+//Show notifications on pre-defined positions
+//Notification.TOP_LEFT
+//Notification.TOP_CENTER
+//Notification.TOP_RIGHT
+//Notification.BOTTOM_LEFT
+//Notification.BOTTOM_CENTER
+//Notification.BOTTOM_RIGHT
+
+Notification.create("You received a message")
+        .setPosition(Notification.BOTTOM_RIGHT)
+        .show());"

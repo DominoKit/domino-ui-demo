@@ -1,0 +1,71 @@
+Column column = Column.create()
+        .onLarge(OnLarge.four)
+        .onMedium(OnMedium.four)
+        .onSmall(OnSmall.twelve)
+        .onXSmall(OnXSmall.twelve);
+
+element.appendChild(Row.create()
+        .addColumn(column.addElement(Card.create("Light Blue Card", "Description text here...")
+                .setBackground(Background.LIGHT_BLUE)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Light Green Card", "Description text here...")
+                .setBackground(Background.LIGHT_GREEN)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Amber card", "Description text here...")
+                .setBackground(Background.AMBER)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+        .asElement());
+
+element.appendChild(Row.create()
+        .addColumn(column.copy().addElement(Card.create("Pink Card", "Description text here...")
+                .setHeaderBackground(Background.PINK)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Blue Grey Card", "Description text here...")
+                .setHeaderBackground(Background.BLUE_GREY)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Deep Orange card", "Description text here...")
+                .setHeaderBackground(Background.DEEP_ORANGE)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+        .asElement());
+
+element.appendChild(Row.create()
+        .addColumn(column.copy().addElement(Card.create("Light Blue Card", "Description text here...")
+                .setHeaderBackground(Background.BLUE)
+                .setBodyBackground(Background.LIGHT_BLUE)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Light Green Card", "Description text here...")
+                .setHeaderBackground(Background.GREEN)
+                .setBodyBackground(Background.LIGHT_GREEN)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .asElement()))
+
+        .addColumn(column.copy().addElement(Card.create("Amber card", "Description text here...")
+                .setHeaderBackground(Background.ORANGE)
+                .setBodyBackground(Background.AMBER)
+                .appendContent(new Text(SAMPLE_CONTENT))
+                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                .asElement()))
+        .asElement());

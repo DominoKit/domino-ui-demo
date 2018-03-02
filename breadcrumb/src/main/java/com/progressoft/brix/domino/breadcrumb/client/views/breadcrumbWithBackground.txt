@@ -1,0 +1,86 @@
+Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.PINK)
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.CYAN)
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            })
+            .addItem(" Data ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.TEAL)
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            })
+            .addItem(" Data ", evt -> {
+            })
+            .addItem(" File ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.ORANGE)
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            })
+            .addItem(" Data ", evt -> {
+            })
+            .addItem(" File ", evt -> {
+            })
+            .addItem(" Extensions ", evt -> {
+            })
+            .asElement())
+    .asElement();
+
+
+Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.PINK)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.CYAN)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.TEAL)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .addItem(Icons.ALL.attachment(), " File ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.ORANGE)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .addItem(Icons.ALL.attachment(), " File ", evt -> {
+            })
+            .addItem(Icons.ALL.extension(), " Extensions ", evt -> {
+            })
+            .asElement())
+    .asElement()

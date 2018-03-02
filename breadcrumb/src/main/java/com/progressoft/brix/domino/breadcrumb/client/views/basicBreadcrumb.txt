@@ -1,0 +1,38 @@
+Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
+    .appendContent(Breadcrumb.create()
+            .addItem(" Home ", evt -> {
+            }).asElement())
+    .appendContent(Breadcrumb.create()
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            }).asElement())
+    .appendContent(Breadcrumb.create()
+            .addItem(" Home ", evt -> {
+            })
+            .addItem(" Library ", evt -> {
+            })
+            .addItem(" Data ", evt -> {
+            })
+            .asElement())
+    .asElement();
+
+
+Card.create("WITH ICONS")
+    .appendContent(Breadcrumb.create()
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            }).asElement())
+    .appendContent(Breadcrumb.create()
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            }).asElement())
+    .appendContent(Breadcrumb.create()
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .asElement())
+    .asElement();

@@ -1,0 +1,24 @@
+Button danger = Button.createDanger("DANGER").large();
+danger.getClickableElement().addEventListener("click", e ->
+        Notification.createDanger("You received a message")
+                .setPosition(Notification.TOP_LEFT)
+                .show());
+
+Button success = Button.createSuccess("SUCCESS").large();
+success.getClickableElement().addEventListener("click", e ->
+        Notification.createSuccess("You received a message")
+                .setPosition(Notification.TOP_LEFT)
+                .show());
+
+Button warning = Button.createWarning("WARNING").large();
+warning.getClickableElement().addEventListener("click", e ->
+        Notification.createWarning("You received a message")
+                .setPosition(Notification.TOP_LEFT)
+                .show());
+
+
+Button info = Button.createInfo("INFO").large();
+info.getClickableElement().addEventListener("click", e ->
+        Notification.createInfo("You received a message")
+                .setPosition(Notification.TOP_LEFT)
+                .show());

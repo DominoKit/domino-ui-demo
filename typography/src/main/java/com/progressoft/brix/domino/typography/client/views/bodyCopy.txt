@@ -1,0 +1,5 @@
+element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
+        .appendContent(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH).asElement())
+        .appendContent(p().textContent(LARGE_PARAGRAPH).asElement())
+        .appendContent(p().textContent(SMALL_PARAGRAPH).asElement())
+        .asElement());

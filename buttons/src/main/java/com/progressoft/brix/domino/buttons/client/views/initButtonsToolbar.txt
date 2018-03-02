@@ -1,0 +1,19 @@
+ButtonsGroup firstGroup = ButtonsGroup.create()
+    .addButton(Button.createDefault("1"))
+    .addButton(Button.createDefault("2"))
+    .addButton(Button.createDefault("3"));
+    
+ButtonsGroup secondGroup = ButtonsGroup.create()
+    .addButton(Button.createDefault("4"))
+    .addButton(Button.createDefault("5"))
+    .addButton(Button.createDefault("6"));
+    
+ButtonsGroup thirdGroup = ButtonsGroup.create()
+    .addButton(Button.createDefault("7"));
+    
+ButtonsToolbar buttonsToolbar = ButtonsToolbar.create()
+    .addGroup(firstGroup)
+    .addGroup(secondGroup)
+    .addGroup(thirdGroup);
+    
+element.appendChild(buttonsToolbar.asElement());

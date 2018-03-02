@@ -1,0 +1,8 @@
+DropdownButton defaultDropDown = DropdownButton.create("Dropdown")
+    .addAction(DropdownAction.create("Dropdown link"))
+    .addAction(DropdownAction.create("Dropdown link"));
+
+ButtonsGroup.create()
+    .addButton(Button.create("1"))
+    .addButton(Button.create("2"))
+    .addDropDown(defaultDropDown);

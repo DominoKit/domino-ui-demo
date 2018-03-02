@@ -1,0 +1,5 @@
+//Change the color of the notification by setting the background
+Notification.create("You received a message")
+        .setBackground(Background.TEAL)
+        .setPosition(Notification.TOP_LEFT)
+        .show();

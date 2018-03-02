@@ -1,0 +1,31 @@
+Card.create("ALIGNMENTS")
+    .appendContent(Breadcrumb.create()
+            .setBackground(Background.PINK)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .alignCenter()
+            .setBackground(Background.CYAN)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .asElement())
+    .appendContent(Breadcrumb.create()
+            .alignRight()
+            .setBackground(Background.TEAL)
+            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            })
+            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            })
+            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            })
+            .addItem(Icons.ALL.attachment(), " File ", evt -> {
+            })
+            .asElement())
+    .asElement()

@@ -1,0 +1,26 @@
+ButtonsGroup.create()
+    .addButton(Button.createDefault("LEFT"))
+    .addButton(Button.createDefault("MIDDLE"))
+    .addButton(Button.createDefault("RIGHT"))
+    .setSize(ButtonSize.LARGE)
+    .asElement();
+
+ButtonsGroup.create()
+    .addButton(Button.createDefault("LEFT"))
+    .addButton(Button.createDefault("MIDDLE"))
+    .addButton(Button.createDefault("RIGHT"))
+    .asElement();
+
+ButtonsGroup.create()
+    .addButton(Button.createDefault("LEFT"))
+    .addButton(Button.createDefault("MIDDLE"))
+    .addButton(Button.createDefault("RIGHT"))
+    .setSize(ButtonSize.SMALL)
+    .asElement();
+
+ButtonsGroup.create()
+    .addButton(Button.createDefault("LEFT"))
+    .addButton(Button.createDefault("MIDDLE"))
+    .addButton(Button.createDefault("RIGHT"))
+    .setSize(ButtonSize.XSMALL)
+    .asElement();
