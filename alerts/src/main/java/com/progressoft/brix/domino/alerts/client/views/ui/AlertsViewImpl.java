@@ -1,13 +1,19 @@
 package com.progressoft.brix.domino.alerts.client.views.ui;
 
+import com.google.gwt.resources.client.ResourceCallback;
+import com.google.gwt.resources.client.ResourceException;
+import com.google.gwt.resources.client.TextResource;
 import com.progressoft.brix.domino.alerts.client.presenters.AlertsPresenter;
 import com.progressoft.brix.domino.alerts.client.views.AlertsView;
+import com.progressoft.brix.domino.alerts.client.views.CodeResource;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.ui.alerts.Alert;
 import com.progressoft.brix.domino.ui.cards.Card;
+import com.progressoft.brix.domino.ui.cards.CodeCard;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.style.Background;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
@@ -21,32 +27,39 @@ public class AlertsViewImpl implements AlertsView {
     public AlertsViewImpl() {
         element.appendChild(BlockHeader.create("Alerts").asElement());
 
-        basicAlerts();
-        customBackground();
-        dismissibleAlerts();
-        linksInAlerts();
+        try {
+            basicAlerts();
+            customBackground();
+            dismissibleAlerts();
+            linksInAlerts();
+        } catch (ResourceException e) {
+            DomGlobal.console.error("could not load code");
+        }
+
 
     }
 
 
-    private void basicAlerts() {
+    private void basicAlerts() throws ResourceException {
         element.appendChild(Card.create("BASIC ALERTS", "Use one of the pre-customized alert types.")
                 .appendContent(Alert.success().appendStrong("Well done! ").appendText("You successfully read this important alert message.").asElement())
                 .appendContent(Alert.info().appendStrong("Heads up! ").appendText("This alert needs your attention, but it's not super important.").asElement())
                 .appendContent(Alert.warning().appendStrong("Warning! ").appendText("Better check yourself, you're not looking too good.").asElement())
                 .appendContent(Alert.error().appendStrong("Oh snap! ").appendText("Change a few things up and try submitting again.").asElement()).asElement());
 
-        element.appendChild(Card.createCodeCard("element.appendChild(Alert.success()\n" +
-                "      .appendStrong(\"Well done! \").appendText(\"You successfully read this important alert message.\").asElement());\n" +
-                "      \n" +
-                "element.appendChild(Alert.info()\n" +
-                "      .appendStrong(\"Heads up! \").appendText(\"This alert needs your attention, but it's not super important.\").asElement());\n" +
-                "      \n" +
-                "element.appendChild(Alert.warning()\n" +
-                "      .appendStrong(\"Warning! \").appendText(\"Better check yourself, you're not looking too good.\").asElement());\n" +
-                "      \n" +
-                "element.appendChild(Alert.error()\n" +
-                "      .appendStrong(\"Oh snap! \").appendText(\"Change a few things up and try submitting again.\").asElement());").asElement());
+        CodeCard codeCard = CodeCard.create();
+        element.appendChild(codeCard.asElement());
+        CodeResource.INSTANCE.basicAlerts().getText(new ResourceCallback<TextResource>() {
+            @Override
+            public void onError(ResourceException e) {
+                DomGlobal.console.error("could not load code");
+            }
+
+            @Override
+            public void onSuccess(TextResource resource) {
+                codeCard.setCode(resource.getText());
+            }
+        });
     }
 
     private void customBackground() {

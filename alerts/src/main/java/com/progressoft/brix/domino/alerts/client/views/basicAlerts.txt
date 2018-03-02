@@ -1,0 +1,5 @@
+element.appendChild(Card.create("BASIC ALERTS", "Use one of the pre-customized alert types.")
+                .appendContent(Alert.success().appendStrong("Well done! ").appendText("You successfully read this important alert message.").asElement())
+                .appendContent(Alert.info().appendStrong("Heads up! ").appendText("This alert needs your attention, but it's not super important.").asElement())
+                .appendContent(Alert.warning().appendStrong("Warning! ").appendText("Better check yourself, you're not looking too good.").asElement())
+                .appendContent(Alert.error().appendStrong("Oh snap! ").appendText("Change a few things up and try submitting again.").asElement()).asElement());

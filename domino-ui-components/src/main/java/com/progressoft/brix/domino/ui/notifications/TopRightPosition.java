@@ -4,7 +4,7 @@ import elemental2.dom.HTMLElement;
 
 public class TopRightPosition extends NotificationPosition {
 
-    protected TopRightPosition() {
+    TopRightPosition() {
         super("top-right", "top");
     }
 
