@@ -166,5 +166,6 @@
     <module>animation</module>
     <module>notifications</module>
     <module>media</module>
+    <module>pagination</module>
   </modules>
 </project>

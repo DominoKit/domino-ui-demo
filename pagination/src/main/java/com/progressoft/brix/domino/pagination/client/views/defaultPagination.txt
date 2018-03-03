@@ -1,0 +1,2 @@
+Pagination.create(5)
+    .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber)
