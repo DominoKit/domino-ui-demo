@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <inherits name="com.google.gwt.user.User" />
+  <inherits name="com.google.gwt.resources.Resources" />
+
+  <source path="" />
+
+  <entry-point class="com.progressoft.brix.domino.pagination.client.PaginationClientModule" />
+
+  <set-configuration-property name="CssResource.enableGss" value="true"/>
+
+</module>
