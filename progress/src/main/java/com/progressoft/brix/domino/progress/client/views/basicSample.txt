@@ -1,0 +1,39 @@
+ProgressBar movingBar = ProgressBar.create(100).showText();
+
+element.appendChild(Card.create("BASIC EXAMPLES")
+        .appendContent(Progress.create()
+                .addBar(ProgressBar.create(100)
+                        .setValue(90))
+                .asElement())
+        .appendContent(Progress.create()
+                .addBar(ProgressBar.create(100)
+                        .showText()
+                        .setValue(60))
+                .asElement())
+        .appendContent(Progress.create()
+                .addBar(ProgressBar.create(100)
+                        .showText()
+                        .textExpression("{value} out of {maxValue} completed")
+                        .setValue(75))
+                .asElement())
+        .appendContent(Progress.create()
+                .addBar(ProgressBar.create(100)
+                        .showText()
+                        .textExpression("{value} out of {maxValue} completed")
+                        .setValue(40))
+                .asElement())
+        .appendContent(Progress.create()
+                .addBar(movingBar)
+                .asElement())
+        .asElement());
+
+new Timer() {
+    @Override
+    public void run() {
+        if (movingBar.getValue() >= movingBar.getMaxValue()) {
+            this.cancel();
+            movingBar.textExpression("Done");
+        } else
+            movingBar.setValue(movingBar.getValue() + 1);
+    }
+}.scheduleRepeating(100);

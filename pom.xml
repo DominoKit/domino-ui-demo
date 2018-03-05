@@ -168,5 +168,7 @@
     <module>media</module>
     <module>pagination</module>
     <module>preloaders</module>
+    <module>progress</module>
+    <module>tabs</module>
   </modules>
 </project>
