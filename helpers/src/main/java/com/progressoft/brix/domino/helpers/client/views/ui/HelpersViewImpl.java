@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.helpers.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.helpers.client.presenters.HelpersPresenter;
 import com.progressoft.brix.domino.helpers.client.views.CodeResource;
 import com.progressoft.brix.domino.helpers.client.views.HelpersView;
@@ -20,12 +21,18 @@ import jsinterop.base.Js;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = HelpersPresenter.class)
-public class HelpersViewImpl implements HelpersView {
+public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements HelpersView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
     private final HTMLDivElement element = div().asElement();
 
-    public HelpersViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
         textStyles();
         fontSize();
@@ -399,11 +406,5 @@ public class HelpersViewImpl implements HelpersView {
                         )
                         .asElement())
                 .asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

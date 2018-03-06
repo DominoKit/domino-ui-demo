@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.breadcrumb.client.presenters.BreadcrumbPresenter;
 import com.progressoft.brix.domino.breadcrumb.client.views.BreadcrumbView;
 import com.progressoft.brix.domino.breadcrumb.client.views.CodeResource;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.breadcrumbs.Breadcrumb;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
@@ -19,7 +20,7 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = BreadcrumbPresenter.class)
-public class BreadcrumbViewImpl implements BreadcrumbView {
+public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements BreadcrumbView {
 
     private HTMLDivElement element = Elements.div().asElement();
     private final Column column = Column.create()
@@ -28,13 +29,19 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve);
 
-    public BreadcrumbViewImpl() {
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("BREADCRUMBS").asElement());
 
         basicBreadcrumb();
         coloredBreadcrumb();
         breadcrumbWithBackground();
         alignment();
+    }
+
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
     }
 
     private void basicBreadcrumb() {
@@ -313,11 +320,5 @@ public class BreadcrumbViewImpl implements BreadcrumbView {
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.alignment())
                 .asElement());
 
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

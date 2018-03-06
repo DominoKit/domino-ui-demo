@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.badges.client.presenters.BadgesPresenter;
 import com.progressoft.brix.domino.badges.client.views.BadgesView;
 import com.progressoft.brix.domino.badges.client.views.CodeResource;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.badges.Badge;
 import com.progressoft.brix.domino.ui.button.Button;
 import com.progressoft.brix.domino.ui.cards.Card;
@@ -14,17 +15,21 @@ import com.progressoft.brix.domino.ui.lists.ListGroup;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = BadgesPresenter.class)
-public class BadgesViewImpl implements BadgesView {
+public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements BadgesView {
 
 
     private HTMLDivElement element = Elements.div().asElement();
 
-    public BadgesViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
 
         element.appendChild(BlockHeader.create("BADGES").asElement());
 
@@ -127,9 +132,4 @@ public class BadgesViewImpl implements BadgesView {
                 .asElement());
     }
 
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
-    }
 }

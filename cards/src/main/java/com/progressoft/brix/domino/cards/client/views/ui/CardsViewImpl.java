@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.cards.client.presenters.CardsPresenter;
 import com.progressoft.brix.domino.cards.client.views.CardsView;
 import com.progressoft.brix.domino.cards.client.views.CodeResource;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
@@ -21,12 +22,18 @@ import org.jboss.gwt.elemento.core.Elements;
 import static com.progressoft.brix.domino.ui.column.Column.*;
 
 @UiView(presentable = CardsPresenter.class)
-public class CardsViewImpl implements CardsView{
+public class CardsViewImpl extends ComponentView<HTMLDivElement> implements CardsView{
 
     private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
     private HTMLDivElement element= Elements.div().asElement();
 
-    public CardsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         cardsWithHeaders();
         coloredCards();
         collapsibleCards();
@@ -197,11 +204,5 @@ public class CardsViewImpl implements CardsView{
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement= Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.media.client.views.ui;
 
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.media.client.views.CodeResource;
 import com.progressoft.brix.domino.media.client.views.MediaView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
@@ -19,12 +20,18 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.img;
 
 @UiView(presentable = MediaPresenter.class)
-public class MediaViewImpl implements MediaView {
+public class MediaViewImpl extends ComponentView<HTMLDivElement> implements MediaView {
 
     private static final String SAMPLE_TEXT = "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.";
     private HTMLDivElement element = div().asElement();
 
-    public MediaViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
 
         element.appendChild(BlockHeader.create("MEDIA OBJECT").asElement());
 
@@ -118,12 +125,5 @@ public class MediaViewImpl implements MediaView {
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
-
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

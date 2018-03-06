@@ -1,7 +1,10 @@
 package com.progressoft.brix.domino.icons.client.views.ui;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.icons.client.presenters.IconsPresenter;
 import com.progressoft.brix.domino.icons.client.views.IconsView;
 import com.progressoft.brix.domino.ui.cards.Card;
@@ -14,9 +17,13 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @UiView(presentable = IconsPresenter.class)
-public class IconsViewImpl implements IconsView {
+public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsView {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(IconsViewImpl.class);
 
     private HTMLDivElement element = Elements.div().asElement();
     private Column column = Column.create()
@@ -25,36 +32,52 @@ public class IconsViewImpl implements IconsView {
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve);
 
-    public IconsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
 
-        element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
-                .appendContent(Elements.a()
-                        .attr("href", "http://google.github.io/material-design-icons/")
-                        .attr("target", "_blank")
-                        .textContent("google.github.io/material-design-icons").asElement())
-                .appendText(" & ")
-                .appendContent(Elements.a()
-                        .attr("href", "https://design.google.com/icons/")
-                        .attr("target", "_blank")
-                        .textContent("design.google.com/icons").asElement())
-                .asElement());
+    @Override
+    public void init() {
 
-        actionIcons();
-        alertIcons();
-        avIcons();
-        communicationIcons();
-        contentIcons();
-        deviceIcons();
-        editorIcons();
-        fileIcons();
-        hardwareIcons();
-        imageIcons();
-        mapIcons();
-        navigationIcons();
-        notificationIcons();
-        placesIcons();
-        socialIcons();
-        toggleIcons();
+        GWT.runAsync(new RunAsyncCallback() {
+            @Override
+            public void onFailure(Throwable reason) {
+                LOGGER.error("failed to run async icons view");
+            }
+
+            @Override
+            public void onSuccess() {
+                element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
+                        .appendContent(Elements.a()
+                                .attr("href", "http://google.github.io/material-design-icons/")
+                                .attr("target", "_blank")
+                                .textContent("google.github.io/material-design-icons").asElement())
+                        .appendText(" & ")
+                        .appendContent(Elements.a()
+                                .attr("href", "https://design.google.com/icons/")
+                                .attr("target", "_blank")
+                                .textContent("design.google.com/icons").asElement())
+                        .asElement());
+
+                actionIcons();
+                alertIcons();
+                avIcons();
+                communicationIcons();
+                contentIcons();
+                deviceIcons();
+                editorIcons();
+                fileIcons();
+                hardwareIcons();
+                imageIcons();
+                mapIcons();
+                navigationIcons();
+                notificationIcons();
+                placesIcons();
+                socialIcons();
+                toggleIcons();
+            }
+        });
     }
 
     private void actionIcons() {
@@ -1574,11 +1597,5 @@ public class IconsViewImpl implements IconsView {
         return Elements.div().css("demo-google-material-icon")
                 .add(icon.asElement())
                 .add(Elements.span().css("icon-name").textContent(icon.getName())).asElement();
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

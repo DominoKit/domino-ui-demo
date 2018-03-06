@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.tabs.client.views.ui;
 
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.tabs.client.views.CodeResource;
 import com.progressoft.brix.domino.tabs.client.views.TabsView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
@@ -24,7 +25,7 @@ import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = TabsPresenter.class)
-public class TabsViewImpl implements TabsView {
+public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
@@ -35,7 +36,13 @@ public class TabsViewImpl implements TabsView {
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve);
 
-    public TabsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("TABS").asElement());
 
         basicSample();
@@ -207,11 +214,5 @@ public class TabsViewImpl implements TabsView {
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

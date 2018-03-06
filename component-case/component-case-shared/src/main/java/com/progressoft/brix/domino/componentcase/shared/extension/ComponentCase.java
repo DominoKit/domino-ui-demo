@@ -7,5 +7,11 @@ public interface ComponentCase {
     String getMenuPath();
     default boolean hasContent(){return true;}
     default String getIconName(){return "";}
-    default void showIn(Content content){}
+    default Content getContent(){return null;}
+    default ComponentRevealedHandler onComponentRevealed(){return () -> {};}
+
+    @FunctionalInterface
+    interface ComponentRevealedHandler{
+        void onRevealed();
+    }
 }

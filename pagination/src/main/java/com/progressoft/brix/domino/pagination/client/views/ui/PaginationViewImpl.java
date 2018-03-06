@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.pagination.client.views.ui;
 
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.pagination.client.views.CodeResource;
 import com.progressoft.brix.domino.pagination.client.views.PaginationView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
@@ -20,11 +21,17 @@ import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = PaginationPresenter.class)
-public class PaginationViewImpl implements PaginationView {
+public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements PaginationView {
 
     private HTMLDivElement element = div().asElement();
 
-    public PaginationViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("PAGINATION").asElement());
 
         defaultPagination();
@@ -139,11 +146,5 @@ public class PaginationViewImpl implements PaginationView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());
 
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLDivElement contentPanel = Js.cast(content.get());
-        contentPanel.appendChild(element);
     }
 }

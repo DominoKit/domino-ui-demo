@@ -30,8 +30,13 @@ public class InfoBoxPresenter extends BaseClientPresenter<InfoBoxView> {
             }
 
             @Override
-            public void showIn(Content content) {
-                view.showIn(content);
+            public Content getContent() {
+                return view.getContent();
+            }
+
+            @Override
+            public ComponentRevealedHandler onComponentRevealed() {
+                return () -> view.restartCounters();
             }
         });
     }

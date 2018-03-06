@@ -20,7 +20,7 @@ public class Code{
         public Block setCode(String code){
             if(nonNull(element.firstChild))
                 element.removeChild(element.firstChild);
-            element.appendChild(code().textContent(code).asElement());
+            element.appendChild(code().style("overflow-x: scroll; white-space: pre;").textContent(code).asElement());
             return this;
         }
 

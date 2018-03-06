@@ -3,6 +3,7 @@ package com.progressoft.brix.domino.loaders.client.views.ui;
 import com.google.gwt.user.client.Timer;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.loaders.client.presenters.LoadersPresenter;
 import com.progressoft.brix.domino.loaders.client.views.CodeResource;
 import com.progressoft.brix.domino.loaders.client.views.LoadersView;
@@ -23,12 +24,18 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LoadersPresenter.class)
-public class LoadersViewImpl implements LoadersView {
+public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements LoadersView {
     private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
 
     private HTMLDivElement element = Elements.div().asElement();
 
-    public LoadersViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").asElement());
 
         Column column = Column.create()
@@ -122,9 +129,4 @@ public class LoadersViewImpl implements LoadersView {
         return card;
     }
 
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
-    }
 }

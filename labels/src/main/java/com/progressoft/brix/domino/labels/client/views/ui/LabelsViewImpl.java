@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.labels.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.labels.client.presenters.LabelsPresenter;
 import com.progressoft.brix.domino.labels.client.views.CodeResource;
 import com.progressoft.brix.domino.labels.client.views.LabelsView;
@@ -12,17 +13,24 @@ import com.progressoft.brix.domino.ui.labels.Label;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
 import elemental2.dom.CSSProperties;
+import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
 import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LabelsPresenter.class)
-public class LabelsViewImpl implements LabelsView {
+public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements LabelsView {
 
-    private HTMLElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().asElement();
 
-    public LabelsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("LABELS").asElement());
         initLabels();
         initMaterialLabels();
@@ -148,11 +156,5 @@ public class LabelsViewImpl implements LabelsView {
         this.element.appendChild(labels.asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.modals.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.modals.client.presenters.ModalsPresenter;
 import com.progressoft.brix.domino.modals.client.views.CodeResource;
 import com.progressoft.brix.domino.modals.client.views.ModalsView;
@@ -21,13 +22,21 @@ import elemental2.dom.Text;
 import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
+import static org.jboss.gwt.elemento.core.Elements.*;
+
 @UiView(presentable = ModalsPresenter.class)
-public class ModalsViewImpl implements ModalsView {
+public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements ModalsView {
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
-    private HTMLElement element = Elements.div().asElement();
+    private HTMLDivElement element = div().asElement();
 
-    public ModalsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("MODALS").asElement());
         initModalsSize();
         initModalColor();
@@ -36,7 +45,7 @@ public class ModalsViewImpl implements ModalsView {
     private void initModalColor() {
         Card card = Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors.");
 
-        HTMLDivElement buttonsContainer = Elements.div().css("button-demo").asElement();
+        HTMLDivElement buttonsContainer = div().css("button-demo").asElement();
         card.appendContent(buttonsContainer);
 
         //------------ Red ------------
@@ -183,11 +192,5 @@ public class ModalsViewImpl implements ModalsView {
         modal.appendFooterContent(saveButton.asElement());
         modal.appendFooterContent(closeButton.asElement());
         return modal;
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }
