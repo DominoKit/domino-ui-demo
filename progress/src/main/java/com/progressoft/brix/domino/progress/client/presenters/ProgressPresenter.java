@@ -32,8 +32,13 @@ public class ProgressPresenter extends BaseClientPresenter<ProgressView> {
             }
 
             @Override
-            public void showIn(Content content) {
-                view.showIn(content);
+            public Content getContent() {
+                return view.getContent();
+            }
+
+            @Override
+            public ComponentRevealedHandler onComponentRevealed() {
+                return view.restartProgress();
             }
         });
     }

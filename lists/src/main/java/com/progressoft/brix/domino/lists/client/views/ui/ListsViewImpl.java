@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.lists.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.lists.client.presenters.ListsPresenter;
 import com.progressoft.brix.domino.lists.client.views.CodeResource;
 import com.progressoft.brix.domino.lists.client.views.ListsView;
@@ -20,13 +21,19 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = ListsPresenter.class)
-public class ListsViewImpl implements ListsView {
+public class ListsViewImpl extends ComponentView<HTMLDivElement> implements ListsView {
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
 
     private HTMLDivElement element = Elements.div().asElement();
 
-    public ListsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("LIST GROUPS").asElement());
         basicListsSample();
         selectableSample();
@@ -72,8 +79,6 @@ public class ListsViewImpl implements ListsView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicListsSample())
                 .asElement());
-
-
     }
 
     private void selectableSample() {
@@ -161,11 +166,5 @@ public class ListsViewImpl implements ListsView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.richItems())
                 .asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

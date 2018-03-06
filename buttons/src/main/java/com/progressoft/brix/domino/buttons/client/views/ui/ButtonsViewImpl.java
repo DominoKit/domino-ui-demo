@@ -1,10 +1,13 @@
 package com.progressoft.brix.domino.buttons.client.views.ui;
 
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.RunAsyncCallback;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.buttons.client.presenters.ButtonsPresenter;
 import com.progressoft.brix.domino.buttons.client.views.ButtonsView;
 import com.progressoft.brix.domino.buttons.client.views.CodeResource;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.button.*;
 import com.progressoft.brix.domino.ui.button.group.ButtonsGroup;
 import com.progressoft.brix.domino.ui.button.group.JustifiedGroup;
@@ -21,34 +24,55 @@ import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
 import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static com.progressoft.brix.domino.ui.button.IconButton.CircleSize;
 
 @UiView(presentable = ButtonsPresenter.class)
-public class ButtonsViewImpl implements ButtonsView {
+public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements ButtonsView {
+
+    private static final Logger LOGGER= LoggerFactory.getLogger(ButtonsViewImpl.class);
 
     private HTMLDivElement element = Elements.div().asElement();
 
-    public ButtonsViewImpl() {
-        element.appendChild(BlockHeader.create("BUTTONS").asElement());
-        initBootstrapButtons();
-        initMaterialDesignButtons();
-        initButtonSizes();
-        initBlockButtons();
-        initDisabledButtons();
-        initIconButtons();
-        initTextIconButtons();
-        element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
-        initButtonsBasicGroup();
-        initButtonsToolbar();
-        initSizingGroup();
-        initNestingGroup();
-        initVerticalGroup();
-        initJustifyGroup();
-        element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
-        initSingleDropdownButtons();
-        initSplitButton();
-        initDropUp();
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
+        GWT.runAsync(new RunAsyncCallback() {
+            @Override
+            public void onFailure(Throwable reason) {
+                LOGGER.error("Failed to run async Buttons view");
+            }
+
+            @Override
+            public void onSuccess() {
+                element.appendChild(BlockHeader.create("BUTTONS").asElement());
+                initBootstrapButtons();
+                initMaterialDesignButtons();
+                initButtonSizes();
+                initBlockButtons();
+                initDisabledButtons();
+                initIconButtons();
+                initTextIconButtons();
+                element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
+                initButtonsBasicGroup();
+                initButtonsToolbar();
+                initSizingGroup();
+                initNestingGroup();
+                initVerticalGroup();
+                initJustifyGroup();
+                element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
+                initSingleDropdownButtons();
+                initSplitButton();
+                initDropUp();
+            }
+        });
+
     }
 
     private void initDropUp() {
@@ -977,11 +1001,4 @@ public class ButtonsViewImpl implements ButtonsView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
     }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
-    }
-
 }

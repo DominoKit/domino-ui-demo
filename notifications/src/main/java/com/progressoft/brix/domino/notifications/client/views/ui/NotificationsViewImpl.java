@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.notifications.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.notifications.client.presenters.NotificationsPresenter;
 import com.progressoft.brix.domino.notifications.client.views.CodeResource;
 import com.progressoft.brix.domino.notifications.client.views.NotificationsView;
@@ -21,7 +22,7 @@ import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = NotificationsPresenter.class)
-public class NotificationsViewImpl implements NotificationsView {
+public class NotificationsViewImpl extends ComponentView<HTMLDivElement> implements NotificationsView {
 
     private HTMLDivElement element = div().asElement();
     private final Column column = Column.create()
@@ -30,7 +31,13 @@ public class NotificationsViewImpl implements NotificationsView {
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve);
 
-    public NotificationsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
 
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendContent(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
@@ -478,11 +485,5 @@ public class NotificationsViewImpl implements NotificationsView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation())
                 .asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

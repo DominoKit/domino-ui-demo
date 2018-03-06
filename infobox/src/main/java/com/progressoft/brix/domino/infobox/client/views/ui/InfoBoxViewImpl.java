@@ -3,6 +3,7 @@ package com.progressoft.brix.domino.infobox.client.views.ui;
 import com.google.gwt.user.client.ui.Composite;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.infobox.client.presenters.InfoBoxPresenter;
 import com.progressoft.brix.domino.infobox.client.views.CodeResource;
 import com.progressoft.brix.domino.infobox.client.views.InfoBoxView;
@@ -21,12 +22,23 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = InfoBoxPresenter.class)
-public class InfoBoxViewImpl extends Composite implements InfoBoxView{
+public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements InfoBoxView{
 
     private HTMLDivElement element= Elements.div().asElement();
     private Counter counter;
 
-    public InfoBoxViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void restartCounters() {
+        counter.startCounting();
+    }
+
+    @Override
+    public void init() {
         basicInfoBoxes();
         hoverZoomEffect();
         rightAligned();
@@ -186,12 +198,5 @@ public class InfoBoxViewImpl extends Composite implements InfoBoxView{
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement= Js.cast(content.get());
-        contentElement.appendChild(this.element);
-        counter.startCounting();
     }
 }

@@ -170,5 +170,6 @@
     <module>preloaders</module>
     <module>progress</module>
     <module>tabs</module>
+    <module>thumbnails</module>
   </modules>
 </project>

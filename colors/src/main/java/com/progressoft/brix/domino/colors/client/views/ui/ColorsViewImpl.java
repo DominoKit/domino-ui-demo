@@ -4,6 +4,7 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.colors.client.views.ColorsView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.colors.client.presenters.ColorsPresenter;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.column.Column;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
@@ -19,11 +20,17 @@ import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = ColorsPresenter.class)
-public class ColorsViewImpl implements ColorsView {
+public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements ColorsView {
 
     private HTMLDivElement element = div().asElement();
 
-    public ColorsViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("COLORS").asElement());
 
         Column column = Column.create()
@@ -79,9 +86,4 @@ public class ColorsViewImpl implements ColorsView {
                 .asElement();
     }
 
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
-    }
 }

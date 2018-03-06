@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.home.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.home.client.presenters.HomePresenter;
 import com.progressoft.brix.domino.home.client.views.HomeView;
 import com.progressoft.brix.domino.ui.cards.Card;
@@ -12,12 +13,18 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = HomePresenter.class)
-public class HomeViewImpl implements HomeView {
+public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {
 
 
     private HTMLDivElement element = Elements.div().asElement();
 
-    public HomeViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
 
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").asElement());
@@ -48,12 +55,5 @@ public class HomeViewImpl implements HomeView {
                 .setDescription("The path depends on your module and index page setup.")
                 .expand()
                 .asElement());
-
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

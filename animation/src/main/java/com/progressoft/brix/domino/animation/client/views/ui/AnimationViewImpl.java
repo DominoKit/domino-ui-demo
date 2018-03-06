@@ -1,11 +1,11 @@
 package com.progressoft.brix.domino.animation.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.progressoft.brix.domino.animation.client.presenters.AnimationPresenter;
 import com.progressoft.brix.domino.animation.client.views.AnimationView;
 import com.progressoft.brix.domino.animation.client.views.CodeResource;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
-import com.progressoft.brix.domino.animation.client.presenters.AnimationPresenter;
-import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.animations.Animation;
 import com.progressoft.brix.domino.ui.animations.Transition;
 import com.progressoft.brix.domino.ui.button.Button;
@@ -15,21 +15,28 @@ import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.row.Row;
 import com.progressoft.brix.domino.ui.style.Background;
 import com.progressoft.brix.domino.ui.style.Styles;
-import elemental2.dom.*;
-import jsinterop.base.Js;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLImageElement;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = AnimationPresenter.class)
-public class AnimationViewImpl implements AnimationView {
-
-    private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
+public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements AnimationView {
 
     private HTMLDivElement element = div().asElement();
 
     public AnimationViewImpl() {
 
+    }
+
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("CSS ANIMATIONS")
                 .appendText("Pure css animations - ")
                 .appendContent(a().attr("href", "https://daneden.github.io/animate.css/")
@@ -367,23 +374,5 @@ public class AnimationViewImpl implements AnimationView {
                         .asElement());
 
         return card;
-    }
-
-    private HTMLElement makeAnimationButton(HTMLImageElement image, Transition transition) {
-        Button button = Button.createPrimary(transition.getName())
-                .large();
-        button.getClickableElement().addEventListener("click", e ->
-                Animation.create(image)
-                        .transition(transition)
-                        .duration(1000)
-                        .animate());
-
-        return button.asElement();
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

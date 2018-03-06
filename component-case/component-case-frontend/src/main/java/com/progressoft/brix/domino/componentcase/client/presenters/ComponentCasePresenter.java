@@ -145,8 +145,9 @@ public class ComponentCasePresenter extends BaseClientPresenter<ComponentCaseVie
     private void showPage(ComponentCase componentCase) {
         view.clear();
         layoutContext.get().getLayout().hideLeftPanel();
-        componentCase.showIn(layoutContext.get().getLayout().getContentPanel());
+        view.showContent(componentCase.getContent());
         view.scrollTop();
+        componentCase.onComponentRevealed().onRevealed();
     }
 
     private class NoRootMenuException extends RuntimeException {

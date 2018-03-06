@@ -2,6 +2,7 @@ package com.progressoft.brix.domino.typography.client.views.ui;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.typography.client.presenters.TypographyPresenter;
 import com.progressoft.brix.domino.typography.client.views.CodeResource;
 import com.progressoft.brix.domino.typography.client.views.TypographyView;
@@ -21,7 +22,7 @@ import jsinterop.base.Js;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TypographyPresenter.class)
-public class TypographyViewImpl implements TypographyView {
+public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements TypographyView {
 
     private static final String LARGE_PARAGRAPH = "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget";
     private static final String SMALL_PARAGRAPH = "Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.";
@@ -31,7 +32,13 @@ public class TypographyViewImpl implements TypographyView {
 
     private final HTMLDivElement element = div().asElement();
 
-    public TypographyViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("TYPOGRAPHY").asElement());
 
         bodyCopy();
@@ -240,11 +247,5 @@ public class TypographyViewImpl implements TypographyView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.blockqoute())
                 .asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

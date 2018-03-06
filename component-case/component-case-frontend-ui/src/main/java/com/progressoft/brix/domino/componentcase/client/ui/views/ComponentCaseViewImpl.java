@@ -1,12 +1,15 @@
 package com.progressoft.brix.domino.componentcase.client.ui.views;
 
 import com.progressoft.brix.domino.api.client.annotations.UiView;
+import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.componentcase.client.presenters.ComponentCasePresenter;
 import com.progressoft.brix.domino.componentcase.client.views.ComponentCaseView;
 import com.progressoft.brix.domino.layout.shared.extension.IsLayout;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
+
+import static java.util.Objects.nonNull;
 
 @UiView(presentable = ComponentCasePresenter.class)
 public class ComponentCaseViewImpl implements ComponentCaseView {
@@ -31,5 +34,11 @@ public class ComponentCaseViewImpl implements ComponentCaseView {
     public void scrollTop() {
         DomGlobal.document.body.scrollTop = 0;
         DomGlobal.document.documentElement.scrollTop = 0;
+    }
+
+    @Override
+    public void showContent(Content content) {
+        if(nonNull(content))
+            contentPanel.appendChild(Js.cast(content.get()));
     }
 }

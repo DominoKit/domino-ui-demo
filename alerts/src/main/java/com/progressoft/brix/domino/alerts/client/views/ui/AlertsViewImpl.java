@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.alerts.client.views.AlertsView;
 import com.progressoft.brix.domino.alerts.client.views.CodeResource;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.alerts.Alert;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
@@ -15,11 +16,20 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = AlertsPresenter.class)
-public class AlertsViewImpl implements AlertsView {
+public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements AlertsView {
 
     private HTMLDivElement element = Elements.div().asElement();
-
     public AlertsViewImpl() {
+
+    }
+
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init(){
         element.appendChild(BlockHeader.create("Alerts").asElement());
         basicAlerts();
         customBackground();
@@ -110,11 +120,5 @@ public class AlertsViewImpl implements AlertsView {
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

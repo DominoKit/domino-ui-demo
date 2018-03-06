@@ -5,6 +5,7 @@ import com.progressoft.brix.domino.api.shared.extension.Content;
 import com.progressoft.brix.domino.collapse.client.presenters.CollapsePresenter;
 import com.progressoft.brix.domino.collapse.client.views.CodeResource;
 import com.progressoft.brix.domino.collapse.client.views.CollapseView;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.ui.button.Button;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.collapsible.Accordion;
@@ -25,7 +26,7 @@ import jsinterop.base.Js;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = CollapsePresenter.class)
-public class CollapseViewImpl implements CollapseView {
+public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements CollapseView {
 
     private static final String SAMPLE_CONTENT = "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.";
 
@@ -37,7 +38,13 @@ public class CollapseViewImpl implements CollapseView {
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve);
 
-    public CollapseViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("COLLAPSE").asElement());
         example();
         element.appendChild(BlockHeader.create("ACCORDION").asElement());
@@ -249,11 +256,5 @@ public class CollapseViewImpl implements CollapseView {
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
                 .asElement());
 
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

@@ -2,6 +2,8 @@ package com.progressoft.brix.domino.progress.client.views.ui;
 
 import com.google.gwt.user.client.Timer;
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.progress.client.views.CodeResource;
 import com.progressoft.brix.domino.progress.client.views.ProgressView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
@@ -17,13 +19,22 @@ import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.time;
 
 @UiView(presentable = ProgressPresenter.class)
-public class ProgressViewImpl implements ProgressView {
+public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements ProgressView {
 
     private HTMLDivElement element = div().asElement();
+    private Timer timer;
+    private ProgressBar movingBar;
 
-    public ProgressViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
         element.appendChild(BlockHeader.create("PROGRESS BARS").asElement());
 
         basicSample();
@@ -36,7 +47,7 @@ public class ProgressViewImpl implements ProgressView {
     }
 
     private void basicSample() {
-        ProgressBar movingBar = ProgressBar.create(100).showText();
+        movingBar = ProgressBar.create(100).showText();
 
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendContent(Progress.create()
@@ -65,7 +76,7 @@ public class ProgressViewImpl implements ProgressView {
                         .asElement())
                 .asElement());
 
-        new Timer() {
+        timer = new Timer() {
             @Override
             public void run() {
                 if (movingBar.getValue() >= movingBar.getMaxValue()) {
@@ -74,7 +85,8 @@ public class ProgressViewImpl implements ProgressView {
                 } else
                     movingBar.setValue(movingBar.getValue() + 1);
             }
-        }.scheduleRepeating(100);
+        };
+        timer.scheduleRepeating(100);
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
@@ -225,8 +237,20 @@ public class ProgressViewImpl implements ProgressView {
     }
 
     @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
+    public ComponentCase.ComponentRevealedHandler restartProgress() {
+
+        return () -> {
+            if(movingBar.getValue()>=100) {
+                timer.cancel();
+                movingBar.setValue(0);
+                movingBar.textExpression("{percent}%");
+                new Timer() {
+                    @Override
+                    public void run() {
+                        timer.scheduleRepeating(100);
+                    }
+                }.schedule(2000);
+            }
+        };
     }
 }

@@ -1,6 +1,7 @@
 package com.progressoft.brix.domino.preloaders.client.views.ui;
 
 import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
 import com.progressoft.brix.domino.preloaders.client.views.CodeResource;
 import com.progressoft.brix.domino.preloaders.client.views.PreloadersView;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
@@ -17,11 +18,17 @@ import jsinterop.base.Js;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = PreloadersPresenter.class)
-public class PreloadersViewImpl implements PreloadersView {
+public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements PreloadersView {
 
     private HTMLDivElement element = div().asElement();
 
-    public PreloadersViewImpl() {
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
 
         element.appendChild(BlockHeader.create("PRELOADERS").asElement());
 
@@ -98,11 +105,5 @@ public class PreloadersViewImpl implements PreloadersView {
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
 
-    }
-
-    @Override
-    public void showIn(Content content) {
-        HTMLElement contentElement = Js.cast(content.get());
-        contentElement.appendChild(element);
     }
 }

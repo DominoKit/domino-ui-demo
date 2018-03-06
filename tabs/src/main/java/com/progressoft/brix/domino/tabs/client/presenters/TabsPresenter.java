@@ -32,8 +32,8 @@ public class TabsPresenter extends BaseClientPresenter<TabsView> {
             }
 
             @Override
-            public void showIn(Content content) {
-                view.showIn(content);
+            public Content getContent() {
+                return view.getContent();
             }
         });
     }

@@ -37,8 +37,8 @@ public class ColorsPresenter extends BaseClientPresenter<ColorsView> {
             }
 
             @Override
-            public void showIn(Content content) {
-                view.showIn(content);
+            public Content getContent() {
+                return view.getContent();
             }
         });
     }
