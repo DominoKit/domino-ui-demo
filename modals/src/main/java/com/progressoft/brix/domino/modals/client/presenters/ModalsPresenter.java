@@ -33,6 +33,11 @@ public class ModalsPresenter extends BaseClientPresenter<ModalsView> {
             public Content getContent() {
                 return view.getContent();
             }
+
+            @Override
+            public ComponentRemoveHandler onComponentRemoved() {
+                return view.cleanup();
+            }
         });
     }
 }

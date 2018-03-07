@@ -2432,8 +2432,10 @@ section.content {
   top: 6px; }
 
 /* Buttons ===================================== */
-.btn:focus {
-  outline: none !important; }
+.btn:not(.btn-link):focus {
+  outline: none !important;
+  box-shadow: 0 0 8px rgba(0,0,0,.18), 0 4px 8px rgba(0,0,0,.36) !important;
+}
 
 .btn-circle {
   border: none;
@@ -2464,6 +2466,10 @@ section.content {
     text-decoration: none;
     color: #333;
     background-color: #ddd; }
+
+.btn-link:focus {
+    background-color: rgba(0, 0, 0, 0.08) !important;
+}
 
 .btn-circle-lg {
   border: none;
