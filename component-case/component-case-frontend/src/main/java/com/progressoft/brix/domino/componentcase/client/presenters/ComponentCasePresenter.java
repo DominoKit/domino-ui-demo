@@ -22,6 +22,7 @@ import java.util.Map;
 
 import static com.progressoft.brix.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @Presenter
 public class ComponentCasePresenter extends BaseClientPresenter<ComponentCaseView> implements ComponentCaseContext {
@@ -30,6 +31,7 @@ public class ComponentCasePresenter extends BaseClientPresenter<ComponentCaseVie
 
     private ContextAggregator.ContextWait<MenuContext> menuContext = ContextAggregator.ContextWait.create();
     private ContextAggregator.ContextWait<LayoutContext> layoutContext = ContextAggregator.ContextWait.create();
+    private ComponentCase currentSample;
 
 
     @Override
@@ -143,11 +145,14 @@ public class ComponentCasePresenter extends BaseClientPresenter<ComponentCaseVie
     }
 
     private void showPage(ComponentCase componentCase) {
+        if(nonNull(currentSample))
+            currentSample.onComponentRemoved().onBeforeRemove();
         view.clear();
         layoutContext.get().getLayout().hideLeftPanel();
         view.showContent(componentCase.getContent());
         view.scrollTop();
         componentCase.onComponentRevealed().onRevealed();
+        currentSample=componentCase;
     }
 
     private class NoRootMenuException extends RuntimeException {

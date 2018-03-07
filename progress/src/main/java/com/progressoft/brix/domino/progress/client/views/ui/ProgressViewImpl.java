@@ -86,7 +86,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                     movingBar.setValue(movingBar.getValue() + 1);
             }
         };
-        timer.scheduleRepeating(100);
+        timer.scheduleRepeating(60);
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
