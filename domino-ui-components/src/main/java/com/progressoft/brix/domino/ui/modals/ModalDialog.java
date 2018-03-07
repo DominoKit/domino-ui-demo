@@ -90,7 +90,7 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement> {
             KeyboardEvent keyboardEvent = Js.cast(evt);
             switch (keyboardEvent.code) {
                 case "Tab":
-                    if (focusElements.size() == 1) {
+                    if (focusElements.size() <= 1) {
                         evt.preventDefault();
                         break;
                     }
@@ -111,6 +111,9 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement> {
                 firstFocusElement.focus();
             }
         });
+
+
+
     }
 
     private void handleBackwardTab(Event evt) {
@@ -184,14 +187,13 @@ public abstract class ModalDialog implements IsElement<HTMLDivElement> {
         NodeList<Element> elementNodeList = asElement().querySelectorAll("a[href], area[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), [tabindex=\"0\"]");
         List<Element> elements = elementNodeList.asList();
 
-        firstFocusElement = asElement();
         if (elements.size() > 0) {
             focusElements = elements;
+            firstFocusElement = focusElements.get(0);
             lastFocusElement = elements.get(elements.size() - 1);
         } else {
             lastFocusElement = modalContent;
         }
-
 
         activeElementBeforeOpen = MyDom.document.activeElement;
         MODAL_BACKDROP.remove();

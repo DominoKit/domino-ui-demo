@@ -7,7 +7,5 @@ import jsinterop.annotations.JsType;
 
 @JsType(isNative = true, namespace = JsPackage.GLOBAL)
 public class MyDocument extends HTMLDocument {
-
     public Element activeElement;
-
 }
