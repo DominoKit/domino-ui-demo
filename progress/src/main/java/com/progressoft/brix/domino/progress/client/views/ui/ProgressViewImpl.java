@@ -233,7 +233,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
     @Override
     public ComponentCase.ComponentRevealedHandler restartProgress() {
         return () -> {
-            if (movingBar.getValue() >= 100) {
+            if (movingBar.getValue() >= 1000) {
                 movingBar.setValue(0);
                 movingBar.textExpression("{percent}%");
                 DomGlobal.requestAnimationFrame(animationFrameCallback);
