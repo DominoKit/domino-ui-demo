@@ -1,4 +1,4 @@
-ProgressBar movingBar = ProgressBar.create(100).showText();
+ProgressBar movingBar = ProgressBar.create(1000).showText();
 
 element.appendChild(Card.create("BASIC EXAMPLES")
         .appendContent(Progress.create()
@@ -27,13 +27,12 @@ element.appendChild(Card.create("BASIC EXAMPLES")
                 .asElement())
         .asElement());
 
-new Timer() {
-    @Override
-    public void run() {
-        if (movingBar.getValue() >= movingBar.getMaxValue()) {
-            this.cancel();
-            movingBar.textExpression("Done");
-        } else
-            movingBar.setValue(movingBar.getValue() + 1);
-    }
-}.scheduleRepeating(100);
+animationFrameCallback = p0 -> {
+    if (movingBar.getValue() >= movingBar.getMaxValue()) {
+        movingBar.textExpression("Done");
+    } else
+        movingBar.setValue(movingBar.getValue() + 1);
+
+    DomGlobal.requestAnimationFrame(animationFrameCallback);
+};
+DomGlobal.requestAnimationFrame(animationFrameCallback);
