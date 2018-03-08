@@ -1,13 +1,11 @@
 package com.progressoft.brix.domino.progress.client.views.ui;
 
-import com.google.gwt.user.client.Timer;
-import com.progressoft.brix.domino.api.shared.extension.Content;
+import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
+import com.progressoft.brix.domino.progress.client.presenters.ProgressPresenter;
 import com.progressoft.brix.domino.progress.client.views.CodeResource;
 import com.progressoft.brix.domino.progress.client.views.ProgressView;
-import com.progressoft.brix.domino.api.client.annotations.UiView;
-import com.progressoft.brix.domino.progress.client.presenters.ProgressPresenter;
 import com.progressoft.brix.domino.ui.cards.Card;
 import com.progressoft.brix.domino.ui.header.BlockHeader;
 import com.progressoft.brix.domino.ui.progress.Progress;
@@ -15,18 +13,15 @@ import com.progressoft.brix.domino.ui.progress.ProgressBar;
 import com.progressoft.brix.domino.ui.style.Background;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.time;
 
 @UiView(presentable = ProgressPresenter.class)
 public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements ProgressView {
 
     private HTMLDivElement element = div().asElement();
-    private Timer timer;
     private ProgressBar movingBar;
+    private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
 
     @Override
     public HTMLDivElement getElement() {
@@ -47,7 +42,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
     }
 
     private void basicSample() {
-        movingBar = ProgressBar.create(100).showText();
+        movingBar = ProgressBar.create(1000).showText();
 
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendContent(Progress.create()
@@ -76,17 +71,16 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        timer = new Timer() {
-            @Override
-            public void run() {
-                if (movingBar.getValue() >= movingBar.getMaxValue()) {
-                    this.cancel();
-                    movingBar.textExpression("Done");
-                } else
-                    movingBar.setValue(movingBar.getValue() + 1);
-            }
+        animationFrameCallback = p0 -> {
+            if (movingBar.getValue() >= movingBar.getMaxValue()) {
+                movingBar.textExpression("Done");
+            } else
+                movingBar.setValue(movingBar.getValue() + 1);
+
+            DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
-        timer.scheduleRepeating(60);
+        DomGlobal.requestAnimationFrame(animationFrameCallback);
+
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
@@ -238,18 +232,11 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
 
     @Override
     public ComponentCase.ComponentRevealedHandler restartProgress() {
-
         return () -> {
-            if(movingBar.getValue()>=100) {
-                timer.cancel();
+            if (movingBar.getValue() >= 100) {
                 movingBar.setValue(0);
                 movingBar.textExpression("{percent}%");
-                new Timer() {
-                    @Override
-                    public void run() {
-                        timer.scheduleRepeating(100);
-                    }
-                }.schedule(2000);
+                DomGlobal.requestAnimationFrame(animationFrameCallback);
             }
         };
     }
