@@ -1,5 +1,6 @@
 package com.progressoft.brix.domino.progress.client.views.ui;
 
+import com.google.gwt.user.client.Timer;
 import com.progressoft.brix.domino.api.client.annotations.UiView;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentCase;
 import com.progressoft.brix.domino.componentcase.shared.extension.ComponentView;
@@ -21,6 +22,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
 
     private HTMLDivElement element = div().asElement();
     private ProgressBar movingBar;
+    private int animationFrame = 0;
     private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
 
     @Override
@@ -45,7 +47,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
         movingBar = ProgressBar.create(1000);
         //we are doing this since we want to move the progress for the demo,
         // in real use cases progress bar value increases by some data feedback.
-        movingBar.asElement().style.setProperty("transition","width 500ms linear", "important");
+        movingBar.asElement().style.setProperty("transition", "width 500ms linear", "important");
 
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendContent(Progress.create()
@@ -80,9 +82,8 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             } else
                 movingBar.setValue(movingBar.getValue() + 1);
 
-            DomGlobal.requestAnimationFrame(animationFrameCallback);
+            animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
-        DomGlobal.requestAnimationFrame(animationFrameCallback);
     }
 
     private void contextualAlternatives() {
@@ -233,11 +234,15 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
     @Override
     public ComponentCase.ComponentRevealedHandler restartProgress() {
         return () -> {
-            if (movingBar.getValue() >= 1000) {
-                movingBar.setValue(0);
-                movingBar.textExpression("{percent}%");
-                DomGlobal.requestAnimationFrame(animationFrameCallback);
-            }
+            DomGlobal.cancelAnimationFrame(animationFrame);
+            movingBar.setValue(0);
+            movingBar.textExpression("{percent}%");
+            new Timer() {
+                @Override
+                public void run() {
+                    DomGlobal.requestAnimationFrame(animationFrameCallback);
+                }
+            }.schedule(1000);
         };
     }
 }
