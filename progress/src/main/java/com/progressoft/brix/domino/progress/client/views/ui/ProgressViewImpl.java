@@ -42,7 +42,10 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
     }
 
     private void basicSample() {
-        movingBar = ProgressBar.create(1000).showText();
+        movingBar = ProgressBar.create(1000);
+        //we are doing this since we want to move the progress for the demo,
+        // in real use cases progress bar value increases by some data feedback.
+        movingBar.asElement().style.setProperty("transition","width 500ms linear", "important");
 
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendContent(Progress.create()
@@ -80,9 +83,6 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
         DomGlobal.requestAnimationFrame(animationFrameCallback);
-
-
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void contextualAlternatives() {

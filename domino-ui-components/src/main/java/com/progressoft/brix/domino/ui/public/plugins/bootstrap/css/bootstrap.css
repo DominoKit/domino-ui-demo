@@ -5146,9 +5146,9 @@ a.thumbnail.active {
   background-color: #337ab7;
   -webkit-box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
           box-shadow: inset 0 -1px 0 rgba(0, 0, 0, .15);
-  -webkit-transition: width 500ms ease;
-       -o-transition: width 500ms ease;
-          transition: width 500ms ease;
+  -webkit-transition: width 16ms ease;
+       -o-transition: width 16ms ease;
+          transition: width 16ms ease;
 }
 .progress-striped .progress-bar,
 .progress-bar-striped {
