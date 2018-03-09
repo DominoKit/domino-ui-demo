@@ -1,7 +1,7 @@
 movingBar = ProgressBar.create(1000);
 //we are doing this since we want to move the progress for the demo,
 // in real use cases progress bar value increases by some data feedback.
-movingBar.asElement().style.setProperty("transition","width 500ms linear", "important");
+movingBar.asElement().style.setProperty("transition", "width 500ms linear", "important");
 
 element.appendChild(Card.create("BASIC EXAMPLES")
         .appendContent(Progress.create()
@@ -36,6 +36,5 @@ animationFrameCallback = p0 -> {
     } else
         movingBar.setValue(movingBar.getValue() + 1);
 
-    DomGlobal.requestAnimationFrame(animationFrameCallback);
+    animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
 };
-DomGlobal.requestAnimationFrame(animationFrameCallback);
