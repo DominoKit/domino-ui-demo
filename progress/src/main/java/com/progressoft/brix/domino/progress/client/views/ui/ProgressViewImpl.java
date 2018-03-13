@@ -84,6 +84,8 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
 
             animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void contextualAlternatives() {

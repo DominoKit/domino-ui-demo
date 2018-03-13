@@ -26,7 +26,7 @@ public enum Transition {
     FADE_IN_DOWN_BIG("fadeInDownBig", "FADE IN DOWN BIG"),
     FADE_IN_LEFT("fadeInLeft", "FADE IN LEFT"),
     FADE_IN_LEFT_BIG("fadeInLeftBig", "FADE IN LEFT BIG"),
-    FADE_IN_RIGHT("fadeInRight", "DADE IN RIGHT"),
+    FADE_IN_RIGHT("fadeInRight", "FADE IN RIGHT"),
     FADE_IN_RIGHT_BIG("fadeInRightBig", "FADE IN RIGHT BIG"),
     FADE_IN_UP("fadeInUp", "FADE IN UP"),
     FADE_IN_UP_BIG("fadeInUpBig", "FADE IN UP BIG"),
