@@ -5983,6 +5983,10 @@ button.close {
   .modal-sm {
     width: 300px;
   }
+
+  .modal-alert{
+    width: 500px;
+  }
 }
 @media (min-width: 992px) {
   .modal-lg {

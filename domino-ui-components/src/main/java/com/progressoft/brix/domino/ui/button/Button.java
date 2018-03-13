@@ -9,12 +9,14 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Node;
 import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.gwt.elemento.core.EventType;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static java.util.Objects.nonNull;
 
 public class Button extends WavesElement<Button, HTMLElement> implements
-        Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>, HasContent<Button>, IsElement<HTMLElement>, IsHtmlComponent<HTMLElement, Button>{
+        Justifiable, HasClickableElement, Sizable<Button>, HasBackground<Button>,
+        HasContent<Button>, IsElement<HTMLElement>, IsHtmlComponent<HTMLElement, Button>, HasStyleProperty<Button>{
 
     final HTMLElement buttonElement = Elements.button().css("btn").asElement();
     private StyleType type;
@@ -179,12 +181,18 @@ public class Button extends WavesElement<Button, HTMLElement> implements
     }
 
     public Button addClickListener(EventListener listener){
-        getClickableElement().addEventListener("click", listener);
+        getClickableElement().addEventListener(EventType.click.getName(), listener);
         return this;
     }
 
     @Override
     public HtmlComponentBuilder<HTMLElement, Button> htmlBuilder() {
         return buttonComponentBuilder;
+    }
+
+    @Override
+    public Button setStyleProperty(String name, String value) {
+        asElement().style.setProperty(name, value);
+        return this;
     }
 }

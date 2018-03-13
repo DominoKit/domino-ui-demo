@@ -15,6 +15,8 @@ public class Styles {
     public static final String font_45 = "font-45";
     public static final String font_48 = "font-48";
     public static final String font_50 = "font-50";
+    public static final String font_60 = "font-60";
+    public static final String font_72 = "font-72";
 
     public static final String LEAD = "lead";
     public static final String font_bold = "font-bold";

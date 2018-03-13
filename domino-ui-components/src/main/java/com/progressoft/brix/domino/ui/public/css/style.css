@@ -1798,6 +1798,12 @@
 .font-50 {
   font-size: 50px; }
 
+.font-60 {
+  font-size: 60px; }
+
+.font-72 {
+  font-size: 72px; }
+
 .align-left {
   text-align: left; }
 
@@ -2467,7 +2473,7 @@ section.content {
     color: #333;
     background-color: #ddd; }
 
-.btn-link:focus {
+.btn-link:not(.single):focus {
     background-color: rgba(0, 0, 0, 0.08) !important;
 }
 
