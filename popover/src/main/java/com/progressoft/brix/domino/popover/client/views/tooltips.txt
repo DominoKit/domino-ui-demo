@@ -1,0 +1,32 @@
+HTMLElement tooltip_on_right = Button.createPrimary("TOOLTIP ON RIGHT").block().asElement();
+
+Tooltip.create(tooltip_on_right, "Tooltip on right")
+        .position(PopupPosition.RIGHT);
+
+HTMLElement tooltip_on_top = Button.createPrimary("TOOLTIP ON TOP").block().asElement();
+
+Tooltip.create(tooltip_on_top, "Tooltip on top")
+        .position(PopupPosition.TOP);
+
+HTMLElement tooltip_on_bottom = Button.createPrimary("TOOLTIP ON BOTTOM").block().asElement();
+
+Tooltip.create(tooltip_on_bottom, "Tooltip on bottom")
+        .position(PopupPosition.BOTTOM);
+
+HTMLElement tooltip_on_left = Button.createPrimary("TOOLTIP ON LEFT").block().asElement();
+
+Tooltip.create(tooltip_on_left, "Tooltip on left")
+        .position(PopupPosition.LEFT);
+
+element.appendChild(Card.create("TOOLTIPS")
+        .appendContent(Row.create()
+                .addColumn(column.copy()
+                        .addElement(tooltip_on_right))
+                .addColumn(column.copy()
+                        .addElement(tooltip_on_top))
+                .addColumn(column.copy()
+                        .addElement(tooltip_on_bottom))
+                .addColumn(column.copy()
+                        .addElement(tooltip_on_left))
+                .asElement())
+        .asElement());

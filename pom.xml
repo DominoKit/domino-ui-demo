@@ -172,5 +172,6 @@
     <module>tabs</module>
     <module>thumbnails</module>
     <module>dialogs</module>
+    <module>popover</module>
   </modules>
 </project>
