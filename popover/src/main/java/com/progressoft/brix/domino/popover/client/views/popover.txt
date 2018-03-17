@@ -1,0 +1,32 @@
+HTMLElement popover_on_right = Button.createPrimary("POPOVER ON RIGHT").block().asElement();
+
+Popover.create(popover_on_right, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        .position(PopupPosition.RIGHT);
+
+HTMLElement popover_on_top = Button.createPrimary("POPOVER ON TOP").block().asElement();
+
+Popover.create(popover_on_top, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        .position(PopupPosition.TOP);
+
+HTMLElement popover_on_bottom = Button.createPrimary("POPOVER ON BOTTOM").block().asElement();
+
+Popover.create(popover_on_bottom, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        .position(PopupPosition.BOTTOM);
+
+HTMLElement popover_on_left = Button.createPrimary("POPOVER ON LEFT").block().asElement();
+
+Popover.create(popover_on_left, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        .position(PopupPosition.LEFT);
+
+element.appendChild(Card.create("POPOVER")
+        .appendContent(Row.create()
+                .addColumn(column.copy()
+                        .addElement(popover_on_right))
+                .addColumn(column.copy()
+                        .addElement(popover_on_top))
+                .addColumn(column.copy()
+                        .addElement(popover_on_bottom))
+                .addColumn(column.copy()
+                        .addElement(popover_on_left))
+                .asElement())
+        .asElement());
