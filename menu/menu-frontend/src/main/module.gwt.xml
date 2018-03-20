@@ -6,7 +6,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.menu.client.MenuClientModule" />
+  <entry-point class="org.dominokit.domino.menu.client.MenuClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

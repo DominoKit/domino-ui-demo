@@ -5,7 +5,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.popover.client.PopoverClientModule" />
+  <entry-point class="org.dominokit.domino.popover.client.PopoverClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

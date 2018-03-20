@@ -3,10 +3,9 @@
   <inherits name="com.google.gwt.user.User" />
 
 
-
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.collapse.client.CollapseClientModule" />
+  <entry-point class="org.dominokit.domino.collapse.client.CollapseClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

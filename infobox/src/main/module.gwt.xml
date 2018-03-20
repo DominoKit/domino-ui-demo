@@ -4,7 +4,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.infobox.client.InfoBoxClientModule" />
+  <entry-point class="org.dominokit.domino.infobox.client.InfoBoxClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

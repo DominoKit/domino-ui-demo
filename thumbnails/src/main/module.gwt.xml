@@ -5,7 +5,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.thumbnails.client.ThumbnailsClientModule" />
+  <entry-point class="org.dominokit.domino.thumbnails.client.ThumbnailsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

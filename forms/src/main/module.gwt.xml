@@ -4,7 +4,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.forms.client.FormsClientModule" />
+  <entry-point class="org.dominokit.domino.forms.client.FormsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

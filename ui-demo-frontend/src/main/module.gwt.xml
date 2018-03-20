@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <inherits name="com.google.gwt.user.User"/>
-    <inherits name="com.progressoft.brix.domino.logger.Logging"/>
+    <inherits name="org.dominokit.domino.logger.Logging"/>
     <inherits name="com.google.gwt.resources.Resources" />
 
     <source path=""/>
 
-    <entry-point class="com.progressoft.brix.domino.ui.demo.AppClientModule"/>
+    <entry-point class="org.dominokit.domino.ui.demo.AppClientModule"/>
 
 
     <!-- logging -->
@@ -17,7 +17,7 @@
     <set-property name="gwt.logging.simpleRemoteHandler" value="ENABLED"/>
     <set-configuration-property name="includeSourceMapUrl" value="static/gwt/extra/app/symbolMaps/__HASH___sourceMap__FRAGMENT__.json"/>
 
-    <replace-with class="com.progressoft.brix.domino.gwt.client.logging.RestfulRemoteLogHandler">
+    <replace-with class="org.dominokit.domino.gwt.client.logging.RestfulRemoteLogHandler">
         <when-type-is class="com.google.gwt.logging.client.SimpleRemoteLogHandler"/>
         <any>
             <when-property-is name="gwt.logging.enabled" value="TRUE"/>
