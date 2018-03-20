@@ -6,7 +6,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.componentcase.client.ComponentCaseClientModule" />
+  <entry-point class="org.dominokit.domino.componentcase.client.ComponentCaseClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

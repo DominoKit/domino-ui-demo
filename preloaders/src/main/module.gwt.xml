@@ -5,7 +5,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.preloaders.client.PreloadersClientModule" />
+  <entry-point class="org.dominokit.domino.preloaders.client.PreloadersClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

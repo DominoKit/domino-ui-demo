@@ -5,7 +5,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.buttons.client.ButtonsClientModule" />
+  <entry-point class="org.dominokit.domino.buttons.client.ButtonsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

@@ -6,7 +6,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.cards.client.CardsClientModule" />
+  <entry-point class="org.dominokit.domino.cards.client.CardsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

@@ -4,7 +4,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.labels.client.LabelsClientModule" />
+  <entry-point class="org.dominokit.domino.labels.client.LabelsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

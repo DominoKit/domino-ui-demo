@@ -4,7 +4,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.typography.client.TypographyClientModule" />
+  <entry-point class="org.dominokit.domino.typography.client.TypographyClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

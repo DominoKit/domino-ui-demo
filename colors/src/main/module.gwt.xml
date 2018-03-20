@@ -4,7 +4,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.colors.client.ColorsClientModule" />
+  <entry-point class="org.dominokit.domino.colors.client.ColorsClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 

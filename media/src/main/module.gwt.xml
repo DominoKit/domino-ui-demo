@@ -5,7 +5,7 @@
 
   <source path="" />
 
-  <entry-point class="com.progressoft.brix.domino.media.client.MediaClientModule" />
+  <entry-point class="org.dominokit.domino.media.client.MediaClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 
