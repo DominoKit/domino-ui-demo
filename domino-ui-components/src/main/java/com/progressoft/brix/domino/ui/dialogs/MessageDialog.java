@@ -23,11 +23,11 @@ public class MessageDialog extends BaseModal<MessageDialog> {
     private HTMLElement errorIcon = MessageDialog.createMessageIcon(Icons.ALL.clear().asElement());
     private HTMLElement warningIcon = MessageDialog.createMessageIcon(Icons.ALL.error().asElement());
 
-    private HTMLDivElement iconContainer=div().asElement();
+    private HTMLDivElement iconContainer = div().asElement();
 
-    private Color successColor=Color.LIGHT_GREEN;
-    private Color errorColor=Color.RED;
-    private Color warningColor=Color.ORANGE;
+    private Color successColor = Color.LIGHT_GREEN;
+    private Color errorColor = Color.RED;
+    private Color warningColor = Color.ORANGE;
 
     private static HTMLElement createMessageIcon(HTMLElement element) {
         element.classList.add(Styles.m_b_15);
@@ -62,7 +62,7 @@ public class MessageDialog extends BaseModal<MessageDialog> {
         messageDialog.modal.getModalHeader().insertBefore(messageDialog.iconContainer, messageDialog.modal.getModalHeader().firstChild);
         messageDialog.hideHeader();
         messageDialog.setAutoClose(true);
-        messageDialog.onClose(() -> closeHandler.onClose());
+        messageDialog.onClose(closeHandler);
         messageDialog.appendContent(content);
         Button okButton = Button.create("OK").linkify();
         okButton.asElement().style.setProperty("min-width", "120px");
@@ -116,7 +116,7 @@ public class MessageDialog extends BaseModal<MessageDialog> {
         return this;
     }
 
-    public MessageDialog error(){
+    public MessageDialog error() {
         ElementUtil.clear(iconContainer);
         iconContainer.appendChild(errorIcon);
 
@@ -139,7 +139,7 @@ public class MessageDialog extends BaseModal<MessageDialog> {
         return this;
     }
 
-    public MessageDialog warning(){
+    public MessageDialog warning() {
         ElementUtil.clear(iconContainer);
         iconContainer.appendChild(warningIcon);
 
@@ -162,15 +162,15 @@ public class MessageDialog extends BaseModal<MessageDialog> {
         return this;
     }
 
-    public MessageDialog setIconColor(Color color){
-        this.successColor=color;
-        this.warningColor=color;
-        this.errorColor=color;
+    public MessageDialog setIconColor(Color color) {
+        this.successColor = color;
+        this.warningColor = color;
+        this.errorColor = color;
 
         return this;
     }
 
-    public MessageDialog appendHeaderContent(Node content){
+    public MessageDialog appendHeaderContent(Node content) {
         successIcon.remove();
         errorIcon.remove();
         warningIcon.remove();
