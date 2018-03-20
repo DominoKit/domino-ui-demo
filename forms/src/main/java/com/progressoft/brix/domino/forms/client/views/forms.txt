@@ -1,0 +1,68 @@
+// -------------- Basic examples
+
+card.appendContent(BlockHeader.create("Basic Examples").asElement())
+                .appendContent(TextBox.create("Username").asElement())
+                .appendContent(TextBox.password("Password").asElement());
+
+// -------------- Different widths
+
+Column column6Size = Column.create().onSmall(Column.OnSmall.six);
+Column column4Size = Column.create().onSmall(Column.OnSmall.four);
+Column column3Size = Column.create().onSmall(Column.OnSmall.three);
+
+
+card.appendContent(BlockHeader.create("Different Widths").asElement())
+        .appendContent(Row.create()
+                .addColumn(column6Size
+                        .addElement(TextBox.create("col-sm-6").asElement()))
+                .addColumn(column6Size.copy()
+                        .addElement(TextBox.create("col-sm-6").asElement()))
+                .asElement())
+        .appendContent(Row.create()
+                .addColumn(column4Size
+                        .addElement(TextBox.create("col-sm-4").asElement()))
+                .addColumn(column4Size.copy()
+                        .addElement(TextBox.create("col-sm-4").asElement()))
+                .addColumn(column4Size.copy()
+                        .addElement(TextBox.create("col-sm-4").asElement()))
+                .asElement())
+        .appendContent(Row.create()
+                .addColumn(column3Size
+                        .addElement(TextBox.create("col-sm-3").asElement()))
+                .addColumn(column3Size.copy()
+                        .addElement(TextBox.create("col-sm-3").asElement()))
+                .addColumn(column3Size.copy()
+                        .addElement(TextBox.create("col-sm-3").asElement()))
+                .addColumn(column3Size.copy()
+                        .addElement(TextBox.create("col-sm-3").asElement()))
+                .asElement());
+
+
+// -------------- Different Sizes
+
+card.appendContent(BlockHeader.create("Different Sizes").asElement())
+                .appendContent(TextBox.create("Large Input").large().asElement())
+                .appendContent(TextBox.create("Default Input").asElement())
+                .appendContent(TextBox.create("Small Input").small().asElement());
+
+
+// -------------- Floating Label Examples
+
+card.appendContent(BlockHeader.create("Floating Label Examples").asElement())
+                .appendContent(TextBox.create("Username").floating().asElement())
+                .appendContent(TextBox.password("Password").floating().asElement())
+                .appendContent(TextBox.create("Large Input").large().floating().asElement())
+                .appendContent(TextBox.create("Default Input").floating().asElement())
+                .appendContent(TextBox.create("Small Input").small().floating().asElement());
+
+
+// -------------- Input Status
+
+Column column6Size = Column.create().onSmall(Column.OnSmall.six);
+
+card.appendContent(BlockHeader.create("Input Status").asElement())
+        .appendContent(Row.create()
+                .addColumn(column6Size
+                        .addElement(TextBox.create("Focused").focus().asElement()))
+                .addColumn(column6Size.copy()
+                        .addElement(TextBox.create("Disabled").disable().asElement())).asElement());
