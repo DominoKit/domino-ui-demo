@@ -27,12 +27,12 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 "Steps required to start working with domino ui components").asElement());
 
         element.appendChild(Card.createCodeCard("<dependency>\n" +
-                "  <groupId>org.dominokit.domino</groupId>\n" +
+                "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
                 "  <version>1.0-SNAPSHOT</version>\n" +
                 "</dependency>\n" +
                 "<dependency>\n" +
-                "  <groupId>org.dominokit.domino</groupId>\n" +
+                "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
                 "  <version>1.0-SNAPSHOT</version>\n" +
                 "  <classifier>sources</classifier>\n" +

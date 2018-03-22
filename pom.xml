@@ -62,8 +62,8 @@
                 <version>HEAD-SNAPSHOT</version>
             </dependency>
             <dependency>
-                <groupId>org.dominokit.domino</groupId>
-                <artifactId>domino-ui-components</artifactId>
+                <groupId>org.dominokit</groupId>
+                <artifactId>domino-ui</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <type>gwt-lib</type>
             </dependency>
@@ -139,7 +139,6 @@
 
     </build>
     <modules>
-        <module>domino-ui-components</module>
         <module>ui-demo-frontend</module>
         <module>ui-demo-backend</module>
         <module>layout</module>
