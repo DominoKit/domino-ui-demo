@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
     <inherits name="com.google.gwt.user.User"/>
-    <inherits name="org.dominokit.domino.ui.components"/>
     <source path=""/>
 
     <entry-point class="org.dominokit.domino.layout.client.LayoutUIClientModule"/>

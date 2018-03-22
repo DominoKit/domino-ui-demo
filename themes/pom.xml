@@ -53,8 +53,8 @@
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>domino-ui-components</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-ui</artifactId>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
