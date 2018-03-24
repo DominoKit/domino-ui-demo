@@ -55,6 +55,15 @@
             <classifier>sources</classifier>
         </dependency>
         <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-ui</artifactId>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-frontend</artifactId>
             <version>1.0-SNAPSHOT</version>
@@ -270,6 +279,12 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>waves</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
