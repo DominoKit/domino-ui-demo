@@ -180,5 +180,6 @@
         <module>popover</module>
         <module>forms</module>
         <module>waves</module>
+        <module>basic-forms</module>
     </modules>
 </project>
