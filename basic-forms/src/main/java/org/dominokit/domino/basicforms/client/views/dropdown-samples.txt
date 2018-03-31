@@ -1,0 +1,40 @@
+Column column = Column.create().onSmall(Column.OnSmall.six);
+selectCard.appendContent(Row.create()
+        .addColumn(column
+                .addElement(DropDown.create()
+                        .addOption(DropDownOption.create("-- please select --"))
+                        .addOption(DropDownOption.create("10"))
+                        .addOption(DropDownOption.create("20"))
+                        .addOption(DropDownOption.create("30"))
+                        .addOption(DropDownOption.create("40"))
+                        .addOption(DropDownOption.create("50"))
+                        .selectAt(0)
+                        .setSelectionHandler(option -> {
+                            Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                        }).asElement()))
+        .addColumn(column.copy()
+                .addElement(DropDown.create()
+                        .addOption(DropDownOption.create("Disabled"))
+                        .selectAt(0)
+                        .disable()
+                        .asElement())).asElement());
+
+
+// Drop up example
+
+selectCard.appendContent(BlockHeader.create("Drop up example").asElement());
+
+selectCard.appendContent(Row.create()
+        .addColumn(column.copy()
+                .addElement(DropDown.create()
+                        .addOption(DropDownOption.create("-- please select --"))
+                        .addOption(DropDownOption.create("10"))
+                        .addOption(DropDownOption.create("20"))
+                        .addOption(DropDownOption.create("30"))
+                        .addOption(DropDownOption.create("40"))
+                        .addOption(DropDownOption.create("50"))
+                        .selectAt(0)
+                        .dropup()
+                        .setSelectionHandler(option -> {
+                            Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                        }).asElement())).asElement());

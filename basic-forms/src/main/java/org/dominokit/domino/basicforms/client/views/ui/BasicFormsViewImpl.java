@@ -8,9 +8,12 @@ import org.dominokit.domino.basicforms.client.views.CodeResource;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.forms.DropDown;
+import org.dominokit.domino.ui.forms.DropDownOption;
 import org.dominokit.domino.ui.forms.TextArea;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
 import org.jboss.gwt.elemento.core.Elements;
 
@@ -20,6 +23,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     private HTMLDivElement element = Elements.div().asElement();
     private Card inputCard;
     private Card textAreaCard;
+    private Card selectCard;
 
     @Override
     public HTMLDivElement getElement() {
@@ -32,6 +36,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         inputCard = Card.create("INPUT", "Different sizes and widths.");
         textAreaCard = Card.create("TEXTAREA");
+        selectCard = Card.create("SELECT");
 
         initBasicExamples();
         initDifferentWidths();
@@ -41,11 +46,55 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         initBasicTextAreaExample();
 
+        initSelectExample();
+
         element.appendChild(inputCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
         element.appendChild(textAreaCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
+        element.appendChild(selectCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dropdownSamples()).asElement());
+    }
 
+    private void initSelectExample() {
+
+        Column column = Column.create().onSmall(Column.OnSmall.six);
+        selectCard.appendContent(Row.create()
+                .addColumn(column
+                        .addElement(DropDown.create()
+                                .addOption(DropDownOption.create("-- please select --"))
+                                .addOption(DropDownOption.create("10"))
+                                .addOption(DropDownOption.create("20"))
+                                .addOption(DropDownOption.create("30"))
+                                .addOption(DropDownOption.create("40"))
+                                .addOption(DropDownOption.create("50"))
+                                .selectAt(0)
+                                .setSelectionHandler(option -> {
+                                    Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                                }).asElement()))
+                .addColumn(column.copy()
+                        .addElement(DropDown.create()
+                                .addOption(DropDownOption.create("Disabled"))
+                                .selectAt(0)
+                                .disable()
+                                .asElement())).asElement());
+
+        selectCard.appendContent(BlockHeader.create("Drop up example").asElement());
+
+        selectCard.appendContent(Row.create()
+                .addColumn(column.copy()
+                        .addElement(DropDown.create()
+                                .addOption(DropDownOption.create("-- please select --"))
+                                .addOption(DropDownOption.create("10"))
+                                .addOption(DropDownOption.create("20"))
+                                .addOption(DropDownOption.create("30"))
+                                .addOption(DropDownOption.create("40"))
+                                .addOption(DropDownOption.create("50"))
+                                .selectAt(0)
+                                .dropup()
+                                .setSelectionHandler(option -> {
+                                    Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                                }).asElement())).asElement());
     }
 
     private void initBasicExamples() {

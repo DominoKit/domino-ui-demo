@@ -62,6 +62,17 @@
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
+        <dependency>
+            <groupId>org.jboss.gwt.elemento</groupId>
+            <artifactId>elemento-template-api</artifactId>
+            <version>0.8.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.gwt.elemento</groupId>
+            <artifactId>elemento-template-processor</artifactId>
+            <version>0.8.0</version>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>
