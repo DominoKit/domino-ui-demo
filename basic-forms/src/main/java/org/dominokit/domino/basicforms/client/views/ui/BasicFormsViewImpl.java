@@ -57,6 +57,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(selectCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dropdownSamples()).asElement());
         element.appendChild(checkboxCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
     }
 
     private void initCheckboxExample() {
