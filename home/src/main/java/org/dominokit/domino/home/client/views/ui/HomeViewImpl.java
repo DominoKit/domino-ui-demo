@@ -54,8 +54,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/animate-css/animate.css\">\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/waitme/waitMe.css\">\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/style.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/themes/all-themes.css\">\n" +
-                "<script src=\"/{module-short-name}/plugins/node-waves/waves.js\" type=\"text/javascript\"></script>")
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/themes/all-themes.css\">")
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
                 .expand()

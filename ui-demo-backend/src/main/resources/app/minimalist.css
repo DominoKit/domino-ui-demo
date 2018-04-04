@@ -1,0 +1,411 @@
+/* Navbar ====================================== */
+.navbar {
+    background-color: #ffffff;
+    border-radius: 0px;
+    border-bottom: 1px solid #cecece;
+    color: #000000;
+}
+
+.navbar a{
+    color: #000000;
+}
+
+.navbar .navbar-brand {
+}
+
+.navbar .navbar-custom-right-menu {
+}
+
+.navbar .navbar-toggle {
+    text-decoration: none;
+    color: #fff;
+}
+
+.navbar .navbar-toggle:before {
+    content: '\E8D5';
+    font-family: 'Material Icons';
+    font-size: 26px;
+}
+
+.navbar .navbar-collapse.in {
+}
+
+
+.ls-closed section.content {
+
+}
+
+.ls-closed .bars:after, .ls-closed .bars:before {
+}
+
+.ls-closed .bars:before {
+    content: '\E5D2';
+}
+
+.ls-closed .bars:after {
+    content: '\E5D2';
+}
+
+.ls-closed .navbar-brand {
+}
+
+.overlay-open .bars:before {
+}
+
+.overlay-open .bars:after {
+}
+
+.navbar-header {
+}
+
+.navbar-header .bars {
+}
+
+.navbar-nav > li > a {
+}
+
+.navbar-nav .dropdown-menu {
+}
+
+.label-count {
+}
+
+/* Card ======================================== */
+.card {
+    background: #fff;
+    margin-bottom: 10px;
+}
+
+.card .card-inside-title {
+    color: #000;
+}
+
+.card .card-inside-title small {
+    color: #999;
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+.card .card-inside-title small a {
+    color: #777;
+    font-weight: bold;
+}
+
+.card .card-inside-title:first-child {
+}
+
+.card [class*="bg-"] {
+    border-bottom: none !important;
+    color: #fff !important;
+}
+
+.card [class*="bg-"] h2, .card [class*="bg-"] small, .card [class*="bg-"] .material-icons {
+    color: #fff !important;
+}
+
+.card [class*="bg-"] .badge {
+    background-color: #fff;
+    color: #555;
+}
+
+.card .header {
+    color: #555;
+    padding: 20px;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.35);
+}
+
+.card .header .header-dropdown {
+}
+
+.card .header .header-dropdown .dropdown-menu li {
+    display: block !important;
+}
+
+.card .header .header-dropdown li {
+    display: inline-block;
+}
+
+.card .header .header-dropdown i {
+    font-size: 20px;
+    color: #999;
+}
+
+.card .header .header-dropdown i:hover {
+    color: #000;
+}
+
+.card .header h2 {
+    font-size: 18px;
+    font-weight: normal;
+    color: #111;
+}
+
+.card .header h2 small {
+    font-size: 12px;
+    margin-top: 5px;
+    color: #999;
+    line-height: 15px;
+}
+
+.card .header h2 small a {
+    font-weight: bold;
+    color: #777;
+}
+
+.card .header .col-xs-12 h2 {
+    margin-top: 5px;
+}
+
+.card .body {
+    font-size: 14px;
+    color: #555;
+    padding: 20px;
+}
+
+.card .body [class*="col-"] {
+    margin-bottom: 20px;
+}
+
+/* Infobox ===================================== */
+.info-box {
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+.info-box .icon {
+}
+
+.info-box .icon i {
+    color: #fff;
+}
+
+.info-box .icon .chart.chart-bar {
+}
+
+.info-box .icon .chart.chart-bar canvas {
+}
+
+.info-box .icon .chart.chart-pie {
+}
+
+.info-box .icon .chart.chart-pie canvas {
+}
+
+.info-box .icon .chart.chart-line {
+}
+
+.info-box .icon .chart.chart-line canvas {
+}
+
+.info-box .content {
+}
+
+.info-box .content .text {
+    color: #555;
+}
+
+.info-box .content .number {
+    color: #555;
+}
+
+.info-box.hover-zoom-effect .icon {
+}
+
+.info-box.hover-zoom-effect .icon i {
+}
+
+.info-box.hover-zoom-effect:hover .icon i {
+}
+
+.info-box.hover-expand-effect:after {
+    color: transparent;
+}
+
+.info-box.hover-expand-effect:hover:after {
+}
+
+.info-box-2 {
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+.info-box-2 .icon {
+}
+
+.info-box-2 .icon i {
+    color: #fff;
+}
+
+.info-box-2 .chart.chart-bar {
+}
+
+.info-box-2 .chart.chart-bar canvas {
+}
+
+.info-box-2 .chart.chart-pie {
+}
+
+.info-box-2 .chart.chart-pie canvas {
+}
+
+.info-box-2 .chart.chart-line {
+}
+
+.info-box-2 .chart.chart-line canvas {
+}
+
+.info-box-2 .content {
+}
+
+.info-box-2 .content .text {
+    color: #555;
+}
+
+.info-box-2 .content .number {
+    color: #555;
+}
+
+.info-box-2.hover-zoom-effect .icon {
+}
+
+.info-box-2.hover-zoom-effect .icon i {
+}
+
+.info-box-2.hover-zoom-effect:hover .icon i {
+}
+
+.info-box-2.hover-expand-effect:after {
+    color: transparent;
+}
+
+.info-box-2.hover-expand-effect:hover:after {
+}
+
+.info-box-3 {
+    background-color: #fff;
+    margin-bottom: 15px;
+}
+
+.info-box-3 .icon {
+}
+
+.info-box-3 .icon i {
+    color: rgba(0, 0, 0, 0.15);
+    font-size: 60px;
+}
+
+.info-box-3 .chart {
+    margin-right: 5px;
+}
+
+.info-box-3 .chart.chart-bar {
+    height: 100%;
+    line-height: 50px;
+}
+
+.info-box-3 .chart.chart-bar canvas {
+    vertical-align: baseline !important;
+}
+
+.info-box-3 .chart.chart-pie {
+    height: 100%;
+    line-height: 34px;
+}
+
+.info-box-3 .chart.chart-pie canvas {
+    vertical-align: baseline !important;
+}
+
+.info-box-3 .chart.chart-line {
+    height: 100%;
+    line-height: 40px;
+}
+
+.info-box-3 .chart.chart-line canvas {
+    vertical-align: baseline !important;
+}
+
+.info-box-3 .content {
+    display: inline-block;
+    padding: 7px 16px;
+}
+
+.info-box-3 .content .text {
+    color: #555;
+}
+
+.info-box-3 .content .number {
+    color: #555;
+}
+
+.info-box-3.hover-zoom-effect .icon i {
+
+}
+
+.info-box-3.hover-zoom-effect:hover .icon i {
+}
+
+.info-box-3.hover-expand-effect:after {
+    color: transparent;
+}
+
+.info-box-3.hover-expand-effect:hover:after {
+}
+
+.info-box-4 {
+    background-color: #fff;
+}
+
+.info-box-4 .icon {
+}
+
+.info-box-4 .icon i {
+    color: rgba(0, 0, 0, 0.15);
+}
+
+.info-box-4 .chart {
+}
+
+.info-box-4 .chart.chart-bar {
+}
+
+.info-box-4 .chart.chart-bar canvas {
+}
+
+.info-box-4 .chart.chart-pie {
+}
+
+.info-box-4 .chart.chart-pie canvas {
+}
+
+.info-box-4 .chart.chart-line {
+}
+
+.info-box-4 .chart.chart-line canvas {
+}
+
+.info-box-4 .content {
+}
+
+.info-box-4 .content .text {
+    color: #555;
+}
+
+.info-box-4 .content .number {
+    color: #555;
+}
+
+.info-box-4.hover-zoom-effect .icon i {
+}
+
+.info-box-4.hover-zoom-effect:hover .icon i {
+}
+
+.info-box-4.hover-expand-effect:after {
+    color: transparent;
+}
+
+.info-box-4.hover-expand-effect:hover:after {
+}
+
+/* Buttons ===================================== */
