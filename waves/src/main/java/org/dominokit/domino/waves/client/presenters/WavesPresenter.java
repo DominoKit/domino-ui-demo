@@ -3,19 +3,32 @@ package org.dominokit.domino.waves.client.presenters;
 import org.dominokit.domino.api.client.annotations.InjectContext;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.BaseClientPresenter;
+import org.dominokit.domino.api.shared.extension.Content;
+import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
+import org.dominokit.domino.components.shared.extension.ComponentsContext;
+import org.dominokit.domino.components.shared.extension.ComponentsExtensionPoint;
 import org.dominokit.domino.waves.client.views.WavesView;
-import org.dominokit.domino.api.shared.extension.MainExtensionPoint;
-import org.dominokit.domino.api.shared.extension.MainContext;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @Presenter
 public class WavesPresenter extends BaseClientPresenter<WavesView> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(WavesPresenter.class);
+    @InjectContext(extensionPoint=ComponentsExtensionPoint.class)
+    public void contributeToComponentsModule(ComponentsContext context) {
+        context.getComponentCaseContext().addComponentCase(new ComponentCase() {
+            @Override
+            public String getHistoryToken() {
+                return "components/waves";
+            }
 
-    @InjectContext(extensionPoint=MainExtensionPoint.class)
-    public void contributeToMainModule(MainContext context) {
-        LOGGER.info("Main context received at presenter " + WavesPresenter.class.getSimpleName());
+            @Override
+            public String getMenuPath() {
+                return "Components/Waves";
+            }
+
+            @Override
+            public Content getContent() {
+                return view.getContent();
+            }
+        });
     }
 }

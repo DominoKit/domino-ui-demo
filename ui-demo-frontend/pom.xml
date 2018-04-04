@@ -128,6 +128,24 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-frontend</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-frontend-ui</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>basic-forms</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>typography</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
@@ -278,19 +296,7 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>basic-forms</artifactId>
+            <artifactId>waves</artifactId>
             <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
         </dependency>
