@@ -25,6 +25,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     private Card selectCard;
     private Card checkboxCard;
     private Card radioCard;
+    private Card switchCard;
 
     @Override
     public HTMLDivElement getElement() {
@@ -40,19 +41,18 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         selectCard = Card.create("SELECT");
         checkboxCard = Card.create("CHECKBOX");
         radioCard = Card.create("RADIO");
+        switchCard = Card.create("SWITCH BUTTONS");
 
         initBasicExamples();
         initDifferentWidths();
         initDifferentSizes();
         initFloatingLabel();
         initInputStatus();
-
         initBasicTextAreaExample();
-
         initSelectExample();
-
         initCheckboxExample();
         initRadioExample();
+        initSwitchExample();
 
         element.appendChild(inputCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
@@ -64,12 +64,57 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
         element.appendChild(radioCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+        element.appendChild(switchCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
+    }
+
+    private void initSwitchExample() {
+        switchCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
+
+        Column column = Column.create()
+                .onLarge(Column.OnLarge.three)
+                .onXSmall(Column.OnXSmall.twelve);
+        switchCard.appendContent(Row.create()
+                .addColumn(column.addElement(SwitchButton.create("OFF", "ON").asElement()))
+                .addColumn(column.copy().addElement(SwitchButton.create("DISABLED").disable().asElement()))
+                .asElement());
+
+        switchCard.appendContent(Elements.h(5).textContent("With Material Design Colors").asElement());
+
+        switchCard.appendContent(Row.create()
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("RED").setColor(Color.RED).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("PINK").setColor(Color.PINK).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("INDIGO").setColor(Color.INDIGO).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("BLUE").setColor(Color.BLUE).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("CYAN").setColor(Color.CYAN).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("TEAL").setColor(Color.TEAL).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("GREEN").setColor(Color.GREEN).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("LIME").setColor(Color.LIME).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("YELLOW").setColor(Color.YELLOW).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("AMBER").setColor(Color.AMBER).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("ORANGE").setColor(Color.ORANGE).check().asElement()))
+                .addColumn(column.copy()
+                        .addElement(SwitchButton.create("GREY").setColor(Color.GREY).check().asElement()))
+                .asElement());
     }
 
     private void initRadioExample() {
         Column column = Column.create()
                 .onXSmall(Column.OnXSmall.twelve)
-                .onSmall(Column.OnSmall.one)
+                .onSmall(Column.OnSmall.nine)
                 .onLarge(Column.OnLarge.six);
         radioCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
 

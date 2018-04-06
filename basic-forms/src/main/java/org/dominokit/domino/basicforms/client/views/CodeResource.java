@@ -22,4 +22,7 @@ public interface CodeResource extends ClientBundle {
 
     @Source("radio-samples.txt")
     ExternalTextResource radioSamples();
+
+    @Source("switch-samples.txt")
+    ExternalTextResource switchSamples();
 }

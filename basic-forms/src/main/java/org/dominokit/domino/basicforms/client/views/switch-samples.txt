@@ -1,0 +1,40 @@
+switchCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
+
+Column column = Column.create()
+        .onLarge(Column.OnLarge.three)
+        .onSmall(Column.OnSmall.six);
+switchCard.appendContent(Row.create()
+        .addColumn(column.addElement(SwitchButton.create("OFF", "ON").asElement()))
+        .addColumn(column.copy().addElement(SwitchButton.create("DISABLED").disable().asElement()))
+        .asElement());
+
+switchCard.appendContent(Elements.h(5).textContent("With Material Design Colors").asElement());
+
+switchCard.appendContent(Row.create()
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("RED").setColor(Color.RED).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("PINK").setColor(Color.PINK).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("INDIGO").setColor(Color.INDIGO).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("BLUE").setColor(Color.BLUE).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("CYAN").setColor(Color.CYAN).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("TEAL").setColor(Color.TEAL).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("GREEN").setColor(Color.GREEN).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("LIME").setColor(Color.LIME).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("YELLOW").setColor(Color.YELLOW).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("AMBER").setColor(Color.AMBER).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("ORANGE").setColor(Color.ORANGE).check().asElement()))
+        .addColumn(column.copy()
+                .addElement(SwitchButton.create("GREY").setColor(Color.GREY).check().asElement()))
+        .asElement());
