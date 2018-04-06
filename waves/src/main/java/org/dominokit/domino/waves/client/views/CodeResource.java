@@ -8,7 +8,6 @@ public interface CodeResource extends ClientBundle{
 
     CodeResource INSTANCE= GWT.create(CodeResource.class);
 
-    @Source("sample.txt")
-    ExternalTextResource sample();
-
+	@Source("waves.txt")
+	ExternalTextResource waves();
 }

@@ -320,9 +320,9 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void initBasicTextAreaExample() {
         textAreaCard.appendContent(BlockHeader.create("Basic Examples").asElement())
-                .appendContent(TextArea.create("Please type what you want...").asElement());
+                .appendContent(TextArea.create("Start typing here...").asElement());
 
         textAreaCard.appendContent(BlockHeader.create("Auto Growing Vertical Direction").asElement())
-                .appendContent(TextArea.create("Please type what you want...").autoSize().asElement());
+                .appendContent(TextArea.create("Start typing here...").autoSize().asElement());
     }
 }
