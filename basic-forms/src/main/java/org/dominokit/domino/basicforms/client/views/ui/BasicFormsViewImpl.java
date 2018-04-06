@@ -23,6 +23,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     private Card textAreaCard;
     private Card selectCard;
     private Card checkboxCard;
+    private Card radioCard;
 
     @Override
     public HTMLDivElement getElement() {
@@ -37,6 +38,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         textAreaCard = Card.create("TEXTAREA");
         selectCard = Card.create("SELECT");
         checkboxCard = Card.create("CHECKBOX");
+        radioCard = Card.create("RADIO");
 
         initBasicExamples();
         initDifferentWidths();
@@ -49,6 +51,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         initSelectExample();
 
         initCheckboxExample();
+        initRadioExample();
 
         element.appendChild(inputCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
@@ -58,6 +61,74 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dropdownSamples()).asElement());
         element.appendChild(checkboxCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
+        element.appendChild(radioCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+    }
+
+    private void initRadioExample() {
+        Column column = Column.create()
+                .onXSmall(Column.OnXSmall.twelve)
+                .onSmall(Column.OnSmall.one)
+                .onLarge(Column.OnLarge.six);
+        radioCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
+        radioCard.appendContent(Row.create()
+                .addColumn(column
+                        .addElement(RadioGroup.create()
+                                .addRadio(Radio.create("Radio - 1").check())
+                                .addRadio(Radio.create("Radio - 2"))
+                                .addRadio(Radio.create("Radio 1 - With Gap").withGap())
+                                .addRadio(Radio.create("Radio 2 - With Gap").withGap())
+                                .asElement()))
+                .addColumn(column.copy()
+                        .addElement(RadioGroup.create()
+                                .addRadio(Radio.create("Radio - Disabled").check().disable())
+                                .asElement())
+                        .addElement(RadioGroup.create()
+                                .addRadio(Radio.create("Radio - Disabled").withGap().check().disable())
+                                .asElement()))
+                .asElement());
+
+        radioCard.appendContent(Elements.br().asElement());
+
+        column = Column.create()
+                .onLarge(Column.OnLarge.two)
+                .onSmall(Column.OnSmall.six);
+
+        radioCard.appendContent(Row.create()
+                .addColumn(column.copy()
+                        .addElement(Elements.h(5).textContent("With Material Design Colors").asElement())
+                        .addElement(RadioGroup.create()
+                                .addRadio(Radio.create("RED").setColor(Color.RED).check())
+                                .addRadio(Radio.create("PINK").setColor(Color.PINK))
+                                .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE))
+                                .addRadio(Radio.create("INDIGO").setColor(Color.INDIGO))
+                                .addRadio(Radio.create("BLUE").setColor(Color.BLUE))
+                                .addRadio(Radio.create("CYAN").setColor(Color.CYAN))
+                                .addRadio(Radio.create("TEAL").setColor(Color.TEAL))
+                                .addRadio(Radio.create("GREEN").setColor(Color.GREEN))
+                                .addRadio(Radio.create("LIME").setColor(Color.LIME))
+                                .addRadio(Radio.create("YELLOW").setColor(Color.YELLOW))
+                                .addRadio(Radio.create("AMBER").setColor(Color.AMBER))
+                                .addRadio(Radio.create("ORANGE").setColor(Color.ORANGE))
+                                .addRadio(Radio.create("GREY").setColor(Color.GREY))
+                                .asElement()))
+                .addColumn(column.copy()
+                        .addElement(Elements.h(5).textContent("With Material Design Colors with gap").asElement())
+                        .addElement(RadioGroup.create()
+                                .addRadio(Radio.create("RED").setColor(Color.RED).withGap().check())
+                                .addRadio(Radio.create("PINK").setColor(Color.PINK).withGap())
+                                .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
+                                .addRadio(Radio.create("INDIGO").setColor(Color.INDIGO).withGap())
+                                .addRadio(Radio.create("BLUE").setColor(Color.BLUE).withGap())
+                                .addRadio(Radio.create("CYAN").setColor(Color.CYAN).withGap())
+                                .addRadio(Radio.create("TEAL").setColor(Color.TEAL).withGap())
+                                .addRadio(Radio.create("GREEN").setColor(Color.GREEN).withGap())
+                                .addRadio(Radio.create("LIME").setColor(Color.LIME).withGap())
+                                .addRadio(Radio.create("YELLOW").setColor(Color.YELLOW).withGap())
+                                .addRadio(Radio.create("AMBER").setColor(Color.AMBER).withGap())
+                                .addRadio(Radio.create("ORANGE").setColor(Color.ORANGE).withGap())
+                                .addRadio(Radio.create("GREY").setColor(Color.GREY).withGap())
+                                .asElement())).asElement());
     }
 
     private void initCheckboxExample() {
@@ -67,93 +138,95 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         checkboxCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
         checkboxCard.appendContent(Row.create()
                 .addColumn(column
-                        .addElement(CheckBox.create("default_checkbox", "Default").asElement()))
+                        .addElement(CheckBox.create("Default").asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("filled_in_checkbox", "Filled In").filledIn().asElement()))
+                        .addElement(CheckBox.create("Filled In").filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("disbaled_checkbox", "Default - Disabled").check().disable().asElement()))
+                        .addElement(CheckBox.create("Default - Disabled").check().disable().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("filled_in_disbaled_checkbox", "Filled In - Disabled").check().filledIn().disable().asElement()))
+                        .addElement(CheckBox.create("Filled In - Disabled").check().filledIn().disable().asElement()))
                 .asElement());
 
         checkboxCard.appendContent(Elements.h(5).textContent("With Material Design Colors").asElement());
 
         checkboxCard.appendContent(Row.create()
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("red_checkbox", "RED").setColor(Color.RED).check().asElement()))
+                        .addElement(CheckBox.create("RED").setColor(Color.RED).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("pink_checkbox", "PINK").setColor(Color.PINK).check().asElement()))
+                        .addElement(CheckBox.create("PINK").setColor(Color.PINK).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("DEEP_PURPLE_checkbox", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().asElement()))
+                        .addElement(CheckBox.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("INDIGO_checkbox", "INDIGO").setColor(Color.INDIGO).check().asElement()))
+                        .addElement(CheckBox.create("INDIGO").setColor(Color.INDIGO).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("BLUE_checkbox", "BLUE").setColor(Color.BLUE).check().asElement()))
+                        .addElement(CheckBox.create("BLUE").setColor(Color.BLUE).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("CYAN_checkbox", "CYAN").setColor(Color.CYAN).check().asElement()))
+                        .addElement(CheckBox.create("CYAN").setColor(Color.CYAN).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("TEAL_checkbox", "TEAL").setColor(Color.TEAL).check().asElement()))
+                        .addElement(CheckBox.create("TEAL").setColor(Color.TEAL).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("GREEN_checkbox", "GREEN").setColor(Color.GREEN).check().asElement()))
+                        .addElement(CheckBox.create("GREEN").setColor(Color.GREEN).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("LIME_checkbox", "LIME").setColor(Color.LIME).check().asElement()))
+                        .addElement(CheckBox.create("LIME").setColor(Color.LIME).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("YELLOW_checkbox", "YELLOW").setColor(Color.YELLOW).check().asElement()))
+                        .addElement(CheckBox.create("YELLOW").setColor(Color.YELLOW).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("AMBER_checkbox", "AMBER").setColor(Color.AMBER).check().asElement()))
+                        .addElement(CheckBox.create("AMBER").setColor(Color.AMBER).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("ORANGE_checkbox", "ORANGE").setColor(Color.ORANGE).check().asElement()))
+                        .addElement(CheckBox.create("ORANGE").setColor(Color.ORANGE).check().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("GREY_checkbox", "GREY").setColor(Color.GREY).check().asElement()))
+                        .addElement(CheckBox.create("GREY").setColor(Color.GREY).check().asElement()))
                 .asElement());
 
         checkboxCard.appendContent(Elements.h(5).textContent("With Material Design Colors - Filled In").asElement());
 
         checkboxCard.appendContent(Row.create()
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("red_checkbox_filled_in", "RED").setColor(Color.RED).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("RED").setColor(Color.RED).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("pink_checkbox_filled_in", "PINK").setColor(Color.PINK).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("PINK").setColor(Color.PINK).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("DEEP_PURPLE_checkbox_filled_in", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("INDIGO_checkbox_filled_in", "INDIGO").setColor(Color.INDIGO).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("INDIGO").setColor(Color.INDIGO).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("BLUE_checkbox_filled_in", "BLUE").setColor(Color.BLUE).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("BLUE").setColor(Color.BLUE).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("CYAN_checkbox_filled_in", "CYAN").setColor(Color.CYAN).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("CYAN").setColor(Color.CYAN).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("TEAL_checkbox_filled_in", "TEAL").setColor(Color.TEAL).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("TEAL").setColor(Color.TEAL).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("GREEN_checkbox_filled_in", "GREEN").setColor(Color.GREEN).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("GREEN").setColor(Color.GREEN).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("LIME_checkbox_filled_in", "LIME").setColor(Color.LIME).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("LIME").setColor(Color.LIME).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("YELLOW_checkbox_filled_in", "YELLOW").setColor(Color.YELLOW).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("YELLOW").setColor(Color.YELLOW).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("AMBER_checkbox_filled_in", "AMBER").setColor(Color.AMBER).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("AMBER").setColor(Color.AMBER).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("ORANGE_checkbox_filled_in", "ORANGE").setColor(Color.ORANGE).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("ORANGE").setColor(Color.ORANGE).check().filledIn().asElement()))
                 .addColumn(column.copy()
-                        .addElement(CheckBox.create("GREY_checkbox_filled_in", "GREY").setColor(Color.GREY).check().filledIn().asElement()))
+                        .addElement(CheckBox.create("GREY").setColor(Color.GREY).check().filledIn().asElement()))
                 .asElement());
     }
 
     private void initSelectExample() {
         Column column = Column.create().onSmall(Column.OnSmall.six);
+        DropDown dropDown = DropDown.create()
+                .addOption(DropDownOption.create("nothing", "-- please select --"))
+                .addOption(DropDownOption.create("value10", "10"))
+                .addOption(DropDownOption.create("value20", "20"))
+                .addOption(DropDownOption.create("value30", "30"))
+                .addOption(DropDownOption.create("value40", "40"))
+                .addOption(DropDownOption.create("value50", "50"))
+                .selectAt(0)
+                .addSelectionHandler(option -> {
+                    Notification.create("Item selected [ " + option.getValue() + " ], [ " + option.getDisplayValue() + " ]").show();
+                });
+
         selectCard.appendContent(Row.create()
                 .addColumn(column
-                        .addElement(DropDown.create()
-                                .addOption(DropDownOption.create("-- please select --"))
-                                .addOption(DropDownOption.create("10"))
-                                .addOption(DropDownOption.create("20"))
-                                .addOption(DropDownOption.create("30"))
-                                .addOption(DropDownOption.create("40"))
-                                .addOption(DropDownOption.create("50"))
-                                .selectAt(0)
-                                .setSelectionHandler(option -> {
-                                    Notification.create("Item selected [ " + option.getValue() + " ]").show();
-                                }).asElement()))
+                        .addElement(dropDown.asElement()))
                 .addColumn(column.copy()
                         .addElement(DropDown.create()
                                 .addOption(DropDownOption.create("Disabled"))
@@ -174,7 +247,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .addOption(DropDownOption.create("50"))
                                 .selectAt(0)
                                 .dropup()
-                                .setSelectionHandler(option -> {
+                                .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 }).asElement())).asElement());
     }
