@@ -19,4 +19,7 @@ public interface CodeResource extends ClientBundle {
 
     @Source("checkbox-samples.txt")
     ExternalTextResource checkBoxSamples();
+
+    @Source("radio-samples.txt")
+    ExternalTextResource radioSamples();
 }
