@@ -3,21 +3,38 @@ Column column = Column.create()
                 .onSmall(Column.OnSmall.one)
                 .onLarge(Column.OnLarge.six);
 radioCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
+
+Radio radio1 = Radio.create("Radio - 1").check();
+Radio radio2 = Radio.create("Radio - 2");
+Radio radio1Gap = Radio.create("Radio 1 - With Gap").withGap();
+Radio radio2Gap = Radio.create("Radio 2 - With Gap").withGap();
+
+radio1.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+radio2.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+radio1Gap.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+radio2Gap.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+RadioGroup horizontalRadioGroup = RadioGroup.create()
+        .addRadio(radio1)
+        .addRadio(radio2)
+        .addRadio(radio1Gap)
+        .addRadio(radio2Gap)
+        .horizontal();
+
+Radio firstDisabledRadio = Radio.create("Radio - Disabled").check().disable();
+Radio secondsDisabledRadio = Radio.create("Radio - Disabled").withGap().check().disable();
+
+firstDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+secondsDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+
+RadioGroup firstDisabledGroup = RadioGroup.create().addRadio(firstDisabledRadio);
+RadioGroup secondDisabledGroup = RadioGroup.create().addRadio(secondsDisabledRadio);
+
 radioCard.appendContent(Row.create()
         .addColumn(column
-                .addElement(RadioGroup.create()
-                        .addRadio(Radio.create("Radio - 1").check())
-                        .addRadio(Radio.create("Radio - 2"))
-                        .addRadio(Radio.create("Radio 1 - With Gap").withGap())
-                        .addRadio(Radio.create("Radio 2 - With Gap").withGap())
-                        .asElement()))
-        .addColumn(column.copy()
-                .addElement(RadioGroup.create()
-                        .addRadio(Radio.create("Radio - Disabled").check().disable())
-                        .asElement())
-                .addElement(RadioGroup.create()
-                        .addRadio(Radio.create("Radio - Disabled").withGap().check().disable())
-                        .asElement()))
+                .addElement(horizontalRadioGroup.asElement())
+                .addElement(firstDisabledGroup.asElement())
+                .addElement(secondDisabledGroup.asElement()))
         .asElement());
 
 radioCard.appendContent(Elements.br().asElement());
