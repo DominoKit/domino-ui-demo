@@ -1,20 +1,30 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
 import org.dominokit.domino.basicforms.client.views.CodeResource;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.popover.Popover;
+import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.style.Background;
 import org.dominokit.domino.ui.style.Color;
+import org.gwtproject.i18n.shared.DateTimeFormat;
+import org.gwtproject.i18n.shared.impl.cldr.DateTimeFormatInfoImpl_en;
+import org.gwtproject.i18n.shared.impl.cldr.DateTimeFormatInfo_factory;
 import org.jboss.gwt.elemento.core.Elements;
+
+import java.util.Date;
 
 @UiView(presentable = BasicFormsPresenter.class)
 public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements BasicFormsView {
@@ -43,6 +53,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         radioCard = Card.create("RADIO");
         switchCard = Card.create("SWITCH BUTTONS");
 
+        initDatePicker();
         initBasicExamples();
         initDifferentWidths();
         initDifferentSizes();
@@ -67,6 +78,29 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(switchCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
     }
+
+    private void initDatePicker() {
+
+        Button testButtom = Button.createDefault("TEST").block();
+        DatePicker datePicker = DatePicker.create().setBackground(Background.LIGHT_BLUE);
+
+        Popover popover = Popover.create(testButtom.asElement(), "Test", datePicker.asElement());
+        popover.getContentElement().style.setProperty("padding","0px", "important");
+        popover.position(PopupPosition.BOTTOM)
+                .asElement().style.setProperty("max-width", "none", "important");
+        datePicker.addDaySelectionHandler(calendarElement -> {
+            popover.getHeaderText().textContent=calendarElement.getDate().toDateString();
+            DateTimeFormat format = DateTimeFormat.getFormat(new DateTimeFormatInfoImpl_en().dateFormatFull());
+            DomGlobal.console.info("FORMATED-DATE : "+format.format(new Date()));
+
+        });
+
+        element.appendChild(Card.create("DATE PICKERS")
+                .appendContent(testButtom.asElement())
+                .appendContent(DateField.create().asElement())
+                .asElement());
+    }
+
 
     private void initSwitchExample() {
         switchCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());

@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <module>
   <inherits name="com.google.gwt.user.User" />
-  <inherits name="org.gwtproject.i18n.CLDR"/>
-  <inherits name="org.gwtproject.i18n.DateTimeFormat"/>
-
+  <inherits name="com.google.gwt.resources.Resources" />
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.basicforms.client.BasicFormsClientModule" />
+  <entry-point class="org.dominokit.domino.datepicker.client.DatePickerClientModule" />
 
   <set-configuration-property name="CssResource.enableGss" value="true"/>
 
