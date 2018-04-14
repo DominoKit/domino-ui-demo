@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>org.dominokit.domino</groupId>
-        <artifactId>domino-ui-demo</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+    <artifactId>domino-ui-demo</artifactId>
+    <groupId>org.dominokit.domino</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>basic-forms</artifactId>
+    <artifactId>datepicker</artifactId>
     <packaging>gwt-lib</packaging>
+
+    <name>datepicker</name>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino.api</groupId>
+            <artifactId>domino-api-shared</artifactId>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino.api</groupId>
@@ -41,59 +47,16 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-shared</artifactId>
             <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit</groupId>
-            <artifactId>domino-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
             <type>gwt-lib</type>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-api</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-processor</artifactId>
-            <version>0.8.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-cldr</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-cldr</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-datetimeformat</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-datetimeformat</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
         </dependency>
     </dependencies>
 
@@ -113,7 +76,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.dominokit.domino.basicforms.BasicFormsClientModule</moduleName>
+                    <moduleName>org.dominokit.domino.datepicker.DatePickerClientModule</moduleName>
                 </configuration>
             </plugin>
             <plugin>
