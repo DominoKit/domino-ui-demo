@@ -21,6 +21,7 @@ import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Background;
+import org.dominokit.domino.ui.style.Styles;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_fr;
 import org.gwtproject.i18n.shared.DateTimeFormat;
 import org.gwtproject.i18n.shared.DateTimeFormatInfo;
@@ -38,6 +39,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
             .onMedium(Column.OnMedium.four)
             .onSmall(Column.OnSmall.twelve)
             .onXSmall(Column.OnXSmall.twelve)
+            .addCssClass(Styles.padding_0)
             .centerContent();
 
     private static class Formatter extends DateTimeFormat {
@@ -66,13 +68,14 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void inlined() {
+
         element.appendChild(Card.create("INLINED")
                 .appendContent(BlockHeader.create("Header visible").asElement())
                 .appendContent(Row.create()
                         .addColumn(column.copy().addElement(DatePicker.create()
                                 .hideClearButton()
                                 .hideCloseButton()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -85,7 +88,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setBackground(Background.AMBER)
                                 .hideClearButton()
                                 .hideCloseButton()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -99,7 +102,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setBackground(Background.GREEN)
                                 .hideClearButton()
                                 .hideCloseButton()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -115,7 +118,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .hideHeaderPanel()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -129,7 +132,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideClearButton()
                                 .hideHeaderPanel()
                                 .hideCloseButton()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -144,7 +147,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideClearButton()
                                 .hideHeaderPanel()
                                 .hideCloseButton()
-                                .fixedWidth()
+                                .fixedWidth("265px")
                                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                                     Notification.create(dateTimeFormat.format(date))
@@ -155,6 +158,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .asElement()))
                         .asElement())
                 .asElement());
+
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
     }
 
@@ -164,7 +168,6 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
-                            .duration(150000)
                             .setPosition(Notification.TOP_LEFT)
                             .setBackground(Background.BLUE)
                             .show();
@@ -309,6 +312,10 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void dateBox() {
+
+        Column column=this.column.copy()
+                .removeCssClass(Styles.padding_0);
+
         DateBox dateBox1 = DateBox.create()
                 .floating()
                 .setPlaceholder("Birth date");
