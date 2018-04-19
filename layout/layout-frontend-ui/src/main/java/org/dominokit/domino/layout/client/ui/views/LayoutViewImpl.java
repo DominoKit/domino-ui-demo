@@ -17,6 +17,7 @@ import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
 
 import static java.util.Objects.nonNull;
+import static org.jboss.gwt.elemento.core.Elements.img;
 
 @UiView(presentable = LayoutPresenter.class)
 public class LayoutViewImpl implements LayoutView {

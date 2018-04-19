@@ -4,7 +4,6 @@
     <inherits name="org.dominokit.domino.logger.Logging"/>
     <inherits name="com.google.gwt.resources.Resources" />
     <inherits name="org.dominokit.domino.ui.DominoUI"/>
-    <inherits name="org.gwtproject.i18n.CLDR"/>
 
     <source path=""/>
 
