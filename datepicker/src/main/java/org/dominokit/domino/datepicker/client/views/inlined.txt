@@ -4,7 +4,7 @@ element.appendChild(Card.create("INLINED")
         .addColumn(column.copy().addElement(DatePicker.create()
                 .hideClearButton()
                 .hideCloseButton()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -17,7 +17,7 @@ element.appendChild(Card.create("INLINED")
                 .setBackground(Background.AMBER)
                 .hideClearButton()
                 .hideCloseButton()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -31,7 +31,7 @@ element.appendChild(Card.create("INLINED")
                 .setBackground(Background.GREEN)
                 .hideClearButton()
                 .hideCloseButton()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -47,7 +47,7 @@ element.appendChild(Card.create("INLINED")
                 .hideClearButton()
                 .hideCloseButton()
                 .hideHeaderPanel()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -61,7 +61,7 @@ element.appendChild(Card.create("INLINED")
                 .hideClearButton()
                 .hideHeaderPanel()
                 .hideCloseButton()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -76,7 +76,7 @@ element.appendChild(Card.create("INLINED")
                 .hideClearButton()
                 .hideHeaderPanel()
                 .hideCloseButton()
-                .fixedWidth()
+                .fixedWidth("265px")
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
