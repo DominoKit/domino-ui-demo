@@ -1,0 +1,26 @@
+DateBox dateBox1 = DateBox.create()
+        .floating()
+        .setPlaceholder("Birth date 1");
+
+DateBox dateBox2 = DateBox.create("Birth date 2", new Date(), new DateTimeFormatInfoImpl_fr())
+        .floating();
+
+dateBox2.getDatePicker().setBackground(Background.AMBER);
+
+
+DateBox dateBox3 = DateBox.create()
+        .floating()
+        .setPopoverPosition(PopupPosition.TOP)
+        .setPickerStyle(DateBox.PickerStyle.POPOVER)
+        .setPlaceholder("Birth date 3");
+
+dateBox3.getDatePicker().setBackground(Background.GREEN);
+
+
+element.appendChild(Card.create("DATE BOX")
+        .appendContent(Row.create()
+                .addColumn(column.copy().addElement(dateBox1.asElement()))
+                .addColumn(column.copy().addElement(dateBox2.asElement()))
+                .addColumn(column.copy().addElement(dateBox3.asElement()))
+        .asElement())
+        .asElement());

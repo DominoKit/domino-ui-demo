@@ -66,257 +66,252 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>themes</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
-
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>profile</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
 
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>menu-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
 
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>home</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>basic-forms</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
+            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>datepicker</artifactId>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>typography</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>helpers</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>colors</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>animation</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>cards</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>infobox</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>buttons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>alerts</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>badges</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>labels</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>modals</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>lists</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>loaders</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>icons</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>breadcrumb</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>collapse</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>notifications</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>media</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>pagination</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>preloaders</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>progress</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>tabs</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>thumbnails</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>dialogs</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>popover</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>waves</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>waves</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-cldr</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.gwtproject.i18n</groupId>
-            <artifactId>gwt-cldr</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>
