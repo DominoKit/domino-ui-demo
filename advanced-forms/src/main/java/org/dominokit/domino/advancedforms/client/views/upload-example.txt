@@ -1,0 +1,19 @@
+FileUpload fileUpload = FileUpload.create(Icons.ALL.touch_app())
+        .setUrl("http://localhost:8080/form")
+        .multipleFiles()
+        .accept("image/*")
+        .appendChild(Elements.h(3).textContent("Drop files here or click to upload.").asElement())
+        .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)").asElement())
+        .addOnAddFileHandler(fileItem -> {
+            fileItem.addErrorHandler(request -> {
+                Notification.createDanger("Error while uploading " + request.responseText).show();
+            });
+            fileItem.addSuccessUploadHandler(request -> {
+                Notification.createSuccess("File uploaded successfully").show();
+            });
+            fileItem.addRemoveHandler(file -> {
+                Notification.createInfo("File has been removed " + file.name).show();
+            });
+        });
+
+uploadCard.appendContent(fileUpload.asElement());
