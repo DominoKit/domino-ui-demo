@@ -307,7 +307,7 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>waves</artifactId>
+            <artifactId>advanced-forms</artifactId>
             <version>${project.version}</version>
             <type>gwt-lib</type>
         </dependency>
