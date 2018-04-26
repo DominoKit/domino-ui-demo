@@ -37,13 +37,14 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
     }
 
     private void initFileUploadExample() {
-        FileUpload fileUpload = FileUpload.create(Icons.ALL.touch_app())
+        FileUpload fileUpload = FileUpload.create()
+                .setIcon(Icons.ALL.touch_app())
                 .setUrl("http://localhost:8080/form")
                 .multipleFiles()
                 .accept("image/*")
                 .appendChild(Elements.h(3).textContent("Drop files here or click to upload.").asElement())
                 .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)").asElement())
-                .addOnAddFileHandler(fileItem -> {
+                .onAddFile(fileItem -> {
                     fileItem.addErrorHandler(request -> {
                         Notification.createDanger("Error while uploading " + request.responseText).show();
                     });
