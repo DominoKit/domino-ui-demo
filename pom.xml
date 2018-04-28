@@ -92,6 +92,15 @@
             <version>1.0-rc3</version>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-ui</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-ui</artifactId>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
 
     <build>

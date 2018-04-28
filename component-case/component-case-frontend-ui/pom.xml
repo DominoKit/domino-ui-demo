@@ -44,51 +44,22 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>layout-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit</groupId>
-            <artifactId>domino-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>menu-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>menu-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
