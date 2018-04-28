@@ -55,263 +55,500 @@
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>org.dominokit</groupId>
-            <artifactId>domino-ui</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit</groupId>
-            <artifactId>domino-ui</artifactId>
-            <classifier>sources</classifier>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>layout-frontend</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-frontend</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>layout-frontend-ui</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>layout-frontend-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>layout-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>layout-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>themes</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>themes</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>profile</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>profile</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>menu-frontend</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>menu-frontend</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>menu-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>menu-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-frontend</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend-ui</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-frontend-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>home</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>home</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-frontend</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>components-frontend</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-frontend-ui</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>components-frontend-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-frontend</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-frontend</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-frontend-ui</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-frontend-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-shared</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>forms-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>basic-forms</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>basic-forms</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>datepicker</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>datepicker</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>typography</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>typography</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>helpers</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>helpers</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>colors</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>colors</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>animation</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>animation</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>cards</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>cards</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>infobox</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>infobox</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>buttons</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>buttons</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>alerts</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>alerts</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>badges</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>badges</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>labels</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>labels</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>modals</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>modals</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>lists</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>lists</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>loaders</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>loaders</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>icons</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>icons</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>breadcrumb</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>breadcrumb</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>collapse</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>collapse</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>notifications</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>notifications</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>media</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>media</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>pagination</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>pagination</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>preloaders</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>preloaders</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>progress</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>progress</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>tabs</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>tabs</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>thumbnails</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>thumbnails</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>dialogs</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>dialogs</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>popover</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>popover</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>waves</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>waves</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>advanced-forms</artifactId>
             <version>${project.version}</version>
-            <type>gwt-lib</type>
         </dependency>
-
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>advanced-forms</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
