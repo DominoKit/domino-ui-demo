@@ -1,13 +1,13 @@
 Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.PINK)
+            .setBackground(Color.PINK)
             .addItem(" Home ", evt -> {
             })
             .addItem(" Library ", evt -> {
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.CYAN)
+            .setBackground(Color.CYAN)
             .addItem(" Home ", evt -> {
             })
             .addItem(" Library ", evt -> {
@@ -16,7 +16,7 @@ Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.TEAL)
+            .setBackground(Color.TEAL)
             .addItem(" Home ", evt -> {
             })
             .addItem(" Library ", evt -> {
@@ -27,7 +27,7 @@ Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.ORANGE)
+            .setBackground(Color.ORANGE)
             .addItem(" Home ", evt -> {
             })
             .addItem(" Library ", evt -> {
@@ -44,14 +44,14 @@ Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
 
 Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.PINK)
+            .setBackground(Color.PINK)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.CYAN)
+            .setBackground(Color.CYAN)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -60,7 +60,7 @@ Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.TEAL)
+            .setBackground(Color.TEAL)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -71,7 +71,7 @@ Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
             })
             .asElement())
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.ORANGE)
+            .setBackground(Color.ORANGE)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {

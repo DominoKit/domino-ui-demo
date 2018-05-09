@@ -1,6 +1,8 @@
 package org.dominokit.domino.animation.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLImageElement;
 import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
 import org.dominokit.domino.animation.client.views.AnimationView;
 import org.dominokit.domino.animation.client.views.CodeResource;
@@ -13,12 +15,8 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLImageElement;
-import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
-import org.dominokit.domino.animation.client.views.CodeResource;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
@@ -334,12 +332,12 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private Card createCard(Transition transition) {
 
-        Card animationCard = Card.create().setBackground(Background.BLUE_GREY)
+        Card animationCard = Card.create().setBackground(Color.BLUE_GREY)
                 .appendContent(img(GWT.getModuleBaseURL() + "/images/animation-bg.jpg").css(Styles.img_responsive).asElement());
 
         Card card = Card.create(transition.getName(), transition.getStyle() + " animation.")
-                .setBodyBackground(Background.LIGHT_BLUE)
-                .setHeaderBackground(Background.BLUE);
+                .setBodyBackground(Color.LIGHT_BLUE)
+                .setHeaderBackground(Color.BLUE);
 
         Button animate = Button.createDefault(transition.getName())
                 .large();

@@ -1,0 +1,65 @@
+<div class="picker__wrap">
+    <div class="picker__box">
+        <div class="picker__date-display">
+            <div class="clockpicker-display">
+                <div class="clockpicker-display-column">
+                    <span class="clockpicker-span-hours text-primary">12</span>:
+                    <span class="clockpicker-span-minutes">00</span>
+                </div>
+                <div class="clockpicker-display-column clockpicker-display-am-pm">
+                    <div class="clockpicker-span-am-pm">AM</div>
+                </div>
+            </div>
+        </div>
+        <div class="picker__calendar-container">
+            <div class="clockpicker-plate">
+
+                <div class="clockpicker-dial clockpicker-hours" style="visibility: visible;">
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 115px; top: 5px;">12</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 170px; top: 19.7372px;">1</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 210.263px; top: 60px;">2</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 225px; top: 115px;">3</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 210.263px; top: 170px;">4</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 170px; top: 210.263px;">5</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 115px; top: 225px;">6</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 60px; top: 210.263px;">7</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 19.7372px; top: 170px;">8</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 5px; top: 115px;">9</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 19.7372px; top: 60px;">10</div>
+                    <div class="clockpicker-tick" style="font-size: 140%; left: 60px; top: 19.7372px;">11</div>
+                </div>
+                <div class="clockpicker-dial clockpicker-minutes clockpicker-dial-out" style="visibility: hidden;">
+                    <div class="clockpicker-tick" style="left: 115px; top: 5px; font-size: 140%;">00</div>
+                    <div class="clockpicker-tick" style="left: 170px; top: 19.7372px; font-size: 140%;">05</div>
+                    <div class="clockpicker-tick" style="left: 210.263px; top: 60px; font-size: 140%;">10</div>
+                    <div class="clockpicker-tick" style="left: 225px; top: 115px; font-size: 140%;">15</div>
+                    <div class="clockpicker-tick" style="left: 210.263px; top: 170px; font-size: 140%;">20</div>
+                    <div class="clockpicker-tick" style="left: 170px; top: 210.263px; font-size: 140%;">25</div>
+                    <div class="clockpicker-tick" style="left: 115px; top: 225px; font-size: 140%;">30</div>
+                    <div class="clockpicker-tick" style="left: 60px; top: 210.263px; font-size: 140%;">35</div>
+                    <div class="clockpicker-tick" style="left: 19.7372px; top: 170px; font-size: 140%;">40</div>
+                    <div class="clockpicker-tick" style="left: 5px; top: 115px; font-size: 140%;">45</div>
+                    <div class="clockpicker-tick" style="left: 19.7372px; top: 60px; font-size: 140%;">50</div>
+                    <div class="clockpicker-tick" style="left: 60px; top: 19.7372px; font-size: 140%;">55</div>
+                </div>
+                <div class="clockpicker-canvas">
+                    <svg class="clockpicker-svg" width="270" height="270">
+                        <g transform="translate(135,135)">
+                            <line x1="0" y1="0" x2="0" y2="-110"></line>
+                            <circle class="clockpicker-canvas-fg" r="5" cx="0" cy="-110"></circle>
+                            <circle class="clockpicker-canvas-bg" r="20" cx="0" cy="-110"></circle>
+                            <circle class="clockpicker-canvas-bearing" cx="0" cy="0" r="2"></circle>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <div class="clockpicker-am-pm-block">
+                <button type="button" class="btn-floating btn-flat clockpicker-button am-button" tabindex="-1">AM</button>
+                <button type="button" class="btn-floating btn-flat clockpicker-button pm-button active" tabindex="-1">PM</button>
+            </div>
+        </div>
+        <div class="picker__footer">
+            <button type="button" class="btn btn-flat clockpicker-button" tabindex="-1">Done</button>
+        </div>
+    </div>
+</div>
