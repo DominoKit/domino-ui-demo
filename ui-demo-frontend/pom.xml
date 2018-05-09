@@ -243,12 +243,34 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>advanced-forms</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>advanced-forms</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>datepicker</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>datepicker</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>timepicker</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>timepicker</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -538,17 +560,7 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>advanced-forms</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>advanced-forms</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
+
     </dependencies>
     <build>
         <plugins>

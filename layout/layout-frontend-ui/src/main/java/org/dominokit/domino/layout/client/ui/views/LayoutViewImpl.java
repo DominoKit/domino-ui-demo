@@ -46,12 +46,6 @@ public class LayoutViewImpl implements LayoutView {
     }
 
     @Override
-    public IsLayout show(String theme) {
-        layout.show(Theme.of(theme));
-        return this;
-    }
-
-    @Override
     public void toggleRightPanel() {
         layout.toggleRightPanel();
     }

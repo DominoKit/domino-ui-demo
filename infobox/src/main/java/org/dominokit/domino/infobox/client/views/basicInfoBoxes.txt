@@ -6,13 +6,13 @@ Column column=Column.create()
 
 element.appendChild(Row.create()
         .addColumn(column.addElement(InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "125")
-                .setIconBackground(Background.RED).asElement()))
+                .setIconBackground(Color.RED).asElement()))
         .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.face(), "NEW MEMBERS", "257")
-                .setIconBackground(Background.INDIGO).asElement()))
+                .setIconBackground(Color.INDIGO).asElement()))
         .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.shopping_cart(), "BOOKMARKS", "117")
-                .setIconBackground(Background.PURPLE).asElement()))
+                .setIconBackground(Color.PURPLE).asElement()))
         .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.favorite(), "LIKES", "1432")
-                .setIconBackground(Background.DEEP_PURPLE).asElement()))
+                .setIconBackground(Color.DEEP_PURPLE).asElement()))
         .asElement());
 
 InfoBox new_orders = InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "0");

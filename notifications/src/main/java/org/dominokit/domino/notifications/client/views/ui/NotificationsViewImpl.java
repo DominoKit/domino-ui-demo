@@ -12,8 +12,8 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.style.Color;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -146,88 +146,88 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
 
     private void withMaterialColors() {
 
-        Button redButton = Button.create("RED").setBackground(Background.RED).large();
+        Button redButton = Button.create("RED").setBackground(Color.RED).large();
         redButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.RED)
+                        .setBackground(Color.RED)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button greenButton = Button.create("GREEN").setBackground(Background.GREEN).large();
+        Button greenButton = Button.create("GREEN").setBackground(Color.GREEN).large();
         greenButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.GREEN)
+                        .setBackground(Color.GREEN)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button orangeButton = Button.create("ORANGE").setBackground(Background.ORANGE).large();
+        Button orangeButton = Button.create("ORANGE").setBackground(Color.ORANGE).large();
         orangeButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.ORANGE)
+                        .setBackground(Color.ORANGE)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button blueButton = Button.create("BLUE").setBackground(Background.BLUE).large();
+        Button blueButton = Button.create("BLUE").setBackground(Color.BLUE).large();
         blueButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.BLUE)
+                        .setBackground(Color.BLUE)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button tealButton = Button.create("TEAL").setBackground(Background.TEAL).large();
+        Button tealButton = Button.create("TEAL").setBackground(Color.TEAL).large();
         tealButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.TEAL)
+                        .setBackground(Color.TEAL)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button cyanButton = Button.create("CYAN").setBackground(Background.CYAN).large();
+        Button cyanButton = Button.create("CYAN").setBackground(Color.CYAN).large();
         cyanButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.CYAN)
+                        .setBackground(Color.CYAN)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button pinkButton = Button.create("PINK").setBackground(Background.PINK).large();
+        Button pinkButton = Button.create("PINK").setBackground(Color.PINK).large();
         pinkButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.PINK)
+                        .setBackground(Color.PINK)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button purpleButton = Button.create("PURPLE").setBackground(Background.PURPLE).large();
+        Button purpleButton = Button.create("PURPLE").setBackground(Color.PURPLE).large();
         purpleButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.PURPLE)
+                        .setBackground(Color.PURPLE)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button blueGreyButton = Button.create("BLUE GREY").setBackground(Background.BLUE_GREY).large();
+        Button blueGreyButton = Button.create("BLUE GREY").setBackground(Color.BLUE_GREY).large();
         blueGreyButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.BLUE_GREY)
+                        .setBackground(Color.BLUE_GREY)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
 
-        Button deepOrangeButton = Button.create("DEEP ORANGE").setBackground(Background.DEEP_ORANGE).large();
+        Button deepOrangeButton = Button.create("DEEP ORANGE").setBackground(Color.DEEP_ORANGE).large();
         deepOrangeButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.DEEP_ORANGE)
+                        .setBackground(Color.DEEP_ORANGE)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button lightGreenButton = Button.create("LIGHT GREEN").setBackground(Background.LIGHT_GREEN).large();
+        Button lightGreenButton = Button.create("LIGHT GREEN").setBackground(Color.LIGHT_GREEN).large();
         lightGreenButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.LIGHT_GREEN)
+                        .setBackground(Color.LIGHT_GREEN)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button blackButton = Button.create("BLACK").setBackground(Background.BLACK).large();
+        Button blackButton = Button.create("BLACK").setBackground(Color.BLACK).large();
         blackButton.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
-                        .setBackground(Background.BLACK)
+                        .setBackground(Color.BLACK)
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
@@ -256,7 +256,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
     }
 
     private void withAnimation() {
-        Button fadeInOut = Button.create("FADE IN OUT").setBackground(Background.PINK).large();
+        Button fadeInOut = Button.create("FADE IN OUT").setBackground(Color.PINK).large();
         fadeInOut.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FADE_IN)
@@ -264,7 +264,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button fadeInOutLeft = Button.create("FADE IN OU LEFT").setBackground(Background.PINK).large();
+        Button fadeInOutLeft = Button.create("FADE IN OU LEFT").setBackground(Color.PINK).large();
         fadeInOutLeft.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FADE_IN_LEFT)
@@ -272,7 +272,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button fadeInOutRight = Button.create("FADE IN OUT RIGHT").setBackground(Background.PINK).large();
+        Button fadeInOutRight = Button.create("FADE IN OUT RIGHT").setBackground(Color.PINK).large();
         fadeInOutRight.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FADE_IN_RIGHT)
@@ -280,7 +280,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button fadeInOutUp = Button.create("FADE IN OUT UP").setBackground(Background.PINK).large();
+        Button fadeInOutUp = Button.create("FADE IN OUT UP").setBackground(Color.PINK).large();
         fadeInOutUp.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FADE_IN_UP)
@@ -288,7 +288,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_CENTER)
                         .show());
 
-        Button fadeInOutDown = Button.create("FADE IN OUT DOWN").setBackground(Background.PINK).large();
+        Button fadeInOutDown = Button.create("FADE IN OUT DOWN").setBackground(Color.PINK).large();
         fadeInOutDown.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FADE_IN_DOWN)
@@ -296,7 +296,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button bouneInOut = Button.create("BOUNCE IN OUT").setBackground(Background.CYAN).large();
+        Button bouneInOut = Button.create("BOUNCE IN OUT").setBackground(Color.CYAN).large();
         bouneInOut.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.BOUNCE_IN)
@@ -304,7 +304,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button bounceInOutLeft = Button.create("BOUNCE IN OUT LEFT").setBackground(Background.CYAN).large();
+        Button bounceInOutLeft = Button.create("BOUNCE IN OUT LEFT").setBackground(Color.CYAN).large();
         bounceInOutLeft.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.BOUNCE_IN_LEFT)
@@ -312,7 +312,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button bounceInOutRight = Button.create("BOUNCE IN OUT RIGHT").setBackground(Background.CYAN).large();
+        Button bounceInOutRight = Button.create("BOUNCE IN OUT RIGHT").setBackground(Color.CYAN).large();
         bounceInOutRight.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.BOUNCE_IN_RIGHT)
@@ -320,7 +320,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button bounceInOutUp = Button.create("BOUNCE IN OUT UP").setBackground(Background.CYAN).large();
+        Button bounceInOutUp = Button.create("BOUNCE IN OUT UP").setBackground(Color.CYAN).large();
         bounceInOutUp.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.BOUNCE_IN_UP)
@@ -329,7 +329,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .show());
 
 
-        Button bounceInOutDown = Button.create("BOUNCE IN OUT DOWN").setBackground(Background.CYAN).large();
+        Button bounceInOutDown = Button.create("BOUNCE IN OUT DOWN").setBackground(Color.CYAN).large();
         bounceInOutDown.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.BOUNCE_IN_DOWN)
@@ -337,7 +337,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_CENTER)
                         .show());
 
-        Button rotateInOut = Button.create("ROTATE IN OUT").setBackground(Background.LIGHT_GREEN).large();
+        Button rotateInOut = Button.create("ROTATE IN OUT").setBackground(Color.LIGHT_GREEN).large();
         rotateInOut.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ROTATE_IN)
@@ -345,7 +345,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button rotateInOutUpLeft = Button.create("ROTATE IN OUT UP LEFT").setBackground(Background.LIGHT_GREEN).large();
+        Button rotateInOutUpLeft = Button.create("ROTATE IN OUT UP LEFT").setBackground(Color.LIGHT_GREEN).large();
         rotateInOutUpLeft.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ROTATE_IN_UP_LEFT)
@@ -353,7 +353,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button rotateInOutUpRight = Button.create("ROTATE IN OUT UP RIGHT").setBackground(Background.LIGHT_GREEN).large();
+        Button rotateInOutUpRight = Button.create("ROTATE IN OUT UP RIGHT").setBackground(Color.LIGHT_GREEN).large();
         rotateInOutUpRight.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ROTATE_IN_UP_RIGHT)
@@ -361,7 +361,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button rotateInOutDownLeft = Button.create("ROTATE IN OUT DOWN LEFT").setBackground(Background.LIGHT_GREEN).large();
+        Button rotateInOutDownLeft = Button.create("ROTATE IN OUT DOWN LEFT").setBackground(Color.LIGHT_GREEN).large();
         rotateInOutDownLeft.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ROTATE_IN_DOWN_LEFT)
@@ -369,7 +369,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_LEFT)
                         .show());
 
-        Button rotateInOutDownRight = Button.create("ROTATE IN OUT DOWN RIGHT").setBackground(Background.LIGHT_GREEN).large();
+        Button rotateInOutDownRight = Button.create("ROTATE IN OUT DOWN RIGHT").setBackground(Color.LIGHT_GREEN).large();
         rotateInOutDownRight.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ROTATE_IN_DOWN_RIGHT)
@@ -378,7 +378,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .show());
 
 
-        Button zoomInOut = Button.create("ZOOM IN OUT").setBackground(Background.TEAL).large();
+        Button zoomInOut = Button.create("ZOOM IN OUT").setBackground(Color.TEAL).large();
         zoomInOut.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ZOOM_IN)
@@ -386,7 +386,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button zoomInOutLeft = Button.create("ZOOM IN OUT LEFT").setBackground(Background.TEAL).large();
+        Button zoomInOutLeft = Button.create("ZOOM IN OUT LEFT").setBackground(Color.TEAL).large();
         zoomInOutLeft.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ZOOM_IN_LEFT)
@@ -394,7 +394,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button zoomInOutRight = Button.create("ZOOM IN OUT RIGHT").setBackground(Background.TEAL).large();
+        Button zoomInOutRight = Button.create("ZOOM IN OUT RIGHT").setBackground(Color.TEAL).large();
         zoomInOutRight.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ZOOM_IN_RIGHT)
@@ -402,7 +402,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button zoomInOutUp = Button.create("ZOOM IN OUT UP").setBackground(Background.TEAL).large();
+        Button zoomInOutUp = Button.create("ZOOM IN OUT UP").setBackground(Color.TEAL).large();
         zoomInOutUp.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ZOOM_IN_UP)
@@ -410,7 +410,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button zoomInOutDown = Button.create("ZOOM IN OUT DOWN").setBackground(Background.TEAL).large();
+        Button zoomInOutDown = Button.create("ZOOM IN OUT DOWN").setBackground(Color.TEAL).large();
         zoomInOutDown.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.ZOOM_IN_DOWN)
@@ -418,7 +418,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.TOP_RIGHT)
                         .show());
 
-        Button flipInOutX = Button.create("FLIP IN OUT X").setBackground(Background.PURPLE).large();
+        Button flipInOutX = Button.create("FLIP IN OUT X").setBackground(Color.PURPLE).large();
         flipInOutX.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FLIP_IN_X)
@@ -426,7 +426,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.BOTTOM_LEFT)
                         .show());
 
-        Button flipInOutY = Button.create("FLIP IN OUT Y").setBackground(Background.PURPLE).large();
+        Button flipInOutY = Button.create("FLIP IN OUT Y").setBackground(Color.PURPLE).large();
         flipInOutY.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.FLIP_IN_Y)
@@ -434,7 +434,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .setPosition(Notification.BOTTOM_RIGHT)
                         .show());
 
-        Button lightSpeedInOut = Button.create("LIGHT SPEED IN OUT").setBackground(Background.INDIGO).large();
+        Button lightSpeedInOut = Button.create("LIGHT SPEED IN OUT").setBackground(Color.INDIGO).large();
         lightSpeedInOut.getClickableElement().addEventListener("click", e ->
                 Notification.create("You received a message")
                         .inTransition(Transition.LIGHT_SPEED_IN)

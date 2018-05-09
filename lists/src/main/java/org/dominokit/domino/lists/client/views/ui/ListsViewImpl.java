@@ -13,8 +13,8 @@ import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.SimpleListGroup;
 import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = ListsPresenter.class)
@@ -59,19 +59,19 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         row.addColumn(column.copy().addElement(Card.create("BADGES", "Add the badges component to any list group item and it will automatically be positioned on the right.")
                 .appendContent(SimpleListGroup.create()
                         .appendItem(SimpleListItem.create("Cras justo odio")
-                                .appendContent(Badge.create("14 new").setBackground(Background.PINK).asElement()))
+                                .appendContent(Badge.create("14 new").setBackground(Color.PINK).asElement()))
 
                         .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
-                                .appendContent(Badge.create("99 unread").setBackground(Background.CYAN).asElement()))
+                                .appendContent(Badge.create("99 unread").setBackground(Color.CYAN).asElement()))
 
                         .appendItem(SimpleListItem.create("Morbi leo risus")
-                                .appendContent(Badge.create("99+").setBackground(Background.TEAL).asElement()))
+                                .appendContent(Badge.create("99+").setBackground(Color.TEAL).asElement()))
 
                         .appendItem(SimpleListItem.create("Porta ac consectetur ac")
-                                .appendContent(Badge.create("21").setBackground(Background.ORANGE).asElement()))
+                                .appendContent(Badge.create("21").setBackground(Color.ORANGE).asElement()))
 
                         .appendItem(SimpleListItem.create("Vestibulum at eros")
-                                .appendContent(Badge.create("Pending").setBackground(Background.PURPLE).asElement()))
+                                .appendContent(Badge.create("Pending").setBackground(Color.PURPLE).asElement()))
                         .asElement()).asElement()));
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicListsSample())
@@ -136,11 +136,11 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
 
         ListGroup<String> coloredGroup = ListGroup.create();
         coloredGroup
-                .appendItem(coloredGroup.createItem("Value1", "Cras justo odio").disable().setBackground(Background.PINK))
-                .appendItem(coloredGroup.createItem("Value2", "Dapibus ac facilisis in").setBackground(Background.TEAL))
-                .appendItem(coloredGroup.createItem("Value3", "Morbi leo risus").setBackground(Background.LIGHT_GREEN))
-                .appendItem(coloredGroup.createItem("Value4", "Porta ac consectetur ac").setBackground(Background.AMBER))
-                .appendItem(coloredGroup.createItem("Value5", "Vestibulum at eros").setBackground(Background.DEEP_PURPLE));
+                .appendItem(coloredGroup.createItem("Value1", "Cras justo odio").disable().setBackground(Color.PINK))
+                .appendItem(coloredGroup.createItem("Value2", "Dapibus ac facilisis in").setBackground(Color.TEAL))
+                .appendItem(coloredGroup.createItem("Value3", "Morbi leo risus").setBackground(Color.LIGHT_GREEN))
+                .appendItem(coloredGroup.createItem("Value4", "Porta ac consectetur ac").setBackground(Color.AMBER))
+                .appendItem(coloredGroup.createItem("Value5", "Vestibulum at eros").setBackground(Color.DEEP_PURPLE));
 
         row.addColumn(column.copy().addElement(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
                 .appendContent(coloredGroup.asElement()).asElement()));

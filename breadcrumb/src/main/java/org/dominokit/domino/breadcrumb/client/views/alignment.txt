@@ -1,6 +1,6 @@
 Card.create("ALIGNMENTS")
     .appendContent(Breadcrumb.create()
-            .setBackground(Background.PINK)
+            .setBackground(Color.PINK)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -8,7 +8,7 @@ Card.create("ALIGNMENTS")
             .asElement())
     .appendContent(Breadcrumb.create()
             .alignCenter()
-            .setBackground(Background.CYAN)
+            .setBackground(Color.CYAN)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -18,7 +18,7 @@ Card.create("ALIGNMENTS")
             .asElement())
     .appendContent(Breadcrumb.create()
             .alignRight()
-            .setBackground(Background.TEAL)
+            .setBackground(Color.TEAL)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
