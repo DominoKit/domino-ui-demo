@@ -1,6 +1,8 @@
 package org.dominokit.domino.progress.client.views.ui;
 
 import com.google.gwt.user.client.Timer;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -11,9 +13,7 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
-import org.dominokit.domino.ui.style.Background;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.style.Color;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -205,26 +205,26 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
         element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You use material design colors to style the progress bar.")
                 .appendContent(Progress.create()
                         .addBar(ProgressBar.create(100)
-                                .setBackground(Background.PINK)
+                                .setBackground(Color.PINK)
                                 .striped()
                                 .setValue(90))
                         .asElement())
                 .appendContent(Progress.create()
                         .addBar(ProgressBar.create(100)
                                 .showText()
-                                .setBackground(Background.PURPLE)
+                                .setBackground(Color.PURPLE)
                                 .striped()
                                 .setValue(60))
                         .asElement())
                 .appendContent(Progress.create()
                         .addBar(ProgressBar.create(100)
-                                .setBackground(Background.TEAL)
+                                .setBackground(Color.TEAL)
                                 .striped()
                                 .setValue(75))
                         .asElement())
                 .appendContent(Progress.create()
                         .addBar(ProgressBar.create(100)
-                                .setBackground(Background.BROWN)
+                                .setBackground(Color.BROWN)
                                 .striped()
                                 .setValue(40))
                         .asElement())

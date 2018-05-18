@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.StyleType;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLDivElement;
@@ -25,7 +25,6 @@ import org.jboss.gwt.elemento.core.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.dominokit.domino.ui.button.IconButton.CircleSize;
 
 @UiView(presentable = ButtonsPresenter.class)
 public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements ButtonsView {
@@ -485,17 +484,17 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
         row.asElement().appendChild(infoButtonsToolbar.asElement());
 
         ButtonsGroup firstColorGroup = ButtonsGroup.create()
-                .addButton(Button.create("1").setBackground(Background.PURPLE))
-                .addButton(Button.create("2").setBackground(Background.PURPLE))
-                .addButton(Button.create("3").setBackground(Background.PURPLE));
+                .addButton(Button.create("1").setBackground(Color.PURPLE))
+                .addButton(Button.create("2").setBackground(Color.PURPLE))
+                .addButton(Button.create("3").setBackground(Color.PURPLE));
 
         ButtonsGroup secondColorGroup = ButtonsGroup.create()
-                .addButton(Button.create("4").setBackground(Background.PURPLE))
-                .addButton(Button.create("5").setBackground(Background.PURPLE))
-                .addButton(Button.create("6").setBackground(Background.PURPLE));
+                .addButton(Button.create("4").setBackground(Color.PURPLE))
+                .addButton(Button.create("5").setBackground(Color.PURPLE))
+                .addButton(Button.create("6").setBackground(Color.PURPLE));
 
         ButtonsGroup thirdColorGroup = ButtonsGroup.create()
-                .addButton(Button.create("7").setBackground(Background.PURPLE));
+                .addButton(Button.create("7").setBackground(Color.PURPLE));
 
         ButtonsToolbar colorButtonsToolbar = ButtonsToolbar.create()
                 .addGroup(firstColorGroup)
@@ -575,9 +574,9 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
         card.appendContent(dangerGroup);
 
         HTMLElement purpleGroup = ButtonsGroup.create()
-                .addButton(Button.create("LEFT").setBackground(Background.PURPLE))
-                .addButton(Button.create("MIDDLE").setBackground(Background.PURPLE))
-                .addButton(Button.create("RIGHT").setBackground(Background.PURPLE))
+                .addButton(Button.create("LEFT").setBackground(Color.PURPLE))
+                .addButton(Button.create("MIDDLE").setBackground(Color.PURPLE))
+                .addButton(Button.create("RIGHT").setBackground(Color.PURPLE))
                 .asElement();
 
         purpleGroup.style.margin = CSSProperties.MarginUnionType.of("5px");
@@ -970,27 +969,27 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
     private void initMaterialDesignButtons() {
         Card card = Card.create("METARIAL DESIGN BUTTONS", "Use any of the available button classes to quickly create a styled button");
 
-        HTMLElement redBtn = Button.create("RED").setBackground(Background.RED).asElement();
+        HTMLElement redBtn = Button.create("RED").setBackground(Color.RED).asElement();
         redBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
         redBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(redBtn);
 
-        HTMLElement purpleBtn = Button.create("PURPLE").setBackground(Background.PURPLE).asElement();
+        HTMLElement purpleBtn = Button.create("PURPLE").setBackground(Color.PURPLE).asElement();
         purpleBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
         purpleBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(purpleBtn);
 
-        HTMLElement indigoBtn = Button.create("INDIGO").setBackground(Background.INDIGO).asElement();
+        HTMLElement indigoBtn = Button.create("INDIGO").setBackground(Color.INDIGO).asElement();
         indigoBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
         indigoBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(indigoBtn);
 
-        HTMLElement lightBlueBtn = Button.create("LIGHT BLUE").setBackground(Background.LIGHT_BLUE).asElement();
+        HTMLElement lightBlueBtn = Button.create("LIGHT BLUE").setBackground(Color.LIGHT_BLUE).asElement();
         lightBlueBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
         lightBlueBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(lightBlueBtn);
 
-        HTMLElement greenBtn = Button.create("GREEN").setBackground(Background.GREEN).asElement();
+        HTMLElement greenBtn = Button.create("GREEN").setBackground(Color.GREEN).asElement();
         greenBtn.style.margin = CSSProperties.MarginUnionType.of("5px");
         greenBtn.style.minWidth = CSSProperties.MinWidthUnionType.of("120px");
         card.appendContent(greenBtn);

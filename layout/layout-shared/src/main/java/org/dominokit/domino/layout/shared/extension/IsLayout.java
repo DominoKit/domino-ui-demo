@@ -5,8 +5,6 @@ import org.dominokit.domino.api.shared.extension.Content;
 public interface IsLayout {
     IsLayout show();
 
-    IsLayout show(String theme);
-
     void toggleRightPanel();
 
     IsLayout showRightPanel();

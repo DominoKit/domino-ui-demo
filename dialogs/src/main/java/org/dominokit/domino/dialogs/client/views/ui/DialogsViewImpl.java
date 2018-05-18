@@ -19,7 +19,6 @@ import org.dominokit.domino.ui.lists.SimpleListGroup;
 import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import elemental2.dom.HTMLDivElement;
@@ -87,19 +86,19 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
 
         HTMLUListElement listGroup = SimpleListGroup.create()
                 .appendItem(SimpleListItem.create("Cras justo odio")
-                        .appendContent(Badge.create("14 new").setBackground(Background.PINK).asElement()))
+                        .appendContent(Badge.create("14 new").setBackground(Color.PINK).asElement()))
 
                 .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
-                        .appendContent(Badge.create("99 unread").setBackground(Background.CYAN).asElement()))
+                        .appendContent(Badge.create("99 unread").setBackground(Color.CYAN).asElement()))
 
                 .appendItem(SimpleListItem.create("Morbi leo risus")
-                        .appendContent(Badge.create("99+").setBackground(Background.TEAL).asElement()))
+                        .appendContent(Badge.create("99+").setBackground(Color.TEAL).asElement()))
 
                 .appendItem(SimpleListItem.create("Porta ac consectetur ac")
-                        .appendContent(Badge.create("21").setBackground(Background.ORANGE).asElement()))
+                        .appendContent(Badge.create("21").setBackground(Color.ORANGE).asElement()))
 
                 .appendItem(SimpleListItem.create("Vestibulum at eros")
-                        .appendContent(Badge.create("Pending").setBackground(Background.PURPLE).asElement()))
+                        .appendContent(Badge.create("Pending").setBackground(Color.PURPLE).asElement()))
                 .asElement();
 
         listGroup.style.setProperty("text-align", "left");

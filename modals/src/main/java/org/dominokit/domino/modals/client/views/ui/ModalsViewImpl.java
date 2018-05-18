@@ -12,7 +12,6 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import org.dominokit.domino.ui.style.Color;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
@@ -109,7 +108,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Red ------------
         ModalDialog modalDialogRed=createModalDialog().setModalColor(Color.RED);
-        Button redButton=Button.create("RED").setBackground(Background.RED);
+        Button redButton=Button.create("RED").setBackground(Color.RED);
         redButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogRed));
 
         buttonsContainer.appendChild(redButton.asElement());
@@ -117,7 +116,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Pink ------------
         ModalDialog modalDialogPink=createModalDialog().setModalColor(Color.PINK);
-        Button pinkButton=Button.create("PINK").setBackground(Background.PINK);
+        Button pinkButton=Button.create("PINK").setBackground(Color.PINK);
         pinkButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogPink));
 
         buttonsContainer.appendChild(pinkButton.asElement());
@@ -125,7 +124,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Purple ------------
         ModalDialog modalDialogPurple=createModalDialog().setModalColor(Color.PURPLE);
-        Button purpleButton=Button.create("PURPLE").setBackground(Background.PURPLE);
+        Button purpleButton=Button.create("PURPLE").setBackground(Color.PURPLE);
         purpleButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogPurple));
 
         buttonsContainer.appendChild(purpleButton.asElement());
@@ -133,7 +132,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Deep Purple ------------
         ModalDialog modalDialogDeepPurple=createModalDialog().setModalColor(Color.DEEP_PURPLE);
-        Button deepPurpleButton=Button.create("DEEP PURPLE").setBackground(Background.DEEP_PURPLE);
+        Button deepPurpleButton=Button.create("DEEP PURPLE").setBackground(Color.DEEP_PURPLE);
         deepPurpleButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogDeepPurple));
 
         buttonsContainer.appendChild(deepPurpleButton.asElement());
@@ -141,7 +140,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Indigo ------------
         ModalDialog modalDialogIndigo=createModalDialog().setModalColor(Color.INDIGO);
-        Button indigoButton=Button.create("INDIGO").setBackground(Background.INDIGO);
+        Button indigoButton=Button.create("INDIGO").setBackground(Color.INDIGO);
         indigoButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogIndigo));
 
         buttonsContainer.appendChild(indigoButton.asElement());
@@ -149,7 +148,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Blue ------------
         ModalDialog modalDialogBlue=createModalDialog().setModalColor(Color.BLUE);
-        Button blueButton=Button.create("BLUE").setBackground(Background.BLUE);
+        Button blueButton=Button.create("BLUE").setBackground(Color.BLUE);
         blueButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogBlue));
 
         buttonsContainer.appendChild(blueButton.asElement());
@@ -157,7 +156,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Orange ------------
         ModalDialog modalDialogOrange=createModalDialog().setModalColor(Color.ORANGE);
-        Button orangeButton=Button.create("ORANGE").setBackground(Background.ORANGE);
+        Button orangeButton=Button.create("ORANGE").setBackground(Color.ORANGE);
         orangeButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogOrange));
 
         buttonsContainer.appendChild(orangeButton.asElement());
@@ -166,7 +165,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Green ------------
         ModalDialog modalDialogGreen=createModalDialog().setModalColor(Color.GREEN);
-        Button greenButton=Button.create("GREEN").setBackground(Background.GREEN);
+        Button greenButton=Button.create("GREEN").setBackground(Color.GREEN);
         greenButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogGreen));
 
         buttonsContainer.appendChild(greenButton.asElement());
@@ -175,7 +174,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         //------------ Teal ------------
         ModalDialog modalDialogTeal=createModalDialog().setModalColor(Color.TEAL);
-        Button tealButton=Button.create("TEAL").setBackground(Background.TEAL);
+        Button tealButton=Button.create("TEAL").setBackground(Color.TEAL);
         tealButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogTeal));
 
         buttonsContainer.appendChild(tealButton.asElement());

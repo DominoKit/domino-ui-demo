@@ -37,17 +37,6 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.test</groupId>
-            <artifactId>domino-client-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt.gwtmockito</groupId>
-            <artifactId>gwtmockito</artifactId>
-            <version>1.1.6</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-shared</artifactId>
             <version>${project.version}</version>

@@ -5,10 +5,10 @@ Column column = Column.create().onLarge(OnLarge.four)
 
 element.appendChild(Row.create()
         .addColumn(column.addElement(Card.create()
-                .setBackground(Background.GREEN)
+                .setBackground(Color.GREEN)
                 .appendContent(new Text(SAMPLE_CONTENT)).asElement()))
         .addColumn(column.copy().addElement(Card.create()
-                .setBackground(Background.LIGHT_BLUE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
+                .setBackground(Color.LIGHT_BLUE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
         .addColumn(column.copy().addElement(Card.create()
-                .setBackground(Background.PURPLE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
+                .setBackground(Color.PURPLE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
         .asElement());

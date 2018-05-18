@@ -8,8 +8,8 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.style.Background;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = AlertsPresenter.class)
@@ -46,15 +46,15 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
 
     private void customBackground() {
         element.appendChild(Card.create("MATERIAL DESIGN ALERTS", "ou can use material design colors backgrounds")
-                .appendContent(Alert.create(Background.PINK).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
+                .appendContent(Alert.create(Color.PINK).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .asElement())
-                .appendContent(Alert.create(Background.ORANGE).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
+                .appendContent(Alert.create(Color.ORANGE).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .asElement())
-                .appendContent(Alert.create(Background.TEAL).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
+                .appendContent(Alert.create(Color.TEAL).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .asElement())
-                .appendContent(Alert.create(Background.GREEN).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
+                .appendContent(Alert.create(Color.GREEN).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .asElement())
-                .appendContent(Alert.create(Background.RED).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
+                .appendContent(Alert.create(Color.RED).appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .asElement())
                 .asElement());
 
@@ -70,15 +70,15 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())
-                .appendContent(Alert.create(Background.PINK)
+                .appendContent(Alert.create(Color.PINK)
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())
-                .appendContent(Alert.create(Background.TEAL)
+                .appendContent(Alert.create(Color.TEAL)
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())
-                .appendContent(Alert.create(Background.GREEN)
+                .appendContent(Alert.create(Color.GREEN)
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())
@@ -110,7 +110,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendLink(Elements.a().add("Change a few things up").asElement())
                         .appendText(" and try submitting again.")
                         .asElement())
-                .appendContent(Alert.create(Background.PINK)
+                .appendContent(Alert.create(Color.PINK)
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id ")
                         .appendLink(Elements.a().add("alert link.").asElement())
                         .asElement())

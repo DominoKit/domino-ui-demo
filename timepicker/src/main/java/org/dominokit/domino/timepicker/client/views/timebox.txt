@@ -1,0 +1,29 @@
+Column column=this.column.copy()
+        .removeCssClass(Styles.padding_0);
+
+TimeBox timeBox1 = TimeBox.create()
+        .floating()
+        .setPlaceholder("Wakeup");
+
+TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de())
+        .floating();
+
+timeBox2.getTimePicker().setColorScheme(ColorScheme.PINK);
+
+
+TimeBox timeBox3 = TimeBox.create()
+        .floating()
+        .setPopoverPosition(PopupPosition.TOP)
+        .setPickerStyle(TimeBox.PickerStyle.POPOVER)
+        .setPlaceholder("Wakeup");
+
+timeBox3.getTimePicker().setColorScheme(ColorScheme.GREEN);
+
+
+element.appendChild(Card.create("TIME BOX")
+        .appendContent(Row.create()
+                .addColumn(column.copy().addElement(timeBox1.asElement()))
+                .addColumn(column.copy().addElement(timeBox2.asElement()))
+                .addColumn(column.copy().addElement(timeBox3.asElement()))
+                .asElement())
+        .asElement());
