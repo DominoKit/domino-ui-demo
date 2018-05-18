@@ -41,17 +41,7 @@
             <artifactId>apt-client</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino.test</groupId>
-            <artifactId>domino-client-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-shared</artifactId>

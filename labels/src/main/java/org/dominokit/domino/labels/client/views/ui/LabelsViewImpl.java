@@ -10,11 +10,11 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.labels.Label;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLHeadingElement;
+import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LabelsPresenter.class)
@@ -45,18 +45,18 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                 .onSmall(Column.OnSmall.six)
                 .onXSmall(Column.OnXSmall.twelve);
 
-        HTMLElement red = Label.create("Red").setBackground(Background.RED).asElement();
-        HTMLElement pink = Label.create("Pink").setBackground(Background.PINK).asElement();
-        HTMLElement purple = Label.create("Purple").setBackground(Background.PURPLE).asElement();
-        HTMLElement deepPurple = Label.create("Deep Purple").setBackground(Background.DEEP_PURPLE).asElement();
-        HTMLElement indigo = Label.create("Indigo").setBackground(Background.INDIGO).asElement();
-        HTMLElement blue = Label.create("Blue").setBackground(Background.BLUE).asElement();
-        HTMLElement lightBlue = Label.create("Light Blue").setBackground(Background.LIGHT_BLUE).asElement();
-        HTMLElement cyan = Label.create("Cyan").setBackground(Background.CYAN).asElement();
-        HTMLElement teal = Label.create("Teal").setBackground(Background.TEAL).asElement();
-        HTMLElement green = Label.create("Green").setBackground(Background.GREEN).asElement();
-        HTMLElement orange = Label.create("Orange").setBackground(Background.ORANGE).asElement();
-        HTMLElement yellow = Label.create("Yellow").setBackground(Background.YELLOW).asElement();
+        HTMLElement red = Label.create("Red").setBackground(Color.RED).asElement();
+        HTMLElement pink = Label.create("Pink").setBackground(Color.PINK).asElement();
+        HTMLElement purple = Label.create("Purple").setBackground(Color.PURPLE).asElement();
+        HTMLElement deepPurple = Label.create("Deep Purple").setBackground(Color.DEEP_PURPLE).asElement();
+        HTMLElement indigo = Label.create("Indigo").setBackground(Color.INDIGO).asElement();
+        HTMLElement blue = Label.create("Blue").setBackground(Color.BLUE).asElement();
+        HTMLElement lightBlue = Label.create("Light Blue").setBackground(Color.LIGHT_BLUE).asElement();
+        HTMLElement cyan = Label.create("Cyan").setBackground(Color.CYAN).asElement();
+        HTMLElement teal = Label.create("Teal").setBackground(Color.TEAL).asElement();
+        HTMLElement green = Label.create("Green").setBackground(Color.GREEN).asElement();
+        HTMLElement orange = Label.create("Orange").setBackground(Color.ORANGE).asElement();
+        HTMLElement yellow = Label.create("Yellow").setBackground(Color.YELLOW).asElement();
 
         red.style.margin = CSSProperties.MarginUnionType.of("10px");
         pink.style.margin = CSSProperties.MarginUnionType.of("10px");

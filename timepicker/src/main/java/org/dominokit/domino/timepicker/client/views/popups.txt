@@ -1,0 +1,135 @@
+Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+TimePicker bluePopTimePicker = TimePicker.create()
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_LEFT)
+                        .setBackground(ColorScheme.BLUE.color())
+                        .show());
+Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Wakeup", bluePopTimePicker
+        .asElement());
+
+bluePopTimePicker.addCloseHandler(() -> bluePopover.close());
+bluePopTimePicker.addClearHandler(() ->
+        Notification.create("a Click on clear button")
+                .setPosition(Notification.TOP_LEFT)
+                .setBackground(ColorScheme.BLUE.color())
+                .show());
+
+
+Button pinkPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
+        .setColorScheme(ColorScheme.PINK)
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_CENTER)
+                        .setBackground(ColorScheme.PINK.color())
+                        .show());
+Popover pinkPopover = Popover.create(pinkPopupButton.asElement(), "Wakeup", pinkPopDatePicker
+        .asElement());
+
+pinkPopDatePicker.addCloseHandler(() -> pinkPopover.close());
+pinkPopDatePicker.addClearHandler(() ->
+        Notification.create("a Click on clear button")
+                .setPosition(Notification.TOP_CENTER)
+                .setBackground(ColorScheme.PINK.color())
+                .show());
+
+
+Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+TimePicker greenPopDatePicker = TimePicker.create()
+        .setColorScheme(ColorScheme.GREEN)
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_RIGHT)
+                        .setBackground(ColorScheme.GREEN.color())
+                        .show());
+Popover greenPopover = Popover.create(greenPopupButton.asElement(), "Wakeup", greenPopDatePicker
+        .asElement());
+
+greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
+greenPopDatePicker.addClearHandler(() ->
+        Notification.create("a Click on clear button")
+                .setPosition(Notification.TOP_RIGHT)
+                .setBackground(ColorScheme.GREEN.color())
+                .show());
+
+
+Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+TimePicker blueDatePicker = TimePicker.create()
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_LEFT)
+                        .setBackground(ColorScheme.BLUE.color())
+                        .show());
+
+ModalDialog blueModal = blueDatePicker.createModal("Wakeup");
+blueDatePicker.addCloseHandler(() -> blueModal.close());
+blueDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
+        .setPosition(Notification.TOP_LEFT)
+        .setBackground(ColorScheme.BLUE.color())
+        .show());
+
+
+blueModal.appendContent(blueDatePicker.asElement());
+DomGlobal.document.body.appendChild(blueModal.asElement());
+
+blueModalButton.addClickListener(evt -> blueModal.open());
+
+
+Button pinkModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+TimePicker pinkDatePicker = TimePicker.create()
+        .setColorScheme(ColorScheme.PINK)
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_CENTER)
+                        .setBackground(ColorScheme.PINK.color())
+                        .show());
+ModalDialog pinkModal = pinkDatePicker.createModal("Wakeup");
+
+pinkDatePicker.addCloseHandler(() -> pinkModal.close());
+pinkDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
+        .setPosition(Notification.TOP_CENTER)
+        .setBackground(ColorScheme.PINK.color())
+        .show());
+
+pinkModal.appendContent(pinkDatePicker.asElement());
+DomGlobal.document.body.appendChild(pinkModal.asElement());
+
+pinkModalButton.addClickListener(evt -> pinkModal.open());
+
+
+Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+TimePicker greenDatePicker = TimePicker.create()
+        .setColorScheme(ColorScheme.GREEN)
+        .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
+                Notification.create(picker.getFormattedTime())
+                        .setPosition(Notification.TOP_RIGHT)
+                        .setBackground(ColorScheme.GREEN.color())
+                        .show());
+ModalDialog greenModal = greenDatePicker.createModal("Wakeup");
+greenDatePicker.addCloseHandler(() -> greenModal.close());
+greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
+        .setPosition(Notification.TOP_RIGHT)
+        .setBackground(ColorScheme.GREEN.color())
+        .show());
+
+greenModal.appendContent(greenDatePicker.asElement());
+DomGlobal.document.body.appendChild(greenModal.asElement());
+
+greenModalButton.addClickListener(evt -> greenModal.open());
+
+
+element.appendChild(Card.create("POPUP")
+        .appendContent(BlockHeader.create("POP OVER").asElement())
+        .appendContent(Row.create()
+                .addColumn(column.copy().addElement(bluePopupButton.asElement()))
+                .addColumn(column.copy().addElement(pinkPopupButton.asElement()))
+                .addColumn(column.copy().addElement(greenPopupButton.asElement()))
+                .asElement())
+        .appendContent(BlockHeader.create("MODAL").asElement())
+        .appendContent(Row.create()
+                .addColumn(column.copy().addElement(blueModalButton.asElement()))
+                .addColumn(column.copy().addElement(pinkModalButton.asElement()))
+                .addColumn(column.copy().addElement(greenModalButton.asElement()))
+                .asElement())
+        .asElement());

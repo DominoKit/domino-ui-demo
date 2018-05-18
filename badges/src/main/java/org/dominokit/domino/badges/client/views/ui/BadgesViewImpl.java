@@ -12,8 +12,8 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = BadgesPresenter.class)
@@ -82,30 +82,30 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
 
         this.element.appendChild(Card.create("BUTTON EXAMPLES WITH MATERIAL DESIGN COLORS")
                 .appendContent(Row.create()
-                        .addColumn(column.addElement(Button.create("GREEN").setBackground(Background.GREEN).large().block()
+                        .addColumn(column.addElement(Button.create("GREEN").setBackground(Color.GREEN).large().block()
                                 .appendContent(Badge.create("2").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("BLUE").setBackground(Background.BLUE).large().block()
+                        .addColumn(column.copy().addElement(Button.create("BLUE").setBackground(Color.BLUE).large().block()
                                 .appendContent(Badge.create("10+").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("RED").setBackground(Background.RED).large().block()
+                        .addColumn(column.copy().addElement(Button.create("RED").setBackground(Color.RED).large().block()
                                 .appendContent(Badge.create("13").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("ORANGE").setBackground(Background.ORANGE).large().block()
+                        .addColumn(column.copy().addElement(Button.create("ORANGE").setBackground(Color.ORANGE).large().block()
                                 .appendContent(Badge.create("5").asElement())
                                 .asElement()))
                         .asElement())
                 .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(Button.create("PINK").setBackground(Background.PINK).large().block()
+                        .addColumn(column.copy().addElement(Button.create("PINK").setBackground(Color.PINK).large().block()
                                 .appendContent(Badge.create("14").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("CYAN").setBackground(Background.CYAN).large().block()
+                        .addColumn(column.copy().addElement(Button.create("CYAN").setBackground(Color.CYAN).large().block()
                                 .appendContent(Badge.create("99+").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("TEAL").setBackground(Background.TEAL).large().block()
+                        .addColumn(column.copy().addElement(Button.create("TEAL").setBackground(Color.TEAL).large().block()
                                 .appendContent(Badge.create("26").asElement())
                                 .asElement()))
-                        .addColumn(column.copy().addElement(Button.create("PURPLE").setBackground(Background.PURPLE).large().block()
+                        .addColumn(column.copy().addElement(Button.create("PURPLE").setBackground(Color.PURPLE).large().block()
                                 .appendContent(Badge.create("47").asElement())
                                 .asElement()))
                         .asElement())
@@ -117,11 +117,11 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
     private void listExample() {
 
         ListGroup<String> listGroup = ListGroup.create();
-        listGroup.addItem("SomeValue").setText("Cras justo odio").appendContent(Badge.create("14 new").setBackground(Background.RED).asElement());
-        listGroup.addItem("SomeValue").setText("Dapibus ac facilisis in").appendContent(Badge.create("99 unread").setBackground(Background.CYAN).asElement());
-        listGroup.addItem("SomeValue").setText("Morbi leo risus").appendContent(Badge.create("99+").setBackground(Background.TEAL).asElement());
-        listGroup.addItem("SomeValue").setText("Porta ac consectetur ac").appendContent(Badge.create("21").setBackground(Background.ORANGE).asElement());
-        listGroup.addItem("SomeValue").setText("Vestibulum at eros").appendContent(Badge.create("18").setBackground(Background.PURPLE).asElement());
+        listGroup.addItem("SomeValue").setText("Cras justo odio").appendContent(Badge.create("14 new").setBackground(Color.RED).asElement());
+        listGroup.addItem("SomeValue").setText("Dapibus ac facilisis in").appendContent(Badge.create("99 unread").setBackground(Color.CYAN).asElement());
+        listGroup.addItem("SomeValue").setText("Morbi leo risus").appendContent(Badge.create("99+").setBackground(Color.TEAL).asElement());
+        listGroup.addItem("SomeValue").setText("Porta ac consectetur ac").appendContent(Badge.create("21").setBackground(Color.ORANGE).asElement());
+        listGroup.addItem("SomeValue").setText("Vestibulum at eros").appendContent(Badge.create("18").setBackground(Color.PURPLE).asElement());
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
                 .appendContent(listGroup.asElement())

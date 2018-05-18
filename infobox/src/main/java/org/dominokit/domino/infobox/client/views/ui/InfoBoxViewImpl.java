@@ -12,7 +12,6 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.infoboxes.InfoBox;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import org.dominokit.domino.ui.style.Color;
 import elemental2.dom.HTMLDivElement;
 import org.jboss.gwt.elemento.core.Elements;
@@ -52,13 +51,13 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
         element.appendChild(Row.create()
                 .addColumn(column.addElement(InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "125")
-                        .setIconBackground(Background.RED).asElement()))
+                        .setIconBackground(Color.RED).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.face(), "NEW MEMBERS", "257")
-                        .setIconBackground(Background.INDIGO).asElement()))
+                        .setIconBackground(Color.INDIGO).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.shopping_cart(), "BOOKMARKS", "117")
-                        .setIconBackground(Background.PURPLE).asElement()))
+                        .setIconBackground(Color.PURPLE).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.favorite(), "LIKES", "1432")
-                        .setIconBackground(Background.DEEP_PURPLE).asElement()))
+                        .setIconBackground(Color.DEEP_PURPLE).asElement()))
                 .asElement());
 
         InfoBox new_orders = InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "0");
@@ -68,13 +67,13 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
         element.appendChild(Row.create()
                 .addColumn(column.copy().addElement(new_orders
-                        .setIconBackground(Background.RED).asElement()))
+                        .setIconBackground(Color.RED).asElement()))
                 .addColumn(column.copy().addElement(new_members
-                        .setIconBackground(Background.INDIGO).asElement()))
+                        .setIconBackground(Color.INDIGO).asElement()))
                 .addColumn(column.copy().addElement(bookmarks
-                        .setIconBackground(Background.PURPLE).asElement()))
+                        .setIconBackground(Color.PURPLE).asElement()))
                 .addColumn(column.copy().addElement(likes
-                        .setIconBackground(Background.DEEP_PURPLE).asElement()))
+                        .setIconBackground(Color.DEEP_PURPLE).asElement()))
                 .asElement());
 
         counter = Counter.countFrom(0)
@@ -103,35 +102,35 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
         element.appendChild(Row.create()
                 .addColumn(column.addElement(InfoBox.create(Icons.ALL.email(), "MESSAGES", "15")
-                        .setBackground(Background.PINK)
+                        .setBackground(Color.PINK)
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.devices(), "CPU USAGE", "92%")
-                        .setBackground(Background.BLUE)
+                        .setBackground(Color.BLUE)
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.alarm(), "ALARM", "07:00 AM")
-                        .setBackground(Background.AMBER)
+                        .setBackground(Color.AMBER)
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.gps_fixed(), "LOCATION", "Jordan")
-                        .setBackground(Background.DEEP_PURPLE)
+                        .setBackground(Color.DEEP_PURPLE)
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .asElement());
 
         element.appendChild(Row.create()
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.equalizer(), "BOUNCE RATE", "62%")
-                        .setIconBackground(Background.TEAL)
-                        .setBackground(Background.TEAL)
+                        .setIconBackground(Color.TEAL)
+                        .setBackground(Color.TEAL)
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.flight_takeoff(), "FLIGHT", "02:59 PM")
-                        .setIconBackground(Background.GREEN)
-                        .setBackground(Background.GREEN)
+                        .setIconBackground(Color.GREEN)
+                        .setBackground(Color.GREEN)
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.battery_charging_full(), "BATTERY", "Charging")
-                        .setIconBackground(Background.LIGHT_GREEN)
-                        .setBackground(Background.LIGHT_GREEN)
+                        .setIconBackground(Color.LIGHT_GREEN)
+                        .setBackground(Color.LIGHT_GREEN)
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.brightness_low(), "BRIGHTNESS RATE", "40%")
-                        .setIconBackground(Background.LIME)
-                        .setBackground(Background.LIME)
+                        .setIconBackground(Color.LIME)
+                        .setBackground(Color.LIME)
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .asElement());
 
@@ -149,22 +148,22 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
         element.appendChild(Row.create()
                 .addColumn(column.addElement(InfoBox.create(Icons.ALL.email(), "MESSAGES", "15")
-                        .setIconBackground(Background.WHITE)
+                        .setIconBackground(Color.WHITE)
                         .setIconColor(Color.PINK)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.devices(), "CPU USAGE", "92%")
-                        .setIconBackground(Background.WHITE)
+                        .setIconBackground(Color.WHITE)
                         .setIconColor(Color.BLUE)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.alarm(), "ALARM", "07:00 AM")
-                        .setIconBackground(Background.WHITE)
+                        .setIconBackground(Color.WHITE)
                         .setIconColor(Color.AMBER)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.gps_fixed(), "LOCATION", "Jordan")
-                        .setIconBackground(Background.WHITE)
+                        .setIconBackground(Color.WHITE)
                         .setIconColor(Color.DEEP_PURPLE)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM).asElement()))
@@ -172,23 +171,23 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
         element.appendChild(Row.create()
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.equalizer(), "BOUNCE RATE", "62%")
-                        .setIconBackground(Background.TEAL)
-                        .setBackground(Background.TEAL)
+                        .setIconBackground(Color.TEAL)
+                        .setBackground(Color.TEAL)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.flight_takeoff(), "FLIGHT", "02:59 PM")
-                        .setIconBackground(Background.GREEN)
-                        .setBackground(Background.GREEN)
+                        .setIconBackground(Color.GREEN)
+                        .setBackground(Color.GREEN)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.battery_charging_full(), "BATTERY", "Charging")
-                        .setIconBackground(Background.LIGHT_GREEN)
-                        .setBackground(Background.LIGHT_GREEN)
+                        .setIconBackground(Color.LIGHT_GREEN)
+                        .setBackground(Color.LIGHT_GREEN)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .addColumn(column.copy().addElement(InfoBox.create(Icons.ALL.brightness_low(), "BRIGHTNESS RATE", "40%")
-                        .setIconBackground(Background.LIME)
-                        .setBackground(Background.LIME)
+                        .setIconBackground(Color.LIME)
+                        .setBackground(Color.LIME)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .asElement());

@@ -36,11 +36,7 @@
             <artifactId>apt-client</artifactId>
             <scope>provided</scope>
         </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino.test</groupId>
-            <artifactId>domino-client-test</artifactId>
-            <scope>test</scope>
-        </dependency>
+
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-shared</artifactId>

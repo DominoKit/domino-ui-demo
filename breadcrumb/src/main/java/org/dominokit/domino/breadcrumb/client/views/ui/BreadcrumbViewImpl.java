@@ -11,7 +11,6 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Background;
 import org.dominokit.domino.ui.style.Color;
 import elemental2.dom.HTMLDivElement;
 import org.jboss.gwt.elemento.core.Elements;
@@ -190,14 +189,14 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(row
                 .addColumn(column.copy().addElement(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.PINK)
+                                .setBackground(Color.PINK)
                                 .addItem(" Home ", evt -> {
                                 })
                                 .addItem(" Library ", evt -> {
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.CYAN)
+                                .setBackground(Color.CYAN)
                                 .addItem(" Home ", evt -> {
                                 })
                                 .addItem(" Library ", evt -> {
@@ -206,7 +205,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.TEAL)
+                                .setBackground(Color.TEAL)
                                 .addItem(" Home ", evt -> {
                                 })
                                 .addItem(" Library ", evt -> {
@@ -217,7 +216,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.ORANGE)
+                                .setBackground(Color.ORANGE)
                                 .addItem(" Home ", evt -> {
                                 })
                                 .addItem(" Library ", evt -> {
@@ -235,14 +234,14 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(row
                 .addColumn(column.copy().addElement(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.PINK)
+                                .setBackground(Color.PINK)
                                 .addItem(Icons.ALL.home(), " Home ", evt -> {
                                 })
                                 .addItem(Icons.ALL.library_books(), " Library ", evt -> {
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.CYAN)
+                                .setBackground(Color.CYAN)
                                 .addItem(Icons.ALL.home(), " Home ", evt -> {
                                 })
                                 .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -251,7 +250,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.TEAL)
+                                .setBackground(Color.TEAL)
                                 .addItem(Icons.ALL.home(), " Home ", evt -> {
                                 })
                                 .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -262,7 +261,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement())
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Background.ORANGE)
+                                .setBackground(Color.ORANGE)
                                 .addItem(Icons.ALL.home(), " Home ", evt -> {
                                 })
                                 .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -284,7 +283,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
     private void alignment() {
         element.appendChild(Card.create("ALIGNMENTS")
                 .appendContent(Breadcrumb.create()
-                        .setBackground(Background.PINK)
+                        .setBackground(Color.PINK)
                         .addItem(Icons.ALL.home(), " Home ", evt -> {
                         })
                         .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -292,7 +291,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .appendContent(Breadcrumb.create()
                         .alignCenter()
-                        .setBackground(Background.CYAN)
+                        .setBackground(Color.CYAN)
                         .addItem(Icons.ALL.home(), " Home ", evt -> {
                         })
                         .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -302,7 +301,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .appendContent(Breadcrumb.create()
                         .alignRight()
-                        .setBackground(Background.TEAL)
+                        .setBackground(Color.TEAL)
                         .addItem(Icons.ALL.home(), " Home ", evt -> {
                         })
                         .addItem(Icons.ALL.library_books(), " Library ", evt -> {
