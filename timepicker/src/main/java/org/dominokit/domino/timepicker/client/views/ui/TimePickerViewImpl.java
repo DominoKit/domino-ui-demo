@@ -58,6 +58,11 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .fixedWidth("300px")
                                 .hideClearButton()
                                 .hideCloseButton()
+                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
+                                        Notification.create(timePicker.getFormattedTime())
+                                                .setPosition(Notification.TOP_CENTER)
+                                                .setBackground(ColorScheme.BLUE.darker_2())
+                                                .show())
                                 .asElement()))
                         .addColumn(column.copy().addElement(TimePicker.create(new DateTimeFormatInfoImpl_de())
                                 .fixedWidth("300px")
