@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .hour-picker{
     position: absolute;
     left: 0px;
@@ -81,3 +82,6 @@ private HTMLDivElement element = div().css("calendar").asElement();
 
 
 
+=======
+/* for development only */
+>>>>>>> baed04e6ee0f4faeed252bd3f1f7fe70329ea601

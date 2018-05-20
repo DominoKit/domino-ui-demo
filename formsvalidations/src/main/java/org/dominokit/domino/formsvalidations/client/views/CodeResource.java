@@ -1,4 +1,4 @@
-package org.dominokit.domino.timepicker.client.views;
+package org.dominokit.domino.formsvalidations.client.views;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
@@ -10,13 +10,5 @@ public interface CodeResource extends ClientBundle{
 
     @Source("sample.txt")
     ExternalTextResource sample();
-    @Source("inlined.txt")
-    ExternalTextResource inlined();
-
-    @Source("popups.txt")
-    ExternalTextResource popups();
-
-    @Source("timebox.txt")
-    ExternalTextResource timebox();
 
 }
