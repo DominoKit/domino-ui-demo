@@ -572,6 +572,8 @@
                     <moduleName>org.dominokit.domino.ui.demo.AppClientModule</moduleName>
                     <moduleShortName>app</moduleShortName>
                     <compilerArgs>
+                        <!--<compilerArg>-style</compilerArg>-->
+                        <!--<compilerArg>PRETTY</compilerArg>-->
                         <compilerArg>-compileReport</compilerArg>
                         <compilerArg>-extra</compilerArg>
                         <compilerArg>${build.directory}/gwt/extra</compilerArg>

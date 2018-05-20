@@ -86,7 +86,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement()))
                         .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-                                .setBackground(ColorScheme.AMBER)
+                                .setColorScheme(ColorScheme.AMBER)
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .fixedWidth("265px")
@@ -100,7 +100,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .todayButtonText("aujourd'hui")
                                 .asElement()))
                         .addColumn(column.copy().addElement(DatePicker.create()
-                                .setBackground(ColorScheme.GREEN)
+                                .setColorScheme(ColorScheme.GREEN)
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .fixedWidth("265px")
@@ -129,7 +129,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 })
                                 .asElement()))
                         .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-                                .setBackground(ColorScheme.AMBER)
+                                .setColorScheme(ColorScheme.AMBER)
                                 .hideClearButton()
                                 .hideHeaderPanel()
                                 .hideCloseButton()
@@ -144,7 +144,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .todayButtonText("aujourd'hui")
                                 .asElement()))
                         .addColumn(column.copy().addElement(DatePicker.create()
-                                .setBackground(ColorScheme.GREEN)
+                                .setColorScheme(ColorScheme.GREEN)
                                 .hideClearButton()
                                 .hideHeaderPanel()
                                 .hideCloseButton()
@@ -185,7 +185,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
         Button amberPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
         DatePicker amberPopDatePicker = DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-                .setBackground(ColorScheme.AMBER)
+                .setColorScheme(ColorScheme.AMBER)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -205,7 +205,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
         Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
         DatePicker greenPopDatePicker = DatePicker.create()
-                .setBackground(ColorScheme.GREEN)
+                .setColorScheme(ColorScheme.GREEN)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -249,7 +249,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
         Button amberModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
         DatePicker amberDatePicker = DatePicker.create()
-                .setBackground(ColorScheme.AMBER)
+                .setColorScheme(ColorScheme.AMBER)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -273,7 +273,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
         Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
         DatePicker greenDatePicker = DatePicker.create()
-                .setBackground(ColorScheme.GREEN)
+                .setColorScheme(ColorScheme.GREEN)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
                     Notification.create(dateTimeFormat.format(date))
@@ -324,7 +324,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
         DateBox dateBox2 = DateBox.create("Birth date", new Date(), new DateTimeFormatInfoImpl_fr())
                 .floating();
 
-        dateBox2.getDatePicker().setBackground(ColorScheme.AMBER);
+        dateBox2.getDatePicker().setColorScheme(ColorScheme.AMBER);
 
 
         DateBox dateBox3 = DateBox.create()
@@ -333,7 +333,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .setPickerStyle(DateBox.PickerStyle.POPOVER)
                 .setPlaceholder("Birth date");
 
-        dateBox3.getDatePicker().setBackground(ColorScheme.GREEN);
+        dateBox3.getDatePicker().setColorScheme(ColorScheme.GREEN);
 
 
         element.appendChild(Card.create("DATE BOX")
