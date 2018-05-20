@@ -1,11 +1,10 @@
-Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(Background.BLUE);
+Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
 DatePicker bluePopDatePicker = DatePicker.create()
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
-                    .duration(150000)
                     .setPosition(Notification.TOP_LEFT)
-                    .setBackground(Background.BLUE)
+                    .setBackground(ColorScheme.BLUE.color())
                     .show();
         });
 Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Birth date", bluePopDatePicker
@@ -14,18 +13,18 @@ Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Birth date", 
 bluePopDatePicker.addCloseHandler(() -> bluePopover.close());
 bluePopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_LEFT)
-        .setBackground(Background.BLUE)
+        .setBackground(ColorScheme.BLUE.color())
         .show());
 
 
-Button amberPopupButton = IconButton.create(Icons.ALL.event()).setBackground(Background.AMBER);
+Button amberPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
 DatePicker amberPopDatePicker = DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-        .setBackground(Background.AMBER)
+        .setColorScheme(ColorScheme.AMBER)
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
                     .setPosition(Notification.TOP_CENTER)
-                    .setBackground(Background.AMBER)
+                    .setBackground(ColorScheme.AMBER.color())
                     .show();
         });
 Popover amberPopover = Popover.create(amberPopupButton.asElement(), "Birth date", amberPopDatePicker
@@ -34,18 +33,18 @@ Popover amberPopover = Popover.create(amberPopupButton.asElement(), "Birth date"
 amberPopDatePicker.addCloseHandler(() -> amberPopover.close());
 amberPopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_CENTER)
-        .setBackground(Background.AMBER)
+        .setBackground(ColorScheme.AMBER.color())
         .show());
 
 
-Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(Background.GREEN);
+Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
 DatePicker greenPopDatePicker = DatePicker.create()
-        .setBackground(Background.GREEN)
+        .setColorScheme(ColorScheme.GREEN)
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
                     .setPosition(Notification.TOP_RIGHT)
-                    .setBackground(Background.GREEN)
+                    .setBackground(ColorScheme.GREEN.color())
                     .show();
         });
 Popover greenPopover = Popover.create(greenPopupButton.asElement(), "Birth date", greenPopDatePicker
@@ -54,24 +53,24 @@ Popover greenPopover = Popover.create(greenPopupButton.asElement(), "Birth date"
 greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
 greenPopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_RIGHT)
-        .setBackground(Background.GREEN)
+        .setBackground(ColorScheme.GREEN.color())
         .show());
 
 
-Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(Background.BLUE);
+Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
 DatePicker blueDatePicker = DatePicker.create()
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
                     .setPosition(Notification.TOP_LEFT)
-                    .setBackground(Background.BLUE)
+                    .setBackground(ColorScheme.BLUE.color())
                     .show();
         });
 ModalDialog blueModal = blueDatePicker.createModal("Birth date");
 blueDatePicker.addCloseHandler(() -> blueModal.close());
 blueDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_LEFT)
-        .setBackground(Background.BLUE)
+        .setBackground(ColorScheme.BLUE.color())
         .show());
 
 
@@ -82,14 +81,14 @@ DomGlobal.document.body.appendChild(blueModal.asElement());
 blueModalButton.addClickListener(evt -> blueModal.open());
 
 
-Button amberModalButton = IconButton.create(Icons.ALL.event()).setBackground(Background.AMBER);
+Button amberModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
 DatePicker amberDatePicker = DatePicker.create()
-        .setBackground(Background.AMBER)
+        .setColorScheme(ColorScheme.AMBER)
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
                     .setPosition(Notification.TOP_CENTER)
-                    .setBackground(Background.AMBER)
+                    .setBackground(ColorScheme.AMBER.color())
                     .show();
         });
 ModalDialog amberModal = amberDatePicker.createModal("Birth date");
@@ -97,7 +96,7 @@ ModalDialog amberModal = amberDatePicker.createModal("Birth date");
 amberDatePicker.addCloseHandler(() -> amberModal.close());
 amberDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_CENTER)
-        .setBackground(Background.AMBER)
+        .setBackground(ColorScheme.AMBER.color())
         .show());
 
 amberModal.appendContent(amberDatePicker.asElement());
@@ -106,21 +105,21 @@ DomGlobal.document.body.appendChild(amberModal.asElement());
 amberModalButton.addClickListener(evt -> amberModal.open());
 
 
-Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(Background.GREEN);
+Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
 DatePicker greenDatePicker = DatePicker.create()
-        .setBackground(Background.GREEN)
+        .setColorScheme(ColorScheme.GREEN)
         .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
             DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
             Notification.create(dateTimeFormat.format(date))
                     .setPosition(Notification.TOP_RIGHT)
-                    .setBackground(Background.GREEN)
+                    .setBackground(ColorScheme.GREEN.color())
                     .show();
         });
 ModalDialog greenModal = greenDatePicker.createModal("Birth date");
 greenDatePicker.addCloseHandler(() -> greenModal.close());
 greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
         .setPosition(Notification.TOP_RIGHT)
-        .setBackground(Background.GREEN)
+        .setBackground(ColorScheme.GREEN.color())
         .show());
 
 greenModal.appendContent(greenDatePicker.asElement());
