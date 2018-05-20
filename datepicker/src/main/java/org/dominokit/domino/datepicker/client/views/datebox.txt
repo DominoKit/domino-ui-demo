@@ -1,3 +1,6 @@
+Column column=this.column.copy()
+        .removeCssClass(Styles.padding_0);
+
 DateBox dateBox1 = DateBox.create()
         .floating()
         .setPlaceholder("Birth date");
@@ -5,7 +8,7 @@ DateBox dateBox1 = DateBox.create()
 DateBox dateBox2 = DateBox.create("Birth date", new Date(), new DateTimeFormatInfoImpl_fr())
         .floating();
 
-dateBox2.getDatePicker().setBackground(Background.AMBER);
+dateBox2.getDatePicker().setColorScheme(ColorScheme.AMBER);
 
 
 DateBox dateBox3 = DateBox.create()
@@ -14,7 +17,7 @@ DateBox dateBox3 = DateBox.create()
         .setPickerStyle(DateBox.PickerStyle.POPOVER)
         .setPlaceholder("Birth date");
 
-dateBox3.getDatePicker().setBackground(Background.GREEN);
+dateBox3.getDatePicker().setColorScheme(ColorScheme.GREEN);
 
 
 element.appendChild(Card.create("DATE BOX")

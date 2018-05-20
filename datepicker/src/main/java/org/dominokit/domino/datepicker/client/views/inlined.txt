@@ -1,89 +1,89 @@
 element.appendChild(Card.create("INLINED")
-.appendContent(BlockHeader.create("Header visible").asElement())
-.appendContent(Row.create()
-        .addColumn(column.copy().addElement(DatePicker.create()
-                .hideClearButton()
-                .hideCloseButton()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_LEFT)
-                            .setBackground(Background.BLUE)
-                            .show();
-                })
-                .asElement()))
-        .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-                .setBackground(Background.AMBER)
-                .hideClearButton()
-                .hideCloseButton()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_CENTER)
-                            .setBackground(Background.AMBER.darker())
-                            .show();
-                })
-                .todayButtonText("aujourd'hui")
-                .asElement()))
-        .addColumn(column.copy().addElement(DatePicker.create()
-                .setBackground(Background.GREEN)
-                .hideClearButton()
-                .hideCloseButton()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_RIGHT)
-                            .setBackground(Background.GREEN.darker())
-                            .show();
-                })
-                .asElement()))
-        .asElement())
-.appendContent(BlockHeader.create("Header hidden").asElement())
-.appendContent(Row.create()
-        .addColumn(column.copy().addElement(DatePicker.create()
-                .hideClearButton()
-                .hideCloseButton()
-                .hideHeaderPanel()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_LEFT)
-                            .setBackground(Background.BLUE)
-                            .show();
-                })
-                .asElement()))
-        .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
-                .setBackground(Background.AMBER)
-                .hideClearButton()
-                .hideHeaderPanel()
-                .hideCloseButton()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_CENTER)
-                            .setBackground(Background.AMBER.darker())
-                            .show();
-                })
-                .todayButtonText("aujourd'hui")
-                .asElement()))
-        .addColumn(column.copy().addElement(DatePicker.create()
-                .setBackground(Background.GREEN)
-                .hideClearButton()
-                .hideHeaderPanel()
-                .hideCloseButton()
-                .fixedWidth("265px")
-                .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
-                    DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
-                    Notification.create(dateTimeFormat.format(date))
-                            .setPosition(Notification.TOP_RIGHT)
-                            .setBackground(Background.GREEN.darker())
-                            .show();
-                })
-                .asElement()))
-        .asElement())
-.asElement());
+    .appendContent(BlockHeader.create("Header visible").asElement())
+    .appendContent(Row.create()
+            .addColumn(column.copy().addElement(DatePicker.create()
+                    .hideClearButton()
+                    .hideCloseButton()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_LEFT)
+                                .setBackground(Color.BLUE)
+                                .show();
+                    })
+                    .asElement()))
+            .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
+                    .setColorScheme(ColorScheme.AMBER)
+                    .hideClearButton()
+                    .hideCloseButton()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_CENTER)
+                                .setBackground(ColorScheme.AMBER.darker_2())
+                                .show();
+                    })
+                    .todayButtonText("aujourd'hui")
+                    .asElement()))
+            .addColumn(column.copy().addElement(DatePicker.create()
+                    .setColorScheme(ColorScheme.GREEN)
+                    .hideClearButton()
+                    .hideCloseButton()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_RIGHT)
+                                .setBackground(ColorScheme.GREEN.darker_2())
+                                .show();
+                    })
+                    .asElement()))
+            .asElement())
+    .appendContent(BlockHeader.create("Header hidden").asElement())
+    .appendContent(Row.create()
+            .addColumn(column.copy().addElement(DatePicker.create()
+                    .hideClearButton()
+                    .hideCloseButton()
+                    .hideHeaderPanel()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_LEFT)
+                                .setBackground(ColorScheme.BLUE.color())
+                                .show();
+                    })
+                    .asElement()))
+            .addColumn(column.copy().addElement(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
+                    .setColorScheme(ColorScheme.AMBER)
+                    .hideClearButton()
+                    .hideHeaderPanel()
+                    .hideCloseButton()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_CENTER)
+                                .setBackground(ColorScheme.AMBER.darker_2())
+                                .show();
+                    })
+                    .todayButtonText("aujourd'hui")
+                    .asElement()))
+            .addColumn(column.copy().addElement(DatePicker.create()
+                    .setColorScheme(ColorScheme.GREEN)
+                    .hideClearButton()
+                    .hideHeaderPanel()
+                    .hideCloseButton()
+                    .fixedWidth("265px")
+                    .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
+                        DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
+                        Notification.create(dateTimeFormat.format(date))
+                                .setPosition(Notification.TOP_RIGHT)
+                                .setBackground(ColorScheme.GREEN.darker_2())
+                                .show();
+                    })
+                    .asElement()))
+            .asElement())
+    .asElement());
