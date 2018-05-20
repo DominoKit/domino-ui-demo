@@ -59,7 +59,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(textAreaCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
         element.appendChild(selectCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dropdownSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
         element.appendChild(checkboxCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
         element.appendChild(radioCard.asElement());
@@ -124,12 +124,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         Radio radio1Gap = Radio.create("Radio 1 - With Gap").withGap();
         Radio radio2Gap = Radio.create("Radio 2 - With Gap").withGap();
 
-        radio1.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
-        radio2.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
-        radio1Gap.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
-        radio2Gap.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
-
-        RadioGroup horizontalRadioGroup = RadioGroup.create()
+        RadioGroup horizontalRadioGroup = RadioGroup.create("test")
                 .addRadio(radio1)
                 .addRadio(radio2)
                 .addRadio(radio1Gap)
@@ -142,8 +137,8 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         firstDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         secondsDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
-        RadioGroup firstDisabledGroup = RadioGroup.create().addRadio(firstDisabledRadio);
-        RadioGroup secondDisabledGroup = RadioGroup.create().addRadio(secondsDisabledRadio);
+        RadioGroup firstDisabledGroup = RadioGroup.create("disabled").addRadio(firstDisabledRadio);
+        RadioGroup secondDisabledGroup = RadioGroup.create("disabled").addRadio(secondsDisabledRadio);
 
         radioCard.appendContent(Row.create()
                 .addColumn(column
@@ -161,7 +156,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         radioCard.appendContent(Row.create()
                 .addColumn(column.copy()
                         .addElement(Elements.h(5).textContent("With Material Design Colors").asElement())
-                        .addElement(RadioGroup.create()
+                        .addElement(RadioGroup.create("color")
                                 .addRadio(Radio.create("RED").setColor(Color.RED).check())
                                 .addRadio(Radio.create("PINK").setColor(Color.PINK))
                                 .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE))
@@ -178,7 +173,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .asElement()))
                 .addColumn(column.copy()
                         .addElement(Elements.h(5).textContent("With Material Design Colors with gap").asElement())
-                        .addElement(RadioGroup.create()
+                        .addElement(RadioGroup.create("color-with-gap")
                                 .addRadio(Radio.create("RED").setColor(Color.RED).withGap().check())
                                 .addRadio(Radio.create("PINK").setColor(Color.PINK).withGap())
                                 .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
@@ -276,13 +271,13 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void initSelectExample() {
         Column column = Column.create().onSmall(Column.OnSmall.six);
-        DropDown dropDown = DropDown.create()
-                .addOption(DropDownOption.create("nothing", "-- please select --"))
-                .addOption(DropDownOption.create("value10", "10"))
-                .addOption(DropDownOption.create("value20", "20"))
-                .addOption(DropDownOption.create("value30", "30"))
-                .addOption(DropDownOption.create("value40", "40"))
-                .addOption(DropDownOption.create("value50", "50"))
+        Select select = Select.create()
+                .addOption(SelectOption.create("nothing", "-- please select --"))
+                .addOption(SelectOption.create("value10", "10"))
+                .addOption(SelectOption.create("value20", "20"))
+                .addOption(SelectOption.create("value30", "30"))
+                .addOption(SelectOption.create("value40", "40"))
+                .addOption(SelectOption.create("value50", "50"))
                 .selectAt(0)
                 .addSelectionHandler(option -> {
                     Notification.create("Item selected [ " + option.getValue() + " ], [ " + option.getDisplayValue() + " ]").show();
@@ -290,10 +285,10 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         selectCard.appendContent(Row.create()
                 .addColumn(column
-                        .addElement(dropDown.asElement()))
+                        .addElement(select.asElement()))
                 .addColumn(column.copy()
-                        .addElement(DropDown.create()
-                                .addOption(DropDownOption.create("Disabled"))
+                        .addElement(Select.create()
+                                .addOption(SelectOption.create("Disabled"))
                                 .selectAt(0)
                                 .disable()
                                 .asElement())).asElement());
@@ -302,13 +297,13 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         selectCard.appendContent(Row.create()
                 .addColumn(column.copy()
-                        .addElement(DropDown.create()
-                                .addOption(DropDownOption.create("-- please select --"))
-                                .addOption(DropDownOption.create("10"))
-                                .addOption(DropDownOption.create("20"))
-                                .addOption(DropDownOption.create("30"))
-                                .addOption(DropDownOption.create("40"))
-                                .addOption(DropDownOption.create("50"))
+                        .addElement(Select.create()
+                                .addOption(SelectOption.create("-- please select --"))
+                                .addOption(SelectOption.create("10"))
+                                .addOption(SelectOption.create("20"))
+                                .addOption(SelectOption.create("30"))
+                                .addOption(SelectOption.create("40"))
+                                .addOption(SelectOption.create("50"))
                                 .selectAt(0)
                                 .dropup()
                                 .addSelectionHandler(option -> {
@@ -318,8 +313,8 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void initBasicExamples() {
         inputCard.appendContent(BlockHeader.create("Basic Example").asElement())
-                .appendContent(TextBox.create("Username").asElement())
-                .appendContent(TextBox.password("Password").asElement());
+                .appendContent(TextBox.create().setPlaceholder("Username").asElement())
+                .appendContent(TextBox.password().setPlaceholder("Password").asElement());
     }
 
     private void initDifferentWidths() {
@@ -331,44 +326,47 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         inputCard.appendContent(BlockHeader.create("Different Widths").asElement())
                 .appendContent(Row.create()
                         .addColumn(column6Size
-                                .addElement(TextBox.create("col-sm-6").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-6").asElement()))
                         .addColumn(column6Size.copy()
-                                .addElement(TextBox.create("col-sm-6").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-6").asElement()))
                         .asElement())
                 .appendContent(Row.create()
                         .addColumn(column4Size
-                                .addElement(TextBox.create("col-sm-4").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-4").asElement()))
                         .addColumn(column4Size.copy()
-                                .addElement(TextBox.create("col-sm-4").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-4").asElement()))
                         .addColumn(column4Size.copy()
-                                .addElement(TextBox.create("col-sm-4").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-4").asElement()))
                         .asElement())
                 .appendContent(Row.create()
                         .addColumn(column3Size
-                                .addElement(TextBox.create("col-sm-3").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-3").asElement()))
                         .addColumn(column3Size.copy()
-                                .addElement(TextBox.create("col-sm-3").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-3").asElement()))
                         .addColumn(column3Size.copy()
-                                .addElement(TextBox.create("col-sm-3").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-3").asElement()))
                         .addColumn(column3Size.copy()
-                                .addElement(TextBox.create("col-sm-3").asElement()))
+                                .addElement(TextBox.create().setPlaceholder("col-sm-3").asElement()))
                         .asElement());
     }
 
     private void initDifferentSizes() {
         inputCard.appendContent(BlockHeader.create("Different Sizes").asElement())
-                .appendContent(TextBox.create("Large Input").large().asElement())
-                .appendContent(TextBox.create("Default Input").asElement())
-                .appendContent(TextBox.create("Small Input").small().asElement());
+                .appendContent(TextBox.create().setPlaceholder("Large Input").large().asElement())
+                .appendContent(TextBox.create().setPlaceholder("Default Input").asElement())
+                .appendContent(TextBox.create().setPlaceholder("Small Input").small().asElement());
     }
 
     private void initFloatingLabel() {
         inputCard.appendContent(BlockHeader.create("Floating Label Examples").asElement())
-                .appendContent(TextBox.create("Username").floating().asElement())
-                .appendContent(TextBox.password("Password").floating().asElement())
-                .appendContent(TextBox.create("Large Input").large().floating().asElement())
-                .appendContent(TextBox.create("Default Input").floating().asElement())
-                .appendContent(TextBox.create("Small Input").small().floating().asElement());
+                .appendContent(TextBox.create("Username").asElement())
+                .appendContent(TextBox.password("Password").asElement())
+                .appendContent(TextBox.create("Large Input").large().asElement())
+                .appendContent(TextBox.create("Default Input").asElement())
+                .appendContent(TextBox.create("Small Input").small().asElement())
+                .appendContent(BlockHeader.create("Always floating").asElement())
+                .appendContent(TextBox.create("Age").floating().asElement())
+                .appendContent(TextBox.create("Email").floating().asElement());
     }
 
     private void initInputStatus() {
@@ -384,9 +382,12 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void initBasicTextAreaExample() {
         textAreaCard.appendContent(BlockHeader.create("Basic Examples").asElement())
-                .appendContent(TextArea.create("Start typing here...").asElement());
+                .appendContent(TextArea.create().setPlaceholder("Start typing here...").asElement());
 
         textAreaCard.appendContent(BlockHeader.create("Auto Growing Vertical Direction").asElement())
-                .appendContent(TextArea.create("Start typing here...").autoSize().asElement());
+                .appendContent(TextArea.create().setPlaceholder("Start typing here...").autoSize().asElement());
+
+        textAreaCard.appendContent(BlockHeader.create("Text Area With Label").asElement())
+                .appendContent(TextArea.create("Description").autoSize().asElement());
     }
 }

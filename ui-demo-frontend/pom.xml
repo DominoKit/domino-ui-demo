@@ -254,6 +254,17 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>formsvalidations</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>formsvalidations</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>datepicker</artifactId>
             <version>${project.version}</version>
         </dependency>
