@@ -14,8 +14,8 @@ public interface CodeResource extends ClientBundle {
     @Source("textarea-samples.txt")
     ExternalTextResource textareaSamples();
 
-    @Source("dropdown-samples.txt")
-    ExternalTextResource dropdownSamples();
+    @Source("select-samples.txt")
+    ExternalTextResource selectSamples();
 
     @Source("checkbox-samples.txt")
     ExternalTextResource checkBoxSamples();
