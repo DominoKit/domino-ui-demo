@@ -60,7 +60,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_CENTER)
+                                                .setPosition(Notification.TOP_LEFT)
                                                 .setBackground(ColorScheme.BLUE.darker_2())
                                                 .show())
                                 .asElement()))
