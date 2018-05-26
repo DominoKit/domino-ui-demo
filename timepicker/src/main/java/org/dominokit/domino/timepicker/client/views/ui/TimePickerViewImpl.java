@@ -27,6 +27,7 @@ import org.dominokit.domino.ui.timepicker.TimePicker;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.tr;
 
 @UiView(presentable = TimePickerPresenter.class)
 public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements TimePickerView {
@@ -52,7 +53,6 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void inlined() {
         element.appendChild(Card.create("INLINED")
-                .appendContent(BlockHeader.create("Header visible").asElement())
                 .appendContent(Row.create()
                         .addColumn(column.copy().addElement(TimePicker.create()
                                 .fixedWidth("300px")
@@ -60,7 +60,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_CENTER)
+                                                .setPosition(Notification.TOP_LEFT)
                                                 .setBackground(ColorScheme.BLUE.darker_2())
                                                 .show())
                                 .asElement()))
@@ -68,62 +68,20 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .fixedWidth("300px")
                                 .setColorScheme(ColorScheme.PINK)
                                 .hideClearButton()
+                                .setShowSwitchers(true)
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         Notification.create(timePicker.getFormattedTime())
                                                 .setPosition(Notification.TOP_CENTER)
                                                 .setBackground(ColorScheme.PINK.darker_2())
                                                 .show())
-                                .todayButtonText("nu")
+                                .todayButtonText("nu".toUpperCase())
                                 .asElement()))
                         .addColumn(column.copy().addElement(TimePicker.create()
                                 .fixedWidth("300px")
                                 .setColorScheme(ColorScheme.GREEN)
                                 .setClockStyle(ClockStyle._24)
                                 .hideClearButton()
-                                .hideCloseButton()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_RIGHT)
-                                                .setBackground(ColorScheme.GREEN.darker_2())
-                                                .show())
-                                .asElement()))
-                        .asElement())
-                .appendContent(BlockHeader.create("Header hidden").asElement())
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(TimePicker.create()
-                                .fixedWidth("300px")
-                                .hideHeaderPanel()
-                                .hideClearButton()
-                                .hideCloseButton()
-                                .hideHeaderPanel()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_LEFT)
-                                                .setBackground(ColorScheme.BLUE.color())
-                                                .show())
-                                .asElement()))
-                        .addColumn(column.copy().addElement(TimePicker.create(new DateTimeFormatInfoImpl_de())
-                                .fixedWidth("300px")
-                                .hideHeaderPanel()
-                                .setColorScheme(ColorScheme.PINK)
-                                .hideClearButton()
-                                .hideHeaderPanel()
-                                .hideCloseButton()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_CENTER)
-                                                .setBackground(ColorScheme.PINK.darker_2())
-                                                .show())
-                                .todayButtonText("nu")
-                                .asElement()))
-                        .addColumn(column.copy().addElement(TimePicker.create()
-                                .fixedWidth("300px")
-                                .hideHeaderPanel()
-                                .setColorScheme(ColorScheme.GREEN)
-                                .setClockStyle(ClockStyle._24)
-                                .hideClearButton()
-                                .hideHeaderPanel()
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         Notification.create(timePicker.getFormattedTime())
