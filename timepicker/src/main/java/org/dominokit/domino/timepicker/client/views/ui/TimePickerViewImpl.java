@@ -27,7 +27,6 @@ import org.dominokit.domino.ui.timepicker.TimePicker;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.tr;
 
 @UiView(presentable = TimePickerPresenter.class)
 public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements TimePickerView {
@@ -55,39 +54,34 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(Card.create("INLINED")
                 .appendContent(Row.create()
                         .addColumn(column.copy().addElement(TimePicker.create()
-                                .fixedWidth("300px")
+                                .fixedWidth("270px")
+                                .showBorder()
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_LEFT)
-                                                .setBackground(ColorScheme.BLUE.darker_2())
-                                                .show())
+                                        DomGlobal.console.info(timePicker.getFormattedTime())
+                                )
                                 .asElement()))
                         .addColumn(column.copy().addElement(TimePicker.create(new DateTimeFormatInfoImpl_de())
-                                .fixedWidth("300px")
+                                .fixedWidth("270px")
                                 .setColorScheme(ColorScheme.PINK)
+                                .showBorder()
                                 .hideClearButton()
                                 .setShowSwitchers(true)
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_CENTER)
-                                                .setBackground(ColorScheme.PINK.darker_2())
-                                                .show())
+                                        DomGlobal.console.info(timePicker.getFormattedTime()))
                                 .todayButtonText("nu".toUpperCase())
                                 .asElement()))
                         .addColumn(column.copy().addElement(TimePicker.create()
-                                .fixedWidth("300px")
+                                .fixedWidth("270px")
                                 .setColorScheme(ColorScheme.GREEN)
                                 .setClockStyle(ClockStyle._24)
+                                .showBorder()
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        Notification.create(timePicker.getFormattedTime())
-                                                .setPosition(Notification.TOP_RIGHT)
-                                                .setBackground(ColorScheme.GREEN.darker_2())
-                                                .show())
+                                        DomGlobal.console.info(timePicker.getFormattedTime()))
                                 .asElement()))
                         .asElement())
                 .asElement());
@@ -98,11 +92,9 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
     private void popups() {
         Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
         TimePicker bluePopTimePicker = TimePicker.create()
+                .showBorder()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_LEFT)
-                                .setBackground(ColorScheme.BLUE.color())
-                                .show());
+                        DomGlobal.console.info(picker.getFormattedTime()));
         Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Wakeup", bluePopTimePicker
                 .asElement());
 
@@ -118,11 +110,8 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_CENTER)
-                                .setBackground(ColorScheme.PINK.color())
-                                .show());
-        Popover pinkPopover = Popover.create(pinkPopupButton.asElement(), "Wakeup", pinkPopDatePicker
+                        DomGlobal.console.info(picker.getFormattedTime()));
+        Popover pinkPopover = Popover.createPicker(pinkPopupButton.asElement(),  pinkPopDatePicker
                 .asElement());
 
         pinkPopDatePicker.addCloseHandler(() -> pinkPopover.close());
@@ -137,11 +126,8 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         TimePicker greenPopDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_RIGHT)
-                                .setBackground(ColorScheme.GREEN.color())
-                                .show());
-        Popover greenPopover = Popover.create(greenPopupButton.asElement(), "Wakeup", greenPopDatePicker
+                        DomGlobal.console.info(picker.getFormattedTime()));
+        Popover greenPopover = Popover.createPicker(greenPopupButton.asElement(), greenPopDatePicker
                 .asElement());
 
         greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
@@ -155,10 +141,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
         TimePicker blueDatePicker = TimePicker.create()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_LEFT)
-                                .setBackground(ColorScheme.BLUE.color())
-                                .show());
+                        DomGlobal.console.info(picker.getFormattedTime()));
 
         ModalDialog blueModal = blueDatePicker.createModal("Wakeup");
         blueDatePicker.addCloseHandler(() -> blueModal.close());
@@ -178,10 +161,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         TimePicker pinkDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_CENTER)
-                                .setBackground(ColorScheme.PINK.color())
-                                .show());
+                        DomGlobal.console.info(picker.getFormattedTime()));
         ModalDialog pinkModal = pinkDatePicker.createModal("Wakeup");
 
         pinkDatePicker.addCloseHandler(() -> pinkModal.close());
@@ -200,10 +180,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
         TimePicker greenDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        Notification.create(picker.getFormattedTime())
-                                .setPosition(Notification.TOP_RIGHT)
-                                .setBackground(ColorScheme.GREEN.color())
-                                .show());
+                        DomGlobal.console.info(picker.getFormattedTime()));
         ModalDialog greenModal = greenDatePicker.createModal("Wakeup");
         greenDatePicker.addCloseHandler(() -> greenModal.close());
         greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
