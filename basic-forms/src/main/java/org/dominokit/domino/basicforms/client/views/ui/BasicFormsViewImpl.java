@@ -119,10 +119,10 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .onLarge(Column.OnLarge.six);
         radioCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
 
-        Radio radio1 = Radio.create("Radio - 1").check();
-        Radio radio2 = Radio.create("Radio - 2");
-        Radio radio1Gap = Radio.create("Radio 1 - With Gap").withGap();
-        Radio radio2Gap = Radio.create("Radio 2 - With Gap").withGap();
+        Radio radio1 = Radio.create("radio1", "Radio - 1").check();
+        Radio radio2 = Radio.create("radio2", "Radio - 2");
+        Radio radio1Gap = Radio.create("radio1_gap", "Radio 1 - With Gap").withGap();
+        Radio radio2Gap = Radio.create("radio2_gap", "Radio 2 - With Gap").withGap();
 
         RadioGroup horizontalRadioGroup = RadioGroup.create("test")
                 .addRadio(radio1)
@@ -131,8 +131,8 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .addRadio(radio2Gap)
                 .horizontal();
 
-        Radio firstDisabledRadio = Radio.create("Radio - Disabled").check().disable();
-        Radio secondsDisabledRadio = Radio.create("Radio - Disabled").withGap().check().disable();
+        Radio firstDisabledRadio = Radio.create("radio1_disabled", "Radio - Disabled").check().disable();
+        Radio secondsDisabledRadio = Radio.create("radio2_disabled", "Radio - Disabled").withGap().check().disable();
 
         firstDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         secondsDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
@@ -157,36 +157,36 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .addColumn(column.copy()
                         .addElement(Elements.h(5).textContent("With Material Design Colors").asElement())
                         .addElement(RadioGroup.create("color")
-                                .addRadio(Radio.create("RED").setColor(Color.RED).check())
-                                .addRadio(Radio.create("PINK").setColor(Color.PINK))
-                                .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE))
-                                .addRadio(Radio.create("INDIGO").setColor(Color.INDIGO))
-                                .addRadio(Radio.create("BLUE").setColor(Color.BLUE))
-                                .addRadio(Radio.create("CYAN").setColor(Color.CYAN))
-                                .addRadio(Radio.create("TEAL").setColor(Color.TEAL))
-                                .addRadio(Radio.create("GREEN").setColor(Color.GREEN))
-                                .addRadio(Radio.create("LIME").setColor(Color.LIME))
-                                .addRadio(Radio.create("YELLOW").setColor(Color.YELLOW))
-                                .addRadio(Radio.create("AMBER").setColor(Color.AMBER))
-                                .addRadio(Radio.create("ORANGE").setColor(Color.ORANGE))
-                                .addRadio(Radio.create("GREY").setColor(Color.GREY))
+                                .addRadio(Radio.create("RED", "RED").setColor(Color.RED).check())
+                                .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK))
+                                .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
+                                .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
+                                .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
+                                .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
+                                .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
+                                .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
+                                .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME))
+                                .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW))
+                                .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER))
+                                .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE))
+                                .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY))
                                 .asElement()))
                 .addColumn(column.copy()
                         .addElement(Elements.h(5).textContent("With Material Design Colors with gap").asElement())
                         .addElement(RadioGroup.create("color-with-gap")
-                                .addRadio(Radio.create("RED").setColor(Color.RED).withGap().check())
-                                .addRadio(Radio.create("PINK").setColor(Color.PINK).withGap())
-                                .addRadio(Radio.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
-                                .addRadio(Radio.create("INDIGO").setColor(Color.INDIGO).withGap())
-                                .addRadio(Radio.create("BLUE").setColor(Color.BLUE).withGap())
-                                .addRadio(Radio.create("CYAN").setColor(Color.CYAN).withGap())
-                                .addRadio(Radio.create("TEAL").setColor(Color.TEAL).withGap())
-                                .addRadio(Radio.create("GREEN").setColor(Color.GREEN).withGap())
-                                .addRadio(Radio.create("LIME").setColor(Color.LIME).withGap())
-                                .addRadio(Radio.create("YELLOW").setColor(Color.YELLOW).withGap())
-                                .addRadio(Radio.create("AMBER").setColor(Color.AMBER).withGap())
-                                .addRadio(Radio.create("ORANGE").setColor(Color.ORANGE).withGap())
-                                .addRadio(Radio.create("GREY").setColor(Color.GREY).withGap())
+                                .addRadio(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
+                                .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
+                                .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
+                                .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO).withGap())
+                                .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).withGap())
+                                .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN).withGap())
+                                .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL).withGap())
+                                .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN).withGap())
+                                .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME).withGap())
+                                .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW).withGap())
+                                .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER).withGap())
+                                .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE).withGap())
+                                .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap())
                                 .asElement())).asElement());
     }
 

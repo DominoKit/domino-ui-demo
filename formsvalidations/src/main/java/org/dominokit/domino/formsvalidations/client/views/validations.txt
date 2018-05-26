@@ -1,0 +1,49 @@
+TextBox name = TextBox.create("Name").setRequired(true).setAutoValidation(true);
+TextBox surename = TextBox.create("Surename").setRequired(true).setAutoValidation(true);
+TextBox email = TextBox.create("Email").setRequired(true).setAutoValidation(true);
+RadioGroup gender = RadioGroup.create("gender", "Gender")
+        .addRadio(Radio.create("male", "Male"))
+        .addRadio(Radio.create("female", "Female"))
+        .horizontal()
+        .setRequired(true)
+        .setAutoValidation(true);
+TextArea description = TextArea.create("Description").setRequired(true).setAutoValidation(true);
+TextBox password = TextBox.password("Password").setRequired(true).setAutoValidation(true);
+CheckBox termsAndConditions = CheckBox.create("I have read and accept the terms").setRequired(true)
+        .setAutoValidation(true);
+Select language = Select.create("Language")
+        .addOption(SelectOption.create("english", "English"))
+        .addOption(SelectOption.create("france", "France"))
+        .addOption(SelectOption.create("arabic", "Arabic"))
+        .setAutoValidation(true)
+        .setRequired(true);
+
+validationsCard.appendContent(name.asElement())
+        .appendContent(surename.asElement())
+        .appendContent(email.asElement())
+        .appendContent(gender
+                .asElement())
+        .appendContent(description.asElement())
+        .appendContent(password.asElement())
+        .appendContent(language.asElement())
+        .appendContent(termsAndConditions.asElement())
+        .appendContent(Button.createPrimary("REGISTER")
+                .addClickListener(evt -> {
+                    if (name.validate() &
+                            surename.validate() &
+                            email.validate() &
+                            gender.validate() &
+                            description.validate() &
+                            password.validate() &
+                            language.validate() &
+                            termsAndConditions.validate()) {
+                        name.clear();
+                        surename.clear();
+                        email.clear();
+                        gender.clear();
+                        description.clear();
+                        password.clear();
+                        language.clear();
+                        termsAndConditions.clear();
+                    }
+                }).asElement());

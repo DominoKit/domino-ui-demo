@@ -1,0 +1,27 @@
+HTMLElement cancel = Icons.ALL.cancel().asElement();
+TextBox username = TextBox.create("Username")
+        .setLeftAddon(Icons.ALL.account_circle().asElement())
+        .setRightAddon(cancel);
+
+cancel.style.cursor = "pointer";
+cancel.addEventListener("click", evt -> {
+    username.clear();
+});
+
+HTMLElement showIcon = Icons.ALL.remove_red_eye().asElement();
+TextBox password = TextBox.password("Password")
+        .setLeftAddon(Icons.ALL.https().asElement())
+        .setRightAddon(showIcon);
+
+showIcon.style.cursor = "pointer";
+showIcon.addEventListener("mousedown", evt -> {
+    password.getInputElement().type = "text";
+});
+showIcon.addEventListener("mouseup", evt -> {
+    password.getInputElement().type = "password";
+});
+iconsCard.appendContent(username.asElement())
+        .appendContent(password.asElement())
+        .appendContent(TextArea.create("Description")
+                .setLeftAddon(Icons.ALL.description().asElement())
+                .asElement());
