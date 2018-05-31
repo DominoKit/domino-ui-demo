@@ -71,7 +71,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         DomGlobal.console.info(timePicker.getFormattedTime()))
-                                .todayButtonText("nu".toUpperCase())
+                                .todayButtonText("nu")
                                 .asElement()))
                         .addColumn(column.copy().addElement(TimePicker.create()
                                 .fixedWidth("270px")
