@@ -2,6 +2,10 @@ package org.dominokit.domino.buttons.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import elemental2.dom.CSSProperties;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLHeadingElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.buttons.client.presenters.ButtonsPresenter;
 import org.dominokit.domino.buttons.client.views.ButtonsView;
@@ -17,10 +21,6 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.StyleType;
-import elemental2.dom.CSSProperties;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import elemental2.dom.HTMLHeadingElement;
 import org.jboss.gwt.elemento.core.Elements;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +29,7 @@ import org.slf4j.LoggerFactory;
 @UiView(presentable = ButtonsPresenter.class)
 public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements ButtonsView {
 
-    private static final Logger LOGGER= LoggerFactory.getLogger(ButtonsViewImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ButtonsViewImpl.class);
 
     private HTMLDivElement element = Elements.div().asElement();
 
@@ -221,17 +221,26 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                 .separator()
                 .addAction(DropdownAction.create("Separated link"));
 
+        DropdownButton dropdownButton = new DropdownButton(Icons.ALL.delete())
+                .addAction(DropdownAction.create("Action"))
+                .addAction(DropdownAction.create("Another action"))
+                .addAction(DropdownAction.create("Something else here"))
+                .separator()
+                .addAction(DropdownAction.create("Separated link"));
+
         defaultDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         primaryDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         infoDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         warningDropdown.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         dangerButton.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        dropdownButton.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         card.appendContent(defaultDropdown.asElement());
         card.appendContent(primaryDropdown.asElement());
         card.appendContent(infoDropdown.asElement());
         card.appendContent(warningDropdown.asElement());
         card.appendContent(dangerButton.asElement());
+        card.appendContent(dropdownButton.asElement());
 
         element.appendChild(card.asElement());
 
@@ -324,8 +333,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
     }
 
     private HTMLElement numbersNestedGroup(StyleType type) {
-        DropdownButton primaryDropDown = DropdownButton.create("Dropdown")
-                .setButtonType(type)
+        DropdownButton primaryDropDown = DropdownButton.create("Dropdown", type)
                 .addAction(DropdownAction.create("Dropdown link"))
                 .addAction(DropdownAction.create("Dropdown link"));
 

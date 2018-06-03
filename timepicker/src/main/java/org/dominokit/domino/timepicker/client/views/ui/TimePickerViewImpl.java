@@ -244,8 +244,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .floating()
                 .setPlaceholder("Wakeup");
 
-        TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de())
-                .floating();
+        TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de());
 
         timeBox2.getTimePicker().setColorScheme(ColorScheme.PINK);
 
