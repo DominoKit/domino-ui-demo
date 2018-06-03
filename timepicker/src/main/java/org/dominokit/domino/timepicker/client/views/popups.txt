@@ -1,10 +1,8 @@
 Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
 TimePicker bluePopTimePicker = TimePicker.create()
+        .showBorder()
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_LEFT)
-                        .setBackground(ColorScheme.BLUE.color())
-                        .show());
+                DomGlobal.console.info(picker.getFormattedTime()));
 Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Wakeup", bluePopTimePicker
         .asElement());
 
@@ -20,11 +18,8 @@ Button pinkPopupButton = IconButton.create(Icons.ALL.event()).setBackground(Colo
 TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
         .setColorScheme(ColorScheme.PINK)
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_CENTER)
-                        .setBackground(ColorScheme.PINK.color())
-                        .show());
-Popover pinkPopover = Popover.create(pinkPopupButton.asElement(), "Wakeup", pinkPopDatePicker
+                DomGlobal.console.info(picker.getFormattedTime()));
+Popover pinkPopover = Popover.createPicker(pinkPopupButton.asElement(),  pinkPopDatePicker
         .asElement());
 
 pinkPopDatePicker.addCloseHandler(() -> pinkPopover.close());
@@ -39,11 +34,8 @@ Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(Col
 TimePicker greenPopDatePicker = TimePicker.create()
         .setColorScheme(ColorScheme.GREEN)
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_RIGHT)
-                        .setBackground(ColorScheme.GREEN.color())
-                        .show());
-Popover greenPopover = Popover.create(greenPopupButton.asElement(), "Wakeup", greenPopDatePicker
+                DomGlobal.console.info(picker.getFormattedTime()));
+Popover greenPopover = Popover.createPicker(greenPopupButton.asElement(), greenPopDatePicker
         .asElement());
 
 greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
@@ -57,10 +49,7 @@ greenPopDatePicker.addClearHandler(() ->
 Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
 TimePicker blueDatePicker = TimePicker.create()
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_LEFT)
-                        .setBackground(ColorScheme.BLUE.color())
-                        .show());
+                DomGlobal.console.info(picker.getFormattedTime()));
 
 ModalDialog blueModal = blueDatePicker.createModal("Wakeup");
 blueDatePicker.addCloseHandler(() -> blueModal.close());
@@ -80,10 +69,7 @@ Button pinkModalButton = IconButton.create(Icons.ALL.event()).setBackground(Colo
 TimePicker pinkDatePicker = TimePicker.create()
         .setColorScheme(ColorScheme.PINK)
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_CENTER)
-                        .setBackground(ColorScheme.PINK.color())
-                        .show());
+                DomGlobal.console.info(picker.getFormattedTime()));
 ModalDialog pinkModal = pinkDatePicker.createModal("Wakeup");
 
 pinkDatePicker.addCloseHandler(() -> pinkModal.close());
@@ -102,10 +88,7 @@ Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(Col
 TimePicker greenDatePicker = TimePicker.create()
         .setColorScheme(ColorScheme.GREEN)
         .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                Notification.create(picker.getFormattedTime())
-                        .setPosition(Notification.TOP_RIGHT)
-                        .setBackground(ColorScheme.GREEN.color())
-                        .show());
+                DomGlobal.console.info(picker.getFormattedTime()));
 ModalDialog greenModal = greenDatePicker.createModal("Wakeup");
 greenDatePicker.addCloseHandler(() -> greenModal.close());
 greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")

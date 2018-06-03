@@ -25,7 +25,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
 
     @Override
     public void init() {
-        element.appendChild(BlockHeader.create("FORM VALIDATIONS").asElement());
+        element.appendChild(BlockHeader.create("FIELDS DECORATION").asElement());
         helperTextCard = Card.create("HELPER TEXTS");
         iconsCard = Card.create("ADDONS");
         countsCard = Card.create("WORD COUNTER");

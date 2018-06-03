@@ -1,4 +1,4 @@
-Column column=this.column.copy()
+Column column = this.column.copy()
         .removeCssClass(Styles.padding_0);
 
 TimeBox timeBox1 = TimeBox.create()
