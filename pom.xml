@@ -123,10 +123,6 @@
                     <configuration>
                         <sourceLevel>1.8</sourceLevel>
                         <failOnError>true</failOnError>
-                        <codeserverArgs>
-                            <codeserverArg>-bindAddress</codeserverArg>
-                            <codeserverArg>192.168.1.11</codeserverArg>
-                        </codeserverArgs>
                     </configuration>
                 </plugin>
                 <plugin>
