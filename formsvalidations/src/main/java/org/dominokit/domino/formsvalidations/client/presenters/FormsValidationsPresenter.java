@@ -21,12 +21,12 @@ public class FormsValidationsPresenter extends BaseClientPresenter<FormsValidati
         context.getComponentCaseContext().addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
-                return "forms-validations";
+                return "fields-decoration";
             }
 
             @Override
             public String getMenuPath() {
-                return "Forms/Forms Validations";
+                return "Forms/Field Decoration";
             }
 
             @Override
