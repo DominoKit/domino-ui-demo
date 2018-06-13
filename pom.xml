@@ -123,10 +123,15 @@
                     <configuration>
                         <sourceLevel>1.8</sourceLevel>
                         <failOnError>true</failOnError>
-                        <!--<codeserverArgs>-->
+                        <codeserverArgs>
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                            <!--<codeserverArg>192.168.1.11</codeserverArg>-->
-                        <!--</codeserverArgs>-->
+                            <!--<codeserverArg>192.168.1.5</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations
+                            </codeserverArg>
+                        </codeserverArgs>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -198,5 +203,6 @@
         <module>advanced-forms</module>
         <module>timepicker</module>
         <module>formsvalidations</module>
+        <module>datatable</module>
     </modules>
 </project>
