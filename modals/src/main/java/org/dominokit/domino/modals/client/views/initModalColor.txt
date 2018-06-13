@@ -7,7 +7,6 @@ Button redButton=Button.create("RED").setBackground(Background.RED);
 redButton.getClickableElement().addEventListener("click", e-> modalDialogRed.open());
 
 buttonsContainer.appendChild(redButton.asElement());
-element.appendChild(modalDialogRed.asElement());
 
 //------------ Pink ------------
 ModalDialog modalDialogPink=createModalDialog().setModalColor(Color.PINK);
@@ -15,7 +14,6 @@ Button pinkButton=Button.create("PINK").setBackground(Background.PINK);
 pinkButton.getClickableElement().addEventListener("click", e-> modalDialogPink.open());
 
 buttonsContainer.appendChild(pinkButton.asElement());
-element.appendChild(modalDialogPink.asElement());
 
 //------------ Purple ------------
 ModalDialog modalDialogPurple=createModalDialog().setModalColor(Color.PURPLE);
@@ -23,7 +21,6 @@ Button purpleButton=Button.create("PURPLE").setBackground(Background.PURPLE);
 purpleButton.getClickableElement().addEventListener("click", e-> modalDialogPurple.open());
 
 buttonsContainer.appendChild(purpleButton.asElement());
-element.appendChild(modalDialogPurple.asElement());
 
 //------------ Deep Purple ------------
 ModalDialog modalDialogDeepPurple=createModalDialog().setModalColor(Color.DEEP_PURPLE);
@@ -31,7 +28,6 @@ Button deepPurpleButton=Button.create("DEEP PURPLE").setBackground(Background.DE
 deepPurpleButton.getClickableElement().addEventListener("click", e-> modalDialogDeepPurple.open());
 
 buttonsContainer.appendChild(deepPurpleButton.asElement());
-element.appendChild(modalDialogDeepPurple.asElement());
 
 //------------ Indigo ------------
 ModalDialog modalDialogIndigo=createModalDialog().setModalColor(Color.INDIGO);
@@ -39,7 +35,6 @@ Button indigoButton=Button.create("INDIGO").setBackground(Background.INDIGO);
 indigoButton.getClickableElement().addEventListener("click", e-> modalDialogIndigo.open());
 
 buttonsContainer.appendChild(indigoButton.asElement());
-element.appendChild(modalDialogIndigo.asElement());
 
 //------------ Blue ------------
 ModalDialog modalDialogBlue=createModalDialog().setModalColor(Color.BLUE);
@@ -55,7 +50,6 @@ Button orangeButton=Button.create("ORANGE").setBackground(Background.ORANGE);
 orangeButton.getClickableElement().addEventListener("click", e-> modalDialogOrange.open());
 
 buttonsContainer.appendChild(orangeButton.asElement());
-element.appendChild(modalDialogOrange.asElement());
 
 
 //------------ Green ------------
@@ -64,7 +58,6 @@ Button greenButton=Button.create("GREEN").setBackground(Background.GREEN);
 greenButton.getClickableElement().addEventListener("click", e-> modalDialogGreen.open());
 
 buttonsContainer.appendChild(greenButton.asElement());
-element.appendChild(modalDialogGreen.asElement());
 
 
 //------------ Teal ------------
@@ -73,7 +66,6 @@ Button tealButton=Button.create("TEAL").setBackground(Background.TEAL);
 tealButton.getClickableElement().addEventListener("click", e-> modalDialogTeal.open());
 
 buttonsContainer.appendChild(tealButton.asElement());
-element.appendChild(modalDialogTeal.asElement());
 
 element.appendChild(card.asElement());
 
