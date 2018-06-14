@@ -6,6 +6,8 @@ import elemental2.dom.HTMLTableCellElement;
 import elemental2.dom.HTMLTableRowElement;
 import org.dominokit.domino.ui.button.IconButton;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.loaders.Loader;
+import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 
@@ -15,7 +17,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
 
     private HTMLDivElement element=div().asElement();
-    private HTMLTableCellElement td = td().add(element).asElement();
+    private HTMLTableCellElement td = td().css("details-td").add(element).asElement();
     private HTMLTableRowElement tr = tr().add(td).asElement();
     private IconButton expandedButton;
 
@@ -41,10 +43,14 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
                     expandedButton.setIcon(Icons.ALL.fullscreen());
                 }
 
+                Loader loader = Loader.create(tr, LoaderEffect.ORBIT)
+                        .setLoadingText("Please wait ...");
+
                 if(expandButton.equals(expandedButton)){
                     tr.remove();
                     ElementUtil.clear(element);
                     expandedButton=null;
+                    loader.stop();
                 }else{
                     tr.remove();
                     ElementUtil.clear(element);
@@ -55,6 +61,8 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
                     ElementUtil.builderFor(td).attr("colspan", dataTable.getTableConfig().getColumns().size() + "");
                     element.appendChild(cellElement.asElement(row));
                     dataTable.bodyElement().insertBefore(tr, row.asElement().nextSibling);
+
+                    loader.start();
                 }
 
             });

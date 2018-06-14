@@ -96,4 +96,8 @@ public class TableRow<T> implements Selectable<T>, IsElement<HTMLTableRowElement
     public int getIndex() {
         return index;
     }
+
+    public void updateRow(){
+        rowCells.values().forEach(RowCell::updateCell);
+    }
 }
