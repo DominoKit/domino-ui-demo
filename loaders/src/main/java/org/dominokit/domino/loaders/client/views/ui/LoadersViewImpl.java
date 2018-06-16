@@ -96,7 +96,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                 .addElement(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)
                 .asElement()));
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
+        element.appendChild(createCodeCard(CodeResource.INSTANCE.loadersSample())
                 .asElement());
     }
 

@@ -43,14 +43,10 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
                     expandedButton.setIcon(Icons.ALL.fullscreen());
                 }
 
-                Loader loader = Loader.create(tr, LoaderEffect.ORBIT)
-                        .setLoadingText("Please wait ...");
-
                 if(expandButton.equals(expandedButton)){
                     tr.remove();
                     ElementUtil.clear(element);
                     expandedButton=null;
-                    loader.stop();
                 }else{
                     tr.remove();
                     ElementUtil.clear(element);
@@ -62,7 +58,6 @@ public class RecordDetailsPlugin<T> implements DataTablePlugin<T> {
                     element.appendChild(cellElement.asElement(row));
                     dataTable.bodyElement().insertBefore(tr, row.asElement().nextSibling);
 
-                    loader.start();
                 }
 
             });
