@@ -356,7 +356,7 @@ public class WavesViewImpl extends ComponentView<HTMLDivElement> implements Wave
 								.asElement()))
 				.asElement());
 
-		element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.waves()).asElement());
+		element.appendChild(createCodeCard(CodeResource.waves()).asElement());
 	}
 
 	@Override

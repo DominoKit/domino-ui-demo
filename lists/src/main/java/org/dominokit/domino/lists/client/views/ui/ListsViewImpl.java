@@ -74,7 +74,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                                 .appendContent(Badge.create("Pending").setBackground(Color.PURPLE).asElement()))
                         .asElement()).asElement()));
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicListsSample())
+        element.appendChild(createCodeCard(CodeResource.basicListsSample())
                 .asElement());
     }
 
@@ -110,7 +110,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         row.addColumn(column.copy().addElement(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
                 .appendContent(disabledItems.asElement()).asElement()));
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectableSample())
+        element.appendChild(createCodeCard(CodeResource.selectableSample())
                 .asElement());
     }
 
@@ -145,7 +145,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         row.addColumn(column.copy().addElement(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
                 .appendContent(coloredGroup.asElement()).asElement()));
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredSample())
+        element.appendChild(createCodeCard(CodeResource.coloredSample())
                 .asElement());
     }
 
@@ -161,7 +161,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
                 .appendContent(listGroup.asElement()).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.richItems())
+        element.appendChild(createCodeCard(CodeResource.richItems())
                 .asElement());
     }
 }

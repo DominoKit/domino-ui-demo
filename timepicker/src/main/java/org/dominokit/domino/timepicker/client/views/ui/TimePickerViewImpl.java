@@ -86,7 +86,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+        element.appendChild(createCodeCard(CodeResource.inlined()).asElement());
     }
 
     private void popups() {
@@ -209,7 +209,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(createCodeCard(CodeResource.popups()).asElement());
     }
 
     private void timeBox() {
@@ -243,7 +243,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
+        element.appendChild(createCodeCard(CodeResource.timebox()).asElement());
 
     }
 

@@ -116,7 +116,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                 .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.lists())
+        element.appendChild(createCodeCard(CodeResource.lists())
         .asElement());
     }
 
@@ -127,7 +127,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendContent(p().textContent(SMALL_PARAGRAPH).asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.bodyCopy())
+        element.appendChild(createCodeCard(CodeResource.bodyCopy())
                 .asElement());
     }
 
@@ -147,7 +147,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.heading())
+        element.appendChild(createCodeCard(CodeResource.heading())
                 .asElement());
     }
 
@@ -223,7 +223,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles())
+        element.appendChild(createCodeCard(CodeResource.textStyles())
                 .asElement());
     }
 
@@ -242,7 +242,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.blockqoute())
+        element.appendChild(createCodeCard(CodeResource.blockqoute())
                 .asElement());
     }
 }

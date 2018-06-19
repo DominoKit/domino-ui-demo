@@ -1,6 +1,5 @@
 package org.dominokit.domino.animation.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLImageElement;
 import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
@@ -44,7 +43,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .asElement());
 
 
-        HTMLImageElement image = img(GWT.getModuleBaseURL() + "/images/animation-bg.jpg").css(Styles.img_responsive).asElement();
+        HTMLImageElement image = img("static/images/animation-bg.jpg").css(Styles.img_responsive).asElement();
         Column column = Column.create()
                 .onLarge(Column.OnLarge.four)
                 .onMedium(Column.OnMedium.four)
@@ -327,13 +326,13 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                                 .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
+        element.appendChild(createCodeCard(CodeResource.animation()).asElement());
     }
 
     private Card createCard(Transition transition) {
 
         Card animationCard = Card.create().setBackground(Color.BLUE_GREY)
-                .appendContent(img(GWT.getModuleBaseURL() + "/images/animation-bg.jpg").css(Styles.img_responsive).asElement());
+                .appendContent(img("static/images/animation-bg.jpg").css(Styles.img_responsive).asElement());
 
         Card card = Card.create(transition.getName(), transition.getStyle() + " animation.")
                 .setBodyBackground(Color.LIGHT_BLUE)

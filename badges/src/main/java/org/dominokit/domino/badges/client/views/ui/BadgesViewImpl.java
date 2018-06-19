@@ -70,7 +70,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.buttonExample()).asElement());
     }
 
     private void buttonExamplesWithMaterialDesignColors() {
@@ -111,7 +111,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
+        element.appendChild(createCodeCard(CodeResource.buttonExamplesWithMaterialDesignColors()).asElement());
     }
 
     private void listExample() {
@@ -127,7 +127,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                 .appendContent(listGroup.asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.listExample())
+        element.appendChild(createCodeCard(CodeResource.listExample())
                 .asElement());
     }
 

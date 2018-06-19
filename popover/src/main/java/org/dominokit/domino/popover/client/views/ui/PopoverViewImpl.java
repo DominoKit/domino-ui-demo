@@ -72,7 +72,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
+        element.appendChild(createCodeCard(CodeResource.tooltips()).asElement());
     }
 
     private void popover() {
@@ -109,7 +109,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popover()).asElement());
+        element.appendChild(createCodeCard(CodeResource.popover()).asElement());
     }
 
     @Override

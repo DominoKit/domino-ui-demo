@@ -1,6 +1,5 @@
 package org.dominokit.domino.thumbnails.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.thumbnails.client.views.CodeResource;
 import org.dominokit.domino.thumbnails.client.views.ThumbnailsView;
@@ -43,32 +42,32 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendContent(Row.create()
                         .addColumn(column.copy().addElement(Thumbnail.create()
                                 .setContent(a()
-                                        .add(img(GWT.getModuleBaseURL() + "/images/image-gallery/5.jpg")
+                                        .add(img("static/images/image-gallery/5.jpg")
                                                 .css(Styles.img_responsive).asElement())
                                         .asElement())
                                 .asElement()))
                         .addColumn(column.copy().addElement(Thumbnail.create()
                                 .setContent(a()
-                                        .add(img(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg")
+                                        .add(img("static/images/image-gallery/6.jpg")
                                                 .css(Styles.img_responsive).asElement())
                                         .asElement())
                                 .asElement()))
                         .addColumn(column.copy().addElement(Thumbnail.create()
                                 .setContent(a()
-                                        .add(img(GWT.getModuleBaseURL() + "/images/image-gallery/7.jpg")
+                                        .add(img("static/images/image-gallery/7.jpg")
                                                 .css(Styles.img_responsive).asElement())
                                         .asElement())
                                 .asElement()))
                         .addColumn(column.copy().addElement(Thumbnail.create()
                                 .setContent(a()
-                                        .add(img(GWT.getModuleBaseURL() + "/images/image-gallery/8.jpg")
+                                        .add(img("static/images/image-gallery/8.jpg")
                                                 .css(Styles.img_responsive).asElement())
                                         .asElement())
                                 .asElement()))
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.basicSample()).asElement());
     }
 
     private void withExtraContentSample() {
@@ -76,7 +75,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendContent(Row.create()
                         .addColumn(column.copy()
                                 .addElement(Thumbnail.create()
-                                        .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/1.jpg")
+                                        .setContent(a().add(img("static/images/image-gallery/1.jpg")
                                                 .css(Styles.img_responsive)
                                                 .asElement())
                                                 .asElement())
@@ -86,7 +85,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                         .asElement()))
                         .addColumn(column.copy()
                                 .addElement(Thumbnail.create()
-                                        .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/2.jpg")
+                                        .setContent(a().add(img("static/images/image-gallery/2.jpg")
                                                 .css(Styles.img_responsive)
                                                 .asElement())
                                                 .asElement())
@@ -96,7 +95,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                         .asElement()))
                         .addColumn(column.copy()
                                 .addElement(Thumbnail.create()
-                                        .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/3.jpg")
+                                        .setContent(a().add(img("static/images/image-gallery/3.jpg")
                                                 .css(Styles.img_responsive)
                                                 .asElement())
                                                 .asElement())
@@ -106,7 +105,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                         .asElement()))
                         .addColumn(column.copy()
                                 .addElement(Thumbnail.create()
-                                        .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/4.jpg")
+                                        .setContent(a().add(img("static/images/image-gallery/4.jpg")
                                                 .css(Styles.img_responsive)
                                                 .asElement())
                                                 .asElement())
@@ -117,7 +116,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.withExtraContentSample()).asElement());
 
     }
 

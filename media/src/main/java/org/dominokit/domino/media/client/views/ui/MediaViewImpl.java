@@ -84,7 +84,7 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
+        element.appendChild(createCodeCard(CodeResource.defaultMedia()).asElement());
     }
 
     private void mediaAlignment() {
@@ -121,6 +121,6 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
+        element.appendChild(createCodeCard(CodeResource.mediaAlignment()).asElement());
     }
 }

@@ -88,7 +88,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                 .appendContent(row.asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalsSize())
+        element.appendChild(createCodeCard(CodeResource.initModalsSize())
                 .asElement());
     }
 
@@ -165,7 +165,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         element.appendChild(card.asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
+        element.appendChild(createCodeCard(CodeResource.initModalColor()).asElement());
 
     }
 

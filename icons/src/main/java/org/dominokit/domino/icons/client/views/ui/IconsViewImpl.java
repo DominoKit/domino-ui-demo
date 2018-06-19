@@ -1,7 +1,5 @@
 package org.dominokit.domino.icons.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.icons.client.presenters.IconsPresenter;
@@ -38,14 +36,14 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
     @Override
     public void init() {
 
-        GWT.runAsync(new RunAsyncCallback() {
-            @Override
-            public void onFailure(Throwable reason) {
-                LOGGER.error("failed to run async icons view");
-            }
-
-            @Override
-            public void onSuccess() {
+//        GWT.runAsync(new RunAsyncCallback() {
+//            @Override
+//            public void onFailure(Throwable reason) {
+//                LOGGER.error("failed to run async icons view");
+//            }
+//
+//            @Override
+//            public void onSuccess() {
                 element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
                         .appendContent(Elements.a()
                                 .attr("href", "http://google.github.io/material-design-icons/")
@@ -74,8 +72,8 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
                 placesIcons();
                 socialIcons();
                 toggleIcons();
-            }
-        });
+//            }
+//        });
     }
 
     private void actionIcons() {

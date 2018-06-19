@@ -14,11 +14,11 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.gwt</groupId>-->
+            <!--<artifactId>gwt-user</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.dominokit.domino.api</groupId>
             <artifactId>domino-api-shared</artifactId>
@@ -50,12 +50,32 @@
             <groupId>com.google.elemental2</groupId>
             <artifactId>elemental2-svg</artifactId>
             <version>1.0.0-RC1</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.jsinterop</groupId>
+                    <artifactId>base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.elemental2</groupId>
+                    <artifactId>elemental2-dom</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>com.google.elemental2</groupId>
             <artifactId>elemental2-svg</artifactId>
             <version>1.0.0-RC1</version>
             <classifier>sources</classifier>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.google.jsinterop</groupId>
+                    <artifactId>base</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.google.elemental2</groupId>
+                    <artifactId>elemental2-dom</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
     </dependencies>
 

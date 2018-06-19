@@ -1,6 +1,5 @@
 package org.dominokit.domino.profile.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.profile.client.presenters.ProfilePresenter;
@@ -31,7 +30,7 @@ public class ProfileViewImpl implements ProfileView {
         else
             leftPanel.appendChild(profile.asElement());
 
-        profile.getBody().appendChild(Elements.img(GWT.getModuleBaseURL()+"/images/user.png").style("border-radius:50%;").asElement());
+        profile.getBody().appendChild(Elements.img("static/images/user.png").style("border-radius:50%;").asElement());
         profile.getHeaderBar().appendChild(createIcon(Icons.ALL.more_vert()));
         profile.asElement().style.height= CSSProperties.HeightUnionType.of(300);
     }

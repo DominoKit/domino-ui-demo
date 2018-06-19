@@ -53,7 +53,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.sizesSample()).asElement());
     }
 
     private void colorsSample() {
@@ -99,7 +99,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.colorsSample()).asElement());
 
     }
 }

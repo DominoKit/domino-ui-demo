@@ -47,7 +47,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
+        element.appendChild(createCodeCard(CodeResource.defaultPagination()).asElement());
     }
 
     private void activePageSample() {
@@ -59,7 +59,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.activePageSample()).asElement());
     }
 
     private void sizesSample() {
@@ -99,7 +99,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.sizesSample()).asElement());
     }
 
     private void pagerNexPrevSample() {
@@ -141,7 +141,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.pagerSample()).asElement());
 
     }
 }

@@ -1,5 +1,6 @@
 package org.dominokit.domino.home.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
@@ -22,6 +23,8 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
     @Override
     public void init() {
+
+        DomGlobal.console.info("hhhhhhhhhhhhhhhhhhhhhoooooommmmmmmmmeeeeee");
 
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").asElement());

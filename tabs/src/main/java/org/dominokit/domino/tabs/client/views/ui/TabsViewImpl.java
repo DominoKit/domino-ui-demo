@@ -67,7 +67,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.basicSample()).asElement());
     }
 
     private void iconsOnly() {
@@ -89,7 +89,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
+        element.appendChild(createCodeCard(CodeResource.iconsOnly()).asElement());
     }
 
     private void withIconsAndTextSamlple() {
@@ -111,7 +111,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSamlple()).asElement());
+        element.appendChild(createCodeCard(CodeResource.withIconsAndTextSamlple()).asElement());
     }
 
     private void materialDesignColorsSample() {
@@ -166,7 +166,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.materialDesignColorsSample()).asElement());
     }
 
     private void withAnimation() {
@@ -209,6 +209,6 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+        element.appendChild(createCodeCard(CodeResource.withAnimation()).asElement());
     }
 }

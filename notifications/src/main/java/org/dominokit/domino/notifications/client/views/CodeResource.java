@@ -1,24 +1,67 @@
 package org.dominokit.domino.notifications.client.views;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.ExternalTextResource;
+public class CodeResource {
 
-public interface CodeResource extends ClientBundle {
+    public static String notificationsPosition() {
+        return "//Show notifications on pre-defined positions\n" +
+                "//Notification.TOP_LEFT\n" +
+                "//Notification.TOP_CENTER\n" +
+                "//Notification.TOP_RIGHT\n" +
+                "//Notification.BOTTOM_LEFT\n" +
+                "//Notification.BOTTOM_CENTER\n" +
+                "//Notification.BOTTOM_RIGHT\n" +
+                "\n" +
+                "Notification.create(\"You received a message\")\n" +
+                "        .setPosition(Notification.BOTTOM_RIGHT)\n" +
+                "        .show());\"";
+    }
 
-    CodeResource INSTANCE = GWT.create(CodeResource.class);
+    public static String notificationsTypes() {
+        return "Button danger = Button.createDanger(\"DANGER\").large();\n" +
+                "danger.getClickableElement().addEventListener(\"click\", e ->\n" +
+                "        Notification.createDanger(\"You received a message\")\n" +
+                "                .setPosition(Notification.TOP_LEFT)\n" +
+                "                .show());\n" +
+                "\n" +
+                "Button success = Button.createSuccess(\"SUCCESS\").large();\n" +
+                "success.getClickableElement().addEventListener(\"click\", e ->\n" +
+                "        Notification.createSuccess(\"You received a message\")\n" +
+                "                .setPosition(Notification.TOP_LEFT)\n" +
+                "                .show());\n" +
+                "\n" +
+                "Button warning = Button.createWarning(\"WARNING\").large();\n" +
+                "warning.getClickableElement().addEventListener(\"click\", e ->\n" +
+                "        Notification.createWarning(\"You received a message\")\n" +
+                "                .setPosition(Notification.TOP_LEFT)\n" +
+                "                .show());\n" +
+                "\n" +
+                "\n" +
+                "Button info = Button.createInfo(\"INFO\").large();\n" +
+                "info.getClickableElement().addEventListener(\"click\", e ->\n" +
+                "        Notification.createInfo(\"You received a message\")\n" +
+                "                .setPosition(Notification.TOP_LEFT)\n" +
+                "                .show());";
+    }
 
-    @Source("notificationsPosition.txt")
-    ExternalTextResource notificationsPosition();
+    public static String withMaterialColors() {
+        return "//Change the color of the notification by setting the background\n" +
+                "Notification.create(\"You received a message\")\n" +
+                "        .setBackground(Background.TEAL)\n" +
+                "        .setPosition(Notification.TOP_LEFT)\n" +
+                "        .show();";
+    }
 
-    @Source("notificationsTypes.txt")
-    ExternalTextResource notificationsTypes();
-
-    @Source("withMaterialColors.txt")
-    ExternalTextResource withMaterialColors();
-
-    @Source("withAnimation.txt")
-    ExternalTextResource withAnimation();
+    public static String withAnimation() {
+        return "//Use the IN transition, OUT transition for transaction appear/disappear animation\n" +
+                "//use duration to set the wait time before the notification automatically disappear\n" +
+                "\n" +
+                "Notification.create(\"You received a message\")\n" +
+                "        .duration(5000)\n" +
+                "        .inTransition(Transition.LIGHT_SPEED_IN)\n" +
+                "        .outTransition(Transition.LIGHT_SPEED_OUT)\n" +
+                "        .setPosition(Notification.TOP_CENTER)\n" +
+                "        .show();";
+    }
 
 }
 

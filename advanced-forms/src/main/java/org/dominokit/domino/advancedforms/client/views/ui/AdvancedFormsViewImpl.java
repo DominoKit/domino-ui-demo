@@ -33,7 +33,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
         initFileUploadExample();
 
         element.appendChild(uploadCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
+        element.appendChild(createCodeCard(CodeResource.uploadExample()).asElement());
     }
 
     private void initFileUploadExample() {

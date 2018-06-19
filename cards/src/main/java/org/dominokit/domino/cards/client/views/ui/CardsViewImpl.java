@@ -64,7 +64,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
+        element.appendChild(createCodeCard(CodeResource.cardsWithHeaders()).asElement());
     }
 
     private void coloredCards() {
@@ -142,7 +142,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
+        element.appendChild(createCodeCard(CodeResource.coloredCards()).asElement());
     }
 
     private void collapsibleCards() {
@@ -179,7 +179,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
+        element.appendChild(createCodeCard(CodeResource.collapsibleCards()).asElement());
     }
 
     private void noHeaderCards() {
@@ -200,6 +200,6 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .setBackground(Color.PURPLE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
+        element.appendChild(createCodeCard(CodeResource.noHeaderCards()).asElement());
     }
 }

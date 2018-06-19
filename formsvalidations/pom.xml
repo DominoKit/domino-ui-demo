@@ -14,11 +14,11 @@
     <url>http://maven.apache.org</url>
 
     <dependencies>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>com.google.gwt</groupId>-->
+            <!--<artifactId>gwt-user</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.dominokit.domino.api</groupId>
             <artifactId>domino-api-shared</artifactId>
@@ -50,23 +50,6 @@
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-shared</artifactId>
             <version>${project.version}</version>
-        </dependency>
-        <!-- to be removed -->
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-core</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-api</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-processor</artifactId>
-            <version>0.8.0</version>
-            <scope>provided</scope>
         </dependency>
     </dependencies>
 

@@ -1,6 +1,5 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
-import com.google.gwt.user.client.Timer;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.loaders.client.presenters.LoadersPresenter;
@@ -18,6 +17,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.gwtproject.timer.client.Timer;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LoadersPresenter.class)
@@ -96,7 +96,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                 .addElement(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)
                 .asElement()));
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
+        element.appendChild(createCodeCard(CodeResource.loadersSample())
                 .asElement());
     }
 

@@ -1,0 +1,158 @@
+[INFO] Scanning for projects...
+[WARNING] 
+[WARNING] Some problems were encountered while building the effective model for org.dominokit.domino:ui-demo-frontend:gwt-app:1.0-SNAPSHOT
+[WARNING] The expression ${build.directory} is deprecated. Please use ${project.build.directory} instead.
+[WARNING] 
+[WARNING] It is highly recommended to fix these problems because they threaten the stability of your build.
+[WARNING] 
+[WARNING] For this reason, future Maven versions might no longer support building such malformed projects.
+[WARNING] 
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building ui-demo-frontend 1.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-dependency-plugin:2.8:tree (default-cli) @ ui-demo-frontend ---
+[INFO] org.dominokit.domino:ui-demo-frontend:gwt-app:1.0-SNAPSHOT
+[INFO] +- org.dominokit.domino.api:domino-api-shared:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  \- org.slf4j:slf4j-api:jar:1.7.25:compile
+[INFO] +- org.dominokit.domino.api:domino-api-shared:jar:sources:1.0-rc.3-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino.impl:domino-gwt:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  +- org.gwtproject.event:gwt-event:jar:HEAD-SNAPSHOT:compile
+[INFO] |  +- org.dominokit.domino.logging:domino-gwt-logger:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  |  +- org.dominokit.domino:domino-slf4j-super:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  |  \- org.dominokit.domino:domino-slf4j-super:jar:sources:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  +- org.dominokit.domino:domino-client-commons:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] |  +- com.google.elemental2:elemental2-core:jar:1.0.0-RC1:compile
+[INFO] |  |  \- com.google.jsinterop:jsinterop-annotations:jar:1.0.2:compile
+[INFO] |  +- com.google.elemental2:elemental2-dom:jar:1.0.0-RC1:compile
+[INFO] |  |  \- com.google.elemental2:elemental2-promise:jar:1.0.0-RC1:compile
+[INFO] |  \- com.vertispan.jsinterop:base:jar:1.0.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino.impl:domino-gwt:jar:sources:1.0-rc.3-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino.api:domino-api-client:jar:1.0-rc.3-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino.api:domino-api-client:jar:sources:1.0-rc.3-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-frontend:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-frontend:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-frontend-ui:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-frontend-ui:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-shared:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:layout-shared:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:themes:jar:1.0-SNAPSHOT:compile
+[INFO] |  \- org.jboss.gwt.elemento:elemento-template-api:jar:HEAD-SNAPSHOT:compile
+[INFO] |     +- org.jboss.gwt.elemento:elemento-core:jar:sources:HEAD-SNAPSHOT:compile
+[INFO] |     \- javax.annotation:jsr250-api:jar:1.0:compile
+[INFO] +- org.dominokit.domino:themes:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:profile:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:profile:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:menu-frontend:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:menu-frontend:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:menu-shared:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:menu-shared:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-frontend:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-frontend:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-frontend-ui:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-frontend-ui:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-shared:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:component-case-shared:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:home:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:home:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:components-frontend:jar:1.0-SNAPSHOT:compile
+[INFO] |  \- org.dominokit.domino:components-shared:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:components-frontend:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:components-frontend-ui:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:components-frontend-ui:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-frontend:jar:1.0-SNAPSHOT:compile
+[INFO] |  \- org.dominokit.domino:components-shared:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-frontend:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-frontend-ui:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-frontend-ui:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-shared:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:forms-shared:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:basic-forms:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:basic-forms:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:advanced-forms:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:advanced-forms:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:formsvalidations:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:formsvalidations:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:datepicker:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:datepicker:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:timepicker:jar:1.0-SNAPSHOT:compile
+[INFO] |  +- com.google.elemental2:elemental2-svg:jar:1.0.0-RC1:compile
+[INFO] |  \- com.google.elemental2:elemental2-svg:jar:sources:1.0.0-RC1:compile
+[INFO] +- org.dominokit.domino:timepicker:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:typography:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:typography:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:helpers:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:helpers:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:colors:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:colors:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:animation:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:animation:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:cards:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:cards:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:infobox:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:infobox:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:buttons:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:buttons:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:alerts:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:alerts:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:badges:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:badges:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:labels:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:labels:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:modals:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:modals:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:lists:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:lists:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:loaders:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:loaders:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:icons:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:icons:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:breadcrumb:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:breadcrumb:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:collapse:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:collapse:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:notifications:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:notifications:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:media:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:media:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:pagination:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:pagination:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:preloaders:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:preloaders:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:progress:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:progress:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:tabs:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:tabs:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:thumbnails:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:thumbnails:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:dialogs:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:dialogs:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:popover:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:popover:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:waves:jar:1.0-SNAPSHOT:compile
+[INFO] +- org.dominokit.domino:waves:jar:sources:1.0-SNAPSHOT:compile
+[INFO] +- javax.validation:validation-api:jar:1.1.0.Final:compile
+[INFO] +- junit:junit:jar:4.12:test
+[INFO] |  \- org.hamcrest:hamcrest-core:jar:1.3:test
+[INFO] +- com.google.auto.service:auto-service:jar:1.0-rc3:provided
+[INFO] |  +- com.google.auto:auto-common:jar:0.3:provided
+[INFO] |  \- com.google.guava:guava:jar:19.0:compile
+[INFO] +- org.dominokit:domino-ui:jar:1.0-SNAPSHOT:compile
+[INFO] |  +- org.gwtproject.timer:timer:jar:1.0-SNAPSHOT:compile
+[INFO] |  +- org.jboss.gwt.elemento:elemento-core:jar:HEAD-SNAPSHOT:compile
+[INFO] |  |  +- com.google.elemental2:elemental2-webstorage:jar:1.0.0-RC1:compile
+[INFO] |  |  \- org.gwtproject.safehtml:gwt-safehtml:jar:1.0-SNAPSHOT:compile
+[INFO] |  |     \- com.google.jsilver:jsilver:jar:1.0.0:compile
+[INFO] |  +- org.gwtproject.i18n:gwt-cldr:jar:1.0-SNAPSHOT:compile
+[INFO] |  +- org.gwtproject.i18n:gwt-cldr:jar:sources:1.0-SNAPSHOT:compile
+[INFO] |  +- org.gwtproject.i18n:gwt-datetimeformat:jar:1.0-SNAPSHOT:compile
+[INFO] |  \- org.gwtproject.i18n:gwt-datetimeformat:jar:sources:1.0-SNAPSHOT:compile
+[INFO] \- org.dominokit:domino-ui:jar:sources:1.0-SNAPSHOT:compile
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1.272 s
+[INFO] Finished at: 2018-06-18T21:37:40+03:00
+[INFO] Final Memory: 20M/481M
+[INFO] ------------------------------------------------------------------------

@@ -41,7 +41,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                 .appendContent(Alert.warning().appendStrong("Warning! ").appendText("Better check yourself, you're not looking too good.").asElement())
                 .appendContent(Alert.error().appendStrong("Oh snap! ").appendText("Change a few things up and try submitting again.").asElement()).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
+        element.appendChild(createCodeCard(CodeResource.basicAlerts()).asElement());
     }
 
     private void customBackground() {
@@ -58,7 +58,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.customBackgrounds())
+        element.appendChild(createCodeCard(CodeResource.customBackgrounds())
                 .asElement());
 
     }
@@ -84,7 +84,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
+        element.appendChild(createCodeCard(CodeResource.dismissibleAlerts()).asElement());
     }
 
     private void linksInAlerts() {
@@ -116,6 +116,6 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
+        element.appendChild(createCodeCard(CodeResource.linksInAlerts()).asElement());
     }
 }

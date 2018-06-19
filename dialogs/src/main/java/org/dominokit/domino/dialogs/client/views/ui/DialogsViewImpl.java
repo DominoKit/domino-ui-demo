@@ -151,7 +151,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());
+        element.appendChild(createCodeCard(CodeResource.dialogs()).asElement());
     }
 
     private HTMLElement createDemoButton(MessageDialog dialog) {

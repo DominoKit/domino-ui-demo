@@ -109,7 +109,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles())
+        element.appendChild(createCodeCard(CodeResource.textStyles())
                 .asElement());
     }
 
@@ -139,7 +139,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fontSize())
+        element.appendChild(createCodeCard(CodeResource.fontSize())
                 .asElement());
     }
 
@@ -172,7 +172,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textAligns())
+        element.appendChild(createCodeCard(CodeResource.textAligns())
                 .asElement());
     }
 

@@ -1,22 +1,72 @@
 package org.dominokit.domino.pagination.client.views;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.ExternalTextResource;
+public class CodeResource {
 
-public interface CodeResource extends ClientBundle{
+    public static String defaultPagination() {
+        return "Pagination.create(5)\n" +
+                "    .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber)";
+    }
 
-    CodeResource INSTANCE= GWT.create(CodeResource.class);
+    public static String activePageSample() {
+        return "Pagination.create(5)\n" +
+                "        .markActivePage()\n" +
+                "        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))\n" +
+                "        .setActivePage(3)";
+    }
 
-    @Source("defaultPagination.txt")
-    ExternalTextResource defaultPagination();
+    public static String sizesSample() {
+        return "Pagination.create(5)\n" +
+                "    .markActivePage()\n" +
+                "    .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))\n" +
+                "    .setActivePage(3)\n" +
+                "    .large()\n" +
+                "    .asElement();\n" +
+                "\n" +
+                "Pagination.create(5)\n" +
+                "    .markActivePage()\n" +
+                "    .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))\n" +
+                "    .setActivePage(3)\n" +
+                "    .asElement();\n" +
+                "\n" +
+                "Pagination.create(5)\n" +
+                "    .markActivePage()\n" +
+                "    .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))\n" +
+                "    .setActivePage(3)\n" +
+                "    .small()\n" +
+                "    .asElement();";
+    }
 
-    @Source("activePageSample.txt")
-    ExternalTextResource activePageSample();
-
-    @Source("sizesSample.txt")
-    ExternalTextResource sizesSample();
-
-    @Source("pagerSample.txt")
-    ExternalTextResource pagerSample();
+    public static String pagerSample() {
+        return "Pager.create()\n" +
+                "    .onNext(() -> DomGlobal.console.info(\"Going to next page.\"))\n" +
+                "    .onPrevious(() -> DomGlobal.console.info(\"Going to previous page.\"))\n" +
+                "    .asElement();\n" +
+                "\n" +
+                "Pager.create()\n" +
+                "    .onNext(() -> DomGlobal.console.info(\"Going to next page.\"))\n" +
+                "    .onPrevious(() -> DomGlobal.console.info(\"Going to previous page.\"))\n" +
+                "    .nextText(\"Newer\")\n" +
+                "    .previousText(\"Older\")\n" +
+                "    .showArrows()\n" +
+                "    .asElement();\n" +
+                "\n" +
+                "Pager.create()\n" +
+                "    .onNext(() -> DomGlobal.console.info(\"Going to next page.\"))\n" +
+                "    .onPrevious(() -> DomGlobal.console.info(\"Going to previous page.\"))\n" +
+                "    .nextText(\"Newer\")\n" +
+                "    .previousText(\"Older\")\n" +
+                "    .showArrows()\n" +
+                "    .expand()\n" +
+                "    .asElement();\n" +
+                "\n" +
+                "Pager.create()\n" +
+                "    .onNext(() -> DomGlobal.console.info(\"Going to next page.\"))\n" +
+                "    .onPrevious(() -> DomGlobal.console.info(\"Going to previous page.\"))\n" +
+                "    .nextText(\"Newer\")\n" +
+                "    .previousText(\"Older\")\n" +
+                "    .showArrows()\n" +
+                "    .expand()\n" +
+                "    .disablePrevious()\n" +
+                "    .asElement();";
+    }
 }

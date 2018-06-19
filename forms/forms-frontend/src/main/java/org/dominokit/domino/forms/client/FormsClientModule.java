@@ -1,6 +1,6 @@
 package org.dominokit.domino.forms.client;
 
-import com.google.gwt.core.client.EntryPoint;
+
 import org.dominokit.domino.api.client.ModuleConfigurator;
 import org.dominokit.domino.api.client.annotations.ClientModule;
 
@@ -8,12 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @ClientModule(name="Forms")
-public class FormsClientModule implements EntryPoint {
+public class FormsClientModule  {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(FormsClientModule.class);
 
 	public void onModuleLoad() {
 		LOGGER.info("Initializing Forms frontend module ...");
-		new ModuleConfigurator().configureModule(new FormsModuleConfiguration());
+		//new ModuleConfigurator().configureModule(new FormsModuleConfiguration());
 	}
 }
