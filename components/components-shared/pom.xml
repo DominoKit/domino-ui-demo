@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.dominokit.domino</groupId>
         <artifactId>components</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0j2cl-SNAPSHOT</version>
     </parent>
 
     <artifactId>components-shared</artifactId>
@@ -23,7 +23,7 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-shared</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0j2cl-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

@@ -6,18 +6,18 @@
     <parent>
         <groupId>org.dominokit.domino</groupId>
         <artifactId>domino-ui-demo</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0j2cl-SNAPSHOT</version>
     </parent>
 
     <artifactId>ui-demo-backend</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0j2cl-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <dependencies>
         <dependency>
             <groupId>${project.groupId}</groupId>
             <artifactId>ui-demo-frontend</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0j2cl-SNAPSHOT</version>
             <type>war</type>
             <scope>runtime</scope>
         </dependency>

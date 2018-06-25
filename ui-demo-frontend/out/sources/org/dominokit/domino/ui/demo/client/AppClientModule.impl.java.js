@@ -143,7 +143,7 @@ class AppClientModule extends j_l_Object {
     ModuleConfigurator.$create__().m_configureModule__org_dominokit_domino_api_client_ModuleConfiguration(TypographyModuleConfiguration.$create__());
     ModuleConfigurator.$create__().m_configureModule__org_dominokit_domino_api_client_ModuleConfiguration(ColorsModuleConfiguration.$create__());
     ClientApp.m_make__().m_run__();
-    AppClientModule.$f_LOGGER__org_dominokit_domino_ui_demo_client_AppClientModule_.m_info__java_lang_String("ui-demo Application frontend have been initialized.");
+    AppClientModule.$f_LOGGER__org_dominokit_domino_ui_demo_client_AppClientModule_.m_info__java_lang_String("ui-demo Application frontend have been initialized.----999");
   }
   
   /**

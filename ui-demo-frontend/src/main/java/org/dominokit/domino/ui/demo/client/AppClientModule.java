@@ -106,6 +106,6 @@ public class AppClientModule implements /**/EntryPoint/**/ {
 
 
         ClientApp.make().run();
-        LOGGER.info("ui-demo Application frontend have been initialized.");
+        LOGGER.info("ui-demo Application frontend have been initialized.----999");
     }
 }
