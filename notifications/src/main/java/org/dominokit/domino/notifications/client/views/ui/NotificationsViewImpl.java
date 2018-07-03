@@ -99,7 +99,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.notificationsPosition())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
                 .asElement());
     }
 
@@ -139,7 +139,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.notificationsTypes())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
         .asElement());
 
     }
@@ -250,7 +250,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.withMaterialColors())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
                 .asElement());
 
     }
@@ -480,7 +480,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.withAnimation())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation())
                 .asElement());
     }
 }

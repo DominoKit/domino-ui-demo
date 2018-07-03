@@ -84,7 +84,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .appendContent(collapsible.asElement())
                                 .asElement())).asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.example())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example())
                 .asElement());
     }
 
@@ -163,7 +163,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.accordionSample())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.accordionSample())
                 .asElement());
     }
 
@@ -217,7 +217,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
                 .asElement());
 
     }
@@ -249,7 +249,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.multiOpenItems())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
                 .asElement());
 
     }

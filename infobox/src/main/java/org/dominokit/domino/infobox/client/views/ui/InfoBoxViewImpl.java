@@ -88,7 +88,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                 });
 
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
     }
 
     private void hoverZoomEffect() {
@@ -134,7 +134,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
     }
 
     private void rightAligned() {
@@ -192,6 +192,6 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND).asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
     }
 }

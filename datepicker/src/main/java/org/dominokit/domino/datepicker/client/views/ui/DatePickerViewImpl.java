@@ -166,7 +166,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
     }
 
     private void popups() {
@@ -316,7 +316,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
     }
 
     private void dateBox() {
@@ -351,7 +351,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.datebox()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.datebox()).asElement());
 
     }
 

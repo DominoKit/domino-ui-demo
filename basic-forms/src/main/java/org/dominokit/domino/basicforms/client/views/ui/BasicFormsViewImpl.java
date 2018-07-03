@@ -55,17 +55,17 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         initSwitchExample();
 
         element.appendChild(inputCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
         element.appendChild(textAreaCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
         element.appendChild(selectCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
         element.appendChild(checkboxCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
         element.appendChild(radioCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
         element.appendChild(switchCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
     }
 
 

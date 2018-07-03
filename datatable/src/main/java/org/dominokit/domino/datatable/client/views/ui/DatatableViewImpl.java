@@ -12,74 +12,46 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
 import org.dominokit.domino.datatable.client.views.CodeResource;
 import org.dominokit.domino.datatable.client.views.DatatableView;
-import org.dominokit.domino.datatable.client.views.datatable.*;
+import org.dominokit.domino.datatable.client.views.model.Contact;
+import org.dominokit.domino.datatable.client.views.model.ContactList;
+import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
+import org.dominokit.domino.datatable.client.views.model.ContactSorter;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
-import org.dominokit.domino.ui.forms.SwitchButton;
+import org.dominokit.domino.ui.datatable.ColumnConfig;
+import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.TableConfig;
+import org.dominokit.domino.ui.datatable.events.SimplePaginationPlugin;
+import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
+import org.dominokit.domino.ui.datatable.events.TableEvent;
+import org.dominokit.domino.ui.datatable.plugins.*;
+import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
+import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
+import org.dominokit.domino.ui.datatable.store.RecordsSorter;
+import org.dominokit.domino.ui.datatable.store.SearchFilter;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.media.MediaObject;
-import org.dominokit.domino.ui.progress.Progress;
-import org.dominokit.domino.ui.progress.ProgressBar;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.jacksonapt.ObjectMapper;
-import org.dominokit.jacksonapt.annotation.JSONMapper;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = DatatablePresenter.class)
 public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
 
     private HTMLDivElement element = div().asElement();
+    private ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
+    private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
 
     @Override
     public void init() {
         element.appendChild(BlockHeader.create("DATA TABLES").asElement());
-
-
-        TableConfig<Contact> tableConfig = new TableConfig<>();
-        tableConfig
-                .addColumn(ColumnConfig.<Contact>create("id", "#")
-                        .textAlign("right")
-                        .asHeader()
-                        .setCellElement(tableRow -> new Text(tableRow.getRecord().getIndex() + "")))
-                .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                .setCellElement(tableRow -> {
-
-                    if(tableRow.getRecord().isActive()) {
-                        return Style.of(Icons.ALL.check_circle().asElement()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
-                    }else{
-                       return Style.of(Icons.ALL.highlight_off().asElement()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
-                    }
-                }))
-                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .setCellElement(tableRow -> new Text(tableRow.getRecord().getName())))
-                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setCellElement(this::getGenderElement).textAlign("center")
-                        .maxWidth("60px"))
-                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                        .setCellElement(this::getEyeColorElement).textAlign("center")
-                        .maxWidth("120px"))
-                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setCellElement(this::getBalanceElement
-                        ))
-                .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellElement(tableRow -> new Text(tableRow.getRecord().getEmail())))
-                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellElement(tableRow -> new Text(tableRow.getRecord().getPhone())))
-                .addPlugin(new RecordDetailsPlugin<>(this::makeDetails))
-                .addPlugin(new SelectionPlugin<>());
-
-        DataTable<Contact> dataTable = new DataTable<>(tableConfig);
-        dataTable
-                .hovered()
-                .striped();
-
+        basicTable();
+        scrollableTable();
         try {
             CodeResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
                 @Override
@@ -89,352 +61,203 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    ContactList contactList = ContactMapper.INSTANCE.read(resource.getText());
-                    dataTable.setData(contactList.getContacts().subList(0, 10));
+                    ContactList contactList = ContactList.MAPPER.read(resource.getText());
+                    contactListParseHandlers.forEach(contactListParseHandler ->
+                            contactListParseHandler.onContactsParsed(contactList.getContacts()));
                 }
             });
         } catch (ResourceException e) {
             DomGlobal.console.error("could not load json", e);
         }
+    }
 
+    private void basicTable() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.three)
-                .onMedium(Column.OnMedium.three)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName())))
 
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
 
-        SwitchButton bordered = SwitchButton.create("Bordered").addCheckHandler(checked -> {
-            if (checked) {
-                dataTable.bordered();
-            } else {
-                dataTable.noBorder();
-            }
-        });
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
 
-        SwitchButton hovered = SwitchButton.create("Hovered").addCheckHandler(checked -> {
-            if (checked) {
-                dataTable.hovered();
-            } else {
-                dataTable.noHover();
-            }
-        }).check();
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
-        SwitchButton striped = SwitchButton.create("Striped").addCheckHandler(checked -> {
-            if (checked) {
-                dataTable.striped();
-            } else {
-                dataTable.noStripes();
-            }
-        }).check();
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
 
-        SwitchButton condensed = SwitchButton.create("Condensed").addCheckHandler(checked -> {
-            if (checked) {
-                dataTable.condense();
-            } else {
-                dataTable.expand();
-            }
-        });
-        element.appendChild(Card.create("SIMPLE TABLE")
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(bordered.asElement()))
-                        .addColumn(column.copy().addElement(hovered.asElement()))
-                        .addColumn(column.copy().addElement(striped.asElement()))
-                        .addColumn(column.copy().addElement(condensed.asElement()))
-                        .asElement())
-                .appendContent(dataTable.asElement())
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return new Text("");
+                        }));
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
+                .appendContent(new TableStyleActions(defaultTable))
+                .appendContent(defaultTable.asElement())
                 .asElement());
 
-    }
-
-    private HTMLElement getBalanceElement(TableRow<Contact> row) {
-        HTMLDivElement progress = Progress.create().addBar(ProgressBar.create(4000)
-                .setValue(Double.parseDouble(row.getRecord().getBalance().replace(",", "").replace("$", "")))).asElement();
-        Style.of(progress).setMargin("0px");
-        return progress;
-    }
-
-    private HTMLElement getGenderElement(TableRow<Contact> row) {
-        if (Gender.male.equals(row.getRecord().getGender())) {
-            return i().css("fas fa-male fa-lg").asElement();
-        } else {
-            return i().css("fas fa-female fa-lg").asElement();
-        }
-    }
-
-    private HTMLElement getEyeColorElement(TableRow<Contact> row) {
-        HTMLElement element = i().css("fas fa-eye fa-lg").asElement();
-
-        if (EyeColor.blue.equals(row.getRecord().getEyeColor())) {
-            return Style.of(element).setColor(Color.BLUE.getHex()).asElement();
-        } else if (EyeColor.green.equals(row.getRecord().getEyeColor())) {
-            return Style.of(element).setColor(Color.GREEN.getHex()).asElement();
-        } else if (EyeColor.brown.equals(row.getRecord().getEyeColor())) {
-            return Style.of(element).setColor(Color.BROWN.getHex()).asElement();
-        }
-
-        return element;
-    }
-
-    private HTMLElement makeDetails(TableRow<Contact> row) {
-
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
-
-        Column column2 = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
-
-        Column column3 = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
-
-        SwitchButton active = SwitchButton.create()
-                .setColor(Color.BLUE);
-        active.setValue(row.getRecord().isActive());
-
-        active.addCheckHandler(checked -> {
-            row.getRecord().setActive(checked);
-            row.getCell("status").updateCell();
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(contacts.subList(0, 15));
+            defaultTable.load();
         });
-        Row rowElement = Row.create()
-                .addColumn(column.copy()
-                        .addElement(MediaObject.create()
-                                .setHeader(row.getRecord().name)
-                                .setLeftMedia(a().add(img(row.getRecord().getPicture().replace("gender", getGender(row)).replace("index", getIndex(row)))
-                                        .attr("width", "64")
-                                        .attr("height", "64"))
-                                        .asElement())
-                                .appendContent(new Text(row.getRecord().getAbout()))
-                                .asElement()))
-                .addColumn(column2.copy()
-                        .addElement(Style.of(getEyeColorElement(row)).setPadding("5px").asElement())
-                        .addElement(Style.of(getGenderElement(row)).setPadding("5px").asElement())
-                        .addElement(Style.of(BlockHeader.create(row.getRecord().getBalance()+"", "BALANCE").invert())
-                                .setMarginTop("30px")
-                                .asElement())
-                        .addElement(Style.of(getBalanceElement(row)).setMarginTop("5px").asElement())
-                        .addElement(Style.of(BlockHeader.create("ACTIVE").appendContent(active.asElement()))
-                                .setMarginTop("30px").asElement())
+    }
+
+    private void scrollableTable() {
+
+
+        SimplePaginationPlugin<Contact> simplePagination = new SimplePaginationPlugin<>(10);
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .setFixed(true)
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .sortable()
+                        .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setWidth("70px"))
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .setWidth("80px")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle().asElement()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off().asElement()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .sortable()
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName()))
+                        .setWidth("200px"))
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setWidth("100px")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .styleHeader(head -> Style.of(head).setWidth("100px"))
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center")
+                        .maxWidth("120px"))
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .sortable()
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                        .setWidth("200px"))
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setWidth("250px")
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setWidth("200px")
+                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return new Text("");
+                        }))
+                .addPlugin(new BodyScrollPlugin<>())
+                .addPlugin(new TopPanelPlugin<Contact>() {
+
+                    @Override
+                    public HTMLElement asElement() {
+                        return topPanel.asElement();
+                    }
+
+                    @Override
+                    public void handleEvent(TableEvent event) {
+                        if (TableDataUpdatedEvent.DATA_UPDATED.equals(event.getType())) {
+                            topPanel.update((TableDataUpdatedEvent<Contact>) event);
+                        }
+                    }
+                })
+                .addPlugin(new TableActionsPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new TableActionsPlugin.CondenseTableAction<>())
+                        .addActionElement(new TableActionsPlugin.StripesTableAction<>())
+                        .addActionElement(new TableActionsPlugin.BordersTableAction<>())
+                        .addActionElement(new TableActionsPlugin.HoverTableAction<>())
+                        .addActionElement(new TableActionsPlugin.SearchTableAction<>())
                 )
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()))
+                .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))
+                .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord())))
 
-                .addColumn(column3.copy()
+                .addPlugin(simplePagination)
+                .addPlugin(new DataTableSortPlugin<>());
 
-                        .addElement(Style.of(BlockHeader.create(row.getRecord().getCompany()+"", "COMPANY").invert())
-                                .setMarginTop("5px")
-                                .asElement())
-                        .addElement(Style.of(BlockHeader.create(row.getRecord().getAddress()+"", "ADDRESS").invert())
-                                .setMarginTop("10px")
-                                .asElement())
-                        .addElement(Style.of(BlockHeader.create(row.getRecord().getAge()+"", "AGE").invert())
-                                .setMargin("5px")
-                                .setMarginTop("30px")
-                                .asElement())
-                );
+//        try {
 
-        Style.of(rowElement).addClass(Styles.margin_0);
-        return rowElement.asElement();
+        SearchFilter<Contact> localSearch = new ContactSearchFilter();
+        RecordsSorter<Contact> localSorter = new ContactSorter();
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<Contact>()
+                .setSearchFilter(localSearch)
+                .setPagination(simplePagination.getSimplePagination())
+                .setRecordsSorter(localSorter);
+
+        LocalListScrollingDataSource<Contact> scrollingDataSource = new LocalListScrollingDataSource<Contact>(10)
+                .setSearchFilter(localSearch)
+                .setRecordsSorter(localSorter);
+
+        DataTable<Contact> dataTable = new DataTable<>(tableConfig, scrollingDataSource);
+
+        element.appendChild(Card.create("SIMPLE TABLE")
+                .appendContent(dataTable.asElement())
+                .asElement());
+        element.appendChild(Card.create("test", "test").asElement());
+
+//            CodeResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
+//                @Override
+//                public void onError(ResourceException e) {
+//                    DomGlobal.console.error("could not load json", e);
+//                }
+//
+//                @Override
+//                public void onSuccess(TextResource resource) {
+//                    ContactList contactList = ContactList.MAPPER.read(resource.getText());
+//
+//                    localListDataStore.setData(contactList.getContacts());
+//                    scrollingDataSource.setData(contactList.getContacts());
+//                    dataTable.load();
+//                    topPanel.update(contactList.getContacts());
+//                }
+//            });
+//        } catch (ResourceException e) {
+//            DomGlobal.console.error("could not load json", e);
+//        }
     }
 
-    private Color getColor(TableRow<Contact> row) {
-        if(EyeColor.brown.equals(row.getRecord().getEyeColor()))
-            return Color.BROWN;
-        if(EyeColor.blue.equals(row.getRecord().getEyeColor()))
-            return Color.BLUE;
-        if(EyeColor.green.equals(row.getRecord().getEyeColor()))
-            return Color.GREEN;
-        return Color.BROWN;
+    public interface ContactListParseHandler {
+        void onContactsParsed(List<Contact> contacts);
     }
-
-    private String getIndex(TableRow<Contact> row) {
-        return (row.getIndex() % 99) + "";
-    }
-
-    private String getGender(TableRow<Contact> tableRow) {
-        if (Gender.male.equals(tableRow.getRecord().gender))
-            return "men";
-        return "women";
-    }
-
-    @JSONMapper
-    public interface ContactMapper extends ObjectMapper<ContactList> {
-        ContactMapper INSTANCE = new DatatableViewImpl_ContactMapperImpl();
-    }
-
-    public enum EyeColor {
-        blue, brown, green;
-    }
-
-    public enum Gender {
-        female, male;
-    }
-
-    public static class ContactList {
-        private List<Contact> contacts;
-
-        public ContactList() {
-        }
-
-        public List<Contact> getContacts() {
-            return contacts;
-        }
-
-        public void setContacts(List<Contact> contacts) {
-            this.contacts = contacts;
-        }
-    }
-
-    public static class Contact {
-
-        private int index;
-        private boolean active;
-        private String balance;
-        private String picture;
-        private short age;
-        private EyeColor eyeColor;
-        private String name;
-        private Gender gender;
-        private String company;
-        private String email;
-        private String phone;
-        private String address;
-        private String about;
-
-        public Contact() {
-        }
-
-        public int getIndex() {
-            return index;
-        }
-
-        public void setIndex(int index) {
-            this.index = index;
-        }
-
-        public boolean isActive() {
-            return active;
-        }
-
-        public void setActive(boolean active) {
-            this.active = active;
-        }
-
-        public String getBalance() {
-            return balance;
-        }
-
-        public void setBalance(String balance) {
-            this.balance = balance;
-        }
-
-        public String getPicture() {
-            return picture;
-        }
-
-        public void setPicture(String picture) {
-            this.picture = picture;
-        }
-
-        public short getAge() {
-            return age;
-        }
-
-        public void setAge(short age) {
-            this.age = age;
-        }
-
-        public EyeColor getEyeColor() {
-            return eyeColor;
-        }
-
-        public void setEyeColor(EyeColor eyeColor) {
-            this.eyeColor = eyeColor;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public Gender getGender() {
-            return gender;
-        }
-
-        public void setGender(Gender gender) {
-            this.gender = gender;
-        }
-
-        public String getCompany() {
-            return company;
-        }
-
-        public void setCompany(String company) {
-            this.company = company;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public String getPhone() {
-            return phone;
-        }
-
-        public void setPhone(String phone) {
-            this.phone = phone;
-        }
-
-        public String getAddress() {
-            return address;
-        }
-
-        public void setAddress(String address) {
-            this.address = address;
-        }
-
-        public String getAbout() {
-            return about;
-        }
-
-        public void setAbout(String about) {
-            this.about = about;
-        }
-
-        @Override
-        public String toString() {
-            return "Contact{" +
-                    "index=" + index +
-                    ", active=" + active +
-                    ", balance='" + balance + '\'' +
-                    ", picture='" + picture + '\'' +
-                    ", age=" + age +
-                    ", eyeColor=" + eyeColor +
-                    ", name='" + name + '\'' +
-                    ", gender=" + gender +
-                    ", company='" + company + '\'' +
-                    ", email='" + email + '\'' +
-                    ", phone='" + phone + '\'' +
-                    ", address='" + address + '\'' +
-                    ", about='" + about + '\'' +
-                    '}';
-        }
-    }
-
 
     @Override
     public HTMLDivElement getElement() {

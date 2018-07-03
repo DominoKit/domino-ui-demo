@@ -37,13 +37,13 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         initValidations();
 
         element.appendChild(helperTextCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
         element.appendChild(iconsCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.addons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.addons()).asElement());
         element.appendChild(countsCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
         element.appendChild(validationsCard.asElement());
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.validations()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
     }
 
     private void initHelperText() {

@@ -119,7 +119,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         this.element.appendChild(card.asElement());
 
-        this.element.appendChild(createCodeCard(CodeResource.INSTANCE.initDropUp()).asElement());
+        this.element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initDropUp()).asElement());
     }
 
     private void initSplitButton() {
@@ -180,7 +180,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         this.element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initSplitButton()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSplitButton()).asElement());
     }
 
     private void initSingleDropdownButtons() {
@@ -244,7 +244,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).asElement());
     }
 
     private void initJustifyGroup() {
@@ -270,7 +270,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(justifiedGroupCard.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initJustifyGroup()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initJustifyGroup()).asElement());
     }
 
     private void initVerticalGroup() {
@@ -290,7 +290,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(verticalGroupCard.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).asElement());
     }
 
     private void initNestingGroup() {
@@ -329,7 +329,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initNestingGroup()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initNestingGroup()).asElement());
     }
 
     private HTMLElement numbersNestedGroup(StyleType type) {
@@ -417,7 +417,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initSizingGroup()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initSizingGroup()).asElement());
     }
 
     private void initButtonsToolbar() {
@@ -520,7 +520,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).asElement());
     }
 
     private void initButtonsBasicGroup() {
@@ -594,7 +594,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).asElement());
     }
 
     private void initTextIconButtons() {
@@ -629,7 +629,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initTextIconButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initTextIconButtons()).asElement());
     }
 
     private void initIconButtons() {
@@ -728,7 +728,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initIconButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initIconButtons()).asElement());
     }
 
     private HTMLHeadingElement heading(String content) {
@@ -770,7 +770,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).asElement());
     }
 
     private void initBlockButtons() {
@@ -801,7 +801,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initBlockButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initBlockButtons()).asElement());
 
     }
 
@@ -931,7 +931,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
         card.appendContent(row.asElement());
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initButtonSizes()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initButtonSizes()).asElement());
 
     }
 
@@ -971,7 +971,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).asElement());
     }
 
     private void initMaterialDesignButtons() {
@@ -1004,6 +1004,6 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
         element.appendChild(card.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
     }
 }

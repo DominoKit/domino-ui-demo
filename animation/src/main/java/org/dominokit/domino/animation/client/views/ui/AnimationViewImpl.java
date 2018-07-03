@@ -327,7 +327,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                                 .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.animation()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
     }
 
     private Card createCard(Transition transition) {

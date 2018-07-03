@@ -88,7 +88,7 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
 
         element.appendChild(labels.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
     }
 
     private void initLabels() {
@@ -153,6 +153,6 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
 
         this.element.appendChild(labels.asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
     }
 }

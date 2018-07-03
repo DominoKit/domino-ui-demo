@@ -10,4 +10,6 @@ public interface MenuView extends View{
     MenuContext.CanAddMenuItem addMenuItem(String title, String iconName, MenuContext.OnMenuSelectedHandler selectionHandler);
 
     MenuContext.CanAddMenuItem addMenuItem(String title, String iconName);
+
+    void setTitle(String title);
 }

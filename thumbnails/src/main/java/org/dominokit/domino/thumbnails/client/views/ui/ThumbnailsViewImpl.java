@@ -68,7 +68,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void withExtraContentSample() {
@@ -117,7 +117,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
 
     }
 

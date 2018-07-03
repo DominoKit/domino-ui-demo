@@ -85,7 +85,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void contextualAlternatives() {
@@ -116,7 +116,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
     }
 
     private void stripedSample() {
@@ -147,7 +147,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
     }
 
     private void animatedSample() {
@@ -178,7 +178,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
     }
 
     private void stackedSample() {
@@ -198,7 +198,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
     }
 
     private void materialDesignColors() {
@@ -230,7 +230,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
     }
 
     @Override

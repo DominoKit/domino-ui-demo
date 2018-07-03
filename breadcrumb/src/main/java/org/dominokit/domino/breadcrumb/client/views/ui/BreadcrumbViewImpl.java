@@ -84,7 +84,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
                 .asElement());
     }
 
@@ -180,7 +180,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
                 .asElement());
     }
 
@@ -276,7 +276,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement()))
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
                 .asElement());
     }
 
@@ -313,7 +313,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(createCodeCard(CodeResource.INSTANCE.alignment())
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.alignment())
                 .asElement());
 
     }

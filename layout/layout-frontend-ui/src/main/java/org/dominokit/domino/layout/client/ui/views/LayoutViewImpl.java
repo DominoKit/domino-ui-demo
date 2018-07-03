@@ -15,6 +15,7 @@ import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
+import org.dominokit.domino.ui.utils.BodyObserver;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.img;
@@ -100,6 +101,7 @@ public class LayoutViewImpl implements LayoutView {
 
     @Override
     public IsLayout show() {
+        BodyObserver.init();
         layout.show();
         return this;
     }
