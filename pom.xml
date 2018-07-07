@@ -16,6 +16,7 @@
 
         <material.version>2.0</material.version>
         <vertx.version>3.4.2</vertx.version>
+        <elemento.version>0.8.5</elemento.version>
     </properties>
 
     <repositories>
@@ -49,17 +50,17 @@
             <dependency>
                 <groupId>org.jboss.gwt.elemento</groupId>
                 <artifactId>elemento-core</artifactId>
-                <version>HEAD-SNAPSHOT</version>
+                <version>${elemento.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.gwt.elemento</groupId>
                 <artifactId>elemento-template-api</artifactId>
-                <version>HEAD-SNAPSHOT</version>
+                <version>${elemento.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.gwt.elemento</groupId>
                 <artifactId>elemento-template-processor</artifactId>
-                <version>HEAD-SNAPSHOT</version>
+                <version>${elemento.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.dominokit</groupId>
