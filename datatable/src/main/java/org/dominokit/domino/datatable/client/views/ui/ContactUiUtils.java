@@ -7,6 +7,7 @@ import org.dominokit.domino.datatable.client.views.model.EyeColor;
 import org.dominokit.domino.datatable.client.views.model.Gender;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.TableRow;
+import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
 import org.dominokit.domino.ui.style.Color;
@@ -25,6 +26,7 @@ public class ContactUiUtils {
                         .setBackground(getBalanceColor(doubleBalance).color())
                 ).asElement();
         Style.of(progress).setMargin("0px");
+        Tooltip.create(progress, contact.getBalance());
         return progress;
     }
 

@@ -19,6 +19,22 @@ public class Contact {
     public Contact() {
     }
 
+    public Contact(Contact other) {
+        this.index = other.index;
+        this.active = other.active;
+        this.balance = other.balance;
+        this.picture = other.picture;
+        this.age = other.age;
+        this.eyeColor = other.eyeColor;
+        this.name = other.name;
+        this.gender = other.gender;
+        this.company = other.company;
+        this.email = other.email;
+        this.phone = other.phone;
+        this.address = other.address;
+        this.about = other.about;
+    }
+
     public int getIndex() {
         return index;
     }
@@ -134,4 +150,5 @@ public class Contact {
                 ", name='" + name + '\'' +
                 '}';
     }
+
 }
