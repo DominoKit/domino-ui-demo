@@ -1,5 +1,9 @@
 package org.dominokit.domino.layout.client.ui.views;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
@@ -8,16 +12,8 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.layout.Layout;
-import org.dominokit.domino.ui.themes.Theme;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
-import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
-import org.dominokit.domino.layout.client.views.LayoutView;
 
 import static java.util.Objects.nonNull;
-import static org.jboss.gwt.elemento.core.Elements.img;
 
 @UiView(presentable = LayoutPresenter.class)
 public class LayoutViewImpl implements LayoutView {

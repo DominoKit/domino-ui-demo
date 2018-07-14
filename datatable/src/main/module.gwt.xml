@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module>
+  <inherits name="com.google.gwt.user.User" />
+  <inherits name="com.google.gwt.resources.Resources" />
+  <inherits name="org.dominokit.jacksonapt.GwtJacksonApt"/>
+
+  <source path="" />
+
+  <entry-point class="org.dominokit.domino.datatable.client.DatatableClientModule" />
+
+  <set-configuration-property name="CssResource.enableGss" value="true"/>
+
+</module>

@@ -232,6 +232,12 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>datatable</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>basic-forms</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -570,6 +576,11 @@
             <artifactId>waves</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>datatable</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>
@@ -589,10 +600,14 @@
                         <compilerArg>-extra</compilerArg>
                         <compilerArg>${build.directory}/gwt/extra</compilerArg>
                     </compilerArgs>
-                    <!--<codeserverArgs>-->
+                    <codeserverArgs>
                         <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                        <!--<codeserverArg>192.168.1.11</codeserverArg>-->
-                    <!--</codeserverArgs>-->
+                        <!--<codeserverArg>192.168.1.5</codeserverArg>-->
+                        <codeserverArg>-src</codeserverArg>
+                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                        <codeserverArg>-src</codeserverArg>
+                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>
+                    </codeserverArgs>
                 </configuration>
             </plugin>
             <plugin>
