@@ -42,6 +42,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = DatatablePresenter.class)
@@ -52,7 +53,11 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     @Override
     public void init() {
-        element.appendChild(BlockHeader.create("DATA TABLES").asElement());
+        element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
+                .appendContent(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
+                        .attr("target","_blank")
+                        .textContent("Data table demo source code").asElement())
+                .asElement());
         basicTable();
         basicFixedTable();
         selectionPlugin();
