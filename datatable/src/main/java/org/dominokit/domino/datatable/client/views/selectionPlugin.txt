@@ -1,0 +1,61 @@
+TableConfig<Contact> tableConfig = new TableConfig<>();
+tableConfig
+        .addColumn(ColumnConfig.<Contact>create("id", "#")
+                .textAlign("right")
+                .asHeader()
+                .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+        .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                .textAlign("center")
+                .setCellRenderer(cell -> {
+                    if (cell.getTableRow().getRecord().isActive()) {
+                        return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                    } else {
+                        return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                    }
+                }))
+        .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName())))
+
+
+        .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                .textAlign("center"))
+
+        .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                .textAlign("center"))
+
+        .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+        .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+
+        .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+
+        .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                .setCellRenderer(cell -> {
+                    if (cell.getTableRow().getRecord().getAge() < 35) {
+                        return Badge.create("Young")
+                                .setBackground(ColorScheme.GREEN.color()).asElement();
+                    }
+                    return new Text("");
+                }));
+
+
+tableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+
+LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+
+element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
+        .setCollapsible()
+        .appendContent(new TableStyleActions(defaultTable))
+        .appendContent(defaultTable.asElement())
+        .asElement());
+
+List<Contact> contacts = ...
+localListDataStore.setData(contacts);
+table.load();

@@ -8,10 +8,39 @@ public interface CodeResource extends ClientBundle{
 
     CodeResource INSTANCE= GWT.create(CodeResource.class);
 
-    @Source("sample.txt")
-    ExternalTextResource sample();
+    @Source("basicTable.txt")
+    ExternalTextResource basicTable();
+
+    @Source("fixedBasicTable.txt")
+    ExternalTextResource fixedBasicTable();
+
+    @Source("selectionPlugin.txt")
+    ExternalTextResource selectionPlugin();
+
+    @Source("markerPlugin.txt")
+    ExternalTextResource markerPlugin();
+
+    @Source("recordDetailsPlugin.txt")
+    ExternalTextResource recordDetailsPlugin();
+
+    @Source("headerBarPlugin.txt")
+    ExternalTextResource headerBarPlugin();
+
+    @Source("sortAndSearch.txt")
+    ExternalTextResource sortAndSearch();
+
+    @Source("simplePagination.txt")
+    ExternalTextResource simplePagination();
+
+    @Source("scrollLoading.txt")
+    ExternalTextResource scrollLoading();
+
+    @Source("topPanelPlugin.txt")
+    ExternalTextResource topPanelPlugin();
+
+    @Source("allInOne.txt")
+    ExternalTextResource allInOne();
 
     @Source("generated.json")
     ExternalTextResource generatedJson();
-
 }

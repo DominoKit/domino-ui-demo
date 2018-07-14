@@ -3,7 +3,10 @@ package org.dominokit.domino.datatable.client.views.ui;
 import com.google.gwt.resources.client.ResourceCallback;
 import com.google.gwt.resources.client.ResourceException;
 import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.*;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
@@ -16,6 +19,7 @@ import org.dominokit.domino.datatable.client.views.model.ContactSorter;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.IconButton;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.code.Code;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
@@ -25,8 +29,7 @@ import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
-import org.dominokit.domino.ui.datatable.store.RecordsSorter;
-import org.dominokit.domino.ui.datatable.store.SearchFilter;
+import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.popover.Tooltip;
@@ -42,7 +45,7 @@ import java.util.stream.Collectors;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = DatatablePresenter.class)
-public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
+public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
 
     private HTMLDivElement element = div().asElement();
     private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
@@ -84,21 +87,23 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
     private void basicTable() {
         TableConfig<Contact> tableConfig = createBasicTableConfig();
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            defaultTable.load();
+            table.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
     }
 
-    private void basicFixedTable(){
+    private void basicFixedTable() {
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .setFixed(true)
@@ -161,6 +166,8 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fixedBasicTable()).asElement());
     }
 
     private List<Contact> subList(List<Contact> contacts) {
@@ -187,6 +194,8 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
     }
 
     private void markerPlugin() {
@@ -205,6 +214,8 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
     }
 
     private void recordDetailsPlugin() {
@@ -223,12 +234,14 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
     }
 
-    private void tableHeaderBarPlugin(){
+    private void tableHeaderBarPlugin() {
         TableConfig<Contact> tableConfig = createBasicTableConfig();
         tableConfig.addPlugin(new SelectionPlugin<>());
-        tableConfig.addPlugin(new TableHeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+        tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
                     IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
                             .linkify();
@@ -241,10 +254,10 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .css(Styles.pull_right, Styles.m_r_15);
 
                     selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getTableRows().forEach(tableRow ->{
-                            if(!tableRow.getRecord().isActive()){
+                        dataTable.getTableRows().forEach(tableRow -> {
+                            if (!tableRow.getRecord().isActive()) {
                                 tableRow.select();
-                            }else{
+                            } else {
                                 tableRow.deselect();
                             }
                         });
@@ -264,10 +277,10 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .css(Styles.pull_right, Styles.m_r_15);
 
                     selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getTableRows().forEach(tableRow ->{
-                            if(tableRow.getRecord().isActive()){
+                        dataTable.getTableRows().forEach(tableRow -> {
+                            if (tableRow.getRecord().isActive()) {
                                 tableRow.select();
-                            }else{
+                            } else {
                                 tableRow.deselect();
                             }
                         });
@@ -289,30 +302,34 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.headerBarPlugin()).asElement());
     }
 
-    private void sortAndSearch(){
+    private void sortAndSearch() {
         TableConfig<Contact> tableConfig = createSortableTableConfig();
 
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        localListDataStore.setRecordsSorter(new ContactSorter());
-        localListDataStore.setSearchFilter(new ContactSearchFilter());
-        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+        LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
+        listStore.setRecordsSorter(new ContactSorter());
+        listStore.setSearchFilter(new ContactSearchFilter());
+        DataTable<Contact> table = new DataTable<>(tableConfig, listStore);
 
         element.appendChild(Card.create("SORT PLUGIN & SEARCH HEADER ACTION", "Allows the table to fire events useful for datasource to sort and search the data")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts));
-            defaultTable.load();
+            listStore.setData(subList(contacts));
+            table.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
     }
 
-    private void simplePagination(){
-        SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);
+    private void simplePagination() {
+        SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);//page size
         TableConfig<Contact> tableConfig = createSortableTableConfig();
         tableConfig.addPlugin(simplePaginationPlugin);
 
@@ -320,18 +337,20 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
         localListDataStore.setRecordsSorter(new ContactSorter());
         localListDataStore.setSearchFilter(new ContactSearchFilter());
         localListDataStore.setPagination(simplePaginationPlugin.getSimplePagination());
-        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
-            defaultTable.load();
+            table.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
     }
 
     private TableConfig<Contact> createSortableTableConfig() {
@@ -385,9 +404,14 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }));
 
         tableConfig
-                .addPlugin(new DataTableSortPlugin<>())
-                .addPlugin(new TableHeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new TableHeaderBarPlugin.SearchTableAction<>()));
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .addSearchField(SelectOption.create("", "Name, Email"), true)
+                                .addSearchField(SelectOption.create("name", "Name"))
+                                .addSearchField(SelectOption.create("email", "Email"))
+                        )
+                );
         return tableConfig;
     }
 
@@ -494,32 +518,38 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                             return new Text("");
                         }))
                 .addPlugin(new BodyScrollPlugin<>())
-                .addPlugin(new TableHeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new TableHeaderBarPlugin.SearchTableAction<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .addSearchField(SelectOption.create("", "Name, Email"), true)
+                                .addSearchField(SelectOption.create("name", "Name"))
+                                .addSearchField(SelectOption.create("email", "Email"))
+                        )
                 )
 
-                .addPlugin(new DataTableSortPlugin<>());
+                .addPlugin(new SortPlugin<>());
 
         LocalListScrollingDataSource<Contact> scrollingDataSource = new LocalListScrollingDataSource<Contact>(10)
                 .setSearchFilter(new ContactSearchFilter())
                 .setRecordsSorter(new ContactSorter());
 
-        DataTable<Contact> dataTable = new DataTable<>(tableConfig, scrollingDataSource);
+        DataTable<Contact> table = new DataTable<>(tableConfig, scrollingDataSource);
 
         element.appendChild(Card.create("SCROLL LOADING", "Scroll loading requires the table to be fixed. use the Body scroll plugin to fire scroll events.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(dataTable))
-                .appendContent(dataTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
             scrollingDataSource.setData(contacts.subList(0, 100));
-            dataTable.load();
+            table.load();
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.scrollLoading()).asElement());
 
     }
 
-    private void topPanelPlugin(){
+    private void topPanelPlugin() {
         ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
@@ -587,34 +617,40 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }
                     }
                 })
-                .addPlugin(new TableHeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new TableHeaderBarPlugin.SearchTableAction<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .addSearchField(SelectOption.create("", "Name, Email"), true)
+                                .addSearchField(SelectOption.create("name", "Name"))
+                                .addSearchField(SelectOption.create("email", "Email"))
+                        )
                 )
 
-                .addPlugin(new DataTableSortPlugin<>());
+                .addPlugin(new SortPlugin<>());
 
         LocalListScrollingDataSource<Contact> scrollingDataSource = new LocalListScrollingDataSource<Contact>(10)
                 .setSearchFilter(new ContactSearchFilter())
                 .setRecordsSorter(new ContactSorter());
 
-        DataTable<Contact> dataTable = new DataTable<>(tableConfig, scrollingDataSource);
+        DataTable<Contact> table = new DataTable<>(tableConfig, scrollingDataSource);
 
         element.appendChild(Card.create("TOP PANEL PLUGIN", "A simple panel that listens to datatable events and update its content accordingly.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(dataTable))
-                .appendContent(dataTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);
             scrollingDataSource.setData(data);
-            dataTable.load();
+            table.load();
             topPanel.update(data);
         });
 
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+
     }
 
-    private void allInOne(){
+    private void allInOne() {
         ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
         SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);
         TableConfig<Contact> tableConfig = new TableConfig<>();
@@ -682,7 +718,7 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }
                     }
                 })
-                .addPlugin(new TableHeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(dataTable -> {
                             IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
                                     .linkify();
@@ -695,10 +731,10 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .css(Styles.pull_right, Styles.m_r_15);
 
                             selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getTableRows().forEach(tableRow ->{
-                                    if(!tableRow.getRecord().isActive()){
+                                dataTable.getTableRows().forEach(tableRow -> {
+                                    if (!tableRow.getRecord().isActive()) {
                                         tableRow.select();
-                                    }else{
+                                    } else {
                                         tableRow.deselect();
                                     }
                                 });
@@ -718,10 +754,10 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .css(Styles.pull_right, Styles.m_r_15);
 
                             selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getTableRows().forEach(tableRow ->{
-                                    if(tableRow.getRecord().isActive()){
+                                dataTable.getTableRows().forEach(tableRow -> {
+                                    if (tableRow.getRecord().isActive()) {
                                         tableRow.select();
-                                    }else{
+                                    } else {
                                         tableRow.deselect();
                                     }
                                 });
@@ -729,34 +765,39 @@ public class DatatableViewImpl extends ComponentView<HTMLDivElement> implements 
 
                             return selectInactiveButton.asElement();
                         })
-                        .addActionElement(new TableHeaderBarPlugin.SearchTableAction<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .addSearchField(SelectOption.create("", "Name, Email"), true)
+                                .addSearchField(SelectOption.create("name", "Name"))
+                                .addSearchField(SelectOption.create("email", "Email"))
+                        )
                 )
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()))
                 .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))
                 .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord())))
 
-                .addPlugin(new DataTableSortPlugin<>());
+                .addPlugin(new SortPlugin<>());
 
-        LocalListDataStore<Contact> scrollingDataSource = new LocalListDataStore<Contact>()
+        LocalListDataStore<Contact> localListDataSource = new LocalListDataStore<Contact>()
                 .setSearchFilter(new ContactSearchFilter())
                 .setRecordsSorter(new ContactSorter())
                 .setPagination(simplePaginationPlugin.getSimplePagination());
 
-        DataTable<Contact> dataTable = new DataTable<>(tableConfig, scrollingDataSource);
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataSource);
 
         element.appendChild(Card.create("ALL IN ONE", "Try all plugins and feature works together.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(dataTable))
-                .appendContent(dataTable.asElement())
+                .appendContent(new TableStyleActions(table))
+                .appendContent(table.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);
-            scrollingDataSource.setData(data);
-            dataTable.load();
+            localListDataSource.setData(data);
+            table.load();
             topPanel.update(data);
-
         });
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
     }
 
     public interface ContactListParseHandler {

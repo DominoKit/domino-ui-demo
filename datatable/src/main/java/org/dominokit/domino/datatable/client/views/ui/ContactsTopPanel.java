@@ -19,36 +19,47 @@ import static org.jboss.gwt.elemento.core.Elements.i;
 public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
 
     private InfoBox loaded_items_count = InfoBox.create(Icons.ALL.timelapse(), "LOADED ITEMS COUNT", "0")
-            .setIconBackground(Color.INDIGO)
-            .setBackground(Color.INDIGO)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
+            .setIconColor(Color.INDIGO)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
+
     private InfoBox totalItemsCount = InfoBox.create(Icons.ALL.timelapse(), "TOTAL ITEMS COUNT", "0")
-            .setIconBackground(Color.INDIGO)
-            .setBackground(Color.INDIGO)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
-    private InfoBox femaleCount = InfoBox.create(i().css("fas fa-female fa-lg", Color.WHITE.getStyle()).asElement(), "FEMALES", "0")
-            .setIconBackground(Color.PINK)
-            .setBackground(Color.PINK)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
-    private InfoBox maleCount = InfoBox.create(i().css("fas fa-male fa-lg", Color.WHITE.getStyle()).asElement(), "MALES", "0")
-            .setIconBackground(Color.BLUE)
-            .setBackground(Color.BLUE)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
+            .setIconColor(Color.INDIGO)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
+
+    private InfoBox femaleCount = InfoBox.create(i().css("fas fa-female fa-lg").asElement(), "FEMALES", "0")
+            .setIconColor(Color.PINK)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
+
+    private InfoBox maleCount = InfoBox.create(i().css("fas fa-male fa-lg").asElement(), "MALES", "0")
+            .setIconColor(Color.BLUE)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox goodCount = InfoBox.create(Icons.ALL.timelapse(), "GOOD BALANCE ", "0")
-            .setIconBackground(Color.GREEN)
-            .setBackground(Color.GREEN)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
+            .setIconColor(Color.GREEN)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
+
     private InfoBox dangerCount = InfoBox.create(Icons.ALL.timelapse(), "LOW BALANCE", "0")
-            .setIconBackground(Color.RED)
-            .setBackground(Color.RED)
-            .flip()
-            .setHoverEffect(InfoBox.HoverEffect.EXPAND);
+            .setIconColor(Color.RED)
+            .setIconBackground(Color.WHITE)
+            .setBackground(Color.WHITE)
+            .removeShadow()
+            .setHoverEffect(InfoBox.HoverEffect.ZOOM);
+
     private Column column = Column.create()
             .onLarge(Column.OnLarge.two)
             .onMedium(Column.OnMedium.two)

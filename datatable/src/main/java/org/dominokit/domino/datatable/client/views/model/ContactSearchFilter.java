@@ -9,13 +9,30 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
     @Override
     public boolean filterRecord(SearchEvent searchEvent, Contact contact) {
         String searchText = searchEvent.getSearchText();
+        String searchField=searchEvent.getSearchField();
         if (nonNull(searchText) && !searchText.isEmpty()) {
-            return contact.getName().toLowerCase().contains(searchText.toLowerCase())
-                    || contact.getEmail().toLowerCase().contains(searchText.toLowerCase())
-                    || contact.getAbout().toLowerCase().contains(searchText.toLowerCase())
-                    || contact.getAddress().toLowerCase().contains(searchText.toLowerCase())
-                    || contact.getCompany().toLowerCase().contains(searchText.toLowerCase());
+            switch (searchField){
+                case "name":
+                    return filterByName(contact, searchText);
+                case "email":
+                    return filterByEmail(contact, searchText);
+                default:
+                    return filterByAll(contact, searchText);
+            }
         }
         return true;
+    }
+
+    private boolean filterByAll(Contact contact, String searchText) {
+        return filterByName(contact, searchText)
+                || filterByEmail(contact, searchText);
+    }
+
+    private boolean filterByEmail(Contact contact, String searchText) {
+        return contact.getEmail().toLowerCase().contains(searchText.toLowerCase());
+    }
+
+    private boolean filterByName(Contact contact, String searchText) {
+        return contact.getName().toLowerCase().contains(searchText.toLowerCase());
     }
 }
