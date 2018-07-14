@@ -31,4 +31,9 @@ public class MenuPresenter extends BaseClientPresenter<MenuView> implements Menu
     public CanAddMenuItem addMenuItem(String title, String iconName) {
         return view.addMenuItem(title, iconName);
     }
+
+    @Override
+    public void setMainTitle(String title) {
+        view.setTitle(title);
+    }
 }

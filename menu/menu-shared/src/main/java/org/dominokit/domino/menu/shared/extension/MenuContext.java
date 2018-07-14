@@ -15,6 +15,7 @@ public interface MenuContext extends Context {
         void onMenuSelected();
     }
 
+    void setMainTitle(String title);
     CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler);
     CanAddMenuItem addMenuItem(String title, String iconName);
 }

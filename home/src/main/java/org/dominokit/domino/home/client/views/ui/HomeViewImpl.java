@@ -1,19 +1,25 @@
 package org.dominokit.domino.home.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
 import org.dominokit.domino.home.client.views.HomeView;
+import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
-import elemental2.dom.HTMLDivElement;
-import org.jboss.gwt.elemento.core.Elements;
+import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.tabs.Tab;
+import org.dominokit.domino.ui.tabs.TabsPanel;
+
+import static org.jboss.gwt.elemento.core.Elements.b;
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = HomePresenter.class)
 public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {
 
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = div().asElement();
 
     @Override
     public HTMLDivElement getElement() {
@@ -22,7 +28,6 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
     @Override
     public void init() {
-
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").asElement());
 

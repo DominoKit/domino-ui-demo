@@ -9,7 +9,7 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.pagination.Pager;
-import org.dominokit.domino.ui.pagination.Pagination;
+import org.dominokit.domino.ui.pagination.SimplePagination;
 import org.dominokit.domino.ui.row.Row;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
@@ -42,7 +42,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
     private void defaultPagination() {
         element.appendChild(Card.create("DEFAULT PAGINATION",
                 "Simple pagination inspired by Rdio, great for apps and search results. The large block is hard to miss, easily scalable, and provides large click areas.")
-                .appendContent(Pagination.create(5)
+                .appendContent(SimplePagination.create(5)
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
                         .asElement())
                 .asElement());
@@ -52,10 +52,10 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void activePageSample() {
         element.appendChild(Card.create("ACTIVE PAGE", "You can mark the current active page.")
-                .appendContent(Pagination.create(5)
+                .appendContent(SimplePagination.create(5)
                         .markActivePage()
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
-                        .setActivePage(3)
+                        .gotoPage(3)
                         .asElement())
                 .asElement());
 
@@ -75,25 +75,25 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendContent(Row.create()
                         .addColumn(column.copy()
                                 .addElement(b().textContent("Large").asElement())
-                                .addElement(Pagination.create(5)
+                                .addElement(SimplePagination.create(5)
                                         .markActivePage()
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
-                                        .setActivePage(3)
+                                        .gotoPage(3)
                                         .large()
                                         .asElement()))
                         .addColumn(column.copy()
                                 .addElement(b().textContent("Default").asElement())
-                                .addElement(Pagination.create(5)
+                                .addElement(SimplePagination.create(5)
                                         .markActivePage()
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
-                                        .setActivePage(3)
+                                        .gotoPage(3)
                                         .asElement()))
                         .addColumn(column.copy()
                                 .addElement(b().textContent("Small").asElement())
-                                .addElement(Pagination.create(5)
+                                .addElement(SimplePagination.create(5)
                                         .markActivePage()
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
-                                        .setActivePage(3)
+                                        .gotoPage(3)
                                         .small()
                                         .asElement()))
                         .asElement())
