@@ -1,6 +1,7 @@
 package org.dominokit.domino.layout.client.ui.views;
 
 import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
@@ -12,8 +13,12 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.layout.Layout;
+import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
 import static java.util.Objects.nonNull;
+import static org.jboss.gwt.elemento.core.Elements.a;
+import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.gwt.elemento.core.Elements.li;
 
 @UiView(presentable = LayoutPresenter.class)
 public class LayoutViewImpl implements LayoutView {
@@ -24,6 +29,11 @@ public class LayoutViewImpl implements LayoutView {
 
     public LayoutViewImpl() {
         DomGlobal.document.body.style.background = "#e9e9e9";
+        HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x").asElement();
+        layout.getTopBar().appendChild(li().style("padding-top: 3px;").add(githubLink).asElement());
+        githubLink.addEventListener("click", evt -> {
+            DomGlobal.window.open("https://github.com/DominoKit/domino-ui","_blank");
+        });
     }
 
     @Override
