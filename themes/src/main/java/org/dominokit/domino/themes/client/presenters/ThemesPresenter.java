@@ -2,7 +2,7 @@ package org.dominokit.domino.themes.client.presenters;
 
 import org.dominokit.domino.api.client.annotations.InjectContext;
 import org.dominokit.domino.api.client.annotations.Presenter;
-import org.dominokit.domino.api.client.mvp.presenter.BaseClientPresenter;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.history.DominoHistory;
 import org.dominokit.domino.api.shared.history.HistoryToken;
 import org.dominokit.domino.api.shared.history.TokenFilter;
@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory;
 import static java.util.Objects.nonNull;
 
 @Presenter
-public class ThemesPresenter extends BaseClientPresenter<ThemesView> implements ThemesView.ThemeAppliedHandler{
+public class ThemesPresenter extends ViewBaseClientPresenter<ThemesView> implements ThemesView.ThemeAppliedHandler{
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ThemesPresenter.class);
 

@@ -2,7 +2,7 @@ package org.dominokit.domino.cards.client.presenters;
 
 import org.dominokit.domino.api.client.annotations.InjectContext;
 import org.dominokit.domino.api.client.annotations.Presenter;
-import org.dominokit.domino.api.client.mvp.presenter.BaseClientPresenter;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.cards.client.views.CardsView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Presenter
-public class CardsPresenter extends BaseClientPresenter<CardsView> {
+public class CardsPresenter extends ViewBaseClientPresenter<CardsView> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CardsPresenter.class);
 

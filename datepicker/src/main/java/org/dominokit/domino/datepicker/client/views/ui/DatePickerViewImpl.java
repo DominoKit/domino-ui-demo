@@ -22,6 +22,7 @@ import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_fr;
 import org.gwtproject.i18n.shared.DateTimeFormat;
@@ -180,8 +181,10 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                             .setBackground(ColorScheme.BLUE.color())
                             .show();
                 });
-        Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Birth date", bluePopDatePicker
-                .asElement());
+        Popover bluePopover = Style.of(Popover.create(bluePopupButton.asElement(), "Birth date", bluePopDatePicker
+                .asElement()))
+                .setMaxWidth("300px")
+                .get();
 
         bluePopDatePicker.addCloseHandler(() -> bluePopover.close());
         bluePopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
@@ -200,8 +203,10 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                             .setBackground(ColorScheme.AMBER.color())
                             .show();
                 });
-        Popover amberPopover = Popover.createPicker(amberPopupButton.asElement(), amberPopDatePicker
-                .asElement());
+        Popover amberPopover = Style.of(Popover.createPicker(amberPopupButton.asElement(), amberPopDatePicker
+                .asElement()))
+                .setMaxWidth("300px")
+                .get();
 
         amberPopDatePicker.addCloseHandler(() -> amberPopover.close());
         amberPopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
@@ -220,8 +225,10 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                             .setBackground(ColorScheme.GREEN.color())
                             .show();
                 });
-        Popover greenPopover = Popover.createPicker(greenPopupButton.asElement(), greenPopDatePicker
-                .asElement());
+        Popover greenPopover = Style.of(Popover.createPicker(greenPopupButton.asElement(), greenPopDatePicker
+                .asElement()))
+                .setMaxWidth("300px")
+                .get();
 
         greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
         greenPopDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
@@ -245,7 +252,6 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .setPosition(Notification.TOP_LEFT)
                 .setBackground(ColorScheme.BLUE.color())
                 .show());
-
 
 
         blueModal.appendContent(blueDatePicker.asElement());
@@ -321,7 +327,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void dateBox() {
 
-        Column column=this.column.copy()
+        Column column = this.column.copy()
                 .removeCssClass(Styles.padding_0);
 
         DateBox dateBox1 = DateBox.create()
