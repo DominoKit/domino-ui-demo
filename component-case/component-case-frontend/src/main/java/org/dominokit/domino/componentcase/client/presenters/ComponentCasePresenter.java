@@ -3,7 +3,7 @@ package org.dominokit.domino.componentcase.client.presenters;
 import org.dominokit.domino.api.client.annotations.InjectContext;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.extension.ContextAggregator;
-import org.dominokit.domino.api.client.mvp.presenter.BaseClientPresenter;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.history.HistoryToken;
 import org.dominokit.domino.api.shared.history.TokenFilter;
 import org.dominokit.domino.componentcase.client.views.ComponentCaseView;
@@ -26,7 +26,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 
 @Presenter
-public class ComponentCasePresenter extends BaseClientPresenter<ComponentCaseView> implements ComponentCaseContext {
+public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCaseView> implements ComponentCaseContext {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ComponentCasePresenter.class);
 

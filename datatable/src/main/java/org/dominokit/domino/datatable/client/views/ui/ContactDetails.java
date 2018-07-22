@@ -13,6 +13,8 @@ import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.Checkable;
+import org.dominokit.domino.ui.utils.HasChangeHandlers;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
@@ -49,12 +51,12 @@ public class ContactDetails implements IsElement<HTMLElement> {
                 .onSmall(Column.OnSmall.twelve)
                 .onXSmall(Column.OnXSmall.twelve);
 
-        SwitchButton active = SwitchButton.create()
+        SwitchButton activeButton = SwitchButton.create()
                 .setColor(Color.BLUE);
-        active.setValue(row.getRecord().isActive());
+        activeButton.setValue(row.getRecord().isActive());
 
-        active.addCheckHandler(checked -> {
-            row.getRecord().setActive(checked);
+        activeButton.addChangeHandler(value -> {
+            row.getRecord().setActive(value);
             row.getCell("status").updateCell();
         });
 
@@ -81,7 +83,7 @@ public class ContactDetails implements IsElement<HTMLElement> {
                         .addElement(Style.of(ContactUiUtils.getBalanceElement(cell.getRecord()))
                                 .setMarginTop("5px")
                                 .asElement())
-                        .addElement(Style.of(BlockHeader.create("ACTIVE").appendContent(active.asElement()))
+                        .addElement(Style.of(BlockHeader.create("ACTIVE").appendContent(activeButton.asElement()))
                                 .setMarginTop("30px").asElement())
                 )
 

@@ -2,7 +2,7 @@ package org.dominokit.domino.menu.client.presenters;
 
 import org.dominokit.domino.api.client.annotations.InjectContext;
 import org.dominokit.domino.api.client.annotations.Presenter;
-import org.dominokit.domino.api.client.mvp.presenter.BaseClientPresenter;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
 import org.dominokit.domino.layout.shared.extension.LayoutExtensionPoint;
 import org.dominokit.domino.menu.client.views.MenuView;
@@ -12,7 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Presenter
-public class MenuPresenter extends BaseClientPresenter<MenuView> implements MenuContext {
+public class MenuPresenter extends ViewBaseClientPresenter<MenuView> implements MenuContext {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuPresenter.class);
 
