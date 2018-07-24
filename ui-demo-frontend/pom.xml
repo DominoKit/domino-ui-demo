@@ -602,10 +602,10 @@
                     <codeserverArgs>
                         <!--<codeserverArg>-bindAddress</codeserverArg>-->
                         <!--<codeserverArg>192.168.1.5</codeserverArg>-->
-                        <codeserverArg>-src</codeserverArg>
-                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
-                        <codeserverArg>-src</codeserverArg>
-                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>
+                        <!--<codeserverArg>-src</codeserverArg>-->
+                        <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
+                        <!--<codeserverArg>-src</codeserverArg>-->
+                        <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>-->
                     </codeserverArgs>
                 </configuration>
             </plugin>
