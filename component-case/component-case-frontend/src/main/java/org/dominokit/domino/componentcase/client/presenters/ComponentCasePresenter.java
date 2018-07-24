@@ -1,6 +1,6 @@
 package org.dominokit.domino.componentcase.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.InjectContext;
+import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.extension.ContextAggregator;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
@@ -9,21 +9,20 @@ import org.dominokit.domino.api.shared.history.TokenFilter;
 import org.dominokit.domino.componentcase.client.views.ComponentCaseView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseExtensionPoint;
+import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
-import org.dominokit.domino.layout.shared.extension.LayoutExtensionPoint;
+import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.menu.shared.extension.MenuContext;
-import org.dominokit.domino.menu.shared.extension.MenuExtensionPoint;
-import org.dominokit.domino.componentcase.client.views.ComponentCaseView;
+import org.dominokit.domino.menu.shared.extension.MenuEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 
 @Presenter
 public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCaseView> implements ComponentCaseContext {
@@ -39,7 +38,7 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
     public void initView(ComponentCaseView view) {
         ContextAggregator.waitFor(menuContext).and(layoutContext).onReady(() -> {
             view.init(layoutContext.get().getLayout());
-            applyContributions(ComponentCaseExtensionPoint.class, () -> ComponentCasePresenter.this);
+            fireEvent(ComponentCaseEvent.class, () -> ComponentCasePresenter.this);
             if(history().currentToken().fragment().isEmpty()) {
                 HistoryToken historyToken=history().currentToken();
                 historyToken.appendFragment("home");
@@ -62,13 +61,13 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
 
     private Map<String, MenuBranch> roots = new HashMap<>();
 
-    @InjectContext(extensionPoint=MenuExtensionPoint.class)
-    public void contributeToMenuModule(MenuContext context) {
+    @ListenTo(event=MenuEvent.class)
+    public void onMenuEvent(MenuContext context) {
         menuContext.receiveContext(context);
     }
 
-    @InjectContext(extensionPoint=LayoutExtensionPoint.class)
-    public void contributeToLayoutModule(LayoutContext context) {
+    @ListenTo(event=LayoutEvent.class)
+    public void onLayoutEvent(LayoutContext context) {
         layoutContext.receiveContext(context);
     }
 

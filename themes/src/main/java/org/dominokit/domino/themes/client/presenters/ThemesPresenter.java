@@ -1,14 +1,13 @@
 package org.dominokit.domino.themes.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.InjectContext;
+import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.history.DominoHistory;
 import org.dominokit.domino.api.shared.history.HistoryToken;
 import org.dominokit.domino.api.shared.history.TokenFilter;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
-import org.dominokit.domino.layout.shared.extension.LayoutExtensionPoint;
-import org.dominokit.domino.themes.client.views.ThemesView;
+import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.themes.client.views.ThemesView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -56,8 +55,8 @@ public class ThemesPresenter extends ViewBaseClientPresenter<ThemesView> impleme
             view.applyTheme(theme);
     }
 
-    @InjectContext(extensionPoint=LayoutExtensionPoint.class)
-    public void contributeToLayoutModule(LayoutContext context) {
+    @ListenTo(event=LayoutEvent.class)
+    public void onLayoutEvent(LayoutContext context) {
         view.setLayout(context.getLayout());
     }
 

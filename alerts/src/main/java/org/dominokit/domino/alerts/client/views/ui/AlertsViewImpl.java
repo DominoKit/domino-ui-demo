@@ -1,5 +1,7 @@
 package org.dominokit.domino.alerts.client.views.ui;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLButtonElement;
 import org.dominokit.domino.alerts.client.presenters.AlertsPresenter;
 import org.dominokit.domino.alerts.client.views.AlertsView;
 import org.dominokit.domino.alerts.client.views.CodeResource;
@@ -11,6 +13,8 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
+
+import static org.jboss.gwt.elemento.core.Elements.button;
 
 @UiView(presentable = AlertsPresenter.class)
 public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements AlertsView {
@@ -65,8 +69,16 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
 
     private void dismissibleAlerts() {
 
+        Alert warning = Alert.warning();
+
+        HTMLButtonElement newChild = button().textContent("CLICK ME").asElement();
+        newChild.addEventListener("click", evt -> {element.remove();});
+        element.appendChild(newChild);
+
+        Elements.onAttach(warning.asElement(), mutationRecord -> DomGlobal.console.info("attached"));
+        Elements.onDetach(warning.asElement(), mutationRecord -> DomGlobal.console.info("dettached"));
         element.appendChild(Card.create("DISMISSIBLE ALERTS", "Add a close button to any alert by making it dismissible")
-                .appendContent(Alert.warning()
+                .appendContent(warning
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())

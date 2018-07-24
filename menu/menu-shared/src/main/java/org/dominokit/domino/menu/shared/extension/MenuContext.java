@@ -1,9 +1,9 @@
 package org.dominokit.domino.menu.shared.extension;
 
 
-import org.dominokit.domino.api.shared.extension.Context;
+import org.dominokit.domino.api.shared.extension.EventContext;
 
-public interface MenuContext extends Context {
+public interface MenuContext extends EventContext {
 
     interface CanAddMenuItem{
         CanAddMenuItem addMenuItem(String title);
