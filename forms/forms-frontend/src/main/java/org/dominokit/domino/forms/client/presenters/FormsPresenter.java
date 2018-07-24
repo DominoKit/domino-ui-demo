@@ -1,13 +1,13 @@
 package org.dominokit.domino.forms.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.InjectContext;
+import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseExtensionPoint;
+import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.forms.client.views.FormsView;
-import org.dominokit.domino.forms.shared.extension.FormsExtensionPoint;
+import org.dominokit.domino.forms.shared.extension.FormsEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,8 +16,8 @@ public class FormsPresenter extends ViewBaseClientPresenter<FormsView> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FormsPresenter.class);
 
-    @InjectContext(extensionPoint = ComponentCaseExtensionPoint.class)
-    public void contributeToMainModule(ComponentCaseContext context) {
+    @ListenTo(event = ComponentCaseEvent.class)
+    public void onMainEvent(ComponentCaseContext context) {
         context.addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
@@ -40,6 +40,6 @@ public class FormsPresenter extends ViewBaseClientPresenter<FormsView> {
             }
         });
 
-        applyContributions(FormsExtensionPoint.class, () -> () -> context);
+        fireEvent(FormsEvent.class, () -> () -> context);
     }
 }

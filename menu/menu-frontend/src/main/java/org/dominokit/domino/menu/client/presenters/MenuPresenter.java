@@ -1,13 +1,13 @@
 package org.dominokit.domino.menu.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.InjectContext;
+import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
-import org.dominokit.domino.layout.shared.extension.LayoutExtensionPoint;
+import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.menu.client.views.MenuView;
 import org.dominokit.domino.menu.shared.extension.MenuContext;
-import org.dominokit.domino.menu.shared.extension.MenuExtensionPoint;
+import org.dominokit.domino.menu.shared.extension.MenuEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,10 +16,10 @@ public class MenuPresenter extends ViewBaseClientPresenter<MenuView> implements 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuPresenter.class);
 
-    @InjectContext(extensionPoint=LayoutExtensionPoint.class)
-    public void contributeToLayoutModule(LayoutContext context) {
+    @ListenTo(event=LayoutEvent.class)
+    public void onLayoutEvent(LayoutContext context) {
         view.init(context.getLayout());
-        applyContributions(MenuExtensionPoint.class, () -> MenuPresenter.this);
+        fireEvent(MenuEvent.class, () -> MenuPresenter.this);
     }
 
     @Override
