@@ -287,8 +287,8 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .addColumn(column
                         .addElement(select.asElement()))
                 .addColumn(column.copy()
-                        .addElement(Select.create()
-                                .addOption(SelectOption.create("Disabled"))
+                        .addElement(Select.<String>create()
+                                .addOption(SelectOption.create("Disabled", "Disabled"))
                                 .selectAt(0)
                                 .disable()
                                 .asElement())).asElement());
@@ -297,13 +297,13 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         selectCard.appendContent(Row.create()
                 .addColumn(column.copy()
-                        .addElement(Select.create()
-                                .addOption(SelectOption.create("-- please select --"))
-                                .addOption(SelectOption.create("10"))
-                                .addOption(SelectOption.create("20"))
-                                .addOption(SelectOption.create("30"))
-                                .addOption(SelectOption.create("40"))
-                                .addOption(SelectOption.create("50"))
+                        .addElement(Select.<Integer>create()
+                                .addOption(SelectOption.create(0, "-- please select --"))
+                                .addOption(SelectOption.create(10, "10"))
+                                .addOption(SelectOption.create(20, "20"))
+                                .addOption(SelectOption.create(30, "30"))
+                                .addOption(SelectOption.create(40, "40"))
+                                .addOption(SelectOption.create(50, "50"))
                                 .selectAt(0)
                                 .dropup()
                                 .addSelectionHandler(option -> {
