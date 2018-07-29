@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <artifactId>domino-ui-demo</artifactId>
-        <groupId>org.dominokit.domino</groupId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+    <artifactId>domino-ui-demo</artifactId>
+    <groupId>org.dominokit.domino</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>formsvalidations</artifactId>
+    <artifactId>fieldmasking</artifactId>
     <packaging>gwt-lib</packaging>
 
-    <name>formsvalidations</name>
+    <name>fieldmasking</name>
     <url>http://maven.apache.org</url>
 
     <dependencies>
@@ -43,37 +42,21 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-shared</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.dominokit.domino.test</groupId>
+            <artifactId>domino-client-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>forms-shared</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <!-- to be removed -->
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-core</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-api</artifactId>
-            <version>0.8.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.jboss.gwt.elemento</groupId>
-            <artifactId>elemento-template-processor</artifactId>
-            <version>0.8.0</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>3.9.0</version>
-            <scope>test</scope>
+            <version>1.0-SNAPSHOT</version>
+            <scope>compile</scope>
         </dependency>
     </dependencies>
 
@@ -93,7 +76,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.dominokit.domino.formsvalidations.FormsValidationsClientModule</moduleName>
+                    <moduleName>org.dominokit.domino.fieldmasking.FieldMaskingClientModule</moduleName>
                 </configuration>
             </plugin>
             <plugin>

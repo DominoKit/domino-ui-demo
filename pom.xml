@@ -169,6 +169,10 @@
                 <inherited>false</inherited>
                 <configuration>
                     <launcherDir>${project.build.directory}/gwt/launcherDir</launcherDir>
+                    <codeserverArgs>
+                        <codeserverArg>-src</codeserverArg>
+                        <codeserverArg>/home/rafat/Development/git/new-domino-ui/domino-ui/src/main/java</codeserverArg>
+                    </codeserverArgs>
                 </configuration>
             </plugin>
         </plugins>
@@ -217,5 +221,6 @@
         <module>timepicker</module>
         <module>formsvalidations</module>
         <module>datatable</module>
+        <module>fieldmasking</module>
     </modules>
 </project>

@@ -47,10 +47,11 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
     }
 
     private void initHelperText() {
+        TextBox task_name = TextBox.create("Task Name")
+                .setHelperText("Ex. +962 79 7924-235");
         helperTextCard
                 .appendContent(BlockHeader.create("Text Box").asElement())
-                .appendContent(TextBox.create("Task Name")
-                        .setHelperText("Each task should have unique name.").asElement())
+                .appendContent(task_name.asElement())
                 .appendContent(Elements.hr().asElement())
                 .appendContent(Elements.br().asElement())
                 .appendContent(BlockHeader.create("Text Area").asElement())

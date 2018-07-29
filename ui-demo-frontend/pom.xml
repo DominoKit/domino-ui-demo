@@ -582,6 +582,17 @@
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>fieldmasking</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>fieldmasking</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
