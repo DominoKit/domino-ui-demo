@@ -20,8 +20,17 @@ showIcon.addEventListener("mousedown", evt -> {
 showIcon.addEventListener("mouseup", evt -> {
     password.getInputElement().type = "password";
 });
+Icon info = Icons.ALL.info();
+Tooltip.create(info.asElement(), "All system pages will be shown in the selected language");
 iconsCard.appendContent(username.asElement())
         .appendContent(password.asElement())
         .appendContent(TextArea.create("Description")
                 .setLeftAddon(Icons.ALL.description().asElement())
-                .asElement());
+                .asElement())
+        .appendContent(Select.<String>create("Language")
+                .setLeftAddon(Icons.ALL.language())
+                .setRightAddon(info)
+                .addOption(SelectOption.create("english", "English"))
+                .addOption(SelectOption.create("france", "France"))
+                .addOption(SelectOption.create("arabic", "Arabic"))
+        );

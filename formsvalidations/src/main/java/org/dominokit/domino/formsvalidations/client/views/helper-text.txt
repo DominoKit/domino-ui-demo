@@ -34,5 +34,5 @@ helperTextCard
     .appendContent(Elements.hr().asElement())
     .appendContent(Elements.br().asElement())
     .appendContent(BlockHeader.create("Switch").asElement())
-    .appendContent(SwitchButton.create("Notifications: ")
+    .appendContent(SwitchButton.create().setOffTitle("Notifications: ")
             .setHelperText("Notifications will be sent via the system").asElement());
