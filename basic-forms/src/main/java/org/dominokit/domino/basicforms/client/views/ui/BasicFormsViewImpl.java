@@ -70,7 +70,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
 
     private void initSwitchExample() {
-        switchCard.appendContent(Elements.h(5).textContent("Basic Examples").asElement());
+        switchCard.appendContent(Elements.h(5).textContent("Basic Examples").style("margin-bottom: 25px;").asElement());
 
         Column column = Column.create()
                 .onLarge(Column.OnLarge.three)
