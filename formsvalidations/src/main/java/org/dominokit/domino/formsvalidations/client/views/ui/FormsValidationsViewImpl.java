@@ -9,9 +9,13 @@ import org.dominokit.domino.formsvalidations.client.views.CodeResource;
 import org.dominokit.domino.formsvalidations.client.views.FormsValidationsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.popover.Tooltip;
+import org.dominokit.domino.ui.row.Row;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = FormsValidationsPresenter.class)
@@ -22,6 +26,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
     private Card iconsCard;
     private Card countsCard;
     private Card validationsCard;
+    private Card readOnlyCard;
 
     @Override
     public void init() {
@@ -30,11 +35,13 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         iconsCard = Card.create("ADDONS");
         countsCard = Card.create("WORD COUNTER");
         validationsCard = Card.create("VALIDATIONS");
+        readOnlyCard = Card.create("READ ONLY");
 
         initHelperText();
         initIcons();
         initWordCount();
         initValidations();
+        initReadOnly();
 
         element.appendChild(helperTextCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
@@ -44,6 +51,33 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
         element.appendChild(validationsCard.asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
+        element.appendChild(readOnlyCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.readOnly()).asElement());
+    }
+
+    private void initReadOnly() {
+        readOnlyCard
+                .appendContent(Row.create()
+                        .addColumn(Column.create(12)
+                                .addElement(TextBox.create("Name").setValue("Mr. Joan").setReadOnly(true)))
+                        .addColumn(Column.create(12)
+                                .addElement(TextArea.create("About").setValue("CEO of the largest company").setReadOnly(true)))
+                        .addColumn(Column.create(12)
+                                .addElement(Select.create("Language")
+                                        .addOption(SelectOption.create("english", "English"))
+                                        .addOption(SelectOption.create("france", "France"))
+                                        .addOption(SelectOption.create("arabic", "Arabic"))
+                                        .selectAt(0)
+                                        .setReadOnly(true)))
+                        .addColumn(Column.create(12)
+                                .addElement(CheckBox.create("Has other companies").setValue(true).setReadOnly(true)))
+                        .addColumn(Column.create(12)
+                                .addElement(RadioGroup.create("Gender")
+                                        .addRadio(Radio.create("Male"))
+                                        .addRadio(Radio.create("Female"))
+                                        .setValue("Male")
+                                        .setReadOnly(true)))
+                );
     }
 
     private void initHelperText() {
@@ -83,7 +117,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                 .appendContent(Elements.hr().asElement())
                 .appendContent(Elements.br().asElement())
                 .appendContent(BlockHeader.create("Switch").asElement())
-                .appendContent(SwitchButton.create("Notifications: ")
+                .appendContent(SwitchButton.create().setOffTitle("Notifications: ")
                         .setHelperText("Notifications will be sent via the system").asElement());
     }
 
@@ -110,11 +144,20 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         showIcon.addEventListener("mouseup", evt -> {
             password.getInputElement().type = "password";
         });
+        Icon info = Icons.ALL.info();
+        Tooltip.create(info.asElement(), "All system pages will be shown in the selected language");
         iconsCard.appendContent(username.asElement())
                 .appendContent(password.asElement())
                 .appendContent(TextArea.create("Description")
                         .setLeftAddon(Icons.ALL.description().asElement())
-                        .asElement());
+                        .asElement())
+                .appendContent(Select.<String>create("Language")
+                        .setLeftAddon(Icons.ALL.language())
+                        .setRightAddon(info)
+                        .addOption(SelectOption.create("english", "English"))
+                        .addOption(SelectOption.create("france", "France"))
+                        .addOption(SelectOption.create("arabic", "Arabic"))
+                );
     }
 
     private void initWordCount() {
