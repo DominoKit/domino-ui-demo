@@ -69,16 +69,8 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
 
     private void dismissibleAlerts() {
 
-        Alert warning = Alert.warning();
-
-        HTMLButtonElement newChild = button().textContent("CLICK ME").asElement();
-        newChild.addEventListener("click", evt -> {element.remove();});
-        element.appendChild(newChild);
-
-        Elements.onAttach(warning.asElement(), mutationRecord -> DomGlobal.console.info("attached"));
-        Elements.onDetach(warning.asElement(), mutationRecord -> DomGlobal.console.info("dettached"));
         element.appendChild(Card.create("DISMISSIBLE ALERTS", "Add a close button to any alert by making it dismissible")
-                .appendContent(warning
+                .appendContent(Alert.warning()
                         .appendText("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible()
                         .asElement())
