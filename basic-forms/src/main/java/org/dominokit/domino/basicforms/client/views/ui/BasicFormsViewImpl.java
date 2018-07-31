@@ -76,7 +76,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .onLarge(Column.OnLarge.three)
                 .onXSmall(Column.OnXSmall.twelve);
         switchCard.appendContent(Row.create()
-                .addColumn(column.addElement(SwitchButton.create("OFF", "ON").asElement()))
+                .addColumn(column.addElement(SwitchButton.create().setOffTitle("OFF").setOnTitle("ON").asElement()))
                 .addColumn(column.copy().addElement(SwitchButton.create().setOffTitle("DISABLED").disable().asElement()))
                 .asElement());
 
