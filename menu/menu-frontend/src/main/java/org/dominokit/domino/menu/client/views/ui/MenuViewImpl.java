@@ -9,9 +9,11 @@ import org.dominokit.domino.menu.client.presenters.MenuPresenter;
 import org.dominokit.domino.menu.client.views.MenuView;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelectedHandler;
@@ -57,7 +59,15 @@ public class MenuViewImpl implements MenuView {
             }
         });
 
-//        layout.fixLeftPanelPosition();
+        MediaQuery.addOnLargeListener(() -> {
+            layout.fixLeftPanelPosition();
+            Style.of(lockIcon).setDisplay("block");
+        });
+        MediaQuery.addOnMediumListener(() -> {
+            layout.unfixLeftPanelPosition();
+            layout.hideLeftPanel();
+            Style.of(lockIcon).setDisplay("none");
+        });
     }
 
     @Override
