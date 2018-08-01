@@ -330,30 +330,26 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
         Column column = this.column.copy()
                 .removeCssClass(Styles.padding_0);
 
-        DateBox dateBox1 = DateBox.create()
-                .floating()
-                .setPlaceholder("Birth date");
+        DateBox dateBox1 = DateBox.create("Birth date")
+                .setPattern("yyyy/MM/dd");
 
-        DateBox dateBox2 = DateBox.create("Birth date", new Date(), new DateTimeFormatInfoImpl_fr())
-                .floating();
+        DateBox dateBox2 = DateBox.create("Birth date", new Date(), new DateTimeFormatInfoImpl_fr());
 
         dateBox2.getDatePicker().setColorScheme(ColorScheme.AMBER);
 
 
-        DateBox dateBox3 = DateBox.create()
-                .floating()
+        DateBox dateBox3 = DateBox.create("Birth date")
                 .setPopoverPosition(PopupPosition.TOP)
-                .setPickerStyle(DateBox.PickerStyle.POPOVER)
-                .setPlaceholder("Birth date");
+                .setPickerStyle(DateBox.PickerStyle.POPOVER);
 
         dateBox3.getDatePicker().setColorScheme(ColorScheme.GREEN);
 
 
         element.appendChild(Card.create("DATE BOX")
                 .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(dateBox1.asElement()))
-                        .addColumn(column.copy().addElement(dateBox2.asElement()))
-                        .addColumn(column.copy().addElement(dateBox3.asElement()))
+                        .addColumn(column.copy().deCenterContent().addElement(dateBox1.asElement()))
+                        .addColumn(column.copy().deCenterContent().addElement(dateBox2.asElement()))
+                        .addColumn(column.copy().deCenterContent().addElement(dateBox3.asElement()))
                         .asElement())
                 .asElement());
 
