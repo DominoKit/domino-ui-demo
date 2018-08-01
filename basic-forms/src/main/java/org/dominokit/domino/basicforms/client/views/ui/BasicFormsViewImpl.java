@@ -14,6 +14,7 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = BasicFormsPresenter.class)
@@ -278,6 +279,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .addOption(SelectOption.create("value30", "30"))
                 .addOption(SelectOption.create("value40", "40"))
                 .addOption(SelectOption.create("value50", "50"))
+                .setSearchable(false)
                 .selectAt(0)
                 .addSelectionHandler(option -> {
                     Notification.create("Item selected [ " + option.getValue() + " ], [ " + option.getDisplayValue() + " ]").show();
@@ -304,8 +306,32 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .addOption(SelectOption.create(30, "30"))
                                 .addOption(SelectOption.create(40, "40"))
                                 .addOption(SelectOption.create(50, "50"))
+                                .setSearchable(false)
                                 .selectAt(0)
                                 .dropup()
+                                .addSelectionHandler(option -> {
+                                    Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                                }).asElement())).asElement());
+
+        selectCard.appendContent(Style.of(BlockHeader.create("Searchable select"))
+                .setMarginBottom("30px")
+                .get()
+                .asElement());
+
+        selectCard.appendContent(Row.create()
+                .addColumn(Column.create(12)
+                        .addElement(Select.<String>create("Country")
+                                .addOption(SelectOption.create("nothing", "-- please select --"))
+                                .addOption(SelectOption.create("USA", "America (USA)"))
+                                .addOption(SelectOption.create("ARG", "Argentina"))
+                                .addOption(SelectOption.create("BRA", "Brazil"))
+                                .addOption(SelectOption.create("DEN", "Denmark"))
+                                .addOption(SelectOption.create("CRO", "Croatia"))
+                                .addOption(SelectOption.create("IND", "India"))
+                                .addOption(SelectOption.create("SPA", "Spain"))
+                                .addOption(SelectOption.create("FRA", "France"))
+                                .addOption(SelectOption.create("JOR", "Jordan"))
+                                .selectAt(0)
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 }).asElement())).asElement());
