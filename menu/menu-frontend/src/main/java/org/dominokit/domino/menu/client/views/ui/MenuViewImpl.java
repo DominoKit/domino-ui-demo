@@ -59,6 +59,11 @@ public class MenuViewImpl implements MenuView {
             }
         });
 
+        MediaQuery.addOnXLargeListener(() -> {
+            layout.fixLeftPanelPosition();
+            Style.of(lockIcon).setDisplay("block");
+        });
+
         MediaQuery.addOnLargeListener(() -> {
             layout.fixLeftPanelPosition();
             Style.of(lockIcon).setDisplay("block");
