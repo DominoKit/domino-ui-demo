@@ -7,6 +7,7 @@ import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
 import org.dominokit.domino.basicforms.client.views.CodeResource;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
@@ -272,28 +273,28 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void initSelectExample() {
         Column column = Column.create().onSmall(Column.OnSmall.six);
-        Select select = Select.create()
-                .addOption(SelectOption.create("nothing", "-- please select --"))
-                .addOption(SelectOption.create("value10", "10"))
-                .addOption(SelectOption.create("value20", "20"))
-                .addOption(SelectOption.create("value30", "30"))
-                .addOption(SelectOption.create("value40", "40"))
-                .addOption(SelectOption.create("value50", "50"))
-                .setSearchable(false)
-                .selectAt(0)
-                .addSelectionHandler(option -> {
-                    Notification.create("Item selected [ " + option.getValue() + " ], [ " + option.getDisplayValue() + " ]").show();
-                });
 
         selectCard.appendContent(Row.create()
                 .addColumn(column
-                        .addElement(select.asElement()))
+                        .addElement(Select.create()
+                                .addOption(SelectOption.create("nothing", "-- please select --"))
+                                .addOption(SelectOption.create("value10", "10"))
+                                .addOption(SelectOption.create("value20", "20"))
+                                .addOption(SelectOption.create("value30", "30"))
+                                .addOption(SelectOption.create("value40", "40"))
+                                .addOption(SelectOption.create("value50", "50"))
+                                .setSearchable(false)
+                                .selectAt(0)
+                                .addSelectionHandler(option1 -> {
+                                    Notification.create("Item selected [ " + option1.getValue() + " ], [ " + option1.getDisplayValue() + " ]").show();
+                                })))
                 .addColumn(column.copy()
                         .addElement(Select.<String>create()
                                 .addOption(SelectOption.create("Disabled", "Disabled"))
                                 .selectAt(0)
                                 .disable()
-                                .asElement())).asElement());
+                        ))
+                .asElement());
 
         selectCard.appendContent(BlockHeader.create("Drop up example").asElement());
 
@@ -311,7 +312,8 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .dropup()
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
-                                }).asElement())).asElement());
+                                })))
+                .asElement());
 
         selectCard.appendContent(Style.of(BlockHeader.create("Searchable select"))
                 .setMarginBottom("30px")
@@ -334,7 +336,37 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .selectAt(0)
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
-                                }).asElement())).asElement());
+                                })))
+                .asElement());
+
+        selectCard.appendContent(Style.of(BlockHeader.create("Grouping select"))
+                .setMarginBottom("30px")
+                .get()
+                .asElement());
+
+        selectCard.appendContent(Row.create()
+                .addColumn(Column.create(12)
+                        .addElement(Select.<String>create("Country")
+                                .addGroup(SelectOptionGroup.<String>create(Badge.create("America").setBackground(Color.RED))
+                                        .addOption(SelectOption.create("USA", "United States of America"))
+                                        .addOption(SelectOption.create("BRA", "Brazil"))
+                                        .addOption(SelectOption.create("ARG", "Argentina"))
+                                        .addOption(SelectOption.create("MEX", "Mexico"))
+                                        .addOption(SelectOption.create("CHI", "Chile"))
+                                )
+                                .divider()
+                                .addGroup(SelectOptionGroup.<String>create(Badge.create("Europe").setBackground(Color.GREEN))
+                                        .addOption(SelectOption.create("FRA", "France"))
+                                        .addOption(SelectOption.create("GER", "Germany"))
+                                        .addOption(SelectOption.create("SPA", "Spain"))
+                                        .addOption(SelectOption.create("ITA", "Italy"))
+                                        .addOption(SelectOption.create("UK", "United Kingdom"))
+                                )
+                                .selectAt(0)
+                                .addSelectionHandler(option -> {
+                                    Notification.create("Item selected [ " + option.getValue() + " ]").show();
+                                })))
+                .asElement());
     }
 
     private void initBasicExamples() {
