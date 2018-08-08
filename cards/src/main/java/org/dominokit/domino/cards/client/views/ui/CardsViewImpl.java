@@ -157,6 +157,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         element.appendChild(Row.create()
                 .addColumn(column.addElement(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
+                        .setCollapseDuration(50)
                         .setHeaderBackground(Color.THEME)
                         .appendContent(new Text(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
@@ -164,6 +165,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
 
                 .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
+                        .setCollapseDuration(50)
                         .setHeaderBackground(Color.BROWN)
                         .appendContent(new Text(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
@@ -171,6 +173,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
 
                 .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
+                        .setCollapseDuration(50)
                         .collapse()
                         .setHeaderBackground(Color.CYAN)
                         .appendContent(new Text(SAMPLE_CONTENT))

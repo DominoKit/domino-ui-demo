@@ -1,7 +1,6 @@
 package org.dominokit.domino.alerts.client.views.ui;
 
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLButtonElement;
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.alerts.client.presenters.AlertsPresenter;
 import org.dominokit.domino.alerts.client.views.AlertsView;
 import org.dominokit.domino.alerts.client.views.CodeResource;
@@ -10,11 +9,8 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
-import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
-
-import static org.jboss.gwt.elemento.core.Elements.button;
 
 @UiView(presentable = AlertsPresenter.class)
 public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements AlertsView {

@@ -53,6 +53,9 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Row.create()
                 .addColumn(column.copy()
+                        .addElement(createCard(Transition.COLLAPSE_UP)
+                                .asElement()))
+                .addColumn(column.copy()
                         .addElement(createCard(Transition.BOUNCE)
                                 .asElement()))
                 .addColumn(column.copy()
