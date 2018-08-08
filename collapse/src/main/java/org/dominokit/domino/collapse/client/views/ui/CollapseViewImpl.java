@@ -1,5 +1,8 @@
 package org.dominokit.domino.collapse.client.views.ui;
 
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.collapse.client.presenters.CollapsePresenter;
 import org.dominokit.domino.collapse.client.views.CodeResource;
@@ -13,20 +16,22 @@ import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.menu.Menu;
+import org.dominokit.domino.ui.menu.MenuItem;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.CssStyles;
-import elemental2.dom.EventListener;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
-import org.jboss.gwt.elemento.core.Elements;
+
+import static org.jboss.gwt.elemento.core.Elements.b;
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = CollapsePresenter.class)
 public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements CollapseView {
 
     private static final String SAMPLE_CONTENT = "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.";
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = div().asElement();
 
     private final Column column = Column.create()
             .onLarge(Column.OnLarge.twelve)
@@ -50,18 +55,16 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
     }
 
     private void example() {
-        Collapsible collapsible = Collapsible.create(Elements.div()
-                .add(Elements.div()
+
+        HTMLDivElement well = div().css("sample-div")
+                .add(div()
                         .css("well")
                         .textContent(SAMPLE_CONTENT)
                         .asElement())
-                .asElement());
-        EventListener collapsibleListener = evt -> {
-            if (collapsible.isCollapsed())
-                collapsible.expand();
-            else
-                collapsible.collapse();
-        };
+                .asElement();
+
+        Collapsible collapsible = Collapsible.create(well);
+        EventListener collapsibleListener = evt -> collapsible.toggle();
 
         Button anchorButton = Button.create("LINK WITH HREF");
         anchorButton.justify();
@@ -99,27 +102,27 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
         element.appendChild(row.addColumn(column.copy()
                 .addElement(Card.create("BASIC EXAMPLES", "Extend the default collapse behavior to create an accordion with the panel component.")
                         .setCollapsible()
-                        .appendContent(Elements.b().textContent("Panel Primary").asElement())
+                        .appendContent(b().textContent("Panel Primary").asElement())
                         .appendContent(Accordion.create()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Success").asElement())
+                        .appendContent(b().textContent("Panel Success").asElement())
                         .appendContent(Accordion.create()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .success()
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Warning").asElement())
+                        .appendContent(b().textContent("Panel Warning").asElement())
                         .appendContent(Accordion.create()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .warning()
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Danger").asElement())
+                        .appendContent(b().textContent("Panel Danger").asElement())
                         .appendContent(Accordion.create()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
@@ -129,14 +132,14 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .asElement()))
                 .addColumn(column.copy().addElement(Card.create("FULL BODY EXAMPLES", "If you want to also colorful body, you need to use fullBody method.")
                         .setCollapsible()
-                        .appendContent(Elements.b().textContent("Panel Primary").asElement())
+                        .appendContent(b().textContent("Panel Primary").asElement())
                         .appendContent(Accordion.create()
                                 .fullBody()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Success").asElement())
+                        .appendContent(b().textContent("Panel Success").asElement())
                         .appendContent(Accordion.create()
                                 .fullBody()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
@@ -144,7 +147,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .success()
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Warning").asElement())
+                        .appendContent(b().textContent("Panel Warning").asElement())
                         .appendContent(Accordion.create()
                                 .fullBody()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
@@ -152,7 +155,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                 .warning()
                                 .asElement())
-                        .appendContent(Elements.b().textContent("Panel Danger").asElement())
+                        .appendContent(b().textContent("Panel Danger").asElement())
                         .appendContent(Accordion.create()
                                 .fullBody()
                                 .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
@@ -162,6 +165,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .asElement())
                         .asElement()))
                 .asElement());
+
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.accordionSample())
                 .asElement());
@@ -178,9 +182,9 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
         element.appendChild(row.addColumn(column.copy()
                 .addElement(Card.create("COLORFUL PANEL ITEMS WITH ICON")
                         .setCollapsible()
-                        .appendContent(Elements.b().textContent("Panel Primary").asElement())
+                        .appendContent(b().textContent("Panel Primary").asElement())
                         .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT))
+                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
                                         .setIcon(Icons.ALL.perm_contact_calendar())
                                         .setColor(Color.PINK)
                                         .expand())
@@ -197,10 +201,10 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .asElement()))
                 .addColumn(column.copy().addElement(Card.create("FULL BODY COLORFUL PANEL ITEMS WITH ICON")
                         .setCollapsible()
-                        .appendContent(Elements.b().textContent("Panel Primary").asElement())
+                        .appendContent(b().textContent("Panel Primary").asElement())
                         .appendContent(Accordion.create()
                                 .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT))
+                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
                                         .setIcon(Icons.ALL.perm_contact_calendar())
                                         .setColor(Color.PINK)
                                         .expand())
@@ -231,14 +235,14 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                         .appendContent(Accordion.create()
                                 .multiOpen()
                                 .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT))
+                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
                                         .setIcon(Icons.ALL.perm_contact_calendar())
                                         .setColor(Color.PINK)
                                         .expand())
                                 .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
                                         .setIcon(Icons.ALL.cloud_download())
                                         .setColor(Color.CYAN))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))
+                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)).expand()
                                         .setIcon(Icons.ALL.contact_phone())
                                         .setColor(Color.TEAL)
                                         .expand())

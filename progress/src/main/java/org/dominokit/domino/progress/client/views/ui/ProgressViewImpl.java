@@ -1,5 +1,6 @@
 package org.dominokit.domino.progress.client.views.ui;
 
+import com.google.gwt.animation.client.Animation;
 import com.google.gwt.user.client.Timer;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
@@ -245,6 +246,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                     DomGlobal.requestAnimationFrame(animationFrameCallback);
                 }
             }.schedule(1000);
+
         };
     }
 }

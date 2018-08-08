@@ -1,21 +1,141 @@
 pre {
-  display: block !important;
-  padding: 9.5px !important;
-  margin: 0 0 10px !important;
-  font-size: 13px !important;
-  line-height: 1.42857143 !important;
-  color: #333 !important;
-  word-break: break-all !important;
-  word-wrap: break-word !important;
-  background-color: #f5f5f5 !important;
-  border: 1px solid #cecece !important;
-   border-radius: 0px !important;
+    display: block !important;
+    padding: 9.5px !important;
+    margin: 0 0 10px !important;
+    font-size: 13px !important;
+    line-height: 1.42857143 !important;
+    color: #333 !important;
+    word-break: break-all !important;
+    word-wrap: break-word !important;
+    background-color: #f5f5f5 !important;
+    border: 1px solid #cecece !important;
+    border-radius: 0px !important;
 }
 
 code {
-  padding: 2px 0px !important;
-  font-size: 130% !important;
-  color: #051142 !important;
-  background-color: #f5f5f5 !important;
-  border-radius: 4px !important;
+    padding: 2px 0px !important;
+    font-size: 130% !important;
+    color: #051142 !important;
+    background-color: #f5f5f5 !important;
+    border-radius: 4px !important;
 }
+
+@media screen and (max-width: 992px) {
+    .demo-footer {
+        padding: 20px 0px;
+        text-align: center;
+    }
+}
+
+@media screen and (min-width: 992px) {
+    .demo-footer {
+        padding: 20px 200px;
+    }
+}
+
+.gitter-open-chat-button{
+    -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.theme-red .gitter-open-chat-button {
+    background-color: #F44336;
+    color: #fff;
+}
+
+.theme-pink .gitter-open-chat-button {
+    background-color: #E91E63;
+    color: #fff;
+}
+
+.theme-purple .gitter-open-chat-button {
+    background-color: #9C27B0;
+    color: #fff;
+}
+
+.theme-deep-purple .gitter-open-chat-button {
+    background-color: #673AB7;
+    color: #fff;
+}
+
+.theme-indigo .gitter-open-chat-button {
+    background-color: #3F51B5;
+    color: #fff;
+}
+
+.theme-blue .gitter-open-chat-button {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.theme-light-blue .gitter-open-chat-button {
+    background-color: #03A9F4;
+    color: #fff;
+}
+
+.theme-cyan .gitter-open-chat-button {
+    background-color: #00BCD4;
+    color: #fff;
+}
+
+.theme-teal .gitter-open-chat-button {
+    background-color: #009688;
+    color: #fff;
+}
+
+.theme-green .gitter-open-chat-button {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+.theme-light-green .gitter-open-chat-button {
+    background-color: #8BC34A;
+    color: #fff;
+}
+
+.theme-lime .gitter-open-chat-button {
+    background-color: #CDDC39;
+    color: #fff;
+}
+
+.theme-yellow .gitter-open-chat-button {
+    background-color: #FFEB3B;
+    color: #fff;
+}
+
+.theme-amber .gitter-open-chat-button {
+    background-color: #FFC107;
+    color: #fff;
+}
+
+.theme-orange .gitter-open-chat-button {
+
+    background-color: #FF9800;
+    color: #fff;
+}
+
+.theme-deep-orange .gitter-open-chat-button {
+    background-color: #FF5722;
+    color: #fff;
+}
+
+.theme-brown .gitter-open-chat-button {
+    background-color: #795548;
+    color: #fff;
+}
+
+.theme-grey .gitter-open-chat-button {
+    background-color: #9E9E9E;
+    color: #fff;
+}
+
+.theme-blue-grey .gitter-open-chat-button {
+    background-color: #607D8B;
+    color: #fff;
+}
+
+.theme-black .gitter-open-chat-button {
+    background-color: #000;
+    color: #fff;
+}
+

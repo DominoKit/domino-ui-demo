@@ -12,6 +12,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 
@@ -60,19 +61,43 @@ public class MenuViewImpl implements MenuView {
         });
 
         MediaQuery.addOnXLargeListener(() -> {
-            layout.fixLeftPanelPosition();
-            Style.of(lockIcon).setDisplay("block");
+            fixLeftPanel(layout);
+            Notification.create("Switched to XLarge screen").show();
         });
 
         MediaQuery.addOnLargeListener(() -> {
-            layout.fixLeftPanelPosition();
-            Style.of(lockIcon).setDisplay("block");
+            fixLeftPanel(layout);
+            Notification.create("Switched to Large screen").show();
         });
         MediaQuery.addOnMediumListener(() -> {
-            layout.unfixLeftPanelPosition();
-            layout.hideLeftPanel();
-            Style.of(lockIcon).setDisplay("none");
+            unfixLeftPanel(layout);
+            Notification.create("Switched to Medium screen").show();
         });
+
+        MediaQuery.addOnSmallListener(() -> {
+            unfixLeftPanel(layout);
+            Notification.create("Switched to Small screen").show();
+        });
+
+        MediaQuery.addOnXSmallListener(() -> {
+            unfixLeftPanel(layout);
+            Notification.create("Switched to XSmall screen").show();
+        });
+
+
+    }
+
+    private void fixLeftPanel(IsLayout layout) {
+        layout.fixLeftPanelPosition();
+        Style.of(lockIcon).setDisplay("block");
+        locked = true;
+    }
+
+    private void unfixLeftPanel(IsLayout layout) {
+        layout.unfixLeftPanelPosition();
+        layout.hideLeftPanel();
+        Style.of(lockIcon).setDisplay("none");
+        locked = false;
     }
 
     @Override

@@ -251,7 +251,7 @@ ul.stepper .step.active .step-title {
 
 ul.stepper .step-content {
    position: relative;
-   display: none;
+   /*display: none;*/
    height: calc(100% - 132px);
    width: inherit;
    overflow: visible;
