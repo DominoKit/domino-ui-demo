@@ -217,5 +217,6 @@
         <module>formsvalidations</module>
         <module>datatable</module>
     <module>steppers</module>
+    <module>formsamples</module>
   </modules>
 </project>

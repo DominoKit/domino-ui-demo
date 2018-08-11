@@ -1,0 +1,802 @@
+{
+  "currencies": [
+    {
+      "currencyCode": "AED",
+      "displayName": "United Arab Emirates Dirham",
+      "numericCode": 784,
+      "symbol": "AED",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "JOD",
+      "displayName": "Jordanian Dinar",
+      "numericCode": 400,
+      "symbol": "JOD",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "SYP",
+      "displayName": "Syrian Pound",
+      "numericCode": 760,
+      "symbol": "SYP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "HRK",
+      "displayName": "Kuna",
+      "numericCode": 191,
+      "symbol": "HRK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "PAB",
+      "displayName": "Panamanian Balboa",
+      "numericCode": 590,
+      "symbol": "PAB",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "VEF",
+      "displayName": "Venezuelan BolÃ­var",
+      "numericCode": 937,
+      "symbol": "VEF",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "TWD",
+      "displayName": "New Taiwan Dollar",
+      "numericCode": 901,
+      "symbol": "TWD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "DKK",
+      "displayName": "Danish Krone",
+      "numericCode": 208,
+      "symbol": "DKK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "USD",
+      "displayName": "US Dollar",
+      "numericCode": 840,
+      "symbol": "$",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "VND",
+      "displayName": "Vietnamese Dong",
+      "numericCode": 704,
+      "symbol": "VND",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "USD",
+      "displayName": "US Dollar",
+      "numericCode": 840,
+      "symbol": "$",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "SEK",
+      "displayName": "Swedish Krona",
+      "numericCode": 752,
+      "symbol": "SEK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BOB",
+      "displayName": "Bolivian Boliviano",
+      "numericCode": 68,
+      "symbol": "BOB",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "SGD",
+      "displayName": "Singapore Dollar",
+      "numericCode": 702,
+      "symbol": "SGD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BHD",
+      "displayName": "Bahraini Dinar",
+      "numericCode": 48,
+      "symbol": "BHD",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "SAR",
+      "displayName": "Saudi Riyal",
+      "numericCode": 682,
+      "symbol": "SAR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "YER",
+      "displayName": "Yemeni Rial",
+      "numericCode": 886,
+      "symbol": "YER",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "INR",
+      "displayName": "Indian Rupee",
+      "numericCode": 356,
+      "symbol": "INR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BAM",
+      "displayName": "Bosnia-Herzegovina Convertible Mark",
+      "numericCode": 977,
+      "symbol": "BAM",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "UAH",
+      "displayName": "Ukrainian Hryvnia",
+      "numericCode": 980,
+      "symbol": "UAH",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CHF",
+      "displayName": "Swiss Franc",
+      "numericCode": 756,
+      "symbol": "CHF",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "ARS",
+      "displayName": "Argentine Peso",
+      "numericCode": 32,
+      "symbol": "ARS",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EGP",
+      "displayName": "Egyptian Pound",
+      "numericCode": 818,
+      "symbol": "EGP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "JPY",
+      "displayName": "Japanese Yen",
+      "numericCode": 392,
+      "symbol": "JPY",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "SVC",
+      "displayName": "Salvadoran ColÃ³n",
+      "numericCode": 222,
+      "symbol": "SVC",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BRL",
+      "displayName": "Brazilian Real",
+      "numericCode": 986,
+      "symbol": "BRL",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "ISK",
+      "displayName": "Icelandic KrÃ³na",
+      "numericCode": 352,
+      "symbol": "ISK",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "CZK",
+      "displayName": "Czech Republic Koruna",
+      "numericCode": 203,
+      "symbol": "CZK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "PLN",
+      "displayName": "Polish Zloty",
+      "numericCode": 985,
+      "symbol": "PLN",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CSD",
+      "displayName": "Serbian Dinar (2002-2006)",
+      "numericCode": 891,
+      "symbol": "CSD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "MYR",
+      "displayName": "Malaysian Ringgit",
+      "numericCode": 458,
+      "symbol": "MYR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "COP",
+      "displayName": "Colombian Peso",
+      "numericCode": 170,
+      "symbol": "COP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BGN",
+      "displayName": "Bulgarian Lev",
+      "numericCode": 975,
+      "symbol": "BGN",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BAM",
+      "displayName": "Bosnia-Herzegovina Convertible Mark",
+      "numericCode": 977,
+      "symbol": "BAM",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "PYG",
+      "displayName": "Paraguayan Guarani",
+      "numericCode": 600,
+      "symbol": "PYG",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "USD",
+      "displayName": "US Dollar",
+      "numericCode": 840,
+      "symbol": "$",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "USD",
+      "displayName": "US Dollar",
+      "numericCode": 840,
+      "symbol": "$",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "SDG",
+      "displayName": "Sudanese Pound",
+      "numericCode": 938,
+      "symbol": "SDG",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "RON",
+      "displayName": "Romanian Leu",
+      "numericCode": 946,
+      "symbol": "RON",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "PHP",
+      "displayName": "Philippine Peso",
+      "numericCode": 608,
+      "symbol": "PHP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "TND",
+      "displayName": "Tunisian Dinar",
+      "numericCode": 788,
+      "symbol": "TND",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "GTQ",
+      "displayName": "Guatemalan Quetzal",
+      "numericCode": 320,
+      "symbol": "GTQ",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "KRW",
+      "displayName": "South Korean Won",
+      "numericCode": 410,
+      "symbol": "KRW",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "MXN",
+      "displayName": "Mexican Peso",
+      "numericCode": 484,
+      "symbol": "MXN",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "RUB",
+      "displayName": "Russian Ruble",
+      "numericCode": 643,
+      "symbol": "RUB",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "HNL",
+      "displayName": "Honduran Lempira",
+      "numericCode": 340,
+      "symbol": "HNL",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "HKD",
+      "displayName": "Hong Kong Dollar",
+      "numericCode": 344,
+      "symbol": "HKD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "NOK",
+      "displayName": "Norwegian Krone",
+      "numericCode": 578,
+      "symbol": "NOK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "HUF",
+      "displayName": "Hungarian Forint",
+      "numericCode": 348,
+      "symbol": "HUF",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "THB",
+      "displayName": "Thai Baht",
+      "numericCode": 764,
+      "symbol": "THB",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "IQD",
+      "displayName": "Iraqi Dinar",
+      "numericCode": 368,
+      "symbol": "IQD",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "CLP",
+      "displayName": "Chilean Peso",
+      "numericCode": 152,
+      "symbol": "CLP",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "MAD",
+      "displayName": "Moroccan Dirham",
+      "numericCode": 504,
+      "symbol": "MAD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "TRY",
+      "displayName": "Turkish Lira",
+      "numericCode": 949,
+      "symbol": "TRY",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "QAR",
+      "displayName": "Qatari Rial",
+      "numericCode": 634,
+      "symbol": "QAR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "OMR",
+      "displayName": "Omani Rial",
+      "numericCode": 512,
+      "symbol": "OMR",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "ALL",
+      "displayName": "Albanian Lek",
+      "numericCode": 8,
+      "symbol": "ALL",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "DOP",
+      "displayName": "Dominican Peso",
+      "numericCode": 214,
+      "symbol": "DOP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CUP",
+      "displayName": "Cuban Peso",
+      "numericCode": 192,
+      "symbol": "CUP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "NZD",
+      "displayName": "New Zealand Dollar",
+      "numericCode": 554,
+      "symbol": "NZD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "RSD",
+      "displayName": "Serbian Dinar",
+      "numericCode": 941,
+      "symbol": "RSD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CHF",
+      "displayName": "Swiss Franc",
+      "numericCode": 756,
+      "symbol": "CHF",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "UYU",
+      "displayName": "Uruguayan Peso",
+      "numericCode": 858,
+      "symbol": "UYU",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "ILS",
+      "displayName": "Israeli New Sheqel",
+      "numericCode": 376,
+      "symbol": "ILS",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "ZAR",
+      "displayName": "South African Rand",
+      "numericCode": 710,
+      "symbol": "ZAR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "THB",
+      "displayName": "Thai Baht",
+      "numericCode": 764,
+      "symbol": "THB",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "NOK",
+      "displayName": "Norwegian Krone",
+      "numericCode": 578,
+      "symbol": "NOK",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "AUD",
+      "displayName": "Australian Dollar",
+      "numericCode": 36,
+      "symbol": "AUD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CAD",
+      "displayName": "Canadian Dollar",
+      "numericCode": 124,
+      "symbol": "CAD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CRC",
+      "displayName": "Costa Rican ColÃ³n",
+      "numericCode": 188,
+      "symbol": "CRC",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "KWD",
+      "displayName": "Kuwaiti Dinar",
+      "numericCode": 414,
+      "symbol": "KWD",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "LYD",
+      "displayName": "Libyan Dinar",
+      "numericCode": 434,
+      "symbol": "LYD",
+      "defaultFractionDigits": 3
+    },
+    {
+      "currencyCode": "CHF",
+      "displayName": "Swiss Franc",
+      "numericCode": 756,
+      "symbol": "CHF",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "DZD",
+      "displayName": "Algerian Dinar",
+      "numericCode": 12,
+      "symbol": "DZD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "SGD",
+      "displayName": "Singapore Dollar",
+      "numericCode": 702,
+      "symbol": "SGD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CAD",
+      "displayName": "Canadian Dollar",
+      "numericCode": 124,
+      "symbol": "CAD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "CNY",
+      "displayName": "Chinese Yuan",
+      "numericCode": 156,
+      "symbol": "CNY",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "JPY",
+      "displayName": "Japanese Yen",
+      "numericCode": 392,
+      "symbol": "JPY",
+      "defaultFractionDigits": 0
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "RSD",
+      "displayName": "Serbian Dinar",
+      "numericCode": 941,
+      "symbol": "RSD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "INR",
+      "displayName": "Indian Rupee",
+      "numericCode": 356,
+      "symbol": "INR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "LBP",
+      "displayName": "Lebanese Pound",
+      "numericCode": 422,
+      "symbol": "LBP",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "NIO",
+      "displayName": "Nicaraguan CÃ³rdoba",
+      "numericCode": 558,
+      "symbol": "NIO",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "MKD",
+      "displayName": "Macedonian Denar",
+      "numericCode": 807,
+      "symbol": "MKD",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "BYN",
+      "displayName": "Belarusian Ruble",
+      "numericCode": 933,
+      "symbol": "BYN",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "EUR",
+      "displayName": "Euro",
+      "numericCode": 978,
+      "symbol": "EUR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "PEN",
+      "displayName": "Peruvian Sol",
+      "numericCode": 604,
+      "symbol": "PEN",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "IDR",
+      "displayName": "Indonesian Rupiah",
+      "numericCode": 360,
+      "symbol": "IDR",
+      "defaultFractionDigits": 2
+    },
+    {
+      "currencyCode": "GBP",
+      "displayName": "British Pound Sterling",
+      "numericCode": 826,
+      "symbol": "GBP",
+      "defaultFractionDigits": 2
+    }
+  ]
+}
