@@ -25,7 +25,7 @@ public class ApplicantSection implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public ApplicantSection(CorporateProfile corporateProfile) {
-        element.appendChild(BlockHeader.create("Buyer (Applicant)").asElement());
+        element.appendChild(BlockHeader.create("Buyer (Applicant) *").asElement());
         lcSettlementAccountsSelect = CorporateAccountsSelect.create("LC settlement accounts", corporateProfile);
         collateralSettlementAccountsSelect = CorporateAccountsSelect.create("Collateral settlement accounts", corporateProfile);
         feesAndChargesAccountsSelect = CorporateAccountsSelect.create("Fees and charges accounts", corporateProfile);

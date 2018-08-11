@@ -104,7 +104,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .addOption(SelectOption.create("CIF", "CIF – Cost, Insurance & Freight (named port of destination)"))
                 .addSelectionHandler(option -> revalidate());
 
-        element.appendChild(BlockHeader.create("Shipment Details").asElement());
+        element.appendChild(BlockHeader.create("Shipment Details *").asElement());
 
         element.appendChild(Style.of(card)
                 .setPaddingTop("20px")

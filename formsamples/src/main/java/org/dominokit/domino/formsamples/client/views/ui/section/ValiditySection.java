@@ -39,7 +39,7 @@ public class ValiditySection implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public ValiditySection(List<Country> countries) {
-        element.appendChild(BlockHeader.create("Validity").asElement());
+        element.appendChild(BlockHeader.create("Validity *").asElement());
 
         CountriesComponent countriesComponent = CountriesComponent.create(countries);
 

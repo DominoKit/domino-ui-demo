@@ -20,7 +20,7 @@ public class GoodsDescriptionSection implements ImportSection {
     private HTMLDivElement element = div().asElement();
 
     public GoodsDescriptionSection() {
-        element.appendChild(BlockHeader.create("Goods Description").asElement());
+        element.appendChild(BlockHeader.create("Goods Description *").asElement());
 
         goodsDescriptionTextArea = TextArea.create("Goods Description")
                 .setAutoValidation(true)

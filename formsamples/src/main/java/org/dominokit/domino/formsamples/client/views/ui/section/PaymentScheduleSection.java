@@ -106,7 +106,7 @@ public class PaymentScheduleSection implements ImportSection {
                 })
                 .horizontal();
 
-        paymentScheduleCard = Card.create("Payment Schedule");
+        paymentScheduleCard = Card.create("Payment Schedule *");
         addButton = Style.of(IconButton.createDefault(Icons.ALL.add()).setContent("ADD")
                 .linkify())
                 .setMarginTop("-10px")

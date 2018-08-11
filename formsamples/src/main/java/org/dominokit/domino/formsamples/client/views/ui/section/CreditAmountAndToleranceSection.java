@@ -39,7 +39,7 @@ public class CreditAmountAndToleranceSection implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public CreditAmountAndToleranceSection(List<CurrencyData> currencies) {
-        element.appendChild(BlockHeader.create("Credit Amount And Tolerance").asElement());
+        element.appendChild(BlockHeader.create("Credit Amount And Tolerance *").asElement());
 
         card = Card.create();
 
