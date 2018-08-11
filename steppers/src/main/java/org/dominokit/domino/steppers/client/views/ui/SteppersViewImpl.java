@@ -7,10 +7,10 @@ import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
 import org.dominokit.domino.steppers.client.steppers.Step;
 import org.dominokit.domino.steppers.client.steppers.Stepper;
 import org.dominokit.domino.steppers.client.views.SteppersView;
+import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -21,6 +21,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
     @Override
     public void init() {
+        element.appendChild(Alert.warning().appendStrong("Warning: ").appendText("This is still a work in progress").asElement());
         element.appendChild(BlockHeader.create("STEPPERS").asElement());
         Stepper stepper = Stepper.create();
         Step step2 = Step.create("Second step", "first step description");

@@ -1,0 +1,115 @@
+package org.dominokit.domino.formsamples.client.views.ui.section;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import org.dominokit.domino.formsamples.client.views.ui.BanksComponent;
+import org.dominokit.domino.formsamples.shared.model.*;
+import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.forms.FieldsGrouping;
+import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.style.Style;
+
+import java.util.List;
+
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
+import static org.jboss.gwt.elemento.core.Elements.div;
+
+
+public class IssuerBankSection implements ImportSection {
+
+    private Select<Bank> issuerBanksSelect;
+    private Select<Branch> issuerBranchesSelect;
+    private TextBox issuerAddressTextBox;
+    private TextBox issuerContactPersonTextBox;
+    private Row issuerBankInfoRow;
+    private Card card;
+    private HTMLDivElement element = div().asElement();
+    private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
+
+    public IssuerBankSection(CorporateProfile corporateProfile) {
+        element.appendChild(BlockHeader.create("Issuer Bank").asElement());
+
+        List<Bank> banks = corporateProfile.getBanks();
+        BanksComponent banksComponent = BanksComponent.create(banks);
+
+        issuerBranchesSelect = banksComponent
+                .getBranchesSelect()
+                .groupBy(fieldsGrouping)
+                .setRequired(true)
+                .setAutoValidation(true);
+
+        issuerBanksSelect = banksComponent
+                .getBanksSelect()
+                .groupBy(fieldsGrouping)
+                .setRequired(true)
+                .setAutoValidation(true);
+
+        issuerAddressTextBox = TextBox.create("Address");
+        issuerContactPersonTextBox = TextBox.create("Contact Person");
+
+        issuerBankInfoRow = Row.create()
+                .addColumn(Column.span6()
+                        .addElement(issuerAddressTextBox
+                                .setLeftAddon(Icons.ALL.location_on())
+                                .setReadOnly(true)))
+                .addColumn(Column.span6()
+                        .addElement(issuerContactPersonTextBox
+                                .setLeftAddon(Icons.ALL.person())
+                                .setReadOnly(true))
+                ).collapse();
+
+        issuerBranchesSelect.addSelectionHandler(option -> issuerBankInfoRow.expand());
+
+        issuerBanksSelect.addSelectionHandler(option -> issuerBankInfoRow.collapse());
+
+
+        card = Card.create();
+        element.appendChild(Style.of(card)
+                .setPaddingTop("20px")
+                .get()
+                .appendChild(Row.create()
+                        .addColumn(Column.span6()
+                                .addElement(issuerBanksSelect)
+                        )
+                        .addColumn(Column.span6()
+                                .addElement(issuerBranchesSelect)
+                        )
+                )
+                .appendChild(issuerBankInfoRow
+                )
+                .asElement());
+        issuerBanksSelect.focus();
+
+        issuerBranchesSelect.addSelectionHandler(option -> {
+            Branch branch = option.getValue();
+            issuerAddressTextBox.setValue(branch.getAddress().getCountryISOCode() + " - " + branch.getAddress().getCity());
+            issuerContactPersonTextBox.setValue(branch.getContactPerson().getName());
+            markCardValidation(card, true, false);
+        });
+
+    }
+
+    @Override
+    public void collect(LetterOfCredit letterOfCredit) {
+        Issuer issuer = letterOfCredit.getIssuer();
+        issuer.setBank(issuerBanksSelect.getValue().getSwiftCode());
+        issuer.setBranch(issuerBranchesSelect.getValue().getName());
+    }
+
+    @Override
+    public boolean validate() {
+        boolean valid = fieldsGrouping.validate().isValid();
+        markCardValidation(card, valid);
+        return valid;
+    }
+
+    @Override
+    public HTMLElement asElement() {
+        return element;
+    }
+}

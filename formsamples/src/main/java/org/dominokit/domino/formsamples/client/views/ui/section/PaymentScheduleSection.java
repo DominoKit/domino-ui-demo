@@ -1,0 +1,250 @@
+package org.dominokit.domino.formsamples.client.views.ui.section;
+
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import org.dominokit.domino.formsamples.client.views.ui.Constants;
+import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
+import org.dominokit.domino.formsamples.shared.model.PaymentScheduleItem;
+import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.collapsible.Collapsible;
+import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.icons.Icon;
+import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.lists.ListGroup;
+import org.dominokit.domino.ui.lists.ListItem;
+import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.ValidationResult;
+
+import java.util.List;
+
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
+import static org.dominokit.domino.ui.column.Column.*;
+import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
+import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.gwt.elemento.core.Elements.small;
+
+public class PaymentScheduleSection implements ImportSection {
+
+    private final HTMLElement validationMessageElement = small().textContent("Total payment schedules should be 100%").css(Color.RED.getStyle()).asElement();
+    private TextBox numberOfDaysTextBox;
+    private Select<String> paymentScheduleAfterSelect;
+    private TextBox percentageTextBox;
+    private RadioGroup paymentScheduleRadioGroup;
+    private ListGroup<PaymentScheduleItem> paymentScheduleItemsListGroup;
+    private IconButton addButton;
+    private Collapsible valuesContainerCollapsible;
+    private Card paymentScheduleCard;
+    private HTMLDivElement element = div().asElement();
+    private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
+    private final Row paymentSchedulerListGroupRow;
+
+    public PaymentScheduleSection() {
+
+        numberOfDaysTextBox = numbersOnly(TextBox.create("No. Of Days")
+                .setLeftAddon(Icons.ALL.looks_one())
+                .setHelperText(Constants.NUMBERS_ONLY))
+                .groupBy(fieldsGrouping)
+                .setAutoValidation(true);
+
+        Column numberOfDaysColumn = span4()
+                .addElement(numberOfDaysTextBox).collapse();
+
+        paymentScheduleAfterSelect = Select.<String>create("After").addOption(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
+                .addOption(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
+                .addOption(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
+                .setLeftAddon(Icons.ALL.redo())
+                .groupBy(fieldsGrouping)
+                .setAutoValidation(true);
+
+        Column paymentScheduleAfterColumn = span4()
+                .addElement(paymentScheduleAfterSelect).collapse();
+
+        percentageTextBox = numbersOnly(TextBox.create("Percentage"))
+                .setHelperText("Numbers only")
+                .setAutoValidation(true)
+                .setValue("100")
+                .setRequired(true)
+                .groupBy(fieldsGrouping)
+                .setLeftAddon(i().css("fas", "fa-percent", "fa-sm"))
+                .addValidator(() -> {
+                    int percentage = Integer.parseInt(percentageTextBox.getValue());
+                    int remainingPercentage = remainingPercentage();
+                    if (percentage > 0 && percentage <= remainingPercentage) {
+                        return ValidationResult.valid();
+                    }
+                    return ValidationResult.invalid("Maximum allowed percentage is " + remainingPercentage);
+                });
+
+        paymentScheduleItemsListGroup = ListGroup.<PaymentScheduleItem>create()
+                .setSelectable(false);
+
+        paymentScheduleRadioGroup = RadioGroup.create("paymentSchedule")
+                .addRadio(Radio.create("SIGHT", "Payment Sight").withGap().check())
+                .addRadio(Radio.create("NEGOTIATION", "Negotiation").withGap())
+                .addRadio(Radio.create("ACCEPTANCE", "Acceptance at").withGap())
+                .addRadio(Radio.create("DEFERRED", "Deferred Payment").withGap())
+                .addChangeHandler(selectedRadio -> {
+                    if (selectedRadio.getValue().equals("DEFERRED") || selectedRadio.getValue().equals("ACCEPTANCE")) {
+                        numberOfDaysColumn.expand();
+                        paymentScheduleAfterColumn.expand();
+                        numberOfDaysTextBox.setRequired(true);
+                        paymentScheduleAfterSelect.setRequired(true);
+                    } else {
+                        numberOfDaysColumn.collapse();
+                        paymentScheduleAfterColumn.collapse();
+                        numberOfDaysTextBox.setRequired(false);
+                        paymentScheduleAfterSelect.setRequired(false);
+                    }
+                })
+                .horizontal();
+
+        paymentScheduleCard = Card.create("Payment Schedule");
+        addButton = Style.of(IconButton.createDefault(Icons.ALL.add()).setContent("ADD")
+                .linkify())
+                .setMarginTop("-10px")
+                .get()
+        ;
+        paymentScheduleCard.getHeaderBar()
+                .appendChild(addButton
+                        .addClickListener(evt -> {
+                            if (fieldsGrouping.validate().isValid()) {
+                                addPaymentSchedule();
+                            }
+                        }).asElement());
+
+
+        Row paymentTypeRow = Row.create()
+                .addColumn(span12()
+                        .addElement(paymentScheduleRadioGroup));
+
+
+        Row paymentValuesRow = Row.create()
+                .addColumn(span4().addElement(percentageTextBox))
+                .addColumn(numberOfDaysColumn)
+                .addColumn(paymentScheduleAfterColumn);
+
+        HTMLDivElement valuesContainer = div()
+                .add(paymentTypeRow)
+                .add(paymentValuesRow).asElement();
+
+        valuesContainerCollapsible = Collapsible.create(valuesContainer)
+                .expand();
+
+        paymentSchedulerListGroupRow = Row.create();
+        element.appendChild(paymentScheduleCard
+                .appendChild(valuesContainer)
+                .appendChild(paymentSchedulerListGroupRow
+                        .addColumn(create(12)
+                                .addElement(paymentScheduleItemsListGroup))
+                        .collapse()
+                )
+                .asElement());
+    }
+
+    private void addPaymentSchedule() {
+        PaymentScheduleItem item = new PaymentScheduleItem();
+        item.setType(paymentScheduleRadioGroup.getValue());
+        if (paymentScheduleAfterSelect.isRequired())
+            item.setAfterIncident(paymentScheduleAfterSelect.getValue());
+
+        if (numberOfDaysTextBox.isRequired())
+            item.setNumberOfDays(Integer.parseInt(numberOfDaysTextBox.getValue()));
+
+        item.setPercentage(Integer.parseInt(percentageTextBox.getValue()));
+        ListItem<PaymentScheduleItem> listItem = paymentScheduleItemsListGroup.addItem(item, paymentScheduleRadioGroup.getSelectedRadio().getLabel());
+        Icon delete = Icons.ALL.delete();
+        delete.asElement().addEventListener("click", evt1 -> {
+            paymentScheduleItemsListGroup.removeItem(listItem);
+            percentageTextBox.setValue(remainingPercentage() + "");
+            addButton.expand();
+            valuesContainerCollapsible.expand();
+            if (paymentScheduleItemsListGroup.getAllValues().size() == 0) {
+                paymentSchedulerListGroupRow.collapse();
+            }
+
+            revalidate();
+        });
+        listItem
+                .appendChild(Style.of(delete)
+                        .css(Styles.pull_right)
+                        .setMarginTop("-3px")
+                        .setMarginLeft("10px")
+                        .asElement());
+
+        if (numberOfDaysTextBox.isRequired()) {
+            listItem.appendChild(Style.of(Badge.create(item.getNumberOfDays() + " days after " + item.getAfterIncident().toLowerCase())
+                    .setBackground(Color.GREEN))
+                    .css(Styles.pull_right)
+                    .asElement());
+        }
+
+        listItem.appendChild(Style.of(Badge.create(item.getPercentage() + "%")
+                .setBackground(Color.GREEN))
+                .css(Styles.pull_right)
+                .asElement());
+
+        int remainingPercentage = remainingPercentage();
+        if (remainingPercentage == 0) {
+            addButton.collapse();
+            valuesContainerCollapsible.collapse();
+        } else {
+            if (addButton.isCollapsed())
+                addButton.expand();
+            if (valuesContainerCollapsible.isCollapsed())
+                valuesContainerCollapsible.expand();
+            percentageTextBox.setValue(remainingPercentage + "");
+        }
+        numberOfDaysTextBox.clear();
+        paymentScheduleAfterSelect.clear();
+        paymentSchedulerListGroupRow.expand();
+
+        revalidate();
+
+    }
+
+    public void revalidate(){
+        if(isInvalidatedCard(paymentScheduleCard) && remainingPercentage()==0){
+            markCardValidation(paymentScheduleCard, true, false);
+            markWithValidationMessage(true);
+        }
+    }
+
+    @Override
+    public boolean validate() {
+        boolean valid = remainingPercentage() == 0;
+        markCardValidation(paymentScheduleCard, valid);
+        markWithValidationMessage(valid);
+        return valid;
+    }
+
+    private void markWithValidationMessage(boolean valid) {
+        if(!valid){
+            paymentScheduleCard.getHeaderDescription().appendChild(validationMessageElement);
+        }else{
+            validationMessageElement.remove();
+        }
+    }
+
+    private int remainingPercentage() {
+        List<PaymentScheduleItem> allValues = paymentScheduleItemsListGroup.getAllValues();
+        return 100 - allValues.stream().mapToInt(PaymentScheduleItem::getPercentage).sum();
+    }
+
+    @Override
+    public void collect(LetterOfCredit letterOfCredit) {
+        letterOfCredit.getPaymentSchedule().addAll(paymentScheduleItemsListGroup.getAllValues());
+    }
+
+    @Override
+    public HTMLElement asElement() {
+        return element;
+    }
+}

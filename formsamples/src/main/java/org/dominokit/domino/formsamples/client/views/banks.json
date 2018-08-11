@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Bank Sohar",
+    "swiftCode": "BSHROMRUXXX",
+    "shortName": "S.A.O.J",
+    "address": {
+      "countryISOCode": "OM",
+      "city": "Muscat",
+      "street": "Al Ghala Street",
+      "apartment": "Al Omran Building",
+      "zipCode": "44",
+      "mailBox": "PO Box 44",
+      "phoneNumber": "+968 24730077",
+      "faxNumber": "+968 24503250"
+    },
+    "contactPerson": {
+      "name": "\tSheikh Dr. Salim Said Al Araimi (Chairman)",
+      "contactNumber": "+968 24730077",
+      "email": "info@banksohar.com",
+      "address": {
+        "countryISOCode": "OM",
+        "city": "Muscat",
+        "street": "Al Ghala Street",
+        "apartment": "Al Omran Building",
+        "zipCode": "44",
+        "mailBox": "PO Box 44",
+        "phoneNumber": "+968 24730077",
+        "faxNumber": "+968 24503250"
+      }
+    }
+  }
+]
