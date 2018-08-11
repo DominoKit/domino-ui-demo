@@ -28,7 +28,7 @@ public class BeneficiarySection implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public BeneficiarySection(List<Beneficiary> beneficiaries) {
-        element.appendChild(BlockHeader.create("Seller(Beneficiary)").asElement());
+        element.appendChild(BlockHeader.create("Seller(Beneficiary) *").asElement());
 
         card = Card.create();
 

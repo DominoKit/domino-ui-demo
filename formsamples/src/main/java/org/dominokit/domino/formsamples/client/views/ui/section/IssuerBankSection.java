@@ -32,7 +32,7 @@ public class IssuerBankSection implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public IssuerBankSection(CorporateProfile corporateProfile) {
-        element.appendChild(BlockHeader.create("Issuer Bank").asElement());
+        element.appendChild(BlockHeader.create("Issuer Bank *").asElement());
 
         List<Bank> banks = corporateProfile.getBanks();
         BanksComponent banksComponent = BanksComponent.create(banks);
