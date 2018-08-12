@@ -101,14 +101,16 @@ public class CertificateOfOriginPart implements ImportSection {
         element.appendChild(Style.of(certificateOfOriginCard)
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(Column.span3().addElement(certificateOfOriginCopiesTextBox))
-                        .addColumn(Column.span3().addElement(numberOfCopiesTextBox))
-                        .addColumn(Column.span6().addElement(certificateOfOriginTextBox)))
+                        .addColumn(Column.span4().addElement(certificateOfOriginCopiesTextBox))
+                        .addColumn(Column.span4().addElement(numberOfCopiesTextBox))
+                ).appendChild(Row.create()
+                        .addColumn(Column.span8().addElement(certificateOfOriginTextBox)))
                 .appendChild(Row.create()
-                        .addColumn(Column.span3().addElement(certificateOfOriginLocalizationEntitiesSelect))
-                        .addColumn(Column.span3().addElement(certificateOfOriginOriginCountrySelect))
-                        .addColumn(Column.span3().copy().addElement(certificateOfOriginOriginOfGoodsCountrySelect))
-                        .addColumn(Column.span3().copy().addElement(certificateOfOriginOriginOfLocalizationEntitiesCountrySelect)))
+                        .addColumn(Column.span6().addElement(certificateOfOriginLocalizationEntitiesSelect))
+                        .addColumn(Column.span6().addElement(certificateOfOriginOriginCountrySelect))
+                ).appendChild(Row.create()
+                        .addColumn(Column.span6().copy().addElement(certificateOfOriginOriginOfGoodsCountrySelect))
+                        .addColumn(Column.span6().copy().addElement(certificateOfOriginOriginOfLocalizationEntitiesCountrySelect)))
                 .asElement());
 
     }
