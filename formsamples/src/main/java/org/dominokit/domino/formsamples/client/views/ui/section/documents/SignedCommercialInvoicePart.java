@@ -96,8 +96,6 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .addSelectionHandler(option -> revalidate());
 
 
-
-
         signedCommercialInvoiceInCard.getHeaderDescription()
                 .appendChild(signedCommercialInvoiceRequiredSwitchButton.asElement());
 
@@ -108,10 +106,11 @@ public class SignedCommercialInvoicePart implements ImportSection {
                         .addColumn(span8().addElement(signedCommercialInvoiceTextBox))
 
                 ).appendChild(Row.create()
-                        .addColumn(span3().addElement(signedCommercialLocalizationEntitiesSelect))
-                        .addColumn(span3().addElement(signedCommercialOriginCountrySelect))
-                        .addColumn(span3().addElement(signedCommercialOriginOfGoodsCountrySelect))
-                        .addColumn(span3().addElement(signedCommercialOriginOfLocalizationEntityCountrySelect)))
+                        .addColumn(span6().addElement(signedCommercialLocalizationEntitiesSelect))
+                        .addColumn(span6().addElement(signedCommercialOriginCountrySelect))
+                ).appendChild(Row.create()
+                        .addColumn(span6().addElement(signedCommercialOriginOfGoodsCountrySelect))
+                        .addColumn(span6().addElement(signedCommercialOriginOfLocalizationEntityCountrySelect)))
                 .asElement());
     }
 
