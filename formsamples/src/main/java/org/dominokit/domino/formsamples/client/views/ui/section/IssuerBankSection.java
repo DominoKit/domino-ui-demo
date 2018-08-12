@@ -73,16 +73,11 @@ public class IssuerBankSection implements ImportSection {
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
-                                .addElement(issuerBanksSelect)
-                        )
-                        .addColumn(Column.span6()
-                                .addElement(issuerBranchesSelect)
-                        )
-                )
-                .appendChild(issuerBankInfoRow
-                )
+                        .addColumn(Column.span6().addElement(issuerBanksSelect))
+                        .addColumn(Column.span6().addElement(issuerBranchesSelect))
+                ).appendChild(issuerBankInfoRow)
                 .asElement());
+
         issuerBanksSelect.focus();
 
         issuerBranchesSelect.addSelectionHandler(option -> {
