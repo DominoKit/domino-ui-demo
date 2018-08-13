@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.ul;
 
 public class Stepper implements IsElement<HTMLUListElement> {
@@ -14,6 +15,8 @@ public class Stepper implements IsElement<HTMLUListElement> {
     private final HTMLUListElement element = ul().css("stepper").asElement();
     private Step activeStep;
     private List<Step> steps = new ArrayList<>();
+    private StepperCompletionHandler stepperCompletionHandler = () -> {
+    };
 
     public static Stepper create() {
         return new Stepper();
@@ -26,8 +29,23 @@ public class Stepper implements IsElement<HTMLUListElement> {
             this.activeStep = step;
         }
         steps.add(step);
+        step.getStepHeader().asElement().addEventListener("click", evt -> onStepHeaderClicked(step));
 
         return this;
+    }
+
+    private void onStepHeaderClicked(Step step) {
+        int activeStepIndex = steps.indexOf(this.activeStep);
+        int stepIndex = steps.indexOf(step);
+        if (this.activeStep.isValid() && (activeStepIndex == stepIndex - 1)) {
+            next();
+        } else if (stepIndex < activeStepIndex) {
+            activateStep(step);
+        } else {
+            if (!this.activeStep.isValid() && activeStepIndex != stepIndex) {
+                this.activeStep.invalidate();
+            }
+        }
     }
 
     @Override
@@ -46,11 +64,22 @@ public class Stepper implements IsElement<HTMLUListElement> {
         return this;
     }
 
+    public Stepper invalidate() {
+        if (nonNull(activeStep)) {
+            activeStep.invalidate();
+        }
+        return this;
+    }
+
     public Stepper next() {
         int activeStepIndex = steps.indexOf(activeStep);
         if (steps.size() > 1 && activeStepIndex < steps.size() - 1) {
-            this.activeStep.setDone(true);
-            activateStep(steps.get(activeStepIndex + 1));
+            if (this.activeStep.isValid()) {
+                this.activeStep.setDone(true);
+                activateStep(steps.get(activeStepIndex + 1));
+            } else {
+                this.activeStep.invalidate();
+            }
         }
         return this;
     }
@@ -61,5 +90,28 @@ public class Stepper implements IsElement<HTMLUListElement> {
             activateStep(steps.get(activeStepIndex - 1));
         }
         return this;
+    }
+
+    public Stepper finish() {
+        if (this.activeStep.isValid()) {
+            stepperCompletionHandler.onFinish();
+        } else {
+            this.activeStep.invalidate();
+        }
+
+        return this;
+    }
+
+    public Stepper setCompletionHandler(StepperCompletionHandler completionHandler) {
+        if (nonNull(completionHandler)) {
+            this.stepperCompletionHandler = completionHandler;
+        }
+
+        return this;
+    }
+
+    @FunctionalInterface
+    public interface StepperCompletionHandler {
+        void onFinish();
     }
 }

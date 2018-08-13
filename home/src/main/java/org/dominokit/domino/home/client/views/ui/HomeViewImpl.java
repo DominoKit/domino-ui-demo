@@ -75,12 +75,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
         element.appendChild(Card.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/font/material-icons.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/bootstrap/css/bootstrap.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/node-waves/waves.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/animate-css/animate.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/plugins/waitme/waitMe.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/style.css\">\n" +
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/domino-ui.css\">\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/themes/all-themes.css\">")
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")

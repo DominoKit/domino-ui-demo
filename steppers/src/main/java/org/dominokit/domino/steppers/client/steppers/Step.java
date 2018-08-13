@@ -3,12 +3,14 @@ package org.dominokit.domino.steppers.client.steppers;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.Node;
+import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.jboss.gwt.elemento.core.IsElement;
 
+import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.li;
 
@@ -16,21 +18,22 @@ public class Step implements IsElement<HTMLLIElement> {
 
     private final HTMLLIElement element = li().css("step").asElement();
     private final HTMLDivElement contentElement = div().css("step-content").asElement();
-    private String title;
     private BlockHeader stepHeader;
-    private Stepper stepper;
     private boolean expanded = false;
+    private Card stepBody = Card.create()
+            .style()
+            .setMarginBottom("0px")
+            .removeShadow()
+            .get();
+    private StepCompletedValidator stepCompletedValidator = () -> true;
     Collapsible collapsible = Collapsible.create(contentElement);
 
 
     public Step(String title) {
-        this.title = title;
         init(BlockHeader.create(title));
-
     }
 
     public Step(String title, String description) {
-        this.title = title;
         init(BlockHeader.create(title, description));
     }
 
@@ -38,12 +41,19 @@ public class Step implements IsElement<HTMLLIElement> {
         stepHeader = Style.of(blockHeader).css("step-title").get();
         element.appendChild(stepHeader.asElement());
         element.appendChild(contentElement);
+        Style.of(stepBody.getBody())
+                .setPaddingLeft("0px")
+                .setPaddingRight("0px")
+                .setPaddingBottom("0px");
+        contentElement.appendChild(stepBody.asElement());
         collapsible.collapse();
         ElementUtil.onAttach(asElement(), mutationRecord -> {
             if (expanded) {
                 collapsible.expand();
             }
         });
+
+
     }
 
     public static Step create(String title) {
@@ -54,16 +64,17 @@ public class Step implements IsElement<HTMLLIElement> {
         return new Step(title, description);
     }
 
-    public Step appendContent(Node content) {
-        contentElement.appendChild(content);
+    public Step appendChild(Node content) {
+        stepBody.appendChild(content);
         return this;
     }
 
-    public Step appendContent(IsElement content) {
-        return appendContent(content.asElement());
+    public Step appendChild(IsElement content) {
+        return appendChild(content.asElement());
     }
 
     Step activate() {
+        clearInvalid();
         Style.of(element).css("active");
         collapsible.expand();
         this.expanded = true;
@@ -71,11 +82,14 @@ public class Step implements IsElement<HTMLLIElement> {
     }
 
     Step deActivate() {
+        clearInvalid();
         Style.of(element).removeClass("active");
         collapsible.collapse();
         this.expanded = false;
         return this;
     }
+
+
 
     public void setDone(boolean done) {
         Style.of(element).removeClass("done");
@@ -94,20 +108,32 @@ public class Step implements IsElement<HTMLLIElement> {
         Style.of(element).removeClass("wrong");
     }
 
-    public HTMLDivElement getContentElement() {
-        return contentElement;
+    public Card getStepBody() {
+        return stepBody;
+    }
+
+    public boolean isValid() {
+        return stepCompletedValidator.isValid();
+    }
+
+    public Step setValidator(StepCompletedValidator stepCompletedValidator) {
+        if (nonNull(stepCompletedValidator)) {
+            this.stepCompletedValidator = stepCompletedValidator;
+        }
+        return this;
     }
 
     public BlockHeader getStepHeader() {
         return stepHeader;
     }
 
-    void setStepper(Stepper stepper) {
-        this.stepper = stepper;
-    }
-
     @Override
     public HTMLLIElement asElement() {
         return element;
+    }
+
+    @FunctionalInterface
+    public interface StepCompletedValidator {
+        boolean isValid();
     }
 }

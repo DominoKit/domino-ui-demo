@@ -79,7 +79,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         ModalDialog smallSizeModal = createModalDialog().small();
 
-        Button smallSizeButton = Button.createDefault("MODAL - LARGE SIZE");
+        Button smallSizeButton = Button.createDefault("MODAL - SMALL SIZE");
         smallSizeButton.getClickableElement().addEventListener("click", e -> openDialog(smallSizeModal));
 
         row.addColumn(column.copy().addElement(smallSizeButton.asElement()));
