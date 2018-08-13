@@ -189,7 +189,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(row
                 .addColumn(column.copy().addElement(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Color.PINK)
+                                .setBackground(Color.RED)
                                 .addItem(" Home ", evt -> {
                                 })
                                 .addItem(" Library ", evt -> {
@@ -234,7 +234,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(row
                 .addColumn(column.copy().addElement(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
                         .appendContent(Breadcrumb.create()
-                                .setBackground(Color.PINK)
+                                .setBackground(Color.RED)
                                 .addItem(Icons.ALL.home(), " Home ", evt -> {
                                 })
                                 .addItem(Icons.ALL.library_books(), " Library ", evt -> {
@@ -283,7 +283,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
     private void alignment() {
         element.appendChild(Card.create("ALIGNMENTS")
                 .appendContent(Breadcrumb.create()
-                        .setBackground(Color.PINK)
+                        .setBackground(Color.RED)
                         .addItem(Icons.ALL.home(), " Home ", evt -> {
                         })
                         .addItem(Icons.ALL.library_books(), " Library ", evt -> {

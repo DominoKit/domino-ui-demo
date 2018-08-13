@@ -43,8 +43,6 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                         .attr("target", "_blank").textContent("daneden.github.io/animate.css").asElement())
                 .asElement());
 
-
-        HTMLImageElement image = img(GWT.getModuleBaseURL() + "/images/animation-bg.jpg").css(Styles.img_responsive).asElement();
         Column column = Column.create()
                 .onLarge(Column.OnLarge.four)
                 .onMedium(Column.OnMedium.four)
@@ -52,9 +50,6 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .onXSmall(Column.OnXSmall.twelve);
 
         element.appendChild(Row.create()
-                .addColumn(column.copy()
-                        .addElement(createCard(Transition.COLLAPSE_UP)
-                                .asElement()))
                 .addColumn(column.copy()
                         .addElement(createCard(Transition.BOUNCE)
                                 .asElement()))
