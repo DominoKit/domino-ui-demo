@@ -1,0 +1,167 @@
+HTMLDivElement rgbColorsDiv = div()
+                .style("height: 190px;")
+                .asElement();
+
+Slider redSlider = Style.of(Slider.create(255, 0))
+        .setMarginTop("17px")
+        .get()
+        .anyStep()
+        .withoutThumb()
+        .setThumbColor(Color.RED_DARKEN_2)
+        .setBackgroundColor(Color.RED_LIGHTEN_3);
+Slider greenSlider = Style.of(Slider.create(255, 0))
+        .setMarginTop("17px")
+        .get()
+        .anyStep()
+        .withoutThumb()
+        .setThumbColor(Color.GREEN_DARKEN_2)
+        .setBackgroundColor(Color.GREEN_LIGHTEN_3);
+Slider blueSlider = Style.of(Slider.create(255, 0))
+        .setMarginTop("17px")
+        .get()
+        .anyStep()
+        .withoutThumb()
+        .setThumbColor(Color.BLUE_DARKEN_2)
+        .setBackgroundColor(Color.BLUE_LIGHTEN_3);
+
+TextBox redTextBox = TextBox.create()
+        .addChangeHandler(value -> {
+            redSlider.setValue(Double.parseDouble(value));
+        });
+TextBox greenTextBox = TextBox.create()
+        .addChangeHandler(value -> {
+            greenSlider.setValue(Double.parseDouble(value));
+        });
+TextBox blueTextBox = TextBox.create()
+        .addChangeHandler(value -> {
+            blueSlider.setValue(Double.parseDouble(value));
+        });
+
+
+HTMLDivElement colorsDiv = div()
+        .add(rgbColorsDiv)
+        .add(Row.create()
+                .style()
+                .setMarginTop("20px")
+                .get()
+                .addColumn(Column.span4()
+                        .addElement(Row.create()
+                                .addColumn(Column.span2().addElement(h(5).textContent("R")))
+                                .addColumn(Column.span10().addElement(redTextBox))
+                        ))
+                .addColumn(Column.span4()
+                        .addElement(Row.create()
+                                .addColumn(Column.span2().addElement(h(5).textContent("G")))
+                                .addColumn(Column.span10().addElement(greenTextBox))
+                        ))
+                .addColumn(Column.span4()
+                        .addElement(Row.create()
+                                .addColumn(Column.span2().addElement(h(5).textContent("B")))
+                                .addColumn(Column.span10().addElement(blueTextBox))
+                        ))
+                .asElement())
+        .asElement();
+
+redSlider.addSlideHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + value + ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+redSlider.addChangeHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + value + ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+
+greenSlider.addSlideHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + value + ", " + blueSlider.getValue() + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+greenSlider.addChangeHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + value + ", " + blueSlider.getValue() + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+
+blueSlider.addSlideHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + greenSlider.getValue() + ", " + value + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+blueSlider.addChangeHandler(value -> {
+    rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + greenSlider.getValue() + ", " + value + ")";
+    redTextBox.setValue(redSlider.getValue() + "");
+    greenTextBox.setValue(greenSlider.getValue() + "");
+    blueTextBox.setValue(blueSlider.getValue() + "");
+});
+
+redSlider.setValue(255);
+greenSlider.setValue(0);
+blueSlider.setValue(0);
+
+TextBox stepTextBox = TextBox.create("STEP").setValue("any")
+        .addChangeHandler(value -> {
+            if ("any".equalsIgnoreCase(value)) {
+                redSlider.anyStep();
+                greenSlider.anyStep();
+                blueSlider.anyStep();
+            } else {
+                redSlider.setStep(Double.parseDouble(value));
+                greenSlider.setStep(Double.parseDouble(value));
+                blueSlider.setStep(Double.parseDouble(value));
+            }
+        });
+SwitchButton thumbSwitch = SwitchButton.create()
+        .setOffTitle("Without thumb")
+        .setOnTitle("With thumb")
+        .addChangeHandler(value -> {
+            redSlider.setWithThumb(value);
+            greenSlider.setWithThumb(value);
+            blueSlider.setWithThumb(value);
+        });
+
+element
+        .setBodyPaddingTop("40px")
+        .appendContent(Row.create()
+                .addColumn(Column.span3()
+                        .addElement(stepTextBox))
+                .addColumn(Column.span3()
+                        .addElement(thumbSwitch))
+        )
+        .appendContent(Row.create()
+                .addColumn(Column.span4()
+                        .addElement(Row.create()
+                                .addColumn(Column.span12()
+                                        .addElement(Row.create()
+                                                .addColumn(Column.span1()
+                                                        .addElement(h(4).textContent("R")))
+                                                .addColumn(Column.span11()
+                                                        .centerContent()
+                                                        .addElement(redSlider))
+                                        ))
+                                .addColumn(Column.span12()
+                                        .addElement(Row.create()
+                                                .addColumn(Column.span1()
+                                                        .addElement(h(4).textContent("G")))
+                                                .addColumn(Column.span11()
+                                                        .centerContent()
+                                                        .addElement(greenSlider))
+                                        ))
+                                .addColumn(Column.span12()
+                                        .addElement(Row.create()
+                                                .addColumn(Column.span1()
+                                                        .addElement(h(4).textContent("B")))
+                                                .addColumn(Column.span11()
+                                                        .centerContent()
+                                                        .addElement(blueSlider))
+                                        )))
+                )
+                .addColumn(Column.span8()
+                        .addElement(colorsDiv))
+        );
