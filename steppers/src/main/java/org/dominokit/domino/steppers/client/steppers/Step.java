@@ -3,9 +3,9 @@ package org.dominokit.domino.steppers.client.steppers;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLLIElement;
 import elemental2.dom.Node;
-import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.animations.Animation;
+import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.jboss.gwt.elemento.core.IsElement;
@@ -18,41 +18,38 @@ public class Step implements IsElement<HTMLLIElement> {
 
     private final HTMLLIElement element = li().css("step").asElement();
     private final HTMLDivElement contentElement = div().css("step-content").asElement();
-    private BlockHeader stepHeader;
+    private HTMLDivElement stepHeader;
+    private HTMLDivElement bodyElement = div().css("step-body").asElement();
+    private HTMLDivElement footerElement = div().css("step-footer").asElement();
     private boolean expanded = false;
-    private Card stepBody = Card.create()
-            .style()
-            .setMarginBottom("0px")
-            .removeShadow()
-            .get();
     private StepCompletedValidator stepCompletedValidator = () -> true;
-    Collapsible collapsible = Collapsible.create(contentElement);
+    private Collapsible collapsible = Collapsible.create(contentElement);
 
 
     public Step(String title) {
-        init(BlockHeader.create(title));
+        init(makeHeaderElement(title, ""));
     }
 
     public Step(String title, String description) {
-        init(BlockHeader.create(title, description));
+        init(makeHeaderElement(title, description));
     }
 
-    private void init(BlockHeader blockHeader) {
-        stepHeader = Style.of(blockHeader).css("step-title").get();
-        element.appendChild(stepHeader.asElement());
+    private HTMLDivElement makeHeaderElement(String title, String description) {
+        return div().css("step-title").attr("data-step-label", description).textContent(title).asElement();
+    }
+
+    private void init(HTMLDivElement stepHeader) {
+        this.stepHeader = stepHeader;
+        element.appendChild(stepHeader);
         element.appendChild(contentElement);
-        Style.of(stepBody.getBody())
-                .setPaddingLeft("0px")
-                .setPaddingRight("0px")
-                .setPaddingBottom("0px");
-        contentElement.appendChild(stepBody.asElement());
+        contentElement.appendChild(bodyElement);
+        contentElement.appendChild(footerElement);
         collapsible.collapse();
         ElementUtil.onAttach(asElement(), mutationRecord -> {
             if (expanded) {
                 collapsible.expand();
             }
         });
-
 
     }
 
@@ -65,7 +62,7 @@ public class Step implements IsElement<HTMLLIElement> {
     }
 
     public Step appendChild(Node content) {
-        stepBody.appendChild(content);
+        bodyElement.appendChild(content);
         return this;
     }
 
@@ -73,11 +70,24 @@ public class Step implements IsElement<HTMLLIElement> {
         return appendChild(content.asElement());
     }
 
-    Step activate() {
+    public Step appendFooterChild(Node content) {
+        footerElement.appendChild(content);
+        return this;
+    }
+
+    public Step appendFooterChild(IsElement content) {
+        return appendFooterChild(content.asElement());
+    }
+
+    Step activate(Transition transition) {
         clearInvalid();
         Style.of(element).css("active");
         collapsible.expand();
         this.expanded = true;
+        Animation.create(contentElement)
+                .duration(350)
+                .transition(transition)
+               .animate();
         return this;
     }
 
@@ -88,7 +98,6 @@ public class Step implements IsElement<HTMLLIElement> {
         this.expanded = false;
         return this;
     }
-
 
 
     public void setDone(boolean done) {
@@ -108,8 +117,8 @@ public class Step implements IsElement<HTMLLIElement> {
         Style.of(element).removeClass("wrong");
     }
 
-    public Card getStepBody() {
-        return stepBody;
+    public HTMLDivElement getStepBody() {
+        return bodyElement;
     }
 
     public boolean isValid() {
@@ -123,7 +132,7 @@ public class Step implements IsElement<HTMLLIElement> {
         return this;
     }
 
-    public BlockHeader getStepHeader() {
+    public HTMLDivElement getStepHeader() {
         return stepHeader;
     }
 

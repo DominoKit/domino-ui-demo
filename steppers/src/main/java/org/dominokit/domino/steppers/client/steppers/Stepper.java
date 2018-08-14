@@ -1,6 +1,8 @@
 package org.dominokit.domino.steppers.client.steppers;
 
 import elemental2.dom.HTMLUListElement;
+import org.dominokit.domino.ui.animations.Transition;
+import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import java.util.ArrayList;
@@ -25,11 +27,12 @@ public class Stepper implements IsElement<HTMLUListElement> {
     public Stepper addStep(Step step) {
         element.appendChild(step.asElement());
         if (isNull(activeStep)) {
-            step.activate();
+            step.activate(getTransition(step));
             this.activeStep = step;
         }
         steps.add(step);
-        step.getStepHeader().asElement().addEventListener("click", evt -> onStepHeaderClicked(step));
+
+        step.getStepHeader().addEventListener("click", evt -> onStepHeaderClicked(step));
 
         return this;
     }
@@ -56,12 +59,31 @@ public class Stepper implements IsElement<HTMLUListElement> {
     public Stepper activateStep(Step step) {
         if (steps.contains(step)) {
             this.activeStep.deActivate();
-            step.activate();
+            step.activate(getTransition(step));
             step.setDone(false);
             this.activeStep = step;
         }
 
         return this;
+    }
+
+    private Transition getTransition(Step step) {
+        int activeStepIndex = steps.indexOf(this.activeStep);
+        int stepIndex = steps.indexOf(step);
+        if (isHorizontal()) {
+            if (stepIndex > activeStepIndex) {
+                return Transition.SLIDE_IN_RIGHT;
+            } else {
+                return Transition.SLIDE_IN_LEFT;
+            }
+        } else {
+            return Transition.FADE_IN;
+        }
+
+    }
+
+    private boolean isHorizontal() {
+        return Style.of(this).hasClass("horizontal");
     }
 
     public Stepper invalidate() {
@@ -87,6 +109,7 @@ public class Stepper implements IsElement<HTMLUListElement> {
     public Stepper back() {
         int activeStepIndex = steps.indexOf(activeStep);
         if (steps.size() > 1 && activeStepIndex <= steps.size() - 1 && activeStepIndex > 0) {
+            this.activeStep.setDone(false);
             activateStep(steps.get(activeStepIndex - 1));
         }
         return this;
@@ -94,6 +117,8 @@ public class Stepper implements IsElement<HTMLUListElement> {
 
     public Stepper finish() {
         if (this.activeStep.isValid()) {
+            this.activeStep.clearInvalid();
+            this.activeStep.setDone(true);
             stepperCompletionHandler.onFinish();
         } else {
             this.activeStep.invalidate();
@@ -107,6 +132,20 @@ public class Stepper implements IsElement<HTMLUListElement> {
             this.stepperCompletionHandler = completionHandler;
         }
 
+        return this;
+    }
+
+    public Stepper setHorizontal(boolean horizontal) {
+        Style.of(element).removeClass("horizontal");
+        if (horizontal) {
+            Style.of(element).css("horizontal");
+        }
+
+        return this;
+    }
+
+    public Stepper setMinHeight(String minHeight) {
+        Style.of(this).setMinHeight(minHeight);
         return this;
     }
 
