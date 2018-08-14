@@ -29,7 +29,7 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
 
     @Override
     public void init() {
-        basicCard = Card.create("SLIDERS");
+        basicCard = Card.create("BASIC SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
         sampleCard = Card.create("SLIDERS EXAMPLE");
 
@@ -37,6 +37,7 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
         initColors();
         initExample();
 
+        container.appendChild(BlockHeader.create("SLIDERS").asElement());
         container.appendChild(basicCard.asElement());
         container.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
         container.appendChild(colorsSlidersCard.asElement());
