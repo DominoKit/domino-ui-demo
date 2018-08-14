@@ -4,8 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
-import org.dominokit.domino.steppers.client.steppers.Step;
-import org.dominokit.domino.steppers.client.steppers.Stepper;
+import org.dominokit.domino.steppers.client.views.CodeResource;
 import org.dominokit.domino.steppers.client.views.SteppersView;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.button.Button;
@@ -15,6 +14,9 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.steppers.Step;
+import org.dominokit.domino.ui.steppers.Stepper;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 
@@ -29,17 +31,16 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
     @Override
     public void init() {
-        element.appendChild(Alert.warning().appendStrong("Warning: ").appendText("This is still a work in progress").asElement());
         element.appendChild(BlockHeader.create("STEPPERS").asElement());
 
         verticalStepper();
 
         horizontalStepper();
-
     }
 
     private void verticalStepper() {
-        Stepper stepper = Stepper.create();
+        Stepper stepper = Stepper.create()
+                .setColor(Color.INDIGO);
 
         TextBox nameTextBox = TextBox.create("Name")
                 .setRequired(true)
@@ -118,6 +119,8 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                 .appendChild(Row.create()
                         .addColumn(span12().addElement(stepper)))
                 .asElement());
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
     }
 
     private void horizontalStepper() {
@@ -202,6 +205,8 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                 .appendChild(Row.create()
                         .addColumn(span12().addElement(stepper)))
                 .asElement());
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
     }
 
     @Override

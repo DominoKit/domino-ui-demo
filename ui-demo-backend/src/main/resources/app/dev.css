@@ -1,16 +1,1 @@
 /* for development only */
-@media only screen and (min-width: 993px) {
-    ul.stepper.horizontal .step-content .step-body {
-        position: absolute;
-        top: 40px;
-    }
-
-    ul.stepper.horizontal .step-content .step-footer {
-        position: absolute;
-        padding-left: 40px;
-        padding-right: 40px;
-        bottom: 0px;
-        left: 0px;
-        width: 100%;
-    }
-}
