@@ -8,7 +8,10 @@ public interface CodeResource extends ClientBundle{
 
     CodeResource INSTANCE= GWT.create(CodeResource.class);
 
-    @Source("sample.txt")
-    ExternalTextResource sample();
+    @Source("verticalStepper.txt")
+    ExternalTextResource verticalStepper();
+
+    @Source("horizontalStepper.txt")
+    ExternalTextResource horizontalStepper();
 
 }
