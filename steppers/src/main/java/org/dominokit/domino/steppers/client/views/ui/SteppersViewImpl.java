@@ -117,7 +117,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         element.appendChild(Card.create("VERTICAL STEPPER")
                 .appendChild(Row.create()
-                        .addColumn(span12().addElement(stepper)))
+                        .addColumn(span6().addElement(stepper)))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
