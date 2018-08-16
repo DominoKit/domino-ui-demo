@@ -1,5 +1,8 @@
 package org.dominokit.domino.cards.client.views.ui;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.cards.client.presenters.CardsPresenter;
 import org.dominokit.domino.cards.client.views.CardsView;
@@ -10,62 +13,47 @@ import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.row.Row;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.dominokit.domino.ui.column.Column.*;
 
 @UiView(presentable = CardsPresenter.class)
-public class CardsViewImpl extends ComponentView<HTMLDivElement> implements CardsView{
-
-    private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
-    private HTMLDivElement element= Elements.div().asElement();
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-        cardsWithHeaders();
-        coloredCards();
-        collapsibleCards();
-        noHeaderCards();
-    }
+public class CardsViewImpl extends ComponentView<HTMLDivElement> implements CardsView {
 
     private void cardsWithHeaders() {
-        element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").asElement());
-
-        Column column = Column.create()
-                .onLarge(OnLarge.four)
-                .onMedium(OnMedium.four)
-                .onSmall(OnSmall.twelve)
-                .onXSmall(OnXSmall.twelve);
 
         element.appendChild(Row.create()
-                .addColumn(column.addElement(Card.create("Card Title", "Description text here...")
-                        .appendContent(new Text(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))
-                        .asElement()))
+                .addColumn(Column.span4()
+                        .addElement(Card.create("Card Title", "Description text here...")
+                                .appendChild(new Text(SAMPLE_CONTENT))
+                                .addHeaderAction(Icons.ALL.more_vert(), event -> {
+                                    DomGlobal.console.info("More action selected");
+                                })
+                                .asElement()))
 
-                .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
-                        .appendContent(new Text(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .asElement()))
+                .addColumn(Column.span4()
+                        .addElement(Card.create("Card Title", "Description text here...")
+                                .appendChild(new Text(SAMPLE_CONTENT))
+                                .addHeaderAction(Icons.AV_ICONS.mic(), event -> {
+                                    DomGlobal.console.info("Play sound");
+                                })
+                                .asElement()))
 
-                .addColumn(column.copy().addElement(Card.create("Card Title", "Description text here...")
-                        .appendContent(new Text(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
-                        .asElement()))
+                .addColumn(Column.span4()
+                        .addElement(Card.create("Card Title", "Description text here...")
+                                .appendContent(new Text(SAMPLE_CONTENT))
+                                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
+                                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))
+                                .asElement()))
                 .asElement());
 
+        element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").asElement());
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
     }
+
+    private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
+    private HTMLDivElement element = Elements.div().asElement();
 
     private void coloredCards() {
         element.appendChild(BlockHeader.create("COLORED CARDS", "You can control the background color of card, card header and card body.").asElement());
@@ -204,5 +192,18 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
+    }
+
+    @Override
+    public HTMLDivElement getElement() {
+        return element;
+    }
+
+    @Override
+    public void init() {
+        cardsWithHeaders();
+        coloredCards();
+        collapsibleCards();
+        noHeaderCards();
     }
 }

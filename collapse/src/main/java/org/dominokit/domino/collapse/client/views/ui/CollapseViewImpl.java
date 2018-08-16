@@ -16,12 +16,9 @@ import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.menu.Menu;
-import org.dominokit.domino.ui.menu.MenuItem;
-import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.CssStyles;
+import org.dominokit.domino.ui.style.Styles;
 
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -77,11 +74,11 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                 .addColumn(column.copy()
                         .addElement(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
                                 .appendContent(anchorButton.htmlBuilder()
-                                        .css(CssStyles.M_B_15).component().setBackground(Color.PINK)
+                                        .css(Styles.m_b_15).component().setBackground(Color.PINK)
                                         .asElement())
                                 .appendContent(new Text("\n"))
                                 .appendContent(button.htmlBuilder()
-                                        .css(CssStyles.M_B_15).component()
+                                        .css(Styles.m_b_15).component()
                                         .setBackground(Color.CYAN)
                                         .asElement())
                                 .appendContent(collapsible.asElement())
