@@ -1,26 +1,22 @@
 package org.dominokit.domino.home.client.views.ui;
 
+import com.google.gwt.core.client.GWT;
 import elemental2.dom.DomGlobal;
-import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
 import org.dominokit.domino.home.client.views.HomeView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.carousel.Carousel;
+import org.dominokit.domino.ui.carousel.Slide;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.infoboxes.InfoBox;
-import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
-import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.dominokit.domino.ui.utils.ElementUtil;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = HomePresenter.class)
 public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {
@@ -36,18 +32,17 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
     @Override
     public void init() {
 
-        element.appendChild(div().css(Color.THEME.getBackground()).style("margin-top: -40px; margin-left: -30px; margin-right: -30px; margin-bottom: 20px; padding-top: 40px; padding-bottom: 30px;")
-                .add(Style.of(h(2).textContent("Domino UI"))
-                        .css(Styles.align_center)
-                        .setProperty("font-weight","normal")
-                )
-                .add(Style.of(h(4)
-                        .textContent("A type safe material design with bootstrap builder for java developer with GWT without dependencies on external JavaScript."))
-                        .css(Styles.align_center)
-                        .setMarginBottom("30px")
-                        .setProperty("font-weight","normal")
-                )
-                .add(Style.of(div().innerHtml(new SafeHtmlBuilder().appendHtmlConstant("<iframe src=\"https://ghbtns.com/github-btn.html?user=DominoKit&amp;repo=domino-ui&amp;type=star&amp;count=true&amp;size=large\" frameborder=\"0\" scrolling=\"0\" width=\"125px\" height=\"30px\"></iframe>").toSafeHtml())).css(Styles.align_center))
+        element.appendChild(div()
+                .css(Color.THEME.getBackground(), Styles.default_shadow)
+                .style("margin-top: -40px; margin-left: -30px; margin-right: -30px; margin-bottom: 20px; padding-top: 10px;")
+                .add(Carousel.create()
+                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/slides/domino-ui-slide-1.png", "Type safe", "Code it in JAVA and be safe"))
+                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/slides/domino-ui-slide-2.png", "Elegant", "Simple, Colorful and responsive "))
+                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/slides/domino-ui-slide-3.png", "Data table", "Rich beautiful data tables"))
+                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/slides/domino-ui-slide-4.png", "Form", "Interactive forms with style"))
+                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/slides/domino-ui-slide-5.png", "Icons", "Large set of easy to use font icons"))
+                        .startAutoSlide(8000)
+                        .asElement())
                 .asElement());
 
         element.appendChild(BlockHeader.create("SETUP",
