@@ -1,7 +1,11 @@
 package org.dominokit.domino.home.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import com.google.gwt.resources.client.ResourceCallback;
+import com.google.gwt.resources.client.ResourceException;
+import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -11,12 +15,12 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
 import org.dominokit.domino.ui.carousel.Slide;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.ElementUtil;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.small;
 
 @UiView(presentable = HomePresenter.class)
 public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {
@@ -70,8 +74,8 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
         element.appendChild(Card.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/domino-ui.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"/{module-short-name}/css/themes/all-themes.css\">")
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">\n" +
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">")
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
                 .expand()

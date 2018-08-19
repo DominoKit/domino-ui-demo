@@ -1,37 +1,32 @@
-package org.dominokit.domino.carousel.client.presenters;
+package org.dominokit.domino.tree.client.presenters;
 
 import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.carousel.client.views.CarouselView;
-import org.dominokit.domino.api.shared.extension.MainDominoEvent;
-import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.components.shared.extension.ComponentsContext;
 import org.dominokit.domino.components.shared.extension.ComponentsEvent;
+import org.dominokit.domino.tree.client.views.TreeView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Presenter
-public class CarouselPresenter extends ViewBaseClientPresenter<CarouselView> {
+public class TreePresenter extends ViewBaseClientPresenter<TreeView> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CarouselPresenter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(TreePresenter.class);
 
     @ListenTo(event=ComponentsEvent.class)
-    public void listenToCompnentCaseEvent(ComponentsContext context) {
-        LOGGER.info("Main context received at presenter " + CarouselPresenter.class.getSimpleName());
+    public void listenToComponentsEvent(ComponentsContext context) {
         context.getComponentCaseContext().addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
-                return "carousel";
+                return "tree";
             }
 
             @Override
             public String getMenuPath() {
-                return "Components/Carousel";
+                return "Components/Tree";
             }
 
             @Override

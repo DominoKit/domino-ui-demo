@@ -225,5 +225,6 @@
         <module>steppers</module>
         <module>formsamples</module>
     <module>carousel</module>
+    <module>tree</module>
   </modules>
 </project>

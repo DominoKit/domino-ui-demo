@@ -10,11 +10,11 @@ import org.dominokit.domino.menu.client.views.MenuView;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
-import org.dominokit.domino.ui.menu.Menu;
-import org.dominokit.domino.ui.menu.MenuItem;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.tree.Tree;
+import org.dominokit.domino.ui.tree.TreeItem;
 
 import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelectedHandler;
@@ -22,7 +22,7 @@ import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelec
 @UiView(presentable = MenuPresenter.class)
 public class MenuViewImpl implements MenuView {
 
-    private Menu menu;
+    private Tree menu;
     private Icon lockIcon = Icons.ALL.lock_open().setColor(Color.GREY);
     private boolean locked = false;
 
@@ -40,14 +40,13 @@ public class MenuViewImpl implements MenuView {
 
     @Override
     public void init(IsLayout layout) {
-        menu = Menu.create("Demo menu");
+        menu = Tree.create("Demo menu");
         menu.getRoot().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 250px)");
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
         menu.getHeader().appendChild(lockIcon.asElement());
         menu.asElement().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 237px)");
         lockIcon.asElement().addEventListener("click", evt -> {
-
             if (locked) {
                 layout.unfixLeftPanelPosition();
                 lockIcon.asElement().textContent = Icons.ALL.lock().getName();
@@ -102,35 +101,39 @@ public class MenuViewImpl implements MenuView {
 
     @Override
     public CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler) {
-        MenuItem menuItem = menu.addMenuItem(title, Icon.create(iconName));
+        TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
+        menu.addTreeItem(menuItem);
         menuItem.getClickableElement().addEventListener("click", e -> selectionHandler.onMenuSelected());
         return new SubMenu(menuItem);
     }
 
     @Override
     public CanAddMenuItem addMenuItem(String title, String iconName) {
-        MenuItem menuItem = menu.addMenuItem(title, Icon.create(iconName));
+        TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
+        menu.addTreeItem(menuItem);
         return new SubMenu(menuItem);
     }
 
     private class SubMenu implements CanAddMenuItem {
 
 
-        private final MenuItem menuItem;
+        private final TreeItem menuItem;
 
-        private SubMenu(MenuItem menuItem) {
+        private SubMenu(TreeItem menuItem) {
             this.menuItem = menuItem;
         }
 
         @Override
         public CanAddMenuItem addMenuItem(String title) {
-            MenuItem item = menuItem.addMenuItem(title);
+            TreeItem item = TreeItem.create(title);
+            menuItem.addTreeItem(item);
             return new SubMenu(item);
         }
 
         @Override
         public CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler) {
-            MenuItem item = menuItem.addMenuItem(title);
+            TreeItem item = TreeItem.create(title);
+            menuItem.addTreeItem(item);
             item.getClickableElement().addEventListener("click", e -> selectionHandler.onMenuSelected());
             return new SubMenu(item);
         }

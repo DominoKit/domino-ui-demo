@@ -1,9 +1,6 @@
 package org.dominokit.domino.layout.client.ui.views;
 
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLAnchorElement;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
+import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Content;
@@ -11,14 +8,22 @@ import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
+import org.dominokit.domino.ui.button.IconButton;
 import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.icons.Icon;
+import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.search.Search;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.jboss.gwt.elemento.core.EventType;
+import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.*;
@@ -31,7 +36,16 @@ public class LayoutViewImpl implements LayoutView {
     private Content rightPanelContent;
 
     public LayoutViewImpl() {
-        DomGlobal.document.body.style.background = "#e9e9e9";
+
+
+        Search search = Search.create();
+        layout.getNavigationBar().asElement()
+                .insertBefore(search.asElement(), layout.getNavigationBar().asElement().firstChild);
+
+        HtmlContentBuilder<HTMLAnchorElement> searchButton = a().add(Icons.ALL.search());
+        searchButton.on(EventType.click, event -> search.open());
+        layout.getTopBar()
+                .appendChild(li().add(searchButton).asElement());
         layout.getTopBar().appendChild(li().style("padding-top: 3px;").add(makeGithubLink()).asElement());
         layout.showFooter();
         HTMLDivElement copyrightsElement = div()
@@ -39,6 +53,7 @@ public class LayoutViewImpl implements LayoutView {
                 .css(Styles.align_center)
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
                         .textContent("© 2018 Copyright DominoKit")).asElement();
+
         Row footerRow = Row.create()
                 .style()
                 .setMargin("0px")
@@ -80,7 +95,7 @@ public class LayoutViewImpl implements LayoutView {
         layout.getFooter().appendChild(footerRow);
         layout.getFooter().appendChild(copyrightsElement);
         Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
-                .removeClass(oldTheme.getScheme().darker_3().getBackground())
+                .removeCss(oldTheme.getScheme().darker_3().getBackground())
                 .css(newTheme.getScheme().darker_3().getBackground()));
 
     }
@@ -156,7 +171,9 @@ public class LayoutViewImpl implements LayoutView {
 
     @Override
     public Content addActionItem(String icon) {
-        return (Content<HTMLElement>) () -> layout.addActionItem(Icon.create(icon));
+        return (Content<HTMLElement>) () -> {
+            return layout.addActionItem(Icon.create(icon));
+        };
     }
 
     @Override

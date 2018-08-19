@@ -626,6 +626,17 @@
             <version>1.0-SNAPSHOT</version>
             <classifier>sources</classifier>
         </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>tree</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>tree</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
     </dependencies>
     <build>
         <plugins>
@@ -646,10 +657,10 @@
                     <codeserverArgs>
                         <!--<codeserverArg>-bindAddress</codeserverArg>-->
                         <!--<codeserverArg>192.168.1.5</codeserverArg>-->
-                        <!--<codeserverArg>-src</codeserverArg>-->
-                        <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
-                        <!--<codeserverArg>-src</codeserverArg>-->
-                        <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>-->
+                        <codeserverArg>-src</codeserverArg>
+                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                        <codeserverArg>-src</codeserverArg>
+                        <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>
                     </codeserverArgs>
                 </configuration>
             </plugin>
