@@ -41,11 +41,11 @@ public class MenuViewImpl implements MenuView {
     @Override
     public void init(IsLayout layout) {
         menu = Tree.create("Demo menu");
-        menu.getRoot().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 250px)");
+        menu.getRoot().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 280px)");
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
         menu.getHeader().appendChild(lockIcon.asElement());
-        menu.asElement().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 237px)");
+        menu.asElement().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 267px)");
         lockIcon.asElement().addEventListener("click", evt -> {
             if (locked) {
                 layout.unfixLeftPanelPosition();
