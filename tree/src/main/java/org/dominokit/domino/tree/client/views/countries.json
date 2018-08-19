@@ -1,0 +1,200 @@
+{
+  "countries": [
+    {
+      "name": "Andorra",
+      "cities": [
+        "Andorra la Vella",
+        "Canillo",
+        "Encamp",
+        "La Massana",
+        "Escaldes-Engordany",
+        "Ordino",
+        "Sant Julia de Loria"
+      ]
+    },
+    {
+
+      "name": "United Arab Emirates",
+      "cities": [
+        "Abu Dhabi",
+        "'Ajman",
+        "Al Fujayrah",
+        "Ash Shariqah (Sharjah)",
+        "Dubayy (Dubai)",
+        "Ra's al Khaymah",
+        "Umm al Qaywayn"
+      ]
+    },
+    {
+
+      "name": "Afghanistan",
+      "cities": [
+        "Kabul",
+        "Badakhshan",
+        "Farah",
+        "Khowst",
+        "Konar",
+        "Kondoz",
+        "Paktika",
+        "Parvan",
+        "Samangan",
+        "Sar-e Pol",
+        "Takhar",
+        "Vardak",
+        "Zabol"
+      ]
+    },
+    {
+      "name": "Anguilla",
+      "cities": [
+        "The Valley"
+      ]
+    },
+
+    {
+      "name": "Cameroon",
+      "cities": [
+        "Yaounde",
+        "Adamaoua",
+        "Centre",
+        "Est",
+        "Extreme-Nord",
+        "Littoral",
+        "Nord",
+        "Nord-Ouest",
+        "Ouest",
+        "Sud",
+        "Sud-Ouest"
+      ]
+    },
+    {
+      "name": "China",
+      "cities": [
+        "Beijing",
+        "Anhui",
+        "Chongqing",
+        "Fujian",
+        "Gansu",
+        "Guangdong",
+        "Guangxi",
+        "Guizhou",
+        "Jiangsu",
+        "Jiangxi",
+        "Jilin",
+        "Liaoning",
+        "Nei Mongol",
+        "Ningxia",
+        "Qinghai",
+        "Shaanxi",
+        "Shandong",
+        "Shanghai",
+        "Shanxi",
+        "Sichuan",
+        "Tianjin",
+        "Xinjiang",
+        "Xizang (Tibet)",
+        "Yunnan",
+        "Zhejiang"
+      ]
+    },
+    {
+      "name": "Colombia",
+      "cities": [
+        "Bogota",
+        "Amazonas",
+        "Antioquia",
+        "Arauca",
+        "Atlantico",
+        "Bolivar",
+        "Boyaca",
+        "Cundinamarca",
+        "Guaviare",
+        "Huila",
+        "La Guajira",
+        "Meta",
+        "Norte de Santander",
+        "Putumayo",
+        "Quindio",
+        "Risaralda",
+        "Santander",
+        "Sucre",
+        "Tolima",
+        "Vichada"
+      ]
+    },
+    {
+      "name": "Costa Rica",
+      "cities": [
+        "San Jose",
+        "Alajuela",
+        "Cartago",
+        "Guanacaste",
+        "Heredia",
+        "Limon",
+        "Puntarenas"
+      ]
+    },
+    {
+      "name": "Germany",
+      "cities": [
+        "Berlin",
+        "Baden-Wuerttemberg",
+        "Bayern",
+        "Berlin",
+        "Brandenburg",
+        "Bremen",
+        "Hamburg",
+        "Hessen",
+        "Mecklenburg-Vorpommern",
+        "Niedersachsen",
+        "Nordrhein-Westfalen",
+        "Rheinland-Pfalz",
+        "Saarland",
+        "Sachsen",
+        "Sachsen-Anhalt",
+        "Schleswig-Holstein",
+        "Thueringen"
+      ]
+    },
+    {
+      "name": "Djibouti",
+      "cities": [
+        "Djibouti",
+        "'Ali Sabih",
+        "Dikhil",
+        "Obock",
+        "Tadjoura"
+      ]
+    },
+    {
+      "name": "Denmark",
+      "cities": [
+        "Copenhagen (Kobenhavn)",
+        "Arhus",
+        "Bornholm",
+        "Fredericksberg",
+        "Frederiksborg",
+        "Fyn",
+        "Kobenhavns",
+        "Nordjylland",
+        "Ribe",
+        "Ringkobing",
+        "Roskilde",
+        "Sonderjylland",
+        "Storstrom",
+        "Vejle",
+        "Vestsjalland",
+        "Viborg"
+      ]
+    },
+    {
+      "name": "Dominica",
+      "cities": [
+        "Roseau",
+        "Saint Andrew",
+        "Saint David",
+        "Saint George"
+      ]
+    }
+  ]
+}
