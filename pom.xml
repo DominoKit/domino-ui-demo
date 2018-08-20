@@ -130,6 +130,8 @@
                         <codeserverArgs>
                             <codeserverArg>-style</codeserverArg>
                             <codeserverArg>PRETTY</codeserverArg>
+                            <!--<codeserverArg>-port</codeserverArg>-->
+                            <!--<codeserverArg>9875</codeserverArg>-->
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>172.20.202.67</codeserverArg>-->
 
@@ -139,10 +141,10 @@
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>192.168.1.2</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>
 
                             <!--<codeserverArg>-src</codeserverArg>-->
                             <!--<codeserverArg>/home/rafat/Development/git/domino-ui/src/main/java</codeserverArg>-->
@@ -226,5 +228,6 @@
         <module>formsamples</module>
     <module>carousel</module>
     <module>tree</module>
+    <module>layoutSample</module>
   </modules>
 </project>
