@@ -1,0 +1,130 @@
+tagsInputCard
+        .appendChild(BlockHeader.create("FREE TEXT TAGS", "Free text tags accept any text value"))
+        .appendChild(br())
+        .appendChild(br())
+        .appendChild(Row.create()
+                .addColumn(Column.span12()
+                        .addElement(TagsInput.create("Free tag")
+                                .setPlaceholder("Type anything...")
+                                .setValue(Collections.singletonList("Hey! how are you?"))))
+        );
+
+Person schroeder_coleman = new Person(1, "Schroeder Coleman");
+LocalTagsStore<Person> personsStore = LocalTagsStore.<Person>create()
+        .addItem("Schroeder Coleman", schroeder_coleman)
+        .addItem("Renee Mcintyre", new Person(2, "Renee Mcintyre"))
+        .addItem("Casey Garza", new Person(3, "Casey Garza"));
+
+TagsInput<Person> objectTags = TagsInput.create("Friends", personsStore);
+objectTags.setValue(Collections.singletonList(schroeder_coleman));
+tagsInputCard
+        .appendChild(BlockHeader.create("SELECT TAGS", "Select tags have store of objects to be selected"))
+        .appendChild(br())
+        .appendChild(br())
+        .appendChild(Row.create()
+                .addColumn(Column.span12()
+                        .addElement(objectTags
+                                .setPlaceholder("Friend's name...")))
+        );
+
+TagsInput<String> ipAddresses = TagsInput.create("IP addresses");
+tagsInputCard
+        .appendChild(BlockHeader.create("TAGS DECORATIONS", "Tags input has its own decorations"))
+        .appendChild(br())
+        .appendChild(br())
+        .appendChild(Row.create()
+                .addColumn(Column.span12()
+                        .addElement(ipAddresses
+                                .setHelperText("Pattern: 000.000.000.000")
+                                .addValidator(() -> {
+                                    List<String> ipAddressesValue = ipAddresses.getValue();
+                                    for (String v : ipAddressesValue) {
+                                        if (!new JsRegExp(IP_ADDRESS_REGEX).test(v)) {
+                                            return ValidationResult.invalid("Invalid IP address [ " + v + " ]");
+                                        }
+                                    }
+                                    return ValidationResult.valid();
+                                })
+                                .setValue(Collections.singletonList("127.0.0.1"))
+                                .setPlaceholder("Type invalid address...")
+                                .setAutoValidation(true)
+                        )
+                )
+        )
+        .appendChild(BlockHeader.create("READONLY"))
+        .appendChild(br())
+        .appendChild(br())
+        .appendChild(Row.create()
+                .addColumn(Column.span12()
+                        .addElement(TagsInput.create("Hardware")
+                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .setReadOnly(true)))
+        );
+
+
+tagsInputCard
+        .appendChild(BlockHeader.create("TAGS WITH COLORS", "Tags can have colors!"))
+        .appendChild(br())
+        .appendChild(br())
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .addElement(TagsInput.create()
+                                .setPlaceholder("Type hardware name...")
+                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .setTagsColor(ColorScheme.RED)))
+                .addColumn(Column.span6()
+                        .addElement(TagsInput.create()
+                                .setPlaceholder("Type hardware name...")
+                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .setTagsColor(ColorScheme.TEAL)))
+        ).appendChild(Row.create()
+        .addColumn(Column.span6()
+                .addElement(TagsInput.create()
+                        .setPlaceholder("Type hardware name...")
+                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                        .setTagsColor(ColorScheme.CYAN)))
+        .addColumn(Column.span6()
+                .addElement(TagsInput.create()
+                        .setPlaceholder("Type hardware name...")
+                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                        .setTagsColor(ColorScheme.BROWN))))
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .addElement(TagsInput.create()
+                                .setPlaceholder("Type hardware name...")
+                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .setTagsColor(ColorScheme.AMBER)))
+                .addColumn(Column.span6()
+                        .addElement(TagsInput.create()
+                                .setPlaceholder("Type hardware name...")
+                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .setTagsColor(ColorScheme.PINK))));
+
+// -----------------------
+
+public class Person {
+
+    private int id;
+    private String name;
+
+    public Person(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+}

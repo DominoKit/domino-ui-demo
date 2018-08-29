@@ -16,6 +16,8 @@ import org.dominokit.domino.ui.button.group.ButtonsGroup;
 import org.dominokit.domino.ui.button.group.JustifiedGroup;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.dropdown.DropDownPosition;
+import org.dominokit.domino.ui.dropdown.DropdownAction;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.row.Row;
@@ -78,27 +80,27 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
         HTMLElement element = DropdownButton.createDefault("DEFAULT")
                 .addAction(DropdownAction.create("Action"))
                 .addAction(DropdownAction.create("Another action"))
-                .dropup().asElement();
+                .setPosition(DropDownPosition.TOP).asElement();
 
         HTMLElement primary = DropdownButton.createPrimary("PRIMARY")
                 .addAction(DropdownAction.create("Action"))
                 .addAction(DropdownAction.create("Another action"))
-                .dropup().asElement();
+                .setPosition(DropDownPosition.TOP).asElement();
 
         HTMLElement success = DropdownButton.createSuccess("SUCCESS")
                 .addAction(DropdownAction.create("Action"))
                 .addAction(DropdownAction.create("Another action"))
-                .dropup().asElement();
+                .setPosition(DropDownPosition.TOP).asElement();
 
         HTMLElement info = DropdownButton.createInfo("INFO")
                 .addAction(DropdownAction.create("Action"))
                 .addAction(DropdownAction.create("Another action"))
-                .dropup().asElement();
+                .setPosition(DropDownPosition.TOP).asElement();
 
         DropdownButton danger = DropdownButton.createDanger("Dropdown")
                 .addAction(DropdownAction.create("Action"))
                 .addAction(DropdownAction.create("Another action"))
-                .dropup();
+                .setPosition(DropDownPosition.TOP);
 
 
         HTMLElement group = ButtonsGroup.create()
