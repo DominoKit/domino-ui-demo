@@ -148,10 +148,10 @@
                             <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations-->
                             <!--</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/home/rafat/Development/git/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/home/rafat/Development/git/domino-ui/target/generated-sources/annotations</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/home/rafat/Development/git/latest/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/home/rafat/Development/git/latest/domino-ui/target/generated-sources/annotations</codeserverArg>
                         </codeserverArgs>
                     </configuration>
                 </plugin>

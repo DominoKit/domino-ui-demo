@@ -10,4 +10,7 @@ public interface CodeResource extends ClientBundle {
 
     @Source("upload-example.txt")
     ExternalTextResource uploadExample();
+
+    @Source("tags-example.txt")
+    ExternalTextResource tagsExample();
 }
