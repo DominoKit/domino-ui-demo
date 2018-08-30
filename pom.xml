@@ -129,8 +129,6 @@
                             <!--<compilerArg>PRETTY</compilerArg>-->
                         </compilerArgs>
                         <codeserverArgs>
-                            <codeserverArg>-style</codeserverArg>
-                            <codeserverArg>PRETTY</codeserverArg>
                             <!--<codeserverArg>-port</codeserverArg>-->
                             <!--<codeserverArg>9875</codeserverArg>-->
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
