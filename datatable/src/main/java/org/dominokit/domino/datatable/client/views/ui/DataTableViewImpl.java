@@ -19,7 +19,6 @@ import org.dominokit.domino.datatable.client.views.model.ContactSorter;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.IconButton;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.code.Code;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
@@ -42,8 +41,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = DatatablePresenter.class)
 public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
@@ -54,8 +52,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
     @Override
     public void init() {
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
-                .appendContent(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
-                        .attr("target","_blank")
+                .appendContent(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
+                        .attr("target", "_blank")
                         .textContent("Data table demo source code").asElement())
                 .asElement());
         basicTable();
@@ -184,20 +182,36 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
     }
 
     private void selectionPlugin() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
-        tableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+        TableConfig<Contact> singleSelectionTableConfig = createBasicTableConfig();
+        singleSelectionTableConfig.setMultiSelect(false);
+        singleSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+        LocalListDataStore<Contact> singleLocalStore = new LocalListDataStore<>();
+        DataTable<Contact> singleSelectionTable = new DataTable<>(singleSelectionTableConfig, singleLocalStore);
+
+        TableConfig<Contact> multiSelectionTableConfig = createBasicTableConfig();
+        multiSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+        LocalListDataStore<Contact> multiLocalStore = new LocalListDataStore<>();
+        DataTable<Contact> multiSelectionTable = new DataTable<>(multiSelectionTableConfig, multiLocalStore);
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(BlockHeader.create("SINGLE SELECTION"))
+                .appendContent(new TableStyleActions(singleSelectionTable))
+                .appendContent(singleSelectionTable.asElement())
+                .appendChild(br())
+                .appendChild(br())
+                .appendChild(br())
+                .appendChild(hr())
+                .appendChild(BlockHeader.create("MULTI SELECTION"))
+                .appendContent(new TableStyleActions(multiSelectionTable))
+                .appendContent(multiSelectionTable.asElement())
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts));
-            defaultTable.load();
+            singleLocalStore.setData(subList(contacts));
+            singleLocalStore.load();
+            multiLocalStore.setData(subList(contacts));
+            multiSelectionTable.load();
         });
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
