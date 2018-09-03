@@ -1,31 +1,31 @@
 iconChipsCard.appendChild(Row.create()
-        .addColumn(Column.span12()
-                .addElement(Chip.create()
-                        .setValue("Add to calendar")
-                        .addClickHandler(() -> {
-                            Notification.createSuccess("Added to your calendar").show();
-                        })
-                        .setLeftIcon(Icons.ALL.date_range())
-                )
-                .addElement(Chip.create()
-                        .setValue("Bookmark")
-                        .addClickHandler(() -> {
-                            Notification.createSuccess("Bookmark added").show();
-                        })
-                        .setLeftIcon(Icons.ALL.bookmark())
-                )
-                .addElement(Chip.create()
-                        .setValue("Set alarm")
-                        .addClickHandler(() -> {
-                            Notification.createSuccess("Alarm has been set").show();
-                        })
-                        .setLeftIcon(Icons.ALL.alarm())
-                )
-                .addElement(Chip.create()
-                        .setValue("Get directions")
-                        .addClickHandler(() -> {
-                            Notification.createSuccess("Directions has been sent to your email").show();
-                        })
-                        .setLeftIcon(Icons.ALL.directions())
-                ))
+    .addColumn(Column.span12()
+            .appendChild(Chip.create()
+                    .setValue("Add to calendar")
+                    .addClickHandler(() -> {
+                        Notification.createSuccess("Added to your calendar").show();
+                    })
+                    .setLeftIcon(Icons.ALL.date_range())
+            )
+            .appendChild(Chip.create()
+                    .setValue("Bookmark")
+                    .addClickHandler(() -> {
+                        Notification.createSuccess("Bookmark added").show();
+                    })
+                    .setLeftIcon(Icons.ALL.bookmark())
+            )
+            .appendChild(Chip.create()
+                    .setValue("Set alarm")
+                    .addClickHandler(() -> {
+                        Notification.createSuccess("Alarm has been set").show();
+                    })
+                    .setLeftIcon(Icons.ALL.alarm())
+            )
+            .appendChild(Chip.create()
+                    .setValue("Get directions")
+                    .addClickHandler(() -> {
+                        Notification.createSuccess("Directions has been sent to your email").show();
+                    })
+                    .setLeftIcon(Icons.ALL.directions())
+            ))
 );

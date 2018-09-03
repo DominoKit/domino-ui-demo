@@ -1,29 +1,29 @@
-Column column = this.column.copy()
-        .removeCssClass(Styles.padding_0);
+olumn column = this.column.copy()
+    .style()
+    .removeCss(Styles.padding_0).get();
 
 TimeBox timeBox1 = TimeBox.create()
-        .floating()
-        .setPlaceholder("Wakeup");
+    .floating()
+    .setPlaceholder("Wakeup");
 
-TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de())
-        .floating();
+TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de());
 
 timeBox2.getTimePicker().setColorScheme(ColorScheme.PINK);
 
 
 TimeBox timeBox3 = TimeBox.create()
-        .floating()
-        .setPopoverPosition(PopupPosition.TOP)
-        .setPickerStyle(TimeBox.PickerStyle.POPOVER)
-        .setPlaceholder("Wakeup");
+    .floating()
+    .setPopoverPosition(PopupPosition.TOP)
+    .setPickerStyle(TimeBox.PickerStyle.POPOVER)
+    .setPlaceholder("Wakeup");
 
 timeBox3.getTimePicker().setColorScheme(ColorScheme.GREEN);
 
 
 element.appendChild(Card.create("TIME BOX")
-        .appendContent(Row.create()
-                .addColumn(column.copy().addElement(timeBox1.asElement()))
-                .addColumn(column.copy().addElement(timeBox2.asElement()))
-                .addColumn(column.copy().addElement(timeBox3.asElement()))
-                .asElement())
-        .asElement());
+    .appendChild(Row.create()
+            .addColumn(column.copy().appendChild(timeBox1))
+            .addColumn(column.copy().appendChild(timeBox2))
+            .addColumn(column.copy().appendChild(timeBox3))
+            )
+    .asElement());

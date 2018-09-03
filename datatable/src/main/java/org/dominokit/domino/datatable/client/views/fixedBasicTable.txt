@@ -47,14 +47,13 @@ tableConfig
                     }
                     return new Text("");
                 }));
-
 LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
 DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
 element.appendChild(Card.create("BASIC TABLE - FIXED", "Fixed tables will use the specified column width and will have scrolls when elements exceeds the body height. ")
         .setCollapsible()
-        .appendContent(new TableStyleActions(defaultTable))
-        .appendContent(defaultTable.asElement())
+        .appendChild(new TableStyleActions(defaultTable))
+        .appendChild(defaultTable)
         .asElement());
 
 List<Contact> contacts = ...

@@ -42,8 +42,8 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                 .setUrl("http://localhost:8080/form")
                 .multipleFiles()
                 .accept("image/*")
-                .appendChild(Elements.h(3).textContent("Drop files here or click to upload.").asElement())
-                .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)").asElement())
+                .appendChild(Elements.h(3).textContent("Drop files here or click to upload."))
+                .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)"))
                 .onAddFile(fileItem -> {
                     fileItem.addErrorHandler(request -> {
                         Notification.createDanger("Error while uploading " + request.responseText).show();
@@ -56,6 +56,6 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                     });
                 });
 
-        uploadCard.appendContent(fileUpload.asElement());
+        uploadCard.appendChild(fileUpload);
     }
 }

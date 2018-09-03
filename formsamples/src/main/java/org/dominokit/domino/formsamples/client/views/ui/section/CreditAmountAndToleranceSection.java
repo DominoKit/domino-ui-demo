@@ -9,22 +9,19 @@ import org.dominokit.domino.formsamples.shared.model.CurrencyData;
 import org.dominokit.domino.formsamples.shared.model.LcAmount;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.CheckBox;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.dominokit.domino.ui.utils.ValidationResult;
 
 import java.util.List;
 
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.validatePercent;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.i;
 
@@ -85,20 +82,21 @@ public class CreditAmountAndToleranceSection implements ImportSection {
         });
 
 
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
-                .appendContent(Row.create()
+                .appendChild(Row.create()
                         .addColumn(Column.span3()
-                                .addElement(currencySelect)
+                                .appendChild(currencySelect)
                         ).addColumn(Column.span3()
-                                .addElement(amountFieldTextBox)
+                                .appendChild(amountFieldTextBox)
                         )
                         .addColumn(Column.span3()
-                                .addElement(maximumCheckBox)
+                                .appendChild(maximumCheckBox)
                         )
                         .addColumn(Column.span3()
-                                .addElement(toleranceTextBox
+                                .appendChild(toleranceTextBox
                                         .setLeftAddon(i().css("fas", "fa-percent", "fa-sm")))
                         )
 

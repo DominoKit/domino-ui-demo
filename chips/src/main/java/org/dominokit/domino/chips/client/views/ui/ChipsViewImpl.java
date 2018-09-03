@@ -9,11 +9,11 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.chips.Chip;
 import org.dominokit.domino.ui.chips.ChipsGroup;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 
@@ -65,18 +65,18 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
     private void initSimpleExample() {
         simpleCard.appendChild(Row.create()
                 .addColumn(Column.span12()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Sounds good, let's do that!"))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Yay! I'll be there")
                                 .setColorScheme(ColorScheme.RED))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Hey, how are you?")
                                 .setColorScheme(ColorScheme.ORANGE))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("You look handsome today <3")
                                 .setColorScheme(ColorScheme.PURPLE))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("I like the weather today!")
                                 .setColorScheme(ColorScheme.GREEN)))
         );
@@ -85,23 +85,23 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
     private void initRemovableExample() {
         removableCard.appendChild(Row.create()
                 .addColumn(Column.span12()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setRemovable(true)
                                 .setColorScheme(ColorScheme.GREY)
                                 .setValue("Restaurants"))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setRemovable(true)
                                 .setColorScheme(ColorScheme.PINK)
                                 .setValue("Coffee shops"))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setRemovable(true)
                                 .setColorScheme(ColorScheme.AMBER)
                                 .setValue("Libraries"))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setRemovable(true)
                                 .setColorScheme(ColorScheme.BROWN)
                                 .setValue("Entertainment"))
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setRemovable(true)
                                 .setColorScheme(ColorScheme.TEAL)
                                 .setValue("Universities")))
@@ -111,30 +111,30 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
     private void initChipsWithIconsExample() {
         iconChipsCard.appendChild(Row.create()
                 .addColumn(Column.span12()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Add to calendar")
-                                .addClickHandler(() -> {
+                                .addClickListener(evt -> {
                                     Notification.createSuccess("Added to your calendar").show();
                                 })
                                 .setLeftIcon(Icons.ALL.date_range())
                         )
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Bookmark")
-                                .addClickHandler(() -> {
+                                .addClickListener(evt -> {
                                     Notification.createSuccess("Bookmark added").show();
                                 })
                                 .setLeftIcon(Icons.ALL.bookmark())
                         )
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Set alarm")
-                                .addClickHandler(() -> {
+                                .addClickListener(evt -> {
                                     Notification.createSuccess("Alarm has been set").show();
                                 })
                                 .setLeftIcon(Icons.ALL.alarm())
                         )
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Get directions")
-                                .addClickHandler(() -> {
+                                .addClickListener(evt -> {
                                     Notification.createSuccess("Directions has been sent to your email").show();
                                 })
                                 .setLeftIcon(Icons.ALL.directions())
@@ -145,38 +145,38 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
     private void initChipsWithImagesExample() {
         imagesChipsCard.appendChild(Row.create()
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Schroeder Coleman")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setBorderColor(Color.INDIGO)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/0.jpg").asElement())))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/0.jpg"))))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Renee Mcintyre")
                                 .setColorScheme(ColorScheme.GREY)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/1.jpg").asElement())))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/1.jpg"))))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Casey Garza")
                                 .setColorScheme(ColorScheme.BLUE)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/2.jpg").asElement())))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/2.jpg"))))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Ferguson Hudson")
                                 .setColorScheme(ColorScheme.BLACK)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/3.jpg").asElement()))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/3.jpg")))
                 )
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Serrano Green")
                                 .setColorScheme(ColorScheme.CYAN)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/4.jpg").asElement()))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/4.jpg")))
                 )
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Camacho Solis")
                                 .setColorScheme(ColorScheme.BLUE_GREY)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/5.jpg").asElement()))
+                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/5.jpg")))
                 )
         );
     }
@@ -184,28 +184,28 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
     private void initChipsWithLettersExample() {
         lettersChipsCard.appendChild(Row.create()
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Schroeder Coleman")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setLeftBackground(Color.INDIGO)
                                 .setBorderColor(Color.INDIGO)
                                 .setLeftLetter("SC")))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Renee Mcintyre")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setLeftBackground(Color.GREY)
                                 .setBorderColor(Color.GREY)
                                 .setLeftLetter("RM")))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Casey Garza")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setLeftBackground(Color.BLUE)
                                 .setBorderColor(Color.BLUE)
                                 .setLeftLetter("CG")))
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Ferguson Hudson")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setLeftBackground(Color.BLACK)
@@ -213,7 +213,7 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
                                 .setLeftLetter("FH"))
                 )
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Serrano Green")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setLeftBackground(Color.CYAN)
@@ -221,7 +221,7 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
                                 .setLeftLetter("SG"))
                 )
                 .addColumn(Column.span2()
-                        .addElement(Chip.create()
+                        .appendChild(Chip.create()
                                 .setValue("Camacho Solis")
                                 .setColorScheme(ColorScheme.TRANSPARENT)
                                 .setBorderColor(Color.BLUE_GREY)
@@ -250,25 +250,25 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
 
         selectableChipsCard.appendChild(Row.create()
                 .addColumn(Column.span12()
-                        .addElement(tops)
-                        .addElement(bottoms)
-                        .addElement(shoes)
-                        .addElement(accessories)
+                        .appendChild(tops)
+                        .appendChild(bottoms)
+                        .appendChild(shoes)
+                        .appendChild(accessories)
                 ));
 
         selectableChipsCard.appendChild(br());
         selectableChipsCard.appendChild(BlockHeader.create("Choice chips"));
 
         ChipsGroup chipsGroup = ChipsGroup.create()
-                .addChip(Chip.create("Extra small"))
-                .addChip(Chip.create("Small"))
-                .addChip(Chip.create("Medium"))
-                .addChip(Chip.create("Large"))
-                .addChip(Chip.create("Extra large"))
+                .appendChild(Chip.create("Extra small"))
+                .appendChild(Chip.create("Small"))
+                .appendChild(Chip.create("Medium"))
+                .appendChild(Chip.create("Large"))
+                .appendChild(Chip.create("Extra large"))
                 .setColorScheme(ColorScheme.TEAL);
         selectableChipsCard.appendChild(Row.create()
                 .addColumn(Column.span12()
-                        .addElement(chipsGroup
+                        .appendChild(chipsGroup
                                 .addSelectionHandler(() -> Notification
                                         .createInfo("Chip [ " + chipsGroup.getSelectedChip().getValue() + " ] is selected").show())
                                 .selectAt(0)))

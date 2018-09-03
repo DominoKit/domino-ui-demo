@@ -1,32 +1,31 @@
-HTMLElement popover_on_right = Button.createPrimary("POPOVER ON RIGHT").block().asElement();
+Button popover_on_right = Button.createPrimary("POPOVER ON RIGHT").block();
 
-Popover.create(popover_on_right, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+Popover.create(popover_on_right, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
         .position(PopupPosition.RIGHT);
 
-HTMLElement popover_on_top = Button.createPrimary("POPOVER ON TOP").block().asElement();
+Button popover_on_top = Button.createPrimary("POPOVER ON TOP").block();
 
-Popover.create(popover_on_top, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+Popover.create(popover_on_top, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
         .position(PopupPosition.TOP);
 
-HTMLElement popover_on_bottom = Button.createPrimary("POPOVER ON BOTTOM").block().asElement();
+Button popover_on_bottom = Button.createPrimary("POPOVER ON BOTTOM").block();
 
-Popover.create(popover_on_bottom, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+Popover.create(popover_on_bottom, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
         .position(PopupPosition.BOTTOM);
 
-HTMLElement popover_on_left = Button.createPrimary("POPOVER ON LEFT").block().asElement();
+Button popover_on_left = Button.createPrimary("POPOVER ON LEFT").block();
 
-Popover.create(popover_on_left, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+Popover.create(popover_on_left, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
         .position(PopupPosition.LEFT);
 
 element.appendChild(Card.create("POPOVER")
-        .appendContent(Row.create()
-                .addColumn(column.copy()
-                        .addElement(popover_on_right))
-                .addColumn(column.copy()
-                        .addElement(popover_on_top))
-                .addColumn(column.copy()
-                        .addElement(popover_on_bottom))
-                .addColumn(column.copy()
-                        .addElement(popover_on_left))
-                .asElement())
+        .appendChild(Row.create()
+                .addColumn(Column.span3()
+                        .appendChild(popover_on_right))
+                .addColumn(Column.span3()
+                        .appendChild(popover_on_top))
+                .addColumn(Column.span3()
+                        .appendChild(popover_on_bottom))
+                .addColumn(Column.span3()
+                        .appendChild(popover_on_left)))
         .asElement());

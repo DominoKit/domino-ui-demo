@@ -1,10 +1,10 @@
 ListGroup<String> listGroup = ListGroup.create();
 listGroup
-        .appendItem(listGroup.createItem("value1", SAMPLE_CONTENT).setHeading("Cras justo odio"))
-        .appendItem(listGroup.createItem("value2", SAMPLE_CONTENT).setHeading("Dapibus ac facilisis in"))
-        .appendItem(listGroup.createItem("value3", SAMPLE_CONTENT).setHeading("Morbi leo risus"))
-        .appendItem(listGroup.createItem("value4", SAMPLE_CONTENT).setHeading("Porta ac consectetur ac").select())
-        .appendItem(listGroup.createItem("value5", SAMPLE_CONTENT).setHeading("Vestibulum at eros"));
+        .appendChild(listGroup.createItem("value1", SAMPLE_CONTENT).setHeading("Cras justo odio"))
+        .appendChild(listGroup.createItem("value2", SAMPLE_CONTENT).setHeading("Dapibus ac facilisis in"))
+        .appendChild(listGroup.createItem("value3", SAMPLE_CONTENT).setHeading("Morbi leo risus"))
+        .appendChild(listGroup.createItem("value4", SAMPLE_CONTENT).setHeading("Porta ac consectetur ac").select())
+        .appendChild(listGroup.createItem("value5", SAMPLE_CONTENT).setHeading("Vestibulum at eros"));
 
 element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
-        .appendContent(listGroup.asElement()).asElement());
+        .appendChild(listGroup).asElement());

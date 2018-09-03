@@ -1,5 +1,5 @@
 Column column = this.column.copy()
-        .removeCssClass(Styles.padding_0);
+        .style().removeCss(Styles.padding_0).get();
 
 DateBox dateBox1 = DateBox.create("Birth date")
         .setPattern("yyyy/MM/dd");
@@ -17,9 +17,9 @@ dateBox3.getDatePicker().setColorScheme(ColorScheme.GREEN);
 
 
 element.appendChild(Card.create("DATE BOX")
-        .appendContent(Row.create()
-                .addColumn(column.copy().deCenterContent().addElement(dateBox1.asElement()))
-                .addColumn(column.copy().deCenterContent().addElement(dateBox2.asElement()))
-                .addColumn(column.copy().deCenterContent().addElement(dateBox3.asElement()))
+        .appendChild(Row.create()
+                .addColumn(column.copy().deCenterContent().appendChild(dateBox1))
+                .addColumn(column.copy().deCenterContent().appendChild(dateBox2))
+                .addColumn(column.copy().deCenterContent().appendChild(dateBox3))
                 .asElement())
         .asElement());

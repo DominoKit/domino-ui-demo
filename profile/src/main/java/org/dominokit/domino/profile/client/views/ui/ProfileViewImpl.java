@@ -4,26 +4,23 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ResourceCallback;
 import com.google.gwt.resources.client.ResourceException;
 import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.CSSProperties;
 import elemental2.dom.DomGlobal;
-import elemental2.dom.Element;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.profile.client.presenters.ProfilePresenter;
 import org.dominokit.domino.profile.client.views.ProfileView;
-import org.dominokit.domino.ui.button.DropdownAction;
 import org.dominokit.domino.ui.button.DropdownButton;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.dropdown.DropdownAction;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.Elements;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.small;
-
 
 @UiView(presentable = ProfilePresenter.class)
 public class ProfileViewImpl implements ProfileView {
@@ -42,7 +39,7 @@ public class ProfileViewImpl implements ProfileView {
         else
             leftPanel.appendChild(profile.asElement());
 
-        profile.getBody().appendChild(Elements.img(GWT.getModuleBaseURL() + "/images/user.png").style("border-radius:50%;").asElement());
+        profile.appendChild(Elements.img(GWT.getModuleBaseURL() + "/images/user.png").style("border-radius:50%;"));
         DropdownButton dropdownButton = DropdownButton.create(Icons.ALL.more_vert())
                 .linkify()
                 .setBackground(Color.TRANSPARENT)
@@ -52,7 +49,7 @@ public class ProfileViewImpl implements ProfileView {
 
         profile.getHeaderBar().appendChild(dropdownButton
                 .asElement());
-        profile.asElement().style.height = CSSProperties.HeightUnionType.of(300);
+        Style.of(profile).setHeight("186px");
 
         try {
             CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {

@@ -1,6 +1,32 @@
-Button.create(EXTENSION).setIcon(Icons.ALL.extension()).asElement();
-Button.createPrimary(HOME).setIcon(Icons.ALL.home()).asElement();
-Button.createSuccess(LOCK).setIcon(Icons.ALL.lock()).asElement();
-Button.createInfo(SCAN WIFI).setIcon(Icons.ALL.perm_scan_wifi()).asElement();
-Button.createWarning(TAKE OFF).setIcon(Icons.ALL.flight_takeoff()).asElement();
-Button.createDanger(PRINT).setIcon(Icons.ALL.print()).asElement();
+element.appendChild(Card.create("ICON & TEXT BUTTONS", "Make icon & text buttons")
+    .appendChild(Button.create(Icons.ALL.extension())
+            .setContent("EXTENSION")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createPrimary(Icons.ALL.home())
+            .setContent("HOME")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createSuccess(Icons.ALL.lock())
+            .setContent("LOCK")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createInfo(Icons.ALL.perm_scan_wifi())
+            .setContent("SCAN WIFI")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createWarning(Icons.ALL.flight_takeoff())
+            .setContent("TAKE OFF")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createDanger(Icons.ALL.print())
+            .setContent("PRINT")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .asElement());

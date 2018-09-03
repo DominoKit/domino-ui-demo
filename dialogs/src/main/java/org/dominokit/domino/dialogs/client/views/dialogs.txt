@@ -1,3 +1,5 @@
+element.appendChild(BlockHeader.create("DIALOGS").asElement());
+
 MessageDialog basicMessage = MessageDialog.createMessage("Here's a message!",
         () -> Notification.create("Dialog closed").show());
 
@@ -27,8 +29,8 @@ MessageDialog warningMessage = MessageDialog.createMessage("Warning",
         () -> Notification.create("Dialog closed").show())
         .warning();
 
-HTMLElement heart = Icons.ALL.favorite().asElement();
-heart.classList.add(Styles.font_72, Styles.m_b_15, Color.RED.getStyle());
+Icon heart = Icons.ALL.favorite()
+        .style().css(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
 
 MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
         "You can customize the header content",
@@ -38,82 +40,75 @@ MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
                 .infinite()
                 .transition(Transition.PULSE)
                 .animate())
-        .appendHeaderContent(heart);
-
-HTMLUListElement listGroup = SimpleListGroup.create()
-        .appendItem(SimpleListItem.create("Cras justo odio")
-                .appendContent(Badge.create("14 new").setBackground(Color.PINK).asElement()))
-
-        .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
-                .appendContent(Badge.create("99 unread").setBackground(Color.CYAN).asElement()))
-
-        .appendItem(SimpleListItem.create("Morbi leo risus")
-                .appendContent(Badge.create("99+").setBackground(Color.TEAL).asElement()))
-
-        .appendItem(SimpleListItem.create("Porta ac consectetur ac")
-                .appendContent(Badge.create("21").setBackground(Color.ORANGE).asElement()))
-
-        .appendItem(SimpleListItem.create("Vestibulum at eros")
-                .appendContent(Badge.create("Pending").setBackground(Color.PURPLE).asElement()))
-        .asElement();
-
-listGroup.style.setProperty("text-align", "left");
+        .appendHeaderChild(heart);
 MessageDialog customContent = MessageDialog.createMessage("Custom content",
         "You can customize the dialog content",
         () -> Notification.create("Dialog closed").show())
-        .appendContent(listGroup);
+        .appendChild(SimpleListGroup.create()
+                .appendItem(SimpleListItem.create("Cras justo odio")
+                        .appendChild(Badge.create("14 new").setBackground(Color.PINK)))
+
+                .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
+                        .appendChild(Badge.create("99 unread").setBackground(Color.CYAN)))
+
+                .appendItem(SimpleListItem.create("Morbi leo risus")
+                        .appendChild(Badge.create("99+").setBackground(Color.TEAL)))
+
+                .appendItem(SimpleListItem.create("Porta ac consectetur ac")
+                        .appendChild(Badge.create("21").setBackground(Color.ORANGE)))
+
+                .appendItem(SimpleListItem.create("Vestibulum at eros")
+                        .appendChild(Badge.create("Pending").setBackground(Color.PURPLE)))
+                .style()
+                .setTextAlign("left"));
 
 
-this.element.appendChild(Card.create("EXAMPLES")
-    .appendContent(Row.create()
-            .addColumn(column.copy()
-                    .addElement(basicMessage.asElement())
-                    .addElement(Paragraph.create("A basic message").asElement())
-                    .addElement(createDemoButton(basicMessage)))
-            .addColumn(column.copy()
-                    .addElement(headerAndMessage.asElement())
-                    .addElement(Paragraph.create("Message with header").asElement())
-                    .addElement(createDemoButton(headerAndMessage)))
-            .asElement())
-    .appendContent(Row.create()
-            .addColumn(column.copy()
-                    .addElement(successMessage.asElement())
-                    .addElement(Paragraph.create("Success message").asElement())
-                    .addElement(createDemoButton(successMessage)))
-            .addColumn(column.copy()
-                    .addElement(errorMessage.asElement())
-                    .addElement(Paragraph.create("Error message").asElement())
-                    .addElement(createDemoButton(errorMessage)))
-            .asElement())
-    .appendContent(Row.create()
-            .addColumn(column.copy()
-                    .addElement(warningMessage.asElement())
-                    .addElement(Paragraph.create("Warning message").asElement())
-                    .addElement(createDemoButton(warningMessage)))
-            .addColumn(column.copy()
-                    .addElement(customColors.asElement())
-                    .addElement(Paragraph.create("Custom colors").asElement())
-                    .addElement(createDemoButton(customColors)))
-            .asElement())
-    .appendContent(Row.create()
-            .addColumn(column.copy()
-                    .addElement(customHeaderContent.asElement())
-                    .addElement(Paragraph.create("Custom header content").asElement())
-                    .addElement(createDemoButton(customHeaderContent)))
-            .addColumn(column.copy()
-                    .addElement(customContent.asElement())
-                    .addElement(Paragraph.create("Custom content").asElement())
-                    .addElement(createDemoButton(customContent)))
-            .asElement())
-    .asElement());
+element.appendChild(Card.create("EXAMPLES")
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(basicMessage)
+                        .appendChild(Paragraph.create("A basic message"))
+                        .appendChild(createDemoButton(basicMessage)))
+                .addColumn(Column.span6()
+                        .appendChild(headerAndMessage)
+                        .appendChild(Paragraph.create("Message with header"))
+                        .appendChild(createDemoButton(headerAndMessage)))
+                )
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(successMessage)
+                        .appendChild(Paragraph.create("Success message"))
+                        .appendChild(createDemoButton(successMessage)))
+                .addColumn(Column.span6()
+                        .appendChild(errorMessage)
+                        .appendChild(Paragraph.create("Error message"))
+                        .appendChild(createDemoButton(errorMessage)))
+                )
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(warningMessage)
+                        .appendChild(Paragraph.create("Warning message"))
+                        .appendChild(createDemoButton(warningMessage)))
+                .addColumn(Column.span6()
+                        .appendChild(customColors)
+                        .appendChild(Paragraph.create("Custom colors"))
+                        .appendChild(createDemoButton(customColors)))
+                )
+        .appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(customHeaderContent)
+                        .appendChild(Paragraph.create("Custom header content"))
+                        .appendChild(createDemoButton(customHeaderContent)))
+                .addColumn(Column.span6()
+                        .appendChild(customContent)
+                        .appendChild(Paragraph.create("Custom content"))
+                        .appendChild(createDemoButton(customContent)))
+                )
+        .asElement());
 
 
-
-    //---------------------
-
-
-private HTMLElement createDemoButton(MessageDialog dialog) {
+private Button createDemoButton(MessageDialog dialog) {
     return Button.createPrimary("CLICK ME")
             .setStyleProperty("min-width", "120px")
-            .addClickListener(evt -> dialog.open()).asElement();
+            .addClickListener(evt -> dialog.open());
 }

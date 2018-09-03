@@ -4,11 +4,11 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
@@ -37,6 +37,7 @@ public class ApplicantSection implements ImportSection {
                 markCardValidation(card, true, false);
             }
         };
+
         lcSettlementAccountsSelect.getAccountSelect()
                 .setRequired(true)
                 .setAutoValidation(true)
@@ -56,17 +57,18 @@ public class ApplicantSection implements ImportSection {
                 .addSelectionHandler(corporateAccountSelectionHandler);
 
 
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
-                                .addElement(lcSettlementAccountsSelect)
+                                .appendChild(lcSettlementAccountsSelect)
                         )
                         .addColumn(Column.span4()
-                                .addElement(collateralSettlementAccountsSelect)
+                                .appendChild(collateralSettlementAccountsSelect)
                         ).addColumn(Column.span4()
-                                .addElement(feesAndChargesAccountsSelect)
+                                .appendChild(feesAndChargesAccountsSelect)
                         )
                 )
                 .asElement());

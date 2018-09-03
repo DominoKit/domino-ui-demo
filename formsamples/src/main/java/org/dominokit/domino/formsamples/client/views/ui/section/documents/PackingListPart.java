@@ -7,11 +7,11 @@ import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.formsamples.shared.model.PackingList;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
-import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
@@ -53,11 +53,10 @@ public class PackingListPart implements ImportSection {
                 .appendChild(packingListRequiredSwitchButton.asElement());
 
 
-        element.appendChild(Style.of(packingListCard)
-                .get()
+        element.appendChild(packingListCard
                 .appendChild(Row.create()
-                        .addColumn(Column.span4().addElement(packingListCopiesTextBox.setRequired(true).setAutoValidation(true)))
-                        .addColumn(Column.span8().addElement(packingListTextBox.setRequired(true).setAutoValidation(true))))
+                        .addColumn(Column.span4().appendChild(packingListCopiesTextBox.setRequired(true).setAutoValidation(true)))
+                        .addColumn(Column.span8().appendChild(packingListTextBox.setRequired(true).setAutoValidation(true))))
                 .asElement());
     }
 

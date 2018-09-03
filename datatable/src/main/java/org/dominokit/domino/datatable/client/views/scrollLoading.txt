@@ -78,8 +78,8 @@ DataTable<Contact> table = new DataTable<>(tableConfig, scrollingDataStore);
 
 element.appendChild(Card.create("SCROLL LOADING", "Scroll loading requires the table to be fixed. use the Body scroll plugin to fire scroll events.")
         .setCollapsible()
-        .appendContent(new TableStyleActions(table))
-        .appendContent(table.asElement())
+        .appendChild(new TableStyleActions(table))
+        .appendChild(table)
         .asElement());
 
 List<Contact> contacts = ...

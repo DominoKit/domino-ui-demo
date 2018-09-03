@@ -1,11 +1,6 @@
 package org.dominokit.domino.home.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -17,10 +12,8 @@ import org.dominokit.domino.ui.carousel.Slide;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.ElementUtil;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.small;
 
 @UiView(presentable = HomePresenter.class)
 public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {

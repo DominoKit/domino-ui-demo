@@ -1,68 +1,69 @@
 // -------------- Basic examples
 
-card.appendContent(BlockHeader.create("Basic Examples").asElement())
-                .appendContent(TextBox.create("Username").asElement())
-                .appendContent(TextBox.password("Password").asElement());
+inputCard.appendChild(BlockHeader.create("Basic Example"))
+        .appendChild(TextBox.create().setPlaceholder("Username"))
+        .appendChild(TextBox.password().setPlaceholder("Password"));
 
 // -------------- Different widths
 
-Column column6Size = Column.create().onSmall(Column.OnSmall.six);
-Column column4Size = Column.create().onSmall(Column.OnSmall.four);
-Column column3Size = Column.create().onSmall(Column.OnSmall.three);
+Column column6Size = Column.span6();
+Column column4Size = Column.span4();
+Column column3Size = Column.span3();
 
-
-card.appendContent(BlockHeader.create("Different Widths").asElement())
-        .appendContent(Row.create()
+inputCard.appendChild(BlockHeader.create("Different Widths"))
+        .appendChild(Row.create()
                 .addColumn(column6Size
-                        .addElement(TextBox.create("col-sm-6").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
                 .addColumn(column6Size.copy()
-                        .addElement(TextBox.create("col-sm-6").asElement()))
-                .asElement())
-        .appendContent(Row.create()
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
+                )
+        .appendChild(Row.create()
                 .addColumn(column4Size
-                        .addElement(TextBox.create("col-sm-4").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
                 .addColumn(column4Size.copy()
-                        .addElement(TextBox.create("col-sm-4").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
                 .addColumn(column4Size.copy()
-                        .addElement(TextBox.create("col-sm-4").asElement()))
-                .asElement())
-        .appendContent(Row.create()
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
+                )
+        .appendChild(Row.create()
                 .addColumn(column3Size
-                        .addElement(TextBox.create("col-sm-3").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
                 .addColumn(column3Size.copy()
-                        .addElement(TextBox.create("col-sm-3").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
                 .addColumn(column3Size.copy()
-                        .addElement(TextBox.create("col-sm-3").asElement()))
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
                 .addColumn(column3Size.copy()
-                        .addElement(TextBox.create("col-sm-3").asElement()))
-                .asElement());
+                        .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
+                );
 
 
 // -------------- Different Sizes
 
-card.appendContent(BlockHeader.create("Different Sizes").asElement())
-                .appendContent(TextBox.create("Large Input").large().asElement())
-                .appendContent(TextBox.create("Default Input").asElement())
-                .appendContent(TextBox.create("Small Input").small().asElement());
-
+inputCard.appendChild(BlockHeader.create("Different Sizes"))
+        .appendChild(TextBox.create().setPlaceholder("Large Input").large())
+        .appendChild(TextBox.create().setPlaceholder("Default Input"))
+        .appendChild(TextBox.create().setPlaceholder("Small Input").small());
 
 // -------------- Floating Label Examples
 
-card.appendContent(BlockHeader.create("Floating Label Examples").asElement())
-                .appendContent(TextBox.create("Username").floating().asElement())
-                .appendContent(TextBox.password("Password").floating().asElement())
-                .appendContent(TextBox.create("Large Input").large().floating().asElement())
-                .appendContent(TextBox.create("Default Input").floating().asElement())
-                .appendContent(TextBox.create("Small Input").small().floating().asElement());
+inputCard.appendChild(BlockHeader.create("Floating Label Examples"))
+        .appendChild(TextBox.create("Username"))
+        .appendChild(TextBox.password("Password"))
+        .appendChild(TextBox.create("Large Input").large())
+        .appendChild(TextBox.create("Default Input"))
+        .appendChild(TextBox.create("Small Input").small())
+        .appendChild(BlockHeader.create("Always floating"))
+        .appendChild(TextBox.create("Age").floating())
+        .appendChild(TextBox.create("Email").floating());
 
 
 // -------------- Input Status
 
-Column column6Size = Column.create().onSmall(Column.OnSmall.six);
+Column column6Size = Column.span6();
 
-card.appendContent(BlockHeader.create("Input Status").asElement())
-        .appendContent(Row.create()
+inputCard.appendChild(BlockHeader.create("Input Status"))
+        .appendChild(Row.create()
                 .addColumn(column6Size
-                        .addElement(TextBox.create("Focused").focus().asElement()))
+                        .appendChild(TextBox.create("Focused").focus()))
                 .addColumn(column6Size.copy()
-                        .addElement(TextBox.create("Disabled").disable().asElement())).asElement());
+                        .appendChild(TextBox.create("Disabled").disable())));

@@ -1,12 +1,12 @@
-Card.create("ALIGNMENTS")
-    .appendContent(Breadcrumb.create()
-            .setBackground(Color.PINK)
+element.appendChild(Card.create("ALIGNMENTS")
+    .appendChild(Breadcrumb.create()
+            .setBackground(Color.RED)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
             })
             .addItem(Icons.ALL.library_books(), " Library ", evt -> {
             })
-            .asElement())
-    .appendContent(Breadcrumb.create()
+    )
+    .appendChild(Breadcrumb.create()
             .alignCenter()
             .setBackground(Color.CYAN)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
@@ -15,8 +15,8 @@ Card.create("ALIGNMENTS")
             })
             .addItem(Icons.ALL.archive(), " Data ", evt -> {
             })
-            .asElement())
-    .appendContent(Breadcrumb.create()
+    )
+    .appendChild(Breadcrumb.create()
             .alignRight()
             .setBackground(Color.TEAL)
             .addItem(Icons.ALL.home(), " Home ", evt -> {
@@ -27,5 +27,5 @@ Card.create("ALIGNMENTS")
             })
             .addItem(Icons.ALL.attachment(), " File ", evt -> {
             })
-            .asElement())
-    .asElement()
+    )
+    .asElement());

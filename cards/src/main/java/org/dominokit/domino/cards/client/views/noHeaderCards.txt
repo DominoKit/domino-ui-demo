@@ -1,14 +1,9 @@
-Column column = Column.create().onLarge(OnLarge.four)
-        .onMedium(OnMedium.four)
-        .onSmall(OnSmall.twelve)
-        .onXSmall(OnXSmall.twelve);
-
 element.appendChild(Row.create()
-        .addColumn(column.addElement(Card.create()
-                .setBackground(Color.GREEN)
-                .appendContent(new Text(SAMPLE_CONTENT)).asElement()))
-        .addColumn(column.copy().addElement(Card.create()
-                .setBackground(Color.LIGHT_BLUE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
-        .addColumn(column.copy().addElement(Card.create()
-                .setBackground(Color.PURPLE).appendContent(new Text(SAMPLE_CONTENT)).asElement()))
-        .asElement());
+    .addColumn(Column.span4().appendChild(Card.create()
+            .setBackground(Color.GREEN)
+            .appendChild(new Text(SAMPLE_CONTENT))))
+    .addColumn(Column.span4().appendChild(Card.create()
+            .setBackground(Color.LIGHT_BLUE).appendChild(new Text(SAMPLE_CONTENT))))
+    .addColumn(Column.span4().appendChild(Card.create()
+            .setBackground(Color.PURPLE).appendChild(new Text(SAMPLE_CONTENT))))
+    .asElement());

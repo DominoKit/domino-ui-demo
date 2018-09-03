@@ -6,11 +6,11 @@ import org.dominokit.domino.pagination.client.views.PaginationView;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.pagination.client.presenters.PaginationPresenter;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.pagination.Pager;
 import org.dominokit.domino.ui.pagination.SimplePagination;
-import org.dominokit.domino.ui.row.Row;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 
@@ -42,9 +42,8 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
     private void defaultPagination() {
         element.appendChild(Card.create("DEFAULT PAGINATION",
                 "Simple pagination inspired by Rdio, great for apps and search results. The large block is hard to miss, easily scalable, and provides large click areas.")
-                .appendContent(SimplePagination.create(5)
-                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
-                        .asElement())
+                .appendChild(SimplePagination.create(5)
+                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+"")))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
@@ -52,11 +51,10 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void activePageSample() {
         element.appendChild(Card.create("ACTIVE PAGE", "You can mark the current active page.")
-                .appendContent(SimplePagination.create(5)
+                .appendChild(SimplePagination.create(5)
                         .markActivePage()
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
-                        .gotoPage(3)
-                        .asElement())
+                        .gotoPage(3))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
@@ -64,38 +62,28 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void sizesSample() {
 
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
-
-
         element.appendChild(Card.create("ACTIVE PAGE", "You can mark the current active page.")
-                .appendContent(Row.create()
-                        .addColumn(column.copy()
-                                .addElement(b().textContent("Large").asElement())
-                                .addElement(SimplePagination.create(5)
+                .appendChild(Row.create()
+                        .addColumn(Column.span4()
+                                .appendChild(b().textContent("Large"))
+                                .appendChild(SimplePagination.create(5)
                                         .markActivePage()
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
                                         .gotoPage(3)
-                                        .large()
-                                        .asElement()))
-                        .addColumn(column.copy()
-                                .addElement(b().textContent("Default").asElement())
-                                .addElement(SimplePagination.create(5)
+                                        .large()))
+                        .addColumn(Column.span4()
+                                .appendChild(b().textContent("Default"))
+                                .appendChild(SimplePagination.create(5)
+                                        .markActivePage()
+                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
+                                        .gotoPage(3)))
+                        .addColumn(Column.span4()
+                                .appendChild(b().textContent("Small"))
+                                .appendChild(SimplePagination.create(5)
                                         .markActivePage()
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
                                         .gotoPage(3)
-                                        .asElement()))
-                        .addColumn(column.copy()
-                                .addElement(b().textContent("Small").asElement())
-                                .addElement(SimplePagination.create(5)
-                                        .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
-                                        .gotoPage(3)
-                                        .small()
-                                        .asElement()))
+                                        .small()))
                         .asElement())
                 .asElement());
 
@@ -104,41 +92,37 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void pagerNexPrevSample() {
         element.appendChild(Card.create("DEFAULT PAGER", "By default, the pager centers links.")
-                .appendContent(Pager.create()
+                .appendChild(Pager.create()
                         .onNext(() -> DomGlobal.console.info("Going to next page."))
-                        .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
-                        .asElement())
-                .appendContent(Pager.create()
+                        .onPrevious(() -> DomGlobal.console.info("Going to previous page.")))
+                .appendChild(Pager.create()
                         .onNext(() -> DomGlobal.console.info("Going to next page."))
                         .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
                         .nextText("Newer")
                         .previousText("Older")
-                        .showArrows()
-                        .asElement())
+                        .showArrows())
                 .asElement());
 
         element.appendChild(Card.create("PAGER ALIGNED TO EDGES", "Use expand to align the pager to the edges.")
-                .appendContent(Pager.create()
+                .appendChild(Pager.create()
                         .onNext(() -> DomGlobal.console.info("Going to next page."))
                         .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
-                        .expand()
-                        .asElement())
+                        .expand())
                 .asElement());
 
 
         element.appendChild(Card.create("PAGER WITH DISABLED LINK", "You can Disable/Enable pager links.")
-                .appendContent(Pager.create()
+                .appendChild(Pager.create()
                         .onNext(() -> DomGlobal.console.info("Going to next page."))
                         .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
                         .expand()
-                        .disablePrevious()
-                        .asElement())
+                        .disablePrevious())
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());

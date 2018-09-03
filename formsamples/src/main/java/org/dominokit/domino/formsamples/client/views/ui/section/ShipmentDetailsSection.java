@@ -8,15 +8,14 @@ import org.dominokit.domino.formsamples.shared.model.ShipmentDetails;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datepicker.DateBox;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.DATE_PATTERN;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.dominokit.domino.ui.column.Column.span6;
+import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class ShipmentDetailsSection implements ImportSection {
@@ -35,7 +34,6 @@ public class ShipmentDetailsSection implements ImportSection {
 
     public ShipmentDetailsSection() {
         card = Card.create();
-
 
         latestDateOfShipmentDateBox = DateBox.create()
                 .groupBy(fieldsGrouping)
@@ -106,24 +104,25 @@ public class ShipmentDetailsSection implements ImportSection {
 
         element.appendChild(BlockHeader.create("Shipment Details *").asElement());
 
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(latestDateOfShipmentDateBox))
-                        .addColumn(span6().addElement(transShipmentSwitch))
+                        .addColumn(span6().appendChild(latestDateOfShipmentDateBox))
+                        .addColumn(span6().appendChild(transShipmentSwitch))
                 )
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(shipmentBySelect))
-                        .addColumn(span6().addElement(partialShipmentSwitch))
+                        .addColumn(span6().appendChild(shipmentBySelect))
+                        .addColumn(span6().appendChild(partialShipmentSwitch))
                 )
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(shipmentFromTextBox))
-                        .addColumn(span6().addElement(shipmentToTextBox))
+                        .addColumn(span6().appendChild(shipmentFromTextBox))
+                        .addColumn(span6().appendChild(shipmentToTextBox))
                 )
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(termsOfDeliverySelect))
-                        .addColumn(span6().addElement(placeOfDestinationTextBox))
+                        .addColumn(span6().appendChild(termsOfDeliverySelect))
+                        .addColumn(span6().appendChild(placeOfDestinationTextBox))
                 ).asElement());
 
     }

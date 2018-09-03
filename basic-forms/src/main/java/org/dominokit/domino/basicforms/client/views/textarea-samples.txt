@@ -1,8 +1,9 @@
-card.appendContent(BlockHeader.create("Basic Examples").asElement())
-                .appendContent(TextArea.create("Start typing here...").asElement());
-
+textAreaCard.appendChild(BlockHeader.create("Basic Examples"))
+        .appendChild(TextArea.create().setPlaceholder("Start typing here..."));
 
 // autosize example
+textAreaCard.appendChild(BlockHeader.create("Auto Growing Vertical Direction"))
+        .appendChild(TextArea.create().setPlaceholder("Start typing here...").autoSize());
 
-card.appendContent(BlockHeader.create("Auto Growing Vertical Direction").asElement())
-        .appendContent(TextArea.create("Start typing here...").autoSize().asElement());
+textAreaCard.appendChild(BlockHeader.create("Text Area With Label"))
+        .appendChild(TextArea.create("Description").autoSize());

@@ -5,8 +5,6 @@ import elemental2.dom.HTMLElement;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.datatable.client.views.model.EyeColor;
 import org.dominokit.domino.datatable.client.views.model.Gender;
-import org.dominokit.domino.ui.datatable.CellRenderer;
-import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
@@ -20,14 +18,15 @@ public class ContactUiUtils {
 
     public static HTMLElement getBalanceElement(Contact contact) {
         double doubleBalance = contact.getDoubleBalance();
-        HTMLDivElement progress = Progress.create()
+        Progress progress = Progress.create()
                 .addBar(ProgressBar.create(4000)
                         .setValue(doubleBalance)
                         .setBackground(getBalanceColor(doubleBalance).color())
-                ).asElement();
-        Style.of(progress).setMargin("0px");
+                )
+                .style()
+                .setMargin("0px").get();
         Tooltip.create(progress, contact.getBalance());
-        return progress;
+        return progress.asElement();
     }
 
     public static ColorScheme getBalanceColor(double balance) {

@@ -5,14 +5,13 @@ import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.client.views.ui.BanksComponent;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import java.util.List;
 
@@ -54,11 +53,11 @@ public class IssuerBankSection implements ImportSection {
 
         issuerBankInfoRow = Row.create()
                 .addColumn(Column.span6()
-                        .addElement(issuerAddressTextBox
+                        .appendChild(issuerAddressTextBox
                                 .setLeftAddon(Icons.ALL.location_on())
                                 .setReadOnly(true)))
                 .addColumn(Column.span6()
-                        .addElement(issuerContactPersonTextBox
+                        .appendChild(issuerContactPersonTextBox
                                 .setLeftAddon(Icons.ALL.person())
                                 .setReadOnly(true))
                 ).collapse();
@@ -69,12 +68,13 @@ public class IssuerBankSection implements ImportSection {
 
 
         card = Card.create();
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().addElement(issuerBanksSelect))
-                        .addColumn(Column.span6().addElement(issuerBranchesSelect))
+                        .addColumn(Column.span6().appendChild(issuerBanksSelect))
+                        .addColumn(Column.span6().appendChild(issuerBranchesSelect))
                 ).appendChild(issuerBankInfoRow)
                 .asElement());
 

@@ -2,13 +2,14 @@ package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
-import org.dominokit.domino.ui.button.IconButton;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.popover.Tooltip;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.jboss.gwt.elemento.core.IsElement;
@@ -16,7 +17,7 @@ import org.jboss.gwt.elemento.core.IsElement;
 public class TableStyleActions implements IsElement<HTMLElement> {
 
     private DataTable<?> dataTable;
-    private Column column = Column.create();
+    private Column column = Column.span12();
 
     public TableStyleActions(DataTable<?> dataTable) {
         this.dataTable = dataTable;
@@ -24,29 +25,30 @@ public class TableStyleActions implements IsElement<HTMLElement> {
     }
 
     private void init() {
-        IconButton condenseButton = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), () -> dataTable.condense(), () -> dataTable.expand(), () -> dataTable.isCondensed());
-        IconButton strippedButton = createButton("No Stripes", "Stripped", Icons.ALL.power_input(), Icons.ALL.drag_handle(), () -> dataTable.striped(), () -> dataTable.noStripes(), () -> dataTable.isStriped());
-        IconButton borderedButton = createButton("No Borders", "Borders", Icons.ALL.border_vertical(), Icons.ALL.border_clear(), () -> dataTable.bordered(), () -> dataTable.noBorder(), () -> dataTable.isBordered());
-        IconButton hoveredButton = createButton("No Hover", "Hovered", Icons.ALL.blur_off(), Icons.ALL.blur_on(), () -> dataTable.noHover(), () -> dataTable.hovered(), () -> !dataTable.isHoverable());
+        Button condenseButton = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), () -> dataTable.condense(), () -> dataTable.expand(), () -> dataTable.isCondensed());
+        Button strippedButton = createButton("No Stripes", "Stripped", Icons.ALL.power_input(), Icons.ALL.drag_handle(), () -> dataTable.striped(), () -> dataTable.noStripes(), () -> dataTable.isStriped());
+        Button borderedButton = createButton("No Borders", "Borders", Icons.ALL.border_vertical(), Icons.ALL.border_clear(), () -> dataTable.bordered(), () -> dataTable.noBorder(), () -> dataTable.isBordered());
+        Button hoveredButton = createButton("No Hover", "Hovered", Icons.ALL.blur_off(), Icons.ALL.blur_on(), () -> dataTable.noHover(), () -> dataTable.hovered(), () -> !dataTable.isHoverable());
 
-        column.addElement(condenseButton);
-        column.addElement(strippedButton);
-        column.addElement(borderedButton);
-        column.addElement(hoveredButton);
+        column.appendChild(condenseButton);
+        column.appendChild(strippedButton);
+        column.appendChild(borderedButton);
+        column.appendChild(hoveredButton);
     }
 
-    private IconButton createButton(String initialTooltip, String toggeledTooltip,  Icon initialIcon, Icon toggeledIcon, Action initialAction, Action toggeledAction, Condition condition) {
-        IconButton condenseButton = IconButton.create(initialIcon)
-                .linkify();
-        Style.of(condenseButton).css(Styles.pull_right);
-
-        Tooltip tooltip = Tooltip.create(condenseButton.asElement(), new Text(initialTooltip));
-        Style.of(condenseButton)
+    private Button createButton(String initialTooltip, String toggeledTooltip,  Icon initialIcon, Icon toggeledIcon, Action initialAction, Action toggeledAction, Condition condition) {
+        Button condenseButton = Button.create(initialIcon)
+                .linkify()
+                .style()
+                .add(Styles.pull_right)
                 .setProperty("padding", "0px")
                 .setProperty("padding-left", "2px")
                 .setHeight("26px")
                 .setColor("black", true)
-                .css(Styles.pull_right, Styles.m_r_15);
+                .css(Styles.pull_right, Styles.m_r_15)
+                .get();
+
+        Tooltip tooltip = Tooltip.create(condenseButton.asElement(), new Text(initialTooltip));
         condenseButton.addClickListener(evt -> {
             if (condition.check()) {
                 toggeledAction.execute();
@@ -63,7 +65,7 @@ public class TableStyleActions implements IsElement<HTMLElement> {
 
     @Override
     public HTMLElement asElement() {
-        return Style.of(Row.create().addColumn(column).asElement()).setMarginBottom("20px").get().asElement();
+        return Style.of(Row.create().addColumn(column)).setMarginBottom("20px").get().asElement();
     }
 
     @FunctionalInterface

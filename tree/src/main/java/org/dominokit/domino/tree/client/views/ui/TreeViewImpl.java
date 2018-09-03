@@ -9,11 +9,11 @@ import org.dominokit.domino.tree.client.views.Countries;
 import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
 
@@ -279,8 +279,8 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
 
         element.appendChild(Card.create("SIMPLE MENU")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().addElement(hardwareTree))
-                        .addColumn(Column.span6().addElement(filesTree))
+                        .addColumn(Column.span6().appendChild(hardwareTree))
+                        .addColumn(Column.span6().appendChild(filesTree))
                 ).asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
@@ -346,11 +346,11 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
         element.appendChild(Card.create("SIMPLE NESTED MENU")
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .addElement(BlockHeader.create("Auto collapse"))
-                                .addElement(hardwareTree))
+                                .appendChild(BlockHeader.create("Auto collapse"))
+                                .appendChild(hardwareTree))
                         .addColumn(Column.span6()
-                                .addElement(BlockHeader.create("Auto collapse OFF"))
-                                .addElement(hardwareMenu2))
+                                .appendChild(BlockHeader.create("Auto collapse OFF"))
+                                .appendChild(hardwareMenu2))
                 ).asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
@@ -457,11 +457,11 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
         element.appendChild(Card.create("ACTIVE/EXPAND ICONS, SEARCH & FOLDING")
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .addElement(BlockHeader.create("Active icon"))
-                                .addElement(citiesTree))
+                                .appendChild(BlockHeader.create("Active icon"))
+                                .appendChild(citiesTree))
                         .addColumn(Column.span6()
-                                        .addElement(BlockHeader.create("Expand icon"))
-                                .addElement(foldersExpand))
+                                        .appendChild(BlockHeader.create("Expand icon"))
+                                .appendChild(foldersExpand))
                         ).asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.featuredTree()).asElement());

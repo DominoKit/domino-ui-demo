@@ -1,15 +1,11 @@
 Button.createSuccess(SUCCESS).large().block()
-        .appendContent(Badge.create("4").asElement())
-        .asElement();
+        .appendChild(Badge.create("4"));
 
 Button.createPrimary(PRIMARY).large().block()
-        .appendContent(Badge.create("10").asElement())
-        .asElement();
+        .appendChild(Badge.create("10"));
 
 Button.createDanger(DANGER).large().block()
-        .appendContent(Badge.create("8").asElement())
-        .asElement();
+        .appendChild(Badge.create("8"));
 
 Button.createWarning(WARNING).large().block()
-        .appendContent(Badge.create("3").asElement())
-        .asElement();
+        .appendChild(Badge.create("3"));

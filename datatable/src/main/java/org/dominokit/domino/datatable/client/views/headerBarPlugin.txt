@@ -46,18 +46,17 @@ tableConfig
 
 
 tableConfig.addPlugin(new SelectionPlugin<>());
-
 tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
         .addActionElement(dataTable -> {
-            IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
-                    .linkify();
-
-            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
-            Style.of(selectInactiveButton)
-                    .setProperty("padding", "0px")
+            Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
+                    .linkify()
+                    .style().setProperty("padding", "0px")
                     .setHeight("26px")
                     .setColor("black", true)
-                    .css(Styles.pull_right, Styles.m_r_15);
+                    .css(Styles.pull_right, Styles.m_r_15)
+                    .get();
+
+            Tooltip.create(selectInactiveButton, new Text("Select Inactive"));
 
             selectInactiveButton.addClickListener(evt -> {
                 dataTable.getTableRows().forEach(tableRow -> {
@@ -72,15 +71,15 @@ tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample 
             return selectInactiveButton.asElement();
         })
         .addActionElement(dataTable -> {
-            IconButton selectInactiveButton = IconButton.create(Icons.ALL.check_circle())
-                    .linkify();
-
-            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));
-            Style.of(selectInactiveButton)
-                    .setProperty("padding", "0px")
+            Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
+                    .linkify()
+                    .style().setProperty("padding", "0px")
                     .setHeight("26px")
                     .setColor("black", true)
-                    .css(Styles.pull_right, Styles.m_r_15);
+                    .css(Styles.pull_right, Styles.m_r_15)
+                    .get();
+
+            Tooltip.create(selectInactiveButton, new Text("Select Active"));
 
             selectInactiveButton.addClickListener(evt -> {
                 dataTable.getTableRows().forEach(tableRow -> {
@@ -100,8 +99,8 @@ DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStor
 
 element.appendChild(Card.create("HEADER BAR PLUGIN", "Adds a title and description for the table, and allow adding elements to the top right side of the table")
         .setCollapsible()
-        .appendContent(new TableStyleActions(defaultTable))
-        .appendContent(defaultTable.asElement())
+        .appendChild(new TableStyleActions(defaultTable))
+        .appendChild(defaultTable)
         .asElement());
 
 List<Contact> contacts = ...

@@ -9,13 +9,13 @@ import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.formsamples.shared.model.SignedCommercialInvoice;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
 
 import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
-import static org.dominokit.domino.ui.column.Column.*;
+import static org.dominokit.domino.ui.grid.Column.*;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class SignedCommercialInvoicePart implements ImportSection {
@@ -101,16 +101,16 @@ public class SignedCommercialInvoicePart implements ImportSection {
 
         element.appendChild(signedCommercialInvoiceInCard
                 .appendChild(Row.create()
-                        .addColumn(span4().addElement(signedCommercialInvoiceOriginalCopiesTextBox))
-                        .addColumn(span4().addElement(signedCommercialInvoiceCopiesTextBox))
-                        .addColumn(span8().addElement(signedCommercialInvoiceTextBox))
+                        .addColumn(span4().appendChild(signedCommercialInvoiceOriginalCopiesTextBox))
+                        .addColumn(span4().appendChild(signedCommercialInvoiceCopiesTextBox))
+                        .addColumn(span8().appendChild(signedCommercialInvoiceTextBox))
 
                 ).appendChild(Row.create()
-                        .addColumn(span6().addElement(signedCommercialLocalizationEntitiesSelect))
-                        .addColumn(span6().addElement(signedCommercialOriginCountrySelect))
+                        .addColumn(span6().appendChild(signedCommercialLocalizationEntitiesSelect))
+                        .addColumn(span6().appendChild(signedCommercialOriginCountrySelect))
                 ).appendChild(Row.create()
-                        .addColumn(span6().addElement(signedCommercialOriginOfGoodsCountrySelect))
-                        .addColumn(span6().addElement(signedCommercialOriginOfLocalizationEntityCountrySelect)))
+                        .addColumn(span6().appendChild(signedCommercialOriginOfGoodsCountrySelect))
+                        .addColumn(span6().appendChild(signedCommercialOriginOfLocalizationEntityCountrySelect)))
                 .asElement());
     }
 

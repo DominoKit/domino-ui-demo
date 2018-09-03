@@ -5,12 +5,9 @@ import org.dominokit.domino.formsamples.client.views.FormSamplesView;
 import org.dominokit.domino.formsamples.client.views.ui.section.*;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.column.Column;
-import org.dominokit.domino.ui.dialogs.MessageDialog;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.ui.utils.ElementUtil;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import java.util.List;
@@ -77,22 +74,19 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
         element.appendChild(confirmationInstructionsSection.asElement());
         element.appendChild(correspondentChargesInstructionsSection.asElement());
 
-        element.appendChild(Style.of(Row.create())
+        element.appendChild(Row.create()
+                .style()
                 .setMarginBottom("50px")
                 .get()
                 .addColumn(Column.span6()
-                        .addElement(Style.of(Button.createPrimary("Submit")
+                        .appendChild(Button.createPrimary("Submit")
                                 .addClickListener(evt -> {
                                     if (isFormValid()) {
                                         uiHandlers.onCreate(createLetterOfCredit());
-                                    } else {
-//                                        MessageDialog.createMessage("Some input are not valid")
-//                                                .warning()
-////                                                .onClose(ElementUtil::scrollTop)
-//                                                .open();
                                     }
-                                }))
-                                .setMinWidth("120px")))
+                                })
+                                .style()
+                                .setMinWidth("120px").get()))
                 .asElement());
     }
 

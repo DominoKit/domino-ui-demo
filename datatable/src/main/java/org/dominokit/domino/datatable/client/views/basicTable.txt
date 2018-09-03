@@ -47,7 +47,7 @@ tableConfig
 element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
                 .setCollapsible()
                 .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendContent(table)
                 .asElement());
 
 List<Contact> contacts = ...

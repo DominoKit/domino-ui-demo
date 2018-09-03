@@ -1,5 +1,7 @@
 package org.dominokit.domino.typography.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
@@ -8,13 +10,11 @@ import org.dominokit.domino.typography.client.views.TypographyView;
 import org.dominokit.domino.ui.Typography.Blockquote;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -47,16 +47,11 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void lists() {
         Row row = Row.create();
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
 
         element.appendChild(row
-                .addColumn(column.copy()
-                        .addElement(Card.create("UNORDERED LIST")
-                                .appendContent(ul()
+                .addColumn(Column.span4()
+                        .appendChild(Card.create("UNORDERED LIST")
+                                .appendChild(ul()
                                         .add(li().textContent("Lorem ipsum dolor sit amet"))
                                         .add(li().textContent("Consectetur adipiscing elit"))
                                         .add(li().textContent("Integer molestie lorem at massa"))
@@ -71,12 +66,10 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                         )
                                         .add(li().textContent("Faucibus porta lacus fringilla vel"))
                                         .add(li().textContent("Aenean sit amet erat nunc"))
-                                        .add(li().textContent("Eget porttitor lorem"))
-                                        .asElement())
-                                .asElement()))
-                .addColumn(column.copy()
-                        .addElement(Card.create("ORDERED LIST")
-                                .appendContent(ol()
+                                        .add(li().textContent("Eget porttitor lorem")))))
+                .addColumn(Column.span4()
+                        .appendChild(Card.create("ORDERED LIST")
+                                .appendChild(ol()
                                         .add(li().textContent("Lorem ipsum dolor sit amet"))
                                         .add(li().textContent("Consectetur adipiscing elit"))
                                         .add(li().textContent("Integer molestie lorem at massa"))
@@ -92,11 +85,11 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                         .add(li().textContent("Faucibus porta lacus fringilla vel"))
                                         .add(li().textContent("Aenean sit amet erat nunc"))
                                         .add(li().textContent("Eget porttitor lorem"))
-                                        .asElement())
-                                .asElement()))
-                .addColumn(column.copy()
-                        .addElement(Card.create("UNSTYLED LIST")
-                                .appendContent(ul().css(Styles.LIST_UNSTYLED)
+                                )
+                        ))
+                .addColumn(Column.span4()
+                        .appendChild(Card.create("UNSTYLED LIST")
+                                .appendChild(ul().css(Styles.LIST_UNSTYLED)
                                         .add(li().textContent("Lorem ipsum dolor sit amet"))
                                         .add(li().textContent("Consectetur adipiscing elit"))
                                         .add(li().textContent("Integer molestie lorem at massa"))
@@ -112,137 +105,125 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                         .add(li().textContent("Faucibus porta lacus fringilla vel"))
                                         .add(li().textContent("Aenean sit amet erat nunc"))
                                         .add(li().textContent("Eget porttitor lorem"))
-                                        .asElement())
-                                .asElement()))
-                .asElement());
+                                )
+                        )).asElement()
+        );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.lists())
-        .asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
     }
 
     private void bodyCopy() {
         element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
-                .appendContent(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH).asElement())
-                .appendContent(p().textContent(LARGE_PARAGRAPH).asElement())
-                .appendContent(p().textContent(SMALL_PARAGRAPH).asElement())
-                .asElement());
+                .appendChild(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH))
+                .appendChild(p().textContent(LARGE_PARAGRAPH))
+                .appendChild(p().textContent(SMALL_PARAGRAPH)).asElement()
+        );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.bodyCopy())
-                .asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
     }
 
     private void heading() {
         element.appendChild(Card.create("HEADINGS")
-                .appendContent(h(1).textContent("h1. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .appendContent(h(2).textContent("h2. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .appendContent(h(3).textContent("h3. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .appendContent(h(4).textContent("h4. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .appendContent(h(5).textContent("h5. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .appendContent(h(6).textContent("h6. Text Heading.").asElement())
-                .appendContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                .asElement());
+                .appendChild(h(1).textContent("h1. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(h(2).textContent("h2. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(h(3).textContent("h3. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(h(4).textContent("h4. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(h(5).textContent("h5. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(h(6).textContent("h6. Text Heading."))
+                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .asElement()
+        );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.heading())
-                .asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
     }
 
     private void textStyles() {
-        Row row = Row.create();
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.two)
-                .onMedium(Column.OnMedium.two)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
 
         element.appendChild(Card.create("TEXT STYLES", "Use ready classes to style your paragraphs.")
-                .appendContent(row
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Normal").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").asElement())
-                                .addElement(Paragraph.create("Text pink color").setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").setColor(Color.BLUE_GREY).asElement())
+                .appendChild(Row.create()
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Normal")))
+                                .appendChild(Paragraph.create("Default text"))
+                                .appendChild(Paragraph.create("Text pink color").setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").setColor(Color.BLUE_GREY))
                         )
 
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Bold").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").bold().asElement())
-                                .addElement(Paragraph.create("Text pink color").bold().setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").bold().setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").bold().setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").bold().setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").bold().setColor(Color.BLUE_GREY).asElement())
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Bold")))
+                                .appendChild(Paragraph.create("Default text").bold())
+                                .appendChild(Paragraph.create("Text pink color").bold().setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").bold().setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").bold().setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").bold().setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").bold().setColor(Color.BLUE_GREY))
                         )
 
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Italic").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").italic().asElement())
-                                .addElement(Paragraph.create("Text pink color").italic().setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").italic().setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").italic().setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").italic().setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").italic().setColor(Color.BLUE_GREY).asElement())
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Italic")))
+                                .appendChild(Paragraph.create("Default text").italic())
+                                .appendChild(Paragraph.create("Text pink color").italic().setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").italic().setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").italic().setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").italic().setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").italic().setColor(Color.BLUE_GREY))
                         )
 
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Under line").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").underLine().asElement())
-                                .addElement(Paragraph.create("Text pink color").underLine().setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").underLine().setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").underLine().setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").underLine().setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").underLine().setColor(Color.BLUE_GREY).asElement())
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Under line")))
+                                .appendChild(Paragraph.create("Default text").underLine())
+                                .appendChild(Paragraph.create("Text pink color").underLine().setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").underLine().setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").underLine().setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").underLine().setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").underLine().setColor(Color.BLUE_GREY))
                         )
 
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Line through").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").lineThrough().asElement())
-                                .addElement(Paragraph.create("Text pink color").lineThrough().setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").lineThrough().setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").lineThrough().setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").lineThrough().setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").lineThrough().setColor(Color.BLUE_GREY).asElement())
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Line through")))
+                                .appendChild(Paragraph.create("Default text").lineThrough())
+                                .appendChild(Paragraph.create("Text pink color").lineThrough().setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").lineThrough().setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").lineThrough().setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").lineThrough().setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").lineThrough().setColor(Color.BLUE_GREY))
                         )
 
-                        .addColumn(column.copy()
-                                .addElement(Paragraph.create().appendContent(b().textContent("Over line").asElement()).asElement())
-                                .addElement(Paragraph.create("Default text").overLine().asElement())
-                                .addElement(Paragraph.create("Text pink color").overLine().setColor(Color.PINK).asElement())
-                                .addElement(Paragraph.create("Text cyan color").overLine().setColor(Color.CYAN).asElement())
-                                .addElement(Paragraph.create("Text teal color").overLine().setColor(Color.TEAL).asElement())
-                                .addElement(Paragraph.create("Text orange color").overLine().setColor(Color.ORANGE).asElement())
-                                .addElement(Paragraph.create("Text blue grey color").overLine().setColor(Color.BLUE_GREY).asElement())
+                        .addColumn(Column.span2()
+                                .appendChild(Paragraph.create().appendChild(b().textContent("Over line")))
+                                .appendChild(Paragraph.create("Default text").overLine())
+                                .appendChild(Paragraph.create("Text pink color").overLine().setColor(Color.PINK))
+                                .appendChild(Paragraph.create("Text cyan color").overLine().setColor(Color.CYAN))
+                                .appendChild(Paragraph.create("Text teal color").overLine().setColor(Color.TEAL))
+                                .appendChild(Paragraph.create("Text orange color").overLine().setColor(Color.ORANGE))
+                                .appendChild(Paragraph.create("Text blue grey color").overLine().setColor(Color.BLUE_GREY))
                         )
-                        .asElement())
-                .asElement());
+                ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles())
-                .asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
     }
 
     private void blockqoute() {
         element.appendChild(Card.create("BLOCKQUOTES")
-                .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
-                        .asElement())
-                .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
-                        .appendFooterContent(new Text("Someone famous in "))
-                        .appendFooterContent(cite().textContent("source title.").asElement())
-                        .asElement())
-                .appendContent(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
-                        .appendFooterContent(new Text("Someone famous in "))
-                        .appendFooterContent(cite().textContent("source title.").asElement())
+                .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                )
+                .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                        .appendFooterChild(new Text("Someone famous in "))
+                        .appendFooterChild(cite().textContent("source title."))
+                )
+                .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
+                        .appendFooterChild(new Text("Someone famous in "))
+                        .appendFooterChild(cite().textContent("source title."))
                         .reverse()
-                        .asElement())
-                .asElement());
+                ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.blockqoute())
-                .asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
     }
 }

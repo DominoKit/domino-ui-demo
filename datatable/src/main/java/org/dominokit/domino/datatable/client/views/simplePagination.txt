@@ -69,8 +69,8 @@ DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
 element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
     .setCollapsible()
-    .appendContent(new TableStyleActions(table))
-    .appendContent(table.asElement())
+    .appendChild(new TableStyleActions(table))
+    .appendChild(table)
     .asElement());
 
 List<Contact> contacts = ...

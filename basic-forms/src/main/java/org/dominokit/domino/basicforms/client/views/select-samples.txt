@@ -1,8 +1,8 @@
-Column column = Column.create().onSmall(Column.OnSmall.six);
+Column column = Column.span6();
 
-selectCard.appendContent(Row.create()
+selectCard.appendChild(Row.create()
         .addColumn(column
-                .addElement(Select.create()
+                .appendChild(Select.create()
                         .addOption(SelectOption.create("nothing", "-- please select --"))
                         .addOption(SelectOption.create("value10", "10"))
                         .addOption(SelectOption.create("value20", "20"))
@@ -15,18 +15,18 @@ selectCard.appendContent(Row.create()
                             Notification.create("Item selected [ " + option1.getValue() + " ], [ " + option1.getDisplayValue() + " ]").show();
                         })))
         .addColumn(column.copy()
-                .addElement(Select.<String>create()
+                .appendChild(Select.<String>create()
                         .addOption(SelectOption.create("Disabled", "Disabled"))
                         .selectAt(0)
                         .disable()
                 ))
-        .asElement());
+        );
 
-selectCard.appendContent(BlockHeader.create("Drop up example").asElement());
+selectCard.appendChild(BlockHeader.create("Drop up example"));
 
-selectCard.appendContent(Row.create()
+selectCard.appendChild(Row.create()
         .addColumn(column.copy()
-                .addElement(Select.<Integer>create()
+                .appendChild(Select.<Integer>create()
                         .addOption(SelectOption.create(0, "-- please select --"))
                         .addOption(SelectOption.create(10, "10"))
                         .addOption(SelectOption.create(20, "20"))
@@ -39,16 +39,16 @@ selectCard.appendContent(Row.create()
                         .addSelectionHandler(option -> {
                             Notification.create("Item selected [ " + option.getValue() + " ]").show();
                         })))
-        .asElement());
+        );
 
-selectCard.appendContent(Style.of(BlockHeader.create("Searchable select"))
+selectCard.appendChild(Style.of(BlockHeader.create("Searchable select"))
         .setMarginBottom("30px")
         .get()
-        .asElement());
+        );
 
-selectCard.appendContent(Row.create()
-        .addColumn(Column.create(12)
-                .addElement(Select.<String>create("Country")
+selectCard.appendChild(Row.create()
+        .addColumn(Column.span12()
+                .appendChild(Select.<String>create("Country")
                         .addOption(SelectOption.create("nothing", "-- please select --"))
                         .addOption(SelectOption.create("USA", "America (USA)"))
                         .addOption(SelectOption.create("ARG", "Argentina"))
@@ -63,16 +63,16 @@ selectCard.appendContent(Row.create()
                         .addSelectionHandler(option -> {
                             Notification.create("Item selected [ " + option.getValue() + " ]").show();
                         })))
-        .asElement());
+        );
 
-selectCard.appendContent(Style.of(BlockHeader.create("Grouping select"))
+selectCard.appendChild(Style.of(BlockHeader.create("Grouping select"))
         .setMarginBottom("30px")
         .get()
-        .asElement());
+        );
 
-selectCard.appendContent(Row.create()
-        .addColumn(Column.create(12)
-                .addElement(Select.<String>create("Country")
+selectCard.appendChild(Row.create()
+        .addColumn(Column.span12()
+                .appendChild(Select.<String>create("Country")
                         .addGroup(SelectOptionGroup.<String>create(Badge.create("America").setBackground(Color.RED))
                                 .addOption(SelectOption.create("USA", "United States of America"))
                                 .addOption(SelectOption.create("BRA", "Brazil"))
@@ -92,4 +92,4 @@ selectCard.appendContent(Row.create()
                         .addSelectionHandler(option -> {
                             Notification.create("Item selected [ " + option.getValue() + " ]").show();
                         })))
-        .asElement());
+        );
