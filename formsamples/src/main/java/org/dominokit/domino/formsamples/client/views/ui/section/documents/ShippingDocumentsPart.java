@@ -6,13 +6,13 @@ import org.dominokit.domino.formsamples.client.views.ui.section.ImportSection;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
 
 import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
-import static org.dominokit.domino.ui.column.Column.span6;
+import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class ShippingDocumentsPart implements ImportSection {
@@ -97,13 +97,13 @@ public class ShippingDocumentsPart implements ImportSection {
 
         element.appendChild(card
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(shippingDocumentsTypeSelect)))
+                        .addColumn(span6().appendChild(shippingDocumentsTypeSelect)))
                 .appendChild(shippingDocumentInfoRow
-                        .addColumn(span6().addElement(shippingDocumentsCopiesTextBox))
-                        .addColumn(span6().addElement(shippingDocumentsDescriptionTextBox)))
+                        .addColumn(span6().appendChild(shippingDocumentsCopiesTextBox))
+                        .addColumn(span6().appendChild(shippingDocumentsDescriptionTextBox)))
                 .appendChild(shippingDocumentSelectRow
-                        .addColumn(span6().addElement(orderOfBankSelect))
-                        .addColumn(span6().addElement(freightSelect)
+                        .addColumn(span6().appendChild(orderOfBankSelect))
+                        .addColumn(span6().appendChild(freightSelect)
                         ))
                 .asElement());
     }

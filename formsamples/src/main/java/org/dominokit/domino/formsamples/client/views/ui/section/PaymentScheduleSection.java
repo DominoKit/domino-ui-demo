@@ -6,18 +6,18 @@ import org.dominokit.domino.formsamples.client.views.ui.Constants;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.formsamples.shared.model.PaymentScheduleItem;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.ValidationResult;
 
@@ -25,7 +25,8 @@ import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.dominokit.domino.ui.column.Column.*;
+import static org.dominokit.domino.ui.grid.Column.span12;
+import static org.dominokit.domino.ui.grid.Column.span4;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.i;
@@ -39,7 +40,7 @@ public class PaymentScheduleSection implements ImportSection {
     private TextBox percentageTextBox;
     private RadioGroup paymentScheduleRadioGroup;
     private ListGroup<PaymentScheduleItem> paymentScheduleItemsListGroup;
-    private IconButton addButton;
+    private Button addButton;
     private Collapsible valuesContainerCollapsible;
     private Card paymentScheduleCard;
     private HTMLDivElement element = div().asElement();
@@ -55,7 +56,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .setAutoValidation(true);
 
         Column numberOfDaysColumn = span4()
-                .addElement(numberOfDaysTextBox).collapse();
+                .appendChild(numberOfDaysTextBox).collapse();
 
         paymentScheduleAfterSelect = Select.<String>create("After").addOption(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
                 .addOption(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
@@ -65,7 +66,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .setAutoValidation(true);
 
         Column paymentScheduleAfterColumn = span4()
-                .addElement(paymentScheduleAfterSelect).collapse();
+                .appendChild(paymentScheduleAfterSelect).collapse();
 
         percentageTextBox = numbersOnly(TextBox.create("Percentage"))
                 .setHelperText("Numbers only")
@@ -107,8 +108,10 @@ public class PaymentScheduleSection implements ImportSection {
                 .horizontal();
 
         paymentScheduleCard = Card.create("Payment Schedule *");
-        addButton = Style.of(IconButton.createDefault(Icons.ALL.add()).setContent("ADD")
-                .linkify())
+        addButton = Button.createDefault(Icons.ALL.add())
+                .setContent("ADD")
+                .linkify()
+                .style()
                 .setMarginTop("-10px")
                 .get()
         ;
@@ -123,11 +126,11 @@ public class PaymentScheduleSection implements ImportSection {
 
         Row paymentTypeRow = Row.create()
                 .addColumn(span12()
-                        .addElement(paymentScheduleRadioGroup));
+                        .appendChild(paymentScheduleRadioGroup));
 
 
         Row paymentValuesRow = Row.create()
-                .addColumn(span4().addElement(percentageTextBox))
+                .addColumn(span4().appendChild(percentageTextBox))
                 .addColumn(numberOfDaysColumn)
                 .addColumn(paymentScheduleAfterColumn);
 
@@ -142,8 +145,8 @@ public class PaymentScheduleSection implements ImportSection {
         element.appendChild(paymentScheduleCard
                 .appendChild(valuesContainer)
                 .appendChild(paymentSchedulerListGroupRow
-                        .addColumn(create(12)
-                                .addElement(paymentScheduleItemsListGroup))
+                        .addColumn(Column.span12()
+                                .appendChild(paymentScheduleItemsListGroup))
                         .collapse()
                 )
                 .asElement());
@@ -173,21 +176,24 @@ public class PaymentScheduleSection implements ImportSection {
             revalidate();
         });
         listItem
-                .appendChild(Style.of(delete)
+                .appendChild(delete
+                        .style()
                         .css(Styles.pull_right)
                         .setMarginTop("-3px")
                         .setMarginLeft("10px")
                         .asElement());
 
         if (numberOfDaysTextBox.isRequired()) {
-            listItem.appendChild(Style.of(Badge.create(item.getNumberOfDays() + " days after " + item.getAfterIncident().toLowerCase())
-                    .setBackground(Color.GREEN))
+            listItem.appendChild(Badge.create(item.getNumberOfDays() + " days after " + item.getAfterIncident().toLowerCase())
+                    .setBackground(Color.GREEN)
+                    .style()
                     .css(Styles.pull_right)
                     .asElement());
         }
 
-        listItem.appendChild(Style.of(Badge.create(item.getPercentage() + "%")
-                .setBackground(Color.GREEN))
+        listItem.appendChild(Badge.create(item.getPercentage() + "%")
+                .setBackground(Color.GREEN)
+                .style()
                 .css(Styles.pull_right)
                 .asElement());
 

@@ -13,10 +13,10 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Accordion;
 import org.dominokit.domino.ui.collapsible.AccordionPanel;
 import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 
@@ -30,12 +30,6 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
 
     private HTMLDivElement element = div().asElement();
 
-    private final Column column = Column.create()
-            .onLarge(Column.OnLarge.twelve)
-            .onMedium(Column.OnMedium.twelve)
-            .onSmall(Column.OnSmall.twelve)
-            .onXSmall(Column.OnXSmall.twelve);
-
     @Override
     public HTMLDivElement getElement() {
         return element;
@@ -43,16 +37,15 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
 
     @Override
     public void init() {
-        element.appendChild(BlockHeader.create("COLLAPSE").asElement());
+
         example();
-        element.appendChild(BlockHeader.create("ACCORDION").asElement());
         accordionSample();
         colorFullWithIcons();
         multiOpenItems();
     }
 
     private void example() {
-
+        element.appendChild(BlockHeader.create("COLLAPSE").asElement());
         HTMLDivElement well = div().css("sample-div")
                 .add(div()
                         .css("well")
@@ -61,161 +54,136 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                 .asElement();
 
         Collapsible collapsible = Collapsible.create(well);
-        EventListener collapsibleListener = evt -> collapsible.toggle();
+        EventListener collapsibleListener = evt -> collapsible.toggleDisplay();
 
         Button anchorButton = Button.create("LINK WITH HREF");
-        anchorButton.justify();
         anchorButton.getClickableElement().addEventListener("click", collapsibleListener);
 
         Button button = Button.create("BUTTON");
         button.getClickableElement().addEventListener("click", collapsibleListener);
 
         element.appendChild(Row.create()
-                .addColumn(column.copy()
-                        .addElement(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
-                                .appendContent(anchorButton.htmlBuilder()
-                                        .css(Styles.m_b_15).component().setBackground(Color.PINK)
-                                        .asElement())
-                                .appendContent(new Text("\n"))
-                                .appendContent(button.htmlBuilder()
-                                        .css(Styles.m_b_15).component()
+                .addColumn(Column.span12()
+                        .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
+                                .appendChild(anchorButton.builder()
+                                        .css(Styles.m_b_15).build().setBackground(Color.PINK))
+                                .appendChild(new Text("\n"))
+                                .appendChild(button.builder()
+                                        .css(Styles.m_b_15).build()
                                         .setBackground(Color.CYAN)
                                         .asElement())
-                                .appendContent(collapsible.asElement())
-                                .asElement())).asElement());
+                                .appendChild(collapsible)))
+                .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example())
                 .asElement());
     }
 
     private void accordionSample() {
-        Row row = Row.create();
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.six)
-                .onMedium(Column.OnMedium.six)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
-
-        element.appendChild(row.addColumn(column.copy()
-                .addElement(Card.create("BASIC EXAMPLES", "Extend the default collapse behavior to create an accordion with the panel component.")
-                        .setCollapsible()
-                        .appendContent(b().textContent("Panel Primary").asElement())
-                        .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .asElement())
-                        .appendContent(b().textContent("Panel Success").asElement())
-                        .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .success()
-                                .asElement())
-                        .appendContent(b().textContent("Panel Warning").asElement())
-                        .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .warning()
-                                .asElement())
-                        .appendContent(b().textContent("Panel Danger").asElement())
-                        .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .danger()
-                                .asElement())
-                        .asElement()))
-                .addColumn(column.copy().addElement(Card.create("FULL BODY EXAMPLES", "If you want to also colorful body, you need to use fullBody method.")
-                        .setCollapsible()
-                        .appendContent(b().textContent("Panel Primary").asElement())
-                        .appendContent(Accordion.create()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .asElement())
-                        .appendContent(b().textContent("Panel Success").asElement())
-                        .appendContent(Accordion.create()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .success()
-                                .asElement())
-                        .appendContent(b().textContent("Panel Warning").asElement())
-                        .appendContent(Accordion.create()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .warning()
-                                .asElement())
-                        .appendContent(b().textContent("Panel Danger").asElement())
-                        .appendContent(Accordion.create()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
-                                .danger()
-                                .asElement())
-                        .asElement()))
+        element.appendChild(BlockHeader.create("ACCORDION").asElement());
+        element.appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(Card.create("BASIC EXAMPLES", "Extend the default collapse behavior to create an accordion with the panel component.")
+                                .setCollapsible()
+                                .appendChild(b().textContent("Panel Primary"))
+                                .appendChild(Accordion.create()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
+                                .appendChild(b().textContent("Panel Success"))
+                                .appendChild(Accordion.create()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .success())
+                                .appendChild(b().textContent("Panel Warning"))
+                                .appendChild(Accordion.create()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .warning())
+                                .appendChild(b().textContent("Panel Danger").asElement())
+                                .appendChild(Accordion.create()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .danger())))
+                .addColumn(Column.span6()
+                        .appendChild(Card.create("FULL BODY EXAMPLES", "If you want to also colorful body, you need to use fullBody method.")
+                                .setCollapsible()
+                                .appendChild(b().textContent("Panel Primary"))
+                                .appendChild(Accordion.create()
+                                        .fullBody()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
+                                .appendChild(b().textContent("Panel Success"))
+                                .appendChild(Accordion.create()
+                                        .fullBody()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .success())
+                                .appendChild(b().textContent("Panel Warning"))
+                                .appendChild(Accordion.create()
+                                        .fullBody()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .warning())
+                                .appendChild(b().textContent("Panel Danger"))
+                                .appendChild(Accordion.create()
+                                        .fullBody()
+                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .danger())))
                 .asElement());
-
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.accordionSample())
                 .asElement());
     }
 
     private void colorFullWithIcons() {
-        Row row = Row.create();
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.six)
-                .onMedium(Column.OnMedium.six)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
 
-        element.appendChild(row.addColumn(column.copy()
-                .addElement(Card.create("COLORFUL PANEL ITEMS WITH ICON")
-                        .setCollapsible()
-                        .appendContent(b().textContent("Panel Primary").asElement())
-                        .appendContent(Accordion.create()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
-                                        .setIcon(Icons.ALL.perm_contact_calendar())
-                                        .setColor(Color.PINK)
-                                        .expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.cloud_download())
-                                        .setColor(Color.CYAN))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.contact_phone())
-                                        .setColor(Color.TEAL))
-                                .addPanel(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.folder_shared())
-                                        .setColor(Color.ORANGE))
-                                .asElement())
-                        .asElement()))
-                .addColumn(column.copy().addElement(Card.create("FULL BODY COLORFUL PANEL ITEMS WITH ICON")
-                        .setCollapsible()
-                        .appendContent(b().textContent("Panel Primary").asElement())
-                        .appendContent(Accordion.create()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
-                                        .setIcon(Icons.ALL.perm_contact_calendar())
-                                        .setColor(Color.PINK)
-                                        .expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.cloud_download())
-                                        .setColor(Color.CYAN))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.contact_phone())
-                                        .setColor(Color.TEAL))
-                                .addPanel(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.folder_shared())
-                                        .setColor(Color.ORANGE))
-                                .asElement())
-                        .asElement()))
+        element.appendChild(Row.create()
+                .addColumn(Column.span6()
+                        .appendChild(Card.create("COLORFUL PANEL ITEMS WITH ICON")
+                                .setCollapsible()
+                                .appendChild(b().textContent("Panel Primary"))
+                                .appendChild(Accordion.create()
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
+                                                .setIcon(Icons.ALL.perm_contact_calendar())
+                                                .setColor(Color.PINK)
+                                                .expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.cloud_download())
+                                                .setColor(Color.CYAN))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.contact_phone())
+                                                .setColor(Color.TEAL))
+                                        .appendChild(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.folder_shared())
+                                                .setColor(Color.ORANGE)))))
+                .addColumn(Column.span6()
+                        .appendChild(Card.create("FULL BODY COLORFUL PANEL ITEMS WITH ICON")
+                                .setCollapsible()
+                                .appendChild(b().textContent("Panel Primary"))
+                                .appendChild(Accordion.create()
+                                        .fullBody()
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
+                                                .setIcon(Icons.ALL.perm_contact_calendar())
+                                                .setColor(Color.PINK)
+                                                .expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.cloud_download())
+                                                .setColor(Color.CYAN))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.contact_phone())
+                                                .setColor(Color.TEAL))
+                                        .appendChild(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.folder_shared())
+                                                .setColor(Color.ORANGE)))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
@@ -224,30 +192,28 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
     }
 
     private void multiOpenItems() {
-        Row row = Row.create();
 
-        element.appendChild(row.addColumn(column.copy()
-                .addElement(Card.create("MULTIPLE ITEMS TO BE OPEN")
-                        .setCollapsible()
-                        .appendContent(Accordion.create()
-                                .multiOpen()
-                                .fullBody()
-                                .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
-                                        .setIcon(Icons.ALL.perm_contact_calendar())
-                                        .setColor(Color.PINK)
-                                        .expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.cloud_download())
-                                        .setColor(Color.CYAN))
-                                .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)).expand()
-                                        .setIcon(Icons.ALL.contact_phone())
-                                        .setColor(Color.TEAL)
-                                        .expand())
-                                .addPanel(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
-                                        .setIcon(Icons.ALL.folder_shared())
-                                        .setColor(Color.ORANGE))
-                                .asElement())
-                        .asElement()))
+        element.appendChild(Row.create()
+                .addColumn(Column.span12()
+                        .appendChild(Card.create("MULTIPLE ITEMS TO BE OPEN")
+                                .setCollapsible()
+                                .appendChild(Accordion.create()
+                                        .multiOpen()
+                                        .fullBody()
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand()
+                                                .setIcon(Icons.ALL.perm_contact_calendar())
+                                                .setColor(Color.PINK)
+                                                .expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.cloud_download())
+                                                .setColor(Color.CYAN))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)).expand()
+                                                .setIcon(Icons.ALL.contact_phone())
+                                                .setColor(Color.TEAL)
+                                                .expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
+                                                .setIcon(Icons.ALL.folder_shared())
+                                                .setColor(Color.ORANGE)))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.multiOpenItems())

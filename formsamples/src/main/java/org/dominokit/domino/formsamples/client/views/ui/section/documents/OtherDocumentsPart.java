@@ -7,22 +7,22 @@ import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.formsamples.shared.model.OtherDocumentsItem;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
-import static org.dominokit.domino.ui.column.Column.*;
+import static org.dominokit.domino.ui.grid.Column.*;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class OtherDocumentsPart implements ImportSection {
@@ -48,7 +48,7 @@ public class OtherDocumentsPart implements ImportSection {
 
         Card otherDocumentsCard = Card.create("Other documents").setBodyPaddingTop("40px");
         otherDocumentsCard.getHeaderBar()
-                .appendChild(IconButton.createDefault(Icons.ALL.add())
+                .appendChild(Button.createDefault(Icons.ALL.add())
                         .setContent("ADD")
                         .linkify()
                         .addClickListener(evt -> {
@@ -61,13 +61,13 @@ public class OtherDocumentsPart implements ImportSection {
                 .collapse();
         element.appendChild(otherDocumentsCard
                 .appendChild(Row.create()
-                        .addColumn(span4().addElement(otherDocumentsCopiesTextBox.setRequired(true)))
+                        .addColumn(span4().appendChild(otherDocumentsCopiesTextBox.setRequired(true)))
                         .addColumn(span8()
-                                .addElement(otherDocumentsDescriptionTextBox.setRequired(true)))
+                                .appendChild(otherDocumentsDescriptionTextBox.setRequired(true)))
                 )
                 .appendChild(otherDocumentListGroupRow
                         .addColumn(span12()
-                                .addElement(otherDocumentsItemListGroup)
+                                .appendChild(otherDocumentsItemListGroup)
                         )
                 )
                 .asElement());
@@ -94,8 +94,8 @@ public class OtherDocumentsPart implements ImportSection {
         }
 
         listItem
-                .appendContent(delete.asElement())
-                .appendContent(createCopiesBadge(item));
+                .appendChild(delete)
+                .appendChild(createCopiesBadge(item));
 
         otherDocumentsCopiesTextBox.clear();
         otherDocumentsCopiesTextBox.clearInvalid();
@@ -103,11 +103,11 @@ public class OtherDocumentsPart implements ImportSection {
         otherDocumentsDescriptionTextBox.clearInvalid();
     }
 
-    private HTMLElement createCopiesBadge(OtherDocumentsItem item) {
-        return Style.of(Badge.create(item.getNumberOfCopies() + " Copies")
-                .setBackground(Color.GREEN))
-                .css(Styles.pull_right)
-                .asElement();
+    private Badge createCopiesBadge(OtherDocumentsItem item) {
+        return Badge.create(item.getNumberOfCopies() + " Copies")
+                .setBackground(Color.GREEN)
+                .style()
+                .css(Styles.pull_right).get();
     }
 
     private OtherDocumentsItem makeNewOtherDocument() {

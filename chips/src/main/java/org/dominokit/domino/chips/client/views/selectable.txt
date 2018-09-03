@@ -15,27 +15,27 @@ accessories.addSelectionHandler(() -> accessories.setLeftIcon(Icons.ALL.check())
 accessories.addDeselectionHandler(accessories::removeLeftAddon);
 
 selectableChipsCard.appendChild(Row.create()
-        .addColumn(Column.span12()
-                .addElement(tops)
-                .addElement(bottoms)
-                .addElement(shoes)
-                .addElement(accessories)
-        ));
+    .addColumn(Column.span12()
+            .appendChild(tops)
+            .appendChild(bottoms)
+            .appendChild(shoes)
+            .appendChild(accessories)
+    ));
 
 selectableChipsCard.appendChild(br());
 selectableChipsCard.appendChild(BlockHeader.create("Choice chips"));
 
 ChipsGroup chipsGroup = ChipsGroup.create()
-        .addChip(Chip.create("Extra small"))
-        .addChip(Chip.create("Small"))
-        .addChip(Chip.create("Medium"))
-        .addChip(Chip.create("Large"))
-        .addChip(Chip.create("Extra large"))
-        .setColorScheme(ColorScheme.TEAL);
+    .addChip(Chip.create("Extra small"))
+    .addChip(Chip.create("Small"))
+    .addChip(Chip.create("Medium"))
+    .addChip(Chip.create("Large"))
+    .addChip(Chip.create("Extra large"))
+    .setColorScheme(ColorScheme.TEAL);
 selectableChipsCard.appendChild(Row.create()
-        .addColumn(Column.span12()
-                .addElement(chipsGroup
-                        .addSelectionHandler(() -> Notification
-                                .createInfo("Chip [ " + chipsGroup.getSelectedChip().getValue() + " ] is selected").show())
-                        .selectAt(0)))
+    .addColumn(Column.span12()
+            .appendChild(chipsGroup
+                    .addSelectionHandler(() -> Notification
+                            .createInfo("Chip [ " + chipsGroup.getSelectedChip().getValue() + " ] is selected").show())
+                    .selectAt(0)))
 );

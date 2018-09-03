@@ -8,12 +8,12 @@ import org.dominokit.domino.popover.client.presenters.PopoverPresenter;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.popover.Tooltip;
-import org.dominokit.domino.ui.row.Row;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 
@@ -23,11 +23,6 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements PopoverView {
 
     private HTMLDivElement element = div().asElement();
-    private Column column = Column.create()
-            .onLarge(Column.OnLarge.three)
-            .onMedium(Column.OnMedium.three)
-            .onSmall(Column.OnSmall.twelve)
-            .onXSmall(Column.OnXSmall.twelve);
 
     @Override
     public void init() {
@@ -39,74 +34,73 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
     }
 
     private void tooltips() {
-        HTMLElement tooltip_on_right = Button.createPrimary("TOOLTIP ON RIGHT").block().asElement();
+        Button tooltip_on_right = Button.createPrimary("TOOLTIP ON RIGHT").block();
 
         Tooltip.create(tooltip_on_right, "Tooltip on right")
                 .position(PopupPosition.RIGHT);
 
-        HTMLElement tooltip_on_top = Button.createPrimary("TOOLTIP ON TOP").block().asElement();
+        Button tooltip_on_top = Button.createPrimary("TOOLTIP ON TOP").block();
 
         Tooltip.create(tooltip_on_top, "Tooltip on top")
                 .position(PopupPosition.TOP);
 
-        HTMLElement tooltip_on_bottom = Button.createPrimary("TOOLTIP ON BOTTOM").block().asElement();
+        Button tooltip_on_bottom = Button.createPrimary("TOOLTIP ON BOTTOM").block();
 
         Tooltip.create(tooltip_on_bottom, "Tooltip on bottom")
                 .position(PopupPosition.BOTTOM);
 
-        HTMLElement tooltip_on_left = Button.createPrimary("TOOLTIP ON LEFT").block().asElement();
+        Button tooltip_on_left = Button.createPrimary("TOOLTIP ON LEFT").block();
 
         Tooltip.create(tooltip_on_left, "Tooltip on left")
                 .position(PopupPosition.LEFT);
 
         element.appendChild(Card.create("TOOLTIPS")
-                .appendContent(Row.create()
-                        .addColumn(column.copy()
-                                .addElement(tooltip_on_right))
-                        .addColumn(column.copy()
-                                .addElement(tooltip_on_top))
-                        .addColumn(column.copy()
-                                .addElement(tooltip_on_bottom))
-                        .addColumn(column.copy()
-                                .addElement(tooltip_on_left))
-                        .asElement())
+                .appendChild(Row.create()
+                        .addColumn(Column.span3()
+                                .appendChild(tooltip_on_right))
+                        .addColumn(Column.span3()
+                                .appendChild(tooltip_on_top))
+                        .addColumn(Column.span3()
+                                .appendChild(tooltip_on_bottom))
+                        .addColumn(Column.span3()
+                                .appendChild(tooltip_on_left))
+                        )
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
     }
 
     private void popover() {
-        HTMLElement popover_on_right = Button.createPrimary("POPOVER ON RIGHT").block().asElement();
+        Button popover_on_right = Button.createPrimary("POPOVER ON RIGHT").block();
 
-        Popover.create(popover_on_right, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        Popover.create(popover_on_right, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
                 .position(PopupPosition.RIGHT);
 
-        HTMLElement popover_on_top = Button.createPrimary("POPOVER ON TOP").block().asElement();
+        Button popover_on_top = Button.createPrimary("POPOVER ON TOP").block();
 
-        Popover.create(popover_on_top, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        Popover.create(popover_on_top, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
                 .position(PopupPosition.TOP);
 
-        HTMLElement popover_on_bottom = Button.createPrimary("POPOVER ON BOTTOM").block().asElement();
+        Button popover_on_bottom = Button.createPrimary("POPOVER ON BOTTOM").block();
 
-        Popover.create(popover_on_bottom, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        Popover.create(popover_on_bottom, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
                 .position(PopupPosition.BOTTOM);
 
-        HTMLElement popover_on_left = Button.createPrimary("POPOVER ON LEFT").block().asElement();
+        Button popover_on_left = Button.createPrimary("POPOVER ON LEFT").block();
 
-        Popover.create(popover_on_left, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus.").asElement())
+        Popover.create(popover_on_left, "Popover on right", Paragraph.create("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
                 .position(PopupPosition.LEFT);
 
         element.appendChild(Card.create("POPOVER")
-                .appendContent(Row.create()
-                        .addColumn(column.copy()
-                                .addElement(popover_on_right))
-                        .addColumn(column.copy()
-                                .addElement(popover_on_top))
-                        .addColumn(column.copy()
-                                .addElement(popover_on_bottom))
-                        .addColumn(column.copy()
-                                .addElement(popover_on_left))
-                        .asElement())
+                .appendChild(Row.create()
+                        .addColumn(Column.span3()
+                                .appendChild(popover_on_right))
+                        .addColumn(Column.span3()
+                                .appendChild(popover_on_top))
+                        .addColumn(Column.span3()
+                                .appendChild(popover_on_bottom))
+                        .addColumn(Column.span3()
+                                .appendChild(popover_on_left)))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popover()).asElement());

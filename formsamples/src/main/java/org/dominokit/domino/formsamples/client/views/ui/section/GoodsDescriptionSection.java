@@ -7,7 +7,6 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.TextArea;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
@@ -31,7 +30,8 @@ public class GoodsDescriptionSection implements ImportSection {
 
         goodsDescriptionTextArea.getInputElement().addEventListener("input", evt -> revalidate());
 
-        card = Style.of(Card.create())
+        card = Card.create()
+                .style()
                 .setPaddingTop("20px").get();
 
         element.appendChild(card

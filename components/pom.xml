@@ -33,7 +33,6 @@
 
   <modules>
     <module>components-frontend</module>
-    <module>components-frontend-ui</module>
     <module>components-shared</module>
   </modules>
 </project>

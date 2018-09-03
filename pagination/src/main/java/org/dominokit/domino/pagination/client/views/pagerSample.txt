@@ -1,7 +1,13 @@
 Pager.create()
     .onNext(() -> DomGlobal.console.info("Going to next page."))
+    .onPrevious(() -> DomGlobal.console.info("Going to previous page."));
+
+Pager.create()
+    .onNext(() -> DomGlobal.console.info("Going to next page."))
     .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
-    .asElement();
+    .nextText("Newer")
+    .previousText("Older")
+    .showArrows();
 
 Pager.create()
     .onNext(() -> DomGlobal.console.info("Going to next page."))
@@ -9,7 +15,7 @@ Pager.create()
     .nextText("Newer")
     .previousText("Older")
     .showArrows()
-    .asElement();
+    .expand();
 
 Pager.create()
     .onNext(() -> DomGlobal.console.info("Going to next page."))
@@ -18,14 +24,4 @@ Pager.create()
     .previousText("Older")
     .showArrows()
     .expand()
-    .asElement();
-
-Pager.create()
-    .onNext(() -> DomGlobal.console.info("Going to next page."))
-    .onPrevious(() -> DomGlobal.console.info("Going to previous page."))
-    .nextText("Newer")
-    .previousText("Older")
-    .showArrows()
-    .expand()
-    .disablePrevious()
-    .asElement();
+    .disablePrevious();

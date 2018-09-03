@@ -5,13 +5,12 @@ import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.CorporateProfile;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.datepicker.DateBox;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import java.util.Date;
 
@@ -31,22 +30,26 @@ public class GeneralSection implements ImportSection {
         placeTextBox = TextBox.create("Place")
                 .setValue("Amman");
 
-        element.appendChild(Style.of(Card.create())
+        element.appendChild(Card.create()
+                .style()
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(Style.of(Column.span6()).setMarginBottom("0px").get()
-                                .addElement(creationDateBox
+                        .addColumn(Column.span6()
+                                .style()
+                                .setMarginBottom("0px").get()
+                                .appendChild(creationDateBox
                                         .setPattern(DATE_PATTERN)
                                         .setHelperText(DATE_PATTERN)
                                         .setLabel("Date")
                                         .setLeftAddon(Icons.ALL.date_range())
                                         .setReadOnly(true)
                                         .setValue(new Date())))
-                        .addColumn(Style.of(Column.span6())
+                        .addColumn(Column.span6()
+                                .style()
                                 .setMarginBottom("0px")
                                 .get()
-                                .addElement(placeTextBox
+                                .appendChild(placeTextBox
                                         .setReadOnly(true)
                                         .setLeftAddon(Icons.ALL.location_on())
                                         .setValue(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))

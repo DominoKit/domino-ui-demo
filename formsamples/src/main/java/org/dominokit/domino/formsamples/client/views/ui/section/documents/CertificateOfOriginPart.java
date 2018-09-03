@@ -8,11 +8,10 @@ import org.dominokit.domino.formsamples.shared.model.Country;
 import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import java.util.List;
 
@@ -98,19 +97,18 @@ public class CertificateOfOriginPart implements ImportSection {
         certificateOfOriginCard.getHeaderDescription().appendChild(certificateOfOriginRequiredSwitchButton.asElement());
 
 
-        element.appendChild(Style.of(certificateOfOriginCard)
-                .get()
+        element.appendChild(certificateOfOriginCard
                 .appendChild(Row.create()
-                        .addColumn(Column.span4().addElement(certificateOfOriginCopiesTextBox))
-                        .addColumn(Column.span4().addElement(numberOfCopiesTextBox))
+                        .addColumn(Column.span4().appendChild(certificateOfOriginCopiesTextBox))
+                        .addColumn(Column.span4().appendChild(numberOfCopiesTextBox))
                 ).appendChild(Row.create()
-                        .addColumn(Column.span8().addElement(certificateOfOriginTextBox)))
+                        .addColumn(Column.span8().appendChild(certificateOfOriginTextBox)))
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().addElement(certificateOfOriginLocalizationEntitiesSelect))
-                        .addColumn(Column.span6().addElement(certificateOfOriginOriginCountrySelect))
+                        .addColumn(Column.span6().appendChild(certificateOfOriginLocalizationEntitiesSelect))
+                        .addColumn(Column.span6().appendChild(certificateOfOriginOriginCountrySelect))
                 ).appendChild(Row.create()
-                        .addColumn(Column.span6().copy().addElement(certificateOfOriginOriginOfGoodsCountrySelect))
-                        .addColumn(Column.span6().copy().addElement(certificateOfOriginOriginOfLocalizationEntitiesCountrySelect)))
+                        .addColumn(Column.span6().copy().appendChild(certificateOfOriginOriginOfGoodsCountrySelect))
+                        .addColumn(Column.span6().copy().appendChild(certificateOfOriginOriginOfLocalizationEntitiesCountrySelect)))
                 .asElement());
 
     }

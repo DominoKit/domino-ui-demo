@@ -1,33 +1,28 @@
-HTMLElement cancel = Icons.ALL.cancel().asElement();
+Icon cancel = Icons.ALL.cancel();
+
 TextBox username = TextBox.create("Username")
-        .setLeftAddon(Icons.ALL.account_circle().asElement())
+        .setLeftAddon(Icons.ALL.account_circle())
         .setRightAddon(cancel);
+cancel.addClickListener(evt -> username.clear())
+        .style().setCursor("pointer");
 
-cancel.style.cursor = "pointer";
-cancel.addEventListener("click", evt -> {
-    username.clear();
-});
-
-HTMLElement showIcon = Icons.ALL.remove_red_eye().asElement();
+HTMLElement showIcon = Icons.ALL.remove_red_eye()
+        .style()
+        .setCursor("pointer").asElement();
 TextBox password = TextBox.password("Password")
         .setLeftAddon(Icons.ALL.https().asElement())
         .setRightAddon(showIcon);
 
-showIcon.style.cursor = "pointer";
-showIcon.addEventListener("mousedown", evt -> {
-    password.getInputElement().type = "text";
-});
-showIcon.addEventListener("mouseup", evt -> {
-    password.getInputElement().type = "password";
-});
+showIcon.addEventListener("mousedown", evt -> password.getInputElement().type = "text");
+showIcon.addEventListener("mouseup", evt -> password.getInputElement().type = "password");
+
 Icon info = Icons.ALL.info();
-Tooltip.create(info.asElement(), "All system pages will be shown in the selected language");
-iconsCard.appendContent(username.asElement())
-        .appendContent(password.asElement())
-        .appendContent(TextArea.create("Description")
-                .setLeftAddon(Icons.ALL.description().asElement())
-                .asElement())
-        .appendContent(Select.<String>create("Language")
+Tooltip.create(info, "All system pages will be shown in the selected language");
+iconsCard.appendChild(username)
+        .appendChild(password)
+        .appendChild(TextArea.create("Description")
+                .setLeftAddon(Icons.ALL.description()))
+        .appendChild(Select.<String>create("Language")
                 .setLeftAddon(Icons.ALL.language())
                 .setRightAddon(info)
                 .addOption(SelectOption.create("english", "English"))

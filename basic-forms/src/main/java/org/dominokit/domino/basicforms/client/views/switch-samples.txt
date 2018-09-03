@@ -1,40 +1,36 @@
-switchCard.appendContent(Elements.h(5).textContent("Basic Examples").style("margin-bottom: 25px;").asElement());
+switchCard.appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"));
 
-Column column = Column.create()
-        .onLarge(Column.OnLarge.three)
-        .onXSmall(Column.OnXSmall.twelve);
-switchCard.appendContent(Row.create()
-        .addColumn(column.addElement(SwitchButton.create("OFF", "ON").asElement()))
-        .addColumn(column.copy().addElement(SwitchButton.create().setOffTitle("DISABLED").disable().asElement()))
-        .asElement());
+Column column = Column.span3();
+switchCard.appendChild(Row.create()
+        .addColumn(column.appendChild(SwitchButton.create().setOffTitle("OFF").setOnTitle("ON")))
+        .addColumn(column.copy().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
 
-switchCard.appendContent(Elements.h(5).textContent("With Material Design Colors").asElement());
+switchCard.appendChild(h(5).textContent("With Material Design Colors"));
 
-switchCard.appendContent(Row.create()
+switchCard.appendChild(Row.create()
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("RED").setColor(Color.RED).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("RED").setColor(Color.RED).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("PINK").setColor(Color.PINK).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("PINK").setColor(Color.PINK).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("INDIGO").setColor(Color.INDIGO).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("INDIGO").setColor(Color.INDIGO).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("BLUE").setColor(Color.BLUE).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("BLUE").setColor(Color.BLUE).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("CYAN").setColor(Color.CYAN).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("CYAN").setColor(Color.CYAN).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("TEAL").setColor(Color.TEAL).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("TEAL").setColor(Color.TEAL).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("GREEN").setColor(Color.GREEN).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("GREEN").setColor(Color.GREEN).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("LIME").setColor(Color.LIME).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("LIME").setColor(Color.LIME).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("YELLOW").setColor(Color.YELLOW).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("YELLOW").setColor(Color.YELLOW).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("AMBER").setColor(Color.AMBER).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("AMBER").setColor(Color.AMBER).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("ORANGE").setColor(Color.ORANGE).check().asElement()))
+                .appendChild(SwitchButton.create().setOffTitle("ORANGE").setColor(Color.ORANGE).check()))
         .addColumn(column.copy()
-                .addElement(SwitchButton.create().setOffTitle("GREY").setColor(Color.GREY).check().asElement()))
-        .asElement());
+                .appendChild(SwitchButton.create().setOffTitle("GREY").setColor(Color.GREY).check())));

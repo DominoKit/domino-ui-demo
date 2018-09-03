@@ -78,7 +78,7 @@ tableConfig
 
         .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
-                    IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
+                    Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
                             .linkify();
 
                     Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
@@ -101,7 +101,7 @@ tableConfig
                     return selectInactiveButton.asElement();
                 })
                 .addActionElement(dataTable -> {
-                    IconButton selectInactiveButton = IconButton.create(Icons.ALL.check_circle())
+                    Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
                             .linkify();
 
                     Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));

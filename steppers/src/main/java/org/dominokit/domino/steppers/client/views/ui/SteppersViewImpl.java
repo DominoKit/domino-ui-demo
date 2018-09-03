@@ -6,22 +6,21 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
 import org.dominokit.domino.steppers.client.views.CodeResource;
 import org.dominokit.domino.steppers.client.views.SteppersView;
-import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.steppers.Step;
 import org.dominokit.domino.ui.steppers.Stepper;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 
-import static org.dominokit.domino.ui.column.Column.span12;
-import static org.dominokit.domino.ui.column.Column.span6;
+import static org.dominokit.domino.ui.grid.Column.span12;
+import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = SteppersPresenter.class)
@@ -61,9 +60,9 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepOne = Step.create("Contact name", "Contact name step")
                 .setValidator(() -> nameTextBox.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(nameTextBox)))
+                        .addColumn(span6().appendChild(nameTextBox)))
                 .appendFooterChild(Row.create()
-                        .addColumn(span6().addElement(Style.of(Button.createPrimary("Next"))
+                        .addColumn(span6().appendChild(Style.of(Button.createPrimary("Next"))
                                 .setMinWidth("120px")
                                 .setMarginRight("5px")
                                 .get()
@@ -73,15 +72,15 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepTow = Step.create("Contact email", "Contact email step")
                 .setValidator(() -> email.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(email)))
+                        .addColumn(span6().appendChild(email)))
                 .appendFooterChild(Row.create()
                         .addColumn(span6()
-                                .addElement(Style.of(Button.createPrimary("Back"))
+                                .appendChild(Style.of(Button.createPrimary("Back"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
                                         .addClickListener(evt -> stepper.back()))
-                                .addElement(Style.of(Button.createPrimary("Next"))
+                                .appendChild(Style.of(Button.createPrimary("Next"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
@@ -91,17 +90,17 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepThree = Step.create("Contact phone", "Contact phone step")
                 .setValidator(() -> phone.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(phone)))
+                        .addColumn(span6().appendChild(phone)))
                 .appendFooterChild(Row.create()
                         .addColumn(span6()
-                                .addElement(Style.of(Button.createPrimary("Back"))
+                                .appendChild(Style.of(Button.createPrimary("Back"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
                                         .addClickListener(evt -> {
                                             stepper.back();
                                         }))
-                                .addElement(Style.of(Button.createPrimary("Finish"))
+                                .appendChild(Style.of(Button.createPrimary("Finish"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
@@ -117,7 +116,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         element.appendChild(Card.create("VERTICAL STEPPER")
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(stepper)))
+                        .addColumn(span6().appendChild(stepper)))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
@@ -147,9 +146,9 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepOne = Step.create("Contact name", "Contact name step")
                 .setValidator(() -> nameTextBox.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(nameTextBox)))
+                        .addColumn(span6().appendChild(nameTextBox)))
                 .appendFooterChild(Row.create()
-                        .addColumn(span12().addElement(Style.of(Button.createPrimary("Next"))
+                        .addColumn(span12().appendChild(Style.of(Button.createPrimary("Next"))
                                 .setMinWidth("120px")
                                 .setMarginRight("5px")
                                 .get()
@@ -159,15 +158,15 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepTow = Step.create("Contact email", "Contact email step")
                 .setValidator(() -> email.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(email)))
+                        .addColumn(span6().appendChild(email)))
                 .appendFooterChild(Row.create()
                         .addColumn(span6()
-                                .addElement(Style.of(Button.createPrimary("Back"))
+                                .appendChild(Style.of(Button.createPrimary("Back"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
                                         .addClickListener(evt -> stepper.back()))
-                                .addElement(Style.of(Button.createPrimary("Next"))
+                                .appendChild(Style.of(Button.createPrimary("Next"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
@@ -177,17 +176,17 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Step stepThree = Step.create("Contact phone", "Contact phone step")
                 .setValidator(() -> phone.validate().isValid())
                 .appendChild(Row.create()
-                        .addColumn(span6().addElement(phone)))
+                        .addColumn(span6().appendChild(phone)))
                 .appendFooterChild(Row.create()
                         .addColumn(span6()
-                                .addElement(Style.of(Button.createPrimary("Back"))
+                                .appendChild(Style.of(Button.createPrimary("Back"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
                                         .addClickListener(evt -> {
                                             stepper.back();
                                         }))
-                                .addElement(Style.of(Button.createPrimary("Finish"))
+                                .appendChild(Style.of(Button.createPrimary("Finish"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
@@ -203,7 +202,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         element.appendChild(Card.create("HORIZONTAL STEPPER")
                 .appendChild(Row.create()
-                        .addColumn(span12().addElement(stepper)))
+                        .addColumn(span12().appendChild(stepper)))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());

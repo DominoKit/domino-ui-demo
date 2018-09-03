@@ -8,16 +8,16 @@ import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
 import org.dominokit.domino.timepicker.client.views.CodeResource;
 import org.dominokit.domino.timepicker.client.views.TimePickerView;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.timepicker.ClockStyle;
@@ -33,13 +33,10 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     private HTMLDivElement element = div().asElement();
 
-    private Column column = Column.create()
-            .onLarge(Column.OnLarge.four)
-            .onMedium(Column.OnMedium.four)
-            .onSmall(Column.OnSmall.twelve)
-            .onXSmall(Column.OnXSmall.twelve)
-            .addCssClass(Styles.padding_0)
-            .centerContent();
+    private Column column = Column.span4()
+            .centerContent()
+            .style()
+            .css(Styles.padding_0).get();
 
     @Override
     public void init() {
@@ -52,17 +49,16 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void inlined() {
         element.appendChild(Card.create("INLINED")
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(TimePicker.create()
+                .appendChild(Row.create()
+                        .addColumn(column.copy().appendChild(TimePicker.create()
                                 .fixedWidth("270px")
                                 .showBorder()
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         DomGlobal.console.info(timePicker.getFormattedTime())
-                                )
-                                .asElement()))
-                        .addColumn(column.copy().addElement(TimePicker.create(new DateTimeFormatInfoImpl_de())
+                                )))
+                        .addColumn(column.copy().appendChild(TimePicker.create(new DateTimeFormatInfoImpl_de())
                                 .fixedWidth("270px")
                                 .setColorScheme(ColorScheme.PINK)
                                 .showBorder()
@@ -71,9 +67,8 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         DomGlobal.console.info(timePicker.getFormattedTime()))
-                                .todayButtonText("nu")
-                                .asElement()))
-                        .addColumn(column.copy().addElement(TimePicker.create()
+                                .todayButtonText("nu")))
+                        .addColumn(column.copy().appendChild(TimePicker.create()
                                 .fixedWidth("270px")
                                 .setColorScheme(ColorScheme.GREEN)
                                 .setClockStyle(ClockStyle._24)
@@ -81,22 +76,19 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                 .hideClearButton()
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        DomGlobal.console.info(timePicker.getFormattedTime()))
-                                .asElement()))
-                        .asElement())
+                                        DomGlobal.console.info(timePicker.getFormattedTime())))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
     }
 
     private void popups() {
-        Button bluePopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button bluePopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
         TimePicker bluePopTimePicker = TimePicker.create()
                 .showBorder()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
-        Popover bluePopover = Popover.create(bluePopupButton.asElement(), "Wakeup", bluePopTimePicker
-                .asElement());
+        Popover bluePopover = Popover.create(bluePopupButton, "Wakeup", bluePopTimePicker);
 
         bluePopTimePicker.addCloseHandler(() -> bluePopover.close());
         bluePopTimePicker.addClearHandler(() ->
@@ -106,15 +98,14 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .show());
 
 
-        Button pinkPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+        Button pinkPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
         TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
-        Popover pinkPopover = Popover.createPicker(pinkPopupButton.asElement(),  pinkPopDatePicker
-                .asElement());
+        Popover pinkPopover = Popover.createPicker(pinkPopupButton,  pinkPopDatePicker);
 
-        pinkPopDatePicker.addCloseHandler(() -> pinkPopover.close());
+        pinkPopDatePicker.addCloseHandler(pinkPopover::close);
         pinkPopDatePicker.addClearHandler(() ->
                 Notification.create("a Click on clear button")
                         .setPosition(Notification.TOP_CENTER)
@@ -122,15 +113,14 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .show());
 
 
-        Button greenPopupButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
         TimePicker greenPopDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
-        Popover greenPopover = Popover.createPicker(greenPopupButton.asElement(), greenPopDatePicker
-                .asElement());
+        Popover greenPopover = Popover.createPicker(greenPopupButton, greenPopDatePicker);
 
-        greenPopDatePicker.addCloseHandler(() -> greenPopover.close());
+        greenPopDatePicker.addCloseHandler(greenPopover::close);
         greenPopDatePicker.addClearHandler(() ->
                 Notification.create("a Click on clear button")
                         .setPosition(Notification.TOP_RIGHT)
@@ -138,75 +128,75 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .show());
 
 
-        Button blueModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button blueModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
         TimePicker blueDatePicker = TimePicker.create()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
 
         ModalDialog blueModal = blueDatePicker.createModal("Wakeup");
-        blueDatePicker.addCloseHandler(() -> blueModal.close());
+        blueDatePicker.addCloseHandler(blueModal::close);
         blueDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
                 .setPosition(Notification.TOP_LEFT)
                 .setBackground(ColorScheme.BLUE.color())
                 .show());
 
 
-        blueModal.appendContent(blueDatePicker.asElement());
+        blueModal.appendChild(blueDatePicker.asElement());
         DomGlobal.document.body.appendChild(blueModal.asElement());
 
         blueModalButton.addClickListener(evt -> blueModal.open());
 
 
-        Button pinkModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+        Button pinkModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
         TimePicker pinkDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
         ModalDialog pinkModal = pinkDatePicker.createModal("Wakeup");
 
-        pinkDatePicker.addCloseHandler(() -> pinkModal.close());
+        pinkDatePicker.addCloseHandler(pinkModal::close);
         pinkDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
                 .setPosition(Notification.TOP_CENTER)
                 .setBackground(ColorScheme.PINK.color())
                 .show());
 
-        pinkModal.appendContent(pinkDatePicker.asElement());
+        pinkModal.appendChild(pinkDatePicker);
         DomGlobal.document.body.appendChild(pinkModal.asElement());
 
         pinkModalButton.addClickListener(evt -> pinkModal.open());
 
 
-        Button greenModalButton = IconButton.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
         TimePicker greenDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
         ModalDialog greenModal = greenDatePicker.createModal("Wakeup");
-        greenDatePicker.addCloseHandler(() -> greenModal.close());
+        greenDatePicker.addCloseHandler(greenModal::close);
         greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
                 .setPosition(Notification.TOP_RIGHT)
                 .setBackground(ColorScheme.GREEN.color())
                 .show());
 
-        greenModal.appendContent(greenDatePicker.asElement());
+        greenModal.appendChild(greenDatePicker);
         DomGlobal.document.body.appendChild(greenModal.asElement());
 
         greenModalButton.addClickListener(evt -> greenModal.open());
 
 
         element.appendChild(Card.create("POPUP")
-                .appendContent(BlockHeader.create("POP OVER").asElement())
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(bluePopupButton.asElement()))
-                        .addColumn(column.copy().addElement(pinkPopupButton.asElement()))
-                        .addColumn(column.copy().addElement(greenPopupButton.asElement()))
-                        .asElement())
-                .appendContent(BlockHeader.create("MODAL").asElement())
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(blueModalButton.asElement()))
-                        .addColumn(column.copy().addElement(pinkModalButton.asElement()))
-                        .addColumn(column.copy().addElement(greenModalButton.asElement()))
-                        .asElement())
+                .appendChild(BlockHeader.create("POP OVER"))
+                .appendChild(Row.create()
+                        .addColumn(column.copy().appendChild(bluePopupButton))
+                        .addColumn(column.copy().appendChild(pinkPopupButton))
+                        .addColumn(column.copy().appendChild(greenPopupButton))
+                        )
+                .appendChild(BlockHeader.create("MODAL"))
+                .appendChild(Row.create()
+                        .addColumn(column.copy().appendChild(blueModalButton))
+                        .addColumn(column.copy().appendChild(pinkModalButton))
+                        .addColumn(column.copy().appendChild(greenModalButton))
+                        )
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
@@ -215,7 +205,8 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
     private void timeBox() {
 
         Column column = this.column.copy()
-                .removeCssClass(Styles.padding_0);
+                .style()
+                .removeCss(Styles.padding_0).get();
 
         TimeBox timeBox1 = TimeBox.create()
                 .floating()
@@ -236,11 +227,11 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
 
         element.appendChild(Card.create("TIME BOX")
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(timeBox1.asElement()))
-                        .addColumn(column.copy().addElement(timeBox2.asElement()))
-                        .addColumn(column.copy().addElement(timeBox3.asElement()))
-                        .asElement())
+                .appendChild(Row.create()
+                        .addColumn(column.copy().appendChild(timeBox1))
+                        .addColumn(column.copy().appendChild(timeBox2))
+                        .addColumn(column.copy().appendChild(timeBox3))
+                        )
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());

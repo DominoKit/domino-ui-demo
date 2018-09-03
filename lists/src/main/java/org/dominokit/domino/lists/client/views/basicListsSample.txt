@@ -1,34 +1,29 @@
-Row row = Row.create();
-Column column = Column.create()
-        .onLarge(Column.OnLarge.six)
-        .onMedium(Column.OnMedium.six)
-        .onSmall(Column.OnSmall.twelve)
-        .onXSmall(Column.OnXSmall.twelve);
-element.appendChild(row.asElement());
-
-row.addColumn(column.addElement(Card.create("BASIC EXAMPLES", "The most basic list group is simply an unordered list with list items, and the proper classes.")
-        .appendContent(SimpleListGroup.create()
-                .appendItem("Cras justo odio")
-                .appendItem("Dapibus ac facilisis in")
-                .appendItem("Morbi leo risus")
-                .appendItem("Porta ac consectetur ac")
-                .appendItem("Vestibulum at eros")
-                .asElement()).asElement()));
-
-row.addColumn(column.copy().addElement(Card.create("BADGES", "Add the badges component to any list group item and it will automatically be positioned on the right.")
-        .appendContent(SimpleListGroup.create()
-                .appendItem(SimpleListItem.create("Cras justo odio")
-                        .appendContent(Badge.create("14 new").setBackground(Background.PINK).asElement()))
-
-                .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
-                        .appendContent(Badge.create("99 unread").setBackground(Background.CYAN).asElement()))
-
-                .appendItem(SimpleListItem.create("Morbi leo risus")
-                        .appendContent(Badge.create("99+").setBackground(Background.TEAL).asElement()))
-
-                .appendItem(SimpleListItem.create("Porta ac consectetur ac")
-                        .appendContent(Badge.create("21").setBackground(Background.ORANGE).asElement()))
-
-                .appendItem(SimpleListItem.create("Vestibulum at eros")
-                        .appendContent(Badge.create("Pending").setBackground(Background.PURPLE).asElement()))
-                .asElement()).asElement()));
+element.appendChild(Row.create()
+    .addColumn(Column.span6()
+            .appendChild(Card.create("BASIC EXAMPLES", "The most basic list group is simply an unordered list with list items, and the proper classes.")
+                    .appendChild(SimpleListGroup.create()
+                            .appendChild("Cras justo odio")
+                            .appendChild("Dapibus ac facilisis in")
+                            .appendChild("Morbi leo risus")
+                            .appendChild("Porta ac consectetur ac")
+                            .appendChild("Vestibulum at eros")
+                            .asElement()).asElement()))
+    .addColumn(Column.span6()
+            .appendChild(Card.create("BADGES", "Add the badges component to any list group item and it will automatically be positioned on the right.")
+                    .appendChild(SimpleListGroup.create()
+                            .appendChild(SimpleListItem.create("Cras justo odio")
+                                    .appendChild(Badge.create("14 new")
+                                            .setBackground(Color.PINK)))
+                            .appendChild(SimpleListItem.create("Dapibus ac facilisis in")
+                                    .appendChild(Badge.create("99 unread")
+                                            .setBackground(Color.CYAN)))
+                            .appendChild(SimpleListItem.create("Morbi leo risus")
+                                    .appendChild(Badge.create("99+")
+                                            .setBackground(Color.TEAL)))
+                            .appendChild(SimpleListItem.create("Porta ac consectetur ac")
+                                    .appendChild(Badge.create("21")
+                                            .setBackground(Color.ORANGE)))
+                            .appendChild(SimpleListItem.create("Vestibulum at eros")
+                                    .appendChild(Badge.create("Pending")
+                                            .setBackground(Color.PURPLE))))))
+    .asElement());

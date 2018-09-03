@@ -177,12 +177,34 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>layoutSample</artifactId>
+            <artifactId>layouts</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>layoutSample</artifactId>
+            <artifactId>layouts</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>appLayout</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>appLayout</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>gridLayout</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>gridLayout</artifactId>
             <version>1.0-SNAPSHOT</version>
             <classifier>sources</classifier>
         </dependency>
@@ -194,17 +216,6 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-frontend</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-frontend-ui</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-frontend-ui</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>

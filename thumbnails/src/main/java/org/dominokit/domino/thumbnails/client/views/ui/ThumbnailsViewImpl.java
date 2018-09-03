@@ -9,9 +9,9 @@ import org.dominokit.domino.thumbnails.client.presenters.ThumbnailsPresenter;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.thumbnails.Thumbnail;
 import elemental2.dom.HTMLDivElement;
@@ -23,11 +23,6 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private static final String SAMPLE_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
     private final HTMLDivElement element = div().asElement();
-    private final Column column = Column.create()
-            .onLarge(Column.OnLarge.three)
-            .onMedium(Column.OnMedium.three)
-            .onSmall(Column.OnSmall.twelve)
-            .onXSmall(Column.OnXSmall.twelve);
 
     @Override
     public void init() {
@@ -40,24 +35,19 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void basicSample() {
         element.appendChild(Card.create("DEFAULT EXAMPLE", "By default, thumbnails are designed to showcase linked images with minimal required markup")
-                .appendContent(Row.create()
-                        .addColumn(column.copy().addElement(Thumbnail.create()
+                .appendChild(Row.create()
+                        .addColumn(Column.span3().appendChild(Thumbnail.create()
                                 .setContent(img(GWT.getModuleBaseURL() + "/images/image-gallery/5.jpg")
-                                                .css(Styles.img_responsive).asElement())
-                                .asElement()))
-                        .addColumn(column.copy().addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive))))
+                        .addColumn(Column.span3().appendChild(Thumbnail.create()
                                 .setContent(img(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg")
-                                                .css(Styles.img_responsive).asElement())
-                                .asElement()))
-                        .addColumn(column.copy().addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive))))
+                        .addColumn(Column.span3().appendChild(Thumbnail.create()
                                 .setContent(img(GWT.getModuleBaseURL() + "/images/image-gallery/7.jpg")
-                                                .css(Styles.img_responsive).asElement())
-                                .asElement()))
-                        .addColumn(column.copy().addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive))))
+                        .addColumn(Column.span3().appendChild(Thumbnail.create()
                                 .setContent(img(GWT.getModuleBaseURL() + "/images/image-gallery/8.jpg")
-                                                .css(Styles.img_responsive).asElement())
-                                .asElement()))
-                        .asElement())
+                                                .css(Styles.img_responsive)))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
@@ -65,48 +55,35 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void withExtraContentSample() {
         element.appendChild(Card.create("CUSTOM CONTENT", "With a bit of extra markup, it's possible to add any kind of HTML content like headings, paragraphs, or buttons into thumbnails.")
-                .appendContent(Row.create()
-                        .addColumn(column.copy()
-                                .addElement(Thumbnail.create()
+                .appendChild(Row.create()
+                        .addColumn(Column.span3()
+                                .appendChild(Thumbnail.create()
                                         .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/1.jpg")
-                                                .css(Styles.img_responsive)
-                                                .asElement())
-                                                .asElement())
-                                        .appendCaptionContent(h(3).textContent("Thumbnail label").asElement())
-                                        .appendCaptionContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                                        .appendCaptionContent(Button.createPrimary("BUTTON").asElement())
-                                        .asElement()))
-                        .addColumn(column.copy()
-                                .addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive)))
+                                        .appendCaptionChild(h(3).textContent("Thumbnail label"))
+                                        .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
+                                        .appendCaptionChild(Button.createPrimary("BUTTON"))))
+                        .addColumn(Column.span3()
+                                .appendChild(Thumbnail.create()
                                         .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/2.jpg")
-                                                .css(Styles.img_responsive)
-                                                .asElement())
-                                                .asElement())
-                                        .appendCaptionContent(h(3).textContent("Thumbnail label").asElement())
-                                        .appendCaptionContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                                        .appendCaptionContent(Button.createPrimary("BUTTON").asElement())
-                                        .asElement()))
-                        .addColumn(column.copy()
-                                .addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive)))
+                                        .appendCaptionChild(h(3).textContent("Thumbnail label"))
+                                        .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
+                                        .appendCaptionChild(Button.createPrimary("BUTTON"))))
+                        .addColumn(Column.span3()
+                                .appendChild(Thumbnail.create()
                                         .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/3.jpg")
-                                                .css(Styles.img_responsive)
-                                                .asElement())
-                                                .asElement())
-                                        .appendCaptionContent(h(3).textContent("Thumbnail label").asElement())
-                                        .appendCaptionContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                                        .appendCaptionContent(Button.createPrimary("BUTTON").asElement())
-                                        .asElement()))
-                        .addColumn(column.copy()
-                                .addElement(Thumbnail.create()
+                                                .css(Styles.img_responsive)))
+                                        .appendCaptionChild(h(3).textContent("Thumbnail label"))
+                                        .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
+                                        .appendCaptionChild(Button.createPrimary("BUTTON"))))
+                        .addColumn(Column.span3()
+                                .appendChild(Thumbnail.create()
                                         .setContent(a().add(img(GWT.getModuleBaseURL() + "/images/image-gallery/4.jpg")
-                                                .css(Styles.img_responsive)
-                                                .asElement())
-                                                .asElement())
-                                        .appendCaptionContent(h(3).textContent("Thumbnail label").asElement())
-                                        .appendCaptionContent(Paragraph.create(SAMPLE_TEXT).asElement())
-                                        .appendCaptionContent(Button.createPrimary("BUTTON").asElement())
-                                        .asElement()))
-                        .asElement())
+                                                .css(Styles.img_responsive)))
+                                        .appendCaptionChild(h(3).textContent("Thumbnail label"))
+                                        .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
+                                        .appendCaptionChild(Button.createPrimary("BUTTON")))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());

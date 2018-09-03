@@ -45,14 +45,13 @@ tableConfig
                 }));
 
 tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())));
-
 LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
 DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
 element.appendChild(Card.create("MARKER PLUGIN", "Mark the left side of the row with custom colors")
         .setCollapsible()
-        .appendContent(new TableStyleActions(defaultTable))
-        .appendContent(defaultTable.asElement())
+        .appendChild(new TableStyleActions(defaultTable))
+        .appendChild(defaultTable)
         .asElement());
 
 List<Contact> contacts = ...

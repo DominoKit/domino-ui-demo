@@ -8,7 +8,6 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.dominokit.domino.ui.utils.ValidationResult;
 
@@ -28,7 +27,8 @@ public class CustomElements {
     }
 
     public static SwitchButton createRequiredField() {
-        return Style.of(SwitchButton.create().setOffTitle("Required"))
+        return SwitchButton.create().setOffTitle("Required")
+                .style()
                 .setMarginBottom("0px")
                 .get();
     }
@@ -53,7 +53,7 @@ public class CustomElements {
 
     public static void markCardValidation(Card card, boolean isValid, boolean scroll){
         if (!isValid) {
-            Style.of(card).css("invalid-section");
+            card.style().css("invalid-section");
 
             if(scroll) {
                 ElementUtil.scrollToElement(card);
@@ -61,12 +61,12 @@ public class CustomElements {
                 DomGlobal.document.documentElement.scrollTop = DomGlobal.document.documentElement.scrollTop - 110;
             }
         } else {
-            Style.of(card).removeClass("invalid-section");
+            card.style().removeCss("invalid-section");
         }
     }
 
     public static boolean isInvalidatedCard(Card card){
-        return Style.of(card).hasClass("invalid-section");
+        return card.style().hasClass("invalid-section");
     }
 
     public static void markCardValidation(Card card, boolean isValid){

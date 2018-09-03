@@ -1,15 +1,28 @@
-DropdownButton.createDanger("Dropdown")
-    .addAction(DropdownAction.create("Action"))
-    .addAction(DropdownAction.create("Another action"))
-    .dropup();
-
-// in group
-DropdownButton danger = DropdownButton.createDanger("Dropdown")
-    .addAction(DropdownAction.create("Action"))
-    .addAction(DropdownAction.create("Another action"))
-    .dropup();
-
-
-ButtonsGroup.create()
-    .addButton(Button.createDanger("DANGER"))
-    .addDropDown(danger);
+element.appendChild(Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.")
+    .appendChild(DropdownButton.createDefault("DEFAULT")
+            .addAction(DropdownAction.create("Action"))
+            .addAction(DropdownAction.create("Another action"))
+            .dropup()
+            .style().setMargin("5px"))
+    .appendChild(DropdownButton.createPrimary("PRIMARY")
+            .addAction(DropdownAction.create("Action"))
+            .addAction(DropdownAction.create("Another action"))
+            .dropup()
+            .style().setMargin("5px"))
+    .appendChild(DropdownButton.createSuccess("SUCCESS")
+            .addAction(DropdownAction.create("Action"))
+            .addAction(DropdownAction.create("Another action"))
+            .dropup()
+            .style().setMargin("5px"))
+    .appendChild(DropdownButton.createInfo("INFO")
+            .addAction(DropdownAction.create("Action"))
+            .addAction(DropdownAction.create("Another action"))
+            .dropup()
+            .style().setMargin("5px"))
+    .appendChild(ButtonsGroup.create()
+            .addButton(Button.createDanger("DANGER"))
+            .addDropDown(DropdownButton.createDanger("Dropdown")
+                    .addAction(DropdownAction.create("Action"))
+                    .addAction(DropdownAction.create("Another action"))
+                    .dropup()))
+    .asElement());

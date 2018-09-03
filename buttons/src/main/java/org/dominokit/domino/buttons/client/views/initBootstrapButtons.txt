@@ -1,6 +1,26 @@
-Button.createDefault("DEFAULT").asElement();
-Button.createPrimary("PRIMARY").asElement();
-Button.createSuccess("SUCCESS").asElement();
-Button.createInfo("INFO").asElement();
-Button.createWarning("WARNING").asElement();
-Button.createDanger("DANGER").asElement();
+element.appendChild(Card.create("BOOTSTRAP DEFAULT BUTTONS", "Use any of the available button classes to quickly create a styled button")
+    .appendChild(Button.createDefault("DEFAULT")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createPrimary("PRIMARY")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createSuccess("SUCCESS")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createInfo("INFO")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createWarning("WARNING")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .appendChild(Button.createDanger("DANGER")
+            .style()
+            .setMargin("5px")
+            .setMinWidth("120px"))
+    .asElement());

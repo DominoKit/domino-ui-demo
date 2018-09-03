@@ -2,10 +2,10 @@ package org.dominokit.domino.formsamples.client.views.ui.section;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
 import org.jboss.gwt.elemento.core.IsElement;
 
 public final class AccountDetails implements IsElement<HTMLDivElement> {
@@ -33,13 +33,13 @@ public final class AccountDetails implements IsElement<HTMLDivElement> {
                 .setPaddingTop("20px")
                 .get()
                 .addColumn(Column.span12()
-                        .addElement(accountNumberHeader)
+                        .appendChild(accountNumberHeader)
                 )
                 .addColumn(Column.span12()
-                        .addElement(ibanHeader)
+                        .appendChild(ibanHeader)
                 )
                 .addColumn(Column.span12()
-                        .addElement(currencyHeader)
+                        .appendChild(currencyHeader)
                 ).asElement();
     }
 

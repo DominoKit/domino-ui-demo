@@ -81,8 +81,8 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     }
 
     @Override
-    public CorporateAccountsSelect toggle() {
-        accountSelect.toggle();
+    public CorporateAccountsSelect toggleDisplay() {
+        accountSelect.toggleDisplay();
         return this;
     }
 

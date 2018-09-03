@@ -1,18 +1,18 @@
 package org.dominokit.domino.menu.client.views.ui;
 
-import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.menu.client.presenters.MenuPresenter;
 import org.dominokit.domino.menu.client.views.MenuView;
+import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
 
@@ -23,30 +23,37 @@ import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelec
 public class MenuViewImpl implements MenuView {
 
     private Tree menu;
-    private Icon lockIcon = Icons.ALL.lock_open().setColor(Color.GREY);
+    private Icon lockIcon = Icons.ALL.lock_open()
+            .setColor(Color.GREY)
+            .style()
+            .setMarginBottom("0px")
+            .setMarginTop("0px")
+            .setCursor("pointer")
+            .css(Styles.pull_right)
+            .get();
     private boolean locked = false;
+    private Collapsible lockCollapsible = Collapsible.create(lockIcon).expand();
 
     public MenuViewImpl() {
-        lockIcon.asElement().style.marginBottom = CSSProperties.MarginBottomUnionType.of(0);
-        lockIcon.asElement().style.marginTop = CSSProperties.MarginTopUnionType.of(0);
-        lockIcon.asElement().classList.add("pull-right");
-        lockIcon.asElement().style.cursor = "pointer";
     }
 
     @Override
     public void setTitle(String title) {
-        menu.getTitle().textContent = title;
+        menu.getTitle().setTextContent(title);
     }
 
     @Override
     public void init(IsLayout layout) {
-        menu = Tree.create("Demo menu");
-        menu.getRoot().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 280px)");
+        menu = Tree.create("Demo menu")
+        .style()
+        .setHeight("calc(100vh - 267px)").get();
+
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
+
         menu.getHeader().appendChild(lockIcon.asElement());
-        menu.asElement().style.height = CSSProperties.HeightUnionType.of("calc(100vh - 267px)");
-        lockIcon.asElement().addEventListener("click", evt -> {
+
+        lockIcon.addClickListener( evt -> {
             if (locked) {
                 layout.unfixLeftPanelPosition();
                 lockIcon.asElement().textContent = Icons.ALL.lock().getName();
@@ -83,19 +90,18 @@ public class MenuViewImpl implements MenuView {
             Notification.create("Switched to XSmall screen").show();
         });
 
-
     }
 
     private void fixLeftPanel(IsLayout layout) {
         layout.fixLeftPanelPosition();
-        Style.of(lockIcon).setDisplay("block");
+        lockCollapsible.expand();
         locked = true;
     }
 
     private void unfixLeftPanel(IsLayout layout) {
         layout.unfixLeftPanelPosition();
         layout.hideLeftPanel();
-        Style.of(lockIcon).setDisplay("none");
+        lockCollapsible.collapse();
         locked = false;
     }
 
@@ -103,7 +109,7 @@ public class MenuViewImpl implements MenuView {
     public CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler) {
         TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
         menu.addTreeItem(menuItem);
-        menuItem.getClickableElement().addEventListener("click", e -> selectionHandler.onMenuSelected());
+        menuItem.addClickListener(e -> selectionHandler.onMenuSelected());
         return new SubMenu(menuItem);
     }
 
@@ -125,16 +131,18 @@ public class MenuViewImpl implements MenuView {
 
         @Override
         public CanAddMenuItem addMenuItem(String title) {
-            TreeItem item = TreeItem.create(title);
+            TreeItem item = TreeItem.create(title)
+                    .setActiveIcon(Icons.ALL.keyboard_arrow_right());
             menuItem.addTreeItem(item);
             return new SubMenu(item);
         }
 
         @Override
         public CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler) {
-            TreeItem item = TreeItem.create(title);
+            TreeItem item = TreeItem.create(title)
+                    .setActiveIcon(Icons.ALL.keyboard_arrow_right());
             menuItem.addTreeItem(item);
-            item.getClickableElement().addEventListener("click", e -> selectionHandler.onMenuSelected());
+            item.addClickListener(e -> selectionHandler.onMenuSelected());
             return new SubMenu(item);
         }
 

@@ -1,24 +1,23 @@
 Button.create("GREEN").setBackground(Color.GREEN).large().block()
-        .appendContent(Badge.create("2").asElement())
-        .asElement();
+        .appendChild(Badge.create("2"));
+
 Button.create("BLUE").setBackground(Color.BLUE).large().block()
-        .appendContent(Badge.create("10+").asElement())
-        .asElement();
+        .appendChild(Badge.create("10+"));
+
 Button.create("RED").setBackground(Color.RED).large().block()
-        .appendContent(Badge.create("13").asElement())
-        .asElement();
+        .appendChild(Badge.create("13"));
+
 Button.create("ORANGE").setBackground(Color.ORANGE).large().block()
-        .appendContent(Badge.create("5").asElement())
-        .asElement();
+        .appendChild(Badge.create("5"));
+
 Button.create("PINK").setBackground(Color.PINK).large().block()
-        .appendContent(Badge.create("14").asElement())
-        .asElement();
+        .appendChild(Badge.create("14"));
+
 Button.create("CYAN").setBackground(Color.CYAN).large().block()
-        .appendContent(Badge.create("99+").asElement())
-        .asElement();
+        .appendChild(Badge.create("99+"));
+
 Button.create("TEAL").setBackground(Color.TEAL).large().block()
-        .appendContent(Badge.create("26").asElement())
-        .asElement();
+        .appendChild(Badge.create("26"));
+
 Button.create("PURPLE").setBackground(Color.PURPLE).large().block()
-        .appendContent(Badge.create("47").asElement())
-        .asElement();
+        .appendChild(Badge.create("47"));

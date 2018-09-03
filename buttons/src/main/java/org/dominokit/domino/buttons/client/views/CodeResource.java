@@ -24,10 +24,10 @@ public interface CodeResource extends ClientBundle {
     ExternalTextResource initDisabledButtons();
 
     @Source("initIconButtons.txt")
-    ExternalTextResource initIconButtons();
+    ExternalTextResource initButtons();
 
     @Source("initTextIconButtons.txt")
-    ExternalTextResource initTextIconButtons();
+    ExternalTextResource initTextButtons();
 
     @Source("initButtonsBasicGroup.txt")
     ExternalTextResource initButtonsBasicGroup();

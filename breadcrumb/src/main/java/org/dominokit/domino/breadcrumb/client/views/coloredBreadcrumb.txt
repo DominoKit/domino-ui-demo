@@ -1,86 +1,86 @@
-Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.PINK)
-            .addItem(" Home ", evt -> {
-            })
-            .addItem(" Library ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.CYAN)
-            .addItem(" Home ", evt -> {
-            })
-            .addItem(" Library ", evt -> {
-            })
-            .addItem(" Data ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.TEAL)
-            .addItem(" Home ", evt -> {
-            })
-            .addItem(" Library ", evt -> {
-            })
-            .addItem(" Data ", evt -> {
-            })
-            .addItem(" File ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.ORANGE)
-            .addItem(" Home ", evt -> {
-            })
-            .addItem(" Library ", evt -> {
-            })
-            .addItem(" Data ", evt -> {
-            })
-            .addItem(" File ", evt -> {
-            })
-            .addItem(" Extensions ", evt -> {
-            })
-            .asElement())
-    .asElement();
-
-
-Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.PINK)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
-            })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.CYAN)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
-            })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-            })
-            .addItem(Icons.ALL.archive(), " Data ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.TEAL)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
-            })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-            })
-            .addItem(Icons.ALL.archive(), " Data ", evt -> {
-            })
-            .addItem(Icons.ALL.attachment(), " File ", evt -> {
-            })
-            .asElement())
-    .appendContent(Breadcrumb.create()
-            .setColor(Color.ORANGE)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
-            })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-            })
-            .addItem(Icons.ALL.archive(), " Data ", evt -> {
-            })
-            .addItem(Icons.ALL.attachment(), " File ", evt -> {
-            })
-            .addItem(Icons.ALL.extension(), " Extensions ", evt -> {
-            })
-            .asElement())
-    .asElement();
+element.appendChild(Row.create()
+    .addColumn(Column.span6().appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.PINK)
+                    .addItem(" Home ", evt -> {
+                    })
+                    .addItem(" Library ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.CYAN)
+                    .addItem(" Home ", evt -> {
+                    })
+                    .addItem(" Library ", evt -> {
+                    })
+                    .addItem(" Data ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.TEAL)
+                    .addItem(" Home ", evt -> {
+                    })
+                    .addItem(" Library ", evt -> {
+                    })
+                    .addItem(" Data ", evt -> {
+                    })
+                    .addItem(" File ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.ORANGE)
+                    .addItem(" Home ", evt -> {
+                    })
+                    .addItem(" Library ", evt -> {
+                    })
+                    .addItem(" Data ", evt -> {
+                    })
+                    .addItem(" File ", evt -> {
+                    })
+                    .addItem(" Extensions ", evt -> {
+                    })
+            )
+    ))
+    .addColumn(Column.span6().appendChild(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.PINK)
+                    .addItem(Icons.ALL.home(), " Home ", evt -> {
+                    })
+                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.CYAN)
+                    .addItem(Icons.ALL.home(), " Home ", evt -> {
+                    })
+                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+                    })
+                    .addItem(Icons.ALL.archive(), " Data ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.TEAL)
+                    .addItem(Icons.ALL.home(), " Home ", evt -> {
+                    })
+                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+                    })
+                    .addItem(Icons.ALL.archive(), " Data ", evt -> {
+                    })
+                    .addItem(Icons.ALL.attachment(), " File ", evt -> {
+                    })
+            )
+            .appendChild(Breadcrumb.create()
+                    .setColor(Color.ORANGE)
+                    .addItem(Icons.ALL.home(), " Home ", evt -> {
+                    })
+                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+                    })
+                    .addItem(Icons.ALL.archive(), " Data ", evt -> {
+                    })
+                    .addItem(Icons.ALL.attachment(), " File ", evt -> {
+                    })
+                    .addItem(Icons.ALL.extension(), " Extensions ", evt -> {
+                    })
+            )
+    ))
+    .asElement());

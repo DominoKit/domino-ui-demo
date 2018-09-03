@@ -6,9 +6,9 @@ import org.dominokit.domino.formsamples.shared.model.ConfirmationInstructions;
 import org.dominokit.domino.formsamples.shared.model.CorporateProfile;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.SwitchButton;
-import org.dominokit.domino.ui.row.Row;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
@@ -66,8 +66,8 @@ public class ConfirmationInstructionsSection implements ImportSection {
 
         element.appendChild(confirmationInstructionsCard
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().addElement(confirmationChargesOnSwitch))
-                        .addColumn(Column.span6().addElement(confirmationChargesAccountSelect))
+                        .addColumn(Column.span6().appendChild(confirmationChargesOnSwitch))
+                        .addColumn(Column.span6().appendChild(confirmationChargesAccountSelect))
                 ).asElement());
     }
 

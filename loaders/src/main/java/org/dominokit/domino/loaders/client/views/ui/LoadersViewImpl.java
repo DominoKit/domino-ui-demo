@@ -1,6 +1,5 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
-import com.google.gwt.user.client.Timer;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.loaders.client.presenters.LoadersPresenter;
@@ -8,16 +7,16 @@ import org.dominokit.domino.loaders.client.views.CodeResource;
 import org.dominokit.domino.loaders.client.views.LoadersView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
-import org.dominokit.domino.ui.row.Row;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.ColorScheme;
+import org.gwtproject.timer.client.Timer;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = LoadersPresenter.class)
@@ -35,66 +34,42 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
     public void init() {
         element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").asElement());
 
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
+        element.appendChild(Row.create()
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.BOUNCE, "Loading ... ", Color.BLUE_GREY, Color.BLUE_GREY)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.FACEBOOK, "Loading ... ", Color.LIGHT_BLUE, Color.BLUE)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.IOS, "Loading ... ", Color.LIGHT_GREEN, Color.GREEN)))
+                .asElement());
 
-        Row row = Row.create();
-        element.appendChild(row.asElement());
+        element.appendChild(Row.create()
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.ROTATE_PLANE, "Waiting ... ", Color.BLUE_GREY, Color.BLUE_GREY)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.ROTATION, "Waiting ... ", Color.LIGHT_BLUE, Color.BLUE)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.ROUND_BOUNCE, "Waiting ... ", Color.LIGHT_GREEN, Color.GREEN)))
+                .asElement());
 
-        row.addColumn(column
-                .addElement(createCard(LoaderEffect.BOUNCE, "Loading ... ", Color.BLUE_GREY, Color.BLUE_GREY)
-                .asElement()));
-        row.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.FACEBOOK, "Loading ... ", Color.LIGHT_BLUE, Color.BLUE)
-                .asElement()));
-        row.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.IOS, "Loading ... ", Color.LIGHT_GREEN, Color.GREEN)
-                .asElement()));
-
-
-        Row secondRow = Row.create();
-        element.appendChild(secondRow.asElement());
-
-        secondRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.ROTATE_PLANE, "Waiting ... ", Color.BLUE_GREY, Color.BLUE_GREY)
-                .asElement()));
-        secondRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.ROTATION, "Waiting ... ", Color.LIGHT_BLUE, Color.BLUE)
-                .asElement()));
-        secondRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.ROUND_BOUNCE, "Waiting ... ", Color.LIGHT_GREEN, Color.GREEN)
-                .asElement()));
+        element.appendChild(Row.create()
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.TIMER, " ... ", Color.BLUE_GREY, Color.BLUE_GREY)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.WIN8, " ... ", Color.LIGHT_BLUE, Color.BLUE)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.WIN8_LINEAR, " ... ", Color.LIGHT_GREEN, Color.GREEN)))
+                .asElement());
 
 
-        Row thirdRow = Row.create();
-        element.appendChild(thirdRow.asElement());
-
-        thirdRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.TIMER, " ... ", Color.BLUE_GREY, Color.BLUE_GREY)
-                .asElement()));
-        thirdRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.WIN8, " ... ", Color.LIGHT_BLUE, Color.BLUE)
-                .asElement()));
-        thirdRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.WIN8_LINEAR, " ... ", Color.LIGHT_GREEN, Color.GREEN)
-                .asElement()));
-
-
-        Row fourthRow = Row.create();
-        element.appendChild(fourthRow.asElement());
-
-        fourthRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.ORBIT, "", Color.BLUE_GREY, Color.BLUE_GREY)
-                .asElement()));
-        fourthRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.STRETCH, "", Color.LIGHT_BLUE, Color.BLUE)
-                .asElement()));
-        fourthRow.addColumn(column.copy()
-                .addElement(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)
-                .asElement()));
+        element.appendChild(Row.create()
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.ORBIT, "", Color.BLUE_GREY, Color.BLUE_GREY)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.STRETCH, "", Color.LIGHT_BLUE, Color.BLUE)))
+                .addColumn(Column.span4()
+                        .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
+                .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
                 .asElement());
@@ -118,10 +93,10 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
         };
 
         Button button = Button.createDefault("CLICK ME").addClickListener(loaderListener);
-        card.appendContent(new Text(SAMPLE_CONTENT))
-                .appendContent(Elements.br().asElement())
-                .appendContent(Elements.br().asElement())
-        .appendContent(Elements.div().attr("style", "text-align: center").add(button.asElement()).asElement());
+        card.appendChild(new Text(SAMPLE_CONTENT))
+                .appendChild(Elements.br())
+                .appendChild(Elements.br())
+        .appendChild(Elements.div().attr("style", "text-align: center").add(button));
 
         return card;
     }

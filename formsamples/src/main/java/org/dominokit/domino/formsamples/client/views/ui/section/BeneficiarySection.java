@@ -4,13 +4,13 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Style;
 
 import java.util.List;
@@ -61,15 +61,16 @@ public class BeneficiarySection implements ImportSection {
         });
 
 
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
-                .appendContent(Row.create()
+                .appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .addElement(beneficiariesSelect)
+                                .appendChild(beneficiariesSelect)
                         )
                         .addColumn(Column.span6()
-                                .addElement(accountsSelect)
+                                .appendChild(accountsSelect)
                         )
                 )
                 .asElement());

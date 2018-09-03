@@ -1,30 +1,23 @@
-Row row = Row.create();
-Column column = Column.create()
-        .onLarge(Column.OnLarge.six)
-        .onMedium(Column.OnMedium.six)
-        .onSmall(Column.OnSmall.twelve)
-        .onXSmall(Column.OnXSmall.twelve);
-element.appendChild(row.asElement());
-
 ListGroup<String> listGroup = ListGroup.create();
 listGroup
         .multiSelect()
-        .appendItem(listGroup.createItem("Value1", "Cras justo odio").select())
-        .appendItem(listGroup.createItem("Value2", "Dapibus ac facilisis in"))
-        .appendItem(listGroup.createItem("Value3", "Morbi leo risus"))
-        .appendItem(listGroup.createItem("Value4", "Porta ac consectetur ac"))
-        .appendItem(listGroup.createItem("Value5", "Vestibulum at eros"));
-
-row.addColumn(column.addElement(Card.create("SELECTABLE ITEMS", "Use ListGroup instead of SimpleListGroup to make items selectable, use multiSelect to select more than one item.")
-        .appendContent(listGroup.asElement()).asElement()));
+        .appendChild(listGroup.createItem("Value1", "Cras justo odio").select())
+        .appendChild(listGroup.createItem("Value2", "Dapibus ac facilisis in"))
+        .appendChild(listGroup.createItem("Value3", "Morbi leo risus"))
+        .appendChild(listGroup.createItem("Value4", "Porta ac consectetur ac"))
+        .appendChild(listGroup.createItem("Value5", "Vestibulum at eros"));
 
 ListGroup<String> disabledItems = ListGroup.create();
 disabledItems
-        .appendItem(disabledItems.createItem("Value1", "Cras justo odio").disable())
-        .appendItem(disabledItems.createItem("Value2", "Dapibus ac facilisis in").select())
-        .appendItem(disabledItems.createItem("Value3", "Morbi leo risus").disable())
-        .appendItem(disabledItems.createItem("Value4", "Porta ac consectetur ac"))
-        .appendItem(disabledItems.createItem("Value5", "Vestibulum at eros"));
+        .appendChild(disabledItems.createItem("Value1", "Cras justo odio").disable())
+        .appendChild(disabledItems.createItem("Value2", "Dapibus ac facilisis in").select())
+        .appendChild(disabledItems.createItem("Value3", "Morbi leo risus").disable())
+        .appendChild(disabledItems.createItem("Value4", "Porta ac consectetur ac"))
+        .appendChild(disabledItems.createItem("Value5", "Vestibulum at eros"));
 
-row.addColumn(column.copy().addElement(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
-        .appendContent(disabledItems.asElement()).asElement()));
+element.appendChild(Row.create()
+        .addColumn(Column.span6().appendChild(Card.create("SELECTABLE ITEMS", "Use ListGroup instead of SimpleListGroup to make items selectable, use multiSelect to select more than one item.")
+                .appendChild(listGroup)))
+        .addColumn(Column.span6().appendChild(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
+                .appendChild(disabledItems)))
+        .asElement());

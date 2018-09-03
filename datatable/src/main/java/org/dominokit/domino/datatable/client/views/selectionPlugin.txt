@@ -52,8 +52,8 @@ DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStor
 
 element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
         .setCollapsible()
-        .appendContent(new TableStyleActions(defaultTable))
-        .appendContent(defaultTable.asElement())
+        .appendChild(new TableStyleActions(defaultTable))
+        .appendChild(defaultTable)
         .asElement());
 
 List<Contact> contacts = ...

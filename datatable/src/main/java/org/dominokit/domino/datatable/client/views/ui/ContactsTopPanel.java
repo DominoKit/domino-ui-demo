@@ -3,11 +3,11 @@ package org.dominokit.domino.datatable.client.views.ui;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.datatable.client.views.model.Gender;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.infoboxes.InfoBox;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.IsElement;
@@ -60,62 +60,59 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private Column column = Column.create()
-            .onLarge(Column.OnLarge.two)
-            .onMedium(Column.OnMedium.two)
-            .onSmall(Column.OnSmall.twelve)
-            .onXSmall(Column.OnXSmall.twelve);
     private Row row = Row.create()
             .condenced()
-            .style().setMarginBottom("0px")
+            .style()
+            .setMarginBottom("0px")
+            .setMarginLeft("0px")
+            .setMarginRight("0px")
             .get()
-            .addColumn(column.copy().condenced()
-                    .addElement(loaded_items_count)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(loaded_items_count)
             )
-            .addColumn(column.copy().condenced()
-                    .addElement(totalItemsCount)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(totalItemsCount)
             )
-            .addColumn(column.copy().condenced()
-                    .addElement(femaleCount)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(femaleCount)
             )
-            .addColumn(column.copy().condenced()
-                    .addElement(maleCount)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(maleCount)
             )
-            .addColumn(column.copy().condenced()
-                    .addElement(goodCount)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(goodCount)
             )
-            .addColumn(column.copy().condenced()
-                    .addElement(dangerCount)
+            .addColumn(Column.span2().condenced()
+                    .appendChild(dangerCount)
             );
 
     public ContactsTopPanel() {
-        Style.of(femaleCount.getIconElement())
+        femaleCount.getIconElement().style()
                 .setProperty("bottom", "15px");
-        Style.of(maleCount.getIconElement())
+        maleCount.getIconElement()
+                .style()
                 .setProperty("bottom", "15px");
     }
 
     public void update(TableDataUpdatedEvent<Contact> event) {
-        loaded_items_count.getValueElement().textContent = event.getData().size() + "";
+        loaded_items_count.getValueElement().setTextContent(event.getData().size() + "");
     }
 
     @Override
     public HTMLElement asElement() {
-        return Style.of(row)
-                .setMarginLeft("0px")
-                .setMarginRight("0px").get().asElement();
+        return row.asElement();
     }
 
     public void update(List<Contact> contacts) {
-        totalItemsCount.getValueElement().textContent = contacts.size() + "";
+        totalItemsCount.getValueElement().setTextContent(contacts.size() + "");
         long males = contacts.stream().filter(c -> Gender.male.equals(c.getGender())).count();
         long females = contacts.stream().filter(c -> Gender.female.equals(c.getGender())).count();
         long goods = contacts.stream().filter(c -> c.getDoubleBalance() >= 2000).count();
         long bads = contacts.stream().filter(c -> c.getDoubleBalance() < 2000).count();
-        this.femaleCount.getValueElement().textContent = females + "";
-        this.maleCount.getValueElement().textContent = males + "";
-        this.goodCount.getValueElement().textContent = goods + "";
-        this.dangerCount.getValueElement().textContent = bads + "";
+        this.femaleCount.getValueElement().setTextContent(females + "");
+        this.maleCount.getValueElement().setTextContent(males + "");
+        this.goodCount.getValueElement().setTextContent(goods + "");
+        this.dangerCount.getValueElement().setTextContent(bads + "");
 
     }
 }

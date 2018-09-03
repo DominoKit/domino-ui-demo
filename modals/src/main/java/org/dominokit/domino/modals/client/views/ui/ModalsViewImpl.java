@@ -1,5 +1,8 @@
 package org.dominokit.domino.modals.client.views.ui;
 
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase.ComponentRemoveHandler;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -8,14 +11,10 @@ import org.dominokit.domino.modals.client.views.CodeResource;
 import org.dominokit.domino.modals.client.views.ModalsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.modals.ModalDialog;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
-import elemental2.dom.EventListener;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -33,8 +32,8 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
     }
 
     private ComponentRemoveHandler closeHandler = () -> {
-        if(nonNull(openedDialog))
-                openedDialog.close();
+        if (nonNull(openedDialog))
+            openedDialog.close();
     };
 
     @Override
@@ -44,48 +43,42 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         initModalColor();
     }
 
-    private void openDialog(ModalDialog dialog){
+    private void openDialog(ModalDialog dialog) {
         dialog.open();
-        this.openedDialog=dialog;
+        this.openedDialog = dialog;
     }
 
     private void initModalsSize() {
-        Row row = Row.create();
-        Column column = Column.create()
-                .onLarge(Column.OnLarge.four)
-                .onMedium(Column.OnMedium.four)
-                .onSmall(Column.OnSmall.twelve)
-                .onXSmall(Column.OnXSmall.twelve);
 
         // ------------ Default size -------------
 
         ModalDialog defaultSizeModal = createModalDialog();
 
         Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
-        defaultSizeButton.getClickableElement().addEventListener("click", e -> openDialog(defaultSizeModal));
-
-        row.addColumn(column.addElement(defaultSizeButton.asElement()));
+        defaultSizeButton.addClickListener(e -> openDialog(defaultSizeModal));
 
         // ------------ Large size -------------
 
         ModalDialog largeSizeModal = createModalDialog().large();
 
         Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
-        largeSizeButton.getClickableElement().addEventListener("click", e -> openDialog(largeSizeModal));
+        largeSizeButton.addClickListener( e -> openDialog(largeSizeModal));
 
-        row.addColumn(column.copy().addElement(largeSizeButton.asElement()));
 
         // ------------ Small size -------------
 
         ModalDialog smallSizeModal = createModalDialog().small();
 
         Button smallSizeButton = Button.createDefault("MODAL - SMALL SIZE");
-        smallSizeButton.getClickableElement().addEventListener("click", e -> openDialog(smallSizeModal));
+        smallSizeButton.addClickListener(e -> openDialog(smallSizeModal));
 
-        row.addColumn(column.copy().addElement(smallSizeButton.asElement()));
 
         element.appendChild(Card.create("MODAL SIZE EXAMPLE", "Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.")
-                .appendContent(row.asElement())
+                .appendChild(Row.create()
+                        .span4(column -> column.appendChild(defaultSizeButton))
+                        .span4(column -> column.appendChild(largeSizeButton))
+                        .span4(column -> column.appendChild(smallSizeButton))
+                )
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalsSize())
@@ -93,77 +86,64 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
     }
 
     private void initModalColor() {
-        Card card = Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors.");
-
-        HTMLDivElement buttonsContainer = div().css("button-demo").asElement();
-        card.appendContent(buttonsContainer);
-
         //------------ Red ------------
-        ModalDialog modalDialogRed=createModalDialog().setModalColor(Color.RED);
-        Button redButton=Button.create("RED").setBackground(Color.RED);
-        redButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogRed));
-
-        buttonsContainer.appendChild(redButton.asElement());
+        ModalDialog modalDialogRed = createModalDialog().setModalColor(Color.RED);
+        Button redButton = Button.create("RED").setBackground(Color.RED);
+        redButton.addClickListener( e -> openDialog(modalDialogRed));
 
         //------------ Pink ------------
-        ModalDialog modalDialogPink=createModalDialog().setModalColor(Color.PINK);
-        Button pinkButton=Button.create("PINK").setBackground(Color.PINK);
-        pinkButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogPink));
-
-        buttonsContainer.appendChild(pinkButton.asElement());
+        ModalDialog modalDialogPink = createModalDialog().setModalColor(Color.PINK);
+        Button pinkButton = Button.create("PINK").setBackground(Color.PINK);
+        pinkButton.addClickListener(e -> openDialog(modalDialogPink));
 
         //------------ Purple ------------
-        ModalDialog modalDialogPurple=createModalDialog().setModalColor(Color.PURPLE);
-        Button purpleButton=Button.create("PURPLE").setBackground(Color.PURPLE);
-        purpleButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogPurple));
-
-        buttonsContainer.appendChild(purpleButton.asElement());
+        ModalDialog modalDialogPurple = createModalDialog().setModalColor(Color.PURPLE);
+        Button purpleButton = Button.create("PURPLE").setBackground(Color.PURPLE);
+        purpleButton.addClickListener( e -> openDialog(modalDialogPurple));
 
         //------------ Deep Purple ------------
-        ModalDialog modalDialogDeepPurple=createModalDialog().setModalColor(Color.DEEP_PURPLE);
-        Button deepPurpleButton=Button.create("DEEP PURPLE").setBackground(Color.DEEP_PURPLE);
-        deepPurpleButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogDeepPurple));
-
-        buttonsContainer.appendChild(deepPurpleButton.asElement());
+        ModalDialog modalDialogDeepPurple = createModalDialog().setModalColor(Color.DEEP_PURPLE);
+        Button deepPurpleButton = Button.create("DEEP PURPLE").setBackground(Color.DEEP_PURPLE);
+        deepPurpleButton.addClickListener(e -> openDialog(modalDialogDeepPurple));
 
         //------------ Indigo ------------
-        ModalDialog modalDialogIndigo=createModalDialog().setModalColor(Color.INDIGO);
-        Button indigoButton=Button.create("INDIGO").setBackground(Color.INDIGO);
-        indigoButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogIndigo));
-
-        buttonsContainer.appendChild(indigoButton.asElement());
+        ModalDialog modalDialogIndigo = createModalDialog().setModalColor(Color.INDIGO);
+        Button indigoButton = Button.create("INDIGO").setBackground(Color.INDIGO);
+        indigoButton.addClickListener(e -> openDialog(modalDialogIndigo));
 
         //------------ Blue ------------
-        ModalDialog modalDialogBlue=createModalDialog().setModalColor(Color.BLUE);
-        Button blueButton=Button.create("BLUE").setBackground(Color.BLUE);
-        blueButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogBlue));
-
-        buttonsContainer.appendChild(blueButton.asElement());
+        ModalDialog modalDialogBlue = createModalDialog().setModalColor(Color.BLUE);
+        Button blueButton = Button.create("BLUE").setBackground(Color.BLUE);
+        blueButton.addClickListener(e -> openDialog(modalDialogBlue));
 
         //------------ Orange ------------
-        ModalDialog modalDialogOrange=createModalDialog().setModalColor(Color.ORANGE);
-        Button orangeButton=Button.create("ORANGE").setBackground(Color.ORANGE);
-        orangeButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogOrange));
-
-        buttonsContainer.appendChild(orangeButton.asElement());
-
+        ModalDialog modalDialogOrange = createModalDialog().setModalColor(Color.ORANGE);
+        Button orangeButton = Button.create("ORANGE").setBackground(Color.ORANGE);
+        orangeButton.addClickListener(e -> openDialog(modalDialogOrange));
 
         //------------ Green ------------
-        ModalDialog modalDialogGreen=createModalDialog().setModalColor(Color.GREEN);
-        Button greenButton=Button.create("GREEN").setBackground(Color.GREEN);
-        greenButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogGreen));
-
-        buttonsContainer.appendChild(greenButton.asElement());
-
+        ModalDialog modalDialogGreen = createModalDialog().setModalColor(Color.GREEN);
+        Button greenButton = Button.create("GREEN").setBackground(Color.GREEN);
+        greenButton.addClickListener(e -> openDialog(modalDialogGreen));
 
         //------------ Teal ------------
-        ModalDialog modalDialogTeal=createModalDialog().setModalColor(Color.TEAL);
-        Button tealButton=Button.create("TEAL").setBackground(Color.TEAL);
-        tealButton.getClickableElement().addEventListener("click", e-> openDialog(modalDialogTeal));
+        ModalDialog modalDialogTeal = createModalDialog().setModalColor(Color.TEAL);
+        Button tealButton = Button.create("TEAL").setBackground(Color.TEAL);
+        tealButton.addClickListener( e -> openDialog(modalDialogTeal));
 
-        buttonsContainer.appendChild(tealButton.asElement());
 
-        element.appendChild(card.asElement());
+        element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors.")
+        .appendChild(div().css("button-demo")
+                .add(redButton)
+                .add(pinkButton)
+                .add(purpleButton)
+                .add(deepPurpleButton)
+                .add(indigoButton)
+                .add(blueButton)
+                .add(orangeButton)
+                .add(greenButton)
+                .add(tealButton)
+        ).asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
 
@@ -171,16 +151,16 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
     private ModalDialog createModalDialog() {
         ModalDialog modal = ModalDialog.create("Modal title");
-        modal.appendContent(new Text(SAMPLE_CONTENT));
+        modal.appendChild(new Text(SAMPLE_CONTENT));
         Button closeButton = Button.create("CLOSE").linkify();
         Button saveButton = Button.create("SAVE CHANGES").linkify();
 
         EventListener closeModalListener = evt -> modal.close();
 
-        closeButton.getClickableElement().addEventListener("click", closeModalListener);
-        saveButton.getClickableElement().addEventListener("click", closeModalListener);
-        modal.appendFooterContent(saveButton.asElement());
-        modal.appendFooterContent(closeButton.asElement());
+        closeButton.addClickListener(closeModalListener);
+        saveButton.addClickListener( closeModalListener);
+        modal.appendFooterChild(saveButton);
+        modal.appendFooterChild(closeButton);
         return modal;
     }
 

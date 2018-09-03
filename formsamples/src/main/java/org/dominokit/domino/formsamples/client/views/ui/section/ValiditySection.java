@@ -13,17 +13,16 @@ import org.dominokit.domino.ui.datepicker.DateBox;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.DATE_PATTERN;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.dominokit.domino.ui.column.Column.span3;
+import static org.dominokit.domino.ui.grid.Column.span3;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -81,14 +80,15 @@ public class ValiditySection implements ImportSection {
         daysForShipmentTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
 
-        element.appendChild(Style.of(card)
+        element.appendChild(card
+                .style()
                 .setPaddingTop("20px")
                 .get()
                 .appendChild(Row.create()
-                        .addColumn(span3().addElement(validityExpiryDateBox))
-                        .addColumn(span3().addElement(countrySelect))
-                        .addColumn(span3().addElement(citySelect))
-                        .addColumn(span3().addElement(numbersOnly(daysForShipmentTextBox)))
+                        .addColumn(span3().appendChild(validityExpiryDateBox))
+                        .addColumn(span3().appendChild(countrySelect))
+                        .addColumn(span3().appendChild(citySelect))
+                        .addColumn(span3().appendChild(numbersOnly(daysForShipmentTextBox)))
                 )
                 .asElement());
 

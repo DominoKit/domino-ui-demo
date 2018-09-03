@@ -1,15 +1,13 @@
-Collapsible collapsible = Collapsible.create(Elements.div()
-        .add(Elements.div()
+element.appendChild(BlockHeader.create("COLLAPSE").asElement());
+HTMLDivElement well = div().css("sample-div")
+        .add(div()
                 .css("well")
                 .textContent(SAMPLE_CONTENT)
                 .asElement())
-        .asElement());
-EventListener collapsibleListener = evt -> {
-    if (collapsible.isCollapsed())
-        collapsible.expand();
-    else
-        collapsible.collapse();
-};
+        .asElement();
+
+Collapsible collapsible = Collapsible.create(well);
+EventListener collapsibleListener = evt -> collapsible.toggle();
 
 Button anchorButton = Button.create("LINK WITH HREF");
 anchorButton.justify();
@@ -19,15 +17,14 @@ Button button = Button.create("BUTTON");
 button.getClickableElement().addEventListener("click", collapsibleListener);
 
 element.appendChild(Row.create()
-        .addColumn(column.copy()
-                .addElement(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
-                        .appendContent(anchorButton.htmlBuilder()
-                                .css(CssStyles.M_B_15).component().setBackground(Color.PINK)
-                                .asElement())
-                        .appendContent(new Text("\n"))
-                        .appendContent(button.htmlBuilder()
-                                .css(CssStyles.M_B_15).component()
+        .addColumn(Column.span12()
+                .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
+                        .appendChild(anchorButton.htmlBuilder()
+                                .css(Styles.m_b_15).component().setBackground(Color.PINK))
+                        .appendChild(new Text("\n"))
+                        .appendChild(button.htmlBuilder()
+                                .css(Styles.m_b_15).component()
                                 .setBackground(Color.CYAN)
                                 .asElement())
-                        .appendContent(collapsible.asElement())
-                        .asElement())).asElement());
+                        .appendChild(collapsible)))
+        .asElement());

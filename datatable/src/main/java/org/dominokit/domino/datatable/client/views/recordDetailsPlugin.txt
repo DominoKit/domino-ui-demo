@@ -51,8 +51,8 @@ DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStor
 
 element.appendChild(Card.create("RECORD DETAILS PLUGIN", "Enable inline record details for rows.")
         .setCollapsible()
-        .appendContent(new TableStyleActions(defaultTable))
-        .appendContent(defaultTable.asElement())
+        .appendChild(new TableStyleActions(defaultTable))
+        .appendChild(defaultTable)
         .asElement());
 
 List<Contact> contacts = ...

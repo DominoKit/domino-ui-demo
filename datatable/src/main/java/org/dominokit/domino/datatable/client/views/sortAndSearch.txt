@@ -67,8 +67,8 @@ DataTable<Contact> table = new DataTable<>(tableConfig, listStore);
 
 element.appendChild(Card.create("SORT PLUGIN & SEARCH HEADER ACTION", "Allows the table to fire events useful for datasource to sort and search the data")
         .setCollapsible()
-        .appendContent(new TableStyleActions(table))
-        .appendContent(table.asElement())
+        .appendChild(new TableStyleActions(table))
+        .appendChild(table)
         .asElement());
 
 List<Contact> contacts = ...

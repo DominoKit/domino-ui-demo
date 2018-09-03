@@ -1,11 +1,11 @@
 ListGroup<String> listGroup = ListGroup.create();
 listGroup.addItem("SomeValue").setText("Cras justo odio")
-    .appendContent(Badge.create("14 new").setBackground(Color.RED).asElement());
+    .appendChild(Badge.create("14 new").setBackground(Color.RED));
 listGroup.addItem("SomeValue").setText("Dapibus ac facilisis in")
-    .appendContent(Badge.create("99 unread").setBackground(Color.CYAN).asElement());
+    .appendChild(Badge.create("99 unread").setBackground(Color.CYAN));
 listGroup.addItem("SomeValue").setText("Morbi leo risus")
-    .appendContent(Badge.create("99+").setBackground(Color.TEAL).asElement());
+    .appendChild(Badge.create("99+").setBackground(Color.TEAL));
 listGroup.addItem("SomeValue").setText("Porta ac consectetur ac")
-    .appendContent(Badge.create("21").setBackground(Color.ORANGE).asElement());
+    .appendChild(Badge.create("21").setBackground(Color.ORANGE));
 listGroup.addItem("SomeValue").setText("Vestibulum at eros")
-    .appendContent(Badge.create("18").setBackground(Color.PURPLE).asElement());
+    .appendChild(Badge.create("18").setBackground(Color.PURPLE));

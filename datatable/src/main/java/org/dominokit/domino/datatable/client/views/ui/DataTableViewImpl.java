@@ -17,9 +17,9 @@ import org.dominokit.domino.datatable.client.views.model.ContactList;
 import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
 import org.dominokit.domino.datatable.client.views.model.ContactSorter;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.code.Code;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
@@ -54,7 +54,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
     @Override
     public void init() {
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
-                .appendContent(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
+                .appendChild(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
                         .attr("target","_blank")
                         .textContent("Data table demo source code").asElement())
                 .asElement());
@@ -96,8 +96,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -163,8 +163,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("BASIC TABLE - FIXED", "Fixed tables will use the specified column width and will have scrolls when elements exceeds the body height. ")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -191,8 +191,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -211,8 +211,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("MARKER PLUGIN", "Mark the left side of the row with custom colors")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -231,8 +231,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("RECORD DETAILS PLUGIN", "Enable inline record details for rows.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -248,15 +248,15 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         tableConfig.addPlugin(new SelectionPlugin<>());
         tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
-                    IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
-                            .linkify();
-
-                    Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
-                    Style.of(selectInactiveButton)
-                            .setProperty("padding", "0px")
+                    Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
+                            .linkify()
+                            .style().setProperty("padding", "0px")
                             .setHeight("26px")
                             .setColor("black", true)
-                            .css(Styles.pull_right, Styles.m_r_15);
+                            .css(Styles.pull_right, Styles.m_r_15)
+                            .get();
+
+                    Tooltip.create(selectInactiveButton, new Text("Select Inactive"));
 
                     selectInactiveButton.addClickListener(evt -> {
                         dataTable.getTableRows().forEach(tableRow -> {
@@ -271,15 +271,15 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                     return selectInactiveButton.asElement();
                 })
                 .addActionElement(dataTable -> {
-                    IconButton selectInactiveButton = IconButton.create(Icons.ALL.check_circle())
-                            .linkify();
-
-                    Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));
-                    Style.of(selectInactiveButton)
-                            .setProperty("padding", "0px")
+                    Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
+                            .linkify()
+                            .style().setProperty("padding", "0px")
                             .setHeight("26px")
                             .setColor("black", true)
-                            .css(Styles.pull_right, Styles.m_r_15);
+                            .css(Styles.pull_right, Styles.m_r_15)
+                            .get();
+
+                    Tooltip.create(selectInactiveButton, new Text("Select Active"));
 
                     selectInactiveButton.addClickListener(evt -> {
                         dataTable.getTableRows().forEach(tableRow -> {
@@ -299,8 +299,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("HEADER BAR PLUGIN", "Adds a title and description for the table, and allow adding elements to the top right side of the table")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(defaultTable))
-                .appendContent(defaultTable.asElement())
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -321,8 +321,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("SORT PLUGIN & SEARCH HEADER ACTION", "Allows the table to fire events useful for datasource to sort and search the data")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -346,8 +346,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -486,9 +486,9 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().asElement()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off().asElement()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -541,8 +541,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("SCROLL LOADING", "Scroll loading requires the table to be fixed. use the Body scroll plugin to fire scroll events.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -640,8 +640,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("TOP PANEL PLUGIN", "A simple panel that listens to datatable events and update its content accordingly.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
@@ -725,15 +725,16 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 })
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(dataTable -> {
-                            IconButton selectInactiveButton = IconButton.create(Icons.ALL.highlight_off())
-                                    .linkify();
-
-                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
-                            Style.of(selectInactiveButton)
+                            Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
+                                    .linkify()
+                                    .style()
                                     .setProperty("padding", "0px")
                                     .setHeight("26px")
                                     .setColor("black", true)
-                                    .css(Styles.pull_right, Styles.m_r_15);
+                                    .css(Styles.pull_right, Styles.m_r_15)
+                                    .get();
+
+                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
 
                             selectInactiveButton.addClickListener(evt -> {
                                 dataTable.getTableRows().forEach(tableRow -> {
@@ -748,15 +749,16 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             return selectInactiveButton.asElement();
                         })
                         .addActionElement(dataTable -> {
-                            IconButton selectInactiveButton = IconButton.create(Icons.ALL.check_circle())
-                                    .linkify();
-
-                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));
-                            Style.of(selectInactiveButton)
+                            Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
+                                    .linkify()
+                                    .style()
                                     .setProperty("padding", "0px")
                                     .setHeight("26px")
                                     .setColor("black", true)
-                                    .css(Styles.pull_right, Styles.m_r_15);
+                                    .css(Styles.pull_right, Styles.m_r_15)
+                                    .get();
+
+                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));
 
                             selectInactiveButton.addClickListener(evt -> {
                                 dataTable.getTableRows().forEach(tableRow -> {
@@ -791,8 +793,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("ALL IN ONE", "Try all plugins and feature works together.")
                 .setCollapsible()
-                .appendContent(new TableStyleActions(table))
-                .appendContent(table.asElement())
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {

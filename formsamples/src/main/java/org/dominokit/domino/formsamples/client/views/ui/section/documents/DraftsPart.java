@@ -7,17 +7,16 @@ import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
 import org.dominokit.domino.formsamples.shared.model.DraftsItem;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.IconButton;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
-import org.dominokit.domino.ui.row.Row;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.NUMBERS_ONLY;
@@ -115,30 +114,29 @@ public class DraftsPart implements ImportSection {
         });
         draftsCard.getHeaderBar().appendChild(addDraftButton.asElement());
         draftsCard.getHeaderDescription().appendChild(draftsRequiredSwitch.asElement());
-        element.appendChild(Style.of(draftsCard)
-                .get()
+        element.appendChild(draftsCard
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
-                                .addElement(draftDrawnOnSelect))
+                                .appendChild(draftDrawnOnSelect))
                         .addColumn(Column.span4()
-                                .addElement(atDaysTextBox))
+                                .appendChild(atDaysTextBox))
                         .addColumn(Column.span4()
-                                .addElement(documentsRequiredFromSelect))
+                                .appendChild(documentsRequiredFromSelect))
                 ).appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .addElement(draftsPercentage))
+                                .appendChild(draftsPercentage))
                         .addColumn(Column.span6()
-                                .addElement(draftsOf))
+                                .appendChild(draftsOf))
                 ).appendChild(Row.create()
                         .addColumn(Column.span12()
-                                .addElement(draftsListGroup))
+                                .appendChild(draftsListGroup))
                 ).asElement());
     }
 
 
 
     private Button initAddButton() {
-        Button addDraftButton = IconButton.createDefault(Icons.ALL.add()).setContent("ADD").linkify()
+        Button addDraftButton = Button.createDefault(Icons.ALL.add()).setContent("ADD").linkify()
                 .addClickListener(evt -> {
                     if (fieldsGrouping.validate().isValid()) {
 
@@ -146,7 +144,8 @@ public class DraftsPart implements ImportSection {
 
                         ListItem<DraftsItem> draftsItemListItem = draftsListGroup.addItem(draftsItem, formattedDraftItem(draftsItem));
 
-                        Icon delete = Style.of(Icons.ALL.delete())
+                        Icon delete = Icons.ALL.delete()
+                                .style()
                                 .css(Styles.pull_right)
                                 .setMarginTop("-3px")
                                 .setMarginLeft("10px").get();
@@ -155,7 +154,7 @@ public class DraftsPart implements ImportSection {
                             draftsListGroup.removeItem(draftsItemListItem);
                             revalidate();
                         });
-                        draftsItemListItem.appendContent(delete.asElement());
+                        draftsItemListItem.appendChild(delete);
 
                         atDaysTextBox.clear();
                         draftDrawnOnSelect.clear();

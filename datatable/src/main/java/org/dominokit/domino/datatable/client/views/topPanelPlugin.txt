@@ -96,8 +96,8 @@ DataTable<Contact> table = new DataTable<>(tableConfig, scrollingDataSource);
 
 element.appendChild(Card.create("TOP PANEL PLUGIN", "A simple panel that listens to datatable events and update its content accordingly.")
         .setCollapsible()
-        .appendContent(new TableStyleActions(table))
-        .appendContent(table.asElement())
+        .appendChild(new TableStyleActions(table))
+        .appendChild(table)
         .asElement());
 
 List<Contact> contacts = ...

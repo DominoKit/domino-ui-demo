@@ -10,9 +10,9 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
 import org.dominokit.domino.ui.carousel.Slide;
-import org.dominokit.domino.ui.column.Column;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.row.Row;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -26,7 +26,7 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
         element.appendChild(BlockHeader.create("CAROUSEL").asElement());
 
         element.appendChild(Row.create()
-                .addColumn(Column.span6().addElement(
+                .addColumn(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
                                         .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg"))
@@ -36,7 +36,7 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
                                         .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
                                 )
                         ))
-                .addColumn(Column.span6().addElement(
+                .addColumn(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
                                         .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg", "Slide 1", "First slide description"))

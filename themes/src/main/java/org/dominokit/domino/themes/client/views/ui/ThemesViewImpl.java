@@ -14,6 +14,7 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.themes.Theme;
 import org.jboss.gwt.elemento.core.Elements;
 import org.slf4j.Logger;
@@ -49,9 +50,9 @@ public class ThemesViewImpl implements ThemesView {
                 layout.hideRightPanel();
         });
         card.getHeaderBar().appendChild(hideElement);
-        card.asElement().style.marginBottom = CSSProperties.MarginBottomUnionType.of(0);
-        card.getBody().style.padding = CSSProperties.PaddingUnionType.of(0);
-        card.getBody().appendChild(themesPanel.asElement());
+        card.style().setMarginBottom("0px");
+        card.bodyStyle().setPadding("0px");
+        card.appendChild(themesPanel.asElement());
         HTMLElement actionItem = Js.cast(layout.addActionItem("style").get());
         actionItem.addEventListener("click", e -> {
             layout.setRightPanelContent(themesContent());

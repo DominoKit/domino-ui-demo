@@ -6,10 +6,9 @@ import org.dominokit.domino.formsamples.shared.model.ChargesInstructions;
 import org.dominokit.domino.formsamples.shared.model.CorporateProfile;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.column.Column;
 import org.dominokit.domino.ui.forms.SwitchButton;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
@@ -29,7 +28,8 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
         correspondentChargesInstructionsCard.bodyStyle()
                 .setPaddingTop("40px");
 
-        correspondentChargesSwitch = Style.of(SwitchButton.create())
+        correspondentChargesSwitch = SwitchButton.create()
+                .style()
                 .setMarginBottom("0px")
                 .get()
                 .setOnTitle("Applicant")
@@ -54,7 +54,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
 
         element.appendChild(correspondentChargesInstructionsCard
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().addElement(corporateAccountsSelect))
+                        .addColumn(Column.span6().appendChild(corporateAccountsSelect))
                 ).asElement());
     }
 

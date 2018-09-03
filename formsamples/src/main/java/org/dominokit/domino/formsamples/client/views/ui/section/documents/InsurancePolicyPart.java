@@ -10,13 +10,12 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.row.Row;
-import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.dominokit.domino.ui.column.Column.span6;
+import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class InsurancePolicyPart implements ImportSection {
@@ -49,7 +48,8 @@ public class InsurancePolicyPart implements ImportSection {
 
         insurancePolicyNumberTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
-        insurancePolicyRequiredSwitchButton = Style.of(SwitchButton.create())
+        insurancePolicyRequiredSwitchButton = SwitchButton.create()
+                .style()
                 .setMarginBottom("0px")
                 .get()
                 .setOnTitle("Applicant")
@@ -71,11 +71,10 @@ public class InsurancePolicyPart implements ImportSection {
                 .appendChild(insurancePolicyRequiredSwitchButton.asElement());
 
         Row insurancePolicyRow = Row.create()
-                .addColumn(span6().addElement(insuranceCompanyTextBox))
-                .addColumn(span6().addElement(insurancePolicyNumberTextBox));
+                .addColumn(span6().appendChild(insuranceCompanyTextBox))
+                .addColumn(span6().appendChild(insurancePolicyNumberTextBox));
 
-        element.appendChild(Style.of(insurancePolicyCard)
-                .get()
+        element.appendChild(insurancePolicyCard
                 .appendChild(insurancePolicyRow)
                 .asElement());
     }

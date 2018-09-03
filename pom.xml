@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dominokit.domino</groupId>
@@ -142,11 +141,11 @@
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>192.168.1.2</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations-->
-                            <!--</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations
+                            </codeserverArg>
 
                             <!--<codeserverArg>-src</codeserverArg>-->
                             <!--<codeserverArg>/home/rafat/Development/git/domino-ui/src/main/java</codeserverArg>-->
@@ -230,7 +229,9 @@
         <module>formsamples</module>
         <module>carousel</module>
         <module>tree</module>
-        <module>layoutSample</module>
+        <module>appLayout</module>
         <module>chips</module>
-    </modules>
+        <module>layouts</module>
+    <module>gridLayout</module>
+  </modules>
 </project>
