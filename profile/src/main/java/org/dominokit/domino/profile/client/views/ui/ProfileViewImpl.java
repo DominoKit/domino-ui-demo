@@ -44,8 +44,8 @@ public class ProfileViewImpl implements ProfileView {
                 .linkify()
                 .setBackground(Color.TRANSPARENT)
                 .hideCaret()
-                .addAction(DropdownAction.create("Action 1").addSelectionHandler(() -> Notification.createInfo("Action 1").show()))
-                .addAction(DropdownAction.create("Action 2").addSelectionHandler(() -> Notification.createInfo("Action 2").show()));
+                .appendChild(DropdownAction.create("Action 1").addSelectionHandler(() -> Notification.createInfo("Action 1").show()))
+                .appendChild(DropdownAction.create("Action 2").addSelectionHandler(() -> Notification.createInfo("Action 2").show()));
 
         profile.getHeaderBar().appendChild(dropdownButton
                 .asElement());

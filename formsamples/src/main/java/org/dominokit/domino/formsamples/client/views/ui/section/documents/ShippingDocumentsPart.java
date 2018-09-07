@@ -54,7 +54,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .addSelectionHandler(option -> revalidate());
 
         for (Bank bank : banks) {
-            orderOfBankSelect.addOption(SelectOption.create(bank, bank.getSwiftCode(), bank.getName()));
+            orderOfBankSelect.appendChild(SelectOption.create(bank, bank.getSwiftCode(), bank.getName()));
         }
 
         freightSelect = Select.<String>create("Freight")
@@ -62,8 +62,8 @@ public class ShippingDocumentsPart implements ImportSection {
                 .setAutoValidation(true)
                 .setRequired(true)
                 .setLeftAddon(Icons.ALL.credit_card())
-                .addOption(SelectOption.create("Prepaid", "Prepaid"))
-                .addOption(SelectOption.create("Payable at destination", "Payable at destination"))
+                .appendChild(SelectOption.create("Prepaid", "Prepaid"))
+                .appendChild(SelectOption.create("Payable at destination", "Payable at destination"))
                 .addSelectionHandler(option -> revalidate());
 
         shippingDocumentsTypeSelect = Select.<String>create("Shipping documents type")
@@ -71,10 +71,10 @@ public class ShippingDocumentsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.local_shipping())
-                .addOption(SelectOption.create("Ocean bills of lading in", "Ocean bills of lading in"))
-                .addOption(SelectOption.create("Airway bill in", "Airway bill in"))
-                .addOption(SelectOption.create("Truck consignment note", "Truck consignment note"))
-                .addOption(SelectOption.create("Multimodal transport document", "Multimodal transport document"))
+                .appendChild(SelectOption.create("Ocean bills of lading in", "Ocean bills of lading in"))
+                .appendChild(SelectOption.create("Airway bill in", "Airway bill in"))
+                .appendChild(SelectOption.create("Truck consignment note", "Truck consignment note"))
+                .appendChild(SelectOption.create("Multimodal transport document", "Multimodal transport document"))
                 .selectAt(0)
                 .addSelectionHandler(option -> revalidate());
 

@@ -4,6 +4,7 @@ import org.dominokit.domino.api.shared.extension.Content;
 
 public abstract class ComponentView<T> implements DemoView{
     private boolean initialized=false;
+    protected final String BASE_SOURCE_URL = "https://github.com/DominoKit/domino-ui-demo/blob/master/";
 
     private void doInit(){
         this.initialized=true;

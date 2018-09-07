@@ -4,6 +4,7 @@ import com.google.gwt.core.client.Scheduler;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.formsamples.client.presenters.FormSamplesPresenter;
 import org.dominokit.domino.formsamples.client.views.FormSamplesView;
@@ -2058,6 +2059,7 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
 
     private void reBuildForm() {
         ElementUtil.clear(element);
+        element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).asElement());
         addLCImportComponent = new AddLCImportComponent(corporateProfile, countries, beneficiaries, banks, currencies);
         addLCImportComponent.setUiHandlers(FormSamplesViewImpl.this);
         element.appendChild(addLCImportComponent.asElement());

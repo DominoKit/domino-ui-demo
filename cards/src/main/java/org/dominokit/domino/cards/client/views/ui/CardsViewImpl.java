@@ -7,6 +7,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.cards.client.presenters.CardsPresenter;
 import org.dominokit.domino.cards.client.views.CardsView;
 import org.dominokit.domino.cards.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -31,7 +32,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         noHeaderCards();
     }
     private void cardsWithHeaders() {
-
+        element.appendChild(LinkToSourceCode.create("cards", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").asElement());
         element.appendChild(Row.create()
                 .addColumn(Column.span4()

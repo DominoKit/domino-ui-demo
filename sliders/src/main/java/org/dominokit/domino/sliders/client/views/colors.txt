@@ -1,4 +1,4 @@
-element
+colorsSlidersCard
     .appendChild(Row.create()
             .addColumn(Column.span4().appendChild(Slider.create(100).setBackgroundColor(Color.RED).setThumbColor(Color.RED)))
             .addColumn(Column.span4().appendChild(Slider.create(100).setBackgroundColor(Color.RED_LIGHTEN_4).setThumbColor(Color.RED_DARKEN_4)))

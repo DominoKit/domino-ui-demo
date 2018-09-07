@@ -1,6 +1,7 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.loaders.client.presenters.LoadersPresenter;
 import org.dominokit.domino.loaders.client.views.CodeResource;
@@ -32,6 +33,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("loaders", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").asElement());
 
         element.appendChild(Row.create()

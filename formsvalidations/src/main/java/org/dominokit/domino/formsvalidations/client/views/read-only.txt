@@ -8,9 +8,9 @@ readOnlyCard
                             .setReadOnly(true)))
             .addColumn(Column.span12()
                     .appendChild(Select.create("Select")
-                            .addOption(SelectOption.create("english", "English"))
-                            .addOption(SelectOption.create("france", "France"))
-                            .addOption(SelectOption.create("arabic", "Arabic"))
+                            .appendChild(SelectOption.create("english", "English"))
+                            .appendChild(SelectOption.create("france", "France"))
+                            .appendChild(SelectOption.create("arabic", "Arabic"))
                             .selectAt(0)
                             .setReadOnly(true)))
     );

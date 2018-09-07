@@ -28,7 +28,7 @@ public class BanksComponent {
             List<Branch> branches = bank.getBranches();
             branchesSelect.removeAllOptions();
             for (Branch branch : branches) {
-                branchesSelect.addOption(SelectOption.create(branch, branch.getName()));
+                branchesSelect.appendChild(SelectOption.create(branch, branch.getName()));
             }
         });
     }
@@ -49,7 +49,7 @@ public class BanksComponent {
     public BanksComponent setBanks(List<Bank> banks) {
         banksSelect.removeAllOptions();
         for (Bank bank : banks) {
-            banksSelect.addOption(SelectOption.create(bank, bank.getSwiftCode(), bank.getName()));
+            banksSelect.appendChild(SelectOption.create(bank, bank.getSwiftCode(), bank.getName()));
         }
         return this;
     }

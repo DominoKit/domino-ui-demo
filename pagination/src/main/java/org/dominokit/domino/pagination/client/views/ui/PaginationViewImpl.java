@@ -1,5 +1,6 @@
 package org.dominokit.domino.pagination.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.pagination.client.views.CodeResource;
 import org.dominokit.domino.pagination.client.views.PaginationView;
@@ -29,6 +30,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PAGINATION").asElement());
 
         defaultPagination();

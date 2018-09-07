@@ -1,6 +1,7 @@
 package org.dominokit.domino.thumbnails.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.thumbnails.client.views.CodeResource;
 import org.dominokit.domino.thumbnails.client.views.ThumbnailsView;
@@ -26,6 +27,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("thumbnails", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("THUMBNAILS").asElement());
 
         basicSample();

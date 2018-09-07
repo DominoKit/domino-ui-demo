@@ -1,22 +1,22 @@
 ListGroup<String> contextualGroup = ListGroup.create();
 contextualGroup
-        .appendChild(contextualGroup.createItem("Value1", "Cras justo odio").select().success())
-        .appendChild(contextualGroup.createItem("Value2", "Dapibus ac facilisis in").info())
-        .appendChild(contextualGroup.createItem("Value3", "Morbi leo risus").warning())
-        .appendChild(contextualGroup.createItem("Value4", "Porta ac consectetur ac").error())
-        .appendChild(contextualGroup.createItem("Value5", "Vestibulum at eros"));
+    .appendChild(contextualGroup.createItem("Value1", "Cras justo odio").select().success())
+    .appendChild(contextualGroup.createItem("Value2", "Dapibus ac facilisis in").info())
+    .appendChild(contextualGroup.createItem("Value3", "Morbi leo risus").warning())
+    .appendChild(contextualGroup.createItem("Value4", "Porta ac consectetur ac").error())
+    .appendChild(contextualGroup.createItem("Value5", "Vestibulum at eros"));
 
 ListGroup<String> coloredGroup = ListGroup.create();
 coloredGroup
-        .appendChild(coloredGroup.createItem("Value1", "Cras justo odio").disable().setBackground(Color.PINK))
-        .appendChild(coloredGroup.createItem("Value2", "Dapibus ac facilisis in").setBackground(Color.TEAL))
-        .appendChild(coloredGroup.createItem("Value3", "Morbi leo risus").setBackground(Color.LIGHT_GREEN))
-        .appendChild(coloredGroup.createItem("Value4", "Porta ac consectetur ac").setBackground(Color.AMBER))
-        .appendChild(coloredGroup.createItem("Value5", "Vestibulum at eros").setBackground(Color.DEEP_PURPLE));
+    .appendChild(coloredGroup.createItem("Value1", "Cras justo odio").disable().setBackground(Color.PINK))
+    .appendChild(coloredGroup.createItem("Value2", "Dapibus ac facilisis in").setBackground(Color.TEAL))
+    .appendChild(coloredGroup.createItem("Value3", "Morbi leo risus").setBackground(Color.LIGHT_GREEN))
+    .appendChild(coloredGroup.createItem("Value4", "Porta ac consectetur ac").setBackground(Color.AMBER))
+    .appendChild(coloredGroup.createItem("Value5", "Vestibulum at eros").setBackground(Color.DEEP_PURPLE));
 
 element.appendChild(Row.create()
-        .addColumn(Column.span6().appendChild(Card.create("CONTEXTUAL CLASSES", "Use contextual classes to style list items.")
-                .appendChild(contextualGroup)))
-        .addColumn(Column.span6().appendChild(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
-                .appendChild(coloredGroup)))
-        .asElement());
+    .addColumn(Column.span6().appendChild(Card.create("CONTEXTUAL CLASSES", "Use contextual classes to style list items.")
+            .appendChild(contextualGroup)))
+    .addColumn(Column.span6().appendChild(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
+            .appendChild(coloredGroup)))
+    .asElement());

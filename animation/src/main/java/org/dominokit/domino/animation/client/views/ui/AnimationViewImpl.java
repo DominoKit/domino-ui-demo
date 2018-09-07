@@ -6,6 +6,7 @@ import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
 import org.dominokit.domino.animation.client.views.AnimationView;
 import org.dominokit.domino.animation.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.animations.Animation;
 import org.dominokit.domino.ui.animations.Transition;
@@ -37,6 +38,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("animation", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CSS ANIMATIONS")
                 .appendText("Pure css animations - ")
                 .appendChild(a().attr("href", "https://daneden.github.io/animate.css/")
@@ -362,6 +364,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .large();
         animate.getClickableElement().addEventListener("click", e ->
                 Animation.create(animationCard)
+                        .beforeStart(element -> {/*do something here*/})
                         .transition(transition)
                         .duration(1000)
                         .animate());
@@ -374,7 +377,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                     .transition(transition)
                     .infinite()
                     .duration(1000);
-            if (Style.of(animationCard).hasClass("animated")) {
+            if (Style.of(animationCard).contains("animated")) {
                 animation.stop();
                 Style.of(animate).setDisplay("inline-block");
                 infiniteAnimate.setContent("INFINITE");

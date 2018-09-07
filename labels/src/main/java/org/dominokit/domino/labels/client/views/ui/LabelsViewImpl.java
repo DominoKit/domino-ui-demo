@@ -2,6 +2,7 @@ package org.dominokit.domino.labels.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.labels.client.presenters.LabelsPresenter;
 import org.dominokit.domino.labels.client.views.CodeResource;
@@ -26,6 +27,7 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("LABELS").asElement());
         initLabels();
         initMaterialLabels();

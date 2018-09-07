@@ -36,7 +36,11 @@
             <artifactId>apt-client</artifactId>
             <scope>provided</scope>
         </dependency>
-
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-frontend-ui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>components-shared</artifactId>

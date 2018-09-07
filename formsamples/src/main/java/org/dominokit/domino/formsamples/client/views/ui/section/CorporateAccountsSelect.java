@@ -39,7 +39,7 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
                 .setWidth("330px");
 
         for (CorporateAccount corporateAccount : corporateProfile.getCorporateAccounts()) {
-            accountSelect.addOption(SelectOption.create(corporateAccount, corporateAccount.getAccountAlias()));
+            accountSelect.appendChild(SelectOption.create(corporateAccount, corporateAccount.getAccountAlias()));
         }
 
         accountSelect.addSelectionHandler(option -> accountDetails.setAccount(option.getValue()));
@@ -65,18 +65,6 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     @Override
     public CorporateAccountsSelect expand() {
         accountSelect.expand();
-        return this;
-    }
-
-    @Override
-    public CorporateAccountsSelect collapse(int duration) {
-        accountSelect.collapse(duration);
-        return this;
-    }
-
-    @Override
-    public CorporateAccountsSelect expand(int duration) {
-        accountSelect.expand(duration);
         return this;
     }
 

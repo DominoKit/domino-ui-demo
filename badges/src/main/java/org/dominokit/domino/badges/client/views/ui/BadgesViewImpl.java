@@ -4,6 +4,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.badges.client.presenters.BadgesPresenter;
 import org.dominokit.domino.badges.client.views.BadgesView;
 import org.dominokit.domino.badges.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
@@ -30,6 +31,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
     @Override
     public void init() {
 
+        element.appendChild(LinkToSourceCode.create("badges", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BADGES").asElement());
 
         buttonExample();

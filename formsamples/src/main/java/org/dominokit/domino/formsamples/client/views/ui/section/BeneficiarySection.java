@@ -48,7 +48,7 @@ public class BeneficiarySection implements ImportSection {
                 .addSelectionHandler(option -> revalidate());
 
         for (Beneficiary beneficiary : beneficiaries) {
-            beneficiariesSelect.addOption(SelectOption.create(beneficiary, beneficiary.getName()));
+            beneficiariesSelect.appendChild(SelectOption.create(beneficiary, beneficiary.getName()));
         }
 
         beneficiariesSelect.addSelectionHandler(option -> {
@@ -56,7 +56,7 @@ public class BeneficiarySection implements ImportSection {
             Beneficiary beneficiary = beneficiariesSelect.getValue();
             List<Account> accounts = beneficiary.getAccounts();
             for (Account account : accounts) {
-                accountsSelect.addOption(SelectOption.create(account, account.getAccountAlias()));
+                accountsSelect.appendChild(SelectOption.create(account, account.getAccountAlias()));
             }
         });
 

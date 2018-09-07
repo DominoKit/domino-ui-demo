@@ -4,6 +4,7 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase.ComponentRemoveHandler;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.modals.client.presenters.ModalsPresenter;
@@ -38,6 +39,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("MODALS").asElement());
         initModalsSize();
         initModalColor();

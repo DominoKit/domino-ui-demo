@@ -26,7 +26,6 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.i;
 
 public class CreditAmountAndToleranceSection implements ImportSection {
-    private List<CurrencyData> currencies;
     private TextBox amountFieldTextBox;
     private Select<CurrencyData> currencySelect;
     private TextBox toleranceTextBox;

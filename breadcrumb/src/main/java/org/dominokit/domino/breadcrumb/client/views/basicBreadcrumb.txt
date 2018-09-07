@@ -1,38 +1,40 @@
 element.appendChild(Row.create()
-    .addColumn(Column.span6().appendChild(Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
-            .appendChild(Breadcrumb.create()
-                    .addItem(" Home ", evt -> {
-                    }))
-            .appendChild(Breadcrumb.create()
-                    .addItem(" Home ", evt -> {
-                    })
-                    .addItem(" Library ", evt -> {
-                    }))
-            .appendChild(Breadcrumb.create()
-                    .addItem(" Home ", evt -> {
-                    })
-                    .addItem(" Library ", evt -> {
-                    })
-                    .addItem(" Data ", evt -> {
-                    })
-            )
-    ))
-    .addColumn(Column.span6().appendChild(Card.create("WITH ICONS")
-            .appendChild(Breadcrumb.create()
-                    .addItem(Icons.ALL.home(), " Home ", evt -> {
-                    }))
-            .appendChild(Breadcrumb.create()
-                    .addItem(Icons.ALL.home(), " Home ", evt -> {
-                    })
-                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-                    }))
-            .appendChild(Breadcrumb.create()
-                    .addItem(Icons.ALL.home(), " Home ", evt -> {
-                    })
-                    .addItem(Icons.ALL.library_books(), " Library ", evt -> {
-                    })
-                    .addItem(Icons.ALL.archive(), " Data ", evt -> {
-                    })
-            )
-    ))
+    .addColumn(Column.span6()
+            .appendChild(Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(" Home ", evt -> {
+                            }))
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(" Home ", evt -> {
+                            })
+                            .appendChild(" Library ", evt -> {
+                            }))
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(" Home ", evt -> {
+                            })
+                            .appendChild(" Library ", evt -> {
+                            })
+                            .appendChild(" Data ", evt -> {
+                            })
+                    )
+            ))
+    .addColumn(Column.span6()
+            .appendChild(Card.create("WITH ICONS")
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(Icons.ALL.home(), " Home ", evt -> {
+                            }))
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(Icons.ALL.home(), " Home ", evt -> {
+                            })
+                            .appendChild(Icons.ALL.library_books(), " Library ", evt -> {
+                            }))
+                    .appendChild(Breadcrumb.create()
+                            .appendChild(Icons.ALL.home(), " Home ", evt -> {
+                            })
+                            .appendChild(Icons.ALL.library_books(), " Library ", evt -> {
+                            })
+                            .appendChild(Icons.ALL.archive(), " Data ", evt -> {
+                            })
+                    )
+            ))
     .asElement());

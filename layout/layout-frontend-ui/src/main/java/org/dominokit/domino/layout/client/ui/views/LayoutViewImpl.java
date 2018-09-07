@@ -40,11 +40,11 @@ public class LayoutViewImpl implements LayoutView {
         layout.getNavigationBar().asElement()
                 .insertBefore(search.asElement(), layout.getNavigationBar().asElement().firstChild);
 
-        HtmlContentBuilder<HTMLAnchorElement> searchButton = a().add(Icons.ALL.search());
+        HtmlContentBuilder<HTMLAnchorElement> searchButton = a().css("js-right-sidebar").add(Icons.ALL.search());
         searchButton.on(EventType.click, event -> search.open());
         layout.getTopBar()
-                .appendChild(li().add(searchButton).asElement());
-        layout.getTopBar().appendChild(li().style("padding-top: 3px;").add(makeGithubLink()).asElement());
+                .appendChild(li().css(Styles.pull_right).add(searchButton).asElement());
+        layout.getTopBar().appendChild(li().css(Styles.pull_right).style("padding-top: 3px;").add(makeGithubLink()).asElement());
         layout.showFooter();
         HTMLDivElement copyrightsElement = div()
                 .css(Theme.currentTheme.getScheme().darker_3().getBackground())
@@ -55,7 +55,7 @@ public class LayoutViewImpl implements LayoutView {
         Row footerRow = Row.create()
                 .style()
                 .setMargin("0px")
-                .css("demo-footer")
+                .add("demo-footer")
                 .get()
                 .addColumn(Column.span4()
                         .style()
@@ -96,13 +96,13 @@ public class LayoutViewImpl implements LayoutView {
         layout.getFooter().appendChild(footerRow);
         layout.getFooter().appendChild(copyrightsElement);
         Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
-                .removeCss(oldTheme.getScheme().darker_3().getBackground())
-                .css(newTheme.getScheme().darker_3().getBackground()));
+                .remove(oldTheme.getScheme().darker_3().getBackground())
+                .add(newTheme.getScheme().darker_3().getBackground()));
 
     }
 
     private HTMLAnchorElement makeGithubLink() {
-        HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x").asElement();
+        HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x", "js-right-sidebar").asElement();
         githubLink.addEventListener("click", evt -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"));
         return githubLink;
     }

@@ -8,6 +8,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
 import org.dominokit.domino.datatable.client.views.CodeResource;
@@ -42,8 +43,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = DatatablePresenter.class)
 public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
@@ -53,6 +53,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
                 .appendChild(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
                         .attr("target","_blank")
@@ -184,20 +185,36 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
     }
 
     private void selectionPlugin() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
-        tableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
+        TableConfig<Contact> singleSelectionTableConfig = createBasicTableConfig();
+        singleSelectionTableConfig.setMultiSelect(false);
+        singleSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+        LocalListDataStore<Contact> singleLocalStore = new LocalListDataStore<>();
+        DataTable<Contact> singleSelectionTable = new DataTable<>(singleSelectionTableConfig, singleLocalStore);
+
+        TableConfig<Contact> multiSelectionTableConfig = createBasicTableConfig();
+        multiSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+        LocalListDataStore<Contact> multiLocalStore = new LocalListDataStore<>();
+        DataTable<Contact> multiSelectionTable = new DataTable<>(multiSelectionTableConfig, multiLocalStore);
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
-                .appendChild(new TableStyleActions(defaultTable))
-                .appendChild(defaultTable)
+                .appendChild(BlockHeader.create("SINGLE SELECTION"))
+                .appendChild(new TableStyleActions(singleSelectionTable))
+                .appendChild(singleSelectionTable.asElement())
+                .appendChild(br())
+                .appendChild(br())
+                .appendChild(br())
+                .appendChild(hr())
+                .appendChild(BlockHeader.create("MULTI SELECTION"))
+                .appendChild(new TableStyleActions(multiSelectionTable))
+                .appendChild(multiSelectionTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts));
-            defaultTable.load();
+            singleLocalStore.setData(subList(contacts));
+            singleLocalStore.load();
+            multiLocalStore.setData(subList(contacts));
+            multiSelectionTable.load();
         });
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
@@ -253,7 +270,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .style().setProperty("padding", "0px")
                             .setHeight("26px")
                             .setColor("black", true)
-                            .css(Styles.pull_right, Styles.m_r_15)
+                            .add(Styles.pull_right, Styles.m_r_15)
                             .get();
 
                     Tooltip.create(selectInactiveButton, new Text("Select Inactive"));
@@ -276,7 +293,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .style().setProperty("padding", "0px")
                             .setHeight("26px")
                             .setColor("black", true)
-                            .css(Styles.pull_right, Styles.m_r_15)
+                            .add(Styles.pull_right, Styles.m_r_15)
                             .get();
 
                     Tooltip.create(selectInactiveButton, new Text("Select Active"));
@@ -731,7 +748,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .setProperty("padding", "0px")
                                     .setHeight("26px")
                                     .setColor("black", true)
-                                    .css(Styles.pull_right, Styles.m_r_15)
+                                    .add(Styles.pull_right, Styles.m_r_15)
                                     .get();
 
                             Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
@@ -755,7 +772,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .setProperty("padding", "0px")
                                     .setHeight("26px")
                                     .setColor("black", true)
-                                    .css(Styles.pull_right, Styles.m_r_15)
+                                    .add(Styles.pull_right, Styles.m_r_15)
                                     .get();
 
                             Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));

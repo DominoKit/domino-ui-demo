@@ -1,24 +1,44 @@
 Stepper stepper = Stepper.create()
     .setColor(Color.INDIGO);
 
+
 TextBox nameTextBox = TextBox.create("Name")
     .setRequired(true)
     .setAutoValidation(true)
     .setLeftAddon(Icons.ALL.label());
+
+nameTextBox.getInputElement().addEventListener("keypress", evt -> {
+    if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+        stepper.next();
+    }
+});
 
 TextBox email = TextBox.create("Email")
     .setRequired(true)
     .setAutoValidation(true)
     .setLeftAddon(Icons.ALL.email());
 
+email.getInputElement().addEventListener("keypress", evt -> {
+    if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+        stepper.next();
+    }
+});
+
 TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
     .setRequired(true)
     .setAutoValidation(true)
     .setLeftAddon(Icons.ALL.phone());
 
+phone.getInputElement().addEventListener("keypress", evt -> {
+    if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+        stepper.finish();
+    }
+});
+
 
 Step stepOne = Step.create("Contact name", "Contact name step")
     .setValidator(() -> nameTextBox.validate().isValid())
+    .onActivated(step -> nameTextBox.focus())
     .appendChild(Row.create()
             .addColumn(span6().appendChild(nameTextBox)))
     .appendFooterChild(Row.create()
@@ -31,6 +51,7 @@ Step stepOne = Step.create("Contact name", "Contact name step")
 
 Step stepTow = Step.create("Contact email", "Contact email step")
     .setValidator(() -> email.validate().isValid())
+    .onActivated(step -> email.focus())
     .appendChild(Row.create()
             .addColumn(span6().appendChild(email)))
     .appendFooterChild(Row.create()
@@ -39,7 +60,8 @@ Step stepTow = Step.create("Contact email", "Contact email step")
                             .setMinWidth("120px")
                             .setMarginRight("5px")
                             .get()
-                            .addClickListener(evt -> stepper.back()))
+                            .addClickListener(evt -> stepper.back())))
+            .addColumn(span6()
                     .appendChild(Style.of(Button.createPrimary("Next"))
                             .setMinWidth("120px")
                             .setMarginRight("5px")
@@ -49,6 +71,7 @@ Step stepTow = Step.create("Contact email", "Contact email step")
 
 Step stepThree = Step.create("Contact phone", "Contact phone step")
     .setValidator(() -> phone.validate().isValid())
+    .onActivated(step -> phone.focus())
     .appendChild(Row.create()
             .addColumn(span6().appendChild(phone)))
     .appendFooterChild(Row.create()
@@ -57,9 +80,8 @@ Step stepThree = Step.create("Contact phone", "Contact phone step")
                             .setMinWidth("120px")
                             .setMarginRight("5px")
                             .get()
-                            .addClickListener(evt -> {
-                                stepper.back();
-                            }))
+                            .addClickListener(evt -> stepper.back())))
+            .addColumn(span6()
                     .appendChild(Style.of(Button.createPrimary("Finish"))
                             .setMinWidth("120px")
                             .setMarginRight("5px")
@@ -69,9 +91,9 @@ Step stepThree = Step.create("Contact phone", "Contact phone step")
 
 
 stepper
-    .addStep(stepOne)
-    .addStep(stepTow)
-    .addStep(stepThree)
+    .appendChild(stepOne)
+    .appendChild(stepTow)
+    .appendChild(stepThree)
     .setCompletionHandler(() -> Notification.create("All step completed").show());
 
 element.appendChild(Card.create("VERTICAL STEPPER")

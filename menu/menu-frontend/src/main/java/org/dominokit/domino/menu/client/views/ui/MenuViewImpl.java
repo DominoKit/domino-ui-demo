@@ -29,7 +29,7 @@ public class MenuViewImpl implements MenuView {
             .setMarginBottom("0px")
             .setMarginTop("0px")
             .setCursor("pointer")
-            .css(Styles.pull_right)
+            .add(Styles.pull_right)
             .get();
     private boolean locked = false;
     private Collapsible lockCollapsible = Collapsible.create(lockIcon).expand();
@@ -44,16 +44,19 @@ public class MenuViewImpl implements MenuView {
 
     @Override
     public void init(IsLayout layout) {
-        menu = Tree.create("Demo menu")
-        .style()
-        .setHeight("calc(100vh - 267px)").get();
+        menu = Tree.create("Demo menu");
+        menu.getHeader().appendChild(lockIcon.asElement());
+
+        menu.enableSearch()
+                .autoExpandFound()
+                .style()
+                .setHeight("calc(100vh - 267px)").get();
 
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
 
-        menu.getHeader().appendChild(lockIcon.asElement());
 
-        lockIcon.addClickListener( evt -> {
+        lockIcon.addClickListener(evt -> {
             if (locked) {
                 layout.unfixLeftPanelPosition();
                 lockIcon.asElement().textContent = Icons.ALL.lock().getName();
@@ -108,7 +111,7 @@ public class MenuViewImpl implements MenuView {
     @Override
     public CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler) {
         TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
-        menu.addTreeItem(menuItem);
+        menu.appendChild(menuItem);
         menuItem.addClickListener(e -> selectionHandler.onMenuSelected());
         return new SubMenu(menuItem);
     }
@@ -116,7 +119,7 @@ public class MenuViewImpl implements MenuView {
     @Override
     public CanAddMenuItem addMenuItem(String title, String iconName) {
         TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
-        menu.addTreeItem(menuItem);
+        menu.appendChild(menuItem);
         return new SubMenu(menuItem);
     }
 
@@ -133,7 +136,7 @@ public class MenuViewImpl implements MenuView {
         public CanAddMenuItem addMenuItem(String title) {
             TreeItem item = TreeItem.create(title)
                     .setActiveIcon(Icons.ALL.keyboard_arrow_right());
-            menuItem.addTreeItem(item);
+            menuItem.appendChild(item);
             return new SubMenu(item);
         }
 
@@ -141,7 +144,7 @@ public class MenuViewImpl implements MenuView {
         public CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler) {
             TreeItem item = TreeItem.create(title)
                     .setActiveIcon(Icons.ALL.keyboard_arrow_right());
-            menuItem.addTreeItem(item);
+            menuItem.appendChild(item);
             item.addClickListener(e -> selectionHandler.onMenuSelected());
             return new SubMenu(item);
         }

@@ -3,6 +3,7 @@ package org.dominokit.domino.icons.client.views.ui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.icons.client.presenters.IconsPresenter;
 import org.dominokit.domino.icons.client.views.IconsView;
@@ -42,6 +43,7 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
 
             @Override
             public void onSuccess() {
+                element.appendChild(LinkToSourceCode.create("icons", IconsViewImpl.this.getClass()).asElement());
                 element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
                         .appendChild(Elements.a()
                                 .attr("href", "http://google.github.io/material-design-icons/")
@@ -1583,7 +1585,7 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
 
     private Row makeRow() {
         return Row.create()
-                .style().css("demo-icon-container").get();
+                .style().add("demo-icon-container").get();
     }
 
     private HtmlContentBuilder<HTMLDivElement> createDemoIconElement(Icon icon) {

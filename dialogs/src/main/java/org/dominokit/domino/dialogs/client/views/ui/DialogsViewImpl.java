@@ -2,6 +2,7 @@ package org.dominokit.domino.dialogs.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.dialogs.client.presenters.DialogsPresenter;
 import org.dominokit.domino.dialogs.client.views.CodeResource;
@@ -33,6 +34,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DIALOGS").asElement());
 
         MessageDialog basicMessage = MessageDialog.createMessage("Here's a message!",
@@ -65,7 +67,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                 .warning();
 
         Icon heart = Icons.ALL.favorite()
-                .style().css(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
+                .style().add(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
 
         MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
                 "You can customize the header content",
@@ -80,19 +82,19 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                 "You can customize the dialog content",
                 () -> Notification.create("Dialog closed").show())
                 .appendChild(SimpleListGroup.create()
-                        .appendItem(SimpleListItem.create("Cras justo odio")
+                        .appendChild(SimpleListItem.create("Cras justo odio")
                                 .appendChild(Badge.create("14 new").setBackground(Color.PINK)))
 
-                        .appendItem(SimpleListItem.create("Dapibus ac facilisis in")
+                        .appendChild(SimpleListItem.create("Dapibus ac facilisis in")
                                 .appendChild(Badge.create("99 unread").setBackground(Color.CYAN)))
 
-                        .appendItem(SimpleListItem.create("Morbi leo risus")
+                        .appendChild(SimpleListItem.create("Morbi leo risus")
                                 .appendChild(Badge.create("99+").setBackground(Color.TEAL)))
 
-                        .appendItem(SimpleListItem.create("Porta ac consectetur ac")
+                        .appendChild(SimpleListItem.create("Porta ac consectetur ac")
                                 .appendChild(Badge.create("21").setBackground(Color.ORANGE)))
 
-                        .appendItem(SimpleListItem.create("Vestibulum at eros")
+                        .appendChild(SimpleListItem.create("Vestibulum at eros")
                                 .appendChild(Badge.create("Pending").setBackground(Color.PURPLE)))
                         .style()
                         .setTextAlign("left"));

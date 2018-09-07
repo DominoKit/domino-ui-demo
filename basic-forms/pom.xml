@@ -45,6 +45,12 @@
             <artifactId>forms-shared</artifactId>
             <version>${project.version}</version>
         </dependency>
+
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-frontend-ui</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

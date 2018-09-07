@@ -1,69 +1,69 @@
 HTMLDivElement rgbColorsDiv = div()
-        .style("height: 190px;")
-        .asElement();
+    .style("height: 190px;")
+    .asElement();
 
 Slider redSlider = Slider.create(255, 0)
-        .style()
-        .setMarginTop("17px")
-        .get()
-        .anyStep()
-        .withoutThumb()
-        .setThumbColor(Color.RED_DARKEN_2)
-        .setBackgroundColor(Color.RED_LIGHTEN_3);
+    .style()
+    .setMarginTop("17px")
+    .get()
+    .anyStep()
+    .withoutThumb()
+    .setThumbColor(Color.RED_DARKEN_2)
+    .setBackgroundColor(Color.RED_LIGHTEN_3);
 Slider greenSlider = Slider.create(255, 0)
-        .style()
-        .setMarginTop("17px")
-        .get()
-        .anyStep()
-        .withoutThumb()
-        .setThumbColor(Color.GREEN_DARKEN_2)
-        .setBackgroundColor(Color.GREEN_LIGHTEN_3);
+    .style()
+    .setMarginTop("17px")
+    .get()
+    .anyStep()
+    .withoutThumb()
+    .setThumbColor(Color.GREEN_DARKEN_2)
+    .setBackgroundColor(Color.GREEN_LIGHTEN_3);
 Slider blueSlider = Slider.create(255, 0)
-        .style()
-        .setMarginTop("17px")
-        .get()
-        .anyStep()
-        .withoutThumb()
-        .setThumbColor(Color.BLUE_DARKEN_2)
-        .setBackgroundColor(Color.BLUE_LIGHTEN_3);
+    .style()
+    .setMarginTop("17px")
+    .get()
+    .anyStep()
+    .withoutThumb()
+    .setThumbColor(Color.BLUE_DARKEN_2)
+    .setBackgroundColor(Color.BLUE_LIGHTEN_3);
 
 TextBox redTextBox = TextBox.create()
-        .addChangeHandler(value -> {
-            redSlider.setValue(Double.parseDouble(value));
-        });
+    .addChangeHandler(value -> {
+        redSlider.setValue(Double.parseDouble(value));
+    });
 TextBox greenTextBox = TextBox.create()
-        .addChangeHandler(value -> {
-            greenSlider.setValue(Double.parseDouble(value));
-        });
+    .addChangeHandler(value -> {
+        greenSlider.setValue(Double.parseDouble(value));
+    });
 TextBox blueTextBox = TextBox.create()
-        .addChangeHandler(value -> {
-            blueSlider.setValue(Double.parseDouble(value));
-        });
+    .addChangeHandler(value -> {
+        blueSlider.setValue(Double.parseDouble(value));
+    });
 
 
 HTMLDivElement colorsDiv = div()
-        .add(rgbColorsDiv)
-        .add(Row.create()
-                .style()
-                .setMarginTop("20px")
-                .get()
-                .addColumn(Column.span4()
-                        .appendChild(Row.create()
-                                .addColumn(Column.span2().appendChild(h(5).textContent("R")))
-                                .addColumn(Column.span10().appendChild(redTextBox))
-                        ))
-                .addColumn(Column.span4()
-                        .appendChild(Row.create()
-                                .addColumn(Column.span2().appendChild(h(5).textContent("G")))
-                                .addColumn(Column.span10().appendChild(greenTextBox))
-                        ))
-                .addColumn(Column.span4()
-                        .appendChild(Row.create()
-                                .addColumn(Column.span2().appendChild(h(5).textContent("B")))
-                                .addColumn(Column.span10().appendChild(blueTextBox))
-                        ))
-                .asElement())
-        .asElement();
+    .add(rgbColorsDiv)
+    .add(Row.create()
+            .style()
+            .setMarginTop("20px")
+            .get()
+            .addColumn(Column.span4()
+                    .appendChild(Row.create()
+                            .addColumn(Column.span2().appendChild(h(5).textContent("R")))
+                            .addColumn(Column.span10().appendChild(redTextBox))
+                    ))
+            .addColumn(Column.span4()
+                    .appendChild(Row.create()
+                            .addColumn(Column.span2().appendChild(h(5).textContent("G")))
+                            .addColumn(Column.span10().appendChild(greenTextBox))
+                    ))
+            .addColumn(Column.span4()
+                    .appendChild(Row.create()
+                            .addColumn(Column.span2().appendChild(h(5).textContent("B")))
+                            .addColumn(Column.span10().appendChild(blueTextBox))
+                    ))
+            .asElement())
+    .asElement();
 
 redSlider.addSlideHandler(value -> {
     rgbColorsDiv.style.background = "rgb(" + value + ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
@@ -109,62 +109,62 @@ greenSlider.setValue(0);
 blueSlider.setValue(0);
 
 TextBox stepTextBox = TextBox.create("STEP").setValue("any")
-        .addChangeHandler(value -> {
-            if ("any".equalsIgnoreCase(value)) {
-                redSlider.anyStep();
-                greenSlider.anyStep();
-                blueSlider.anyStep();
-            } else {
-                redSlider.setStep(Double.parseDouble(value));
-                greenSlider.setStep(Double.parseDouble(value));
-                blueSlider.setStep(Double.parseDouble(value));
-            }
-        });
+    .addChangeHandler(value -> {
+        if ("any".equalsIgnoreCase(value)) {
+            redSlider.anyStep();
+            greenSlider.anyStep();
+            blueSlider.anyStep();
+        } else {
+            redSlider.setStep(Double.parseDouble(value));
+            greenSlider.setStep(Double.parseDouble(value));
+            blueSlider.setStep(Double.parseDouble(value));
+        }
+    });
 SwitchButton thumbSwitch = SwitchButton.create()
-        .setOffTitle("Without thumb")
-        .setOnTitle("With thumb")
-        .addChangeHandler(value -> {
-            redSlider.setWithThumb(value);
-            greenSlider.setWithThumb(value);
-            blueSlider.setWithThumb(value);
-        });
+    .setOffTitle("Without thumb")
+    .setOnTitle("With thumb")
+    .addChangeHandler(value -> {
+        redSlider.setWithThumb(value);
+        greenSlider.setWithThumb(value);
+        blueSlider.setWithThumb(value);
+    });
 
 sampleCard
-        .setBodyPaddingTop("40px")
-        .appendChild(Row.create()
-                .addColumn(Column.span3()
-                        .appendChild(stepTextBox))
-                .addColumn(Column.span3()
-                        .appendChild(thumbSwitch))
-        )
-        .appendChild(Row.create()
-                .addColumn(Column.span4()
-                        .appendChild(Row.create()
-                                .addColumn(Column.span12()
-                                        .appendChild(Row.create()
-                                                .addColumn(Column.span1()
-                                                        .appendChild(h(4).textContent("R")))
-                                                .addColumn(Column.span11()
-                                                        .centerContent()
-                                                        .appendChild(redSlider))
-                                        ))
-                                .addColumn(Column.span12()
-                                        .appendChild(Row.create()
-                                                .addColumn(Column.span1()
-                                                        .appendChild(h(4).textContent("G")))
-                                                .addColumn(Column.span11()
-                                                        .centerContent()
-                                                        .appendChild(greenSlider))
-                                        ))
-                                .addColumn(Column.span12()
-                                        .appendChild(Row.create()
-                                                .addColumn(Column.span1()
-                                                        .appendChild(h(4).textContent("B")))
-                                                .addColumn(Column.span11()
-                                                        .centerContent()
-                                                        .appendChild(blueSlider))
-                                        )))
-                )
-                .addColumn(Column.span8()
-                        .appendChild(colorsDiv))
-        );
+    .setBodyPaddingTop("40px")
+    .appendChild(Row.create()
+            .addColumn(Column.span3()
+                    .appendChild(stepTextBox))
+            .addColumn(Column.span3()
+                    .appendChild(thumbSwitch))
+    )
+    .appendChild(Row.create()
+            .addColumn(Column.span4()
+                    .appendChild(Row.create()
+                            .addColumn(Column.span12()
+                                    .appendChild(Row.create()
+                                            .addColumn(Column.span1()
+                                                    .appendChild(h(4).textContent("R")))
+                                            .addColumn(Column.span11()
+                                                    .centerContent()
+                                                    .appendChild(redSlider))
+                                    ))
+                            .addColumn(Column.span12()
+                                    .appendChild(Row.create()
+                                            .addColumn(Column.span1()
+                                                    .appendChild(h(4).textContent("G")))
+                                            .addColumn(Column.span11()
+                                                    .centerContent()
+                                                    .appendChild(greenSlider))
+                                    ))
+                            .addColumn(Column.span12()
+                                    .appendChild(Row.create()
+                                            .addColumn(Column.span1()
+                                                    .appendChild(h(4).textContent("B")))
+                                            .addColumn(Column.span11()
+                                                    .centerContent()
+                                                    .appendChild(blueSlider))
+                                    )))
+            )
+            .addColumn(Column.span8()
+                    .appendChild(colorsDiv))
+    );

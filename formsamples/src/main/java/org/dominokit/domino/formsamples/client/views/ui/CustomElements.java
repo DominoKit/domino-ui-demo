@@ -46,14 +46,14 @@ public class CustomElements {
         countrySelect.setLeftAddon(Icons.ALL.map());
 
         countries.forEach(country -> {
-            countrySelect.addOption(SelectOption.create(country, country.getName()));
+            countrySelect.appendChild(SelectOption.create(country, country.getName()));
         });
         return countrySelect;
     }
 
     public static void markCardValidation(Card card, boolean isValid, boolean scroll){
         if (!isValid) {
-            card.style().css("invalid-section");
+            card.style().add("invalid-section");
 
             if(scroll) {
                 ElementUtil.scrollToElement(card);
@@ -61,12 +61,12 @@ public class CustomElements {
                 DomGlobal.document.documentElement.scrollTop = DomGlobal.document.documentElement.scrollTop - 110;
             }
         } else {
-            card.style().removeCss("invalid-section");
+            card.style().remove("invalid-section");
         }
     }
 
     public static boolean isInvalidatedCard(Card card){
-        return card.style().hasClass("invalid-section");
+        return card.style().contains("invalid-section");
     }
 
     public static void markCardValidation(Card card, boolean isValid){

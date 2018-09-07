@@ -22,4 +22,4 @@ element.appendChild(Card.create("MEDIA ALIGNMENT","The images or other media can
             .alignLeftMedia(MediaObject.MediaAlign.BOTTOM)
             .appendChild(Paragraph.create(SAMPLE_TEXT))
             .appendChild(Paragraph.create(SAMPLE_TEXT)))
-    .asElement());A
+    .asElement());

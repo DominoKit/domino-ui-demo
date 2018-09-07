@@ -1,5 +1,6 @@
 package org.dominokit.domino.preloaders.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.preloaders.client.views.CodeResource;
 import org.dominokit.domino.preloaders.client.views.PreloadersView;
@@ -25,7 +26,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-
+        element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PRELOADERS").asElement());
 
         sizesSample();

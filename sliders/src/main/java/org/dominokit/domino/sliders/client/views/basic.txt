@@ -1,4 +1,4 @@
-element
+basicCard
     .appendChild(Row.create()
             .addColumn(Column.span12()
                     .appendChild(BlockHeader.create("SIMPLE SLIDERS")))

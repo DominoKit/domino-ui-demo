@@ -3,6 +3,7 @@ package org.dominokit.domino.typography.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
 import org.dominokit.domino.typography.client.views.CodeResource;
@@ -36,14 +37,17 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("typography", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TYPOGRAPHY").asElement());
 
         bodyCopy();
+        fontSizes();
         heading();
         textStyles();
         blockqoute();
         lists();
     }
+
 
     private void lists() {
         Row row = Row.create();
@@ -120,6 +124,30 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
         );
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+    }
+
+    private void fontSizes() {
+        element.appendChild(Card.create("FONT SIZES", "Use ready classes to change a text fot size.")
+                .appendChild(Row.create()
+                        .addColumn(Column.span12()
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_72).textContent("font-72")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_60).textContent("font-60")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_50).textContent("font-50")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_48).textContent("font-48")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_45).textContent("font-45")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_42).textContent("font-42")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_40).textContent("font-40")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_32).textContent("font-32")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_24).textContent("font-24")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_20).textContent("font-20")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_15).textContent("font-15")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_12).textContent("font-12")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_10).textContent("font-10")))
+                                .appendChild(Paragraph.create().appendChild(b().css(Styles.font_6).textContent("font-6")))
+                        )).asElement());
+
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+
     }
 
     private void heading() {

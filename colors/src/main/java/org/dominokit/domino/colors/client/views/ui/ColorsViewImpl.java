@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.colors.client.presenters.ColorsPresenter;
 import org.dominokit.domino.colors.client.views.ColorsView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -28,6 +29,7 @@ public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements Col
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("colors", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("COLORS").asElement());
 
         element.appendChild(Card.create("MATERIAL DESIGN COLORS", "Taken by Google's Material Design Color page which link is ")

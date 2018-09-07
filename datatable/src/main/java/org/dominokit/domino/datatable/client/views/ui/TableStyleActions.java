@@ -45,7 +45,7 @@ public class TableStyleActions implements IsElement<HTMLElement> {
                 .setProperty("padding-left", "2px")
                 .setHeight("26px")
                 .setColor("black", true)
-                .css(Styles.pull_right, Styles.m_r_15)
+                .add(Styles.pull_right, Styles.m_r_15)
                 .get();
 
         Tooltip tooltip = Tooltip.create(condenseButton.asElement(), new Text(initialTooltip));

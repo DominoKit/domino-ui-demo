@@ -1,7 +1,10 @@
 package org.dominokit.domino.steppers.client.views.ui;
 
+import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
+import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
 import org.dominokit.domino.steppers.client.views.CodeResource;
@@ -30,6 +33,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("STEPPERS").asElement());
 
         verticalStepper();
@@ -41,24 +45,44 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
         Stepper stepper = Stepper.create()
                 .setColor(Color.INDIGO);
 
+
         TextBox nameTextBox = TextBox.create("Name")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.label());
+
+        nameTextBox.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.next();
+            }
+        });
 
         TextBox email = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.email());
 
+        email.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.next();
+            }
+        });
+
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.phone());
 
+        phone.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.finish();
+            }
+        });
+
 
         Step stepOne = Step.create("Contact name", "Contact name step")
                 .setValidator(() -> nameTextBox.validate().isValid())
+                .onActivated(step -> nameTextBox.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(nameTextBox)))
                 .appendFooterChild(Row.create()
@@ -71,6 +95,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         Step stepTow = Step.create("Contact email", "Contact email step")
                 .setValidator(() -> email.validate().isValid())
+                .onActivated(step -> email.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(email)))
                 .appendFooterChild(Row.create()
@@ -79,7 +104,8 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
-                                        .addClickListener(evt -> stepper.back()))
+                                        .addClickListener(evt -> stepper.back())))
+                        .addColumn(span6()
                                 .appendChild(Style.of(Button.createPrimary("Next"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
@@ -89,6 +115,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         Step stepThree = Step.create("Contact phone", "Contact phone step")
                 .setValidator(() -> phone.validate().isValid())
+                .onActivated(step -> phone.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(phone)))
                 .appendFooterChild(Row.create()
@@ -97,9 +124,8 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
                                         .get()
-                                        .addClickListener(evt -> {
-                                            stepper.back();
-                                        }))
+                                        .addClickListener(evt -> stepper.back())))
+                        .addColumn(span6()
                                 .appendChild(Style.of(Button.createPrimary("Finish"))
                                         .setMinWidth("120px")
                                         .setMarginRight("5px")
@@ -109,9 +135,9 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
 
         stepper
-                .addStep(stepOne)
-                .addStep(stepTow)
-                .addStep(stepThree)
+                .appendChild(stepOne)
+                .appendChild(stepTow)
+                .appendChild(stepThree)
                 .setCompletionHandler(() -> Notification.create("All step completed").show());
 
         element.appendChild(Card.create("VERTICAL STEPPER")
@@ -131,20 +157,37 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.label());
+        nameTextBox.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.next();
+            }
+        });
 
         TextBox email = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.email());
 
+        email.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.next();
+            }
+        });
+
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.phone());
 
+        phone.getInputElement().addEventListener("keypress", evt -> {
+            if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
+                stepper.finish();
+            }
+        });
 
         Step stepOne = Step.create("Contact name", "Contact name step")
                 .setValidator(() -> nameTextBox.validate().isValid())
+                .onActivated(step -> nameTextBox.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(nameTextBox)))
                 .appendFooterChild(Row.create()
@@ -157,6 +200,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         Step stepTow = Step.create("Contact email", "Contact email step")
                 .setValidator(() -> email.validate().isValid())
+                .onActivated(step -> email.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(email)))
                 .appendFooterChild(Row.create()
@@ -175,6 +219,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
         Step stepThree = Step.create("Contact phone", "Contact phone step")
                 .setValidator(() -> phone.validate().isValid())
+                .onActivated(step -> phone.focus())
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(phone)))
                 .appendFooterChild(Row.create()
@@ -195,9 +240,9 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
 
 
         stepper
-                .addStep(stepOne)
-                .addStep(stepTow)
-                .addStep(stepThree)
+                .appendChild(stepOne)
+                .appendChild(stepTow)
+                .appendChild(stepThree)
                 .setCompletionHandler(() -> Notification.create("All step completed").show());
 
         element.appendChild(Card.create("HORIZONTAL STEPPER")

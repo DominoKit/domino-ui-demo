@@ -1,6 +1,7 @@
 package org.dominokit.domino.infobox.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.infobox.client.presenters.InfoBoxPresenter;
 import org.dominokit.domino.infobox.client.views.CodeResource;
@@ -34,6 +35,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).asElement());
         basicInfoBoxes();
         hoverZoomEffect();
         rightAligned();

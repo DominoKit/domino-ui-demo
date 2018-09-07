@@ -67,9 +67,9 @@ public class CertificateOfOriginPart implements ImportSection {
                 .setAutoValidation(true)
                 .setRequired(true)
                 .setLeftAddon(Icons.ALL.domain())
-                .addOption(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
-                .addOption(SelectOption.create("Official trade office", "Official trade office"))
-                .addOption(SelectOption.create("Chamber of industries", "Chamber of industries"))
+                .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
+                .appendChild(SelectOption.create("Official trade office", "Official trade office"))
+                .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))
                 .addSelectionHandler(option -> revalidate());
 
         certificateOfOriginOriginCountrySelect = createCountriesSelect("Country of origins", countries)

@@ -57,7 +57,7 @@ public class CurrenciesComponent {
     public CurrenciesComponent setCurrencies(List<CurrencyData> currencies) {
         currencySelect.removeAllOptions();
         for (CurrencyData cd : currencies) {
-            currencySelect.addOption(SelectOption.create(cd, cd.getCurrencyCode(), cd.getCurrencyCode() + " - " + cd.getDisplayName()));
+            currencySelect.appendChild(SelectOption.create(cd, cd.getCurrencyCode(), cd.getCurrencyCode() + " - " + cd.getDisplayName()));
         }
         return this;
     }
