@@ -6,6 +6,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
 import org.dominokit.domino.basicforms.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
@@ -37,6 +38,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").asElement());
 
         inputCard = Card.create("INPUT", "Different sizes and widths.");
@@ -75,44 +77,42 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     private void initSwitchExample() {
         switchCard.appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"));
 
-        Column column = Column.span3();
         switchCard.appendChild(Row.create()
-                .addColumn(column.appendChild(SwitchButton.create().setOffTitle("OFF").setOnTitle("ON")))
-                .addColumn(column.copy().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
+                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("OFF").setOnTitle("ON")))
+                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
 
         switchCard.appendChild(h(5).textContent("With Material Design Colors"));
 
         switchCard.appendChild(Row.create()
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("RED").setColor(Color.RED).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("PINK").setColor(Color.PINK).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("INDIGO").setColor(Color.INDIGO).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("BLUE").setColor(Color.BLUE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("CYAN").setColor(Color.CYAN).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("TEAL").setColor(Color.TEAL).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("GREEN").setColor(Color.GREEN).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("LIME").setColor(Color.LIME).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("YELLOW").setColor(Color.YELLOW).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("AMBER").setColor(Color.AMBER).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("ORANGE").setColor(Color.ORANGE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span3()
                         .appendChild(SwitchButton.create().setOffTitle("GREY").setColor(Color.GREY).check())));
     }
 
     private void initRadioExample() {
-        Column column = Column.span(6, 6, 9, 12, 12);
         radioCard.appendChild(h(5).textContent("Basic Examples"));
 
         Radio radio1 = Radio.create("radio1", "Radio - 1").check();
@@ -137,7 +137,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         RadioGroup secondDisabledGroup = RadioGroup.create("disabled").addRadio(secondsDisabledRadio);
 
         radioCard.appendChild(Row.create()
-                .addColumn(column
+                .addColumn(Column.span(6, 6, 9, 12, 12)
                         .appendChild(horizontalRadioGroup)
                         .appendChild(firstDisabledGroup)
                         .appendChild(secondDisabledGroup))
@@ -145,140 +145,136 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
         radioCard.appendChild(br());
 
-        column = Column.span(2, 6);
 
         radioCard.appendChild(Row.create()
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(h(5).textContent("With Material Design Colors"))
                         .appendChild(RadioGroup.create("color")
-                                .addRadio(Radio.create("RED", "RED").setColor(Color.RED).check())
-                                .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK))
-                                .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
-                                .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
-                                .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
-                                .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
-                                .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
-                                .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
-                                .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME))
-                                .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW))
-                                .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER))
-                                .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE))
-                                .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY))))
-                .addColumn(column.copy()
+                                .appendChild(Radio.create("RED", "RED").setColor(Color.RED).check())
+                                .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK))
+                                .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
+                                .appendChild(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
+                                .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
+                                .appendChild(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
+                                .appendChild(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
+                                .appendChild(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
+                                .appendChild(Radio.create("LIME", "LIME").setColor(Color.LIME))
+                                .appendChild(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW))
+                                .appendChild(Radio.create("AMBER", "AMBER").setColor(Color.AMBER))
+                                .appendChild(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE))
+                                .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY))))
+                .addColumn(Column.span(2, 6)
                         .appendChild(h(5).textContent("With Material Design Colors with gap"))
                         .appendChild(RadioGroup.create("color-with-gap")
-                                .addRadio(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
-                                .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
-                                .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
-                                .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO).withGap())
-                                .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).withGap())
-                                .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN).withGap())
-                                .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL).withGap())
-                                .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN).withGap())
-                                .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME).withGap())
-                                .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW).withGap())
-                                .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER).withGap())
-                                .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE).withGap())
-                                .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap()))));
+                                .appendChild(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
+                                .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
+                                .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
+                                .appendChild(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO).withGap())
+                                .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).withGap())
+                                .appendChild(Radio.create("CYAN", "CYAN").setColor(Color.CYAN).withGap())
+                                .appendChild(Radio.create("TEAL", "TEAL").setColor(Color.TEAL).withGap())
+                                .appendChild(Radio.create("GREEN", "GREEN").setColor(Color.GREEN).withGap())
+                                .appendChild(Radio.create("LIME", "LIME").setColor(Color.LIME).withGap())
+                                .appendChild(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW).withGap())
+                                .appendChild(Radio.create("AMBER", "AMBER").setColor(Color.AMBER).withGap())
+                                .appendChild(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE).withGap())
+                                .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap()))));
     }
 
     private void initCheckboxExample() {
-        Column column = Column.span(2,6);
-
         checkboxCard.appendChild(h(5).textContent("Basic Examples"));
         checkboxCard.appendChild(Row.create()
-                .addColumn(column
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Default")))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Filled In").filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Default - Disabled").check().disable()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Filled In - Disabled").check().filledIn().disable())));
 
         checkboxCard.appendChild(h(5).textContent("With Material Design Colors"));
 
         checkboxCard.appendChild(Row.create()
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("RED").setColor(Color.RED).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("PINK").setColor(Color.PINK).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("INDIGO").setColor(Color.INDIGO).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("BLUE").setColor(Color.BLUE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("CYAN").setColor(Color.CYAN).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("TEAL").setColor(Color.TEAL).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREEN").setColor(Color.GREEN).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("LIME").setColor(Color.LIME).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("YELLOW").setColor(Color.YELLOW).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("AMBER").setColor(Color.AMBER).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("ORANGE").setColor(Color.ORANGE).check()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREY").setColor(Color.GREY).check()))
                 );
 
         checkboxCard.appendChild(h(5).textContent("With Material Design Colors - Filled In"));
 
         checkboxCard.appendChild(Row.create()
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("RED").setColor(Color.RED).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("PINK").setColor(Color.PINK).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("DEEP PURPLE").setColor(Color.DEEP_PURPLE).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("INDIGO").setColor(Color.INDIGO).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("BLUE").setColor(Color.BLUE).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("CYAN").setColor(Color.CYAN).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("TEAL").setColor(Color.TEAL).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREEN").setColor(Color.GREEN).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("LIME").setColor(Color.LIME).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("YELLOW").setColor(Color.YELLOW).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("AMBER").setColor(Color.AMBER).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("ORANGE").setColor(Color.ORANGE).check().filledIn()))
-                .addColumn(column.copy()
+                .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREY").setColor(Color.GREY).check().filledIn()))
                 );
     }
 
     private void initSelectExample() {
-        Column column = Column.span6();
 
         selectCard.appendChild(Row.create()
-                .addColumn(column
+                .addColumn(Column.span6()
                         .appendChild(Select.create()
-                                .addOption(SelectOption.create("nothing", "-- please select --"))
-                                .addOption(SelectOption.create("value10", "10"))
-                                .addOption(SelectOption.create("value20", "20"))
-                                .addOption(SelectOption.create("value30", "30"))
-                                .addOption(SelectOption.create("value40", "40"))
-                                .addOption(SelectOption.create("value50", "50"))
+                                .appendChild(SelectOption.create("nothing", "-- please select --"))
+                                .appendChild(SelectOption.create("value10", "10"))
+                                .appendChild(SelectOption.create("value20", "20"))
+                                .appendChild(SelectOption.create("value30", "30"))
+                                .appendChild(SelectOption.create("value40", "40"))
+                                .appendChild(SelectOption.create("value50", "50"))
                                 .setSearchable(false)
                                 .selectAt(0)
                                 .addSelectionHandler(option1 -> {
                                     Notification.create("Item selected [ " + option1.getValue() + " ], [ " + option1.getDisplayValue() + " ]").show();
                                 })))
-                .addColumn(column.copy()
+                .addColumn(Column.span6()
                         .appendChild(Select.<String>create()
-                                .addOption(SelectOption.create("Disabled", "Disabled"))
+                                .appendChild(SelectOption.create("Disabled", "Disabled"))
                                 .selectAt(0)
                                 .disable()
                         ))
@@ -287,14 +283,14 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         selectCard.appendChild(BlockHeader.create("Drop up example"));
 
         selectCard.appendChild(Row.create()
-                .addColumn(column.copy()
+                .addColumn(Column.span6()
                         .appendChild(Select.<Integer>create()
-                                .addOption(SelectOption.create(0, "-- please select --"))
-                                .addOption(SelectOption.create(10, "10"))
-                                .addOption(SelectOption.create(20, "20"))
-                                .addOption(SelectOption.create(30, "30"))
-                                .addOption(SelectOption.create(40, "40"))
-                                .addOption(SelectOption.create(50, "50"))
+                                .appendChild(SelectOption.create(0, "-- please select --"))
+                                .appendChild(SelectOption.create(10, "10"))
+                                .appendChild(SelectOption.create(20, "20"))
+                                .appendChild(SelectOption.create(30, "30"))
+                                .appendChild(SelectOption.create(40, "40"))
+                                .appendChild(SelectOption.create(50, "50"))
                                 .setSearchable(false)
                                 .selectAt(0)
                                 .dropup()
@@ -311,16 +307,16 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span12()
                         .appendChild(Select.<String>create("Country")
-                                .addOption(SelectOption.create("nothing", "-- please select --"))
-                                .addOption(SelectOption.create("USA", "America (USA)"))
-                                .addOption(SelectOption.create("ARG", "Argentina"))
-                                .addOption(SelectOption.create("BRA", "Brazil"))
-                                .addOption(SelectOption.create("DEN", "Denmark"))
-                                .addOption(SelectOption.create("CRO", "Croatia"))
-                                .addOption(SelectOption.create("IND", "India"))
-                                .addOption(SelectOption.create("SPA", "Spain"))
-                                .addOption(SelectOption.create("FRA", "France"))
-                                .addOption(SelectOption.create("JOR", "Jordan"))
+                                .appendChild(SelectOption.create("nothing", "-- please select --"))
+                                .appendChild(SelectOption.create("USA", "America (USA)"))
+                                .appendChild(SelectOption.create("ARG", "Argentina"))
+                                .appendChild(SelectOption.create("BRA", "Brazil"))
+                                .appendChild(SelectOption.create("DEN", "Denmark"))
+                                .appendChild(SelectOption.create("CRO", "Croatia"))
+                                .appendChild(SelectOption.create("IND", "India"))
+                                .appendChild(SelectOption.create("SPA", "Spain"))
+                                .appendChild(SelectOption.create("FRA", "France"))
+                                .appendChild(SelectOption.create("JOR", "Jordan"))
                                 .selectAt(0)
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
@@ -336,19 +332,19 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .addColumn(Column.span12()
                         .appendChild(Select.<String>create("Country")
                                 .addGroup(SelectOptionGroup.<String>create(Badge.create("America").setBackground(Color.RED))
-                                        .addOption(SelectOption.create("USA", "United States of America"))
-                                        .addOption(SelectOption.create("BRA", "Brazil"))
-                                        .addOption(SelectOption.create("ARG", "Argentina"))
-                                        .addOption(SelectOption.create("MEX", "Mexico"))
-                                        .addOption(SelectOption.create("CHI", "Chile"))
+                                        .appendChild(SelectOption.create("USA", "United States of America"))
+                                        .appendChild(SelectOption.create("BRA", "Brazil"))
+                                        .appendChild(SelectOption.create("ARG", "Argentina"))
+                                        .appendChild(SelectOption.create("MEX", "Mexico"))
+                                        .appendChild(SelectOption.create("CHI", "Chile"))
                                 )
                                 .divider()
                                 .addGroup(SelectOptionGroup.<String>create(Badge.create("Europe").setBackground(Color.GREEN))
-                                        .addOption(SelectOption.create("FRA", "France"))
-                                        .addOption(SelectOption.create("GER", "Germany"))
-                                        .addOption(SelectOption.create("SPA", "Spain"))
-                                        .addOption(SelectOption.create("ITA", "Italy"))
-                                        .addOption(SelectOption.create("UK", "United Kingdom"))
+                                        .appendChild(SelectOption.create("FRA", "France"))
+                                        .appendChild(SelectOption.create("GER", "Germany"))
+                                        .appendChild(SelectOption.create("SPA", "Spain"))
+                                        .appendChild(SelectOption.create("ITA", "Italy"))
+                                        .appendChild(SelectOption.create("UK", "United Kingdom"))
                                 )
                                 .selectAt(0)
                                 .addSelectionHandler(option -> {
@@ -364,34 +360,30 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void initDifferentWidths() {
-        Column column6Size = Column.span6();
-        Column column4Size = Column.span4();
-        Column column3Size = Column.span3();
-
 
         inputCard.appendChild(BlockHeader.create("Different Widths"))
                 .appendChild(Row.create()
-                        .addColumn(column6Size
+                        .addColumn(Column.span6()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
-                        .addColumn(column6Size.copy()
+                        .addColumn(Column.span6()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
                         )
                 .appendChild(Row.create()
-                        .addColumn(column4Size
+                        .addColumn(Column.span4()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
-                        .addColumn(column4Size.copy()
+                        .addColumn(Column.span4()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
-                        .addColumn(column4Size.copy()
+                        .addColumn(Column.span4()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
                         )
                 .appendChild(Row.create()
-                        .addColumn(column3Size
+                        .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
-                        .addColumn(column3Size.copy()
+                        .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
-                        .addColumn(column3Size.copy()
+                        .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
-                        .addColumn(column3Size.copy()
+                        .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
                         );
     }
@@ -416,13 +408,12 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void initInputStatus() {
-        Column column6Size = Column.span6();
 
         inputCard.appendChild(BlockHeader.create("Input Status"))
                 .appendChild(Row.create()
-                        .addColumn(column6Size
+                        .addColumn(Column.span6()
                                 .appendChild(TextBox.create("Focused").focus()))
-                        .addColumn(column6Size.copy()
+                        .addColumn(Column.span6()
                                 .appendChild(TextBox.create("Disabled").disable())));
     }
 

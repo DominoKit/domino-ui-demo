@@ -1,23 +1,23 @@
 ListGroup<String> listGroup = ListGroup.create();
 listGroup
-        .multiSelect()
-        .appendChild(listGroup.createItem("Value1", "Cras justo odio").select())
-        .appendChild(listGroup.createItem("Value2", "Dapibus ac facilisis in"))
-        .appendChild(listGroup.createItem("Value3", "Morbi leo risus"))
-        .appendChild(listGroup.createItem("Value4", "Porta ac consectetur ac"))
-        .appendChild(listGroup.createItem("Value5", "Vestibulum at eros"));
+    .multiSelect()
+    .appendChild(listGroup.createItem("Value1", "Cras justo odio").select())
+    .appendChild(listGroup.createItem("Value2", "Dapibus ac facilisis in"))
+    .appendChild(listGroup.createItem("Value3", "Morbi leo risus"))
+    .appendChild(listGroup.createItem("Value4", "Porta ac consectetur ac"))
+    .appendChild(listGroup.createItem("Value5", "Vestibulum at eros"));
 
 ListGroup<String> disabledItems = ListGroup.create();
 disabledItems
-        .appendChild(disabledItems.createItem("Value1", "Cras justo odio").disable())
-        .appendChild(disabledItems.createItem("Value2", "Dapibus ac facilisis in").select())
-        .appendChild(disabledItems.createItem("Value3", "Morbi leo risus").disable())
-        .appendChild(disabledItems.createItem("Value4", "Porta ac consectetur ac"))
-        .appendChild(disabledItems.createItem("Value5", "Vestibulum at eros"));
+    .appendChild(disabledItems.createItem("Value1", "Cras justo odio").disable())
+    .appendChild(disabledItems.createItem("Value2", "Dapibus ac facilisis in").select())
+    .appendChild(disabledItems.createItem("Value3", "Morbi leo risus").disable())
+    .appendChild(disabledItems.createItem("Value4", "Porta ac consectetur ac"))
+    .appendChild(disabledItems.createItem("Value5", "Vestibulum at eros"));
 
 element.appendChild(Row.create()
-        .addColumn(Column.span6().appendChild(Card.create("SELECTABLE ITEMS", "Use ListGroup instead of SimpleListGroup to make items selectable, use multiSelect to select more than one item.")
-                .appendChild(listGroup)))
-        .addColumn(Column.span6().appendChild(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
-                .appendChild(disabledItems)))
-        .asElement());
+    .addColumn(Column.span6().appendChild(Card.create("SELECTABLE ITEMS", "Use ListGroup instead of SimpleListGroup to make items selectable, use multiSelect to select more than one item.")
+            .appendChild(listGroup)))
+    .addColumn(Column.span6().appendChild(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
+            .appendChild(disabledItems)))
+    .asElement());

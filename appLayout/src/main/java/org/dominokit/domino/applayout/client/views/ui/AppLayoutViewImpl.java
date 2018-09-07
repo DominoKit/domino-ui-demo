@@ -3,6 +3,7 @@ package org.dominokit.domino.applayout.client.views.ui;
 import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.applayout.client.presenters.AppLayoutPresenter;
 import org.dominokit.domino.applayout.client.views.AppLayoutView;
@@ -33,6 +34,7 @@ public class AppLayoutViewImpl extends ComponentView<HTMLDivElement> implements 
     }
 
     private void initAppLayoutSample() {
+        element.appendChild(LinkToSourceCode.create("appLayout", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("LAYOUT", "Default domino-ui layout has, Navigation bar - 1,2,3 -, left panel - 4 -, center panel - 5 -, hidden footer - 6 - and hidden right panel - 7 -").asElement());
         element.appendChild(Row.create()
                 .addColumn(Column.span6()

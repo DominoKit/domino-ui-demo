@@ -1,6 +1,7 @@
 element.appendChild(Card.create("ICON & TEXT BUTTONS", "Make icon & text buttons")
     .appendChild(Button.create(Icons.ALL.extension())
             .setContent("EXTENSION")
+            .setContent("EXTENSION")
             .style()
             .setMargin("5px")
             .setMinWidth("120px"))

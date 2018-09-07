@@ -58,9 +58,9 @@ public class PaymentScheduleSection implements ImportSection {
         Column numberOfDaysColumn = span4()
                 .appendChild(numberOfDaysTextBox).collapse();
 
-        paymentScheduleAfterSelect = Select.<String>create("After").addOption(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
-                .addOption(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
-                .addOption(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
+        paymentScheduleAfterSelect = Select.<String>create("After").appendChild(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
+                .appendChild(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
+                .appendChild(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
                 .setLeftAddon(Icons.ALL.redo())
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
@@ -178,7 +178,7 @@ public class PaymentScheduleSection implements ImportSection {
         listItem
                 .appendChild(delete
                         .style()
-                        .css(Styles.pull_right)
+                        .add(Styles.pull_right)
                         .setMarginTop("-3px")
                         .setMarginLeft("10px")
                         .asElement());
@@ -187,14 +187,14 @@ public class PaymentScheduleSection implements ImportSection {
             listItem.appendChild(Badge.create(item.getNumberOfDays() + " days after " + item.getAfterIncident().toLowerCase())
                     .setBackground(Color.GREEN)
                     .style()
-                    .css(Styles.pull_right)
+                    .add(Styles.pull_right)
                     .asElement());
         }
 
         listItem.appendChild(Badge.create(item.getPercentage() + "%")
                 .setBackground(Color.GREEN)
                 .style()
-                .css(Styles.pull_right)
+                .add(Styles.pull_right)
                 .asElement());
 
         int remainingPercentage = remainingPercentage();

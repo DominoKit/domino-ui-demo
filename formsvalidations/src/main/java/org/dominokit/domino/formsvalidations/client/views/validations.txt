@@ -3,54 +3,54 @@ TextBox name = TextBox.create("Name").groupBy(fieldsGrouping);
 TextBox surename = TextBox.create("Surename").groupBy(fieldsGrouping);
 TextBox email = TextBox.create("Email").groupBy(fieldsGrouping);
 RadioGroup gender = RadioGroup.create("gender", "Gender")
-        .addRadio(Radio.create("male", "Male"))
-        .addRadio(Radio.create("female", "Female"))
-        .horizontal()
-        .groupBy(fieldsGrouping);
+    .addRadio(Radio.create("male", "Male"))
+    .addRadio(Radio.create("female", "Female"))
+    .horizontal()
+    .groupBy(fieldsGrouping);
 TextArea description = TextArea.create("Description").groupBy(fieldsGrouping);
 TextBox password = TextBox.password("Password").groupBy(fieldsGrouping);
 CheckBox termsAndConditions = CheckBox.create("I have read and accept the terms").groupBy(fieldsGrouping);
 Select language = Select.create("Language")
-        .addOption(SelectOption.create("english", "English"))
-        .addOption(SelectOption.create("france", "France"))
-        .addOption(SelectOption.create("arabic", "Arabic"))
-        .groupBy(fieldsGrouping);
+    .appendChild(SelectOption.create("english", "English"))
+    .appendChild(SelectOption.create("france", "France"))
+    .appendChild(SelectOption.create("arabic", "Arabic"))
+    .groupBy(fieldsGrouping);
 
 fieldsGrouping.setAutoValidation(true).setRequired(true);
 
 validationsCard
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(name)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(surename)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(email)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(gender)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(description)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(password)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(language)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(termsAndConditions)))
-        .appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(Button.createPrimary("REGISTER")
-                                .addClickListener(evt -> {
-                                    ValidationResult validationResult = fieldsGrouping.validate();
-                                    if (validationResult.isValid()) {
-                                        fieldsGrouping.clear();
-                                    } else {
-                                        Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
-                                    }
-                                }))));
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(name)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(surename)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(email)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(gender)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(description)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(password)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(language)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(termsAndConditions)))
+    .appendChild(Row.create()
+            .addColumn(Column.span12()
+                    .appendChild(Button.createPrimary("REGISTER")
+                            .addClickListener(evt -> {
+                                ValidationResult validationResult = fieldsGrouping.validate();
+                                if (validationResult.isValid()) {
+                                    fieldsGrouping.clear();
+                                } else {
+                                    Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
+                                }
+                            }))));

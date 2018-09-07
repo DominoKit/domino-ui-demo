@@ -23,5 +23,7 @@ public interface CodeResource extends ClientBundle {
     @Source("lists.txt")
     ExternalTextResource lists();
 
+    @Source("fontSizes.txt")
+    ExternalTextResource fontSizes();
 }
 

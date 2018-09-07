@@ -3,6 +3,7 @@ package org.dominokit.domino.formsvalidations.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsPresenter;
 import org.dominokit.domino.formsvalidations.client.views.CodeResource;
@@ -32,6 +33,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").asElement());
         helperTextCard = Card.create("HELPER TEXTS");
         iconsCard = Card.create("ADDONS");
@@ -68,9 +70,9 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                                         .setReadOnly(true)))
                         .addColumn(Column.span12()
                                 .appendChild(Select.create("Select")
-                                        .addOption(SelectOption.create("english", "English"))
-                                        .addOption(SelectOption.create("france", "France"))
-                                        .addOption(SelectOption.create("arabic", "Arabic"))
+                                        .appendChild(SelectOption.create("english", "English"))
+                                        .appendChild(SelectOption.create("france", "France"))
+                                        .appendChild(SelectOption.create("arabic", "Arabic"))
                                         .selectAt(0)
                                         .setReadOnly(true)))
                 );
@@ -89,10 +91,10 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                 .appendChild(Elements.br())
                 .appendChild(BlockHeader.create("Select"))
                 .appendChild(Select.<String>create("Task type")
-                        .addOption(SelectOption.create("-- Select a type --", "-- Select a type --"))
-                        .addOption(SelectOption.create("Story", "Story"))
-                        .addOption(SelectOption.create("Bugfix", "Bugfix"))
-                        .addOption(SelectOption.create("Hotfix", "Hotfix"))
+                        .appendChild(SelectOption.create("-- Select a type --", "-- Select a type --"))
+                        .appendChild(SelectOption.create("Story", "Story"))
+                        .appendChild(SelectOption.create("Bugfix", "Bugfix"))
+                        .appendChild(SelectOption.create("Hotfix", "Hotfix"))
                         .setHelperText("Helps with tracking the issues"))
                 .appendChild(Elements.hr())
                 .appendChild(Elements.br())
@@ -143,9 +145,9 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                 .appendChild(Select.<String>create("Language")
                         .setLeftAddon(Icons.ALL.language())
                         .setRightAddon(info)
-                        .addOption(SelectOption.create("english", "English"))
-                        .addOption(SelectOption.create("france", "France"))
-                        .addOption(SelectOption.create("arabic", "Arabic"))
+                        .appendChild(SelectOption.create("english", "English"))
+                        .appendChild(SelectOption.create("france", "France"))
+                        .appendChild(SelectOption.create("arabic", "Arabic"))
                 );
     }
 
@@ -168,9 +170,9 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         TextBox password = TextBox.password("Password").groupBy(fieldsGrouping);
         CheckBox termsAndConditions = CheckBox.create("I have read and accept the terms").groupBy(fieldsGrouping);
         Select language = Select.create("Language")
-                .addOption(SelectOption.create("english", "English"))
-                .addOption(SelectOption.create("france", "France"))
-                .addOption(SelectOption.create("arabic", "Arabic"))
+                .appendChild(SelectOption.create("english", "English"))
+                .appendChild(SelectOption.create("france", "France"))
+                .appendChild(SelectOption.create("arabic", "Arabic"))
                 .groupBy(fieldsGrouping);
 
         fieldsGrouping.setAutoValidation(true).setRequired(true);

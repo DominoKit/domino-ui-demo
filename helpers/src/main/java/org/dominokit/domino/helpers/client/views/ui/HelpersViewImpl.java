@@ -1,6 +1,7 @@
 package org.dominokit.domino.helpers.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.helpers.client.presenters.HelpersPresenter;
 import org.dominokit.domino.helpers.client.views.CodeResource;
@@ -30,6 +31,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
         textStyles();
         fontSize();

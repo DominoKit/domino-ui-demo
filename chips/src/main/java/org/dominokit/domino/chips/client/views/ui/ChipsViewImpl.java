@@ -5,6 +5,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.chips.client.presenters.ChipsPresenter;
 import org.dominokit.domino.chips.client.views.ChipsView;
 import org.dominokit.domino.chips.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.chips.Chip;
@@ -33,6 +34,7 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("chips", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CHIPS").asElement());
         simpleCard = Card.create("SIMPLE CHIPS");
         removableCard = Card.create("REMOVABLE CHIPS");

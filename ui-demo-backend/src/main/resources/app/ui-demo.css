@@ -154,3 +154,59 @@ code {
     border: 1px solid #F44336;
 }
 
+.open-source{
+    text-align: center;
+    width: 150px;
+    padding: 10px 5px 5px 0px;
+    background-color: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    cursor: pointer;
+    position: fixed;
+    right: 8px;
+    top: 69px;
+    z-index: 9;
+}
+
+.open-source  .material-icons {
+    width: 24px;
+}
+.open-source  span {
+    position: relative;
+    top: -8px;
+    left: 7px;
+}
+
+.sample-div {
+    text-align: center;
+    line-height: 50px;
+    font-size: larger;
+    height: 50px;
+    color: white;
+    background-color: #777777;
+}
+
+.count-reset{
+    counter-reset: col;
+}
+
+.counter:before{
+    counter-increment: col;
+    content: counter(col);
+}
+
+.menu-header .search-bar {
+    height: 40px !important;
+}
+
+.demo-layout-section{
+    background-color: #777777;
+    border: 1px solid #999999;
+    text-align: center;
+    color: #FFF;
+}
+
+.demo-layout-section span{
+    position: relative;
+    top : 50%
+}

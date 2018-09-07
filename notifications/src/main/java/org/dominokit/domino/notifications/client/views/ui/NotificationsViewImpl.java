@@ -1,6 +1,7 @@
 package org.dominokit.domino.notifications.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.notifications.client.presenters.NotificationsPresenter;
 import org.dominokit.domino.notifications.client.views.CodeResource;
@@ -31,6 +32,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
     @Override
     public void init() {
 
+        element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendChild(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
                         .attr("target", "_blank")

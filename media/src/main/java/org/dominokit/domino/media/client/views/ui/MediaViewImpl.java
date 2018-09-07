@@ -1,5 +1,6 @@
 package org.dominokit.domino.media.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.media.client.views.CodeResource;
 import org.dominokit.domino.media.client.views.MediaView;
@@ -30,6 +31,7 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
     @Override
     public void init() {
 
+        element.appendChild(LinkToSourceCode.create("media", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("MEDIA OBJECT").asElement());
 
         defaultMedia();

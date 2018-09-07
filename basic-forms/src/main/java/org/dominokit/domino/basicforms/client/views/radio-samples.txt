@@ -1,4 +1,3 @@
-Column column = Column.span(6, 6, 9, 12, 12);
 radioCard.appendChild(h(5).textContent("Basic Examples"));
 
 Radio radio1 = Radio.create("radio1", "Radio - 1").check();
@@ -7,11 +6,11 @@ Radio radio1Gap = Radio.create("radio1_gap", "Radio 1 - With Gap").withGap();
 Radio radio2Gap = Radio.create("radio2_gap", "Radio 2 - With Gap").withGap();
 
 RadioGroup horizontalRadioGroup = RadioGroup.create("test")
-        .addRadio(radio1)
-        .addRadio(radio2)
-        .addRadio(radio1Gap)
-        .addRadio(radio2Gap)
-        .horizontal();
+    .addRadio(radio1)
+    .addRadio(radio2)
+    .addRadio(radio1Gap)
+    .addRadio(radio2Gap)
+    .horizontal();
 
 Radio firstDisabledRadio = Radio.create("radio1_disabled", "Radio - Disabled").check().disable();
 Radio secondsDisabledRadio = Radio.create("radio2_disabled", "Radio - Disabled").withGap().check().disable();
@@ -23,46 +22,45 @@ RadioGroup firstDisabledGroup = RadioGroup.create("disabled").addRadio(firstDisa
 RadioGroup secondDisabledGroup = RadioGroup.create("disabled").addRadio(secondsDisabledRadio);
 
 radioCard.appendChild(Row.create()
-        .addColumn(column
-                .appendChild(horizontalRadioGroup)
-                .appendChild(firstDisabledGroup)
-                .appendChild(secondDisabledGroup))
-        .asElement());
+    .addColumn(Column.span(6, 6, 9, 12, 12)
+            .appendChild(horizontalRadioGroup)
+            .appendChild(firstDisabledGroup)
+            .appendChild(secondDisabledGroup))
+    .asElement());
 
 radioCard.appendChild(br());
 
-column = Column.span(2, 6);
 
 radioCard.appendChild(Row.create()
-        .addColumn(column.copy()
-                .appendChild(h(5).textContent("With Material Design Colors"))
-                .appendChild(RadioGroup.create("color")
-                        .addRadio(Radio.create("RED", "RED").setColor(Color.RED).check())
-                        .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK))
-                        .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
-                        .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
-                        .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
-                        .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
-                        .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
-                        .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
-                        .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME))
-                        .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW))
-                        .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER))
-                        .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE))
-                        .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY))))
-        .addColumn(column.copy()
-                .appendChild(h(5).textContent("With Material Design Colors with gap"))
-                .appendChild(RadioGroup.create("color-with-gap")
-                        .addRadio(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
-                        .addRadio(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
-                        .addRadio(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
-                        .addRadio(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO).withGap())
-                        .addRadio(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).withGap())
-                        .addRadio(Radio.create("CYAN", "CYAN").setColor(Color.CYAN).withGap())
-                        .addRadio(Radio.create("TEAL", "TEAL").setColor(Color.TEAL).withGap())
-                        .addRadio(Radio.create("GREEN", "GREEN").setColor(Color.GREEN).withGap())
-                        .addRadio(Radio.create("LIME", "LIME").setColor(Color.LIME).withGap())
-                        .addRadio(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW).withGap())
-                        .addRadio(Radio.create("AMBER", "AMBER").setColor(Color.AMBER).withGap())
-                        .addRadio(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE).withGap())
-                        .addRadio(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap()))));
+    .addColumn(Column.span(2, 6)
+            .appendChild(h(5).textContent("With Material Design Colors"))
+            .appendChild(RadioGroup.create("color")
+                    .appendChild(Radio.create("RED", "RED").setColor(Color.RED).check())
+                    .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK))
+                    .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
+                    .appendChild(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
+                    .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
+                    .appendChild(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
+                    .appendChild(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
+                    .appendChild(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
+                    .appendChild(Radio.create("LIME", "LIME").setColor(Color.LIME))
+                    .appendChild(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW))
+                    .appendChild(Radio.create("AMBER", "AMBER").setColor(Color.AMBER))
+                    .appendChild(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE))
+                    .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY))))
+    .addColumn(Column.span(2, 6)
+            .appendChild(h(5).textContent("With Material Design Colors with gap"))
+            .appendChild(RadioGroup.create("color-with-gap")
+                    .appendChild(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
+                    .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
+                    .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
+                    .appendChild(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO).withGap())
+                    .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).withGap())
+                    .appendChild(Radio.create("CYAN", "CYAN").setColor(Color.CYAN).withGap())
+                    .appendChild(Radio.create("TEAL", "TEAL").setColor(Color.TEAL).withGap())
+                    .appendChild(Radio.create("GREEN", "GREEN").setColor(Color.GREEN).withGap())
+                    .appendChild(Radio.create("LIME", "LIME").setColor(Color.LIME).withGap())
+                    .appendChild(Radio.create("YELLOW", "YELLOW").setColor(Color.YELLOW).withGap())
+                    .appendChild(Radio.create("AMBER", "AMBER").setColor(Color.AMBER).withGap())
+                    .appendChild(Radio.create("ORANGE", "ORANGE").setColor(Color.ORANGE).withGap())
+                    .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap()))));

@@ -26,7 +26,7 @@ public class CountriesComponent {
             citiesSelect.removeAllOptions();
             Country country = option.getValue();
             for (String city : country.getCities()) {
-                citiesSelect.addOption(SelectOption.create(city, city));
+                citiesSelect.appendChild(SelectOption.create(city, city));
             }
         });
     }
@@ -47,7 +47,7 @@ public class CountriesComponent {
     public CountriesComponent setCountries(List<Country> countries) {
         countriesSelect.removeAllOptions();
         for (Country country : countries) {
-            countriesSelect.addOption(SelectOption.create(country, country.getName()));
+            countriesSelect.appendChild(SelectOption.create(country, country.getName()));
         }
         return this;
     }

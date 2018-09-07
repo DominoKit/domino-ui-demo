@@ -5,6 +5,7 @@ import org.dominokit.domino.alerts.client.presenters.AlertsPresenter;
 import org.dominokit.domino.alerts.client.views.AlertsView;
 import org.dominokit.domino.alerts.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.Typography.Strong;
 import org.dominokit.domino.ui.alerts.Alert;
@@ -12,6 +13,8 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
+
+import static org.jboss.gwt.elemento.core.Elements.a;
 
 @UiView(presentable = AlertsPresenter.class)
 public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements AlertsView {
@@ -29,7 +32,10 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
 
     @Override
     public void init() {
-        element.appendChild(BlockHeader.create("Alerts").asElement());
+        element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).asElement());
+        element.appendChild(BlockHeader.create("Alerts")
+                .asElement());
+
         basicAlerts();
         customBackground();
         dismissibleAlerts();
@@ -91,23 +97,23 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                 .appendChild(Alert.success()
                         .appendChild(Strong.of("Well done! "))
                         .appendChild("You successfully read ")
-                        .appendChild(Elements.a().add("important alert message.")))
+                        .appendChild(a().add("important alert message.").asElement()))
                 .appendChild(Alert.info()
                         .appendChild(Strong.of("Heads up! "))
                         .appendChild("This ")
-                        .appendChild(Elements.a().add("alert needs your attention, "))
+                        .appendChild(a().add("alert needs your attention, ").asElement())
                         .appendChild("but it's not super important."))
                 .appendChild(Alert.warning()
                         .appendChild(Strong.of("Warning! "))
                         .appendChild("Better check yourself, ")
-                        .appendChild(Elements.a().add("you're not looking too good.")))
+                        .appendChild(a().add("you're not looking too good.").asElement()))
                 .appendChild(Alert.error()
                         .appendChild(Strong.of("Oh snap! "))
-                        .appendChild(Elements.a().add("Change a few things up"))
+                        .appendChild(a().add("Change a few things up").asElement())
                         .appendChild(" and try submitting again."))
                 .appendChild(Alert.create(Color.PINK)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id ")
-                        .appendChild(Elements.a().add("alert link.")))
+                        .appendChild(a().add("alert link.").asElement()))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());

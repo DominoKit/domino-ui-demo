@@ -11,6 +11,13 @@ Animation.create(element)
         .delay(1000)
         .animate();
 
+// Do something before animation start
+Animation.create(element)
+        .transition(Transition.FLASH)
+        .duration(1000)
+        .beforeStart(element -> {/*do something here*/})
+        .animate();
+
 // Make the animation infinite
 Animation.create(element)
         .transition(Transition.FLIP)

@@ -77,7 +77,7 @@ public class OtherDocumentsPart implements ImportSection {
         OtherDocumentsItem item = makeNewOtherDocument();
         ListItem<OtherDocumentsItem> listItem = otherDocumentsItemListGroup.addItem(item, item.getDescription());
         Icon delete = Style.of(Icons.ALL.delete())
-                .css(Styles.pull_right)
+                .add(Styles.pull_right)
                 .setMarginTop("-3px")
                 .setMarginLeft("10px").get();
 
@@ -107,7 +107,7 @@ public class OtherDocumentsPart implements ImportSection {
         return Badge.create(item.getNumberOfCopies() + " Copies")
                 .setBackground(Color.GREEN)
                 .style()
-                .css(Styles.pull_right).get();
+                .add(Styles.pull_right).get();
     }
 
     private OtherDocumentsItem makeNewOtherDocument() {

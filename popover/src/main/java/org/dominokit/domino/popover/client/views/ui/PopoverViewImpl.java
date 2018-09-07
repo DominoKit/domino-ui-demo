@@ -1,5 +1,6 @@
 package org.dominokit.domino.popover.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.popover.client.views.CodeResource;
 import org.dominokit.domino.popover.client.views.PopoverView;
@@ -26,6 +27,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("popover", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TOOLTIPS & POPOVER").asElement());
 
         tooltips();

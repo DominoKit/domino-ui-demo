@@ -21,7 +21,7 @@ import static org.jboss.gwt.elemento.core.Elements.img;
 public class ContactDetails implements IsElement<HTMLElement> {
 
     private Row rowElement = Row.create()
-            .style().css(Styles.margin_0).get();
+            .style().add(Styles.margin_0).get();
     private CellRenderer.CellInfo<Contact> cell;
 
     public ContactDetails(CellRenderer.CellInfo<Contact> cell) {
@@ -49,7 +49,7 @@ public class ContactDetails implements IsElement<HTMLElement> {
                                 .setLeftMedia(a().add(img(cell.getRecord().getPicture().replace("gender", ContactUiUtils.getGenderIconName(cell.getRecord())).replace("index", ContactUiUtils.getAvatarIndex(cell.getRecord())))
                                         .attr("width", "64")
                                         .attr("height", "64")))
-                                .appendContent(new Text(cell.getRecord().getAbout()))))
+                                .appendChild(new Text(cell.getRecord().getAbout()))))
                 .addColumn(Column.span4()
                         .appendChild(Style.of(ContactUiUtils.getEyeColorElement(cell.getRecord()))
                                 .setPadding("5px"))

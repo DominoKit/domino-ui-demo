@@ -3,6 +3,7 @@ package org.dominokit.domino.timepicker.client.views.ui;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
 import org.dominokit.domino.timepicker.client.views.CodeResource;
@@ -36,10 +37,11 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
     private Column column = Column.span4()
             .centerContent()
             .style()
-            .css(Styles.padding_0).get();
+            .add(Styles.padding_0).get();
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TIME PICKERS").asElement());
 
         inlined();
@@ -206,7 +208,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
         Column column = this.column.copy()
                 .style()
-                .removeCss(Styles.padding_0).get();
+                .remove(Styles.padding_0).get();
 
         TimeBox timeBox1 = TimeBox.create()
                 .floating()

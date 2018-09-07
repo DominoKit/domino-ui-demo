@@ -7,6 +7,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.collapse.client.presenters.CollapsePresenter;
 import org.dominokit.domino.collapse.client.views.CodeResource;
 import org.dominokit.domino.collapse.client.views.CollapseView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -37,7 +38,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
 
     @Override
     public void init() {
-
+        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).asElement());
         example();
         accordionSample();
         colorFullWithIcons();
@@ -45,8 +46,9 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
     }
 
     private void example() {
+
         element.appendChild(BlockHeader.create("COLLAPSE").asElement());
-        HTMLDivElement well = div().css("sample-div")
+        HTMLDivElement well = div()
                 .add(div()
                         .css("well")
                         .textContent(SAMPLE_CONTENT)
@@ -87,26 +89,26 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .setCollapsible()
                                 .appendChild(b().textContent("Panel Primary"))
                                 .appendChild(Accordion.create()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
                                 .appendChild(b().textContent("Panel Success"))
                                 .appendChild(Accordion.create()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .success())
                                 .appendChild(b().textContent("Panel Warning"))
                                 .appendChild(Accordion.create()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .warning())
                                 .appendChild(b().textContent("Panel Danger").asElement())
                                 .appendChild(Accordion.create()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .danger())))
                 .addColumn(Column.span6()
                         .appendChild(Card.create("FULL BODY EXAMPLES", "If you want to also colorful body, you need to use fullBody method.")
@@ -114,29 +116,29 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .appendChild(b().textContent("Panel Primary"))
                                 .appendChild(Accordion.create()
                                         .fullBody()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT))))
                                 .appendChild(b().textContent("Panel Success"))
                                 .appendChild(Accordion.create()
                                         .fullBody()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .success())
                                 .appendChild(b().textContent("Panel Warning"))
                                 .appendChild(Accordion.create()
                                         .fullBody()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .warning())
                                 .appendChild(b().textContent("Panel Danger"))
                                 .appendChild(Accordion.create()
                                         .fullBody()
-                                        .addPanel(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
-                                        .addPanel(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
-                                        .addPanel(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 1", new Text(SAMPLE_CONTENT)).expand())
+                                        .appendChild(AccordionPanel.create("Collapsible item 2", new Text(SAMPLE_CONTENT)))
+                                        .appendChild(AccordionPanel.create("Collapsible item 3", new Text(SAMPLE_CONTENT)))
                                         .danger())))
                 .asElement());
 

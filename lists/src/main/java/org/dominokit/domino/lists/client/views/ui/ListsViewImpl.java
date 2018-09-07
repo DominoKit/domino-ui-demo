@@ -2,6 +2,7 @@ package org.dominokit.domino.lists.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.lists.client.presenters.ListsPresenter;
 import org.dominokit.domino.lists.client.views.CodeResource;
@@ -31,6 +32,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("lists", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("LIST GROUPS").asElement());
         basicListsSample();
         selectableSample();

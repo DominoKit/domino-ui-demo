@@ -1,31 +1,31 @@
 element.appendChild(Card.create("ALIGNMENTS")
     .appendChild(Breadcrumb.create()
             .setBackground(Color.RED)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            .appendChild(Icons.ALL.home(), " Home ", evt -> {
             })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            .appendChild(Icons.ALL.library_books(), " Library ", evt -> {
             })
     )
     .appendChild(Breadcrumb.create()
             .alignCenter()
             .setBackground(Color.CYAN)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            .appendChild(Icons.ALL.home(), " Home ", evt -> {
             })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            .appendChild(Icons.ALL.library_books(), " Library ", evt -> {
             })
-            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            .appendChild(Icons.ALL.archive(), " Data ", evt -> {
             })
     )
     .appendChild(Breadcrumb.create()
             .alignRight()
             .setBackground(Color.TEAL)
-            .addItem(Icons.ALL.home(), " Home ", evt -> {
+            .appendChild(Icons.ALL.home(), " Home ", evt -> {
             })
-            .addItem(Icons.ALL.library_books(), " Library ", evt -> {
+            .appendChild(Icons.ALL.library_books(), " Library ", evt -> {
             })
-            .addItem(Icons.ALL.archive(), " Data ", evt -> {
+            .appendChild(Icons.ALL.archive(), " Data ", evt -> {
             })
-            .addItem(Icons.ALL.attachment(), " File ", evt -> {
+            .appendChild(Icons.ALL.attachment(), " File ", evt -> {
             })
     )
     .asElement());

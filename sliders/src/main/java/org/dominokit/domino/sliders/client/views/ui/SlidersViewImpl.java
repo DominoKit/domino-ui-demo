@@ -2,6 +2,7 @@ package org.dominokit.domino.sliders.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.sliders.client.presenters.SlidersPresenter;
 import org.dominokit.domino.sliders.client.views.CodeResource;
@@ -21,13 +22,14 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = SlidersPresenter.class)
 public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements SlidersView {
 
-    private HTMLDivElement container = div().asElement();
+    private HTMLDivElement element = div().asElement();
     private Card basicCard;
     private Card colorsSlidersCard;
     private Card sampleCard;
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("sliders", this.getClass()).asElement());
         basicCard = Card.create("BASIC SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
         sampleCard = Card.create("SLIDERS EXAMPLE");
@@ -36,13 +38,13 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
         initColors();
         initExample();
 
-        container.appendChild(BlockHeader.create("SLIDERS").asElement());
-        container.appendChild(basicCard.asElement());
-        container.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
-        container.appendChild(colorsSlidersCard.asElement());
-        container.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colors()).asElement());
-        container.appendChild(sampleCard.asElement());
-        container.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example()).asElement());
+        element.appendChild(BlockHeader.create("SLIDERS").asElement());
+        element.appendChild(basicCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
+        element.appendChild(colorsSlidersCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colors()).asElement());
+        element.appendChild(sampleCard.asElement());
+        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example()).asElement());
     }
 
     private void initBasic() {
@@ -348,6 +350,6 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
 
     @Override
     public HTMLDivElement getElement() {
-        return container;
+        return element;
     }
 }

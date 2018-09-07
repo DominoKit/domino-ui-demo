@@ -6,6 +6,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.carousel.client.presenters.CarouselPresenter;
 import org.dominokit.domino.carousel.client.views.CarouselView;
 import org.dominokit.domino.carousel.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
@@ -23,27 +24,28 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CAROUSEL").asElement());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
                                 )
                         ))
                 .addColumn(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg", "Slide 1", "First slide description"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg", "Slide 2", "Second slide description"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg", "Slide 3", "Third slide description"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg", "Slide 4", "Fourth slide description"))
-                                        .addSlide(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg", "Slide 5", "Fifth slide description"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg", "Slide 1", "First slide description"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg", "Slide 2", "Second slide description"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg", "Slide 3", "Third slide description"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg", "Slide 4", "Fourth slide description"))
+                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg", "Slide 5", "Fifth slide description"))
                                         .startAutoSlide(3000)
                                 )
                         )

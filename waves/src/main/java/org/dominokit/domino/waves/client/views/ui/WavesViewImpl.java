@@ -2,6 +2,7 @@ package org.dominokit.domino.waves.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.CircleSize;
@@ -27,6 +28,7 @@ public class WavesViewImpl extends ComponentView<HTMLDivElement> implements Wave
 
 	@Override
 	public void init() {
+		element.appendChild(LinkToSourceCode.create("waves", this.getClass()).asElement());
 		element.appendChild(BlockHeader.create("WAVES", "Click effect inspired by Google's Material Design")
 				.asElement());
 

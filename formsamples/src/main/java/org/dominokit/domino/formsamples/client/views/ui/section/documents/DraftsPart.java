@@ -55,10 +55,10 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.business())
-                .addOption(SelectOption.create("Progressoft", "Progressoft"))
-                .addOption(SelectOption.create("Clusus", "Clusus"))
-                .addOption(SelectOption.create("Bank XYZ", "Bank XYZ"))
-                .addOption(SelectOption.create("Bank ABC", "Bank ABC"));
+                .appendChild(SelectOption.create("Progressoft", "Progressoft"))
+                .appendChild(SelectOption.create("Clusus", "Clusus"))
+                .appendChild(SelectOption.create("Bank XYZ", "Bank XYZ"))
+                .appendChild(SelectOption.create("Bank ABC", "Bank ABC"));
 
         atDaysTextBox = numbersOnly(TextBox.create("At (Days)"))
                 .groupBy(fieldsGrouping)
@@ -72,9 +72,9 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.date_range())
-                .addOption(SelectOption.create("shipmentDate", "Shipment Date"))
-                .addOption(SelectOption.create("commercialDate", "Commercial Date"))
-                .addOption(SelectOption.create("billOfLading", "Bill Of Lading"));
+                .appendChild(SelectOption.create("shipmentDate", "Shipment Date"))
+                .appendChild(SelectOption.create("commercialDate", "Commercial Date"))
+                .appendChild(SelectOption.create("billOfLading", "Bill Of Lading"));
 
         draftsPercentage = numbersOnly(TextBox.create("Percentage"))
                 .groupBy(fieldsGrouping)
@@ -92,8 +92,8 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setLeftAddon(Icons.ALL.insert_drive_file())
-                .addOption(SelectOption.create("Invoice value", "Invoice value"))
-                .addOption(SelectOption.create("IC value", "IC value"));
+                .appendChild(SelectOption.create("Invoice value", "Invoice value"))
+                .appendChild(SelectOption.create("IC value", "IC value"));
 
         draftsCard = Card.create("Drafts")
                 .setBodyPaddingTop("40px")
@@ -146,7 +146,7 @@ public class DraftsPart implements ImportSection {
 
                         Icon delete = Icons.ALL.delete()
                                 .style()
-                                .css(Styles.pull_right)
+                                .add(Styles.pull_right)
                                 .setMarginTop("-3px")
                                 .setMarginLeft("10px").get();
 

@@ -1,30 +1,28 @@
-element.appendChild(BlockHeader.create("COLLAPSE").asElement());
 HTMLDivElement well = div().css("sample-div")
-        .add(div()
-                .css("well")
-                .textContent(SAMPLE_CONTENT)
-                .asElement())
-        .asElement();
+    .add(div()
+            .css("well")
+            .textContent(SAMPLE_CONTENT)
+            .asElement())
+    .asElement();
 
 Collapsible collapsible = Collapsible.create(well);
-EventListener collapsibleListener = evt -> collapsible.toggle();
+EventListener collapsibleListener = evt -> collapsible.toggleDisplay();
 
 Button anchorButton = Button.create("LINK WITH HREF");
-anchorButton.justify();
 anchorButton.getClickableElement().addEventListener("click", collapsibleListener);
 
 Button button = Button.create("BUTTON");
 button.getClickableElement().addEventListener("click", collapsibleListener);
 
 element.appendChild(Row.create()
-        .addColumn(Column.span12()
-                .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
-                        .appendChild(anchorButton.htmlBuilder()
-                                .css(Styles.m_b_15).component().setBackground(Color.PINK))
-                        .appendChild(new Text("\n"))
-                        .appendChild(button.htmlBuilder()
-                                .css(Styles.m_b_15).component()
-                                .setBackground(Color.CYAN)
-                                .asElement())
-                        .appendChild(collapsible)))
-        .asElement());
+    .addColumn(Column.span12()
+            .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
+                    .appendChild(anchorButton.builder()
+                            .css(Styles.m_b_15).build().setBackground(Color.PINK))
+                    .appendChild(new Text("\n"))
+                    .appendChild(button.builder()
+                            .css(Styles.m_b_15).build()
+                            .setBackground(Color.CYAN)
+                            .asElement())
+                    .appendChild(collapsible)))
+    .asElement());

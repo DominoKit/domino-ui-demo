@@ -3,6 +3,7 @@ package org.dominokit.domino.datepicker.client.views.ui;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datepicker.client.presenters.DatePickerPresenter;
 import org.dominokit.domino.datepicker.client.views.CodeResource;
@@ -38,7 +39,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
     private Column column = Column.span4()
             .centerContent()
             .style()
-            .css(Styles.padding_0)
+            .add(Styles.padding_0)
             .get();
 
     private static class Formatter extends DateTimeFormat {
@@ -58,6 +59,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create("datepicker", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATE PICKERS").asElement());
 
         inlined();
@@ -74,7 +76,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create()
                                         .hideClearButton()
@@ -91,7 +93,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
                                         .setColorScheme(ColorScheme.AMBER)
@@ -110,7 +112,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create()
                                         .setColorScheme(ColorScheme.GREEN)
@@ -130,7 +132,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create()
                                         .hideClearButton()
@@ -148,7 +150,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
                                         .setColorScheme(ColorScheme.AMBER)
@@ -168,7 +170,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(Column.span4()
                                 .centerContent()
                                 .style()
-                                .css(Styles.padding_0)
+                                .add(Styles.padding_0)
                                 .get()
                                 .appendChild(DatePicker.create()
                                         .setColorScheme(ColorScheme.GREEN)
@@ -345,7 +347,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
     private void dateBox() {
 
         Column column = this.column.copy()
-                .style().removeCss(Styles.padding_0).get();
+                .style().remove(Styles.padding_0).get();
 
         DateBox dateBox1 = DateBox.create("Birth date")
                 .setPattern("yyyy/MM/dd");
