@@ -12,6 +12,7 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.media.MediaObject;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -45,25 +46,25 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .setLeftMedia(a().add(img("http://placehold.it/64x64")
                                 .attr("width", "64")
                                 .attr("height", "64")))
-                        .appendChild(new Text(SAMPLE_TEXT)))
+                        .appendChild(TextNode.of(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
                         .setLeftMedia(a().add(img("http://placehold.it/64x64")
                                 .attr("width", "64")
                                 .attr("height", "64")))
-                        .appendChild(new Text(SAMPLE_TEXT))
+                        .appendChild(TextNode.of(SAMPLE_TEXT))
                         .appendChild(MediaObject.create()
                                 .setHeader("Media heading")
                                 .setLeftMedia(a().add(img("http://placehold.it/64x64")
                                         .attr("width", "64")
                                         .attr("height", "64")))
-                                .appendChild(new Text(SAMPLE_TEXT))))
+                                .appendChild(TextNode.of(SAMPLE_TEXT))))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
                         .setRightMedia(a().add(img("http://placehold.it/64x64")
                                 .attr("width", "64")
                                 .attr("height", "64")))
-                        .appendChild(new Text(SAMPLE_TEXT)))
+                        .appendChild(TextNode.of(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
                         .setRightMedia(a().add(img("http://placehold.it/64x64")
@@ -72,7 +73,7 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .setLeftMedia(a().add(img("http://placehold.it/64x64")
                                 .attr("width", "64")
                                 .attr("height", "64")))
-                        .appendChild(new Text(SAMPLE_TEXT)))
+                        .appendChild(TextNode.of(SAMPLE_TEXT)))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());

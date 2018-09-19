@@ -17,6 +17,7 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.utils.TextNode;
 import org.gwtproject.timer.client.Timer;
 import org.jboss.gwt.elemento.core.Elements;
 
@@ -75,6 +76,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
                 .asElement());
+
     }
 
     private Card createCard(LoaderEffect effect, String loadingText, Color bodyBackground, Color headerBackground) {
@@ -91,11 +93,11 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                 public void run() {
                     loader.stop();
                 }
-            }.schedule(7000);
+            }.schedule(70000);
         };
 
         Button button = Button.createDefault("CLICK ME").addClickListener(loaderListener);
-        card.appendChild(new Text(SAMPLE_CONTENT))
+        card.appendChild(TextNode.of(SAMPLE_CONTENT))
                 .appendChild(Elements.br())
                 .appendChild(Elements.br())
         .appendChild(Elements.div().attr("style", "text-align: center").add(button));

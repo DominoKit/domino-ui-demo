@@ -11,6 +11,7 @@ public class AppClientModule implements EntryPoint {
     private static final Logger LOGGER = Logger.getLogger(AppClientModule.class.getName());
 
     public void onModuleLoad() {
+//        DominoXXX.onModuleLoad();
         ClientApp.make().run();
         LOGGER.info("ui-demo Application frontend have been initialized.");
     }

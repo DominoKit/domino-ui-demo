@@ -13,6 +13,7 @@ import org.dominokit.domino.ui.media.MediaObject;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 import org.jboss.gwt.elemento.core.IsElement;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
@@ -49,7 +50,7 @@ public class ContactDetails implements IsElement<HTMLElement> {
                                 .setLeftMedia(a().add(img(cell.getRecord().getPicture().replace("gender", ContactUiUtils.getGenderIconName(cell.getRecord())).replace("index", ContactUiUtils.getAvatarIndex(cell.getRecord())))
                                         .attr("width", "64")
                                         .attr("height", "64")))
-                                .appendChild(new Text(cell.getRecord().getAbout()))))
+                                .appendChild(TextNode.of(cell.getRecord().getAbout()))))
                 .addColumn(Column.span4()
                         .appendChild(Style.of(ContactUiUtils.getEyeColorElement(cell.getRecord()))
                                 .setPadding("5px"))

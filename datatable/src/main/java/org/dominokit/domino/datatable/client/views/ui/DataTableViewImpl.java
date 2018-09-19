@@ -33,11 +33,13 @@ import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -116,7 +118,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
@@ -129,7 +131,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setWidth("200px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
@@ -145,11 +147,11 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setWidth("300px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setWidth("150px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
@@ -157,7 +159,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
@@ -190,11 +192,17 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         singleSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
         LocalListDataStore<Contact> singleLocalStore = new LocalListDataStore<>();
         DataTable<Contact> singleSelectionTable = new DataTable<>(singleSelectionTableConfig, singleLocalStore);
+        singleSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
+            Notification.create(selectedRecords.size()+"").show();
+        });
 
         TableConfig<Contact> multiSelectionTableConfig = createBasicTableConfig();
         multiSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
         LocalListDataStore<Contact> multiLocalStore = new LocalListDataStore<>();
         DataTable<Contact> multiSelectionTable = new DataTable<>(multiSelectionTableConfig, multiLocalStore);
+        multiSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
+            Notification.create(selectedRecords.size()+"").show();
+        });
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
@@ -273,14 +281,14 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .add(Styles.pull_right, Styles.m_r_15)
                             .get();
 
-                    Tooltip.create(selectInactiveButton, new Text("Select Inactive"));
+                    Tooltip.create(selectInactiveButton, TextNode.of("Select Inactive"));
 
                     selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getTableRows().forEach(tableRow -> {
-                            if (!tableRow.getRecord().isActive()) {
-                                tableRow.select();
+                        dataTable.getItems().forEach(item -> {
+                            if (!item.getRecord().isActive()) {
+                                item.select();
                             } else {
-                                tableRow.deselect();
+                                item.deselect();
                             }
                         });
                     });
@@ -296,10 +304,10 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             .add(Styles.pull_right, Styles.m_r_15)
                             .get();
 
-                    Tooltip.create(selectInactiveButton, new Text("Select Active"));
+                    Tooltip.create(selectInactiveButton, TextNode.of("Select Active"));
 
                     selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getTableRows().forEach(tableRow -> {
+                        dataTable.getItems().forEach(tableRow -> {
                             if (tableRow.getRecord().isActive()) {
                                 tableRow.select();
                             } else {
@@ -382,7 +390,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .textAlign("right")
                         .asHeader()
                         .sortable()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
@@ -395,7 +403,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .sortable()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
@@ -411,10 +419,10 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
@@ -422,7 +430,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }));
 
         tableConfig
@@ -443,7 +451,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
@@ -455,7 +463,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
@@ -470,10 +478,10 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
@@ -481,7 +489,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }));
         return tableConfig;
     }
@@ -496,7 +504,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
                         .setWidth("70px"))
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .setWidth("80px")
@@ -510,7 +518,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .sortable()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName()))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setWidth("100px")
@@ -527,17 +535,17 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setWidth("250px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setWidth("200px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }))
                 .addPlugin(new BodyScrollPlugin<>())
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
@@ -581,7 +589,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
                         .setWidth("70px"))
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .setWidth("80px")
@@ -595,7 +603,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .sortable()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName()))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setWidth("100px")
@@ -612,17 +620,17 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setWidth("250px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setWidth("200px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }))
                 .addPlugin(new BodyScrollPlugin<>())
                 .addPlugin(new TopPanelPlugin<Contact>() {
@@ -682,7 +690,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
                         .setWidth("70px"))
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .setWidth("80px")
@@ -696,7 +704,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .sortable()
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getName()))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setWidth("100px")
@@ -713,17 +721,17 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setWidth("250px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setWidth("200px")
-                        .setCellRenderer(cell -> new Text(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
                                         .setBackground(ColorScheme.GREEN.color()).asElement();
                             }
-                            return new Text("");
+                            return TextNode.of("");
                         }))
                 .addPlugin(simplePaginationPlugin)
                 .addPlugin(new TopPanelPlugin<Contact>() {
@@ -751,10 +759,10 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .add(Styles.pull_right, Styles.m_r_15)
                                     .get();
 
-                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Inactive"));
+                            Tooltip.create(selectInactiveButton.asElement(), TextNode.of("Select Inactive"));
 
                             selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getTableRows().forEach(tableRow -> {
+                                dataTable.getItems().forEach(tableRow -> {
                                     if (!tableRow.getRecord().isActive()) {
                                         tableRow.select();
                                     } else {
@@ -775,14 +783,14 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                     .add(Styles.pull_right, Styles.m_r_15)
                                     .get();
 
-                            Tooltip.create(selectInactiveButton.asElement(), new Text("Select Active"));
+                            Tooltip.create(selectInactiveButton.asElement(), TextNode.of("Select Active"));
 
                             selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getTableRows().forEach(tableRow -> {
-                                    if (tableRow.getRecord().isActive()) {
-                                        tableRow.select();
+                                dataTable.getItems().forEach(item -> {
+                                    if (item.getRecord().isActive()) {
+                                        item.select();
                                     } else {
-                                        tableRow.deselect();
+                                        item.deselect();
                                     }
                                 });
                             });

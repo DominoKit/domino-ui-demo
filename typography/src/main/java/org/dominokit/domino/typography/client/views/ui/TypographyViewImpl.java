@@ -16,6 +16,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -243,11 +244,11 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
                 )
                 .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
-                        .appendFooterChild(new Text("Someone famous in "))
+                        .appendFooterChild(TextNode.of("Someone famous in "))
                         .appendFooterChild(cite().textContent("source title."))
                 )
                 .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
-                        .appendFooterChild(new Text("Someone famous in "))
+                        .appendFooterChild(TextNode.of("Someone famous in "))
                         .appendFooterChild(cite().textContent("source title."))
                         .reverse()
                 ).asElement());

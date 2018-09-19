@@ -1,0 +1,10 @@
+element.appendChild(Card.create("VERTICAL SPLIT PANEL")
+    .appendChild(VSplitPanel.create()
+            .setColorScheme(ColorScheme.TEAL)
+            .appendChild(SplitPanel.create()
+                    .appendChild(div().css("demo-split-div", Color.GREEN_LIGHTEN_5.getBackground())))
+            .appendChild(SplitPanel.create()
+                    .appendChild(div().css("demo-split-div", Color.GREEN_LIGHTEN_4.getBackground())))
+            .setHeight("400px")
+    )
+    .asElement());
