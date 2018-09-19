@@ -16,6 +16,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -153,7 +154,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
     private ModalDialog createModalDialog() {
         ModalDialog modal = ModalDialog.create("Modal title");
-        modal.appendChild(new Text(SAMPLE_CONTENT));
+        modal.appendChild(TextNode.of(SAMPLE_CONTENT));
         Button closeButton = Button.create("CLOSE").linkify();
         Button saveButton = Button.create("SAVE CHANGES").linkify();
 

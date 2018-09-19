@@ -15,6 +15,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.utils.TextNode;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = CardsPresenter.class)
@@ -37,21 +38,21 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
-                                .appendChild(new Text(SAMPLE_CONTENT))
+                                .appendChild(TextNode.of(SAMPLE_CONTENT))
                                 .addHeaderAction(Icons.ALL.more_vert(), event -> {
                                     DomGlobal.console.info("More action selected");
                                 })))
 
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
-                                .appendChild(new Text(SAMPLE_CONTENT))
+                                .appendChild(TextNode.of(SAMPLE_CONTENT))
                                 .addHeaderAction(Icons.AV_ICONS.mic(), event -> {
                                     DomGlobal.console.info("Play sound");
                                 })))
 
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
-                                .appendChild(new Text(SAMPLE_CONTENT))
+                                .appendChild(TextNode.of(SAMPLE_CONTENT))
                                 .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                                 .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
@@ -65,17 +66,17 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Light Blue Card", "Description text here...")
                         .setBackground(Color.LIGHT_BLUE)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Light Green Card", "Description text here...")
                         .setBackground(Color.LIGHT_GREEN)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Amber card", "Description text here...")
                         .setBackground(Color.AMBER)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
@@ -83,17 +84,17 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Pink Card", "Description text here...")
                         .setHeaderBackground(Color.PINK)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Blue Grey Card", "Description text here...")
                         .setHeaderBackground(Color.BLUE_GREY)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Deep Orange card", "Description text here...")
                         .setHeaderBackground(Color.DEEP_ORANGE)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
@@ -102,19 +103,19 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                 .addColumn(Column.span4().appendChild(Card.create("Light Blue Card", "Description text here...")
                         .setHeaderBackground(Color.BLUE)
                         .setBodyBackground(Color.LIGHT_BLUE)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Light Green Card", "Description text here...")
                         .setHeaderBackground(Color.GREEN)
                         .setBodyBackground(Color.LIGHT_GREEN)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Amber card", "Description text here...")
                         .setHeaderBackground(Color.ORANGE)
                         .setBodyBackground(Color.AMBER)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
@@ -130,14 +131,14 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .setCollapsible()
                         .setCollapseDuration(50)
                         .setHeaderBackground(Color.THEME)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
                         .setCollapseDuration(50)
                         .setHeaderBackground(Color.BROWN)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
@@ -145,7 +146,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .setCollapseDuration(50)
                         .collapse()
                         .setHeaderBackground(Color.CYAN)
-                        .appendChild(new Text(SAMPLE_CONTENT))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
@@ -159,11 +160,11 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create()
                         .setBackground(Color.GREEN)
-                        .appendChild(new Text(SAMPLE_CONTENT))))
+                        .appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .addColumn(Column.span4().appendChild(Card.create()
-                        .setBackground(Color.LIGHT_BLUE).appendChild(new Text(SAMPLE_CONTENT))))
+                        .setBackground(Color.LIGHT_BLUE).appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .addColumn(Column.span4().appendChild(Card.create()
-                        .setBackground(Color.PURPLE).appendChild(new Text(SAMPLE_CONTENT))))
+                        .setBackground(Color.PURPLE).appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .asElement());
 
         element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());

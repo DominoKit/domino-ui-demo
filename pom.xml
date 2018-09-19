@@ -124,20 +124,22 @@
                         <sourceLevel>1.8</sourceLevel>
                         <failOnError>true</failOnError>
                         <compilerArgs>
-                            <!--<compilerArg>-style</compilerArg>-->
-                            <!--<compilerArg>PRETTY</compilerArg>-->
+                            <compilerArg>-style</compilerArg>
+                            <compilerArg>PRETTY</compilerArg>
                         </compilerArgs>
                         <codeserverArgs>
+                            <codeserverArg>-style</codeserverArg>
+                            <codeserverArg>PRETTY</codeserverArg>
                             <!--<codeserverArg>-port</codeserverArg>-->
                             <!--<codeserverArg>9875</codeserverArg>-->
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>172.20.202.67</codeserverArg>-->
 
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                            <!--<codeserverArg>192.168.1.22</codeserverArg>-->
+                            <!--<codeserverArg>192.168.1.7</codeserverArg>-->
 
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                            <!--<codeserverArg>192.168.1.2</codeserverArg>-->
+                            <!--<codeserverArg>172.20.202.78</codeserverArg>-->
 
                             <codeserverArg>-src</codeserverArg>
                             <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
@@ -232,5 +234,6 @@
         <module>layouts</module>
     <module>gridLayout</module>
     <module>grids</module>
+    <module>splitPanel</module>
   </modules>
 </project>

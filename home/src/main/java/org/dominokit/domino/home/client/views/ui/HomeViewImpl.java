@@ -61,7 +61,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 .asElement());
 
         element.appendChild(Card.createCodeCard("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>")
-                .setTitle("GWT module inheritance")
+                .setTitle("gwt module inheritance")
                 .expand()
                 .asElement());
 
