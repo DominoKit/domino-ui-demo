@@ -1,6 +1,8 @@
 package org.dominokit.domino.splitPanel.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.TouchEvent;
+import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -9,11 +11,13 @@ import org.dominokit.domino.splitPanel.client.views.CodeResource;
 import org.dominokit.domino.splitPanel.client.views.SplitPanelView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.splitpanel.HSplitPanel;
 import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.jboss.gwt.elemento.core.EventType;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.hr;
@@ -101,7 +105,8 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(HSplitPanel.create()
                         .appendChild(SplitPanel.create()
                                 .setWidth("20%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .appendChild(div()
+                                        .css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
                         .appendChild(SplitPanel.create()
                                 .setWidth("50%")
                                 .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
