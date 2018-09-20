@@ -11,15 +11,19 @@ import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
+import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.CircleSize;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.search.Search;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.utils.ElementUtil;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.gwt.elemento.core.EventType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
@@ -52,7 +56,42 @@ public class LayoutViewImpl implements LayoutView {
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
                         .textContent("© 2018 Copyright DominoKit")).asElement();
 
-        Row footerRow = Row.create()
+        Row footerRow = createFooterRow();
+
+        layout.getFooter().appendChild(footerRow);
+        layout.getFooter().appendChild(copyrightsElement);
+        Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
+                .remove(oldTheme.getScheme().darker_3().getBackground())
+                .add(newTheme.getScheme().darker_3().getBackground()));
+
+        Button scrollTopButton = Button.create(Icons.ALL.arrow_upward());
+        DomGlobal.document.body.appendChild(scrollTopButton
+                .circle(CircleSize.LARGE)
+                .setBackground(Color.THEME)
+                .styler(style -> style
+                        .setPosition("fixed")
+                        .setBottom("60px")
+                        .setRight("20px")
+                        .setProperty("z-index", "9999")
+                ).addClickListener(evt -> {
+                    ElementUtil.scrollTop();
+                })
+                .collapse()
+                .asElement());
+
+
+        DomGlobal.document.addEventListener(EventType.scroll.getName(), evt -> {
+            if (DomGlobal.document.scrollingElement.scrollTop > 60) {
+                scrollTopButton.expand();
+            } else {
+                scrollTopButton.collapse();
+            }
+        });
+
+    }
+
+    private Row createFooterRow() {
+        return Row.create()
                 .style()
                 .setMargin("0px")
                 .add("demo-footer")
@@ -92,18 +131,13 @@ public class LayoutViewImpl implements LayoutView {
                         .appendChild(p().textContent("Contribute to our library at our official Domino-ui Github repository by forking, making pull requests or filing issues."))
                         .appendChild(Style.of(div().innerHtml(new SafeHtmlBuilder().appendHtmlConstant("<iframe src=\"https://ghbtns.com/github-btn.html?user=DominoKit&amp;repo=domino-ui&amp;type=star&amp;count=true&amp;size=large\" frameborder=\"0\" scrolling=\"0\" width=\"125px\" height=\"30px\"></iframe>").toSafeHtml())))
                 );
-
-        layout.getFooter().appendChild(footerRow);
-        layout.getFooter().appendChild(copyrightsElement);
-        Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
-                .remove(oldTheme.getScheme().darker_3().getBackground())
-                .add(newTheme.getScheme().darker_3().getBackground()));
-
     }
 
     private HTMLAnchorElement makeGithubLink() {
         HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x", "js-right-sidebar").asElement();
-        githubLink.addEventListener("click", evt -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"));
+        githubLink.addEventListener("click", evt -> {
+            DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank");
+        });
         return githubLink;
     }
 
@@ -119,7 +153,7 @@ public class LayoutViewImpl implements LayoutView {
             layout.getRightPanel().removeChild(Js.cast(rightPanelContent.get()));
 
         rightPanelContent = content;
-        layout.getRightPanel().appendChild((HTMLElement)Js.cast(content.get()));
+        layout.getRightPanel().appendChild((HTMLElement) Js.cast(content.get()));
     }
 
     @Override
