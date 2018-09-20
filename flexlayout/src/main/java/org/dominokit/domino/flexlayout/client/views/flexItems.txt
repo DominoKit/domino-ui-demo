@@ -1,0 +1,112 @@
+Slider orderSlider = Slider.create(6);
+Slider flexGrowSlider = Slider.create(10);
+Slider flexShrinkSlider = Slider.create(10);
+TextBox flexBasisTextBox = TextBox.create("Flex Basis").setHelperText("Default size of an element before the remaining space is distributed");
+RadioGroup targetBlockRadioGroup = RadioGroup.create("target-block", "Target block # to play with");
+RadioGroup alignSelfRadioGroup = RadioGroup.create("align-self", "Align self");
+
+flexItemsCard.setBodyPaddingTop("40px")
+        .appendChild(Row.create()
+                .appendChild(Column.span4()
+                        .appendChild(targetBlockRadioGroup
+                                .appendChild(Radio.create("0", "1"))
+                                .appendChild(Radio.create("1", "2"))
+                                .appendChild(Radio.create("2", "3"))
+                                .appendChild(Radio.create("3", "4"))
+                                .appendChild(Radio.create("4", "5"))
+                                .horizontal()
+                        )
+                )
+        )
+        .appendChild(Row.create()
+                .appendChild(Column.span4()
+                        .appendChild(orderSlider.withThumb())
+                        .appendChild(h(5).textContent("Order"))
+                )
+                .appendChild(Column.span4()
+                        .appendChild(flexGrowSlider.withThumb())
+                        .appendChild(h(5).textContent("Flex Grow"))
+                )
+                .appendChild(Column.span4()
+                        .appendChild(flexShrinkSlider.withThumb())
+                        .appendChild(h(5).textContent("Flex Shrink"))
+                )
+        )
+        .appendChild(Row.create()
+                .appendChild(Column.span6()
+                        .appendChild(flexBasisTextBox)
+                )
+                .appendChild(Column.span6()
+                        .appendChild(alignSelfRadioGroup
+                                .appendChild(Radio.create(FlexAlign.START.name(), "Start"))
+                                .appendChild(Radio.create(FlexAlign.END.name(), "End"))
+                                .appendChild(Radio.create(FlexAlign.CENTER.name(), "Center"))
+                                .appendChild(Radio.create(FlexAlign.STRETCH.name(), "Stretch"))
+                                .appendChild(Radio.create(FlexAlign.BASE_LINE.name(), "Base line"))
+                                .horizontal()
+                        )
+                )
+        );
+
+FlexLayout flexLayout = FlexLayout.create()
+        .style()
+        .add("demo-flex-layout-container")
+        .add("fill-height")
+        .get()
+        .setDirection(FlexDirection.LEFT_TO_RIGHT);
+
+Map<String, FlexItem> items = new HashMap<>();
+for (int i = 0; i < 5; i++) {
+    FlexItem item = FlexItem.create()
+            .style()
+            .add("demo-flex-layout-block")
+            .add(colorOf(i + 1).getBackground())
+            .get()
+            .setAlignSelf(FlexAlign.START)
+            .setOrder(i + 1)
+            .appendChild(h(4));
+    items.put(i + "", item);
+    flexLayout.appendChild(item);
+}
+
+flexItemsCard.appendChild(div()
+        .css("demo-flex-layout-result-container")
+        .add(flexLayout)
+        .asElement());
+
+
+orderSlider.addSlideHandler(value -> {
+    items.get(targetBlockRadioGroup.getValue())
+            .setOrder((int) value);
+});
+
+flexGrowSlider.addSlideHandler(value -> {
+    items.get(targetBlockRadioGroup.getValue())
+            .setFlexGrow((int) value);
+});
+
+flexShrinkSlider.addSlideHandler(value -> {
+    items.get(targetBlockRadioGroup.getValue())
+            .setFlexShrink((int) value);
+});
+
+alignSelfRadioGroup.addChangeHandler(value -> {
+    items.get(targetBlockRadioGroup.getValue())
+            .setAlignSelf(FlexAlign.valueOf(value.getValue()));
+});
+
+flexBasisTextBox.addChangeHandler(value -> {
+    items.get(targetBlockRadioGroup.getValue())
+            .setFlexBasis(value);
+});
+
+targetBlockRadioGroup.addChangeHandler(value -> {
+    FlexItem flexItem = items.get(targetBlockRadioGroup.getValue());
+    flexGrowSlider.setValue(flexItem.getFlexGrow());
+    orderSlider.setValue(flexItem.getOrder());
+    flexShrinkSlider.setValue(flexItem.getFlexShrink());
+    flexBasisTextBox.setValue(isNull(flexItem.getFlexBasis()) ? "" : flexItem.getFlexBasis());
+    alignSelfRadioGroup.setValue(flexItem.getAlignSelf().name());
+});
+
+targetBlockRadioGroup.setValue("2");

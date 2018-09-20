@@ -216,3 +216,37 @@ code {
     width: 100%;
     height: 100%;
 }
+
+.demo-flex-layout-result-container {
+    height: 500px;
+    background: #777777;
+}
+
+.demo-flex-layout-container {
+    counter-reset: section;
+    min-height: 120px;
+}
+
+.demo-flex-layout-container.fill-height {
+    height: 100%;
+}
+
+.demo-flex-layout-block {
+    width: 100px;
+    min-height: 100px;
+    background: white;
+    margin: 10px;
+    line-height: 100px;
+}
+
+.demo-flex-layout-block h4 {
+    text-align: center;
+    line-height: 100px;
+    font-size: larger;
+    margin: 0px;
+}
+
+.demo-flex-layout-block h4::before {
+    counter-increment: section;
+    content: counter(section);
+}
