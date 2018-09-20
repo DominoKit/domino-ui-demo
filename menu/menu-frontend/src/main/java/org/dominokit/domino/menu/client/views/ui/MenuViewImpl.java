@@ -134,7 +134,12 @@ public class MenuViewImpl implements MenuView {
 
         @Override
         public CanAddMenuItem addMenuItem(String title) {
-            TreeItem item = TreeItem.create(title)
+            return addMenuItem(title, "");
+        }
+
+        @Override
+        public CanAddMenuItem addMenuItem(String title, String iconName) {
+            TreeItem item = TreeItem.create(title, Icon.create(iconName))
                     .setActiveIcon(Icons.ALL.keyboard_arrow_right());
             menuItem.appendChild(item);
             return new SubMenu(item);
@@ -142,12 +147,16 @@ public class MenuViewImpl implements MenuView {
 
         @Override
         public CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler) {
-            TreeItem item = TreeItem.create(title)
+            return addMenuItem(title, "", selectionHandler);
+        }
+
+        @Override
+        public CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler) {
+            TreeItem item = TreeItem.create(title, Icon.create(iconName))
                     .setActiveIcon(Icons.ALL.keyboard_arrow_right());
             menuItem.appendChild(item);
             item.addClickListener(e -> selectionHandler.onMenuSelected());
             return new SubMenu(item);
         }
-
     }
 }

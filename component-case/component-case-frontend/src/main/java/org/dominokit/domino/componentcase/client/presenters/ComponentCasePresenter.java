@@ -39,8 +39,8 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
         ContextAggregator.waitFor(menuContext).and(layoutContext).onReady(() -> {
             view.init(layoutContext.get().getLayout());
             fireEvent(ComponentCaseEvent.class, () -> ComponentCasePresenter.this);
-            if(history().currentToken().fragment().isEmpty()) {
-                HistoryToken historyToken=history().currentToken();
+            if (history().currentToken().fragment().isEmpty()) {
+                HistoryToken historyToken = history().currentToken();
                 historyToken.appendFragment("home");
                 history().pushState(historyToken.value());
                 history().forward();
@@ -61,12 +61,12 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
 
     private Map<String, MenuBranch> roots = new HashMap<>();
 
-    @ListenTo(event=MenuEvent.class)
+    @ListenTo(event = MenuEvent.class)
     public void onMenuEvent(MenuContext context) {
         menuContext.receiveContext(context);
     }
 
-    @ListenTo(event=LayoutEvent.class)
+    @ListenTo(event = LayoutEvent.class)
     public void onLayoutEvent(LayoutContext context) {
         layoutContext.receiveContext(context);
     }
@@ -99,14 +99,14 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
             root = getOrAddMenuBranch(root, pathElements[index]);
         }
 
-        addSubPageToRoot(pathElements[pathElements.length-1], componentCase, root);
+        addSubPageToRoot(pathElements[pathElements.length - 1], componentCase, root);
 
     }
 
     private void addSubPageToRoot(String path, ComponentCase componentCase, MenuBranch root) {
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
-            canAddMenuItem = root.menuItem.addMenuItem(path, () -> {
+            canAddMenuItem = root.menuItem.addMenuItem(path, componentCase.getIconName(), () -> {
                 applyHistory(componentCase);
                 showPage(componentCase);
             });
@@ -118,7 +118,7 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
     }
 
     private void applyHistory(ComponentCase componentCase) {
-            history().pushState(history().currentToken().replaceAllFragments(componentCase.getHistoryToken()).value());
+        history().pushState(history().currentToken().replaceAllFragments(componentCase.getHistoryToken()).value());
     }
 
     private MenuBranch getOrAddMenuBranch(MenuBranch root, String pathElement) {
@@ -145,14 +145,14 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
     }
 
     private void showPage(ComponentCase componentCase) {
-        if(nonNull(currentSample))
+        if (nonNull(currentSample))
             currentSample.onComponentRemoved().onBeforeRemove();
         view.clear();
         layoutContext.get().getLayout().hideLeftPanel();
         view.showContent(componentCase.getContent());
         view.scrollTop();
         componentCase.onComponentRevealed().onRevealed();
-        currentSample=componentCase;
+        currentSample = componentCase;
     }
 
     private class NoRootMenuException extends RuntimeException {
