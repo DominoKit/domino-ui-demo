@@ -11,19 +11,16 @@ import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
-import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.CircleSize;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
+import org.dominokit.domino.ui.scroll.ScrollTop;
 import org.dominokit.domino.ui.search.Search;
-import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
-import org.dominokit.domino.ui.utils.ElementUtil;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.gwt.elemento.core.EventType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
@@ -64,29 +61,9 @@ public class LayoutViewImpl implements LayoutView {
                 .remove(oldTheme.getScheme().darker_3().getBackground())
                 .add(newTheme.getScheme().darker_3().getBackground()));
 
-        Button scrollTopButton = Button.create(Icons.ALL.arrow_upward());
-        DomGlobal.document.body.appendChild(scrollTopButton
-                .circle(CircleSize.LARGE)
-                .setBackground(Color.THEME)
-                .styler(style -> style
-                        .setPosition("fixed")
-                        .setBottom("60px")
-                        .setRight("20px")
-                        .setProperty("z-index", "9999")
-                ).addClickListener(evt -> {
-                    ElementUtil.scrollTop();
-                })
-                .collapse()
+        DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
+                .setBottom(60)
                 .asElement());
-
-
-        DomGlobal.document.addEventListener(EventType.scroll.getName(), evt -> {
-            if (DomGlobal.document.scrollingElement.scrollTop > 60) {
-                scrollTopButton.expand();
-            } else {
-                scrollTopButton.collapse();
-            }
-        });
 
     }
 
