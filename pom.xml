@@ -151,6 +151,7 @@
                             <!--<codeserverArg>/home/rafat/Development/git/domino-ui/src/main/java</codeserverArg>-->
                             <!--<codeserverArg>-src</codeserverArg>-->
                             <!--<codeserverArg>/home/rafat/Development/git/domino-ui/target/generated-sources/annotations</codeserverArg>-->
+
                         </codeserverArgs>
                     </configuration>
                 </plugin>

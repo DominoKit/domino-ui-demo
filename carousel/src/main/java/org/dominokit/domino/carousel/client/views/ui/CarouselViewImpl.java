@@ -6,6 +6,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.carousel.client.presenters.CarouselPresenter;
 import org.dominokit.domino.carousel.client.views.CarouselView;
 import org.dominokit.domino.carousel.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
@@ -51,7 +52,7 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
                         )
                 ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.carousel()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.carousel()).asElement());
 
     }
 

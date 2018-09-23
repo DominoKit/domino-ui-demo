@@ -4,6 +4,7 @@ import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.grids.client.presenters.GridsPresenter;
@@ -270,7 +271,7 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.grid12Columns()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid12Columns()).asElement());
     }
 
     private void grid16Columns() {
@@ -547,7 +548,7 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.grid16Columns()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid16Columns()).asElement());
     }
 
     private void grid18Columns() {
@@ -866,7 +867,7 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.grid18Columns()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid18Columns()).asElement());
     }
 
     private void grid24Columns() {
@@ -1303,7 +1304,7 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.grid24Columns()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid24Columns()).asElement());
     }
 
     private void grid32Columns() {
@@ -1838,7 +1839,7 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.grid32Columns()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).asElement());
     }
 
     @Override

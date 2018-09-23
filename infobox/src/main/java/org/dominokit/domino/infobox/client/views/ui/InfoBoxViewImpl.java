@@ -1,6 +1,7 @@
 package org.dominokit.domino.infobox.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.infobox.client.presenters.InfoBoxPresenter;
@@ -83,7 +84,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                 });
 
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
     }
 
     private void hoverZoomEffect() {
@@ -123,7 +124,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
     }
 
     private void rightAligned() {
@@ -175,6 +176,6 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
     }
 }

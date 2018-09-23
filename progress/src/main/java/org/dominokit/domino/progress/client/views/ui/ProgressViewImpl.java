@@ -4,6 +4,7 @@ import com.google.gwt.user.client.Timer;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -82,7 +83,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void contextualAlternatives() {
@@ -109,7 +110,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
     }
 
     private void stripedSample() {
@@ -136,7 +137,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
     }
 
     private void animatedSample() {
@@ -163,7 +164,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
     }
 
     private void stackedSample() {
@@ -183,7 +184,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
     }
 
     private void materialDesignColors() {
@@ -211,7 +212,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(40)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
     }
 
     @Override

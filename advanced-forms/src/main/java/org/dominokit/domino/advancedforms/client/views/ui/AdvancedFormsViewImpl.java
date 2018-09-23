@@ -6,6 +6,7 @@ import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsPresent
 import org.dominokit.domino.advancedforms.client.views.AdvancedFormsView;
 import org.dominokit.domino.advancedforms.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
@@ -53,9 +54,9 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
         initTagsInputExample();
 
         element.appendChild(uploadCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
         element.appendChild(tagsInputCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.tagsExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tagsExample()).asElement());
     }
 
     private void initFileUploadExample() {

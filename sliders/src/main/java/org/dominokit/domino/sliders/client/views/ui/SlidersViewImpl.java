@@ -2,6 +2,7 @@ package org.dominokit.domino.sliders.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.sliders.client.presenters.SlidersPresenter;
@@ -40,11 +41,11 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
 
         element.appendChild(BlockHeader.create("SLIDERS").asElement());
         element.appendChild(basicCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
         element.appendChild(colorsSlidersCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colors()).asElement());
         element.appendChild(sampleCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example()).asElement());
     }
 
     private void initBasic() {

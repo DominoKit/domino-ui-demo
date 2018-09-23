@@ -1,5 +1,6 @@
 package org.dominokit.domino.pagination.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.pagination.client.views.CodeResource;
@@ -48,7 +49,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+"")))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
     }
 
     private void activePageSample() {
@@ -59,7 +60,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .gotoPage(3))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
     }
 
     private void sizesSample() {
@@ -89,7 +90,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
     }
 
     private void pagerNexPrevSample() {
@@ -127,7 +128,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .disablePrevious())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());
 
     }
 }

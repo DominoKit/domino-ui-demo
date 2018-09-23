@@ -8,6 +8,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
@@ -108,7 +109,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
     }
 
     private void basicFixedTable() {
@@ -175,7 +176,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fixedBasicTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fixedBasicTable()).asElement());
     }
 
     private List<Contact> subList(List<Contact> contacts) {
@@ -225,7 +226,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             multiSelectionTable.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
     }
 
     private void markerPlugin() {
@@ -245,7 +246,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
     }
 
     private void recordDetailsPlugin() {
@@ -265,7 +266,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
     }
 
     private void tableHeaderBarPlugin() {
@@ -333,7 +334,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.headerBarPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.headerBarPlugin()).asElement());
     }
 
     private void sortAndSearch() {
@@ -355,7 +356,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
     }
 
     private void simplePagination() {
@@ -380,7 +381,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
     }
 
     private TableConfig<Contact> createSortableTableConfig() {
@@ -575,7 +576,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.scrollLoading()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollLoading()).asElement());
 
     }
 
@@ -676,7 +677,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
 
     }
 
@@ -829,7 +830,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
     }
 
     public interface ContactListParseHandler {

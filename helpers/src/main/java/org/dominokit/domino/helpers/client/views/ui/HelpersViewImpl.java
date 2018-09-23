@@ -1,6 +1,7 @@
 package org.dominokit.domino.helpers.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.helpers.client.presenters.HelpersPresenter;
@@ -106,7 +107,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles())
                 .asElement());
     }
 
@@ -131,7 +132,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fontSize())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSize())
                 .asElement());
     }
 
@@ -158,7 +159,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textAligns())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textAligns())
                 .asElement());
     }
 

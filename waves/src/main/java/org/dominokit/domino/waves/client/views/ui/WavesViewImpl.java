@@ -2,6 +2,7 @@ package org.dominokit.domino.waves.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
@@ -304,7 +305,7 @@ public class WavesViewImpl extends ComponentView<HTMLDivElement> implements Wave
 										))))
 				.asElement());
 
-		element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.waves()).asElement());
+		element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.waves()).asElement());
 	}
 
 	@Override

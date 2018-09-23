@@ -2,6 +2,7 @@ package org.dominokit.domino.lists.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.lists.client.presenters.ListsPresenter;
@@ -73,7 +74,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                 .asElement());
 
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicListsSample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicListsSample())
                 .asElement());
     }
 
@@ -102,7 +103,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                         .appendChild(disabledItems)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectableSample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectableSample())
                 .asElement());
     }
 
@@ -130,7 +131,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                         .appendChild(coloredGroup)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredSample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredSample())
                 .asElement());
     }
 
@@ -146,7 +147,7 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
                 .appendChild(listGroup).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.richItems())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
                 .asElement());
     }
 }

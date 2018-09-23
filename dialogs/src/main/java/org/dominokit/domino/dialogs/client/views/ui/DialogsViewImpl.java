@@ -2,6 +2,7 @@ package org.dominokit.domino.dialogs.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.dialogs.client.presenters.DialogsPresenter;
@@ -143,7 +144,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());
     }
 
     private Button createDemoButton(MessageDialog dialog) {

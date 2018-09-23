@@ -1,5 +1,6 @@
 package org.dominokit.domino.popover.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.popover.client.views.CodeResource;
@@ -69,7 +70,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
     }
 
     private void popover() {
@@ -105,7 +106,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                                 .appendChild(popover_on_left)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popover()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popover()).asElement());
     }
 
     @Override

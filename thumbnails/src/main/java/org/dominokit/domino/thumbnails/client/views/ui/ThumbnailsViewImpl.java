@@ -1,6 +1,7 @@
 package org.dominokit.domino.thumbnails.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.thumbnails.client.views.CodeResource;
@@ -52,7 +53,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                                 .css(Styles.img_responsive)))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void withExtraContentSample() {
@@ -88,7 +89,7 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                         .appendCaptionChild(Button.createPrimary("BUTTON")))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
 
     }
 

@@ -6,6 +6,7 @@ import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
 import org.dominokit.domino.animation.client.views.AnimationView;
 import org.dominokit.domino.animation.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.animations.Animation;
@@ -348,7 +349,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .asElement()
         );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
     }
 
     private Card createCard(Transition transition) {

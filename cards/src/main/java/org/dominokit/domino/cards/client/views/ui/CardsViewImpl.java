@@ -7,6 +7,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.cards.client.presenters.CardsPresenter;
 import org.dominokit.domino.cards.client.views.CardsView;
 import org.dominokit.domino.cards.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
@@ -57,7 +58,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                                 .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
     }
 
     private void coloredCards() {
@@ -120,7 +121,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
     }
 
     private void collapsibleCards() {
@@ -151,7 +152,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
     }
 
     private void noHeaderCards() {
@@ -167,7 +168,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .setBackground(Color.PURPLE).appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
     }
 
     @Override

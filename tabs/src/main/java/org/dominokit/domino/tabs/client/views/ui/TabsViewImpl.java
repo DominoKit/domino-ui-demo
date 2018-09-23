@@ -1,5 +1,6 @@
 package org.dominokit.domino.tabs.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.tabs.client.views.CodeResource;
@@ -63,7 +64,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
     }
 
     private void iconsOnly() {
@@ -85,7 +86,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
     }
 
     private void withIconsAndTextSamlple() {
@@ -107,7 +108,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSamlple()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSamlple()).asElement());
     }
 
     private void materialDesignColorsSample() {
@@ -162,7 +163,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
     }
 
     private void withAnimation() {
@@ -205,6 +206,6 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
     }
 }

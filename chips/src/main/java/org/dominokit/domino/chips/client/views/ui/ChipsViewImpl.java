@@ -5,6 +5,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.chips.client.presenters.ChipsPresenter;
 import org.dominokit.domino.chips.client.views.ChipsView;
 import org.dominokit.domino.chips.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
@@ -51,17 +52,17 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
         initSelectableChipsExample();
 
         element.appendChild(simpleCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.simple()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simple()).asElement());
         element.appendChild(removableCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.removable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.removable()).asElement());
         element.appendChild(iconChipsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.chipsWithIcons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.chipsWithIcons()).asElement());
         element.appendChild(imagesChipsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.chipsWithImages()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.chipsWithImages()).asElement());
         element.appendChild(lettersChipsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.chipsWithLetters()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.chipsWithLetters()).asElement());
         element.appendChild(selectableChipsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectable()).asElement());
     }
 
     private void initSimpleExample() {
@@ -268,6 +269,7 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
                 .appendChild(Chip.create("Large"))
                 .appendChild(Chip.create("Extra large"))
                 .setColorScheme(ColorScheme.TEAL);
+
         selectableChipsCard.appendChild(Row.create()
                 .addColumn(Column.span12()
                         .appendChild(chipsGroup
