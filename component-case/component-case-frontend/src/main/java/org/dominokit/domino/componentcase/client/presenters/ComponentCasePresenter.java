@@ -107,7 +107,7 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
     private void addSubPageToRoot(String path, ComponentCase componentCase, MenuBranch root) {
         CanAddMenuItem canAddMenuItem;
         if (componentCase.hasContent()) {
-            canAddMenuItem = root.menuItem.addMenuItem(path, () -> {
+            canAddMenuItem = root.menuItem.addMenuItem(path, componentCase.getIconName(), () -> {
                 applyHistory(componentCase);
                 showPage(componentCase);
             });

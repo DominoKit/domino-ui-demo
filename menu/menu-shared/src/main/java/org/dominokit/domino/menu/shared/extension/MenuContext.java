@@ -5,17 +5,24 @@ import org.dominokit.domino.api.shared.extension.EventContext;
 
 public interface MenuContext extends EventContext {
 
-    interface CanAddMenuItem{
+    interface CanAddMenuItem {
         CanAddMenuItem addMenuItem(String title);
+
+        CanAddMenuItem addMenuItem(String title, String iconName);
+
         CanAddMenuItem addMenuItem(String title, OnMenuSelectedHandler selectionHandler);
+
+        CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler);
     }
 
     @FunctionalInterface
-    interface OnMenuSelectedHandler{
+    interface OnMenuSelectedHandler {
         void onMenuSelected();
     }
 
     void setMainTitle(String title);
+
     CanAddMenuItem addMenuItem(String title, String iconName, OnMenuSelectedHandler selectionHandler);
+
     CanAddMenuItem addMenuItem(String title, String iconName);
 }
