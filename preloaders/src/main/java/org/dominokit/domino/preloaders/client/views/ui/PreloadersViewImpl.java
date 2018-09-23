@@ -1,5 +1,6 @@
 package org.dominokit.domino.preloaders.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.preloaders.client.views.CodeResource;
@@ -48,7 +49,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setSize(Preloader.Size.xSmall)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
     }
 
     private void colorsSample() {
@@ -81,7 +82,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setColor(Color.INDIGO)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
 
     }
 }

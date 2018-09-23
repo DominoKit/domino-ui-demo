@@ -6,6 +6,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
 import org.dominokit.domino.basicforms.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
@@ -60,17 +61,17 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         initSwitchExample();
 
         element.appendChild(inputCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
         element.appendChild(textAreaCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
         element.appendChild(selectCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
         element.appendChild(checkboxCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
         element.appendChild(radioCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
         element.appendChild(switchCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
     }
 
 

@@ -7,6 +7,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.collapse.client.presenters.CollapsePresenter;
 import org.dominokit.domino.collapse.client.views.CodeResource;
 import org.dominokit.domino.collapse.client.views.CollapseView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
@@ -78,7 +79,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .appendChild(collapsible)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.example())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example())
                 .asElement());
     }
 
@@ -143,7 +144,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                         .danger())))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.accordionSample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample())
                 .asElement());
     }
 
@@ -189,7 +190,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                                 .setColor(Color.ORANGE)))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
                 .asElement());
 
     }
@@ -219,7 +220,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                                 .setColor(Color.ORANGE)))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
                 .asElement());
 
     }

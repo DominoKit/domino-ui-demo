@@ -2,7 +2,11 @@ package org.dominokit.domino.home.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
+import me.rjb.client.SyntaxHighlighter;
+import me.rjb.client.brushes.Brushes;
+import me.rjb.client.themes.Themes;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
 import org.dominokit.domino.home.client.views.HomeView;
@@ -28,7 +32,6 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
     @Override
     public void init() {
-
         element.appendChild(div()
                 .css(Color.THEME.getBackground(), Styles.default_shadow)
                 .style("margin-top: -40px; margin-left: -30px; margin-right: -30px; margin-bottom: 20px; padding-top: 10px;")
@@ -45,7 +48,8 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").asElement());
 
-        element.appendChild(Card.createCodeCard("<dependency>\n" +
+
+        element.appendChild(CodeCard.createCodeCard("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
                 "  <version>1.0-SNAPSHOT</version>\n" +
@@ -60,12 +64,12 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 .expand()
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>")
+        element.appendChild(CodeCard.createCodeCard("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>")
                 .setTitle("gwt module inheritance")
                 .expand()
                 .asElement());
 
-        element.appendChild(Card.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
+        element.appendChild(CodeCard.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">")

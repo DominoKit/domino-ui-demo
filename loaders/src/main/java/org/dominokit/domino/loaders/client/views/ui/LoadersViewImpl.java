@@ -1,6 +1,7 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.loaders.client.presenters.LoadersPresenter;
@@ -74,7 +75,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                         .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.loadersSample())
                 .asElement());
 
     }

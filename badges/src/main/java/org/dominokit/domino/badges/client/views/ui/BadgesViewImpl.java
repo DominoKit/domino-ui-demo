@@ -4,6 +4,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.badges.client.presenters.BadgesPresenter;
 import org.dominokit.domino.badges.client.views.BadgesView;
 import org.dominokit.domino.badges.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
@@ -67,7 +68,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
     }
 
     private void buttonExamplesWithMaterialDesignColors() {
@@ -103,7 +104,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
     }
 
     private void listExample() {
@@ -119,7 +120,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                 .appendChild(listGroup)
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.listExample())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
                 .asElement());
     }
 

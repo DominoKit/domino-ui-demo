@@ -35,7 +35,7 @@ element.appendChild(Row.create()
                 .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
         .asElement());
 
-element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.loadersSample())
+element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.loadersSample())
         .asElement());
 
 //------------------------------

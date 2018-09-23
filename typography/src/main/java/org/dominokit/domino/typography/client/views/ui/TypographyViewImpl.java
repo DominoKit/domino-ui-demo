@@ -3,6 +3,7 @@ package org.dominokit.domino.typography.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
@@ -114,7 +115,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )).asElement()
         );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
     }
 
     private void bodyCopy() {
@@ -124,7 +125,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(p().textContent(SMALL_PARAGRAPH)).asElement()
         );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
     }
 
     private void fontSizes() {
@@ -147,7 +148,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_6).textContent("font-6")))
                         )).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
 
     }
 
@@ -168,7 +169,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement()
         );
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
     }
 
     private void textStyles() {
@@ -236,7 +237,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )
                 ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
     }
 
     private void blockqoute() {
@@ -253,6 +254,6 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         .reverse()
                 ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
     }
 }

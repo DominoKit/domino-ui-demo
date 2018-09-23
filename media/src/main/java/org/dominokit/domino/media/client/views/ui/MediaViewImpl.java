@@ -1,5 +1,6 @@
 package org.dominokit.domino.media.client.views.ui;
 
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.media.client.views.CodeResource;
@@ -76,7 +77,7 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .appendChild(TextNode.of(SAMPLE_TEXT)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
     }
 
     private void mediaAlignment() {
@@ -107,6 +108,6 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
     }
 }

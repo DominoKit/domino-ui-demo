@@ -3,6 +3,7 @@ package org.dominokit.domino.timepicker.client.views.ui;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
@@ -81,7 +82,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                         DomGlobal.console.info(timePicker.getFormattedTime())))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
     }
 
     private void popups() {
@@ -201,7 +202,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
     }
 
     private void timeBox() {
@@ -236,7 +237,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
 
     }
 

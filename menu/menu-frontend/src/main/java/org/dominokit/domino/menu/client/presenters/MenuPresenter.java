@@ -16,7 +16,7 @@ public class MenuPresenter extends ViewBaseClientPresenter<MenuView> implements 
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuPresenter.class);
 
-    @ListenTo(event=LayoutEvent.class)
+    @ListenTo(event = LayoutEvent.class)
     public void onLayoutEvent(LayoutContext context) {
         view.init(context.getLayout());
         fireEvent(MenuEvent.class, () -> MenuPresenter.this);

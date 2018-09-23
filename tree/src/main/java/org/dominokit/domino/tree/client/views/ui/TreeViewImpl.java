@@ -2,6 +2,7 @@ package org.dominokit.domino.tree.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.tree.client.presenters.TreePresenter;
@@ -284,7 +285,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                         .addColumn(Column.span6().appendChild(filesTree))
                 ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
     }
 
     private void nestedTree() {
@@ -354,7 +355,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(hardwareMenu2))
                 ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
     }
 
     private void activeAndExpandIcons() {
@@ -465,7 +466,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(foldersExpand))
                         ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.featuredTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.featuredTree()).asElement());
     }
 
     @Override

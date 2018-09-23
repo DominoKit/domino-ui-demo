@@ -50,6 +50,7 @@ public class OtherDocumentsPart implements ImportSection {
         otherDocumentsCard.getHeaderBar()
                 .appendChild(Button.createDefault(Icons.ALL.add())
                         .setContent("ADD")
+                        .styler(style -> style.setMarginTop("-10px"))
                         .linkify()
                         .addClickListener(evt -> {
                             if (fieldsGrouping.validate().isValid()) {

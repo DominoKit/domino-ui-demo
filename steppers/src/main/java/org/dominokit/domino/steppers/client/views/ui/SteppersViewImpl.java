@@ -4,6 +4,7 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
@@ -145,7 +146,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span6().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
     }
 
     private void horizontalStepper() {
@@ -250,7 +251,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span12().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
     }
 
     @Override

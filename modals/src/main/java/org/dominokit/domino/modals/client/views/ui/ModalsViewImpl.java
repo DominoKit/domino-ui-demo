@@ -4,6 +4,7 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase.ComponentRemoveHandler;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -84,7 +85,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalsSize())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalsSize())
                 .asElement());
     }
 
@@ -148,7 +149,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                 .add(tealButton)
         ).asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
 
     }
 

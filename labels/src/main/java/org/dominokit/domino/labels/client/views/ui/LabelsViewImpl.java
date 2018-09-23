@@ -2,6 +2,7 @@ package org.dominokit.domino.labels.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.labels.client.presenters.LabelsPresenter;
@@ -76,7 +77,7 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                                 .style().setMargin("10px"))))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
     }
 
     private void initLabels() {
@@ -118,6 +119,6 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                 .asElement());
 
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
     }
 }

@@ -1,6 +1,7 @@
 package org.dominokit.domino.notifications.client.views.ui;
 
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.notifications.client.presenters.NotificationsPresenter;
@@ -96,7 +97,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
                 .asElement());
     }
 
@@ -136,7 +137,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
         .asElement());
 
     }
@@ -247,7 +248,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
                 .asElement());
 
     }
@@ -477,7 +478,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.withAnimation())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
                 .asElement());
     }
 }

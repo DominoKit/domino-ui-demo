@@ -3,6 +3,7 @@ package org.dominokit.domino.formsvalidations.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsPresenter;
@@ -48,15 +49,15 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         initReadOnly();
 
         element.appendChild(helperTextCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
         element.appendChild(iconsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.addons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.addons()).asElement());
         element.appendChild(countsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
         element.appendChild(validationsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
         element.appendChild(readOnlyCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.readOnly()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.readOnly()).asElement());
     }
 
     private void initReadOnly() {

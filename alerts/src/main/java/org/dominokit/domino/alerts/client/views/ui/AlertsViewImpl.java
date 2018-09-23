@@ -5,6 +5,7 @@ import org.dominokit.domino.alerts.client.presenters.AlertsPresenter;
 import org.dominokit.domino.alerts.client.views.AlertsView;
 import org.dominokit.domino.alerts.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.Typography.Strong;
@@ -50,7 +51,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                 .appendChild(Alert.error().appendChild(Strong.of("Oh snap! ")).appendChild("Change a few things up and try submitting again."))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
     }
 
     private void customBackground() {
@@ -67,7 +68,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id"))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.customBackgrounds())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.customBackgrounds())
                 .asElement());
 
     }
@@ -89,7 +90,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .dismissible())
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
     }
 
     private void linksInAlerts() {
@@ -116,6 +117,6 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendChild(a().add("alert link.").asElement()))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
     }
 }

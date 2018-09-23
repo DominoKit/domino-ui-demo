@@ -5,6 +5,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.breadcrumb.client.presenters.BreadcrumbPresenter;
 import org.dominokit.domino.breadcrumb.client.views.BreadcrumbView;
 import org.dominokit.domino.breadcrumb.client.views.CodeResource;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.breadcrumbs.Breadcrumb;
@@ -79,7 +80,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         ))
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
                 .asElement());
     }
 
@@ -174,7 +175,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement());
 
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
                 .asElement());
     }
 
@@ -269,7 +270,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement());
 
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
                 .asElement());
     }
 
@@ -306,7 +307,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.alignment())
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.alignment())
                 .asElement());
 
     }
