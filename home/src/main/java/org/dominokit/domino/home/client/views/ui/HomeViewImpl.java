@@ -2,15 +2,11 @@ package org.dominokit.domino.home.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
-import me.rjb.client.SyntaxHighlighter;
-import me.rjb.client.brushes.Brushes;
-import me.rjb.client.themes.Themes;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
 import org.dominokit.domino.home.client.views.HomeView;
-import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
 import org.dominokit.domino.ui.carousel.Slide;
 import org.dominokit.domino.ui.header.BlockHeader;

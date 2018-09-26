@@ -133,8 +133,8 @@
                             <!--<codeserverArg>PRETTY</codeserverArg>-->
                             <!--<codeserverArg>-port</codeserverArg>-->
                             <!--<codeserverArg>9875</codeserverArg>-->
-                            <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                            <!--<codeserverArg>172.20.202.67</codeserverArg>-->
+                            <codeserverArg>-bindAddress</codeserverArg>
+                            <codeserverArg>172.20.202.67</codeserverArg>
 
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>192.168.1.9</codeserverArg>-->
@@ -148,10 +148,10 @@
                             <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations-->
                             <!--</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/home/rjeeb/Development/git/domino-ui/target/generated-sources/annotations</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/home/rjeeb/Development/git/domino-ui/target/generated-sources/annotations</codeserverArg>
                         </codeserverArgs>
                     </configuration>
                 </plugin>
