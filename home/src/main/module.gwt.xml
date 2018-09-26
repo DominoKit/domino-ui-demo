@@ -2,8 +2,6 @@
 <module>
     <inherits name="com.google.gwt.user.User"/>
 
-    <inherits name="me.rjb.Highlighter"/>
-
     <source path=""/>
 
     <entry-point class="org.dominokit.domino.home.client.HomeClientModule"/>
