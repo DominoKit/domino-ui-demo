@@ -28,7 +28,7 @@ public class GeneralSection implements ImportSection {
 
         creationDateBox = DateBox.create();
         placeTextBox = TextBox.create("Place")
-                .setValue("Amman");
+                .value("Amman");
 
         element.appendChild(Card.create()
                 .style()
@@ -44,7 +44,7 @@ public class GeneralSection implements ImportSection {
                                         .setLabel("Date")
                                         .setLeftAddon(Icons.ALL.date_range())
                                         .setReadOnly(true)
-                                        .setValue(new Date())))
+                                        .value(new Date())))
                         .addColumn(Column.span6()
                                 .style()
                                 .setMarginBottom("0px")
@@ -52,7 +52,7 @@ public class GeneralSection implements ImportSection {
                                 .appendChild(placeTextBox
                                         .setReadOnly(true)
                                         .setLeftAddon(Icons.ALL.location_on())
-                                        .setValue(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))
+                                        .value(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))
                 )
                 .asElement());
     }

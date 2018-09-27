@@ -283,7 +283,7 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
         greenSlider.setValue(0);
         blueSlider.setValue(0);
 
-        TextBox stepTextBox = TextBox.create("STEP").setValue("any")
+        TextBox stepTextBox = TextBox.create("STEP").value("any")
                 .addChangeHandler(value -> {
                     if ("any".equalsIgnoreCase(value)) {
                         redSlider.anyStep();

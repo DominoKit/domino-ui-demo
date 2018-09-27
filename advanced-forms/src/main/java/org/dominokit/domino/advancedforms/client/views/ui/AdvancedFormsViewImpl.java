@@ -91,7 +91,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .addColumn(Column.span12()
                                 .appendChild(TagsInput.create("Free tag")
                                         .setPlaceholder("Type anything...")
-                                        .setValue(Collections.singletonList("Hey! how are you?"))))
+                                        .value(Collections.singletonList("Hey! how are you?"))))
                 );
 
         Person schroeder_coleman = new Person(1, "Schroeder Coleman");
@@ -130,7 +130,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                                             }
                                             return ValidationResult.valid();
                                         })
-                                        .setValue(Collections.singletonList("127.0.0.1"))
+                                        .value(Collections.singletonList("127.0.0.1"))
                                         .setPlaceholder("Type invalid address...")
                                         .setAutoValidation(true)
                                 )
@@ -142,7 +142,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                 .appendChild(Row.create()
                         .addColumn(Column.span12()
                                 .appendChild(TagsInput.create("Hardware")
-                                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                        .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                         .setReadOnly(true)))
                 );
 
@@ -155,34 +155,34 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                         .addColumn(Column.span6()
                                 .appendChild(TagsInput.create()
                                         .setPlaceholder("Type hardware name...")
-                                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                        .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                         .setTagsColor(ColorScheme.RED)))
                         .addColumn(Column.span6()
                                 .appendChild(TagsInput.create()
                                         .setPlaceholder("Type hardware name...")
-                                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                        .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                         .setTagsColor(ColorScheme.TEAL)))
                 ).appendChild(Row.create()
                 .addColumn(Column.span6()
                         .appendChild(TagsInput.create()
                                 .setPlaceholder("Type hardware name...")
-                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                 .setTagsColor(ColorScheme.CYAN)))
                 .addColumn(Column.span6()
                         .appendChild(TagsInput.create()
                                 .setPlaceholder("Type hardware name...")
-                                .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                 .setTagsColor(ColorScheme.BROWN))))
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
                                 .appendChild(TagsInput.create()
                                         .setPlaceholder("Type hardware name...")
-                                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                        .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                         .setTagsColor(ColorScheme.AMBER)))
                         .addColumn(Column.span6()
                                 .appendChild(TagsInput.create()
                                         .setPlaceholder("Type hardware name...")
-                                        .setValue(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
+                                        .value(Arrays.asList("Keyboard", "Screen", "USB Driver", "Mouse"))
                                         .setTagsColor(ColorScheme.PINK))));
     }
 

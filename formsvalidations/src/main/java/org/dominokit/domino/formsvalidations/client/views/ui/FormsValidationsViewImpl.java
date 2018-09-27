@@ -64,9 +64,9 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         readOnlyCard
                 .appendChild(Row.create()
                         .addColumn(Column.span12()
-                                .appendChild(TextBox.create("TextBox").setValue("Mr. Joan").setReadOnly(true)))
+                                .appendChild(TextBox.create("TextBox").value("Mr. Joan").setReadOnly(true)))
                         .addColumn(Column.span12()
-                                .appendChild(TextArea.create("TextArea").setValue("CEO of the largest company")
+                                .appendChild(TextArea.create("TextArea").value("CEO of the largest company")
                                         .setRows(1)
                                         .setReadOnly(true)))
                         .addColumn(Column.span12()

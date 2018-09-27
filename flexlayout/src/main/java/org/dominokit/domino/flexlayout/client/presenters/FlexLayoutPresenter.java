@@ -30,11 +30,6 @@ public class FlexLayoutPresenter extends ViewBaseClientPresenter<FlexLayoutView>
             }
 
             @Override
-            public String getIconName() {
-                return "view_quilt";
-            }
-
-            @Override
             public Content getContent() {
                 return view.getContent();
             }
