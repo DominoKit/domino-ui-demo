@@ -71,7 +71,7 @@ public class ValiditySection implements ImportSection {
         validityExpiryDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
 
         daysForShipmentTextBox = TextBox.create("Days for Shipping Documents")
-                .setValue("21")
+                .value("21")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
