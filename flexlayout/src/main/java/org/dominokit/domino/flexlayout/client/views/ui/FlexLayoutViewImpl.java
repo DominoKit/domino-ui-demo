@@ -2,6 +2,7 @@ package org.dominokit.domino.flexlayout.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutPresenter;
@@ -56,9 +57,9 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
         initFlexItems();
 
         element.appendChild(layoutPlaygroundCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.layoutPlayground()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.layoutPlayground()).asElement());
         element.appendChild(flexItemsCard.asElement());
-        element.appendChild(Card.createCodeCard(CodeResource.INSTANCE.flexItems()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.flexItems()).asElement());
     }
 
     private void initLayoutPlayground() {

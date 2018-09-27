@@ -58,7 +58,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .addSelectionHandler(option -> revalidate());
 
         partialShipmentSwitch = SwitchButton.create("Partial Shipments", "Not permitted", "Permitted")
-                .setValue(true);
+                .value(true);
 
         transShipmentSwitch = SwitchButton.create("Transshipment", "Not permitted", "Permitted");
 

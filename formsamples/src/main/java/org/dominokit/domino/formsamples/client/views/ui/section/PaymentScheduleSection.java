@@ -71,7 +71,7 @@ public class PaymentScheduleSection implements ImportSection {
         percentageTextBox = numbersOnly(TextBox.create("Percentage"))
                 .setHelperText("Numbers only")
                 .setAutoValidation(true)
-                .setValue("100")
+                .value("100")
                 .setRequired(true)
                 .groupBy(fieldsGrouping)
                 .setLeftAddon(i().css("fas", "fa-percent", "fa-sm"))

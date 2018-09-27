@@ -10,7 +10,6 @@ import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
 import org.dominokit.domino.timepicker.client.views.CodeResource;
 import org.dominokit.domino.timepicker.client.views.TimePickerView;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -23,10 +22,11 @@ import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.timepicker.ClockStyle;
-import org.dominokit.domino.ui.timepicker.Time;
 import org.dominokit.domino.ui.timepicker.TimeBox;
 import org.dominokit.domino.ui.timepicker.TimePicker;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
+
+import java.util.Date;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -106,7 +106,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
-        Popover pinkPopover = Popover.createPicker(pinkPopupButton,  pinkPopDatePicker);
+        Popover pinkPopover = Popover.createPicker(pinkPopupButton, pinkPopDatePicker);
 
         pinkPopDatePicker.addCloseHandler(pinkPopover::close);
         pinkPopDatePicker.addClearHandler(() ->
@@ -193,13 +193,13 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(column.copy().appendChild(bluePopupButton))
                         .addColumn(column.copy().appendChild(pinkPopupButton))
                         .addColumn(column.copy().appendChild(greenPopupButton))
-                        )
+                )
                 .appendChild(BlockHeader.create("MODAL"))
                 .appendChild(Row.create()
                         .addColumn(column.copy().appendChild(blueModalButton))
                         .addColumn(column.copy().appendChild(pinkModalButton))
                         .addColumn(column.copy().appendChild(greenModalButton))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
@@ -215,7 +215,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .floating()
                 .setPlaceholder("Wakeup");
 
-        TimeBox timeBox2 = TimeBox.create("Wakeup", new Time(), new DateTimeFormatInfoImpl_de());
+        TimeBox timeBox2 = TimeBox.create("Wakeup", new Date(), new DateTimeFormatInfoImpl_de());
 
         timeBox2.getTimePicker().setColorScheme(ColorScheme.PINK);
 
@@ -234,7 +234,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(column.copy().appendChild(timeBox1))
                         .addColumn(column.copy().appendChild(timeBox2))
                         .addColumn(column.copy().appendChild(timeBox3))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
