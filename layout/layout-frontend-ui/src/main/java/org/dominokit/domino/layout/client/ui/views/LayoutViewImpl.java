@@ -127,7 +127,7 @@ public class LayoutViewImpl implements LayoutView {
     @Override
     public void setRightPanelContent(Content content) {
         if (nonNull(rightPanelContent) && !rightPanelContent.equals(content))
-            layout.getRightPanel().removeChild(Js.cast(rightPanelContent.get()));
+            layout.getRightPanel().removeChild(Js.<HTMLElement>cast(rightPanelContent.get()));
 
         rightPanelContent = content;
         layout.getRightPanel().appendChild((HTMLElement) Js.cast(content.get()));
