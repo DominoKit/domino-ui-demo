@@ -7,9 +7,9 @@ import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.utils.ElementUtil;
-import org.dominokit.domino.ui.utils.ValidationResult;
 
 import java.util.List;
 
@@ -51,11 +51,11 @@ public class CustomElements {
         return countrySelect;
     }
 
-    public static void markCardValidation(Card card, boolean isValid, boolean scroll){
+    public static void markCardValidation(Card card, boolean isValid, boolean scroll) {
         if (!isValid) {
             card.style().add("invalid-section");
 
-            if(scroll) {
+            if (scroll) {
                 ElementUtil.scrollToElement(card);
                 DomGlobal.document.body.scrollTop = DomGlobal.document.body.scrollTop - 110;
                 DomGlobal.document.documentElement.scrollTop = DomGlobal.document.documentElement.scrollTop - 110;
@@ -65,15 +65,15 @@ public class CustomElements {
         }
     }
 
-    public static boolean isInvalidatedCard(Card card){
+    public static boolean isInvalidatedCard(Card card) {
         return card.style().contains("invalid-section");
     }
 
-    public static void markCardValidation(Card card, boolean isValid){
+    public static void markCardValidation(Card card, boolean isValid) {
         markCardValidation(card, isValid, true);
     }
 
-    public static ValidationResult validatePercent(TextBox textBox){
+    public static ValidationResult validatePercent(TextBox textBox) {
         try {
             int percent = Integer.parseInt(textBox.getValue());
             if ((percent > 0 && percent <= 100)) {

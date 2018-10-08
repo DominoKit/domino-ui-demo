@@ -19,7 +19,7 @@ import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.tag.TagsInput;
 import org.dominokit.domino.ui.tag.store.LocalTagsStore;
 import org.dominokit.domino.ui.upload.FileUpload;
-import org.dominokit.domino.ui.utils.ValidationResult;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.jboss.gwt.elemento.core.Elements;
 
 import java.util.Arrays;

@@ -19,7 +19,7 @@ import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.ValidationResult;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 
 import java.util.List;
 
