@@ -13,5 +13,8 @@ public interface CodeResource extends ClientBundle {
 
     @Source("initModalColor.txt")
     ExternalTextResource initModalColor();
+
+    @Source("sheetModals.txt")
+    ExternalTextResource sheetModals();
 }
 

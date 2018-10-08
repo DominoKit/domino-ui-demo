@@ -75,6 +75,12 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     }
 
     @Override
+    public CorporateAccountsSelect toggleDisplay(boolean state) {
+        accountSelect.toggleDisplay(state);
+        return this;
+    }
+
+    @Override
     public boolean isCollapsed() {
         return accountSelect.isCollapsed();
     }
