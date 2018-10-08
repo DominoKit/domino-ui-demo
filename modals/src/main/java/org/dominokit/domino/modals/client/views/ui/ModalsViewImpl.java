@@ -2,7 +2,6 @@ package org.dominokit.domino.modals.client.views.ui;
 
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -12,9 +11,12 @@ import org.dominokit.domino.modals.client.presenters.ModalsPresenter;
 import org.dominokit.domino.modals.client.views.CodeResource;
 import org.dominokit.domino.modals.client.views.ModalsView;
 import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.ButtonSize;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
@@ -44,7 +46,142 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("MODALS").asElement());
         initModalsSize();
+        initSheets();
         initModalColor();
+    }
+
+    private void initSheets() {
+
+        element.appendChild(Card.create("SHEETS MODALS", "Sheets are modal that stick to screen edges.")
+                .appendChild(Row.create()
+                        .style().setMargin("10px")
+                        .get()
+                        .fullSpan(column -> {
+                            column.appendChild(Row.create()
+                                    .addColumn(Column.span(3, 3, 6, 12)
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("LEFT - LARGE")
+                                                            .setSize(ButtonSize.LARGE)
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                                        .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                                        .setSize(IsModalDialog.ModalSize.LARGE)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("LEFT - DEFAULT")
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                                        .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("LEFT - SMALL")
+                                                            .setSize(ButtonSize.SMALL)
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                                        .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                                        .setSize(IsModalDialog.ModalSize.SMALL)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                    )
+                                    .addColumn(Column.span(3, 3, 6, 12)
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("TOP")
+                                                            .setSize(ButtonSize.LARGE)
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                                        .setType(IsModalDialog.ModalType.TOP_SHEET)
+                                                                        .setSize(IsModalDialog.ModalSize.LARGE)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                    )
+                                    .addColumn(Column.span(3, 3, 6, 12)
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("BOTTOM - LARGE")
+                                                            .setSize(ButtonSize.LARGE)
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                                        .setType(IsModalDialog.ModalType.BOTTOM_SHEET)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                    )
+                                    .addColumn(Column.span(3, 3, 6, 12)
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("RIGHT - LARGE")
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                                        .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                                        .setSize(IsModalDialog.ModalSize.LARGE)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+                                                            })
+                                                            .setSize(ButtonSize.LARGE)
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("RIGHT - DEFAULT")
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                                        .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+                                                            })
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                            .appendChild(Row.create()
+                                                    .appendChild(Button.createDefault("RIGHT - SMALL")
+                                                            .addClickListener(evt -> {
+                                                                ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                                        .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                                        .setSize(IsModalDialog.ModalSize.SMALL)
+                                                                        .appendChild(TextNode.of(SAMPLE_CONTENT));
+
+                                                                openDialog(modal);
+                                                            })
+                                                            .setSize(ButtonSize.SMALL)
+                                                            .style()
+                                                            .setMargin("5px")
+                                                            .setMinWidth("200px")))
+                                    ));
+                        })
+                ).asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sheetModals())
+                .asElement());
+
     }
 
     private void openDialog(ModalDialog dialog) {
@@ -56,22 +193,27 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         // ------------ Default size -------------
 
-        ModalDialog defaultSizeModal = createModalDialog();
+
+        ModalDialog defaultSizeModal = createModalDialog()
+                .setType(IsModalDialog.ModalType.LEFT_SHEET);
+
 
         Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
         defaultSizeButton.addClickListener(e -> openDialog(defaultSizeModal));
 
         // ------------ Large size -------------
 
-        ModalDialog largeSizeModal = createModalDialog().large();
+        ModalDialog largeSizeModal = createModalDialog().large()
+                .setType(IsModalDialog.ModalType.LEFT_SHEET);
 
         Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
-        largeSizeButton.addClickListener( e -> openDialog(largeSizeModal));
+        largeSizeButton.addClickListener(e -> openDialog(largeSizeModal));
 
 
         // ------------ Small size -------------
 
-        ModalDialog smallSizeModal = createModalDialog().small();
+        ModalDialog smallSizeModal = createModalDialog().small()
+                .setType(IsModalDialog.ModalType.LEFT_SHEET);
 
         Button smallSizeButton = Button.createDefault("MODAL - SMALL SIZE");
         smallSizeButton.addClickListener(e -> openDialog(smallSizeModal));
@@ -93,7 +235,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         //------------ Red ------------
         ModalDialog modalDialogRed = createModalDialog().setModalColor(Color.RED);
         Button redButton = Button.create("RED").setBackground(Color.RED);
-        redButton.addClickListener( e -> openDialog(modalDialogRed));
+        redButton.addClickListener(e -> openDialog(modalDialogRed));
 
         //------------ Pink ------------
         ModalDialog modalDialogPink = createModalDialog().setModalColor(Color.PINK);
@@ -103,7 +245,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         //------------ Purple ------------
         ModalDialog modalDialogPurple = createModalDialog().setModalColor(Color.PURPLE);
         Button purpleButton = Button.create("PURPLE").setBackground(Color.PURPLE);
-        purpleButton.addClickListener( e -> openDialog(modalDialogPurple));
+        purpleButton.addClickListener(e -> openDialog(modalDialogPurple));
 
         //------------ Deep Purple ------------
         ModalDialog modalDialogDeepPurple = createModalDialog().setModalColor(Color.DEEP_PURPLE);
@@ -133,28 +275,30 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         //------------ Teal ------------
         ModalDialog modalDialogTeal = createModalDialog().setModalColor(Color.TEAL);
         Button tealButton = Button.create("TEAL").setBackground(Color.TEAL);
-        tealButton.addClickListener( e -> openDialog(modalDialogTeal));
+        tealButton.addClickListener(e -> openDialog(modalDialogTeal));
 
 
         element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors.")
-        .appendChild(div().css("button-demo")
-                .add(redButton)
-                .add(pinkButton)
-                .add(purpleButton)
-                .add(deepPurpleButton)
-                .add(indigoButton)
-                .add(blueButton)
-                .add(orangeButton)
-                .add(greenButton)
-                .add(tealButton)
-        ).asElement());
+                .appendChild(div().css("button-demo")
+                        .add(redButton)
+                        .add(pinkButton)
+                        .add(purpleButton)
+                        .add(deepPurpleButton)
+                        .add(indigoButton)
+                        .add(blueButton)
+                        .add(orangeButton)
+                        .add(greenButton)
+                        .add(tealButton)
+                ).asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
 
     }
 
     private ModalDialog createModalDialog() {
-        ModalDialog modal = ModalDialog.create("Modal title");
+        ModalDialog modal = ModalDialog.create("Modal title")
+                .setAutoClose(true);
+
         modal.appendChild(TextNode.of(SAMPLE_CONTENT));
         Button closeButton = Button.create("CLOSE").linkify();
         Button saveButton = Button.create("SAVE CHANGES").linkify();
@@ -162,7 +306,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         EventListener closeModalListener = evt -> modal.close();
 
         closeButton.addClickListener(closeModalListener);
-        saveButton.addClickListener( closeModalListener);
+        saveButton.addClickListener(closeModalListener);
         modal.appendFooterChild(saveButton);
         modal.appendFooterChild(closeButton);
         return modal;

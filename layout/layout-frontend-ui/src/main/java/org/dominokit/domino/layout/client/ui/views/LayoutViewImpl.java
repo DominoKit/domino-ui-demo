@@ -38,8 +38,8 @@ public class LayoutViewImpl implements LayoutView {
     public LayoutViewImpl() {
 
         Search search = Search.create();
-        layout.getNavigationBar().asElement()
-                .insertBefore(search.asElement(), layout.getNavigationBar().asElement().firstChild);
+        layout.getNavigationBar()
+                .insertBefore(search, layout.getNavigationBar().firstChild());
 
         HtmlContentBuilder<HTMLAnchorElement> searchButton = a().css("js-right-sidebar").add(Icons.ALL.search());
         searchButton.on(EventType.click, event -> search.open());
@@ -126,8 +126,9 @@ public class LayoutViewImpl implements LayoutView {
 
     @Override
     public void setRightPanelContent(Content content) {
-        if (nonNull(rightPanelContent) && !rightPanelContent.equals(content))
-            layout.getRightPanel().removeChild(Js.<HTMLElement>cast(rightPanelContent.get()));
+        if (nonNull(rightPanelContent) && !rightPanelContent.equals(content)) {
+            layout.getRightPanel().removeChild((HTMLDivElement) Js.cast(rightPanelContent.get()));
+        }
 
         rightPanelContent = content;
         layout.getRightPanel().appendChild((HTMLElement) Js.cast(content.get()));

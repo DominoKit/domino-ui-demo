@@ -1,48 +1,126 @@
-// ------------ Default size -------------
+element.appendChild(Card.create("SHEETS MODALS", "Sheets are modal that stick to screen edges.")
+    .appendChild(Row.create()
+            .style().setMargin("10px")
+            .get()
+            .fullSpan(column -> {
+                column.appendChild(Row.create()
+                        .addColumn(Column.span(3, 3, 6, 12)
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("LEFT - LARGE")
+                                                .setSize(ButtonSize.LARGE)
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                            .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                            .setSize(IsModalDialog.ModalSize.LARGE)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-ModalDialog defaultSizeModal = createModalDialog();
+                                                    openDialog(modal);
 
-Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
-defaultSizeButton.addClickListener(e -> openDialog(defaultSizeModal));
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("LEFT - DEFAULT")
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                            .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-// ------------ Large size -------------
+                                                    openDialog(modal);
 
-ModalDialog largeSizeModal = createModalDialog().large();
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("LEFT - SMALL")
+                                                .setSize(ButtonSize.SMALL)
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("LEFT SHEET")
+                                                            .setType(IsModalDialog.ModalType.LEFT_SHEET)
+                                                            .setSize(IsModalDialog.ModalSize.SMALL)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
-largeSizeButton.addClickListener( e -> openDialog(largeSizeModal));
+                                                    openDialog(modal);
 
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                        )
+                        .addColumn(Column.span(3, 3, 6, 12)
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("TOP")
+                                                .setSize(ButtonSize.LARGE)
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                            .setType(IsModalDialog.ModalType.TOP_SHEET)
+                                                            .setSize(IsModalDialog.ModalSize.LARGE)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-// ------------ Small size -------------
+                                                    openDialog(modal);
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                        )
+                        .addColumn(Column.span(3, 3, 6, 12)
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("BOTTOM - LARGE")
+                                                .setSize(ButtonSize.LARGE)
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                            .setType(IsModalDialog.ModalType.BOTTOM_SHEET)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-ModalDialog smallSizeModal = createModalDialog().small();
+                                                    openDialog(modal);
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                        )
+                        .addColumn(Column.span(3, 3, 6, 12)
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("RIGHT - LARGE")
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                            .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                            .setSize(IsModalDialog.ModalSize.LARGE)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-Button smallSizeButton = Button.createDefault("MODAL - SMALL SIZE");
-smallSizeButton.addClickListener(e -> openDialog(smallSizeModal));
+                                                    openDialog(modal);
+                                                })
+                                                .setSize(ButtonSize.LARGE)
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("RIGHT - DEFAULT")
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                            .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
+                                                    openDialog(modal);
+                                                })
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                                .appendChild(Row.create()
+                                        .appendChild(Button.createDefault("RIGHT - SMALL")
+                                                .addClickListener(evt -> {
+                                                    ModalDialog modal = ModalDialog.create("TOP SHEET")
+                                                            .setType(IsModalDialog.ModalType.RIGHT_SHEET)
+                                                            .setSize(IsModalDialog.ModalSize.SMALL)
+                                                            .appendChild(TextNode.of(SAMPLE_CONTENT));
 
-element.appendChild(Card.create("MODAL SIZE EXAMPLE", "Modals are streamlined, but flexible, dialog prompts with the minimum required functionality and smart defaults.")
-        .appendChild(Row.create()
-                .span4(column -> column.appendChild(defaultSizeButton))
-                .span4(column -> column.appendChild(largeSizeButton))
-                .span4(column -> column.appendChild(smallSizeButton))
-        )
-        .asElement());
-
-
-
-//------------------------
-private ModalDialog createModalDialog() {
-    ModalDialog modal = ModalDialog.create("Modal title");
-    modal.appendChild(new Text(SAMPLE_CONTENT));
-    Button closeButton = Button.create("CLOSE").linkify();
-    Button saveButton = Button.create("SAVE CHANGES").linkify();
-
-    EventListener closeModalListener = evt -> modal.close();
-
-    closeButton.addClickListener(closeModalListener);
-    saveButton.addClickListener( closeModalListener);
-    modal.appendFooterChild(saveButton);
-    modal.appendFooterChild(closeButton);
-    return modal;
-}
+                                                    openDialog(modal);
+                                                })
+                                                .setSize(ButtonSize.SMALL)
+                                                .style()
+                                                .setMargin("5px")
+                                                .setMinWidth("200px")))
+                        ));
+            })
+    ).asElement());
