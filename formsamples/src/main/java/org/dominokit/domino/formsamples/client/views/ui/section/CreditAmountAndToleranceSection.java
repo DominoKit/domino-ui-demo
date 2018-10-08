@@ -17,7 +17,7 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.utils.ElementUtil;
-import org.dominokit.domino.ui.utils.ValidationResult;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 
 import java.util.List;
 

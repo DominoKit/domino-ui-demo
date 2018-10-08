@@ -12,6 +12,7 @@ import org.dominokit.domino.formsvalidations.client.views.FormsValidationsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
@@ -19,7 +20,6 @@ import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Tooltip;
-import org.dominokit.domino.ui.utils.ValidationResult;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = FormsValidationsPresenter.class)
@@ -110,7 +110,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                         .addRadio(Radio.create("hours", "Effective hours"))
                         .horizontal()
                         .setHelperText("Helps with sprint reports")
-                        )
+                )
                 .appendChild(Elements.hr())
                 .appendChild(Elements.br())
                 .appendChild(BlockHeader.create("Switch"))
@@ -153,8 +153,8 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
     }
 
     private void initWordCount() {
-        countsCard.appendChild(TextBox.create("Name").setLength(10));
-        countsCard.appendChild(TextArea.create("Description").setLength(100));
+        countsCard.appendChild(TextBox.create("Name").setMaxLength(10));
+        countsCard.appendChild(TextArea.create("Description").setMaxLength(100));
     }
 
     private void initValidations() {

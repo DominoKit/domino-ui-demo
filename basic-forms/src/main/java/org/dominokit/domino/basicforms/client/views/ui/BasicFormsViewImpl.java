@@ -223,7 +223,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                         .appendChild(CheckBox.create("ORANGE").setColor(Color.ORANGE).check()))
                 .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREY").setColor(Color.GREY).check()))
-                );
+        );
 
         checkboxCard.appendChild(h(5).textContent("With Material Design Colors - Filled In"));
 
@@ -254,7 +254,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                         .appendChild(CheckBox.create("ORANGE").setColor(Color.ORANGE).check().filledIn()))
                 .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("GREY").setColor(Color.GREY).check().filledIn()))
-                );
+        );
     }
 
     private void initSelectExample() {
@@ -279,7 +279,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .selectAt(0)
                                 .disable()
                         ))
-                );
+        );
 
         selectCard.appendChild(BlockHeader.create("Drop up example"));
 
@@ -298,12 +298,12 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 })))
-                );
+        );
 
         selectCard.appendChild(Style.of(BlockHeader.create("Searchable select"))
                 .setMarginBottom("30px")
                 .get()
-                );
+        );
 
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span12()
@@ -322,12 +322,12 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 })))
-                );
+        );
 
         selectCard.appendChild(Style.of(BlockHeader.create("Grouping select"))
                 .setMarginBottom("30px")
                 .get()
-                );
+        );
 
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span12()
@@ -351,7 +351,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 })))
-                );
+        );
     }
 
     private void initBasicExamples() {
@@ -368,7 +368,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
                         .addColumn(Column.span6()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-6")))
-                        )
+                )
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
@@ -376,7 +376,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
                         .addColumn(Column.span4()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-4")))
-                        )
+                )
                 .appendChild(Row.create()
                         .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
@@ -386,7 +386,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
                         .addColumn(Column.span3()
                                 .appendChild(TextBox.create().setPlaceholder("col-sm-3")))
-                        );
+                );
     }
 
     private void initDifferentSizes() {
