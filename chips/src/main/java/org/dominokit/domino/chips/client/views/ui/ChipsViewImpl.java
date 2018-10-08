@@ -236,19 +236,19 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
 
     private void initSelectableChipsExample() {
         Chip tops = Chip.create("Tops").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        tops.addSelectionHandler(() -> tops.setLeftIcon(Icons.ALL.check()));
+        tops.addSelectionHandler(value -> tops.setLeftIcon(Icons.ALL.check()));
         tops.addDeselectionHandler(tops::removeLeftAddon);
 
         Chip bottoms = Chip.create("Bottoms").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        bottoms.addSelectionHandler(() -> bottoms.setLeftIcon(Icons.ALL.check()));
+        bottoms.addSelectionHandler(value -> bottoms.setLeftIcon(Icons.ALL.check()));
         bottoms.addDeselectionHandler(bottoms::removeLeftAddon);
 
         Chip shoes = Chip.create("Shoes").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        shoes.addSelectionHandler(() -> shoes.setLeftIcon(Icons.ALL.check()));
+        shoes.addSelectionHandler(value -> shoes.setLeftIcon(Icons.ALL.check()));
         shoes.addDeselectionHandler(shoes::removeLeftAddon);
 
         Chip accessories = Chip.create("Accessories").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        accessories.addSelectionHandler(() -> accessories.setLeftIcon(Icons.ALL.check()));
+        accessories.addSelectionHandler(value -> accessories.setLeftIcon(Icons.ALL.check()));
         accessories.addDeselectionHandler(accessories::removeLeftAddon);
 
         selectableChipsCard.appendChild(Row.create()
@@ -273,7 +273,7 @@ public class ChipsViewImpl extends ComponentView<HTMLDivElement> implements Chip
         selectableChipsCard.appendChild(Row.create()
                 .addColumn(Column.span12()
                         .appendChild(chipsGroup
-                                .addSelectionHandler(() -> Notification
+                                .addSelectionHandler(value -> Notification
                                         .createInfo("Chip [ " + chipsGroup.getSelectedChip().getValue() + " ] is selected").show())
                                 .selectAt(0)))
         );
