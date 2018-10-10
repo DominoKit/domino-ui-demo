@@ -12,9 +12,12 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icon;
+import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
@@ -355,8 +358,23 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void initBasicExamples() {
+        TextBox textBox = TextBox.create().setAutoValidation(true);
+
+
+        textBox.addValidator(() -> {
+            Icon rightAddon = Icons.ALL.alarm_on();
+            if (textBox.getValue().endsWith("#")) {
+                textBox.setRightAddon(rightAddon);
+            } else {
+                textBox.removeRightAddon();
+            }
+
+
+            return ValidationResult.valid();
+        });
+
         inputCard.appendChild(BlockHeader.create("Basic Example"))
-                .appendChild(TextBox.create().setPlaceholder("Username"))
+                .appendChild(textBox.setPlaceholder("Username"))
                 .appendChild(TextBox.password().setPlaceholder("Password"));
     }
 
