@@ -60,7 +60,7 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
                                 .attr("href", "https://design.google.com/icons/")
                                 .attr("target", "_blank")
                                 .textContent("design.google.com/icons"))
-                        .appendChild(p().style("margin-top: 10px;").textContent("Copy on icon to copy"))
+                        .appendChild(p().style("margin-top: 10px;").textContent("Click on icon to copy"))
                         .asElement());
 
                 actionIcons();
