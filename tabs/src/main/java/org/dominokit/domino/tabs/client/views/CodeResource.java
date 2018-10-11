@@ -20,7 +20,12 @@ public interface CodeResource extends ClientBundle{
     @Source("materialDesignColorsSample.txt")
     ExternalTextResource materialDesignColorsSample();
 
+    @Source("materialDesignBackgroundsSample.txt")
+    ExternalTextResource materialDesignBackgroundsSample();
+
     @Source("withAnimation.txt")
     ExternalTextResource withAnimation();
 
+    @Source("differentContentContainerSample.txt")
+    ExternalTextResource differentContentContainerSample();
 }
