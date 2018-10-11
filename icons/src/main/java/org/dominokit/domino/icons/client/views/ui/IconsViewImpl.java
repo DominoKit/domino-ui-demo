@@ -2,6 +2,8 @@ package org.dominokit.domino.icons.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import elemental2.dom.*;
+import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -13,19 +15,22 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import org.jboss.gwt.elemento.core.Elements;
+import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.utils.DominoDom;
+import org.jboss.gwt.elemento.core.InputType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = IconsPresenter.class)
 public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IconsViewImpl.class);
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").asElement();
+    private HTMLDivElement element = div().asElement();
 
     @Override
     public HTMLDivElement getElement() {
@@ -43,17 +48,19 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
 
             @Override
             public void onSuccess() {
+                element.appendChild(copyInput);
                 element.appendChild(LinkToSourceCode.create("icons", IconsViewImpl.this.getClass()).asElement());
                 element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
-                        .appendChild(Elements.a()
+                        .appendChild(a()
                                 .attr("href", "http://google.github.io/material-design-icons/")
                                 .attr("target", "_blank")
                                 .textContent("google.github.io/material-design-icons"))
                         .appendText(" & ")
-                        .appendChild(Elements.a()
+                        .appendChild(a()
                                 .attr("href", "https://design.google.com/icons/")
                                 .attr("target", "_blank")
                                 .textContent("design.google.com/icons"))
+                        .appendChild(p().style("margin-top: 10px;").textContent("Copy on icon to copy"))
                         .asElement());
 
                 actionIcons();
@@ -1589,8 +1596,23 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
     }
 
     private HtmlContentBuilder<HTMLDivElement> createDemoIconElement(Icon icon) {
-        return Elements.div().css("demo-google-material-icon")
+        HtmlContentBuilder<HTMLDivElement> iconContainer = div().css("demo-google-material-icon")
                 .add(icon)
-                .add(Elements.span().css("icon-name").textContent(icon.getName()));
+                .add(span().css("icon-name").textContent(icon.getName()));
+        String iconName = icon.getName();
+        iconContainer.asElement().addEventListener("click", evt -> {
+            copyInput.value = iconName;
+            copyInput.select();
+            EventListener copyListener = e -> {
+                ClipboardEvent clipboardEvent = Js.uncheckedCast(e);
+                clipboardEvent.clipboardData.setData("text/plain", iconName);
+                e.preventDefault();
+            };
+            DomGlobal.document.addEventListener("copy", copyListener);
+            DominoDom.document.execCommand("copy");
+            DomGlobal.document.removeEventListener("copy", copyListener);
+            Notification.createInfo("Copied to clipboard").show();
+        });
+        return iconContainer;
     }
 }
