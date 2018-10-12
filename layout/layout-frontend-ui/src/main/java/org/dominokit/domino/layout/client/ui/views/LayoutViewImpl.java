@@ -11,6 +11,7 @@ import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutContext;
+import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;

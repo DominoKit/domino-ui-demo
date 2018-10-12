@@ -194,8 +194,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         // ------------ Default size -------------
 
 
-        ModalDialog defaultSizeModal = createModalDialog()
-                .setType(IsModalDialog.ModalType.LEFT_SHEET);
+        ModalDialog defaultSizeModal = createModalDialog();
 
 
         Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
@@ -203,8 +202,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         // ------------ Large size -------------
 
-        ModalDialog largeSizeModal = createModalDialog().large()
-                .setType(IsModalDialog.ModalType.LEFT_SHEET);
+        ModalDialog largeSizeModal = createModalDialog().large();
 
         Button largeSizeButton = Button.createDefault("MODAL - LARGE SIZE");
         largeSizeButton.addClickListener(e -> openDialog(largeSizeModal));
@@ -212,8 +210,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
         // ------------ Small size -------------
 
-        ModalDialog smallSizeModal = createModalDialog().small()
-                .setType(IsModalDialog.ModalType.LEFT_SHEET);
+        ModalDialog smallSizeModal = createModalDialog().small();
 
         Button smallSizeButton = Button.createDefault("MODAL - SMALL SIZE");
         smallSizeButton.addClickListener(e -> openDialog(smallSizeModal));

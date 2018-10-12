@@ -20,6 +20,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.Elements;
 
+import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.small;
 
 @UiView(presentable = ProfilePresenter.class)
@@ -32,6 +33,12 @@ public class ProfileViewImpl implements ProfileView {
 
     @Override
     public void setLayout(IsLayout layout) {
+        profile.style().add("authors-card")
+                .add("bg-theme");
+        profile.setHeaderBackground(Color.TRANSPARENT);
+        profile.setBodyBackground(Color.TRANSPARENT);
+        profile.getHeader().style().remove("bg-theme");
+        profile.getBody().style().remove("bg-theme");
         profile.getHeaderTitle().setAttribute("id", "demo-profile");
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         if (leftPanel.childElementCount > 0)
@@ -50,6 +57,7 @@ public class ProfileViewImpl implements ProfileView {
         profile.getHeaderBar().appendChild(dropdownButton
                 .asElement());
         Style.of(profile).setHeight("186px");
+        profile.asElement().appendChild(div().css("bg-authors").asElement());
 
         try {
             CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {

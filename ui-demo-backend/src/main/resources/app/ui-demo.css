@@ -250,3 +250,134 @@ code {
     counter-increment: section;
     content: counter(section);
 }
+
+.sample-spin-item {
+    text-align: center;
+    line-height: 50px;
+    font-size: larger;
+    min-height: 50px;
+}
+
+.gs-background::after {
+    content: "";
+    background-size: cover;
+    opacity: 0.2;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+}
+
+.demo-nav-card {
+    transition: transform 100ms ease;
+}
+
+.demo-nav-card:hover {
+    transform: scale(1.05);
+}
+
+.demo-carousel::after {
+    background-image: url("./images/greyscale-5.jpg");
+}
+
+.demo-getting-started::after {
+    background-image: url("./images/greyscale-4.jpg");
+}
+
+.demo-docs::after {
+    background-image: url("./images/greyscale-3.jpg");
+}
+
+.demo-sample-apps::after {
+    background-image: url("./images/greyscale-2.jpg");
+}
+
+.demo-github::after {
+    background-image: url("./images/greyscale-6.jpg");
+}
+
+.home-section {
+    padding: 40px;
+    border-bottom: 1px solid #c1c0c0;
+}
+
+.home-section.slide-1 {
+    border-left: 3px solid #f4ae62;
+}
+
+.home-section.slide-2 {
+    border-left: 3px solid #5485ed;
+}
+
+.home-section.slide-3 {
+    border-left: 3px solid #54b060;
+}
+
+.home-section.slide-4 {
+    border-left: 3px solid #e75252;
+}
+
+.home-section.slide-5 {
+    border-left: 3px solid #444444;
+}
+
+.home-section.odd {
+    background-color: #efefef;
+}
+
+.home-section .breaker {
+    border-bottom: 1px solid #c1c0c0;
+    background-color: #ffffff;
+    left: calc(50% - 70px);
+    width: 140px;
+    height: 40px;
+    position: relative;
+    bottom: -64px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+.home-section.odd .breaker {
+    background-color: #efefef;
+}
+
+.home-sections {
+    border-top: 1px solid #c1c0c0;
+    border-right: 1px solid #c1c0c0;
+}
+
+.home-sections::after {
+    background-image: url("./images/greyscale-3.jpg");
+}
+
+.home-sections.gs-background::after {
+    opacity: 0.15;
+}
+
+.img-responsive.person-pic {
+    width: 35%;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.authors-card {
+    z-index: 1;
+}
+
+.bg-authors {
+    background-image: url(./images/greyscale-3.jpg);
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+    opacity: 0.1;
+}
+
+.img-responsive.person-pic.quote-pic {
+    width: 64px;
+    height: 64px;
+}

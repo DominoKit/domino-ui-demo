@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
+import org.dominokit.domino.componentcase.client.ui.views.Constants;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
@@ -23,12 +24,6 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TypographyPresenter.class)
 public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements TypographyView {
-
-    private static final String LARGE_PARAGRAPH = "Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget";
-    private static final String SMALL_PARAGRAPH = "Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc.";
-    private static final String SMALLER_PARAGRAPH = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa.";
-
-    private static final String SAMPLE_TEXT = "In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.";
 
     private final HTMLDivElement element = div().asElement();
 
@@ -120,9 +115,9 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void bodyCopy() {
         element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
-                .appendChild(p().css(Styles.LEAD).textContent(SMALLER_PARAGRAPH))
-                .appendChild(p().textContent(LARGE_PARAGRAPH))
-                .appendChild(p().textContent(SMALL_PARAGRAPH)).asElement()
+                .appendChild(p().css(Styles.LEAD).textContent(Constants.SMALLER_PARAGRAPH))
+                .appendChild(p().textContent(Constants.LARGE_PARAGRAPH))
+                .appendChild(p().textContent(Constants.SMALL_PARAGRAPH)).asElement()
         );
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
@@ -155,17 +150,17 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
     private void heading() {
         element.appendChild(Card.create("HEADINGS")
                 .appendChild(h(1).textContent("h1. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(2).textContent("h2. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(3).textContent("h3. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(4).textContent("h4. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(5).textContent("h5. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(6).textContent("h6. Text Heading."))
-                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .asElement()
         );
 

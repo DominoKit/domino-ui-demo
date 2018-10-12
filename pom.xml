@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dominokit.domino</groupId>
@@ -142,11 +141,10 @@
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>172.20.202.78</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations-->
-                            <!--</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations</codeserverArg>
 
                             <!--<codeserverArg>-src</codeserverArg>-->
                             <!--<codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>-->
@@ -237,5 +235,8 @@
         <module>grids</module>
         <module>splitPanel</module>
         <module>flexlayout</module>
-    </modules>
+    <module>spin</module>
+    <module>setup</module>
+    <module>samples</module>
+  </modules>
 </project>
