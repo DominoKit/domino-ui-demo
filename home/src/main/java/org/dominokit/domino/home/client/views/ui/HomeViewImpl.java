@@ -1,7 +1,11 @@
 package org.dominokit.domino.home.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import jsinterop.base.Js;
+import org.dominokit.domino.api.client.ClientApp;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.history.AppHistory;
+import org.dominokit.domino.api.shared.history.HistoryToken;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.home.client.presenters.HomePresenter;
 import org.dominokit.domino.home.client.views.HomeView;
@@ -93,7 +97,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
         element.appendChild(BlockHeader.create("HELP & SUPPORT").asElement());
         element.appendChild(Card.create()
                 .styler(style -> style
-                        .add("authors-card"))
+                        .add("classy-card"))
                 .appendChild(div().css(Styles.align_center)
                         .add(Paragraph.create("We will help you learn domino-ui and will support you when use domino-ui through"))
                         .add(Paragraph.create("If you need to asking a question ,troubleshoot an issue or fix a bug reach us at our gitter channel or open an issue at github "))
@@ -121,11 +125,14 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 .appendChild(hr())
                 .appendChild(div()
                         .css(Styles.align_center)
-                        .add(h(6).textContent("COMMERCIAL SERVICES").css(Styles.font_under_line))
+                        .add(h(6).textContent("COMMERCIAL SERVICES"))
                         .add(h(4).textContent("Official Developer Support"))
                         .add(Paragraph.create("Need help troubleshooting or improving your code? Work directly with the engineers behind the Domino-UI."))
                         .add(Paragraph.create("Or you want custom components or new features?"))
-                        .add(a().add(h(5).textContent("Get paid support")))
+                        .add(a()
+                                .attr("href", "https://www.vertispan.com/")
+                                .attr("target", "_blank")
+                                .add(h(5).textContent("Get paid support").css(Styles.font_under_line)))
                         .add(div().css(Styles.align_center)
                                 .add(DominoElement.of(img("./images/sponsors/vertispan.png")
                                         .style("width: 128px;"))
@@ -134,9 +141,8 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                         .style("width: 50px;"))
                                         .setTooltip("Dominokit"))
                         ))
-                .appendChild(div().css("bg-authors"))
+                .appendChild(div().css("bg-classy"))
                 .asElement());
-
     }
 
     private void initWhatOthersSay() {
@@ -144,7 +150,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
         spinSelect = HSpinSelect.create();
         element.appendChild(Card.create()
                 .styler(style -> style
-                        .add("authors-card"))
+                        .add("classy-card"))
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .condenced()
@@ -168,11 +174,11 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                                 .add(ColorScheme.GREY.darker_3().getStyle()))
                                                         .italic())))
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
-                                                .appendChild(img("./images/sponsors/anas.jpg")
+                                                .appendChild(img("./images/sponsors/anas-zahran.jpg")
                                                         .css(Styles.img_responsive, "person-pic", "quote-pic", Styles.default_shadow))
                                                 .appendChild(h(3).textContent("Anas Zahran"))
                                                 .appendChild(Paragraph.create("Domino UI can smoothly reduce the lines of code required to create a cross browser web application."))
-                                                .appendChild(Paragraph.create("- Software Engineer @ Progressoft")
+                                                .appendChild(Paragraph.create("- Technologist @ Progressoft")
                                                         .styler(style -> style.add(Styles.font_12)
                                                                 .add(ColorScheme.GREY.darker_3().getStyle()))
                                                         .italic())))
@@ -188,7 +194,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                 )
                         )
 
-                ).appendChild(div().css("bg-authors"))
+                ).appendChild(div().css("bg-classy"))
                 .asElement());
 
         timer = new Timer() {
@@ -224,7 +230,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
         element.appendChild(Card.create()
                 .styler(style -> style
-                        .add("authors-card"))
+                        .add("classy-card"))
                 .appendChild(Row.create()
                         .appendChild(Column.span5()
                                 .offset1()
@@ -243,7 +249,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                         .add(img("./images/sponsors/ProgressSoft.png").css(Styles.img_responsive, Styles.cursor_pointer)))
                         )
 
-                ).appendChild(div().css("bg-authors"))
+                ).appendChild(div().css("bg-classy"))
                 .asElement());
     }
 
@@ -252,7 +258,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
         element.appendChild(Card.create()
                 .styler(style -> style
                         .add(Color.BLACK.getBackground())
-                        .add("authors-card"))
+                        .add("classy-card"))
                 .appendChild(Row.create()
                         .appendChild(Column.span5()
                                 .offset1()
@@ -290,7 +296,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                         .css(Styles.cursor_pointer))))
                         )
 
-                ).appendChild(div().css("bg-authors"))
+                ).appendChild(div().css("bg-classy"))
                 .asElement());
 
     }
@@ -359,6 +365,15 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                 .appendChild(Button.create("GO")
                                                         .linkify()
                                                         .styler(style -> style.setMinWidth("120px"))
+                                                        .addClickListener(evt -> {
+                                                            AppHistory history = Js.uncheckedCast(ClientApp.make().getHistory());
+                                                            HistoryToken samples = history
+                                                                    .currentToken()
+                                                                    .replaceLastFragment("samples");
+                                                            history.pushState(samples.value());
+                                                            history.fireCurrentStateHistory();
+
+                                                        })
                                                 ))
                                 ))
                 ))
@@ -443,6 +458,5 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
 
                 )
                 .asElement());
-
     }
 }

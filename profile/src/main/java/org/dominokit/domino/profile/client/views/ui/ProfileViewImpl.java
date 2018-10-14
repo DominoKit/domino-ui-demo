@@ -33,7 +33,7 @@ public class ProfileViewImpl implements ProfileView {
 
     @Override
     public void setLayout(IsLayout layout) {
-        profile.style().add("authors-card")
+        profile.style().add("classy-card")
                 .add("bg-theme");
         profile.setHeaderBackground(Color.TRANSPARENT);
         profile.setBodyBackground(Color.TRANSPARENT);
@@ -57,7 +57,7 @@ public class ProfileViewImpl implements ProfileView {
         profile.getHeaderBar().appendChild(dropdownButton
                 .asElement());
         Style.of(profile).setHeight("186px");
-        profile.asElement().appendChild(div().css("bg-authors").asElement());
+        profile.asElement().appendChild(div().css("bg-classy").asElement());
 
         try {
             CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {

@@ -1,7 +1,6 @@
 package org.dominokit.domino.typography.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.Constants;
@@ -24,7 +23,6 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TypographyPresenter.class)
 public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements TypographyView {
-
     private final HTMLDivElement element = div().asElement();
 
     @Override

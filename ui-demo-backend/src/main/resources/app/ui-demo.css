@@ -361,11 +361,11 @@ code {
     display: inline-block;
 }
 
-.authors-card {
+.classy-card {
     z-index: 1;
 }
 
-.bg-authors {
+.bg-classy {
     background-image: url(./images/greyscale-3.jpg);
     background-size: cover;
     position: absolute;

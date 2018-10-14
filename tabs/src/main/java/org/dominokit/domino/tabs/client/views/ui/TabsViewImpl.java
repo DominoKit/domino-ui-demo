@@ -1,12 +1,13 @@
 package org.dominokit.domino.tabs.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
+import org.dominokit.domino.tabs.client.presenters.TabsPresenter;
 import org.dominokit.domino.tabs.client.views.CodeResource;
 import org.dominokit.domino.tabs.client.views.TabsView;
-import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.tabs.client.presenters.TabsPresenter;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.cards.Card;
@@ -15,9 +16,10 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tabs.Tab;
 import org.dominokit.domino.ui.tabs.TabsPanel;
-import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.ui.utils.DominoElement;
 
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -42,6 +44,8 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
         iconsOnly();
         withIconsAndTextSamlple();
         materialDesignColorsSample();
+        backgroundSample();
+        initDifferentContentSample();
         withAnimation();
     }
 
@@ -164,6 +168,96 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+    }
+
+    private void backgroundSample() {
+        element.appendChild(Card.create("TABS WITH MATERIAL DESIGN BACKGROUNDS", "You can use Material Design backgrounds")
+                .appendChild(Row.create()
+                        .addColumn(Column.span6()
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.INDIGO)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.RED)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.PINK)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                        )
+                        .addColumn(Column.span6()
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.GREEN)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.PURPLE)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                                .appendChild(TabsPanel.create()
+                                        .setBackgroundColor(Color.LIME)
+                                        .setColor(Color.WHITE)
+                                        .appendChild(Tab.create("HOME"))
+                                        .appendChild(Tab.create("PROFILE"))
+                                        .appendChild(Tab.create("MESSAGES").activate())
+                                        .appendChild(Tab.create("SETTINGS"))
+                                )
+                        )
+                )
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignBackgroundsSample()).asElement());
+    }
+
+    private void initDifferentContentSample() {
+        DominoElement<HTMLDivElement> contentContainer = DominoElement.of(div())
+                .appendChild(BlockHeader.create("TAB CONTENT"))
+                .styler(style -> style.setMarginTop("40px")
+                        .setPadding("20px")
+                        .add(Styles.default_shadow));
+        element.appendChild(Card.create("TABS WITH CONTENT CONTAINER", "Tabs can have different content container")
+                .appendChild(TabsPanel.create()
+                        .setContentContainer(contentContainer)
+                        .appendChild(Tab.create("HOME")
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                        .appendChild(Tab.create("PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                        .appendChild(Tab.create("MESSAGES")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .activate())
+                        .appendChild(Tab.create("SETTINGS")
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                )
+                .appendChild(contentContainer)
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.differentContentContainerSample()).asElement());
     }
 
     private void withAnimation() {
