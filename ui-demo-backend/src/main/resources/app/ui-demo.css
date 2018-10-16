@@ -381,3 +381,22 @@ code {
     width: 64px;
     height: 64px;
 }
+
+.avatar-container{
+    background-color: #efefef;
+    border-bottom: 1px solid #cecece;
+}
+
+.login-avatar{
+    width: 180px;
+    display: inline-block;
+    padding: 10px;
+    border: 10px solid #4ac6c6;
+    border-radius: 50%;
+}
+
+.side-login-btn{
+    min-width: 120px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}

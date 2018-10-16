@@ -38,7 +38,8 @@ public class ProfileViewImpl implements ProfileView {
         profile.setHeaderBackground(Color.TRANSPARENT);
         profile.setBodyBackground(Color.TRANSPARENT);
         profile.getHeader().style().remove("bg-theme");
-        profile.getBody().style().remove("bg-theme");
+        profile.setBodyPadding("10px");
+        profile.getBody().styler(style -> style.remove("bg-theme"));
         profile.getHeaderTitle().setAttribute("id", "demo-profile");
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         if (leftPanel.childElementCount > 0)
