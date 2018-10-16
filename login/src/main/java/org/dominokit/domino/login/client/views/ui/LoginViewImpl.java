@@ -35,7 +35,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
     }
 
     private void initSimpleLogin() {
-        element.appendChild(LinkToSourceCode.create("alerts", LoginViewImpl.class).asElement());
+        element.appendChild(LinkToSourceCode.create("login", LoginViewImpl.class).asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
