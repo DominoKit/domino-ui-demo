@@ -1,0 +1,4 @@
+element.appendChild(Card.create("SCROLLING PAGINATION", "For large number of pages scrolling pagiation allow viewing a set of pages at a time.")
+        .appendChild(ScrollingPagination.create(50, 10, 5)
+                .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
+        .asElement());
