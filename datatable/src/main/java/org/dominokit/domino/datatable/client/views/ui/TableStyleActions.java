@@ -26,15 +26,15 @@ public class TableStyleActions implements IsElement<HTMLElement> {
     }
 
     private void init() {
-//        Button condenseButton = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), () -> dataTable.condense(), () -> dataTable.expand(), () -> dataTable.isCondensed());
-//        Button strippedButton = createButton("No Stripes", "Stripped", Icons.ALL.power_input(), Icons.ALL.drag_handle(), () -> dataTable.striped(), () -> dataTable.noStripes(), () -> dataTable.isStriped());
-//        Button borderedButton = createButton("No Borders", "Borders", Icons.ALL.border_vertical(), Icons.ALL.border_clear(), () -> dataTable.bordered(), () -> dataTable.noBorder(), () -> dataTable.isBordered());
-//        Button hoveredButton = createButton("No Hover", "Hovered", Icons.ALL.blur_off(), Icons.ALL.blur_on(), () -> dataTable.noHover(), () -> dataTable.hovered(), () -> !dataTable.isHoverable());
-//
-//        column.appendChild(condenseButton);
-//        column.appendChild(strippedButton);
-//        column.appendChild(borderedButton);
-//        column.appendChild(hoveredButton);
+        Button condenseButton = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), dataTable::condense, dataTable::expand, dataTable::isCondensed);
+        Button strippedButton = createButton("No Stripes", "Stripped", Icons.ALL.power_input(), Icons.ALL.drag_handle(), dataTable::striped, dataTable::noStripes, dataTable::isStriped);
+        Button borderedButton = createButton("No Borders", "Borders", Icons.ALL.border_vertical(), Icons.ALL.border_clear(), dataTable::bordered, dataTable::noBorder, dataTable::isBordered);
+        Button hoveredButton = createButton("No Hover", "Hovered", Icons.ALL.blur_off(), Icons.ALL.blur_on(), dataTable::noHover, dataTable::hovered, () -> !dataTable.isHoverable());
+
+        column.appendChild(condenseButton);
+        column.appendChild(strippedButton);
+        column.appendChild(borderedButton);
+        column.appendChild(hoveredButton);
     }
 
     private Button createButton(String initialTooltip, String toggeledTooltip,  Icon initialIcon, Icon toggeledIcon, Action initialAction, Action toggeledAction, Condition condition) {

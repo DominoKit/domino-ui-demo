@@ -32,6 +32,12 @@ public interface CodeResource extends ClientBundle{
     @Source("simplePagination.txt")
     ExternalTextResource simplePagination();
 
+    @Source("scrollingPagination.txt")
+    ExternalTextResource scrollingPagination();
+
+    @Source("advancedPagination.txt")
+    ExternalTextResource advancedPagination();
+
     @Source("scrollLoading.txt")
     ExternalTextResource scrollLoading();
 
