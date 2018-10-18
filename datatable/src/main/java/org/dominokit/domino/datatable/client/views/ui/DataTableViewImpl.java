@@ -406,7 +406,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
     }
 
     private void advancedPagination() {
@@ -420,7 +420,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         localListDataStore.setPagination(advancedPagination.getPagination());
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
-        element.appendChild(Card.create("SCROLLING PAGINATION", "Scrolling pagination plugin allows navigation through a set of page at a time in datatable")
+        element.appendChild(Card.create("ADVANCED PAGINATION", "Advanced pagination plugin allows navigation through pages from a dropdown list")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
@@ -431,7 +431,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
     }
 
     private TableConfig<Contact> createSortableTableConfig() {
