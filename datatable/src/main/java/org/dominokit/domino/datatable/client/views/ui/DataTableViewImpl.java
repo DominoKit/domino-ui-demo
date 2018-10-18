@@ -6,7 +6,6 @@ import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -19,7 +18,6 @@ import org.dominokit.domino.datatable.client.views.model.ContactList;
 import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
 import org.dominokit.domino.datatable.client.views.model.ContactSorter;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
@@ -70,6 +68,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         tableHeaderBarPlugin();
         sortAndSearch();
         simplePagination();
+        scrollingPagination();
+        advancedPagination();
         scrollableTable();
         topPanelPlugin();
         allInOne();
@@ -371,6 +371,56 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts, 0, 100));
+            table.load();
+        });
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+    }
+
+    private void scrollingPagination() {
+        ScrollingPaginationPlugin<Contact> scrollingPagination = new ScrollingPaginationPlugin<>(10, 5);//page size
+        TableConfig<Contact> tableConfig = createSortableTableConfig();
+        tableConfig.addPlugin(scrollingPagination);
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter(new ContactSorter());
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
+        localListDataStore.setPagination(scrollingPagination.getPagination());
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("SCROLLING PAGINATION", "Scrolling pagination plugin allows navigation through a set of page at a time in datatable")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts, 0, 100));
+            table.load();
+        });
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+    }
+
+    private void advancedPagination() {
+        AdvancedPaginationPlugin<Contact> advancedPagination = new AdvancedPaginationPlugin<>(10);//page size
+        TableConfig<Contact> tableConfig = createSortableTableConfig();
+        tableConfig.addPlugin(advancedPagination);
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter(new ContactSorter());
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
+        localListDataStore.setPagination(advancedPagination.getPagination());
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("SCROLLING PAGINATION", "Scrolling pagination plugin allows navigation through a set of page at a time in datatable")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
