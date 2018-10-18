@@ -19,4 +19,10 @@ public interface CodeResource extends ClientBundle{
 
     @Source("pagerSample.txt")
     ExternalTextResource pagerSample();
+
+    @Source("scrollingPagination.txt")
+    ExternalTextResource scrollingPagination();
+
+    @Source("advancedPagination.txt")
+    ExternalTextResource advancedPagination();
 }

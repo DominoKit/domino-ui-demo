@@ -1,20 +1,22 @@
 package org.dominokit.domino.pagination.client.views.ui;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
+import org.dominokit.domino.pagination.client.presenters.PaginationPresenter;
 import org.dominokit.domino.pagination.client.views.CodeResource;
 import org.dominokit.domino.pagination.client.views.PaginationView;
-import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.pagination.client.presenters.PaginationPresenter;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.pagination.AdvancedPagination;
 import org.dominokit.domino.ui.pagination.Pager;
+import org.dominokit.domino.ui.pagination.ScrollingPagination;
 import org.dominokit.domino.ui.pagination.SimplePagination;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -34,9 +36,12 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
         element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PAGINATION").asElement());
 
+
         defaultPagination();
         activePageSample();
         sizesSample();
+        initScrollerPagination();
+        initAdvancedPagination();
         element.appendChild(BlockHeader.create("PAGER").asElement());
         pagerNexPrevSample();
 
@@ -65,20 +70,20 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     private void sizesSample() {
 
-        element.appendChild(Card.create("ACTIVE PAGE", "You can mark the current active page.")
+        element.appendChild(Card.create("PAGINATION SIZE", "There is three sizes for pagination")
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
                                 .appendChild(b().textContent("Large"))
                                 .appendChild(SimplePagination.create(5)
                                         .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
+                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + ""))
                                         .gotoPage(3)
                                         .large()))
                         .addColumn(Column.span4()
                                 .appendChild(b().textContent("Default"))
                                 .appendChild(SimplePagination.create(5)
                                         .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
+                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + ""))
                                         .gotoPage(3)))
                         .addColumn(Column.span4()
                                 .appendChild(b().textContent("Small"))
@@ -91,6 +96,24 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+    }
+
+    private void initScrollerPagination() {
+        element.appendChild(Card.create("SCROLLING PAGINATION", "For large number of pages scrolling pagiation allow viewing a set of pages at a time.")
+                .appendChild(ScrollingPagination.create(50, 10, 5)
+                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
+    }
+
+    private void initAdvancedPagination() {
+        element.appendChild(Card.create("ADVANCED PAGINATION", "Old style pagination with advanced page select.")
+                .appendChild(AdvancedPagination.create(50, 10)
+                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
     }
 
     private void pagerNexPrevSample() {
