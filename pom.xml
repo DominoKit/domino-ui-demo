@@ -141,11 +141,11 @@
                             <!--<codeserverArg>-bindAddress</codeserverArg>-->
                             <!--<codeserverArg>172.20.202.78</codeserverArg>-->
 
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>-->
-                            <!--<codeserverArg>-src</codeserverArg>-->
-                            <!--<codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations-->
-                            <!--</codeserverArg>-->
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                            <codeserverArg>-src</codeserverArg>
+                            <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations
+                            </codeserverArg>
 
                             <!--<codeserverArg>-src</codeserverArg>-->
                             <!--<codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>-->

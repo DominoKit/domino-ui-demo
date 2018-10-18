@@ -95,6 +95,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private void basicTable() {
         TableConfig<Contact> tableConfig = createBasicTableConfig();
+        tableConfig.addPlugin(new ColumnHeaderFilterPlugin<>());
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
