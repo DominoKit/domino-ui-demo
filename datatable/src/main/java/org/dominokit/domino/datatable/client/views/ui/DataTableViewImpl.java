@@ -60,13 +60,13 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .attr("target","_blank")
                         .textContent("Data table demo source code").asElement())
                 .asElement());
+        sortAndSearch();
         basicTable();
         basicFixedTable();
         selectionPlugin();
         markerPlugin();
         recordDetailsPlugin();
         tableHeaderBarPlugin();
-        sortAndSearch();
         simplePagination();
         scrollingPagination();
         advancedPagination();
@@ -95,7 +95,6 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private void basicTable() {
         TableConfig<Contact> tableConfig = createBasicTableConfig();
-        tableConfig.addPlugin(new ColumnHeaderFilterPlugin<>());
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
@@ -340,7 +339,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private void sortAndSearch() {
         TableConfig<Contact> tableConfig = createSortableTableConfig();
-
+        tableConfig.addPlugin(new ColumnHeaderFilterPlugin<>());
         LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
         listStore.setRecordsSorter(new ContactSorter());
         listStore.setSearchFilter(new ContactSearchFilter());

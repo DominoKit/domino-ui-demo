@@ -204,15 +204,18 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
 
         TextBox redTextBox = TextBox.create()
                 .addChangeHandler(value -> {
-                    redSlider.setValue(Double.parseDouble(value));
+                    redSlider.setValue(Double.parseDouble(value), true);
+                    updateBackgroundColor(rgbColorsDiv, redSlider, greenSlider, blueSlider);
                 });
         TextBox greenTextBox = TextBox.create()
                 .addChangeHandler(value -> {
-                    greenSlider.setValue(Double.parseDouble(value));
+                    greenSlider.setValue(Double.parseDouble(value), true);
+                    updateBackgroundColor(rgbColorsDiv, redSlider, greenSlider, blueSlider);
                 });
         TextBox blueTextBox = TextBox.create()
                 .addChangeHandler(value -> {
-                    blueSlider.setValue(Double.parseDouble(value));
+                    blueSlider.setValue(Double.parseDouble(value), true);
+                    updateBackgroundColor(rgbColorsDiv, redSlider, greenSlider, blueSlider);
                 });
 
 
@@ -241,42 +244,24 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
                 .asElement();
 
         redSlider.addSlideHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + value + ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
         redSlider.addChangeHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + value + ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
 
         greenSlider.addSlideHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + value + ", " + blueSlider.getValue() + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
         greenSlider.addChangeHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + value + ", " + blueSlider.getValue() + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
 
         blueSlider.addSlideHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + greenSlider.getValue() + ", " + value + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
         blueSlider.addChangeHandler(value -> {
-            rgbColorsDiv.style.background = "rgb(" + redSlider.getValue() + ", " + greenSlider.getValue() + ", " + value + ")";
-            redTextBox.setValue(redSlider.getValue() + "");
-            greenTextBox.setValue(greenSlider.getValue() + "");
-            blueTextBox.setValue(blueSlider.getValue() + "");
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
 
         redSlider.setValue(255);
@@ -343,6 +328,17 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
                         .addColumn(Column.span8()
                                 .appendChild(colorsDiv))
                 );
+    }
+
+    private void updateColorAndTextBoxes(HTMLDivElement rgbColorsDiv, Slider redSlider, Slider greenSlider, Slider blueSlider, TextBox redTextBox, TextBox greenTextBox, TextBox blueTextBox) {
+        updateBackgroundColor(rgbColorsDiv, redSlider, greenSlider, blueSlider);
+        redTextBox.setValue(redSlider.getValue() + "");
+        greenTextBox.setValue(greenSlider.getValue() + "");
+        blueTextBox.setValue(blueSlider.getValue() + "");
+    }
+
+    private void updateBackgroundColor(HTMLDivElement rgbColorsDiv, Slider redSlider, Slider greenSlider, Slider blueSlider) {
+        rgbColorsDiv.style.background = "rgb(" + redSlider.getValue()+ ", " + greenSlider.getValue() + ", " + blueSlider.getValue() + ")";
     }
 
     private void showNotification(Double value) {
