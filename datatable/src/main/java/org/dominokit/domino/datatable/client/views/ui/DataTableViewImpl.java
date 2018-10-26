@@ -13,12 +13,8 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
 import org.dominokit.domino.datatable.client.views.CodeResource;
 import org.dominokit.domino.datatable.client.views.DatatableView;
-import org.dominokit.domino.datatable.client.views.model.Contact;
-import org.dominokit.domino.datatable.client.views.model.ContactList;
-import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
-import org.dominokit.domino.datatable.client.views.model.ContactSorter;
+import org.dominokit.domino.datatable.client.views.model.*;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
@@ -27,17 +23,17 @@ import org.dominokit.domino.ui.datatable.events.SimplePaginationPlugin;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.*;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.ArrayList;
@@ -56,17 +52,18 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
     public void init() {
         element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
-                .appendChild(a().attr("href","https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
-                        .attr("target","_blank")
+                .appendChild(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
+                        .attr("target", "_blank")
                         .textContent("Data table demo source code").asElement())
                 .asElement());
-        sortAndSearch();
+
         basicTable();
         basicFixedTable();
         selectionPlugin();
         markerPlugin();
         recordDetailsPlugin();
         tableHeaderBarPlugin();
+        sortAndSearch();
         simplePagination();
         scrollingPagination();
         advancedPagination();
@@ -194,7 +191,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         LocalListDataStore<Contact> singleLocalStore = new LocalListDataStore<>();
         DataTable<Contact> singleSelectionTable = new DataTable<>(singleSelectionTableConfig, singleLocalStore);
         singleSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
-            Notification.create(selectedRecords.size()+"").show();
+            Notification.create(selectedRecords.size() + "").show();
         });
 
         TableConfig<Contact> multiSelectionTableConfig = createBasicTableConfig();
@@ -202,7 +199,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         LocalListDataStore<Contact> multiLocalStore = new LocalListDataStore<>();
         DataTable<Contact> multiSelectionTable = new DataTable<>(multiSelectionTableConfig, multiLocalStore);
         multiSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
-            Notification.create(selectedRecords.size()+"").show();
+            Notification.create(selectedRecords.size() + "").show();
         });
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
@@ -274,50 +271,35 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         tableConfig.addPlugin(new SelectionPlugin<>());
         tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
-                    Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
-                            .linkify()
-                            .style().setProperty("padding", "0px")
-                            .setHeight("26px")
-                            .setColor("black", true)
-                            .add(Styles.pull_right, Styles.m_r_15)
-                            .get();
+                    Icon selectInactiveIcon = Icons.ALL.highlight_off()
+                            .clickable()
+                            .setTooltip("Select Inactive")
+                            .addClickListener(evt ->
+                                    dataTable.getItems().forEach(item -> {
+                                        if (!item.getRecord().isActive()) {
+                                            item.select();
+                                        } else {
+                                            item.deselect();
+                                        }
+                                    }));
 
-                    Tooltip.create(selectInactiveButton, TextNode.of("Select Inactive"));
-
-                    selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getItems().forEach(item -> {
-                            if (!item.getRecord().isActive()) {
-                                item.select();
-                            } else {
-                                item.deselect();
-                            }
-                        });
-                    });
-
-                    return selectInactiveButton.asElement();
+                    return a().add(selectInactiveIcon).asElement();
                 })
                 .addActionElement(dataTable -> {
-                    Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
-                            .linkify()
-                            .style().setProperty("padding", "0px")
-                            .setHeight("26px")
-                            .setColor("black", true)
-                            .add(Styles.pull_right, Styles.m_r_15)
-                            .get();
+                    Icon selectInactiveIcon = Icons.ALL.check_circle()
+                            .clickable()
+                            .setTooltip("Select Active")
+                            .addClickListener(evt ->
+                                    dataTable.getItems().forEach(tableRow -> {
+                                        if (tableRow.getRecord().isActive()) {
+                                            tableRow.select();
+                                        } else {
+                                            tableRow.deselect();
+                                        }
+                                    }));
 
-                    Tooltip.create(selectInactiveButton, TextNode.of("Select Active"));
+                    return a().add(selectInactiveIcon).asElement();
 
-                    selectInactiveButton.addClickListener(evt -> {
-                        dataTable.getItems().forEach(tableRow -> {
-                            if (tableRow.getRecord().isActive()) {
-                                tableRow.select();
-                            } else {
-                                tableRow.deselect();
-                            }
-                        });
-                    });
-
-                    return selectInactiveButton.asElement();
                 }));
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
@@ -339,7 +321,19 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private void sortAndSearch() {
         TableConfig<Contact> tableConfig = createSortableTableConfig();
-        tableConfig.addPlugin(new ColumnHeaderFilterPlugin<>());
+        tableConfig.addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
+                .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
+                .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
+                .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
+                .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
+                .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
+                .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
+                .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
+                        .appendChild(SelectOption.create("blue", "Blue"))
+                        .appendChild(SelectOption.create("brown", "Brown"))
+                        .appendChild(SelectOption.create("green", "Green"))
+                )
+        );
         LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
         listStore.setRecordsSorter(new ContactSorter());
         listStore.setSearchFilter(new ContactSearchFilter());
@@ -487,11 +481,8 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         tableConfig
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                                .addSearchField(SelectOption.create("", "Name, Email"), true)
-                                .addSearchField(SelectOption.create("name", "Name"))
-                                .addSearchField(SelectOption.create("email", "Email"))
-                        )
+                        .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
                 );
         return tableConfig;
     }
@@ -600,11 +591,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         }))
                 .addPlugin(new BodyScrollPlugin<>())
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                                .addSearchField(SelectOption.create("", "Name, Email"), true)
-                                .addSearchField(SelectOption.create("name", "Name"))
-                                .addSearchField(SelectOption.create("email", "Email"))
-                        )
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
                 )
 
                 .addPlugin(new SortPlugin<>());
@@ -699,11 +686,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                     }
                 })
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                                .addSearchField(SelectOption.create("", "Name, Email"), true)
-                                .addSearchField(SelectOption.create("name", "Name"))
-                                .addSearchField(SelectOption.create("email", "Email"))
-                        )
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
                 )
 
                 .addPlugin(new SortPlugin<>());
@@ -733,7 +716,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
 
     private void allInOne() {
         ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
-        SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);
+        ScrollingPaginationPlugin<Contact> scrollingPaginationPlugin = new ScrollingPaginationPlugin<>(10, 5);
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
@@ -784,7 +767,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             }
                             return TextNode.of("");
                         }))
-                .addPlugin(simplePaginationPlugin)
+                .addPlugin(scrollingPaginationPlugin)
                 .addPlugin(new TopPanelPlugin<Contact>() {
 
                     @Override
@@ -801,69 +784,61 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 })
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(dataTable -> {
-                            Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
-                                    .linkify()
-                                    .style()
-                                    .setProperty("padding", "0px")
-                                    .setHeight("26px")
-                                    .setColor("black", true)
-                                    .add(Styles.pull_right, Styles.m_r_15)
-                                    .get();
+                            Icon selectInactiveIcon = Icons.ALL.highlight_off()
+                                    .clickable()
+                                    .setTooltip("Select Inactive")
+                                    .addClickListener(evt ->
+                                            dataTable.getItems().forEach(item -> {
+                                                if (!item.getRecord().isActive()) {
+                                                    item.select();
+                                                } else {
+                                                    item.deselect();
+                                                }
+                                            }));
 
-                            Tooltip.create(selectInactiveButton.asElement(), TextNode.of("Select Inactive"));
-
-                            selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getItems().forEach(tableRow -> {
-                                    if (!tableRow.getRecord().isActive()) {
-                                        tableRow.select();
-                                    } else {
-                                        tableRow.deselect();
-                                    }
-                                });
-                            });
-
-                            return selectInactiveButton.asElement();
+                            return a().add(selectInactiveIcon).asElement();
                         })
                         .addActionElement(dataTable -> {
-                            Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
-                                    .linkify()
-                                    .style()
-                                    .setProperty("padding", "0px")
-                                    .setHeight("26px")
-                                    .setColor("black", true)
-                                    .add(Styles.pull_right, Styles.m_r_15)
-                                    .get();
+                            Icon selectInactiveIcon = Icons.ALL.check_circle()
+                                    .clickable()
+                                    .setTooltip("Select Active")
+                                    .addClickListener(evt ->
+                                            dataTable.getItems().forEach(tableRow -> {
+                                                if (tableRow.getRecord().isActive()) {
+                                                    tableRow.select();
+                                                } else {
+                                                    tableRow.deselect();
+                                                }
+                                            }));
 
-                            Tooltip.create(selectInactiveButton.asElement(), TextNode.of("Select Active"));
+                            return a().add(selectInactiveIcon).asElement();
 
-                            selectInactiveButton.addClickListener(evt -> {
-                                dataTable.getItems().forEach(item -> {
-                                    if (item.getRecord().isActive()) {
-                                        item.select();
-                                    } else {
-                                        item.deselect();
-                                    }
-                                });
-                            });
-
-                            return selectInactiveButton.asElement();
                         })
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                                .addSearchField(SelectOption.create("", "Name, Email"), true)
-                                .addSearchField(SelectOption.create("name", "Name"))
-                                .addSearchField(SelectOption.create("email", "Email"))
-                        )
+                        .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
                 )
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()))
                 .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))
                 .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord())))
-
-                .addPlugin(new SortPlugin<>());
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
+                        .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
+                        .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
+                        .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
+                        .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
+                                .appendChild(SelectOption.create("blue", "Blue"))
+                                .appendChild(SelectOption.create("brown", "Brown"))
+                                .appendChild(SelectOption.create("green", "Green"))
+                        )
+                );
 
         LocalListDataStore<Contact> localListDataSource = new LocalListDataStore<Contact>()
                 .setSearchFilter(new ContactSearchFilter())
                 .setRecordsSorter(new ContactSorter())
-                .setPagination(simplePaginationPlugin.getSimplePagination());
+                .setPagination(scrollingPaginationPlugin.getPagination());
 
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataSource);
 

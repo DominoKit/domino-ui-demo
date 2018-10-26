@@ -1,4 +1,4 @@
-package org.dominokit.domino.icons.client.presenters;
+package org.dominokit.domino.mdiicons.client.presenters;
 
 import org.dominokit.domino.api.client.annotations.ListenTo;
 import org.dominokit.domino.api.client.annotations.Presenter;
@@ -7,31 +7,33 @@ import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
-import org.dominokit.domino.icons.client.views.IconsView;
+import org.dominokit.domino.mdiicons.client.views.MdiIconsView;
+import org.dominokit.domino.api.shared.extension.MainDominoEvent;
+import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Presenter
-public class IconsPresenter extends ViewBaseClientPresenter<IconsView> {
+public class MdiIconsPresenter extends ViewBaseClientPresenter<MdiIconsView> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IconsPresenter.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MdiIconsPresenter.class);
 
     @ListenTo(event=ComponentCaseEvent.class)
-    public void onComponentsEvent(ComponentCaseContext context) {
+    public void listenToComponentsCaseEvent(ComponentCaseContext context) {
         context.addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {
-                return "icons";
-            }
-
-            @Override
-            public String getMenuPath() {
-                return "Icons";
+                return "mdiicons";
             }
 
             @Override
             public String getIconName() {
-                return "spa";
+                return "local_florist";
+            }
+
+            @Override
+            public String getMenuPath() {
+                return "MDI Icons";
             }
 
             @Override

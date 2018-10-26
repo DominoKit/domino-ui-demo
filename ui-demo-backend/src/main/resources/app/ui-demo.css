@@ -150,6 +150,11 @@ code {
     }
 }
 
+.profile-card{
+    border-radius: 0px;
+    box-shadow: none;
+}
+
 .invalid-section {
     border: 1px solid #F44336;
 }
@@ -399,4 +404,8 @@ code {
     min-width: 120px;
     margin-top: 30px;
     margin-bottom: 30px;
+}
+
+.demo-icon-container .demo-google-material-icon .icon-name.demo-mdi-icon-name{
+    top: -5px;
 }

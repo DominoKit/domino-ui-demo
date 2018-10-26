@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-
     <parent>
-        <groupId>org.dominokit.domino</groupId>
-        <artifactId>domino-ui-demo</artifactId>
-        <version>1.0-SNAPSHOT</version>
-    </parent>
+    <artifactId>domino-ui-demo</artifactId>
+    <groupId>org.dominokit.domino</groupId>
+    <version>1.0-SNAPSHOT</version>
+  </parent>
 
-    <artifactId>icons</artifactId>
+    <artifactId>mdiicons</artifactId>
     <packaging>gwt-lib</packaging>
+
+    <name>mdiicons</name>
+    <url>http://maven.apache.org</url>
 
     <dependencies>
         <dependency>
             <groupId>com.google.gwt</groupId>
             <artifactId>gwt-user</artifactId>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino.api</groupId>
+            <artifactId>domino-api-shared</artifactId>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino.api</groupId>
@@ -37,14 +42,37 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
+            <groupId>org.dominokit.domino.test</groupId>
+            <artifactId>domino-client-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-simple</artifactId>
+            <version>1.7.25</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-shared</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-shared</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend-ui</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>component-case-frontend-ui</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
         </dependency>
     </dependencies>
 
@@ -64,7 +92,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.dominokit.domino.icons.IconsClientModule</moduleName>
+                    <moduleName>org.dominokit.domino.mdiicons.MdiIconsClientModule</moduleName>
                 </configuration>
             </plugin>
             <plugin>

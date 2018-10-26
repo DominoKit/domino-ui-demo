@@ -353,6 +353,28 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
+            <artifactId>icons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>icons</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>mdiicons</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>mdiicons</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
             <artifactId>typography</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -491,17 +513,6 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>loaders</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>icons</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>icons</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>

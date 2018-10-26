@@ -15,9 +15,7 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
         List<Filter> searchFilters = searchEvent.getByCategory(Category.SEARCH);
         List<Filter> headerFilters = searchEvent.getByCategory(Category.HEADER_FILTER);
 
-        Filter searchFilter = searchFilters.get(0);
-
-        boolean foundBySearch = foundBySearch(contact, searchFilter);
+        boolean foundBySearch = searchFilters.isEmpty() || foundBySearch(contact, searchFilters.get(0));
         boolean foundByHeaderFilter = headerFilters.stream().allMatch(filter -> findByHeaderFilter(contact, filter));
 
         return foundBySearch && foundByHeaderFilter;
@@ -26,10 +24,20 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
     private boolean findByHeaderFilter(Contact contact, Filter filter) {
         if (nonNull(filter.getValues().get(0)) && !filter.getValues().get(0).isEmpty()) {
             switch (filter.getFieldName()) {
-                case "name":
+                case "firstName":
                     return filterByName(contact, filter.getValues().get(0));
                 case "email":
                     return filterByEmail(contact, filter.getValues().get(0));
+                case "status":
+                    return filterByStatus(contact, filter.getValues().get(0));
+                case "gender":
+                    return filterByGender(contact, filter.getValues().get(0));
+                case "eyeColor":
+                    return filterByEyeColor(contact, filter.getValues().get(0));
+                case "balance":
+                    return filterByEyeBalance(contact, filter.getValues().get(0));
+                case "phone":
+                    return filterByEyePhone(contact, filter.getValues().get(0));
                 default:
                     return false;
             }
@@ -37,16 +45,29 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
         return false;
     }
 
+    private boolean filterByEyePhone(Contact contact, String searchContext) {
+        return contact.getPhone().contains(searchContext);
+    }
+
+    private boolean filterByEyeBalance(Contact contact, String searchText) {
+        return contact.getDoubleBalance() == Double.parseDouble(searchText);
+    }
+
+    private boolean filterByEyeColor(Contact contact, String searchText) {
+        return contact.getEyeColor().equals(EyeColor.valueOf(searchText));
+    }
+
+    private boolean filterByGender(Contact contact, String searchText) {
+        return contact.getGender().equals(Gender.valueOf(searchText));
+    }
+
+    private boolean filterByStatus(Contact contact, String searchValue) {
+        return contact.isActive() == Boolean.valueOf(searchValue);
+    }
+
     private boolean foundBySearch(Contact contact, Filter searchFilter) {
         if (nonNull(searchFilter.getValues().get(0)) && !searchFilter.getValues().get(0).isEmpty()) {
-            switch (searchFilter.getFieldName()) {
-                case "name":
-                    return filterByName(contact, searchFilter.getValues().get(0));
-                case "email":
-                    return filterByEmail(contact, searchFilter.getValues().get(0));
-                default:
-                    return filterByAll(contact, searchFilter.getValues().get(0));
-            }
+            return filterByAll(contact, searchFilter.getValues().get(0));
         }
         return true;
     }

@@ -47,52 +47,37 @@ tableConfig
 
 tableConfig.addPlugin(new SelectionPlugin<>());
 tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-        .addActionElement(dataTable -> {
-            Button selectInactiveButton = Button.create(Icons.ALL.highlight_off())
-                    .linkify()
-                    .style().setProperty("padding", "0px")
-                    .setHeight("26px")
-                    .setColor("black", true)
-                    .css(Styles.pull_right, Styles.m_r_15)
-                    .get();
+    .addActionElement(dataTable -> {
+        Icon selectInactiveIcon = Icons.ALL.highlight_off()
+                .clickable()
+                .setTooltip("Select Inactive")
+                .addClickListener(evt ->
+                        dataTable.getItems().forEach(item -> {
+                            if (!item.getRecord().isActive()) {
+                                item.select();
+                            } else {
+                                item.deselect();
+                            }
+                        }));
 
-            Tooltip.create(selectInactiveButton, new Text("Select Inactive"));
+        return a().add(selectInactiveIcon).asElement();
+    })
+    .addActionElement(dataTable -> {
+        Icon selectInactiveIcon = Icons.ALL.check_circle()
+                .clickable()
+                .setTooltip("Select Active")
+                .addClickListener(evt ->
+                        dataTable.getItems().forEach(tableRow -> {
+                            if (tableRow.getRecord().isActive()) {
+                                tableRow.select();
+                            } else {
+                                tableRow.deselect();
+                            }
+                        }));
 
-            selectInactiveButton.addClickListener(evt -> {
-                dataTable.getTableRows().forEach(tableRow -> {
-                    if (!tableRow.getRecord().isActive()) {
-                        tableRow.select();
-                    } else {
-                        tableRow.deselect();
-                    }
-                });
-            });
+        return a().add(selectInactiveIcon).asElement();
 
-            return selectInactiveButton.asElement();
-        })
-        .addActionElement(dataTable -> {
-            Button selectInactiveButton = Button.create(Icons.ALL.check_circle())
-                    .linkify()
-                    .style().setProperty("padding", "0px")
-                    .setHeight("26px")
-                    .setColor("black", true)
-                    .css(Styles.pull_right, Styles.m_r_15)
-                    .get();
-
-            Tooltip.create(selectInactiveButton, new Text("Select Active"));
-
-            selectInactiveButton.addClickListener(evt -> {
-                dataTable.getTableRows().forEach(tableRow -> {
-                    if (tableRow.getRecord().isActive()) {
-                        tableRow.select();
-                    } else {
-                        tableRow.deselect();
-                    }
-                });
-            });
-
-            return selectInactiveButton.asElement();
-        }));
+    }));
 
 LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
 DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);

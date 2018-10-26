@@ -50,18 +50,28 @@ tableConfig
 
 tableConfig
         .addPlugin(new SortPlugin<>())
-
         .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                        .addSearchField(SelectOption.create("", "Name, Email"), true)
-                        .addSearchField(SelectOption.create("name", "Name"))
-                        .addSearchField(SelectOption.create("email", "Email"))
-                )
+                .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
         );
 
 LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
 listStore.setRecordsSorter(new ContactSorter());
 listStore.setSearchFilter(new ContactSearchFilter());
+
+tableConfig.addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
+    .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
+    .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
+    .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
+    .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
+    .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
+    .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
+    .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
+            .appendChild(SelectOption.create("blue", "Blue"))
+            .appendChild(SelectOption.create("brown", "Brown"))
+            .appendChild(SelectOption.create("green", "Green"))
+    )
+);
 
 DataTable<Contact> table = new DataTable<>(tableConfig, listStore);
 

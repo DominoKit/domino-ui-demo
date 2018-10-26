@@ -33,7 +33,9 @@ public class ProfileViewImpl implements ProfileView {
 
     @Override
     public void setLayout(IsLayout layout) {
-        profile.style().add("classy-card")
+        profile.style()
+                .add("profile-card")
+                .add("classy-card")
                 .add("bg-theme");
         profile.setHeaderBackground(Color.TRANSPARENT);
         profile.setBodyBackground(Color.TRANSPARENT);
