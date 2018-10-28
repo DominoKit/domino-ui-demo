@@ -259,9 +259,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                 .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet())
                         .addClickListener(evt -> Notification.create("Tablet").show()))
                 .appendChild(TreeItem.create("Speaker", Icons.ALL.speaker())
-                        .addClickListener(evt -> Notification.create("Speaker").show()))
-                .appendChild(TreeItem.create("Certificate", Icons.ALL.certificate_mdi())
-                        .addClickListener(evt -> Notification.create("certificate_mdi").show()));
+                        .addClickListener(evt -> Notification.create("Speaker").show()));
 
         Tree filesTree = Tree.create("FILES")
                 .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
