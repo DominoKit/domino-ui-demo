@@ -1,6 +1,5 @@
 package org.dominokit.domino.themes.client.views.ui;
 
-import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
@@ -14,7 +13,6 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.ColorScheme;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.themes.Theme;
 import org.jboss.gwt.elemento.core.Elements;
 import org.slf4j.Logger;
@@ -55,7 +53,7 @@ public class ThemesViewImpl implements ThemesView {
         card.appendChild(themesPanel.asElement());
         HTMLElement actionItem = Js.cast(layout.addActionItem("style").get());
         actionItem.addEventListener("click", e -> {
-            layout.setRightPanelContent(themesContent());
+            layout.setRightPanelContent(getContent());
             layout.showRightPanel();
         });
     }
@@ -66,8 +64,9 @@ public class ThemesViewImpl implements ThemesView {
                 .asElement();
     }
 
+
     @Override
-    public Content themesContent() {
+    public Content getContent() {
         return (Content<HTMLDivElement>) card::asElement;
     }
 

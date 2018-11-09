@@ -212,8 +212,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 .remove(Styles.padding_0).get();
 
         TimeBox timeBox1 = TimeBox.create()
-                .floating()
-                .setPlaceholder("Wakeup");
+                .setLabel("Wakeup");
 
         TimeBox timeBox2 = TimeBox.create("Wakeup", new Date(), new DateTimeFormatInfoImpl_de());
 
@@ -221,7 +220,6 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
 
         TimeBox timeBox3 = TimeBox.create()
-                .floating()
                 .setPopoverPosition(PopupPosition.TOP)
                 .setPickerStyle(TimeBox.PickerStyle.POPOVER)
                 .setPlaceholder("Wakeup");

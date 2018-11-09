@@ -100,7 +100,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
         card.appendChild(TextNode.of(SAMPLE_CONTENT))
                 .appendChild(Elements.br())
                 .appendChild(Elements.br())
-                .appendChild(Elements.div().attr("style", "text-align: center").add(button));
+        .appendChild(Elements.div().attr("style", "text-align: center").add(button));
 
         return card;
     }

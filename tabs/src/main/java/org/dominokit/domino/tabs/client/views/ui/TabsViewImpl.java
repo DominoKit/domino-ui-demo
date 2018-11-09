@@ -21,8 +21,7 @@ import org.dominokit.domino.ui.tabs.Tab;
 import org.dominokit.domino.ui.tabs.TabsPanel;
 import org.dominokit.domino.ui.utils.DominoElement;
 
-import static org.jboss.gwt.elemento.core.Elements.b;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TabsPresenter.class)
 public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsView {
@@ -65,7 +64,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .appendChild(Tab.create("SETTINGS")
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
@@ -87,7 +86,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .appendChild(Tab.create(Icons.ALL.settings())
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
@@ -109,7 +108,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                         .appendChild(Tab.create(Icons.ALL.settings(), " SETTINGS")
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSamlple()).asElement());
@@ -125,21 +124,21 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.PINK)
-                                        )
+                                )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.TEAL)
-                                        )
+                                )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.PURPLE)
-                                        )
+                                )
                         )
                         .addColumn(Column.span6()
                                 .appendChild(TabsPanel.create()
@@ -148,23 +147,23 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.RED)
-                                        )
+                                )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.ORANGE)
-                                        )
+                                )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                         .setColor(Color.BLUE_GREY)
-                                        )
+                                )
                         )
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
@@ -279,7 +278,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                                                 .appendChild(b().textContent("Settings Content"))
                                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                                         .setTransition(Transition.ROTATE_IN_UP_LEFT)
-                                        ))
+                                ))
                         .addColumn(Column.span6()
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create(Icons.ALL.home(), " HOME")
@@ -296,8 +295,8 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                                                 .appendChild(b().textContent("Settings Content"))
                                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                                         .setTransition(Transition.FADE_IN_RIGHT)
-                                        ))
-                        )
+                                ))
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());

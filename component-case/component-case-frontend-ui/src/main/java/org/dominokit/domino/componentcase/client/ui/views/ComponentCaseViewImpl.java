@@ -17,6 +17,7 @@ public class ComponentCaseViewImpl implements ComponentCaseView {
 
 
     private HTMLElement contentPanel;
+    private Content content;
 
     public ComponentCaseViewImpl() {
     }
@@ -39,7 +40,13 @@ public class ComponentCaseViewImpl implements ComponentCaseView {
 
     @Override
     public void showContent(Content content) {
+        this.content = content;
         if(nonNull(content))
             contentPanel.appendChild(Js.cast(content.get()));
+    }
+
+    @Override
+    public Content getContent() {
+        return content;
     }
 }

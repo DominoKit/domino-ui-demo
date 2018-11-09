@@ -6,7 +6,6 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 
 public interface ThemesView extends View {
     void setLayout(IsLayout layout);
-    Content themesContent();
     void applyTheme(String theme);
 
     void registerTheme(String theme);

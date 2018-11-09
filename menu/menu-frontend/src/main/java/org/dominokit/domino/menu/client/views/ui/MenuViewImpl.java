@@ -3,6 +3,7 @@ package org.dominokit.domino.menu.client.views.ui;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.menu.client.presenters.MenuPresenter;
 import org.dominokit.domino.menu.client.views.MenuView;
@@ -11,6 +12,7 @@ import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.Calc;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tree.Tree;
@@ -18,6 +20,8 @@ import org.dominokit.domino.ui.tree.TreeItem;
 
 import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuItem;
 import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelectedHandler;
+import static org.dominokit.domino.ui.style.Unit.px;
+import static org.dominokit.domino.ui.style.Unit.vh;
 
 @UiView(presentable = MenuPresenter.class)
 public class MenuViewImpl implements MenuView {
@@ -50,7 +54,7 @@ public class MenuViewImpl implements MenuView {
         menu.enableSearch()
                 .autoExpandFound()
                 .style()
-                .setHeight("calc(100vh - 267px)").get();
+                .setHeight(Calc.sub(vh.of(100), px.of(267))).get();
 
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
@@ -121,6 +125,11 @@ public class MenuViewImpl implements MenuView {
         TreeItem menuItem = TreeItem.create(title, Icon.create(iconName));
         menu.appendChild(menuItem);
         return new SubMenu(menuItem);
+    }
+
+    @Override
+    public Content getContent() {
+        return () -> menu.asElement();
     }
 
     private class SubMenu implements CanAddMenuItem {

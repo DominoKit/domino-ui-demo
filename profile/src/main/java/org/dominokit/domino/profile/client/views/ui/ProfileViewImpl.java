@@ -8,6 +8,7 @@ import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.profile.client.presenters.ProfilePresenter;
 import org.dominokit.domino.profile.client.views.ProfileView;
@@ -27,12 +28,14 @@ import static org.jboss.gwt.elemento.core.Elements.small;
 public class ProfileViewImpl implements ProfileView {
 
     private final Card profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
+    private IsLayout layout;
 
     public ProfileViewImpl() {
     }
 
     @Override
     public void setLayout(IsLayout layout) {
+        this.layout = layout;
         profile.style()
                 .add("profile-card")
                 .add("classy-card")
@@ -79,5 +82,10 @@ public class ProfileViewImpl implements ProfileView {
         } catch (Exception e) {
             DomGlobal.console.error("Failed to load build time : ", e);
         }
+    }
+
+    @Override
+    public Content getContent() {
+        return layout.getContentPanel();
     }
 }

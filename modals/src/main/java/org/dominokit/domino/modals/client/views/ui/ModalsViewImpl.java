@@ -61,7 +61,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                                     .addColumn(Column.span(3, 3, 6, 12)
                                             .appendChild(Row.create()
                                                     .appendChild(Button.createDefault("LEFT - LARGE")
-                                                            .setSize(ButtonSize.LARGE)
                                                             .addClickListener(evt -> {
                                                                 ModalDialog modal = ModalDialog.create("LEFT SHEET")
                                                                         .setType(IsModalDialog.ModalType.LEFT_SHEET)
@@ -89,7 +88,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                                                             .setMinWidth("200px")))
                                             .appendChild(Row.create()
                                                     .appendChild(Button.createDefault("LEFT - SMALL")
-                                                            .setSize(ButtonSize.SMALL)
                                                             .addClickListener(evt -> {
                                                                 ModalDialog modal = ModalDialog.create("LEFT SHEET")
                                                                         .setType(IsModalDialog.ModalType.LEFT_SHEET)
@@ -106,7 +104,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                                     .addColumn(Column.span(3, 3, 6, 12)
                                             .appendChild(Row.create()
                                                     .appendChild(Button.createDefault("TOP")
-                                                            .setSize(ButtonSize.LARGE)
                                                             .addClickListener(evt -> {
                                                                 ModalDialog modal = ModalDialog.create("TOP SHEET")
                                                                         .setType(IsModalDialog.ModalType.TOP_SHEET)
@@ -122,7 +119,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                                     .addColumn(Column.span(3, 3, 6, 12)
                                             .appendChild(Row.create()
                                                     .appendChild(Button.createDefault("BOTTOM - LARGE")
-                                                            .setSize(ButtonSize.LARGE)
                                                             .addClickListener(evt -> {
                                                                 ModalDialog modal = ModalDialog.create("TOP SHEET")
                                                                         .setType(IsModalDialog.ModalType.BOTTOM_SHEET)
@@ -145,7 +141,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
                                                                 openDialog(modal);
                                                             })
-                                                            .setSize(ButtonSize.LARGE)
                                                             .style()
                                                             .setMargin("5px")
                                                             .setMinWidth("200px")))
@@ -171,7 +166,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
                                                                 openDialog(modal);
                                                             })
-                                                            .setSize(ButtonSize.SMALL)
                                                             .style()
                                                             .setMargin("5px")
                                                             .setMinWidth("200px")))

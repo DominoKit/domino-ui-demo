@@ -18,6 +18,7 @@ public class AdvancedFormsPresenter extends ViewBaseClientPresenter<AdvancedForm
 
     @ListenTo(event = FormsEvent.class)
     public void onMainEvent(FormsContext context) {
+
         context.getComponentCaseContext().addComponentCase(new ComponentCase() {
             @Override
             public String getHistoryToken() {

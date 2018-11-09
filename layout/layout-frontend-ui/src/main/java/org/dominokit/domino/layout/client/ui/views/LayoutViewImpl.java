@@ -216,4 +216,9 @@ public class LayoutViewImpl implements LayoutView {
         layout.unfixLeftPanelPosition();
         return this;
     }
+
+    @Override
+    public Content getContent() {
+        return () -> layout.getContentPanel();
+    }
 }
