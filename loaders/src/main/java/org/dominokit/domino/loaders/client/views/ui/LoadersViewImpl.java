@@ -1,5 +1,7 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -14,9 +16,6 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
-import elemental2.dom.EventListener;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 import org.gwtproject.timer.client.Timer;
@@ -94,14 +93,14 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                 public void run() {
                     loader.stop();
                 }
-            }.schedule(70000);
+            }.schedule(7000);
         };
 
         Button button = Button.createDefault("CLICK ME").addClickListener(loaderListener);
         card.appendChild(TextNode.of(SAMPLE_CONTENT))
                 .appendChild(Elements.br())
                 .appendChild(Elements.br())
-        .appendChild(Elements.div().attr("style", "text-align: center").add(button));
+                .appendChild(Elements.div().attr("style", "text-align: center").add(button));
 
         return card;
     }

@@ -1,0 +1,61 @@
+LocalSuggestBoxStore localStore = LocalSuggestBoxStore.create()
+        .addSuggestion(SuggestItem.create("Schroeder Coleman"))
+        .addSuggestion(SuggestItem.create("Renee Mcintyre"))
+        .addSuggestion(SuggestItem.create("Casey Garza"));
+TextBox friendNameBox = TextBox.create("Your friend name")
+        .setHelperText("Add friend name as suggestion");
+KeyboardEvents.listenOn(friendNameBox)
+        .onEnter(evt -> {
+            localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
+            friendNameBox.clear();
+        });
+suggestBoxCard
+        .setBodyPaddingTop("40px")
+        .appendChild(
+                Row.create()
+                        .appendChild(Column.span6().appendChild(BlockHeader.create("Local suggest store"))))
+        .appendChild(Row.create()
+                .appendChild(Column.span4()
+                        .appendChild(friendNameBox))
+                .appendChild(Column.span2()
+                        .appendChild(Button.createPrimary(Icons.ALL.add()).setContent("ADD FRIEND")
+                                .addClickListener(evt -> {
+                                    localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
+                                    friendNameBox.clear();
+                                })))
+        )
+        .appendChild(
+                Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(SuggestBox.create("Your friends", localStore)
+                                        .setHelperText("Type any letter and see suggestions")))
+        );
+
+
+SuggestBoxStore dynamicStore = (searchValue, suggestionsHandler) -> {
+    DomGlobal.fetch("https://uinames.com/api/?amount=25")
+            .then(Response::text)
+            .then(json -> {
+                List<SuggestItem> suggestItems = new ArrayList<>();
+                JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
+                DomGlobal.console.info(randomNames);
+                for (int i = 0; i < randomNames.length; i++) {
+                    JsPropertyMap<String> nameProperties = randomNames.getAt(i);
+                    if (nameProperties.get("name").toLowerCase().contains(searchValue.toLowerCase())) {
+                        SuggestItem suggestItem = SuggestItem.create(nameProperties.get("name"));
+                        suggestItems.add(suggestItem);
+                    }
+                }
+                suggestionsHandler.onSuggestionsReady(suggestItems);
+                return null;
+            });
+};
+
+suggestBoxCard
+        .appendChild(Row.create()
+                .appendChild(Column.span12()
+                        .appendChild(BlockHeader.create("Dynamic suggest store"))))
+        .appendChild(Row.create()
+                .appendChild(Column.span12()
+                        .appendChild(SuggestBox.create("Dynamic box", dynamicStore)
+                                .setHelperText("Loads new list for every change"))));

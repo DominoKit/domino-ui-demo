@@ -1,7 +1,14 @@
 package org.dominokit.domino.advancedforms.client.views.ui;
 
+import elemental2.core.Global;
+import elemental2.core.JsArray;
 import elemental2.core.JsRegExp;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.Response;
+import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
 import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsPresenter;
 import org.dominokit.domino.advancedforms.client.views.AdvancedFormsView;
 import org.dominokit.domino.advancedforms.client.views.CodeResource;
@@ -9,19 +16,23 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.keyboard.KeyboardEvents;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.tag.TagsInput;
 import org.dominokit.domino.ui.tag.store.LocalTagsStore;
 import org.dominokit.domino.ui.upload.FileUpload;
-import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.jboss.gwt.elemento.core.Elements;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -35,6 +46,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
     private HTMLDivElement element = Elements.div().asElement();
     private Card uploadCard;
     private Card tagsInputCard;
+    private Card suggestBoxCard;
 
     @Override
     public HTMLDivElement getElement() {
@@ -44,19 +56,22 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
     @Override
     public void init() {
         element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).asElement());
-        element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS")
-                .asElement());
+        element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").asElement());
 
         uploadCard = Card.create("FILE UPLOAD - DRAG & DROP OR WITH CLICK & CHOOSE");
         tagsInputCard = Card.create("TAGS INPUT");
+        suggestBoxCard = Card.create("SUGGEST BOX");
 
         initFileUploadExample();
         initTagsInputExample();
+        initSuggestBoxExample();
 
         element.appendChild(uploadCard.asElement());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
         element.appendChild(tagsInputCard.asElement());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tagsExample()).asElement());
+        element.appendChild(suggestBoxCard.asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.suggestBoxExample()).asElement());
     }
 
     private void initFileUploadExample() {
@@ -68,6 +83,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                 .appendChild(Elements.h(3).textContent("Drop files here or click to upload."))
                 .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)"))
                 .onAddFile(fileItem -> {
+
                     fileItem.addErrorHandler(request -> {
                         Notification.createDanger("Error while uploading " + request.responseText).show();
                     });
@@ -186,7 +202,73 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                                         .setTagsColor(ColorScheme.PINK))));
     }
 
+    private void initSuggestBoxExample() {
+        LocalSuggestBoxStore localStore = LocalSuggestBoxStore.create()
+                .addSuggestion(SuggestItem.create("Schroeder Coleman"))
+                .addSuggestion(SuggestItem.create("Renee Mcintyre"))
+                .addSuggestion(SuggestItem.create("Casey Garza"));
+        TextBox friendNameBox = TextBox.create("Your friend name")
+                .setHelperText("Add friend name as suggestion");
+        KeyboardEvents.listenOn(friendNameBox)
+                .onEnter(evt -> {
+                    localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
+                    friendNameBox.clear();
+                });
+        suggestBoxCard
+                .setBodyPaddingTop("40px")
+                .appendChild(
+                        Row.create()
+                                .appendChild(Column.span6().appendChild(BlockHeader.create("Local suggest store"))))
+                .appendChild(Row.create()
+                        .appendChild(Column.span4()
+                                .appendChild(friendNameBox))
+                        .appendChild(Column.span2()
+                                .appendChild(Button.createPrimary(Icons.ALL.add()).setContent("ADD FRIEND")
+                                        .addClickListener(evt -> {
+                                            localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
+                                            friendNameBox.clear();
+                                        })))
+                )
+                .appendChild(
+                        Row.create()
+                                .appendChild(Column.span12()
+                                        .appendChild(SuggestBox.create("Your friends", localStore)
+                                                .setHelperText("Type any letter and see suggestions")))
+                );
+
+
+        SuggestBoxStore dynamicStore = (searchValue, suggestionsHandler) -> {
+            DomGlobal.fetch("https://uinames.com/api/?amount=25")
+                    .then(Response::text)
+                    .then(json -> {
+                        List<SuggestItem> suggestItems = new ArrayList<>();
+                        JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
+                        DomGlobal.console.info(randomNames);
+                        for (int i = 0; i < randomNames.length; i++) {
+                            JsPropertyMap<String> nameProperties = randomNames.getAt(i);
+                            if (nameProperties.get("name").toLowerCase().contains(searchValue.toLowerCase())) {
+                                SuggestItem suggestItem = SuggestItem.create(nameProperties.get("name"));
+                                suggestItems.add(suggestItem);
+                            }
+                        }
+                        suggestionsHandler.onSuggestionsReady(suggestItems);
+                        return null;
+                    });
+        };
+
+        suggestBoxCard
+                .appendChild(Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(BlockHeader.create("Dynamic suggest store"))))
+                .appendChild(Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(SuggestBox.create("Dynamic box", dynamicStore)
+                                        .setHelperText("Loads new list for every change"))));
+    }
+
+
     public static class Person {
+
         private int id;
         private String name;
 
@@ -216,6 +298,57 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
             return "Person{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
+                    '}';
+        }
+    }
+
+    @JsType
+    public static class RandomName {
+        private String name;
+        private String surname;
+        private String gender;
+        private String region;
+
+
+        public String getName() {
+            return name;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getSurname() {
+            return surname;
+        }
+
+        public void setSurname(String surname) {
+            this.surname = surname;
+        }
+
+        public String getGender() {
+            return gender;
+        }
+
+        public void setGender(String gender) {
+            this.gender = gender;
+        }
+
+        public String getRegion() {
+            return region;
+        }
+
+        public void setRegion(String region) {
+            this.region = region;
+        }
+
+        @Override
+        public String toString() {
+            return "RandomName{" +
+                    "name='" + name + '\'' +
+                    ", surname='" + surname + '\'' +
+                    ", gender='" + gender + '\'' +
+                    ", region='" + region + '\'' +
                     '}';
         }
     }

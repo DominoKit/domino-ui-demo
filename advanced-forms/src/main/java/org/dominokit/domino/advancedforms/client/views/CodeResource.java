@@ -13,4 +13,7 @@ public interface CodeResource extends ClientBundle {
 
     @Source("tags-example.txt")
     ExternalTextResource tagsExample();
+
+    @Source("suggest-box-example.txt")
+    ExternalTextResource suggestBoxExample();
 }
