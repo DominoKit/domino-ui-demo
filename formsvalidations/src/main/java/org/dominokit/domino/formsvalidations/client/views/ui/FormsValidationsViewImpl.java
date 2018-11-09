@@ -127,7 +127,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         cancel.addClickListener(evt -> username.clear())
                 .style().setCursor("pointer");
 
-        HTMLElement showIcon = Icons.ALL.remove_red_eye()
+        HTMLElement showIcon = Icons.ALL.remove_red_eye().clickable()
                 .style()
                 .setCursor("pointer").asElement();
         TextBox password = TextBox.password("Password")

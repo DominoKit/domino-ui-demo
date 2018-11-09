@@ -5,9 +5,11 @@ import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.mdiicons.client.presenters.MdiIconsPresenter;
+import org.dominokit.domino.mdiicons.client.views.CodeResource;
 import org.dominokit.domino.mdiicons.client.views.MdiIconsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -15,9 +17,8 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.loaders.Loader;
-import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.DominoDom;
 import org.jboss.gwt.elemento.core.InputType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
@@ -52,6 +53,7 @@ public class MdiIconsViewImpl extends ComponentView<HTMLDivElement> implements M
                                 .attr("target", "_blank")
                                 .textContent("https://materialdesignicons.com/"))
                         .asElement());
+
                 card = Card.create("MDI ICONS").setCollapsible();
                 element.appendChild(card.asElement());
                 mdiIconsGroup1();
@@ -89,9 +91,110 @@ public class MdiIconsViewImpl extends ComponentView<HTMLDivElement> implements M
                 mdiIconsGroup33();
                 mdiIconsGroup34();
                 mdiIconsGroup35();
+
+                mdiEffects();
             }
         });
 
+    }
+
+    private void mdiEffects() {
+        element.appendChild(Card.create("Icons advanced features")
+                .appendChild(BlockHeader.create("Sizes"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Size 18px"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().size18()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Size 24px"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().size24()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Size 36px"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().size36()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Size 48px"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().size48()))
+                )
+                .appendChild(BlockHeader.create("Rotate"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("No rotate"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 45"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate45()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 90"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate90()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 135"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate135()))
+                )
+                .appendChild(Row.create()
+
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 180"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate180()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 255"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate225()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 270"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate270()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Rotate 315"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi().rotate315()))
+                )
+                .appendChild(BlockHeader.create("Flip"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span4()
+                                .appendChild(h(6).textContent("No flip"))
+                                .appendChild(Icons.MDI_ICONS.account_alert_mdi()))
+                        .appendChild(Column.span4()
+                                .appendChild(h(6).textContent("Flip horizontal"))
+                                .appendChild(Icons.MDI_ICONS.account_alert_mdi().flipH()))
+                        .appendChild(Column.span4()
+                                .appendChild(h(6).textContent("Flip vertical"))
+                                .appendChild(Icons.MDI_ICONS.account_alert_mdi().flipV()))
+                )
+                .appendChild(BlockHeader.create("Spin"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span6()
+                                .appendChild(Icons.MDI_ICONS.loading_mdi().spin()))
+                        .appendChild(Column.span6()
+                                .appendChild(Icons.MDI_ICONS.star_mdi().spin()))
+                )
+                .appendChild(BlockHeader.create("Contrast"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Light"))
+                                .appendChild(div().style("width: 40px; height:40px")
+                                        .css(Color.BLACK.getBackground())
+                                        .add(Icons.MDI_ICONS.account_mdi()
+                                                .size36()
+                                                .light())))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Light inactive"))
+                                .appendChild(div().style("width: 40px; height:40px")
+                                        .css(Color.BLACK.getBackground())
+                                        .add(Icons.MDI_ICONS.account_mdi()
+                                                .size36()
+                                                .light()
+                                                .inactive())))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Dark"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi()
+                                        .dark()))
+                        .appendChild(Column.span3()
+                                .appendChild(h(6).textContent("Dark inactive"))
+                                .appendChild(Icons.MDI_ICONS.account_mdi()
+                                        .dark()
+                                        .inactive()))
+                )
+                .setCollapsible()
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFeatures()).asElement());
     }
 
     private void mdiIconsGroup1() {
