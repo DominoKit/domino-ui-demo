@@ -6,7 +6,6 @@ import elemental2.core.JsRegExp;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Response;
-import jsinterop.annotations.JsType;
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsPresenter;
@@ -238,12 +237,11 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
 
 
         SuggestBoxStore dynamicStore = (searchValue, suggestionsHandler) -> {
-            DomGlobal.fetch("https://uinames.com/api/?amount=25")
+            DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
                     .then(Response::text)
                     .then(json -> {
                         List<SuggestItem> suggestItems = new ArrayList<>();
                         JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
-                        DomGlobal.console.info(randomNames);
                         for (int i = 0; i < randomNames.length; i++) {
                             JsPropertyMap<String> nameProperties = randomNames.getAt(i);
                             if (nameProperties.get("name").toLowerCase().contains(searchValue.toLowerCase())) {
@@ -262,8 +260,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                                 .appendChild(BlockHeader.create("Dynamic suggest store"))))
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
-                                .appendChild(SuggestBox.create("Dynamic box", dynamicStore)
-                                        .setHelperText("Loads new list for every change"))));
+                                .appendChild(SuggestBox.create("Country", dynamicStore))));
     }
 
 
@@ -298,57 +295,6 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
             return "Person{" +
                     "id=" + id +
                     ", name='" + name + '\'' +
-                    '}';
-        }
-    }
-
-    @JsType
-    public static class RandomName {
-        private String name;
-        private String surname;
-        private String gender;
-        private String region;
-
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getSurname() {
-            return surname;
-        }
-
-        public void setSurname(String surname) {
-            this.surname = surname;
-        }
-
-        public String getGender() {
-            return gender;
-        }
-
-        public void setGender(String gender) {
-            this.gender = gender;
-        }
-
-        public String getRegion() {
-            return region;
-        }
-
-        public void setRegion(String region) {
-            this.region = region;
-        }
-
-        @Override
-        public String toString() {
-            return "RandomName{" +
-                    "name='" + name + '\'' +
-                    ", surname='" + surname + '\'' +
-                    ", gender='" + gender + '\'' +
-                    ", region='" + region + '\'' +
                     '}';
         }
     }
