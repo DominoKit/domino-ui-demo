@@ -1,10 +1,11 @@
 package org.dominokit.domino.themes.client.views;
 
+import org.dominokit.domino.api.client.mvp.view.ContentView;
 import org.dominokit.domino.api.client.mvp.view.View;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 
-public interface ThemesView extends View {
+public interface ThemesView extends ContentView {
     void setLayout(IsLayout layout);
     void applyTheme(String theme);
 
