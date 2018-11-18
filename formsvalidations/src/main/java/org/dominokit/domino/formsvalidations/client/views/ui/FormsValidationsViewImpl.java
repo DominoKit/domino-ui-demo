@@ -7,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsPresenter;
-import org.dominokit.domino.formsvalidations.client.views.CodeResource;
 import org.dominokit.domino.formsvalidations.client.views.FormsValidationsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -25,6 +24,7 @@ import org.jboss.gwt.elemento.core.Elements;
 @UiView(presentable = FormsValidationsPresenter.class)
 public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> implements FormsValidationsView {
 
+    public static final String MODULE_NAME = "formsvalidations";
     private HTMLDivElement element = Elements.div().asElement();
     private Card helperTextCard;
     private Card iconsCard;
@@ -34,7 +34,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").asElement());
         helperTextCard = Card.create("HELPER TEXTS");
         iconsCard = Card.create("ADDONS");
@@ -49,15 +49,15 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         initReadOnly();
 
         element.appendChild(helperTextCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"helper-text").asElement());
         element.appendChild(iconsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.addons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"addons").asElement());
         element.appendChild(countsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"word-count").asElement());
         element.appendChild(validationsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"validations").asElement());
         element.appendChild(readOnlyCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.readOnly()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"read-only").asElement());
     }
 
     private void initReadOnly() {

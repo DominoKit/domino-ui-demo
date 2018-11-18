@@ -1,11 +1,11 @@
 package org.dominokit.domino.helpers.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.helpers.client.presenters.HelpersPresenter;
-import org.dominokit.domino.helpers.client.views.CodeResource;
 import org.dominokit.domino.helpers.client.views.HelpersView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
@@ -14,8 +14,6 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
@@ -24,6 +22,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements HelpersView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
+    public static final String MODULE_NAME = "helpers";
     private final HTMLDivElement element = div().asElement();
 
     @Override
@@ -33,7 +32,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
         textStyles();
         fontSize();
@@ -107,7 +106,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"textStyles")
                 .asElement());
     }
 
@@ -132,7 +131,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSize())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"fontSize")
                 .asElement());
     }
 
@@ -159,7 +158,7 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textAligns())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"textAligns")
                 .asElement());
     }
 

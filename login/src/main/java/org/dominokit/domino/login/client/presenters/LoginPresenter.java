@@ -5,8 +5,6 @@ import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.forms.shared.extension.FormsContext;
 import org.dominokit.domino.forms.shared.extension.FormsEvent;
 import org.dominokit.domino.login.client.views.LoginView;

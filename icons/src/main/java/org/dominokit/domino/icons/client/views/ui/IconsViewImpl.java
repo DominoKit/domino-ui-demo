@@ -1,7 +1,5 @@
 package org.dominokit.domino.icons.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -40,48 +38,40 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
     @Override
     public void init() {
 
-        GWT.runAsync(new RunAsyncCallback() {
-            @Override
-            public void onFailure(Throwable reason) {
-                LOGGER.error("failed to run async icons view");
-            }
 
-            @Override
-            public void onSuccess() {
-                element.appendChild(copyInput);
-                element.appendChild(LinkToSourceCode.create("icons", IconsViewImpl.this.getClass()).asElement());
-                element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
-                        .appendChild(a()
-                                .attr("href", "http://google.github.io/material-design-icons/")
-                                .attr("target", "_blank")
-                                .textContent("google.github.io/material-design-icons"))
-                        .appendText(" & ")
+        element.appendChild(copyInput);
+        element.appendChild(LinkToSourceCode.create("icons", IconsViewImpl.this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("MATERIAL DESIGN ICONS", "Taken by Google's Material Design Icon. You can see the documentations and icon usage inside which links are ")
+                .appendChild(a()
+                        .attr("href", "http://google.github.io/material-design-icons/")
+                        .attr("target", "_blank")
+                        .textContent("google.github.io/material-design-icons"))
+                .appendText(" & ")
 
-                        .appendChild(a()
-                                .attr("href", "https://design.google.com/icons/")
-                                .attr("target", "_blank")
-                                .textContent("design.google.com/icons"))
-                        .appendChild(p().style("margin-top: 10px;").textContent("Click on icon to copy"))
-                        .asElement());
+                .appendChild(a()
+                        .attr("href", "https://design.google.com/icons/")
+                        .attr("target", "_blank")
+                        .textContent("design.google.com/icons"))
+                .appendChild(p().style("margin-top: 10px;").textContent("Click on icon to copy"))
+                .asElement());
 
-                actionIcons();
-                alertIcons();
-                avIcons();
-                communicationIcons();
-                contentIcons();
-                deviceIcons();
-                editorIcons();
-                fileIcons();
-                hardwareIcons();
-                imageIcons();
-                mapIcons();
-                navigationIcons();
-                notificationIcons();
-                placesIcons();
-                socialIcons();
-                toggleIcons();
-            }
-        });
+        actionIcons();
+        alertIcons();
+        avIcons();
+        communicationIcons();
+        contentIcons();
+        deviceIcons();
+        editorIcons();
+        fileIcons();
+        hardwareIcons();
+        imageIcons();
+        mapIcons();
+        navigationIcons();
+        notificationIcons();
+        placesIcons();
+        socialIcons();
+        toggleIcons();
+
     }
 
     private void actionIcons() {
@@ -1614,8 +1604,8 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
                 .add(element);
         String iconName = icon.getName();
         iconContainer.asElement().addEventListener("click", evt -> {
-            String name= (iconName.replace("mdi-","").replace("-","_"))+(iconName.contains("mdi")?"_mdi":"");
-            copyInput.value = "Icons.ALL."+name+"()";
+            String name = (iconName.replace("mdi-", "").replace("-", "_")) + (iconName.contains("mdi") ? "_mdi" : "");
+            copyInput.value = "Icons.ALL." + name + "()";
             copyInput.select();
             EventListener copyListener = e -> {
                 ClipboardEvent clipboardEvent = Js.uncheckedCast(e);

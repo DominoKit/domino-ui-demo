@@ -20,14 +20,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-user</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.google.gwt</groupId>
-            <artifactId>gwt-dev</artifactId>
-        </dependency>
-        <dependency>
             <groupId>org.dominokit.domino.api</groupId>
             <artifactId>domino-api-shared</artifactId>
         </dependency>
@@ -813,6 +805,163 @@
                     <skip>true</skip>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>3.0.0-M2</version>
+                <executions>
+                    <execution>
+                        <id>enforce-versions</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <bannedDependencies>
+                                    <excludes>
+                                        <!-- exclude all versions lower than 1.2.17-->
+                                        <exclude>com.google.jsinterop:base</exclude>
+                                    </excludes>
+                                </bannedDependencies>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>devmode</id>
+            <build>
+                <defaultGoal>process-classes</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <version>3.0.2</version>
+                        <executions>
+                            <execution>
+                                <id>build-java-classpath</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>build-classpath</goal>
+                                </goals>
+                                <configuration>
+                                    <includeTypes>jar</includeTypes>
+                                    <outputProperty>java-classpath</outputProperty>
+                                </configuration>
+                            </execution>
+                            <execution>
+                                <id>copy-bootstrap</id>
+                                <goals>
+                                    <goal>copy</goal>
+                                </goals>
+                                <configuration>
+                                    <!--<artifact>com.vertispan.j2cl:bootstrap:0.1-SNAPSHOT:zip:jszip</artifact>-->
+                                    <artifactItems>
+                                        <artifactItem>
+                                            <groupId>com.vertispan.j2cl</groupId>
+                                            <artifactId>jre</artifactId>
+                                            <version>0.1-SNAPSHOT</version>
+                                            <classifier>jszip</classifier>
+                                            <type>zip</type>
+                                            <destFileName>jre.js.zip</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.vertispan.j2cl</groupId>
+                                            <artifactId>jre</artifactId>
+                                            <version>0.1-SNAPSHOT</version>
+                                            <destFileName>jre.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.vertispan.j2cl</groupId>
+                                            <artifactId>gwt-internal-annotations</artifactId>
+                                            <version>0.1-SNAPSHOT</version>
+                                            <destFileName>gwt-internal-annotations.jar</destFileName>
+                                        </artifactItem>
+                                        <artifactItem>
+                                            <groupId>com.vertispan.j2cl</groupId>
+                                            <artifactId>bootstrap</artifactId>
+                                            <version>0.1-SNAPSHOT</version>
+                                            <classifier>jszip</classifier>
+                                            <type>zip</type>
+                                            <destFileName>bootstrap.js.zip</destFileName>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>exec-maven-plugin</artifactId>
+                        <version>1.6.0</version>
+                        <executions>
+                            <execution>
+                                <id>run-devmode</id>
+                                <phase>process-classes</phase>
+                                <goals>
+                                    <goal>java</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                        <configuration>
+                            <includeProjectDependencies>false</includeProjectDependencies>
+                            <includePluginDependencies>true</includePluginDependencies>
+                            <includeProjectDependencies>false</includeProjectDependencies>
+                            <mainClass>com.vertispan.j2cl.DevMode</mainClass>
+                            <arguments>
+                                <argument>-classpath</argument>
+                                <argument>
+                                    ${java-classpath}:${project.build.directory}/dependency/jre.jar:${project.build.directory}/dependency/gwt-internal-annotations.jar
+                                </argument>
+                                <argument>-jsClasspath</argument>
+                                <argument>
+                                    ${project.build.directory}/dependency/bootstrap.js.zip:${project.build.directory}/dependency/jre.js.zip
+                                </argument>
+                                <argument>-out</argument>
+                                <argument>out</argument>
+                                <argument>-src</argument>
+                                <argument>src/main/java</argument>
+                                <argument>-O</argument>
+                                <argument>WHITESPACE_ONLY</argument>
+                                <argument>--externs</argument>
+                                <argument>${project.basedir}/src/main/externs/w3c_clipboardevent.js</argument>
+                                <argument>--externs</argument>
+                                <argument>${project.basedir}/src/main/externs/svg.js</argument>
+                                <argument>-jsZipCache</argument>
+                                <argument>jsZipCache</argument>
+                                <argument>-entrypoint</argument>
+                                <argument>org.dominokit.domino.ui.demo.client.AppClientModule</argument>
+                            </arguments>
+                        </configuration>
+                        <dependencies>
+                            <dependency>
+                                <groupId>com.vertispan.j2cl</groupId>
+                                <artifactId>build-tools</artifactId>
+                                <version>0.1-SNAPSHOT</version>
+                                <type>jar</type>
+                            </dependency>
+                        </dependencies>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
+
+    <repositories>
+        <repository>
+            <id>vertispan-releases</id>
+            <name>Vertispan hosted artifacts-releases</name>
+            <url>https://repo.vertispan.com/j2cl</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 </project>

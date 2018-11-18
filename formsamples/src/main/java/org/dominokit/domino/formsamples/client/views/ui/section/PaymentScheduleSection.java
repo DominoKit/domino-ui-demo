@@ -7,10 +7,10 @@ import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.formsamples.shared.model.PaymentScheduleItem;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
@@ -19,7 +19,6 @@ import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.forms.validations.ValidationResult;
 
 import java.util.List;
 
@@ -28,9 +27,7 @@ import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.ma
 import static org.dominokit.domino.ui.grid.Column.span12;
 import static org.dominokit.domino.ui.grid.Column.span4;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.i;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 public class PaymentScheduleSection implements ImportSection {
 

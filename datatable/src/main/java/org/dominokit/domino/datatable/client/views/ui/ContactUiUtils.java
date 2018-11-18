@@ -1,6 +1,5 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
-import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.datatable.client.views.model.EyeColor;

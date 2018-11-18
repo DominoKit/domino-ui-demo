@@ -4,8 +4,4 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.basicforms.client.BasicFormsClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
-
 </module>

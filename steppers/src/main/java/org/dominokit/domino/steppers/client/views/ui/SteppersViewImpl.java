@@ -1,6 +1,5 @@
 package org.dominokit.domino.steppers.client.views.ui;
 
-import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -8,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
-import org.dominokit.domino.steppers.client.views.CodeResource;
 import org.dominokit.domino.steppers.client.views.SteppersView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -30,11 +28,12 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = SteppersPresenter.class)
 public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements SteppersView {
 
+    public static final String MODULE_NAME = "steppers";
     private final HTMLDivElement element = div().asElement();
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("STEPPERS").asElement());
 
         verticalStepper();
@@ -146,7 +145,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span6().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"verticalStepper").asElement());
     }
 
     private void horizontalStepper() {
@@ -251,7 +250,7 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span12().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"horizontalStepper").asElement());
     }
 
     @Override

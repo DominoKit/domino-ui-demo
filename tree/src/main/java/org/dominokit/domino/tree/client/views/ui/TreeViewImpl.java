@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.tree.client.presenters.TreePresenter;
-import org.dominokit.domino.tree.client.views.CodeResource;
 import org.dominokit.domino.tree.client.views.Countries;
 import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
@@ -26,6 +25,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = TreePresenter.class)
 public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeView {
 
+    public static final String MODULE_NAME = "tree";
     private HTMLDivElement element = div().asElement();
 
     private static final String COUNTRIES= "{\n" +
@@ -231,7 +231,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("tree", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("Tree").asElement());
 
         simpleTree();
@@ -285,7 +285,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                         .addColumn(Column.span6().appendChild(filesTree))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"simpleTree").asElement());
     }
 
     private void nestedTree() {
@@ -355,7 +355,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(hardwareMenu2))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"nestedTree").asElement());
     }
 
     private void activeAndExpandIcons() {
@@ -466,7 +466,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(foldersExpand))
                         ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.featuredTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"featuredTree").asElement());
     }
 
     @Override

@@ -5,8 +5,5 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.formsamples.client.FormSamplesClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
 
 </module>

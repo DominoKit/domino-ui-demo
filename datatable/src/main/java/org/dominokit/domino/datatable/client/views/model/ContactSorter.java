@@ -9,7 +9,7 @@ public class ContactSorter implements RecordsSorter<Contact> {
     @Override
     public Comparator<Contact> onSortChange(String sortBy, SortDirection sortDirection) {
 
-        if ("firstName".equals(sortBy)) {
+        if ("firstName".equals(sortBy) || "*".equals(sortBy)) {
             if (SortDirection.ASC.equals(sortDirection)) {
                 return Comparator.comparing(Contact::getName);
             } else {
@@ -32,6 +32,8 @@ public class ContactSorter implements RecordsSorter<Contact> {
                 return (o1, o2) -> Double.compare(o2.getIndex(), o1.getIndex());
             }
         }
+
+
 
         return (o1, o2) -> 0;
     }

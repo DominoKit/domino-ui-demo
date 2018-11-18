@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.inputfields.client.presenters.InputFieldsPresenter;
-import org.dominokit.domino.inputfields.client.views.CodeResource;
 import org.dominokit.domino.inputfields.client.views.InputFieldsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
@@ -22,13 +21,14 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = InputFieldsPresenter.class)
 public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implements InputFieldsView {
 
+    public static final String MODULE_NAME = "inputfields";
     private DominoElement<HTMLDivElement> element = DominoElement.of(div());
     private Card numberFieldsCard;
     private Card advancedFieldsCard;
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("INPUT FIELDS"));
         numberFieldsCard = Card.create("NUMBER FIELDS");
         advancedFieldsCard = Card.create("ADVANCED FIELDS");
@@ -37,9 +37,9 @@ public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implement
         initAdvancedFields();
 
         element.appendChild(numberFieldsCard);
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.numberFields()));
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"numberFields"));
         element.appendChild(advancedFieldsCard);
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFields()));
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"advancedFields"));
     }
 
     private void initNumberFields() {

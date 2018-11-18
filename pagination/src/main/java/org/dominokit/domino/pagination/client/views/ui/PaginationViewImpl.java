@@ -7,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.pagination.client.presenters.PaginationPresenter;
-import org.dominokit.domino.pagination.client.views.CodeResource;
 import org.dominokit.domino.pagination.client.views.PaginationView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -24,6 +23,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = PaginationPresenter.class)
 public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements PaginationView {
 
+    public static final String MODULE_NAME = "pagination";
     private HTMLDivElement element = div().asElement();
 
     @Override
@@ -33,7 +33,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PAGINATION").asElement());
 
 
@@ -54,7 +54,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+"")))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"defaultPagination").asElement());
     }
 
     private void activePageSample() {
@@ -65,7 +65,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .gotoPage(3))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"activePageSample").asElement());
     }
 
     private void sizesSample() {
@@ -95,7 +95,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"sizesSample").asElement());
     }
 
     private void initScrollerPagination() {
@@ -104,7 +104,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"scrollingPagination").asElement());
     }
 
     private void initAdvancedPagination() {
@@ -113,7 +113,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"advancedPagination").asElement());
     }
 
     private void pagerNexPrevSample() {
@@ -151,7 +151,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .disablePrevious())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"pagerSample").asElement());
 
     }
 }

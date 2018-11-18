@@ -5,7 +5,6 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
-import org.dominokit.domino.basicforms.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -24,6 +23,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = BasicFormsPresenter.class)
 public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements BasicFormsView {
 
+    public static final String MODULE_NAME = "basic-forms";
     private HTMLDivElement element = div().asElement();
     private Card inputCard;
     private Card textAreaCard;
@@ -39,7 +39,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").asElement());
 
         inputCard = Card.create("INPUT", "Different sizes and widths.");
@@ -61,17 +61,17 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         initSwitchExample();
 
         element.appendChild(inputCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"textbox-samples").asElement());
         element.appendChild(textAreaCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"textarea-samples").asElement());
         element.appendChild(selectCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"select-samples").asElement());
         element.appendChild(checkboxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"checkbox-samples").asElement());
         element.appendChild(radioCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"radio-samples").asElement());
         element.appendChild(switchCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"switch-samples").asElement());
     }
 
 

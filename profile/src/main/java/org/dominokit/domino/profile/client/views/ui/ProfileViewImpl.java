@@ -1,10 +1,5 @@
 package org.dominokit.domino.profile.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -22,7 +17,6 @@ import org.dominokit.domino.ui.style.Style;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.small;
 
 @UiView(presentable = ProfilePresenter.class)
 public class ProfileViewImpl implements ProfileView {
@@ -52,7 +46,7 @@ public class ProfileViewImpl implements ProfileView {
         else
             leftPanel.appendChild(profile.asElement());
 
-        profile.appendChild(Elements.img(GWT.getModuleBaseURL() + "/images/user.png").style("border-radius:50%;"));
+        profile.appendChild(Elements.img("static/images/user.png").style("border-radius:50%;"));
         DropdownButton dropdownButton = DropdownButton.create(Icons.ALL.more_vert())
                 .linkify()
                 .setBackground(Color.TRANSPARENT)
@@ -65,23 +59,23 @@ public class ProfileViewImpl implements ProfileView {
         Style.of(profile).setHeight("186px");
         profile.asElement().appendChild(div().css("bg-classy").asElement());
 
-        try {
-            CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {
-                @Override
-                public void onError(ResourceException e) {
-                    DomGlobal.console.error("failed ", e);
-                }
-
-                @Override
-                public void onSuccess(TextResource resource) {
-                    profile.getHeaderTitle().appendChild(small().textContent(resource.getText())
-                            .asElement());
-                    DomGlobal.console.info(resource.getText());
-                }
-            });
-        } catch (Exception e) {
-            DomGlobal.console.error("Failed to load build time : ", e);
-        }
+//        try {
+//            CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {
+//                @Override
+//                public void onError(ResourceException e) {
+//                    DomGlobal.console.error("failed ", e);
+//                }
+//
+//                @Override
+//                public void onSuccess(TextResource resource) {
+//                    profile.getHeaderTitle().appendChild(small().textContent(resource.getText())
+//                            .asElement());
+//                    DomGlobal.console.info(resource.getText());
+//                }
+//            });
+//        } catch (Exception e) {
+//            DomGlobal.console.error("Failed to load build time : ", e);
+//        }
     }
 
     @Override

@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.login.client.presenters.LoginPresenter;
-import org.dominokit.domino.login.client.views.CodeResource;
 import org.dominokit.domino.login.client.views.LoginView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -26,6 +25,7 @@ import static org.jboss.gwt.elemento.core.Elements.img;
 @UiView(presentable = LoginPresenter.class)
 public class LoginViewImpl extends ComponentView<HTMLDivElement> implements LoginView {
 
+    public static final String MODULE_NAME = "login";
     private HTMLDivElement element = div().asElement();
 
     @Override
@@ -35,7 +35,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
     }
 
     private void initSimpleLogin() {
-        element.appendChild(LinkToSourceCode.create("login", LoginViewImpl.class).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, LoginViewImpl.class).asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
@@ -54,7 +54,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_1()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_1").asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
@@ -78,7 +78,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_2()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_2").asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
@@ -107,7 +107,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_3()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_3").asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
@@ -131,7 +131,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_4()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_4").asElement());
 
         element.appendChild(Row.create()
                 .appendChild(Column.span4()
@@ -166,7 +166,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_5()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_5").asElement());
 
 
         element.appendChild(Row.create()
@@ -212,7 +212,7 @@ public class LoginViewImpl extends ComponentView<HTMLDivElement> implements Logi
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.login_6()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"login_6").asElement());
     }
 
 

@@ -7,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
-import org.dominokit.domino.timepicker.client.views.CodeResource;
 import org.dominokit.domino.timepicker.client.views.TimePickerView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -33,6 +32,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = TimePickerPresenter.class)
 public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements TimePickerView {
 
+    public static final String MODULE_NAME = "timepicker";
     private HTMLDivElement element = div().asElement();
 
     private Column column = Column.span4()
@@ -42,7 +42,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TIME PICKERS").asElement());
 
         inlined();
@@ -82,7 +82,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                         DomGlobal.console.info(timePicker.getFormattedTime())))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"inlined").asElement());
     }
 
     private void popups() {
@@ -202,7 +202,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"popups").asElement());
     }
 
     private void timeBox() {
@@ -235,7 +235,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"timebox").asElement());
 
     }
 

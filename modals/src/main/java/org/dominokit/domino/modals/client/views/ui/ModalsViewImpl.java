@@ -8,10 +8,8 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase.ComponentRemoveHandler;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.modals.client.presenters.ModalsPresenter;
-import org.dominokit.domino.modals.client.views.CodeResource;
 import org.dominokit.domino.modals.client.views.ModalsView;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.ButtonSize;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -28,6 +26,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements ModalsView {
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
+    public static final String MODULE_NAME = "modals";
     private HTMLDivElement element = div().asElement();
     private ModalDialog openedDialog;
 
@@ -43,7 +42,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("MODALS").asElement());
         initModalsSize();
         initSheets();
@@ -173,7 +172,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                         })
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sheetModals())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"sheetModals")
                 .asElement());
 
     }
@@ -218,7 +217,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalsSize())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"initModalsSize")
                 .asElement());
     }
 
@@ -282,7 +281,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                         .add(tealButton)
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"initModalColor").asElement());
 
     }
 

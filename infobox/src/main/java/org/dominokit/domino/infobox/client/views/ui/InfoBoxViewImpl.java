@@ -1,13 +1,12 @@
 package org.dominokit.domino.infobox.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.infobox.client.presenters.InfoBoxPresenter;
-import org.dominokit.domino.infobox.client.views.CodeResource;
 import org.dominokit.domino.infobox.client.views.InfoBoxView;
-import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.counter.Counter;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -15,12 +14,12 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.infoboxes.InfoBox;
 import org.dominokit.domino.ui.style.Color;
-import elemental2.dom.HTMLDivElement;
 import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = InfoBoxPresenter.class)
 public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements InfoBoxView{
 
+    public static final String MODULE_NAME = "infobox";
     private HTMLDivElement element= Elements.div().asElement();
     private Counter counter;
 
@@ -36,7 +35,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         basicInfoBoxes();
         hoverZoomEffect();
         rightAligned();
@@ -84,7 +83,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                 });
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"basicInfoBoxes").asElement());
     }
 
     private void hoverZoomEffect() {
@@ -124,7 +123,7 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"hoverZoomEffect").asElement());
     }
 
     private void rightAligned() {
@@ -176,6 +175,6 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"rightAligned").asElement());
     }
 }

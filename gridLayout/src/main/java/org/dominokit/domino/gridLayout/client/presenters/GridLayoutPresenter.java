@@ -6,8 +6,6 @@ import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.gridLayout.client.views.GridLayoutView;
-import org.dominokit.domino.api.shared.extension.MainDominoEvent;
-import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.dominokit.domino.layouts.shared.extension.LayoutsEvent;
 import org.dominokit.domino.layouts.shared.extension.LayoutsEventContext;
 import org.slf4j.Logger;

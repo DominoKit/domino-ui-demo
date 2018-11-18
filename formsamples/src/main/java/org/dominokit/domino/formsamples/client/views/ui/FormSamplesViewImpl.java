@@ -1,6 +1,6 @@
 package org.dominokit.domino.formsamples.client.views.ui;
 
-import com.google.gwt.core.client.Scheduler;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -2045,7 +2045,7 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
     @Override
     public void init() {
 
-        Scheduler.get().scheduleDeferred(() -> {
+        DomGlobal.setTimeout(p0 -> {
             this.corporateProfile = CorporateProfile.MAPPER.read(PROFILE_JSON);
             this.countries = Countries.MAPPER.read(COUNTRIES_JSON).getCountries();
             this.beneficiaries = Arrays.asList(Beneficiary.MAPPER.readArray(BENEFICIARIES_JSON.replace("countryIsoCode", "countryISOCode"), Beneficiary[]::new));
@@ -2054,7 +2054,7 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
 
             reBuildForm();
 
-        });
+        }, 50);
     }
 
     private void reBuildForm() {

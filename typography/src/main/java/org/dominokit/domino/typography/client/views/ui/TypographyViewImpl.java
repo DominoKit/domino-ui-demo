@@ -7,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.Constants;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
-import org.dominokit.domino.typography.client.views.CodeResource;
 import org.dominokit.domino.typography.client.views.TypographyView;
 import org.dominokit.domino.ui.Typography.Blockquote;
 import org.dominokit.domino.ui.Typography.Paragraph;
@@ -23,6 +22,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TypographyPresenter.class)
 public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements TypographyView {
+    public static final String MODULE_NAME = "typography";
     private final HTMLDivElement element = div().asElement();
 
     @Override
@@ -32,7 +32,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("typography", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TYPOGRAPHY").asElement());
 
         bodyCopy();
@@ -108,7 +108,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )).asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"lists").asElement());
     }
 
     private void bodyCopy() {
@@ -118,7 +118,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(p().textContent(Constants.SMALL_PARAGRAPH)).asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"bodyCopy").asElement());
     }
 
     private void fontSizes() {
@@ -141,7 +141,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_6).textContent("font-6")))
                         )).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"fontSizes").asElement());
 
     }
 
@@ -162,7 +162,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"heading").asElement());
     }
 
     private void textStyles() {
@@ -230,7 +230,7 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"textStyles").asElement());
     }
 
     private void blockqoute() {
@@ -247,6 +247,6 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         .reverse()
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"blockqoute").asElement());
     }
 }

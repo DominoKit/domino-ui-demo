@@ -1,6 +1,8 @@
 package org.dominokit.domino.formsamples.client.views.ui;
 
-import com.google.gwt.i18n.client.NumberFormat;
+import elemental2.core.JsNumber;
+import jsinterop.base.Js;
+import jsinterop.base.JsPropertyMap;
 import org.dominokit.domino.formsamples.shared.model.CurrencyData;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
@@ -36,7 +38,10 @@ public class CurrenciesComponent {
             String value = amountField.getValue();
             String currencyCode = option.getKey();
             double amount = parseAmount(oldCurrencyCode, value);
-            String formattedAmount = NumberFormat.getCurrencyFormat(currencyCode).format(amount);
+            JsPropertyMap<String> options= Js.uncheckedCast(JsPropertyMap.of());
+            options.set("style", "currency");
+            options.set("currency", currencyCode);
+            String formattedAmount = new JsNumber(amount).toLocaleString("en", options);
             amountField.setValue(formattedAmount);
             this.oldCurrencyCode = option.getKey();
         }
@@ -44,7 +49,8 @@ public class CurrenciesComponent {
 
     private double parseAmount(String currencyCode, String amount) {
         try {
-            return NumberFormat.getCurrencyFormat(currencyCode).parse(amount);
+            // TODO find a better way to do this
+            return JsNumber.parseFloat(amount);
         } catch (Exception ex) {
             return Double.parseDouble(amount);
         }

@@ -1,9 +1,5 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -11,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
-import org.dominokit.domino.datatable.client.views.CodeResource;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.model.*;
 import org.dominokit.domino.ui.badges.Badge;
@@ -35,6 +30,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.rest.shared.RestfulRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,12 +41,13 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = DatatablePresenter.class)
 public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
 
+    public static final String MODULE_NAME = "datatable";
     private HTMLDivElement element = div().asElement();
     private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
                 .appendChild(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
                         .attr("target", "_blank")
@@ -70,29 +67,21 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         scrollableTable();
         topPanelPlugin();
         allInOne();
-        try {
-            CodeResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
-                @Override
-                public void onError(ResourceException e) {
-                    DomGlobal.console.error("could not load json", e);
-                }
-
-                @Override
-                public void onSuccess(TextResource resource) {
-                    ContactList contactList = ContactList.MAPPER.read(resource.getText());
+        RestfulRequest.get("https://raw.githubusercontent.com/DominoKit/domino-ui-demo/master/" + MODULE_NAME + "/src/main/java/org/dominokit/domino/" + MODULE_NAME + "/client/views/generated.json")
+                .onSuccess(response -> {
+                    ContactList contactList = ContactList.MAPPER.read(response.getBodyAsString());
                     contactListParseHandlers.forEach(contactListParseHandler ->
                             contactListParseHandler.onContactsParsed(contactList.getContacts()));
-                }
-            });
-        } catch (ResourceException e) {
-            DomGlobal.console.error("could not load json", e);
-        }
+                }).send();
+
     }
 
 
     private void basicTable() {
         TableConfig<Contact> tableConfig = createBasicTableConfig();
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<Contact>()
+                .setAutoSort(true)
+                .setRecordsSorter(new ContactSorter());
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
@@ -106,7 +95,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "basicTable").asElement());
     }
 
     private void basicFixedTable() {
@@ -173,7 +162,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fixedBasicTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "fixedBasicTable").asElement());
     }
 
     private List<Contact> subList(List<Contact> contacts) {
@@ -223,7 +212,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             multiSelectionTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "selectionPlugin").asElement());
     }
 
     private void markerPlugin() {
@@ -243,7 +232,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "markerPlugin").asElement());
     }
 
     private void recordDetailsPlugin() {
@@ -263,7 +252,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "recordDetailsPlugin").asElement());
     }
 
     private void tableHeaderBarPlugin() {
@@ -316,7 +305,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.headerBarPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "headerBarPlugin").asElement());
     }
 
     private void sortAndSearch() {
@@ -350,7 +339,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "sortAndSearch").asElement());
     }
 
     private void simplePagination() {
@@ -375,7 +364,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "simplePagination").asElement());
     }
 
     private void scrollingPagination() {
@@ -400,7 +389,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "scrollingPagination").asElement());
     }
 
     private void advancedPagination() {
@@ -425,7 +414,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "advancedPagination").asElement());
     }
 
     private TableConfig<Contact> createSortableTableConfig() {
@@ -613,7 +602,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollLoading()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "scrollLoading").asElement());
 
     }
 
@@ -710,7 +699,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "topPanelPlugin").asElement());
 
     }
 
@@ -855,7 +844,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "allInOne").asElement());
     }
 
     public interface ContactListParseHandler {

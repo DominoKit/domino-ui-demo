@@ -20,6 +20,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = ColorsPresenter.class)
 public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements ColorsView {
 
+    public static final String MODULE_NAME = "colors";
     private HTMLDivElement element = div().asElement();
 
     @Override
@@ -29,7 +30,7 @@ public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements Col
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("colors", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("COLORS").asElement());
 
         element.appendChild(Card.create("MATERIAL DESIGN COLORS", "Taken by Google's Material Design Color page which link is ")

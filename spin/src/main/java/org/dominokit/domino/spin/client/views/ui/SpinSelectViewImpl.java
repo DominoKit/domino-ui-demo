@@ -3,9 +3,9 @@ package org.dominokit.domino.spin.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
+import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.spin.client.presenters.SpinSelectPresenter;
-import org.dominokit.domino.spin.client.views.CodeResource;
 import org.dominokit.domino.spin.client.views.SpinSelectView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -25,10 +25,12 @@ import static org.jboss.gwt.elemento.core.Elements.img;
 @UiView(presentable = SpinSelectPresenter.class)
 public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements SpinSelectView {
 
+    public static final String MODULE_NAME = "spin";
     private HTMLDivElement element = div().asElement();
 
     @Override
     public void init() {
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("SPIN").asElement());
         horizontalSpin();
         verticalSpin();
@@ -81,7 +83,7 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                                 ))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSpin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"horizontalSpin").asElement());
     }
 
     private void verticalSpin() {
@@ -135,7 +137,7 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                                 ))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"verticalSpin").asElement());
     }
 
     @Override

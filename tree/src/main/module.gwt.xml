@@ -5,8 +5,5 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.tree.client.TreeClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
 
 </module>

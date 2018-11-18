@@ -10,7 +10,6 @@ import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
 import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsPresenter;
 import org.dominokit.domino.advancedforms.client.views.AdvancedFormsView;
-import org.dominokit.domino.advancedforms.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -42,6 +41,7 @@ import static org.jboss.gwt.elemento.core.Elements.br;
 public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> implements AdvancedFormsView {
 
     private static final String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
+    public static final String MODULE_NAME = "advanced-forms";
     private HTMLDivElement element = Elements.div().asElement();
     private Card uploadCard;
     private Card tagsInputCard;
@@ -54,7 +54,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, AdvancedFormsViewImpl.class).asElement());
         element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").asElement());
 
         uploadCard = Card.create("FILE UPLOAD - DRAG & DROP OR WITH CLICK & CHOOSE");
@@ -66,11 +66,11 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
         initSuggestBoxExample();
 
         element.appendChild(uploadCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"upload-example").asElement());
         element.appendChild(tagsInputCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tagsExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"tags-example").asElement());
         element.appendChild(suggestBoxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.suggestBoxExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"suggest-box-example").asElement());
     }
 
     private void initFileUploadExample() {

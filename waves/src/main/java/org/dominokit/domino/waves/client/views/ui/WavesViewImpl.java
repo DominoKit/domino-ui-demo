@@ -17,7 +17,6 @@ import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.style.WaveColor;
 import org.dominokit.domino.waves.client.presenters.WavesPresenter;
-import org.dominokit.domino.waves.client.views.CodeResource;
 import org.dominokit.domino.waves.client.views.WavesView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
@@ -25,11 +24,12 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = WavesPresenter.class)
 public class WavesViewImpl extends ComponentView<HTMLDivElement> implements WavesView {
 
-	private HTMLDivElement element = div().asElement();
+    public static final String MODULE_NAME = "waves";
+    private HTMLDivElement element = div().asElement();
 
 	@Override
 	public void init() {
-		element.appendChild(LinkToSourceCode.create("waves", this.getClass()).asElement());
+		element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
 		element.appendChild(BlockHeader.create("WAVES", "Click effect inspired by Google's Material Design")
 				.asElement());
 
@@ -305,7 +305,7 @@ public class WavesViewImpl extends ComponentView<HTMLDivElement> implements Wave
 										))))
 				.asElement());
 
-		element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.waves()).asElement());
+		element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"waves").asElement());
 	}
 
 	@Override

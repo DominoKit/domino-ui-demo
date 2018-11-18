@@ -7,9 +7,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.datepicker.client.presenters.DatePickerPresenter;
-import org.dominokit.domino.datepicker.client.views.CodeResource;
 import org.dominokit.domino.datepicker.client.views.DatePickerView;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datepicker.DateBox;
@@ -36,6 +34,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = DatePickerPresenter.class)
 public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements DatePickerView {
 
+    public static final String MODULE_NAME = "datepicker";
     private HTMLDivElement element = div().asElement();
     private Column column = Column.span4()
             .centerContent()
@@ -60,7 +59,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("datepicker", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATE PICKERS").asElement());
 
         inlined();
@@ -189,7 +188,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                         }))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"inlined").asElement());
     }
 
     private void popups() {
@@ -342,7 +341,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .addColumn(column.copy().appendChild(greenModalButton)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"popups").asElement());
     }
 
     private void dateBox() {
@@ -373,7 +372,7 @@ public class DatePickerViewImpl extends ComponentView<HTMLDivElement> implements
                         .asElement())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.datebox()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"datebox").asElement());
 
     }
 

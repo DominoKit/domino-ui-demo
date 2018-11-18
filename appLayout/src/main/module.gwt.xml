@@ -5,8 +5,4 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.applayout.client.AppLayoutClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
-
 </module>

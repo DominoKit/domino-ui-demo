@@ -1,10 +1,8 @@
 package org.dominokit.domino.animation.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
 import org.dominokit.domino.animation.client.views.AnimationView;
-import org.dominokit.domino.animation.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -26,6 +24,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = AnimationPresenter.class)
 public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements AnimationView {
 
+    public static final String MODULE_NAME = "animation";
     private HTMLDivElement element = div().asElement();
 
     public AnimationViewImpl() {
@@ -39,7 +38,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("animation", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CSS ANIMATIONS")
                 .appendText("Pure css animations - ")
                 .appendChild(a().attr("href", "https://daneden.github.io/animate.css/")
@@ -349,20 +348,19 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"animation").asElement());
     }
 
     private Card createCard(Transition transition) {
 
         Card animationCard = Card.create().setBackground(Color.BLUE_GREY)
-                .appendChild(img(GWT.getModuleBaseURL() + "/images/animation-bg.jpg").css(Styles.img_responsive));
+                .appendChild(img("static/images/animation-bg.jpg").css(Styles.img_responsive));
 
         Card card = Card.create(transition.getName(), transition.getStyle() + " animation.")
                 .setBodyBackground(Color.LIGHT_BLUE)
                 .setHeaderBackground(Color.BLUE);
 
-        Button animate = Button.createDefault(transition.getName())
-                .large();
+        Button animate = Button.createDefault(transition.getName());
         animate.getClickableElement().addEventListener("click", e ->
                 Animation.create(animationCard)
                         .beforeStart(element -> {/*do something here*/})
@@ -370,8 +368,7 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                         .duration(1000)
                         .animate());
 
-        Button infiniteAnimate = Button.createDefault("INFINITE")
-                .large();
+        Button infiniteAnimate = Button.createDefault("INFINITE");
         infiniteAnimate.getClickableElement().addEventListener("click", e -> {
 
             Animation animation = Animation.create(animationCard)

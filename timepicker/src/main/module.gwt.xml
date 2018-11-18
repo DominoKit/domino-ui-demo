@@ -6,8 +6,5 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.timepicker.client.TimePickerClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
 
 </module>

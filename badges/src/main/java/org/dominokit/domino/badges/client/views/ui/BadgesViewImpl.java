@@ -1,9 +1,9 @@
 package org.dominokit.domino.badges.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.badges.client.presenters.BadgesPresenter;
 import org.dominokit.domino.badges.client.views.BadgesView;
-import org.dominokit.domino.badges.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -14,7 +14,6 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.lists.ListGroup;
-import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
 import org.jboss.gwt.elemento.core.Elements;
 
@@ -22,6 +21,7 @@ import org.jboss.gwt.elemento.core.Elements;
 public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements BadgesView {
 
 
+    public static final String MODULE_NAME = "badges";
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
@@ -32,7 +32,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
     @Override
     public void init() {
 
-        element.appendChild(LinkToSourceCode.create("badges", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BADGES").asElement());
 
         buttonExample();
@@ -68,7 +68,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"buttonExample").asElement());
     }
 
     private void buttonExamplesWithMaterialDesignColors() {
@@ -104,7 +104,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"buttonExamplesWithMaterialDesignColors").asElement());
     }
 
     private void listExample() {
@@ -120,7 +120,7 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                 .appendChild(listGroup)
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"listExample")
                 .asElement());
     }
 

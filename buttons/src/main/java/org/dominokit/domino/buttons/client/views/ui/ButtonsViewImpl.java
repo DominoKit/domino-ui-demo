@@ -1,13 +1,10 @@
 package org.dominokit.domino.buttons.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLHeadingElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.buttons.client.presenters.ButtonsPresenter;
 import org.dominokit.domino.buttons.client.views.ButtonsView;
-import org.dominokit.domino.buttons.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -20,11 +17,14 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.*;
+import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.style.StyleType;
+import org.dominokit.domino.ui.style.Styles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.dominokit.domino.ui.style.Unit.*;
+import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.h;
 
@@ -33,6 +33,7 @@ import static org.jboss.gwt.elemento.core.Elements.h;
 public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements ButtonsView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ButtonsViewImpl.class);
+    public static final String MODULE_NAME = "buttons";
 
     private HTMLDivElement element = div().asElement();
 
@@ -43,35 +44,27 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
 
     @Override
     public void init() {
-        GWT.runAsync(new RunAsyncCallback() {
-            @Override
-            public void onFailure(Throwable reason) {
-                LOGGER.error("Failed to run async Buttons view");
-            }
 
-            @Override
-            public void onSuccess() {
-                element.appendChild(LinkToSourceCode.create("buttons", ButtonsViewImpl.this.getClass()).asElement());
-                element.appendChild(BlockHeader.create("BUTTONS").asElement());
-                initBootstrapButtons();
-                initMaterialDesignButtons();
-                initButtonSizes();
-                initBlockButtons();
-                initDisabledButtons();
-                initButtons();
-                initTextButtons();
-                element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
-                initButtonsBasicGroup();
-                initButtonsToolbar();
-                initSizingGroup();
-                initNestingGroup();
-                initVerticalGroup();
-                element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
-                initSingleDropdownButtons();
-                initSplitButton();
-                initDropDownPosition();
-            }
-        });
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, ButtonsViewImpl.this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("BUTTONS").asElement());
+        initBootstrapButtons();
+        initMaterialDesignButtons();
+        initButtonSizes();
+        initBlockButtons();
+        initDisabledButtons();
+        initButtons();
+        initTextButtons();
+        element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
+        initButtonsBasicGroup();
+        initButtonsToolbar();
+        initSizingGroup();
+        initNestingGroup();
+        initVerticalGroup();
+        element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
+        initSingleDropdownButtons();
+        initSplitButton();
+        initDropDownPosition();
+
 
     }
 
@@ -121,7 +114,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        this.element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDropUp()).asElement());
+        this.element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initDropUp").asElement());
     }
 
     private void initSplitButton() {
@@ -160,7 +153,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .style().setMargin("10px"))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSplitButton()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initSplitButton").asElement());
     }
 
     private void initSingleDropdownButtons() {
@@ -209,7 +202,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .style().setMargin(px.of(5)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initSingleDropdownButtons").asElement());
     }
 
     private void initVerticalGroup() {
@@ -225,7 +218,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .style().setMargin(px.of(5)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initVerticalGroup").asElement());
     }
 
     private void initNestingGroup() {
@@ -286,7 +279,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initNestingGroup()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initNestingGroup").asElement());
     }
 
     private void initSizingGroup() {
@@ -330,7 +323,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                                         .style().setMargin("15px"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSizingGroup()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initSizingGroup").asElement());
     }
 
     private void initButtonsToolbar() {
@@ -399,7 +392,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initButtonsToolbar").asElement());
     }
 
     private void initButtonsBasicGroup() {
@@ -447,7 +440,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120))).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initButtonsBasicGroup").asElement());
     }
 
     private void initTextButtons() {
@@ -489,7 +482,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTextButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initTextIconButtons").asElement());
     }
 
     private void initButtons() {
@@ -595,7 +588,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                                         .style().setMargin(px.of(5))))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIconButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initIconButtons").asElement());
     }
 
     private HTMLHeadingElement heading(String content) {
@@ -636,7 +629,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initDisabledButtons").asElement());
     }
 
     private void initBlockButtons() {
@@ -668,7 +661,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBlockButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initBlockButtons").asElement());
 
     }
 
@@ -767,7 +760,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         })
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonSizes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initButtonSizes").asElement());
 
     }
 
@@ -800,7 +793,7 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initBootstrapButtons").asElement());
     }
 
     private void initMaterialDesignButtons() {
@@ -827,6 +820,6 @@ public class ButtonsViewImpl extends ComponentView<HTMLDivElement> implements Bu
                         .setMinWidth(px.of(120)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "initMaterialDesignButtons").asElement());
     }
 }

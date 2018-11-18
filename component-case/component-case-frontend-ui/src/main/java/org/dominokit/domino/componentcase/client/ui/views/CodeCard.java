@@ -1,9 +1,5 @@
 package org.dominokit.domino.componentcase.client.ui.views;
 
-import com.google.gwt.resources.client.ExternalTextResource;
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.cards.Card;
@@ -12,9 +8,9 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoDom;
+import org.dominokit.rest.shared.RestfulRequest;
 import org.jboss.gwt.elemento.core.InputType;
 
-import static java.util.Objects.isNull;
 import static org.dominokit.domino.ui.code.Code.block;
 import static org.jboss.gwt.elemento.core.Elements.input;
 
@@ -54,25 +50,13 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
         return codeCard;
     }
 
-    public static CodeCard createCodeCard(ExternalTextResource codeResource) {
+    public static CodeCard createCodeCard(String moduleName, String fileName) {
         CodeCard codeCard = new CodeCard();
-        try {
-            codeResource.getText(new ResourceCallback<TextResource>() {
-                @Override
-                public void onError(ResourceException e) {
-                    DomGlobal.console.error("could not load code from external resource", e);
-                }
-
-                @Override
-                public void onSuccess(TextResource resource) {
-                    codeCard.codeBlock.setCode(resource.getText());
-                    codeCard.code = resource.getText();
-                }
-            });
-        } catch (ResourceException e) {
-            DomGlobal.console.error("could not load code from external resource", e);
-        }
-
+        RestfulRequest.get("https://raw.githubusercontent.com/DominoKit/domino-ui-demo/master/" + moduleName + "/src/main/java/org/dominokit/domino/" + moduleName.replace("-","") + "/client/views/" + fileName + ".txt")
+                .onSuccess(response -> {
+                    codeCard.codeBlock.setCode(response.getBodyAsString());
+                    codeCard.code = response.getBodyAsString();
+                }).send();
 
         return codeCard;
     }

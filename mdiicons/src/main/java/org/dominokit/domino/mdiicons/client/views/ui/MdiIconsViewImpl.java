@@ -1,7 +1,5 @@
 package org.dominokit.domino.mdiicons.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -9,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.mdiicons.client.presenters.MdiIconsPresenter;
-import org.dominokit.domino.mdiicons.client.views.CodeResource;
 import org.dominokit.domino.mdiicons.client.views.MdiIconsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -31,6 +28,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 public class MdiIconsViewImpl extends ComponentView<HTMLDivElement> implements MdiIconsView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MdiIconsViewImpl.class);
+    public static final String MODULE_NAME = "mdiicons";
     private HTMLDivElement element = div().asElement();
     private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").asElement();
     private Card card;
@@ -38,63 +36,55 @@ public class MdiIconsViewImpl extends ComponentView<HTMLDivElement> implements M
     @Override
     public void init() {
 
-        GWT.runAsync(new RunAsyncCallback() {
-            @Override
-            public void onFailure(Throwable reason) {
-                LOGGER.error("failed to run async icons view");
-            }
 
-            @Override
-            public void onSuccess() {
-                element.appendChild(copyInput);
-                element.appendChild(LinkToSourceCode.create("mdiicons", MdiIconsViewImpl.this.getClass()).asElement());
-                element.appendChild(BlockHeader.create("MDI Icons", "Find more about MDI icons at ")
-                        .appendChild(a().attr("href", "https://materialdesignicons.com/")
-                                .attr("target", "_blank")
-                                .textContent("https://materialdesignicons.com/"))
-                        .asElement());
+        element.appendChild(copyInput);
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, MdiIconsViewImpl.this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("MDI Icons", "Find more about MDI icons at ")
+                .appendChild(a().attr("href", "https://materialdesignicons.com/")
+                        .attr("target", "_blank")
+                        .textContent("https://materialdesignicons.com/"))
+                .asElement());
 
-                card = Card.create("MDI ICONS").setCollapsible();
-                element.appendChild(card.asElement());
-                mdiIconsGroup1();
-                mdiIconsGroup2();
-                mdiIconsGroup3();
-                mdiIconsGroup4();
-                mdiIconsGroup5();
-                mdiIconsGroup6();
-                mdiIconsGroup7();
-                mdiIconsGroup8();
-                mdiIconsGroup9();
-                mdiIconsGroup10();
-                mdiIconsGroup11();
-                mdiIconsGroup12();
-                mdiIconsGroup13();
-                mdiIconsGroup14();
-                mdiIconsGroup15();
-                mdiIconsGroup16();
-                mdiIconsGroup17();
-                mdiIconsGroup18();
-                mdiIconsGroup19();
-                mdiIconsGroup20();
-                mdiIconsGroup21();
-                mdiIconsGroup22();
-                mdiIconsGroup23();
-                mdiIconsGroup24();
-                mdiIconsGroup25();
-                mdiIconsGroup26();
-                mdiIconsGroup27();
-                mdiIconsGroup28();
-                mdiIconsGroup29();
-                mdiIconsGroup30();
-                mdiIconsGroup31();
-                mdiIconsGroup32();
-                mdiIconsGroup33();
-                mdiIconsGroup34();
-                mdiIconsGroup35();
+        card = Card.create("MDI ICONS").setCollapsible();
+        element.appendChild(card.asElement());
+        mdiIconsGroup1();
+        mdiIconsGroup2();
+        mdiIconsGroup3();
+        mdiIconsGroup4();
+        mdiIconsGroup5();
+        mdiIconsGroup6();
+        mdiIconsGroup7();
+        mdiIconsGroup8();
+        mdiIconsGroup9();
+        mdiIconsGroup10();
+        mdiIconsGroup11();
+        mdiIconsGroup12();
+        mdiIconsGroup13();
+        mdiIconsGroup14();
+        mdiIconsGroup15();
+        mdiIconsGroup16();
+        mdiIconsGroup17();
+        mdiIconsGroup18();
+        mdiIconsGroup19();
+        mdiIconsGroup20();
+        mdiIconsGroup21();
+        mdiIconsGroup22();
+        mdiIconsGroup23();
+        mdiIconsGroup24();
+        mdiIconsGroup25();
+        mdiIconsGroup26();
+        mdiIconsGroup27();
+        mdiIconsGroup28();
+        mdiIconsGroup29();
+        mdiIconsGroup30();
+        mdiIconsGroup31();
+        mdiIconsGroup32();
+        mdiIconsGroup33();
+        mdiIconsGroup34();
+        mdiIconsGroup35();
 
-                mdiEffects();
-            }
-        });
+        mdiEffects();
+
 
     }
 
@@ -194,7 +184,7 @@ public class MdiIconsViewImpl extends ComponentView<HTMLDivElement> implements M
                 .setCollapsible()
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFeatures()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "advancedFeatures").asElement());
     }
 
     private void mdiIconsGroup1() {

@@ -1,14 +1,13 @@
 package org.dominokit.domino.componentcase.client.ui.views;
 
+import elemental2.dom.DomGlobal;
+import elemental2.dom.HTMLElement;
+import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.componentcase.client.presenters.ComponentCasePresenter;
 import org.dominokit.domino.componentcase.client.views.ComponentCaseView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
-import org.dominokit.domino.componentcase.client.views.ComponentCaseView;
 
 import static java.util.Objects.nonNull;
 

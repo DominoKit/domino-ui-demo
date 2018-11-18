@@ -7,7 +7,6 @@ import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
 import org.dominokit.domino.formsamples.shared.model.DraftsItem;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
@@ -22,9 +21,7 @@ import org.dominokit.domino.ui.style.Styles;
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.NUMBERS_ONLY;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.i;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 public class DraftsPart implements ImportSection {
 

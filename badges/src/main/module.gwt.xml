@@ -4,8 +4,4 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.badges.client.BadgesClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
-
 </module>

@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.dialogs.client.presenters.DialogsPresenter;
-import org.dominokit.domino.dialogs.client.views.CodeResource;
 import org.dominokit.domino.dialogs.client.views.DialogsView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Animation;
@@ -31,11 +30,12 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = DialogsPresenter.class)
 public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements DialogsView {
 
+    public static final String MODULE_NAME = "dialogs";
     private HTMLDivElement element = div().asElement();
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DIALOGS").asElement());
 
         MessageDialog basicMessage = MessageDialog.createMessage("Here's a message!",
@@ -144,7 +144,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"dialogs").asElement());
     }
 
     private Button createDemoButton(MessageDialog dialog) {

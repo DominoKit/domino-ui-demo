@@ -1,11 +1,11 @@
 package org.dominokit.domino.setup.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.setup.client.views.SetupView;
-import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.setup.client.presenters.SetupPresenter;
+import org.dominokit.domino.setup.client.views.SetupView;
 import org.dominokit.domino.ui.header.BlockHeader;
 
 import static org.jboss.gwt.elemento.core.Elements.div;

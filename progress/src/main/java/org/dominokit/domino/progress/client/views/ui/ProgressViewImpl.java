@@ -1,6 +1,5 @@
 package org.dominokit.domino.progress.client.views.ui;
 
-import com.google.gwt.user.client.Timer;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -9,19 +8,20 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.progress.client.presenters.ProgressPresenter;
-import org.dominokit.domino.progress.client.views.CodeResource;
 import org.dominokit.domino.progress.client.views.ProgressView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
 import org.dominokit.domino.ui.style.Color;
+import org.gwtproject.timer.client.Timer;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = ProgressPresenter.class)
 public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements ProgressView {
 
+    public static final String MODULE_NAME = "progress";
     private HTMLDivElement element = div().asElement();
     private ProgressBar movingBar;
     private int animationFrame = 0;
@@ -34,7 +34,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("progress", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PROGRESS BARS").asElement());
 
         basicSample();
@@ -83,7 +83,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"basicSample").asElement());
     }
 
     private void contextualAlternatives() {
@@ -110,7 +110,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"contextualAlternatives").asElement());
     }
 
     private void stripedSample() {
@@ -137,7 +137,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"stripedSample").asElement());
     }
 
     private void animatedSample() {
@@ -164,7 +164,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"animatedSample").asElement());
     }
 
     private void stackedSample() {
@@ -184,7 +184,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"stackedSample").asElement());
     }
 
     private void materialDesignColors() {
@@ -212,7 +212,7 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(40)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"materialDesignColors").asElement());
     }
 
     @Override

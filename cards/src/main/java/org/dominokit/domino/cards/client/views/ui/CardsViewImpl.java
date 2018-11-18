@@ -2,11 +2,9 @@ package org.dominokit.domino.cards.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.cards.client.presenters.CardsPresenter;
 import org.dominokit.domino.cards.client.views.CardsView;
-import org.dominokit.domino.cards.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -23,6 +21,7 @@ import org.jboss.gwt.elemento.core.Elements;
 public class CardsViewImpl extends ComponentView<HTMLDivElement> implements CardsView {
 
     private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
+    public static final String MODULE_NAME = "cards";
 
     private HTMLDivElement element = Elements.div().asElement();
 
@@ -34,7 +33,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
         noHeaderCards();
     }
     private void cardsWithHeaders() {
-        element.appendChild(LinkToSourceCode.create("cards", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").asElement());
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -58,7 +57,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                                 .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"cardsWithHeaders").asElement());
     }
 
     private void coloredCards() {
@@ -121,7 +120,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"coloredCards").asElement());
     }
 
     private void collapsibleCards() {
@@ -152,7 +151,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"collapsibleCards").asElement());
     }
 
     private void noHeaderCards() {
@@ -168,7 +167,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
                         .setBackground(Color.PURPLE).appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"noHeaderCards").asElement());
     }
 
     @Override

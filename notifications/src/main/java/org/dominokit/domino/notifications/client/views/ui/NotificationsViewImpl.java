@@ -1,11 +1,11 @@
 package org.dominokit.domino.notifications.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.notifications.client.presenters.NotificationsPresenter;
-import org.dominokit.domino.notifications.client.views.CodeResource;
 import org.dominokit.domino.notifications.client.views.NotificationsView;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.button.Button;
@@ -14,7 +14,6 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
-import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
@@ -23,6 +22,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = NotificationsPresenter.class)
 public class NotificationsViewImpl extends ComponentView<HTMLDivElement> implements NotificationsView {
 
+    public static final String MODULE_NAME = "notifications";
     private HTMLDivElement element = div().asElement();
 
     @Override
@@ -33,7 +33,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
     @Override
     public void init() {
 
-        element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendChild(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
                         .attr("target", "_blank")
@@ -97,7 +97,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"notificationsPosition")
                 .asElement());
     }
 
@@ -137,7 +137,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"notificationsTypes")
         .asElement());
 
     }
@@ -248,7 +248,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"withMaterialColors")
                 .asElement());
 
     }
@@ -478,7 +478,7 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"withAnimation")
                 .asElement());
     }
 }

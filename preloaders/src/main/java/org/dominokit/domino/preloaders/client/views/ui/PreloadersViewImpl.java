@@ -1,23 +1,23 @@
 package org.dominokit.domino.preloaders.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.preloaders.client.views.CodeResource;
-import org.dominokit.domino.preloaders.client.views.PreloadersView;
-import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.preloaders.client.presenters.PreloadersPresenter;
+import org.dominokit.domino.preloaders.client.views.PreloadersView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.preloaders.Preloader;
 import org.dominokit.domino.ui.style.Color;
-import elemental2.dom.HTMLDivElement;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = PreloadersPresenter.class)
 public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements PreloadersView {
 
+    public static final String MODULE_NAME = "preloaders";
     private HTMLDivElement element = div().asElement();
 
     @Override
@@ -27,7 +27,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PRELOADERS").asElement());
 
         sizesSample();
@@ -49,7 +49,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setSize(Preloader.Size.xSmall)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"sizesSample").asElement());
     }
 
     private void colorsSample() {
@@ -82,7 +82,7 @@ public class PreloadersViewImpl extends ComponentView<HTMLDivElement> implements
                                 .setColor(Color.INDIGO)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"colorsSample").asElement());
 
     }
 }

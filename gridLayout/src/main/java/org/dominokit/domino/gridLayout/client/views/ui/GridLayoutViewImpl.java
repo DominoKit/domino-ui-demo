@@ -21,11 +21,12 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = GridLayoutPresenter.class)
 public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements GridLayoutView {
 
+    public static final String MODULE_NAME = "gridLayout";
     private HTMLDivElement element = div().asElement();
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").asElement());
         initLayoutSamples();
     }

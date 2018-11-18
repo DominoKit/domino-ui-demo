@@ -7,7 +7,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.loaders.client.presenters.LoadersPresenter;
-import org.dominokit.domino.loaders.client.views.CodeResource;
 import org.dominokit.domino.loaders.client.views.LoadersView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -24,6 +23,7 @@ import org.jboss.gwt.elemento.core.Elements;
 @UiView(presentable = LoadersPresenter.class)
 public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements LoadersView {
     private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
+    public static final String MODULE_NAME = "loaders";
 
     private HTMLDivElement element = Elements.div().asElement();
 
@@ -34,7 +34,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("loaders", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").asElement());
 
         element.appendChild(Row.create()
@@ -74,7 +74,7 @@ public class LoadersViewImpl extends ComponentView<HTMLDivElement> implements Lo
                         .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.loadersSample())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"loadersSample")
                 .asElement());
 
     }

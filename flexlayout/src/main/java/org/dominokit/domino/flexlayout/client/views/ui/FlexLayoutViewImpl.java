@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutPresenter;
-import org.dominokit.domino.flexlayout.client.views.CodeResource;
 import org.dominokit.domino.flexlayout.client.views.FlexLayoutView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -34,13 +33,14 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = FlexLayoutPresenter.class)
 public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements FlexLayoutView {
 
+    public static final String MODULE_NAME = "flexlayout";
     private HTMLDivElement element = div().asElement();
     private Card layoutPlaygroundCard;
     private Card flexItemsCard;
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("FLEX LAYOUT").asElement());
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
                 .style("color: #666;")
@@ -57,9 +57,9 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
         initFlexItems();
 
         element.appendChild(layoutPlaygroundCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.layoutPlayground()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"layoutPlayground").asElement());
         element.appendChild(flexItemsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.flexItems()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"flexItems").asElement());
     }
 
     private void initLayoutPlayground() {

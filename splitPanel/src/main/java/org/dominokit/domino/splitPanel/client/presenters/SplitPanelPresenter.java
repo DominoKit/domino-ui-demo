@@ -8,8 +8,6 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.layouts.shared.extension.LayoutsEvent;
 import org.dominokit.domino.layouts.shared.extension.LayoutsEventContext;
 import org.dominokit.domino.splitPanel.client.views.SplitPanelView;
-import org.dominokit.domino.api.shared.extension.MainDominoEvent;
-import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

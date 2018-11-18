@@ -8,8 +8,6 @@ import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseContext;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.mdiicons.client.views.MdiIconsView;
-import org.dominokit.domino.api.shared.extension.MainDominoEvent;
-import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

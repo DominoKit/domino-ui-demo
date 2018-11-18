@@ -6,7 +6,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.labels.client.presenters.LabelsPresenter;
-import org.dominokit.domino.labels.client.views.CodeResource;
 import org.dominokit.domino.labels.client.views.LabelsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -19,6 +18,7 @@ import org.jboss.gwt.elemento.core.Elements;
 @UiView(presentable = LabelsPresenter.class)
 public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements LabelsView {
 
+    public static final String MODULE_NAME = "labels";
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
@@ -28,7 +28,7 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("LABELS").asElement());
         initLabels();
         initMaterialLabels();
@@ -77,7 +77,7 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                                 .style().setMargin("10px"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"initMaterialLabels").asElement());
     }
 
     private void initLabels() {
@@ -119,6 +119,6 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                 .asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"initLabels").asElement());
     }
 }

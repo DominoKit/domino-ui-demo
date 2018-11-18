@@ -3,7 +3,6 @@ package org.dominokit.domino.alerts.client.views.ui;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.alerts.client.presenters.AlertsPresenter;
 import org.dominokit.domino.alerts.client.views.AlertsView;
-import org.dominokit.domino.alerts.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -20,6 +19,7 @@ import static org.jboss.gwt.elemento.core.Elements.a;
 @UiView(presentable = AlertsPresenter.class)
 public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements AlertsView {
 
+    public static final String MODULE_NAME = "alerts";
     private HTMLDivElement element = Elements.div().asElement();
 
     public AlertsViewImpl() {
@@ -33,7 +33,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, AlertsViewImpl.class).asElement());
         element.appendChild(BlockHeader.create("Alerts")
                 .asElement());
 
@@ -51,7 +51,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                 .appendChild(Alert.error().appendChild(Strong.of("Oh snap! ")).appendChild("Change a few things up and try submitting again."))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"basicAlerts").asElement());
     }
 
     private void customBackground() {
@@ -68,7 +68,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id"))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.customBackgrounds())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"customBackgrounds")
                 .asElement());
 
     }
@@ -90,7 +90,7 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .dismissible())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"dismissibleAlerts").asElement());
     }
 
     private void linksInAlerts() {
@@ -117,6 +117,6 @@ public class AlertsViewImpl extends ComponentView<HTMLDivElement> implements Ale
                         .appendChild(a().add("alert link.").asElement()))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"linksInAlerts").asElement());
     }
 }

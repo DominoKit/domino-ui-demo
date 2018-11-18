@@ -1,6 +1,5 @@
 package org.dominokit.domino.applayout.client.views.ui;
 
-import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.applayout.client.presenters.AppLayoutPresenter;
@@ -35,13 +34,13 @@ public class AppLayoutViewImpl extends ComponentView<HTMLDivElement> implements 
                 .addColumn(Column.span6()
                         .appendChild(Card.create()
                                 .appendChild(Thumbnail.create()
-                                        .setContent(img(GWT.getModuleBaseURL() + "images/layout/layout-1.png")
+                                        .setContent(img("static/images/layout/layout-1.png")
                                                 .css(Styles.img_responsive)
                                                 .asElement()))))
                 .addColumn(Column.span6()
                         .appendChild(Card.create()
                                 .appendChild(Thumbnail.create()
-                                        .setContent(img(GWT.getModuleBaseURL() + "images/layout/layout-2.png")
+                                        .setContent(img("static/images/layout/layout-2.png")
                                                 .css(Styles.img_responsive)
                                                 .asElement()))))
                 .asElement());

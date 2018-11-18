@@ -5,12 +5,9 @@ import org.dominokit.domino.api.client.annotations.Presenter;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCaseEvent;
 import org.dominokit.domino.components.shared.extension.ComponentsContext;
 import org.dominokit.domino.components.shared.extension.ComponentsEvent;
 import org.dominokit.domino.spin.client.views.SpinSelectView;
-import org.dominokit.domino.api.shared.extension.MainDominoEvent;
-import org.dominokit.domino.api.shared.extension.MainEventContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

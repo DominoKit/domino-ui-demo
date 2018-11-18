@@ -3,7 +3,4 @@
     <inherits name="com.google.gwt.user.User"/>
     <source path=""/>
 
-    <entry-point class="org.dominokit.domino.layout.client.LayoutUIClientModule"/>
-
-    <set-configuration-property name="CssResource.enableGss" value="true"/>
 </module>

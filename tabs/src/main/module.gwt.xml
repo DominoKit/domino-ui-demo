@@ -5,8 +5,5 @@
 
   <source path="" />
 
-  <entry-point class="org.dominokit.domino.tabs.client.TabsClientModule" />
-
-  <set-configuration-property name="CssResource.enableGss" value="true"/>
 
 </module>

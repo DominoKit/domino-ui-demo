@@ -1,6 +1,5 @@
 package org.dominokit.domino.formsamples.client.views.ui.section;
 
-import com.google.gwt.i18n.client.DateTimeFormat;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
@@ -11,6 +10,7 @@ import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
+import org.gwtproject.i18n.client.DateTimeFormat;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.DATE_PATTERN;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;

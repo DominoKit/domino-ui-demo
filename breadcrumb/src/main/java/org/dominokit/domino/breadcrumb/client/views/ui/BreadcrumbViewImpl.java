@@ -4,7 +4,6 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.breadcrumb.client.presenters.BreadcrumbPresenter;
 import org.dominokit.domino.breadcrumb.client.views.BreadcrumbView;
-import org.dominokit.domino.breadcrumb.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
@@ -20,6 +19,7 @@ import org.jboss.gwt.elemento.core.Elements;
 @UiView(presentable = BreadcrumbPresenter.class)
 public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements BreadcrumbView {
 
+    public static final String MODULE_NAME = "breadcrumb";
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
@@ -38,7 +38,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void basicBreadcrumb() {
-        element.appendChild(LinkToSourceCode.create("breadcrumb", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(Row.create()
                 .addColumn(Column.span6()
                         .appendChild(Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
@@ -80,7 +80,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                         ))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "basicBreadcrumb")
                 .asElement());
     }
 
@@ -175,7 +175,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "coloredBreadcrumb")
                 .asElement());
     }
 
@@ -270,7 +270,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "breadcrumbWithBackground")
                 .asElement());
     }
 
@@ -307,7 +307,7 @@ public class BreadcrumbViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.alignment())
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME, "alignment")
                 .asElement());
 
     }

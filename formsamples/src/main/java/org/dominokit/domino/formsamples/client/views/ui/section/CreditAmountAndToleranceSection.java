@@ -1,6 +1,6 @@
 package org.dominokit.domino.formsamples.client.views.ui.section;
 
-import com.google.gwt.i18n.client.NumberFormat;
+import elemental2.core.JsNumber;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.client.views.ui.CurrenciesComponent;
@@ -13,11 +13,11 @@ import org.dominokit.domino.ui.forms.CheckBox;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.utils.ElementUtil;
-import org.dominokit.domino.ui.forms.validations.ValidationResult;
 
 import java.util.List;
 
@@ -133,8 +133,7 @@ public class CreditAmountAndToleranceSection implements ImportSection {
         }
         LcAmount lcAmount = new LcAmount();
         lcAmount.setCurrency(currencySelect.getValue().getCurrencyCode());
-        double amount = NumberFormat.getCurrencyFormat(lcAmount.getCurrency())
-                .parse(amountFieldTextBox.getValue());
+        double amount = JsNumber.parseFloat(amountFieldTextBox.getValue());
         lcAmount.setValue(amount);
         creditAmount.setLcAmount(lcAmount);
     }

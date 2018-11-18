@@ -1,12 +1,12 @@
 package org.dominokit.domino.popover.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.popover.client.views.CodeResource;
-import org.dominokit.domino.popover.client.views.PopoverView;
-import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.popover.client.presenters.PopoverPresenter;
+import org.dominokit.domino.popover.client.views.PopoverView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -16,19 +16,18 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.popover.Tooltip;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = PopoverPresenter.class)
 public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements PopoverView {
 
+    public static final String MODULE_NAME = "popover";
     private HTMLDivElement element = div().asElement();
 
     @Override
     public void init() {
-        element.appendChild(LinkToSourceCode.create("popover", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create(MODULE_NAME, this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TOOLTIPS & POPOVER").asElement());
 
         tooltips();
@@ -70,7 +69,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"tooltips").asElement());
     }
 
     private void popover() {
@@ -106,7 +105,7 @@ public class PopoverViewImpl extends ComponentView<HTMLDivElement> implements Po
                                 .appendChild(popover_on_left)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popover()).asElement());
+        element.appendChild(CodeCard.createCodeCard(MODULE_NAME,"popover").asElement());
     }
 
     @Override
