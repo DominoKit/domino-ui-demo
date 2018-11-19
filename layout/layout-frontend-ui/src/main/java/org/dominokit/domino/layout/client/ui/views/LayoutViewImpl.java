@@ -31,7 +31,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @UiView(presentable = LayoutPresenter.class)
 public class LayoutViewImpl implements LayoutView {
 
-    private Layout layout = new Layout().setTitle("Domino UI demo").fixLeftPanelMode();
+    private Layout layout = new Layout().setTitle("Domino UI demo");
 
     private Content rightPanelContent;
 
