@@ -7,7 +7,6 @@ import org.dominokit.domino.api.shared.extension.Content;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.menu.client.presenters.MenuPresenter;
 import org.dominokit.domino.menu.client.views.MenuView;
-import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -16,8 +15,6 @@ import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Calc;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.tabs.VerticalTab;
-import org.dominokit.domino.ui.tabs.VerticalTabsPanel;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
 
@@ -25,7 +22,6 @@ import static org.dominokit.domino.menu.shared.extension.MenuContext.CanAddMenuI
 import static org.dominokit.domino.menu.shared.extension.MenuContext.OnMenuSelectedHandler;
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.dominokit.domino.ui.style.Unit.vh;
-import static org.jboss.gwt.elemento.core.Elements.b;
 
 @UiView(presentable = MenuPresenter.class)
 public class MenuViewImpl implements MenuView {
@@ -61,27 +57,7 @@ public class MenuViewImpl implements MenuView {
                 .setHeight(Calc.sub(vh.of(100), px.of(267))).get();
 
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
-//        leftPanel.appendChild(menu.asElement());
-
-        ;
-
-        leftPanel.appendChild(VerticalTabsPanel.create()
-                .textBelowIcon()
-                .setColor(Color.RED)
-                .appendChild(VerticalTab.create("HOME", Icons.ALL.home())
-                        .appendChild(b().textContent("Home Content"))
-                        .appendChild(Paragraph.create("HOME")))
-                .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face())
-                        .appendChild(b().textContent("Profile Content"))
-                        .appendChild(Paragraph.create("PROFILE")))
-                .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.email())
-                        .appendChild(b().textContent("Messages Content"))
-                        .appendChild(Paragraph.create("MESSAGES"))
-                        .activate())
-                .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
-                        .appendChild(b().textContent("Settings Content"))
-                        .appendChild(Paragraph.create("SETTINGS")))
-                .asElement());
+        leftPanel.appendChild(menu.asElement());
 
 
         lockIcon.addClickListener(evt -> {

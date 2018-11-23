@@ -19,12 +19,9 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tabs.Tab;
 import org.dominokit.domino.ui.tabs.TabsPanel;
-import org.dominokit.domino.ui.tabs.VerticalTab;
-import org.dominokit.domino.ui.tabs.VerticalTabsPanel;
 import org.dominokit.domino.ui.utils.DominoElement;
 
-import static org.jboss.gwt.elemento.core.Elements.b;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = TabsPresenter.class)
 public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsView {
@@ -32,7 +29,6 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
     private HTMLDivElement element = div().asElement();
-
     @Override
     public HTMLDivElement getElement() {
         return element;
@@ -43,74 +39,13 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
         element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TABS").asElement());
 
-        verticalTabs();
         basicSample();
         iconsOnly();
-        withIconsAndTextSample();
+        withIconsAndTextSamlple();
         materialDesignColorsSample();
         backgroundSample();
         initDifferentContentSample();
         withAnimation();
-    }
-
-    private void verticalTabs() {
-        element.appendChild(Card.create("EXAMPLE TAB", "Add quick, dynamic tab functionality to transition through panes of local content")
-                .appendChild(VerticalTabsPanel.create()
-                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home())
-                                .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face())
-                                .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.email())
-                                .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
-                                .activate())
-                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
-                                .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                )
-                .asElement());
-
-        element.appendChild(Card.create("EXAMPLE TAB", "Add quick, dynamic tab functionality to transition through panes of local content")
-                .appendChild(VerticalTabsPanel.create()
-                        .textBelowIcon()
-                        .setColor(Color.RED)
-                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home())
-                                .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face())
-                                .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.email())
-                                .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
-                                .activate())
-                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
-                                .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                )
-                .asElement());
-
-        element.appendChild(Card.create("EXAMPLE TAB", "Add quick, dynamic tab functionality to transition through panes of local content")
-                .appendChild(VerticalTabsPanel.create()
-                        .setColor(Color.GREEN)
-                        .appendChild(VerticalTab.create(Icons.ALL.home())
-                                .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create(Icons.ALL.face())
-                                .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(VerticalTab.create( Icons.ALL.email())
-                                .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
-                                .activate())
-                        .appendChild(VerticalTab.create(Icons.ALL.settings())
-                                .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                )
-                .asElement());
-
     }
 
     private void basicSample() {
@@ -157,7 +92,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
     }
 
-    private void withIconsAndTextSample() {
+    private void withIconsAndTextSamlple() {
         element.appendChild(Card.create("TABS WITH ICON TITLE")
                 .appendChild(TabsPanel.create()
                         .appendChild(Tab.create(Icons.ALL.home(), " HOME")
