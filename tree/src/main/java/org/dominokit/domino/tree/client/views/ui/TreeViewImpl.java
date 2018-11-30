@@ -319,7 +319,10 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .addClickListener(evt -> Notification.create("iPhone").show())));
 
 
-        Tree hardwareMenu2 = Tree.create("FILES")
+        TreeItem treeItem = TreeItem.create("File 3", Icons.ALL.description());
+        TreeItem upload = TreeItem.create("Upload", Icons.ALL.cloud_upload());
+        Tree files = Tree.create("FILES");
+        Tree hardwareMenu2 = files
                 .setAutoCollapse(false)
                 .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
                         .appendChild(TreeItem.create("My files", Icons.ALL.folder_special())
@@ -327,7 +330,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                         .addClickListener(evt -> Notification.create("File 1").show()))
                                 .appendChild(TreeItem.create("File 2", Icons.ALL.description())
                                         .addClickListener(evt -> Notification.create("File 2").show()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.description())
+                                .appendChild(treeItem
                                         .addClickListener(evt -> Notification.create("File 3").show()))
                                 .appendChild(TreeItem.create("File 4", Icons.ALL.description())
                                         .addClickListener(evt -> Notification.create("File 4").show()))
@@ -338,7 +341,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                         .appendChild(TreeItem.create("Shared", Icons.ALL.folder_shared()))
                         .appendChild(TreeItem.create("Attachments", Icons.ALL.attachment()))
                 ).appendChild(TreeItem.create("Cloud", Icons.ALL.cloud())
-                        .appendChild(TreeItem.create("Upload", Icons.ALL.cloud_upload()))
+                        .appendChild(upload)
                         .appendChild(TreeItem.create("Download", Icons.ALL.cloud_download()))
                         .appendChild(TreeItem.create("Offline", Icons.ALL.cloud_off()))
                         .appendChild(TreeItem.create("Queue", Icons.ALL.cloud_queue()))
@@ -354,6 +357,13 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(BlockHeader.create("Auto collapse OFF"))
                                 .appendChild(hardwareMenu2))
                 ).asElement());
+
+        treeItem.expand(true);
+        treeItem.activate(true);
+        files.collapseAll();
+        files.deactivateAll();
+        upload.expand(true);
+        upload.activate(true);
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
     }

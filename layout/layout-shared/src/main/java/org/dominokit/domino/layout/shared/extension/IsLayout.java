@@ -33,4 +33,6 @@ public interface IsLayout {
 
     IsLayout fixLeftPanelPosition();
     IsLayout unfixLeftPanelPosition();
+
+    IsLayout setLeftPanelSize(String size);
 }

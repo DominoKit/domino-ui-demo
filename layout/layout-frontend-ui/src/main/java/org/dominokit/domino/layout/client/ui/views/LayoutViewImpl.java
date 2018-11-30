@@ -66,7 +66,6 @@ public class LayoutViewImpl implements LayoutView {
         DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
                 .setBottom(60)
                 .asElement());
-
     }
 
     private Row createFooterRow() {
@@ -216,6 +215,13 @@ public class LayoutViewImpl implements LayoutView {
     @Override
     public IsLayout unfixLeftPanelPosition() {
         layout.unfixLeftPanelPosition();
+        return this;
+    }
+
+    @Override
+    public IsLayout setLeftPanelSize(String size) {
+        Layout.LeftPanelSize leftPanelSize = Layout.LeftPanelSize.valueOf(size);
+        layout.setLeftPanelSize(leftPanelSize);
         return this;
     }
 }

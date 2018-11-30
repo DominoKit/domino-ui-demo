@@ -14,6 +14,7 @@ import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Calc;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
@@ -28,7 +29,6 @@ public class MenuViewImpl implements MenuView {
 
     private Tree menu;
     private Icon lockIcon = Icons.ALL.lock_open()
-            .setColor(Color.GREY)
             .style()
             .setMarginBottom("0px")
             .setMarginTop("0px")
@@ -49,12 +49,13 @@ public class MenuViewImpl implements MenuView {
     @Override
     public void init(IsLayout layout) {
         menu = Tree.create("Demo menu");
+
         menu.getHeader().appendChild(lockIcon.asElement());
 
         menu.enableSearch()
                 .autoExpandFound()
                 .style()
-                .setHeight(Calc.sub(vh.of(100), px.of(267))).get();
+                .setHeight(Calc.sub(vh.of(100), px.of(256))).get();
 
         HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
         leftPanel.appendChild(menu.asElement());
@@ -75,26 +76,36 @@ public class MenuViewImpl implements MenuView {
 
         MediaQuery.addOnXLargeListener(() -> {
             fixLeftPanel(layout);
-            Notification.create("Switched to XLarge screen").show();
+            Notification.create("Switched to XLarge screen")
+                    .setPosition(Notification.TOP_CENTER)
+                    .show();
         });
 
         MediaQuery.addOnLargeListener(() -> {
             fixLeftPanel(layout);
-            Notification.create("Switched to Large screen").show();
+            Notification.create("Switched to Large screen")
+                    .setPosition(Notification.TOP_CENTER)
+                    .show();
         });
         MediaQuery.addOnMediumListener(() -> {
             unfixLeftPanel(layout);
-            Notification.create("Switched to Medium screen").show();
+            Notification.create("Switched to Medium screen")
+                    .setPosition(Notification.TOP_CENTER)
+                    .show();
         });
 
         MediaQuery.addOnSmallListener(() -> {
             unfixLeftPanel(layout);
-            Notification.create("Switched to Small screen").show();
+            Notification.create("Switched to Small screen")
+                    .setPosition(Notification.TOP_CENTER)
+                    .show();
         });
 
         MediaQuery.addOnXSmallListener(() -> {
             unfixLeftPanel(layout);
-            Notification.create("Switched to XSmall screen").show();
+            Notification.create("Switched to XSmall screen")
+                    .setPosition(Notification.TOP_CENTER)
+                    .show();
         });
 
     }

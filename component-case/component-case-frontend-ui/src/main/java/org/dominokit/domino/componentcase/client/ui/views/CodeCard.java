@@ -20,7 +20,8 @@ import static org.jboss.gwt.elemento.core.Elements.input;
 
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
-    private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").asElement();
+    private HTMLInputElement copyInput = input(InputType.textarea)
+            .style("visibility:hidden; width: 0px; height: 0px;").asElement();
     private String code;
     private Code.Block codeBlock = block();
     private Card card = Card.create("Source Code")

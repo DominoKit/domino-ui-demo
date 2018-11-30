@@ -19,9 +19,12 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tabs.Tab;
 import org.dominokit.domino.ui.tabs.TabsPanel;
+import org.dominokit.domino.ui.tabs.VerticalTab;
+import org.dominokit.domino.ui.tabs.VerticalTabsPanel;
 import org.dominokit.domino.ui.utils.DominoElement;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.gwt.elemento.core.Elements.b;
+import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = TabsPresenter.class)
 public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsView {
@@ -29,6 +32,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
     private HTMLDivElement element = div().asElement();
+
     @Override
     public HTMLDivElement getElement() {
         return element;
@@ -46,6 +50,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
         backgroundSample();
         initDifferentContentSample();
         withAnimation();
+        verticalTabs();
     }
 
     private void basicSample() {
@@ -300,5 +305,72 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+    }
+
+    private void verticalTabs() {
+        element.appendChild(Card.create("VERTICAL TABS")
+                .appendChild(Row.create()
+                        .appendChild(Column.span6()
+                                .appendChild(VerticalTabsPanel.create()
+                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
+                                        .appendChild(VerticalTab.create("HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(VerticalTab.create("SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span6()
+                                .appendChild(VerticalTabsPanel.create()
+                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
+                                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home())
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face())
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.message())
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                )
+                        )
+                )
+                .appendChild(Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(VerticalTabsPanel.create()
+                                        .textBelowIcon()
+                                        .setTransition(Transition.FADE_IN)
+                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
+                                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home())
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face())
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.message())
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                )
+                        )
+                )
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).asElement());
     }
 }

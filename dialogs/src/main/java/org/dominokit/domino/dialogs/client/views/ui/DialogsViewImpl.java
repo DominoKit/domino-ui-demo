@@ -111,7 +111,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                                 .appendChild(headerAndMessage)
                                 .appendChild(Paragraph.create("Message with header"))
                                 .appendChild(createDemoButton(headerAndMessage)))
-                        )
+                )
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
                                 .appendChild(successMessage)
@@ -121,7 +121,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                                 .appendChild(errorMessage)
                                 .appendChild(Paragraph.create("Error message"))
                                 .appendChild(createDemoButton(errorMessage)))
-                        )
+                )
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
                                 .appendChild(warningMessage)
@@ -131,7 +131,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                                 .appendChild(customColors)
                                 .appendChild(Paragraph.create("Custom colors"))
                                 .appendChild(createDemoButton(customColors)))
-                        )
+                )
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
                                 .appendChild(customHeaderContent)
@@ -141,7 +141,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                                 .appendChild(customContent)
                                 .appendChild(Paragraph.create("Custom content"))
                                 .appendChild(createDemoButton(customContent)))
-                        )
+                )
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());

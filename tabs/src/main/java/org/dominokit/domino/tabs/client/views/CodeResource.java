@@ -28,4 +28,8 @@ public interface CodeResource extends ClientBundle{
 
     @Source("differentContentContainerSample.txt")
     ExternalTextResource differentContentContainerSample();
+
+    @Source("verticalTabs.txt")
+    ExternalTextResource verticalTabs();
+
 }
