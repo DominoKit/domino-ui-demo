@@ -1,4 +1,3 @@
 {
-  "http.port": 8080,
-  "remote.logger": "org.dominokit.domino.remote.logging.DeobfuscatorRemoteLogger"
+  "http.port": 8080
 }
