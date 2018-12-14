@@ -116,7 +116,16 @@ tableConfig
                     .appendChild(SelectOption.create("brown", "Brown"))
                     .appendChild(SelectOption.create("green", "Green"))
             )
-    );
+    )
+    .addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
+        cellInfo -> {
+            DominoElement.of(cellInfo.getElement())
+                    .style()
+                    .setProperty("border-bottom", "1px solid #afafaf")
+                    .setPadding(px.of(5))
+                    .add(ColorScheme.INDIGO.lighten_5().getBackground());
+            return TextNode.of(cellInfo.getRecord().getGender().getLabel());
+    }));
 
 LocalListDataStore<Contact> localListDataSource = new LocalListDataStore<Contact>()
     .setSearchFilter(new ContactSearchFilter())

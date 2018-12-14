@@ -16,7 +16,7 @@
 
         <material.version>2.0</material.version>
         <vertx.version>3.4.2</vertx.version>
-        <elemento.version>HEAD-SNAPSHOT</elemento.version>
+        <elemento.version>0.8.5</elemento.version>
     </properties>
 
     <repositories>

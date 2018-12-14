@@ -44,6 +44,9 @@ public interface CodeResource extends ClientBundle{
     @Source("topPanelPlugin.txt")
     ExternalTextResource topPanelPlugin();
 
+    @Source("groupingTable.txt")
+    ExternalTextResource groupingTable();
+
     @Source("allInOne.txt")
     ExternalTextResource allInOne();
 

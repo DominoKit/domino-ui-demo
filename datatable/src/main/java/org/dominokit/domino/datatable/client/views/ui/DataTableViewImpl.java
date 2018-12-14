@@ -34,12 +34,14 @@ import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = DatatablePresenter.class)
@@ -69,6 +71,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         advancedPagination();
         scrollableTable();
         topPanelPlugin();
+        groupingTable();
         allInOne();
         try {
             CodeResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
@@ -87,6 +90,34 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         } catch (ResourceException e) {
             DomGlobal.console.error("could not load json", e);
         }
+    }
+
+    private void groupingTable() {
+        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        tableConfig.addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
+                cellInfo -> {
+                    DominoElement.of(cellInfo.getElement())
+                            .style()
+                            .setProperty("border-bottom", "1px solid #afafaf")
+                            .setPadding(px.of(5))
+                            .add(ColorScheme.INDIGO.lighten_5().getBackground());
+                    return TextNode.of(cellInfo.getRecord().getGender().getLabel());
+                }));
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("GROUPING PLUGIN", "The plugin allows splitting the table data into different groups.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+            table.load();
+        });
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).asElement());
     }
 
 
@@ -833,7 +864,16 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                                 .appendChild(SelectOption.create("brown", "Brown"))
                                 .appendChild(SelectOption.create("green", "Green"))
                         )
-                );
+                )
+                .addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
+                        cellInfo -> {
+                            DominoElement.of(cellInfo.getElement())
+                                    .style()
+                                    .setProperty("border-bottom", "1px solid #afafaf")
+                                    .setPadding(px.of(5))
+                                    .add(ColorScheme.INDIGO.lighten_5().getBackground());
+                            return TextNode.of(cellInfo.getRecord().getGender().getLabel());
+                        }));
 
         LocalListDataStore<Contact> localListDataSource = new LocalListDataStore<Contact>()
                 .setSearchFilter(new ContactSearchFilter())
