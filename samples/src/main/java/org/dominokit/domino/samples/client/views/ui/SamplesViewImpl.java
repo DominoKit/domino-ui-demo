@@ -66,7 +66,7 @@ public class SamplesViewImpl extends ComponentView<HTMLDivElement> implements Sa
                                                 .attr("target","_blank")
                                                 .add(h(5).textContent("Frank Hossfeld")))
                                         .appendChild(a()
-                                                .attr("href", "http://www.mvp4g.org/gwt-boot-starter-nalu/GwtBootStarterNalu.html#setUp")
+                                                .attr("href", "http://www.mvp4g.org/gwt-boot-starter-nalu/GwtBootStarterNalu.html#application/setUp")
                                                 .attr("target", "_blank")
                                                 .add(h(5).textContent("Visit")))
                                         .appendChild(a()
