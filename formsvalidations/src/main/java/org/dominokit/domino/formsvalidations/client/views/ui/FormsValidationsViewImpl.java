@@ -76,6 +76,14 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                                         .appendChild(SelectOption.create("arabic", "Arabic"))
                                         .selectAt(0)
                                         .setReadOnly(true)))
+                        .addColumn(Column.span12()
+                                .appendChild(SwitchButton.create()
+                                        .setOffTitle("Required")
+                                        .check()
+                                        .setReadOnly(true)))
+                        .addColumn(Column.span12()
+                                .appendChild(SwitchButton.create("Required","Yes", "No")
+                                        .setReadOnly(true)))
                 );
     }
 

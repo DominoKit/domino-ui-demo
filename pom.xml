@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.dominokit.domino</groupId>
@@ -17,6 +16,7 @@
         <material.version>2.0</material.version>
         <vertx.version>3.4.2</vertx.version>
         <elemento.version>0.8.5</elemento.version>
+        <jackson.version>1.0-SNAPSHOT</jackson.version>
     </properties>
 
     <repositories>
@@ -36,7 +36,7 @@
             <dependency>
                 <groupId>org.dominokit.domino</groupId>
                 <artifactId>domino</artifactId>
-                <version>1.0-rc.3-SNAPSHOT</version>
+                <version>1.0-rc.3-1</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -90,7 +90,7 @@
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
-            <version>1.0-rc3</version>
+            <version>1.0-rc4</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -214,7 +214,7 @@
         <module>inputfields</module>
         <module>login</module>
         <module>mdiicons</module>
-    </modules>
+  </modules>
 
     <profiles>
         <profile>

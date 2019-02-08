@@ -60,7 +60,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                 () -> Notification.create("Dialog closed").show())
                 .error()
                 .setModalColor(Color.RED)
-                .setIconColor(Color.WHITE);
+                .setIconColor(Color.GREY, Color.WHITE);
 
         MessageDialog warningMessage = MessageDialog.createMessage("Warning",
                 "Warning! Better check yourself, you're not looking too good.",

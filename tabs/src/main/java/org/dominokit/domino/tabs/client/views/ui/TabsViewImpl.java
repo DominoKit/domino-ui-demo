@@ -17,12 +17,10 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.tabs.Tab;
-import org.dominokit.domino.ui.tabs.TabsPanel;
-import org.dominokit.domino.ui.tabs.VerticalTab;
-import org.dominokit.domino.ui.tabs.VerticalTabsPanel;
+import org.dominokit.domino.ui.tabs.*;
 import org.dominokit.domino.ui.utils.DominoElement;
 
+import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
@@ -350,6 +348,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(VerticalTabsPanel.create()
+                                        .styler(style -> style.setHeight(px.of(400)))
                                         .textBelowIcon()
                                         .setTransition(Transition.FADE_IN)
                                         .apply(element -> element.getTabsContent().css(Styles.p_l_10))
@@ -363,6 +362,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                                                 .appendChild(b().textContent("Messages Content"))
                                                 .appendChild(Paragraph.create(SAMPLE_TEXT))
                                                 .activate())
+                                        .appendChild(FillItem.create())
                                         .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings())
                                                 .appendChild(b().textContent("Settings Content"))
                                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))

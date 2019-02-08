@@ -118,7 +118,7 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                                     )
                                     .addColumn(Column.span(3, 3, 6, 12)
                                             .appendChild(Row.create()
-                                                    .appendChild(Button.createDefault("BOTTOM - LARGE")
+                                                    .appendChild(Button.createDefault("BOTTOM")
                                                             .addClickListener(evt -> {
                                                                 ModalDialog modal = ModalDialog.create("TOP SHEET")
                                                                         .setType(IsModalDialog.ModalType.BOTTOM_SHEET)

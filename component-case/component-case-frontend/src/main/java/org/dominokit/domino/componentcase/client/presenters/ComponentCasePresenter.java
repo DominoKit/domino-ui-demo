@@ -64,12 +64,12 @@ public class ComponentCasePresenter extends ViewBaseClientPresenter<ComponentCas
 
     @ListenTo(event = MenuEvent.class)
     public void onMenuEvent(MenuContext context) {
-        menuContext.receiveContext(context);
+        menuContext.complete(context);
     }
 
     @ListenTo(event = LayoutEvent.class)
     public void onLayoutEvent(LayoutContext context) {
-        layoutContext.receiveContext(context);
+        layoutContext.complete(context);
     }
 
     @Override
