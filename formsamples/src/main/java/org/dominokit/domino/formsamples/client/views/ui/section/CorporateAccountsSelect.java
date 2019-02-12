@@ -57,16 +57,6 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     }
 
     @Override
-    public CorporateAccountsSelect collapse() {
-        return hide();
-    }
-
-    @Override
-    public CorporateAccountsSelect expand() {
-        return show();
-    }
-
-    @Override
     public CorporateAccountsSelect show() {
         accountSelect.show();
         return this;
@@ -88,11 +78,6 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     public CorporateAccountsSelect toggleDisplay(boolean state) {
         accountSelect.toggleDisplay(state);
         return this;
-    }
-
-    @Override
-    public boolean isCollapsed() {
-        return isHidden();
     }
 
     @Override
