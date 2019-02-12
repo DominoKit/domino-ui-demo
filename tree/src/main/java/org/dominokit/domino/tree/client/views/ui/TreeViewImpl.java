@@ -450,10 +450,10 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                         .setActiveIcon(Icons.ALL.description()))
                                 .appendChild(TreeItem.create("File 4", Icons.ALL.insert_drive_file())
                                         .setActiveIcon(Icons.ALL.description()))
-                                .expand()
+                                .show()
                         ).appendChild(TreeItem.create("Folder 3-2", Icons.ALL.folder())
                                 .setExpandIcon(Icons.ALL.folder_open())
-                                .expand()
+                                .show()
                                 .appendChild(TreeItem.create("File 1", Icons.ALL.insert_drive_file())
                                         .setActiveIcon(Icons.ALL.description()))
                                 .appendChild(TreeItem.create("File 2", Icons.ALL.insert_drive_file())
@@ -462,8 +462,8 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                         .setActiveIcon(Icons.ALL.description()))
                                 .appendChild(TreeItem.create("File 4", Icons.ALL.insert_drive_file())
                                         .setActiveIcon(Icons.ALL.description()))
-                                .expand()
-                        ).expand()
+                                .show()
+                        ).show()
                 );
 
         element.appendChild(Card.create("ACTIVE/EXPAND ICONS, SEARCH & FOLDING")

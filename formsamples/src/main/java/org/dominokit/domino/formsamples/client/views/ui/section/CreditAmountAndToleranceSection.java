@@ -68,10 +68,10 @@ public class CreditAmountAndToleranceSection implements ImportSection {
         maximumCheckBox = CheckBox.create("Maximum");
         maximumCheckBox.addChangeHandler(value -> {
             if (value) {
-                toleranceTextBox.collapse();
+                toleranceTextBox.hide();
                 toleranceTextBox.setRequired(false);
             } else {
-                toleranceTextBox.expand();
+                toleranceTextBox.show();
                 toleranceTextBox.setRequired(true);
                 toleranceTextBox.setAutoValidation(true);
                 toleranceTextBox.validate();

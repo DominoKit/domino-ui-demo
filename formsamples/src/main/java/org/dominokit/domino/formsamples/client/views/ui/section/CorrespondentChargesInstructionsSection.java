@@ -24,7 +24,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
     public CorrespondentChargesInstructionsSection(CorporateProfile corporateProfile) {
 
         correspondentChargesInstructionsCard = Card.create("Correspondent Charges Instructions", "")
-                .collapse();
+                .hide();
         correspondentChargesInstructionsCard.bodyStyle()
                 .setPaddingTop("40px");
 
@@ -36,9 +36,9 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
                 .setOffTitle("Beneficiary")
                 .addChangeHandler(value -> {
                     if (value) {
-                        correspondentChargesInstructionsCard.expand();
+                        correspondentChargesInstructionsCard.show();
                     } else {
-                        correspondentChargesInstructionsCard.collapse();
+                        correspondentChargesInstructionsCard.hide();
                         revalidate();
                     }
                 });

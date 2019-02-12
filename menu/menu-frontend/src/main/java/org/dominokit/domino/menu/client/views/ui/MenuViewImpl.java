@@ -36,7 +36,7 @@ public class MenuViewImpl implements MenuView {
             .add(Styles.pull_right)
             .get();
     private boolean locked = false;
-    private Collapsible lockCollapsible = Collapsible.create(lockIcon).expand();
+    private Collapsible lockCollapsible = Collapsible.create(lockIcon).show();
 
     public MenuViewImpl() {
     }
@@ -112,14 +112,14 @@ public class MenuViewImpl implements MenuView {
 
     private void fixLeftPanel(IsLayout layout) {
         layout.fixLeftPanelPosition();
-        lockCollapsible.expand();
+        lockCollapsible.show();
         locked = true;
     }
 
     private void unfixLeftPanel(IsLayout layout) {
         layout.unfixLeftPanelPosition();
         layout.hideLeftPanel();
-        lockCollapsible.collapse();
+        lockCollapsible.hide();
         locked = false;
     }
 

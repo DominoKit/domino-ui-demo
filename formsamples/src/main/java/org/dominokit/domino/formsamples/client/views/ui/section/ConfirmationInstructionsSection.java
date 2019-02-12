@@ -30,7 +30,7 @@ public class ConfirmationInstructionsSection implements ImportSection {
                 .setAutoValidation(true)
                 .setRequired(true)
                 .addSelectionHandler(option -> revalidate())
-                .collapse();
+                .hide();
 
 
         chargesInstructionsRequiredSwitch = Style.of(SwitchButton.create())
@@ -39,9 +39,9 @@ public class ConfirmationInstructionsSection implements ImportSection {
                 .setOffTitle("Required")
                 .addChangeHandler(value -> {
                     if (value) {
-                        confirmationInstructionsCard.expand();
+                        confirmationInstructionsCard.show();
                     } else {
-                        confirmationInstructionsCard.collapse();
+                        confirmationInstructionsCard.hide();
                         revalidate();
                     }
                 });
@@ -49,15 +49,15 @@ public class ConfirmationInstructionsSection implements ImportSection {
         confirmationChargesOnSwitch = SwitchButton.create("Confirmation charges on", "Beneficiary", "Applicant")
                 .addChangeHandler(value -> {
                     if (value) {
-                        confirmationChargesAccountSelect.expand();
+                        confirmationChargesAccountSelect.show();
                     } else {
-                        confirmationChargesAccountSelect.collapse();
+                        confirmationChargesAccountSelect.hide();
                         revalidate();
                     }
                 });
 
         confirmationInstructionsCard = Card.create("Confirmation Instructions", "")
-                .collapse();
+                .hide();
         confirmationInstructionsCard.getHeaderDescription()
                 .appendChild(chargesInstructionsRequiredSwitch.asElement());
 

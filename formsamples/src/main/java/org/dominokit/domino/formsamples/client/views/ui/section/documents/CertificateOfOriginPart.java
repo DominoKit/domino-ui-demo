@@ -51,9 +51,9 @@ public class CertificateOfOriginPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .addChangeHandler(value -> {
                     if (value) {
-                        certificateOfOriginCard.expand();
+                        certificateOfOriginCard.show();
                     } else {
-                        certificateOfOriginCard.collapse();
+                        certificateOfOriginCard.hide();
                         revalidate();
                     }
                 });
@@ -92,7 +92,7 @@ public class CertificateOfOriginPart implements ImportSection {
 
         certificateOfOriginCard = Card.create("Certificate of origin in")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
 
         certificateOfOriginCard.getHeaderDescription().appendChild(certificateOfOriginRequiredSwitchButton.asElement());
 

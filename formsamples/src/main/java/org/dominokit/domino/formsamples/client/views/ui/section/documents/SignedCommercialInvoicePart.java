@@ -40,7 +40,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
 
         signedCommercialInvoiceInCard = Card.create("Signed commercial invoice in")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
 
         signedCommercialInvoiceOriginalCopiesTextBox = createCopiesField()
                 .groupBy(fieldsGrouping)
@@ -55,9 +55,9 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .addChangeHandler(value -> {
                     if (value) {
-                        signedCommercialInvoiceInCard.expand();
+                        signedCommercialInvoiceInCard.show();
                     } else {
-                        signedCommercialInvoiceInCard.collapse();
+                        signedCommercialInvoiceInCard.hide();
                         revalidate();
                     }
                 });

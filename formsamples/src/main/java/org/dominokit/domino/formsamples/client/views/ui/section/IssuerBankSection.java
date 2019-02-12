@@ -60,11 +60,11 @@ public class IssuerBankSection implements ImportSection {
                         .appendChild(issuerContactPersonTextBox
                                 .setLeftAddon(Icons.ALL.person())
                                 .setReadOnly(true))
-                ).collapse();
+                ).hide();
 
-        issuerBranchesSelect.addSelectionHandler(option -> issuerBankInfoRow.expand());
+        issuerBranchesSelect.addSelectionHandler(option -> issuerBankInfoRow.show());
 
-        issuerBanksSelect.addSelectionHandler(option -> issuerBankInfoRow.collapse());
+        issuerBanksSelect.addSelectionHandler(option -> issuerBankInfoRow.hide());
 
 
         card = Card.create();

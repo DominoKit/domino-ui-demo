@@ -81,9 +81,9 @@ public class ShippingDocumentsPart implements ImportSection {
         shippingDocumentsSwitchButton = createRequiredField()
                 .addChangeHandler(value -> {
                     if (value) {
-                        card.expand();
+                        card.show();
                     } else {
-                        card.collapse();
+                        card.hide();
                         revalidate();
                     }
                 });
@@ -91,7 +91,7 @@ public class ShippingDocumentsPart implements ImportSection {
 
         card = Card.create("Shipping documents")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
         card.getHeaderDescription()
                 .appendChild(shippingDocumentsSwitchButton.asElement());
 

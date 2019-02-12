@@ -56,7 +56,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .setAutoValidation(true);
 
         Column numberOfDaysColumn = span4()
-                .appendChild(numberOfDaysTextBox).collapse();
+                .appendChild(numberOfDaysTextBox).hide();
 
         paymentScheduleAfterSelect = Select.<String>create("After").appendChild(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
                 .appendChild(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
@@ -66,7 +66,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .setAutoValidation(true);
 
         Column paymentScheduleAfterColumn = span4()
-                .appendChild(paymentScheduleAfterSelect).collapse();
+                .appendChild(paymentScheduleAfterSelect).hide();
 
         percentageTextBox = numbersOnly(TextBox.create("Percentage"))
                 .setHelperText("Numbers only")
@@ -94,13 +94,13 @@ public class PaymentScheduleSection implements ImportSection {
                 .addRadio(Radio.create("DEFERRED", "Deferred Payment").withGap())
                 .addChangeHandler(selectedRadio -> {
                     if (selectedRadio.getValue().equals("DEFERRED") || selectedRadio.getValue().equals("ACCEPTANCE")) {
-                        numberOfDaysColumn.expand();
-                        paymentScheduleAfterColumn.expand();
+                        numberOfDaysColumn.show();
+                        paymentScheduleAfterColumn.show();
                         numberOfDaysTextBox.setRequired(true);
                         paymentScheduleAfterSelect.setRequired(true);
                     } else {
-                        numberOfDaysColumn.collapse();
-                        paymentScheduleAfterColumn.collapse();
+                        numberOfDaysColumn.hide();
+                        paymentScheduleAfterColumn.hide();
                         numberOfDaysTextBox.setRequired(false);
                         paymentScheduleAfterSelect.setRequired(false);
                     }
@@ -139,7 +139,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .add(paymentValuesRow).asElement();
 
         valuesContainerCollapsible = Collapsible.create(valuesContainer)
-                .expand();
+                .show();
 
         paymentSchedulerListGroupRow = Row.create();
         element.appendChild(paymentScheduleCard
@@ -147,7 +147,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .appendChild(paymentSchedulerListGroupRow
                         .addColumn(Column.span12()
                                 .appendChild(paymentScheduleItemsListGroup))
-                        .collapse()
+                        .hide()
                 )
                 .asElement());
     }
@@ -167,10 +167,10 @@ public class PaymentScheduleSection implements ImportSection {
         delete.asElement().addEventListener("click", evt1 -> {
             paymentScheduleItemsListGroup.removeItem(listItem);
             percentageTextBox.setValue(remainingPercentage() + "");
-            addButton.expand();
-            valuesContainerCollapsible.expand();
+            addButton.show();
+            valuesContainerCollapsible.show();
             if (paymentScheduleItemsListGroup.getAllValues().size() == 0) {
-                paymentSchedulerListGroupRow.collapse();
+                paymentSchedulerListGroupRow.hide();
             }
 
             revalidate();
@@ -199,18 +199,18 @@ public class PaymentScheduleSection implements ImportSection {
 
         int remainingPercentage = remainingPercentage();
         if (remainingPercentage == 0) {
-            addButton.collapse();
-            valuesContainerCollapsible.collapse();
+            addButton.hide();
+            valuesContainerCollapsible.hide();
         } else {
-            if (addButton.isCollapsed())
-                addButton.expand();
-            if (valuesContainerCollapsible.isCollapsed())
-                valuesContainerCollapsible.expand();
+            if (addButton.isHidden())
+                addButton.show();
+            if (valuesContainerCollapsible.isHidden())
+                valuesContainerCollapsible.show();
             percentageTextBox.setValue(remainingPercentage + "");
         }
         numberOfDaysTextBox.clear();
         paymentScheduleAfterSelect.clear();
-        paymentSchedulerListGroupRow.expand();
+        paymentSchedulerListGroupRow.show();
 
         revalidate();
 

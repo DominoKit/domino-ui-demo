@@ -97,18 +97,18 @@ public class DraftsPart implements ImportSection {
 
         draftsCard = Card.create("Drafts")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
 
         Button addDraftButton = initAddButton();
 
         draftsRequiredSwitch = createRequiredField();
         draftsRequiredSwitch.addChangeHandler(value -> {
             if (value) {
-                draftsCard.expand();
-                addDraftButton.expand();
+                draftsCard.show();
+                addDraftButton.show();
             } else {
-                draftsCard.collapse();
-                addDraftButton.collapse();
+                draftsCard.hide();
+                addDraftButton.hide();
                 revalidate();
             }
         });
@@ -165,7 +165,7 @@ public class DraftsPart implements ImportSection {
                         revalidate();
                     }
                 });
-        addDraftButton.collapse();
+        addDraftButton.hide();
         return addDraftButton;
     }
 

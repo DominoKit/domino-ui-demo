@@ -142,7 +142,7 @@ public class CardsViewImpl extends ComponentView<HTMLDivElement> implements Card
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
-                        .collapse()
+                        .hide()
                         .setHeaderBackground(Color.CYAN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))

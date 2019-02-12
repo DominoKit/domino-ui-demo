@@ -63,7 +63,7 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
     }
 
     private void initLayoutPlayground() {
-        RadioGroup alignItemsRadioGroup = RadioGroup.create("align-items").collapse();
+        RadioGroup alignItemsRadioGroup = RadioGroup.create("align-items").hide();
         CheckBox fillHeightCheckBox = CheckBox.create("Fill height");
         RadioGroup directionsRadioGroup = RadioGroup.create("direction");
         RadioGroup justifyContentRadioGroup = RadioGroup.create("justify-content");
@@ -167,10 +167,10 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
 
         fillHeightCheckBox.addChangeHandler(value -> {
             if (value) {
-                alignItemsRadioGroup.expand();
+                alignItemsRadioGroup.show();
                 flexLayout.style().add("fill-height");
             } else {
-                alignItemsRadioGroup.collapse();
+                alignItemsRadioGroup.hide();
                 flexLayout.style().remove("fill-height");
             }
         });

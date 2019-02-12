@@ -38,16 +38,16 @@ public class PackingListPart implements ImportSection {
         packingListRequiredSwitchButton = createRequiredField()
                 .addChangeHandler(value -> {
                     if (value) {
-                        packingListCard.expand();
+                        packingListCard.show();
                     } else {
-                        packingListCard.collapse();
+                        packingListCard.hide();
                         revalidate();
                     }
                 });
 
         packingListCard = Card.create("Packing list in")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
 
         packingListCard.getHeaderDescription()
                 .appendChild(packingListRequiredSwitchButton.asElement());

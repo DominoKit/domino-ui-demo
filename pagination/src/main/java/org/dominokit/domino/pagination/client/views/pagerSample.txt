@@ -15,7 +15,7 @@ Pager.create()
     .nextText("Newer")
     .previousText("Older")
     .showArrows()
-    .expand();
+    .show();
 
 Pager.create()
     .onNext(() -> DomGlobal.console.info("Going to next page."))
@@ -23,5 +23,5 @@ Pager.create()
     .nextText("Newer")
     .previousText("Older")
     .showArrows()
-    .expand()
+    .show()
     .disablePrevious();

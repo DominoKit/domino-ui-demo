@@ -56,16 +56,16 @@ public class InsurancePolicyPart implements ImportSection {
                 .setOffTitle("Beneficiary")
                 .addChangeHandler(value -> {
                     if (value) {
-                        insurancePolicyCard.expand();
+                        insurancePolicyCard.show();
                     } else {
-                        insurancePolicyCard.collapse();
+                        insurancePolicyCard.hide();
                         revalidate();
                     }
                 });
 
         insurancePolicyCard = Card.create("Insurance policy required by")
                 .setBodyPaddingTop("40px")
-                .collapse();
+                .hide();
 
         insurancePolicyCard.getHeaderDescription()
                 .appendChild(insurancePolicyRequiredSwitchButton.asElement());

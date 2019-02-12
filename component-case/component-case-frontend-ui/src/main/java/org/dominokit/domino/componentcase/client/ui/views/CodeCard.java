@@ -26,7 +26,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
     private Code.Block codeBlock = block();
     private Card card = Card.create("Source Code")
             .setCollapsible()
-            .collapse()
+            .hide()
             .appendChild(codeBlock);
 
     public CodeCard() {
@@ -95,7 +95,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     @Override
     public CodeCard expand() {
-        card.expand();
+        card.show();
         return this;
     }
 

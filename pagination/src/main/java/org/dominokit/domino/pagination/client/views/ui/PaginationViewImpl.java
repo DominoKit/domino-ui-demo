@@ -136,7 +136,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
-                        .expand())
+                        .show())
                 .asElement());
 
 
@@ -147,7 +147,7 @@ public class PaginationViewImpl extends ComponentView<HTMLDivElement> implements
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
-                        .expand()
+                        .show()
                         .disablePrevious())
                 .asElement());
 

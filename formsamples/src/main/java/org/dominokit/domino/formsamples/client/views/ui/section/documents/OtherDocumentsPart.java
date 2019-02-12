@@ -59,7 +59,7 @@ public class OtherDocumentsPart implements ImportSection {
                         }).asElement());
 
         otherDocumentListGroupRow = Row.create()
-                .collapse();
+                .hide();
         element.appendChild(otherDocumentsCard
                 .appendChild(Row.create()
                         .addColumn(span4().appendChild(otherDocumentsCopiesTextBox.setRequired(true)))
@@ -86,12 +86,12 @@ public class OtherDocumentsPart implements ImportSection {
                 .addEventListener("click", evt1 -> {
                     otherDocumentsItemListGroup.removeItem(listItem);
                     if (otherDocumentsItemListGroup.getAllValues().size() == 0) {
-                        otherDocumentListGroupRow.collapse();
+                        otherDocumentListGroupRow.hide();
                     }
                 });
 
-        if (otherDocumentListGroupRow.isCollapsed()) {
-            otherDocumentListGroupRow.expand();
+        if (otherDocumentListGroupRow.isHidden()) {
+            otherDocumentListGroupRow.show();
         }
 
         listItem
