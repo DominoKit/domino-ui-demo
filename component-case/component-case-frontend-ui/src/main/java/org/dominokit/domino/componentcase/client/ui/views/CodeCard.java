@@ -46,6 +46,8 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
         });
 
         card.appendChild(copyInput);
+
+        init(this);
     }
 
     public static CodeCard createCodeCard(String code) {

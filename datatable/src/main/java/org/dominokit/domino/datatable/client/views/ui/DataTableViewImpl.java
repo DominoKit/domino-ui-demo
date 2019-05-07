@@ -847,6 +847,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         })
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                        .addActionElement(new HeaderBarPlugin.ShowHideColumnsAction<>())
                 )
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()))
                 .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))

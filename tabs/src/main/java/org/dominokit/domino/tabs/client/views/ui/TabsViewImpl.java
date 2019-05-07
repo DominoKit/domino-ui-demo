@@ -43,7 +43,8 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
 
         basicSample();
         iconsOnly();
-        withIconsAndTextSamlple();
+        withIconsAndTextSample();
+        closableTabsSample();
         materialDesignColorsSample();
         backgroundSample();
         initDifferentContentSample();
@@ -95,7 +96,7 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
     }
 
-    private void withIconsAndTextSamlple() {
+    private void withIconsAndTextSample() {
         element.appendChild(Card.create("TABS WITH ICON TITLE")
                 .appendChild(TabsPanel.create()
                         .appendChild(Tab.create(Icons.ALL.home(), " HOME")
@@ -114,7 +115,40 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSamlple()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).asElement());
+    }
+
+    private void closableTabsSample() {
+        element.appendChild(Card.create("CLOSABLE TABS")
+                .appendChild(TabsPanel.create()
+                        .appendChild(Tab.create(Icons.ALL.home(), " HOME")
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+
+                        .appendChild(Tab.create(Icons.ALL.face(), " PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+
+                        .appendChild(Tab.create(Icons.ALL.email(), " MESSAGES")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .activate()
+                                .setClosable(true)
+                        )
+
+                        .appendChild(Tab.create(Icons.ALL.settings(), " SETTINGS")
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                )
+                .asElement());
+
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).asElement());
     }
 
     private void materialDesignColorsSample() {

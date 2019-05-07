@@ -798,6 +798,8 @@
                         <compilerArg>${build.directory}/gwt/extra</compilerArg>
                     </compilerArgs>
                     <codeserverArgs>
+                        <codeserverArg>-port</codeserverArg>
+                        <codeserverArg>9875</codeserverArg>
                         <!--<codeserverArg>-style</codeserverArg>-->
                         <!--<codeserverArg>PRETTY</codeserverArg>-->
                         <!--<codeserverArg>-bindAddress</codeserverArg>-->

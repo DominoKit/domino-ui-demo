@@ -242,17 +242,15 @@
                             <codeserverArgs>
                                 <codeserverArg>-style</codeserverArg>
                                 <codeserverArg>PRETTY</codeserverArg>
-                                <!--<codeserverArg>-port</codeserverArg>-->
-                                <!--<codeserverArg>9875</codeserverArg>-->
+                                <codeserverArg>-port</codeserverArg>
+                                <codeserverArg>9875</codeserverArg>
                                 <!--<codeserverArg>-bindAddress</codeserverArg>-->
                                 <!--<codeserverArg>172.20.202.67</codeserverArg>-->
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/src/main/java</codeserverArg>
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui-master/src/main/java</codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/target/generated-sources/annotations
-                                </codeserverArg>
-
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui-master/target/generated-sources/annotations</codeserverArg>
                             </codeserverArgs>
                         </configuration>
                     </plugin>
@@ -284,8 +282,8 @@
                             <codeserverArgs>
                                 <codeserverArg>-style</codeserverArg>
                                 <codeserverArg>PRETTY</codeserverArg>
-                                <!--<codeserverArg>-port</codeserverArg>-->
-                                <!--<codeserverArg>9875</codeserverArg>-->
+                                <codeserverArg>-port</codeserverArg>
+                                <codeserverArg>9875</codeserverArg>
                                 <!--<codeserverArg>-bindAddress</codeserverArg>-->
                                 <!--<codeserverArg>172.20.202.67</codeserverArg>-->
 

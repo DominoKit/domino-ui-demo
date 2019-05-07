@@ -33,12 +33,12 @@ public class SetupViewImpl extends ComponentView<HTMLDivElement> implements Setu
                 "  <classifier>sources</classifier>\n" +
                 "</dependency>")
                 .setTitle("Maven dependencies")
-                .show()
+                .expand()
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>")
                 .setTitle("gwt module inheritance")
-                .show()
+                .expand()
                 .asElement());
 
         element.appendChild(CodeCard.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
@@ -47,7 +47,7 @@ public class SetupViewImpl extends ComponentView<HTMLDivElement> implements Setu
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">")
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
-                .show()
+                .expand()
                 .asElement());
     }
 

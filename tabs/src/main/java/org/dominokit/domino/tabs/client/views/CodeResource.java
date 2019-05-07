@@ -14,8 +14,11 @@ public interface CodeResource extends ClientBundle{
     @Source("iconsOnly.txt")
     ExternalTextResource iconsOnly();
 
-    @Source("withIconsAndTextSamlple.txt")
-    ExternalTextResource withIconsAndTextSamlple();
+    @Source("withIconsAndTextSample.txt")
+    ExternalTextResource withIconsAndTextSample();
+
+    @Source("closableTabsSample.txt")
+    ExternalTextResource closableTabsSample();
 
     @Source("materialDesignColorsSample.txt")
     ExternalTextResource materialDesignColorsSample();
