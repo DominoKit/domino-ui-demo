@@ -1,10 +1,73 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+    <modules>
+        <module>ui-demo-frontend</module>
+        <module>ui-demo-backend</module>
+        <module>layout</module>
+        <module>themes</module>
+        <module>profile</module>
+        <module>menu</module>
+        <module>component-case</module>
+        <module>home</module>
+        <module>setup</module>
+        <module>samples</module>
+        <module>appLayout</module>
+        <module>gridLayout</module>
+        <module>grids</module>
+        <module>splitPanel</module>
+        <module>flexlayout</module>
+        <module>chips</module>
+        <module>cards</module>
+        <module>infobox</module>
+        <module>buttons</module>
+        <module>alerts</module>
+        <module>badges</module>
+        <module>labels</module>
+        <module>modals</module>
+        <module>lists</module>
+        <module>loaders</module>
+        <module>icons</module>
+        <module>breadcrumb</module>
+        <module>collapse</module>
+        <module>typography</module>
+        <module>helpers</module>
+        <module>colors</module>
+        <module>animation</module>
+        <module>notifications</module>
+        <module>media</module>
+        <module>pagination</module>
+        <module>preloaders</module>
+        <module>progress</module>
+        <module>tabs</module>
+        <module>thumbnails</module>
+        <module>dialogs</module>
+        <module>popover</module>
+        <module>waves</module>
+        <module>basic-forms</module>
+        <module>datepicker</module>
+        <module>advanced-forms</module>
+        <module>timepicker</module>
+        <module>formsvalidations</module>
+        <module>datatable</module>
+        <module>sliders</module>
+        <module>steppers</module>
+        <module>formsamples</module>
+        <module>carousel</module>
+        <module>tree</module>
+        <module>spin</module>
+        <module>inputfields</module>
+        <module>login</module>
+        <module>mdiicons</module>
+        <module>sample-processor</module>
+        <module>sample-annotations</module>
+    <module>ui-demo-server</module>
+  </modules>
 
+    <modelVersion>4.0.0</modelVersion>
     <groupId>org.dominokit.domino</groupId>
     <artifactId>domino-ui-demo</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
     <properties>
@@ -14,9 +77,10 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <material.version>2.0</material.version>
-        <vertx.version>3.4.2</vertx.version>
+        <vertx.version>3.6.3</vertx.version>
         <elemento.version>0.8.5</elemento.version>
         <jackson.version>1.0-SNAPSHOT</jackson.version>
+        <domino.history.version>1.0-rc.4-SNAPSHOT</domino.history.version>
     </properties>
 
     <repositories>
@@ -30,13 +94,12 @@
             </snapshots>
         </repository>
     </repositories>
-
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.dominokit.domino</groupId>
                 <artifactId>domino</artifactId>
-                <version>1.0-rc.3-1</version>
+                <version>1.0-rc.5-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -75,6 +138,7 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
     <dependencies>
         <dependency>
             <groupId>javax.validation</groupId>
@@ -103,7 +167,6 @@
             <classifier>sources</classifier>
         </dependency>
     </dependencies>
-
     <build>
         <pluginManagement>
             <plugins>
@@ -153,68 +216,6 @@
         </plugins>
 
     </build>
-    <modules>
-        <module>ui-demo-frontend</module>
-        <module>ui-demo-backend</module>
-        <module>layout</module>
-        <module>themes</module>
-        <module>profile</module>
-        <module>menu</module>
-        <module>component-case</module>
-        <module>home</module>
-        <module>components</module>
-        <module>cards</module>
-        <module>infobox</module>
-        <module>buttons</module>
-        <module>alerts</module>
-        <module>badges</module>
-        <module>labels</module>
-        <module>modals</module>
-        <module>lists</module>
-        <module>loaders</module>
-        <module>icons</module>
-        <module>breadcrumb</module>
-        <module>collapse</module>
-        <module>typography</module>
-        <module>helpers</module>
-        <module>colors</module>
-        <module>animation</module>
-        <module>notifications</module>
-        <module>media</module>
-        <module>pagination</module>
-        <module>preloaders</module>
-        <module>progress</module>
-        <module>tabs</module>
-        <module>thumbnails</module>
-        <module>dialogs</module>
-        <module>popover</module>
-        <module>forms</module>
-        <module>waves</module>
-        <module>basic-forms</module>
-        <module>datepicker</module>
-        <module>advanced-forms</module>
-        <module>timepicker</module>
-        <module>formsvalidations</module>
-        <module>datatable</module>
-        <module>sliders</module>
-        <module>steppers</module>
-        <module>formsamples</module>
-        <module>carousel</module>
-        <module>tree</module>
-        <module>appLayout</module>
-        <module>chips</module>
-        <module>layouts</module>
-        <module>gridLayout</module>
-        <module>grids</module>
-        <module>splitPanel</module>
-        <module>flexlayout</module>
-        <module>spin</module>
-        <module>setup</module>
-        <module>samples</module>
-        <module>inputfields</module>
-        <module>login</module>
-        <module>mdiicons</module>
-  </modules>
 
     <profiles>
         <profile>
@@ -236,8 +237,9 @@
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
                             <compilerArgs>
-                                <compilerArg>-style</compilerArg>
-                                <compilerArg>PRETTY</compilerArg>
+<!--                                <compilerArg>-style</compilerArg>-->
+<!--                                <compilerArg>PRETTY</compilerArg>-->
+                                <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>
                                 <codeserverArg>-style</codeserverArg>
@@ -248,9 +250,15 @@
                                 <!--<codeserverArg>172.20.202.67</codeserverArg>-->
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui-master/src/main/java</codeserverArg>
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
+                                </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui-master/target/generated-sources/annotations</codeserverArg>
+                                <codeserverArg>
+                                    /mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
+                                </codeserverArg>
+                                <codeserverArg>-src</codeserverArg>
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
+                                </codeserverArg>
                             </codeserverArgs>
                         </configuration>
                     </plugin>
@@ -290,7 +298,9 @@
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/home/rjeeb/Development/git/domino-ui/target/generated-sources/annotations</codeserverArg>
+                                <codeserverArg>
+                                    /home/rjeeb/Development/git/domino-ui/target/generated-sources/annotations
+                                </codeserverArg>
                             </codeserverArgs>
                         </configuration>
                     </plugin>

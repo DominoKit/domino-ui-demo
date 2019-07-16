@@ -1,12 +1,12 @@
 package org.dominokit.domino.dialogs.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.dialogs.client.presenters.DialogsPresenter;
-import org.dominokit.domino.dialogs.client.views.CodeResource;
+import org.dominokit.domino.dialogs.client.presenters.DialogsProxy;
 import org.dominokit.domino.dialogs.client.views.DialogsView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Animation;
@@ -25,19 +25,27 @@ import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = DialogsPresenter.class)
-public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements DialogsView {
+@UiView(presentable = DialogsProxy.class)
+@SampleClass
+public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements DialogsView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DIALOGS").asElement());
 
+        sample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample()).asElement());
+    }
+
+    @SampleMethod
+    private void sample() {
         MessageDialog basicMessage = MessageDialog.createMessage("Here's a message!",
                 () -> Notification.create("Dialog closed").show());
 
@@ -79,6 +87,7 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                         .transition(Transition.PULSE)
                         .animate())
                 .appendHeaderChild(heart);
+
         MessageDialog customContent = MessageDialog.createMessage("Custom content",
                 "You can customize the dialog content",
                 () -> Notification.create("Dialog closed").show())
@@ -143,8 +152,12 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                                 .appendChild(createDemoButton(customContent)))
                 )
                 .asElement());
+    }
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dialogs()).asElement());
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
     private Button createDemoButton(MessageDialog dialog) {
@@ -152,10 +165,5 @@ public class DialogsViewImpl extends ComponentView<HTMLDivElement> implements Di
                 .style().setMinWidth("120px")
                 .get()
                 .addClickListener(evt -> dialog.open());
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

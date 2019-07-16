@@ -1,6 +1,0 @@
-//Elements extending WaveElement will have waves by default
-//to add Waves to elements that does not extend from WaveElement use the WaveSupport class
-
-WavesSupport.addFor(element)
-    .setWavesColor(WaveColor.YELLOW)
-    .applyWaveStyle(WaveStyle.CIRCLE);

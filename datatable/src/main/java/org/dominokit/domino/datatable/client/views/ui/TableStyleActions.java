@@ -23,7 +23,7 @@ public class TableStyleActions implements IsElement<HTMLElement> {
     }
 
     private void init() {
-        HTMLAnchorElement condenseAnchor = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), dataTable::condense, dataTable::expand, dataTable::isCondensed);
+        HTMLAnchorElement condenseAnchor = createButton("Condense", "Expand", Icons.ALL.line_weight(), Icons.ALL.format_line_spacing(), dataTable::condense, dataTable::show, dataTable::isCondensed);
         HTMLAnchorElement strippedAnchor = createButton("No Stripes", "Stripped", Icons.ALL.power_input(), Icons.ALL.drag_handle(), dataTable::striped, dataTable::noStripes, dataTable::isStriped);
         HTMLAnchorElement borderedAnchor = createButton("No Borders", "Borders", Icons.ALL.border_vertical(), Icons.ALL.border_clear(), dataTable::bordered, dataTable::noBorder, dataTable::isBordered);
         HTMLAnchorElement hoveredAnchor = createButton("No Hover", "Hovered", Icons.ALL.blur_off(), Icons.ALL.blur_on(), dataTable::noHover, dataTable::hovered, () -> !dataTable.isHoverable());

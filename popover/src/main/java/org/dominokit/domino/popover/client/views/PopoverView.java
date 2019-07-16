@@ -1,7 +1,6 @@
 package org.dominokit.domino.popover.client.views;
 
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.componentcase.shared.extension.DemoView;
+import org.dominokit.domino.componentcase.client.presenters.DemoView;
 
-public interface PopoverView extends View, DemoView{
+public interface PopoverView extends DemoView<DemoView.DemoViewUiHandlers> {
 }

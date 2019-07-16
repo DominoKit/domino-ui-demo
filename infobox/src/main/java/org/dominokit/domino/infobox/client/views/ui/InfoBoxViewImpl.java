@@ -1,13 +1,13 @@
 package org.dominokit.domino.infobox.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.infobox.client.presenters.InfoBoxPresenter;
-import org.dominokit.domino.infobox.client.views.CodeResource;
+import org.dominokit.domino.infobox.client.presenters.InfoBoxProxy;
 import org.dominokit.domino.infobox.client.views.InfoBoxView;
-import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.counter.Counter;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -15,33 +15,43 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.infoboxes.InfoBox;
 import org.dominokit.domino.ui.style.Color;
-import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
-@UiView(presentable = InfoBoxPresenter.class)
-public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements InfoBoxView{
+@UiView(presentable = InfoBoxProxy.class)
+@SampleClass
+public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements InfoBoxView{
 
     private HTMLDivElement element= Elements.div().asElement();
     private Counter counter;
 
     @Override
-    public HTMLDivElement getElement() {
+    protected void init(HTMLDivElement root) {
+        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).asElement());
+
+        basicInfoBoxes();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+
+        hoverZoomEffect();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+
+        rightAligned();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        element= Elements.div().asElement();
         return element;
     }
+
 
     @Override
     public void restartCounters() {
         counter.startCounting();
     }
 
-    @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).asElement());
-        basicInfoBoxes();
-        hoverZoomEffect();
-        rightAligned();
-    }
-
+    @SampleMethod
     private void basicInfoBoxes() {
         element.appendChild(BlockHeader.create("BASIC INFO BOX AND COUNTERS", "Simple info box without effects, and counters to update the value.").asElement());
 
@@ -84,9 +94,10 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                 });
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+
     }
 
+    @SampleMethod
     private void hoverZoomEffect() {
         element.appendChild(BlockHeader.create("HOVER EFFECTS", "Apply Zoom or Expand effects on hover").asElement());
 
@@ -124,9 +135,10 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+
     }
 
+    @SampleMethod
     private void rightAligned() {
         element.appendChild(BlockHeader.create("ICON ALIGN AND COUNTERS", "Change icon position, and update info value with counters").asElement());
 
@@ -176,6 +188,6 @@ public class InfoBoxViewImpl extends ComponentView<HTMLDivElement> implements In
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+
     }
 }

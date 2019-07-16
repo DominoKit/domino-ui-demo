@@ -1,12 +1,9 @@
 package org.dominokit.domino.layout.client.views;
 
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.api.shared.extension.Content;
+import org.dominokit.domino.api.client.mvp.view.ContentView;
+import org.dominokit.domino.layout.client.presenters.LayoutProxySlots;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.layout.shared.extension.LayoutContext;
 
-public interface LayoutView extends View, IsLayout{
+public interface LayoutView extends ContentView, IsLayout, LayoutProxySlots, IsLayout.GlobalLoader {
 
-    void addActionItem(String iconName, LayoutContext.SelectionHandler selectionHandler);
-    void setRightPanelContent(Content content);
 }

@@ -1,11 +1,13 @@
 package org.dominokit.domino.notifications.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.notifications.client.presenters.NotificationsPresenter;
-import org.dominokit.domino.notifications.client.views.CodeResource;
+import org.dominokit.domino.notifications.client.presenters.NotificationsProxy;
 import org.dominokit.domino.notifications.client.views.NotificationsView;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.button.Button;
@@ -14,25 +16,19 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
-import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = NotificationsPresenter.class)
-public class NotificationsViewImpl extends ComponentView<HTMLDivElement> implements NotificationsView {
+@UiView(presentable = NotificationsProxy.class)
+@SampleClass
+public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implements NotificationsView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendChild(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
@@ -41,12 +37,29 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                 .asElement());
 
         notificationsPosition();
-        notificationsTypes();
-        withMaterialColors();
-        withAnimation();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
+                .asElement());
 
+        notificationsTypes();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
+                .asElement());
+
+        withMaterialColors();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
+                .asElement());
+
+        withAnimation();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
+                .asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void notificationsPosition() {
         Button topLeft = Button.createPrimary("TOP LEFT").large();
         topLeft.addClickListener( e ->
@@ -97,10 +110,10 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void notificationsTypes() {
 
         Button danger = Button.createDanger("DANGER").large();
@@ -137,11 +150,9 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
-        .asElement());
-
     }
 
+    @SampleMethod
     private void withMaterialColors() {
 
         Button redButton = Button.create("RED").setBackground(Color.RED).large();
@@ -248,11 +259,11 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
-                .asElement());
+
 
     }
 
+    @SampleMethod
     private void withAnimation() {
         Button fadeInOut = Button.create("FADE IN OUT").setBackground(Color.PINK).large();
         fadeInOut.addClickListener( e ->
@@ -478,7 +489,6 @@ public class NotificationsViewImpl extends ComponentView<HTMLDivElement> impleme
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
-                .asElement());
+
     }
 }

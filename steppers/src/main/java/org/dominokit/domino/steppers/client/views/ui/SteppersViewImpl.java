@@ -1,14 +1,13 @@
 package org.dominokit.domino.steppers.client.views.ui;
 
-import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import jsinterop.base.Js;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.steppers.client.presenters.SteppersPresenter;
-import org.dominokit.domino.steppers.client.views.CodeResource;
+import org.dominokit.domino.steppers.client.presenters.SteppersProxy;
 import org.dominokit.domino.steppers.client.views.SteppersView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -22,26 +21,37 @@ import org.dominokit.domino.ui.steppers.Stepper;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.ElementUtil;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.dominokit.domino.ui.grid.Column.span12;
 import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = SteppersPresenter.class)
-public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements SteppersView {
+@UiView(presentable = SteppersProxy.class)
+@SampleClass
+public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements SteppersView {
 
-    private final HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("STEPPERS").asElement());
 
         verticalStepper();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
 
         horizontalStepper();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void verticalStepper() {
         Stepper stepper = Stepper.create()
                 .setColor(Color.INDIGO);
@@ -146,9 +156,10 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span6().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
+
     }
 
+    @SampleMethod
     private void horizontalStepper() {
         Stepper stepper = Stepper.create()
                 .setMinHeight("300px")
@@ -251,11 +262,6 @@ public class SteppersViewImpl extends ComponentView<HTMLDivElement> implements S
                         .addColumn(span12().appendChild(stepper)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
-    }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

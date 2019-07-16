@@ -1,11 +1,12 @@
 package org.dominokit.domino.helpers.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.helpers.client.presenters.HelpersPresenter;
-import org.dominokit.domino.helpers.client.views.CodeResource;
+import org.dominokit.domino.helpers.client.presenters.HelpersProxy;
 import org.dominokit.domino.helpers.client.views.HelpersView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
@@ -14,33 +15,47 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = HelpersPresenter.class)
-public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements HelpersView {
+@UiView(presentable = HelpersProxy.class)
+@SampleClass
+public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements HelpersView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    private final HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
+    protected void init(HTMLDivElement root) {
+        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
+
+        textStyles();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles())
+                .asElement());
+
+        fontSize();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSize())
+                .asElement());
+
+        textAligns();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textAligns())
+                .asElement());
+
+        marginAndPaddingSpaces();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.marginAndPaddingSpaces())
+                .asElement());
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 
-    @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
-        textStyles();
-        fontSize();
-        textAligns();
-        marginAndPaddingSpaces();
-    }
-
+    @SampleMethod
     private void textStyles() {
 
         element.appendChild(Card.create("TEXT STYLES", "Use ready classes to style your paragraphs.")
@@ -107,10 +122,10 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void fontSize() {
 
         element.appendChild(Card.create("FONT SIZES", "Use ready classes to change text font size.")
@@ -132,10 +147,10 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSize())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void textAligns() {
 
         element.appendChild(Card.create("TEXT ALIGNS", "You can use ready classes to change text alignment.")
@@ -159,10 +174,10 @@ public class HelpersViewImpl extends ComponentView<HTMLDivElement> implements He
                         )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textAligns())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void marginAndPaddingSpaces() {
 
         element.appendChild(Card.create("MARGIN & PADDING SPACES", "Use ready classes to apply margins and padding to your elements.")

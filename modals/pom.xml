@@ -28,8 +28,8 @@
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.logging</groupId>
-            <artifactId>domino-gwt-logger</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-slf4j-logger</artifactId>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino.apt</groupId>
@@ -38,13 +38,18 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-shared</artifactId>
+            <artifactId>component-case-frontend-ui</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-frontend-ui</artifactId>
+            <artifactId>sample-processor</artifactId>
             <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-aggregator-apt</artifactId>
         </dependency>
     </dependencies>
 

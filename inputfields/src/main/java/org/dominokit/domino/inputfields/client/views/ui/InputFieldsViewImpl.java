@@ -1,12 +1,12 @@
 package org.dominokit.domino.inputfields.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.inputfields.client.presenters.InputFieldsPresenter;
-import org.dominokit.domino.inputfields.client.views.CodeResource;
+import org.dominokit.domino.inputfields.client.presenters.InputFieldsProxy;
 import org.dominokit.domino.inputfields.client.views.InputFieldsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
@@ -14,20 +14,22 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.math.BigDecimal;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = InputFieldsPresenter.class)
-public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implements InputFieldsView {
+@UiView(presentable = InputFieldsProxy.class)
+@SampleClass
+public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements InputFieldsView {
 
-    private DominoElement<HTMLDivElement> element = DominoElement.of(div());
+    private DominoElement<HTMLDivElement> element;
     private Card numberFieldsCard;
     private Card advancedFieldsCard;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("INPUT FIELDS"));
         numberFieldsCard = Card.create("NUMBER FIELDS");
@@ -37,11 +39,18 @@ public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implement
         initAdvancedFields();
 
         element.appendChild(numberFieldsCard);
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.numberFields()));
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initNumberFields()));
         element.appendChild(advancedFieldsCard);
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFields()));
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedFields()));
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = DominoElement.of(div());
+        return element.asElement();
+    }
+
+    @SampleMethod
     private void initNumberFields() {
         numberFieldsCard
                 .appendChild(Row.create()
@@ -70,6 +79,7 @@ public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implement
                                 .value(new BigDecimal(5477996.32148451)))));
     }
 
+    @SampleMethod
     private void initAdvancedFields() {
         EmailBox emailBox = EmailBox.create("Email box")
                 .addSuggestedValue("akabme@gmail.com")
@@ -111,10 +121,5 @@ public class InputFieldsViewImpl extends ComponentView<HTMLDivElement> implement
                                 .setHelperText("Shows suggestions")
                                 .addChangeHandler(telephoneBox::setEnableSuggestions)))
                         .appendChild(Column.span12().appendChild(telephoneBox)));
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element.asElement();
     }
 }

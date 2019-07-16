@@ -1,10 +1,12 @@
 package org.dominokit.domino.gridLayout.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.gridLayout.client.presenters.GridLayoutPresenter;
+import org.dominokit.domino.gridLayout.client.presenters.GridLayoutProxy;
 import org.dominokit.domino.gridLayout.client.views.GridLayoutView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.code.Code;
@@ -15,19 +17,26 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.SectionSpan;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.sliders.Slider;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = GridLayoutPresenter.class)
-public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements GridLayoutView {
+@UiView(presentable = GridLayoutProxy.class)
+public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements GridLayoutView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").asElement());
         initLayoutSamples();
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
     private void initLayoutSamples() {
@@ -167,13 +176,13 @@ public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(h(6).textContent("Content section is the only section in the GridLayout by default, it covers all 12 rows and columns of the grid by default."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Creating a grid layout"))
-                .appendChild(Code.block("GridLayout gridLayout = GridLayout.create()\n" +
+                .appendChild(CodeCard.preBlock("GridLayout gridLayout = GridLayout.create()\n" +
                         "                .style()\n" +
                         "                .setHeight(\"500px\").get();"))
                 .appendChild(h(6).textContent("This will create a gridlayout of 500px."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Changing a section size"))
-                .appendChild(Code.block("gridLayout.setHeaderSpan(SectionSpan._2);\n" +
+                .appendChild(CodeCard.preBlock("gridLayout.setHeaderSpan(SectionSpan._2);\n" +
                         "gridLayout.setLeftSpan(SectionSpan._3);\n" +
                         "gridLayout.setRightSpan(SectionSpan._4);\n" +
                         "gridLayout.setFooterSpan(SectionSpan._2);"))
@@ -181,7 +190,7 @@ public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(br())
                 .appendChild(h(4).textContent("Adding elements to the gridLayout sections"))
                 .appendChild(br())
-                .appendChild(Code.block("gridLayout.getContentElement().appendChild(otherElement);\n" +
+                .appendChild(CodeCard.preBlock("gridLayout.getContentElement().appendChild(otherElement);\n" +
                         "gridLayout.getHeaderElement().appendChild(otherElement);\n" +
                         "gridLayout.getLeftElement().appendChild(otherElement);\n" +
                         "gridLayout.getRightElement().appendChild(otherElement);\n" +
@@ -189,7 +198,7 @@ public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(h(6).textContent("You have to span a section to make the appended elements show up."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Hiding a section"))
-                .appendChild(Code.block("gridLayout.hideHeader();\n" +
+                .appendChild(CodeCard.preBlock("gridLayout.hideHeader();\n" +
                         "gridLayout.hideLeft();\n" +
                         "gridLayout.hideRight();\n" +
                         "gridLayout.hideFooter();\n"))
@@ -198,11 +207,5 @@ public class GridLayoutViewImpl extends ComponentView<HTMLDivElement> implements
 
                 .asElement());
 
-    }
-
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

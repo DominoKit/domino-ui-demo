@@ -1,21 +1,17 @@
 package org.dominokit.domino.themes.client.views;
 
 import org.dominokit.domino.api.client.mvp.view.ContentView;
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.layout.shared.extension.IsLayout;
+import org.dominokit.domino.api.client.mvp.view.HasUiHandlers;
+import org.dominokit.domino.api.client.mvp.view.UiHandlers;
 
-public interface ThemesView extends ContentView {
-    void setLayout(IsLayout layout);
+public interface ThemesView extends ContentView, HasUiHandlers<ThemesView.ThemesUiHandlers> {
     void applyTheme(String theme);
 
     void registerTheme(String theme);
     void registerTheme(String theme, boolean active);
 
-    void onThemeApplied(ThemeAppliedHandler themeAppliedHandler);
-
-    @FunctionalInterface
-    interface ThemeAppliedHandler {
+    interface ThemesUiHandlers extends UiHandlers{
+        void onHideThemes();
         void onThemeApplied(String theme);
     }
 }

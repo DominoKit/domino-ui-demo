@@ -4,23 +4,25 @@ import com.google.gwt.core.client.Scheduler;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.formsamples.client.presenters.FormSamplesPresenter;
+import org.dominokit.domino.formsamples.client.presenters.FormSamplesProxy;
 import org.dominokit.domino.formsamples.client.views.FormSamplesView;
 import org.dominokit.domino.formsamples.shared.model.*;
 import org.dominokit.domino.ui.dialogs.MessageDialog;
 import org.dominokit.domino.ui.utils.ElementUtil;
+import org.dominokit.domino.view.BaseElementView;
 
 import java.util.Arrays;
 import java.util.List;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = FormSamplesPresenter.class)
-public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements FormSamplesView, FormSamplesView.FormSamplesUIHandlers {
+@UiView(presentable = FormSamplesProxy.class)
+public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements FormSamplesView, FormSamplesView.FormSamplesUIHandlers {
 
 
+    //TODO move to server side
     private static final String BANKS_JSON = "[\n" +
             "  {\n" +
             "    \"name\": \"Bank XYZ\",\n" +
@@ -2019,7 +2021,7 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
             "  ]\n" +
             "}";
     private static final String PROFILE_JSON = "{\"id\":\"1\",\"name\":\"Progressoft corp.\",\"code\":\"PSF\",\"reference\":\"PSFT\",\"address\":{\"id\":\"1\",\"countryISOCode\":\"OM\",\"city\":\"Muscat\",\"street\":\"street\",\"zipCode\":\"MSS\",\"apartment\":\"apartment\",\"mailBox\":\"mailBox\",\"phoneNumber\":\"1234567\",\"faxNumber\":\"12345678\"},\"corporateAccounts\":[{\"accountAccessibility\":\"OUT\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB89ABCD0000000000009235351490\",\"accountAlias\":\"LG.Inc\",\"accountNumber\":\"0000000000009235351490\"},{\"accountAccessibility\":\"IN\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB62ABCD0000000000009235351491\",\"accountAlias\":\"Hewlett-Packard\",\"accountNumber\":\"0000000000009235351491\"},{\"accountAccessibility\":\"OUT\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB35ABCD0000000000009235351492\",\"accountAlias\":\"Progressoft\",\"accountNumber\":\"0000000000009235351492\"},{\"accountAccessibility\":\"IN_OUT\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB08ABCD0000000000009235351493\",\"accountAlias\":\"Netflix\",\"accountNumber\":\"0000000000009235351493\"},{\"accountAccessibility\":\"OUT\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB78ABCD0000000000009235351494\",\"accountAlias\":\"Amazon\",\"accountNumber\":\"0000000000009235351494\"},{\"accountAccessibility\":\"IN\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB51ABCD0000000000009235351495\",\"accountAlias\":\"Google\",\"accountNumber\":\"0000000000009235351495\"},{\"accountAccessibility\":\"IN\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB24ABCD0000000000009235351496\",\"accountAlias\":\"Versend\",\"accountNumber\":\"0000000000009235351496\"},{\"accountAccessibility\":\"IN_OUT\",\"accountType\":\"SAVING\",\"currency\":{\"currencyCode\":\"KWD\",\"defaultFractionDigits\":3,\"numericCode\":414},\"iban\":\"AB94ABCD0000000000009235351497\",\"accountAlias\":\"Aramex\",\"accountNumber\":\"0000000000009235351497\"}],\"banks\":[{\"name\":\"Bank ABC\",\"swiftCode\":\"ABCDEFGHXXX\",\"shortName\":\"S.A.O.J\",\"branches\":[{\"name\":\"Muscat\",\"address\":{\"id\":\"2\",\"countryISOCode\":\"OM\",\"city\":\"Muscat\",\"street\":\"street\",\"zipCode\":\"MSS\",\"apartment\":\"apartment\",\"mailBox\":\"mailBox\",\"phoneNumber\":\"1235898\",\"faxNumber\":\"36465141\"},\"contactPerson\":{\"name\":\"Hadil-Muscat\",\"mobileNumber\":\"9843358717\",\"email\":\"noman.mail@compay.com\"}},{\"name\":\"HeadQuater\",\"address\":{\"id\":\"1\",\"countryISOCode\":\"OM\",\"city\":\"Muscat\",\"street\":\"street\",\"zipCode\":\"MSS\",\"apartment\":\"apartment\",\"mailBox\":\"mailBox\",\"phoneNumber\":\"1235898\",\"faxNumber\":\"36465141\"},\"contactPerson\":{\"name\":\"Hadil\",\"mobileNumber\":\"9843358716\",\"email\":\"noman@company.com\"}}]}],\"contactPerson\":null}";
-    private final HTMLDivElement element = div().css("content-margin").asElement();
+    private HTMLDivElement element;
 
     private CorporateProfile corporateProfile;
     private List<Country> countries;
@@ -2027,6 +2029,27 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
     private List<Bank> banks;
     private List<CurrencyData> currencies;
     private AddLCImportComponent addLCImportComponent;
+    private FormSamplesUIHandlers uiHandlers;
+
+    @Override
+    protected void init(HTMLElement root) {
+        Scheduler.get().scheduleDeferred(() -> {
+            this.corporateProfile = CorporateProfile.MAPPER.read(PROFILE_JSON);
+            this.countries = Countries.MAPPER.read(COUNTRIES_JSON).getCountries();
+            this.beneficiaries = Arrays.asList(Beneficiary.MAPPER.readArray(BENEFICIARIES_JSON.replace("countryIsoCode", "countryISOCode"), Beneficiary[]::new));
+            this.banks = Arrays.asList(Bank.MAPPER.readArray(BANKS_JSON, Bank[]::new));
+            this.currencies = Currencies.MAPPER.read(CURRENCIES_JSON).getCurrencies();
+
+            reBuildForm();
+
+        });
+    }
+
+    @Override
+    public HTMLElement createRoot() {
+        element = div().css("content-margin").asElement();
+        return element;
+    }
 
     @Override
     public void onSuccessCreate(String bodyAsString) {
@@ -2042,36 +2065,26 @@ public class FormSamplesViewImpl extends ComponentView<HTMLElement> implements F
                 .open();
     }
 
-    @Override
-    public void init() {
-
-        Scheduler.get().scheduleDeferred(() -> {
-            this.corporateProfile = CorporateProfile.MAPPER.read(PROFILE_JSON);
-            this.countries = Countries.MAPPER.read(COUNTRIES_JSON).getCountries();
-            this.beneficiaries = Arrays.asList(Beneficiary.MAPPER.readArray(BENEFICIARIES_JSON.replace("countryIsoCode", "countryISOCode"), Beneficiary[]::new));
-            this.banks = Arrays.asList(Bank.MAPPER.readArray(BANKS_JSON, Bank[]::new));
-            this.currencies = Currencies.MAPPER.read(CURRENCIES_JSON).getCurrencies();
-
-            reBuildForm();
-
-        });
-    }
-
     private void reBuildForm() {
         ElementUtil.clear(element);
         element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).asElement());
         addLCImportComponent = new AddLCImportComponent(corporateProfile, countries, beneficiaries, banks, currencies);
-        addLCImportComponent.setUiHandlers(FormSamplesViewImpl.this);
+        addLCImportComponent.setUiHandlers(this.uiHandlers);
         element.appendChild(addLCImportComponent.asElement());
     }
 
     @Override
-    public HTMLElement getElement() {
-        return element;
+    public void setUiHandlers(FormSamplesUIHandlers uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 
     @Override
-    public void setUiHandlers(FormSamplesUIHandlers uiHandlers) {
+    public void startLoading() {
+
+    }
+
+    @Override
+    public void stopLoading() {
 
     }
 

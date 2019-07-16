@@ -1,11 +1,11 @@
 package org.dominokit.domino.spin.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.spin.client.presenters.SpinSelectPresenter;
-import org.dominokit.domino.spin.client.views.CodeResource;
+import org.dominokit.domino.spin.client.presenters.SpinSelectProxy;
 import org.dominokit.domino.spin.client.views.SpinSelectView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -18,22 +18,35 @@ import org.dominokit.domino.ui.spin.VSpinSelect;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.img;
 
-@UiView(presentable = SpinSelectPresenter.class)
-public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements SpinSelectView {
+@UiView(presentable = SpinSelectProxy.class)
+@SampleClass
+public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements SpinSelectView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(BlockHeader.create("SPIN").asElement());
+
         horizontalSpin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSpin()).asElement());
+
         verticalSpin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void horizontalSpin() {
         element.appendChild(Card.create("HORIZONTAL SPIN")
                 .appendChild(Row.create()
@@ -65,11 +78,11 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                                 ))
                         .appendChild(Column.span2()
                                 .appendChild(HSpinSelect.<String>create()
-                                        .appendChild(SpinItem.create("item 1", div().css("sample-spin-item").add(img("./images/flags/jordan.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 2", div().css("sample-spin-item").add(img("./images/flags/oman.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 3", div().css("sample-spin-item").add(img("./images/flags/palestine.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(img("./images/flags/brazil.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(img("./images/flags/european-union.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 1", div().css("sample-spin-item").add(img("/images/flags/jordan.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 2", div().css("sample-spin-item").add(img("/images/flags/oman.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 3", div().css("sample-spin-item").add(img("/images/flags/palestine.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(img("/images/flags/brazil.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(img("/images/flags/european-union.png").style("width: 48px; height: 48px;"))))
                                 ))
                         .appendChild(Column.span6()
                                 .appendChild(HSpinSelect.<String>create(Icons.ALL.arrow_back(), Icons.ALL.arrow_forward())
@@ -81,9 +94,10 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                                 ))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSpin()).asElement());
+
     }
 
+    @SampleMethod
     private void verticalSpin() {
         element.appendChild(Card.create("VERTICAL SPIN", "For vertical spins to work the height should be fixed.")
                 .appendChild(Row.create()
@@ -118,11 +132,11 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                         .appendChild(Column.span2()
                                 .appendChild(VSpinSelect.<String>create()
                                         .setHeight("50px")
-                                        .appendChild(SpinItem.create("item 1", div().css("sample-spin-item").add(img("./images/flags/jordan.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 2", div().css("sample-spin-item").add(img("./images/flags/oman.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 3", div().css("sample-spin-item").add(img("./images/flags/palestine.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(img("./images/flags/brazil.png").style("width: 48px; height: 48px;"))))
-                                        .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(img("./images/flags/european-union.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 1", div().css("sample-spin-item").add(img("/images/flags/jordan.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 2", div().css("sample-spin-item").add(img("/images/flags/oman.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 3", div().css("sample-spin-item").add(img("/images/flags/palestine.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(img("/images/flags/brazil.png").style("width: 48px; height: 48px;"))))
+                                        .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(img("/images/flags/european-union.png").style("width: 48px; height: 48px;"))))
                                 ))
                         .appendChild(Column.span6()
                                 .appendChild(VSpinSelect.<String>create(Icons.ALL.arrow_upward(), Icons.ALL.arrow_downward())
@@ -135,11 +149,6 @@ public class SpinSelectViewImpl extends ComponentView<HTMLDivElement> implements
                                 ))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).asElement());
-    }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

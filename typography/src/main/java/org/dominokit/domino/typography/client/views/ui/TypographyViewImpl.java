@@ -1,13 +1,13 @@
 package org.dominokit.domino.typography.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.Constants;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.typography.client.presenters.TypographyPresenter;
-import org.dominokit.domino.typography.client.views.CodeResource;
+import org.dominokit.domino.typography.client.presenters.TypographyProxy;
 import org.dominokit.domino.typography.client.views.TypographyView;
 import org.dominokit.domino.ui.Typography.Blockquote;
 import org.dominokit.domino.ui.Typography.Paragraph;
@@ -18,32 +18,46 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = TypographyPresenter.class)
-public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements TypographyView {
-    private final HTMLDivElement element = div().asElement();
+@UiView(presentable = TypographyProxy.class)
+@SampleClass
+public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements TypographyView {
+    private HTMLDivElement element;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("typography", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TYPOGRAPHY").asElement());
 
         bodyCopy();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+
         fontSizes();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+
         heading();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
+
         textStyles();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
+
         blockqoute();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
+
         lists();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
 
+    @SampleMethod
     private void lists() {
         Row row = Row.create();
 
@@ -108,9 +122,10 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )).asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
+
     }
 
+    @SampleMethod
     private void bodyCopy() {
         element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
                 .appendChild(p().css(Styles.LEAD).textContent(Constants.SMALLER_PARAGRAPH))
@@ -118,9 +133,10 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(p().textContent(Constants.SMALL_PARAGRAPH)).asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+
     }
 
+    @SampleMethod
     private void fontSizes() {
         element.appendChild(Card.create("FONT SIZES", "Use ready classes to change a text fot size.")
                 .appendChild(Row.create()
@@ -141,10 +157,11 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_6).textContent("font-6")))
                         )).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+
 
     }
 
+    @SampleMethod
     private void heading() {
         element.appendChild(Card.create("HEADINGS")
                 .appendChild(h(1).textContent("h1. Text Heading."))
@@ -162,9 +179,10 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                 .asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
+
     }
 
+    @SampleMethod
     private void textStyles() {
 
         element.appendChild(Card.create("TEXT STYLES", "Use ready classes to style your paragraphs.")
@@ -230,9 +248,10 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         )
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
+
     }
 
+    @SampleMethod
     private void blockqoute() {
         element.appendChild(Card.create("BLOCKQUOTES")
                 .appendChild(Blockquote.create("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.")
@@ -247,6 +266,6 @@ public class TypographyViewImpl extends ComponentView<HTMLDivElement> implements
                         .reverse()
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
+
     }
 }

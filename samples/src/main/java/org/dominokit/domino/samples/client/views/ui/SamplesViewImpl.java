@@ -2,25 +2,26 @@ package org.dominokit.domino.samples.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.samples.client.presenters.SamplesPresenter;
+import org.dominokit.domino.samples.client.presenters.SamplesProxy;
 import org.dominokit.domino.samples.client.views.SamplesView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = SamplesPresenter.class)
-public class SamplesViewImpl extends ComponentView<HTMLDivElement> implements SamplesView {
+@UiView(presentable = SamplesProxy.class)
+public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements SamplesView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(BlockHeader.create("SAMPLES", " A set of apps and samples built with domino-ui").asElement());
         element.appendChild(Row.create()
                 .appendChild(Column.span6()
@@ -31,7 +32,7 @@ public class SamplesViewImpl extends ComponentView<HTMLDivElement> implements Sa
                                                 .add("classy-card"))
                                         .appendChild(img("./images/samples/dominodo.png")
                                                 .css(Styles.img_responsive)
-                                                .css(Styles.default_shadow))
+                                                .css(Elevation.LEVEL_1.getStyle()))
                                         .appendChild(h(4).textContent("DominoDo"))
                                         .appendChild(Paragraph.create("Simple todo app introducing good number of domino-ui components"))
                                         .appendChild(hr())
@@ -56,7 +57,7 @@ public class SamplesViewImpl extends ComponentView<HTMLDivElement> implements Sa
                                                 .add("classy-card"))
                                         .appendChild(img("./images/samples/nalu-initializer.png")
                                                 .css(Styles.img_responsive)
-                                                .css(Styles.default_shadow))
+                                                .css(Elevation.LEVEL_1.getStyle()))
                                         .appendChild(h(4).textContent("Nalu Initializer"))
                                         .appendChild(Paragraph.create("Project initializer for Nalu MVP framework"))
                                         .appendChild(hr())
@@ -80,7 +81,8 @@ public class SamplesViewImpl extends ComponentView<HTMLDivElement> implements Sa
     }
 
     @Override
-    public HTMLDivElement getElement() {
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 }

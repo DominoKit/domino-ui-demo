@@ -1,12 +1,12 @@
 package org.dominokit.domino.labels.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.labels.client.presenters.LabelsPresenter;
-import org.dominokit.domino.labels.client.views.CodeResource;
+import org.dominokit.domino.labels.client.presenters.LabelsProxy;
 import org.dominokit.domino.labels.client.views.LabelsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -14,26 +14,34 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.labels.Label;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
-@UiView(presentable = LabelsPresenter.class)
-public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements LabelsView {
+@UiView(presentable = LabelsProxy.class)
+@SampleClass
+public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements LabelsView {
 
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
+    protected void init(HTMLDivElement root) {
+        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("LABELS").asElement());
+
+        initLabels();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+
+        initMaterialLabels();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
     }
 
     @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("LABELS").asElement());
-        initLabels();
-        initMaterialLabels();
+    public HTMLDivElement createRoot() {
+        element = Elements.div().asElement();
+        return element;
     }
 
+    @SampleMethod
     private void initMaterialLabels() {
 
         Column column = Column.span(1, 2, 6, 12);
@@ -77,9 +85,10 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                                 .style().setMargin("10px"))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
+
     }
 
+    @SampleMethod
     private void initLabels() {
         Column column = Column.span(1, 2, 6, 12);
         element.appendChild(Card.create("LABELS")
@@ -119,6 +128,6 @@ public class LabelsViewImpl extends ComponentView<HTMLDivElement> implements Lab
                 .asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+
     }
 }

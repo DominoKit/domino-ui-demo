@@ -2,13 +2,14 @@ package org.dominokit.domino.animation.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
-import org.dominokit.domino.animation.client.presenters.AnimationPresenter;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
+import org.dominokit.domino.animation.client.presenters.AnimationProxy;
 import org.dominokit.domino.animation.client.views.AnimationView;
-import org.dominokit.domino.animation.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.extension.Aggregate;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.animations.Animation;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.button.Button;
@@ -19,26 +20,30 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = AnimationPresenter.class)
-public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements AnimationView {
+@UiView(presentable = AnimationProxy.class)
+@SampleClass
+public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements AnimationView {
 
     private HTMLDivElement element = div().asElement();
-
-    public AnimationViewImpl() {
-
-    }
+    private CodeCard createAnimationCard= new CodeCard();
+    CreateAnimationAggregator createAnimationAggregator;
 
     @Override
-    public HTMLDivElement getElement() {
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
+
+        createAnimationAggregator = new CreateAnimationAggregator().init(this);
+
         element.appendChild(LinkToSourceCode.create("animation", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CSS ANIMATIONS")
                 .appendText("Pure css animations - ")
@@ -349,8 +354,30 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 .asElement()
         );
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animation()).asElement());
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.trnsitionType(), value -> createAnimationAggregator.completeTransitionType(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.delay(), value -> createAnimationAggregator.completeDelay(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.onBeforeStart(), value -> createAnimationAggregator.completeBeforeStart(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.infinite(), value -> createAnimationAggregator.completeInfinite(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.stop(), value -> createAnimationAggregator.completeStop(value));
+
+        element.appendChild(createAnimationCard.asElement());
     }
+
+
+    @Aggregate(name="CreateAnimationAggregator")
+    public void onCodeLoaded(String transitionType, String delay, String beforeStart, String infinite, String stop){
+        createAnimationCard.setCode("// Create an animation for the element and pass the transition type and other parameters\n" +
+                        transitionType +
+                        "\n\n// Delay animation start\n" +
+                        delay +
+                        "\n\n// Do something before animation start\n" +
+                        beforeStart +
+                        "\n\n// Make the animation infinite\n" +
+                        infinite +
+                        "\n\n// Stop the infinite animation\n" +
+                        stop);
+    }
+
 
     private Card createCard(Transition transition) {
 
@@ -397,5 +424,56 @@ public class AnimationViewImpl extends ComponentView<HTMLDivElement> implements 
                 );
 
         return card;
+    }
+
+    @SampleMethod
+    private void trnsitionType() {
+
+        Animation.create(element)
+                .transition(Transition.BOUNCE)
+                .duration(1000)
+                .animate();
+    }
+
+    @SampleMethod
+    private void delay() {
+
+        Animation.create(element)
+                .transition(Transition.FLASH)
+                .duration(1000)
+                .delay(1000)
+                .animate();
+    }
+
+    @SampleMethod
+    private void onBeforeStart() {
+
+        Animation.create(element)
+                .transition(Transition.FLASH)
+                .duration(1000)
+                .beforeStart(element -> {/*do something here*/})
+                .animate();
+    }
+
+    @SampleMethod
+    private void infinite() {
+
+        Animation.create(element)
+                .transition(Transition.FLIP)
+                .duration(1000)
+                .infinite()
+                .animate();
+    }
+
+    @SampleMethod
+    private void stop() {
+
+        Animation animation = Animation.create(element)
+                .transition(Transition.TADA)
+                .duration(1000)
+                .infinite()
+                .animate();
+
+        animation.stop();
     }
 }

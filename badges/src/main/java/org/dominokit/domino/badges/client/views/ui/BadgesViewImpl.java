@@ -1,12 +1,13 @@
 package org.dominokit.domino.badges.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.badges.client.presenters.BadgesPresenter;
+import org.dominokit.domino.badges.client.presenters.BadgesProxy;
 import org.dominokit.domino.badges.client.views.BadgesView;
-import org.dominokit.domino.badges.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -14,33 +15,40 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.lists.ListGroup;
-import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
-@UiView(presentable = BadgesPresenter.class)
-public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements BadgesView {
+@UiView(presentable = BadgesProxy.class)
+@SampleClass
+public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements BadgesView {
 
 
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("badges", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BADGES").asElement());
 
         buttonExample();
-        buttonExamplesWithMaterialDesignColors();
-        listExample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
 
+        buttonExamplesWithMaterialDesignColors();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
+
+        listExample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
+                .asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = Elements.div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void buttonExample() {
 
         element.appendChild(Card.create("BUTTON EXAMPLES")
@@ -67,10 +75,9 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                                 ))
                         )
                 .asElement());
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
     }
 
+    @SampleMethod
     private void buttonExamplesWithMaterialDesignColors() {
 
         this.element.appendChild(Card.create("BUTTON EXAMPLES WITH MATERIAL DESIGN COLORS")
@@ -103,10 +110,9 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
                                 ))
                         )
                 .asElement());
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
     }
 
+    @SampleMethod
     private void listExample() {
 
         ListGroup<String> listGroup = ListGroup.create();
@@ -118,9 +124,6 @@ public class BadgesViewImpl extends ComponentView<HTMLDivElement> implements Bad
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
                 .appendChild(listGroup)
-                .asElement());
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
                 .asElement());
     }
 

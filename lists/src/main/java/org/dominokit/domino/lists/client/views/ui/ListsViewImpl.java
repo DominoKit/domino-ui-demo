@@ -1,12 +1,12 @@
 package org.dominokit.domino.lists.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.lists.client.presenters.ListsPresenter;
-import org.dominokit.domino.lists.client.views.CodeResource;
+import org.dominokit.domino.lists.client.presenters.ListsProxy;
 import org.dominokit.domino.lists.client.views.ListsView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
@@ -17,30 +17,46 @@ import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.SimpleListGroup;
 import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
-@UiView(presentable = ListsPresenter.class)
-public class ListsViewImpl extends ComponentView<HTMLDivElement> implements ListsView {
+@UiView(presentable = ListsProxy.class)
+@SampleClass
+public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements ListsView {
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
 
     private HTMLDivElement element = Elements.div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
+    protected void init(HTMLDivElement root) {
+        element.appendChild(LinkToSourceCode.create("lists", this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("LIST GROUPS").asElement());
+
+        basicListsSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicListsSample())
+                .asElement());
+
+        selectableSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectableSample())
+                .asElement());
+
+        coloredSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredSample())
+                .asElement());
+
+        richItems();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
+                .asElement());
     }
 
     @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("lists", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("LIST GROUPS").asElement());
-        basicListsSample();
-        selectableSample();
-        coloredSample();
-        richItems();
+    public HTMLDivElement createRoot() {
+        element = Elements.div().asElement();
+        return element;
     }
 
+    @SampleMethod
     private void basicListsSample() {
 
         element.appendChild(Row.create()
@@ -74,10 +90,10 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                 .asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicListsSample())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void selectableSample() {
         ListGroup<String> listGroup = ListGroup.create();
         listGroup
@@ -103,10 +119,10 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                         .appendChild(disabledItems)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectableSample())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void coloredSample() {
         ListGroup<String> contextualGroup = ListGroup.create();
         contextualGroup
@@ -131,10 +147,10 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
                         .appendChild(coloredGroup)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredSample())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void richItems() {
         ListGroup<String> listGroup = ListGroup.create();
         listGroup
@@ -147,7 +163,6 @@ public class ListsViewImpl extends ComponentView<HTMLDivElement> implements List
         element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
                 .appendChild(listGroup).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
-                .asElement());
+
     }
 }

@@ -2,33 +2,28 @@ package org.dominokit.domino.colors.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.colors.client.presenters.ColorsPresenter;
+import org.dominokit.domino.colors.client.presenters.ColorsProxy;
 import org.dominokit.domino.colors.client.views.ColorsView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.a;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = ColorsPresenter.class)
-public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements ColorsView {
+@UiView(presentable = ColorsProxy.class)
+public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements ColorsView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("colors", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("COLORS").asElement());
 
@@ -289,6 +284,12 @@ public class ColorsViewImpl extends ComponentView<HTMLDivElement> implements Col
                         )
                         .asElement())
                 .asElement());
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
     private HtmlContentBuilder<HTMLDivElement> makeColorBox(Color color) {

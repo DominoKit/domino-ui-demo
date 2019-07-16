@@ -1,45 +1,60 @@
 package org.dominokit.domino.splitPanel.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.TouchEvent;
-import jsinterop.base.Js;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.splitPanel.client.presenters.SplitPanelPresenter;
-import org.dominokit.domino.splitPanel.client.views.CodeResource;
+import org.dominokit.domino.splitPanel.client.presenters.SplitPanelProxy;
 import org.dominokit.domino.splitPanel.client.views.SplitPanelView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.splitpanel.HSplitPanel;
 import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
-import org.jboss.gwt.elemento.core.EventType;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.hr;
 
-@UiView(presentable = SplitPanelPresenter.class)
-public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements SplitPanelView {
+@UiView(presentable = SplitPanelProxy.class)
+@SampleClass
+public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements SplitPanelView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("splitPanel", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("SPLIT PANEL").asElement());
 
         horizontalSplitPanel();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSplitPanel()).asElement());
+
         verticalSplitPanel();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSplitPanel()).asElement());
+
+
         splitPanelMinMax();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.splitPanelMinMax()).asElement());
+
         multiSplit();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSplit()).asElement());
+
         combined();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void horizontalSplitPanel() {
 
         element.appendChild(Card.create("HORIZONTAL SPLIT PANEL")
@@ -52,9 +67,10 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSplitPanel()).asElement());
+
     }
 
+    @SampleMethod
     private void verticalSplitPanel() {
         element.appendChild(Card.create("VERTICAL SPLIT PANEL")
                 .appendChild(VSplitPanel.create()
@@ -67,10 +83,10 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSplitPanel()).asElement());
 
     }
 
+    @SampleMethod
     private void splitPanelMinMax() {
         element.appendChild(Card.create("SPLIT PANEL MIN & MAX")
                 .appendChild(HSplitPanel.create()
@@ -98,9 +114,10 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.splitPanelMinMax()).asElement());
+
     }
 
+    @SampleMethod
     private void multiSplit() {
         element.appendChild(Card.create("MULTI SPLIT")
                 .appendChild(HSplitPanel.create()
@@ -131,9 +148,10 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSplit()).asElement());
+
     }
 
+    @SampleMethod
     private void combined() {
         element.appendChild(Card.create("COMBINED SPLIT PANELS")
                 .appendChild(HSplitPanel.create()
@@ -160,11 +178,6 @@ public class SplitPanelViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).asElement());
-    }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

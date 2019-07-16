@@ -1,12 +1,12 @@
 package org.dominokit.domino.flexlayout.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutPresenter;
-import org.dominokit.domino.flexlayout.client.views.CodeResource;
+import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutProxy;
 import org.dominokit.domino.flexlayout.client.views.FlexLayoutView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -22,6 +22,7 @@ import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,15 +32,16 @@ import java.util.Map;
 import static java.util.Objects.isNull;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = FlexLayoutPresenter.class)
-public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements FlexLayoutView {
+@UiView(presentable = FlexLayoutProxy.class)
+@SampleClass
+public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements FlexLayoutView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private Card layoutPlaygroundCard;
     private Card flexItemsCard;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("FLEX LAYOUT").asElement());
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
@@ -57,11 +59,18 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
         initFlexItems();
 
         element.appendChild(layoutPlaygroundCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.layoutPlayground()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()).asElement());
         element.appendChild(flexItemsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.flexItems()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void initLayoutPlayground() {
         RadioGroup alignItemsRadioGroup = RadioGroup.create("align-items").hide();
         CheckBox fillHeightCheckBox = CheckBox.create("Fill height");
@@ -207,6 +216,7 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
         });
     }
 
+    @SampleMethod
     private void initFlexItems() {
         Slider orderSlider = Slider.create(6);
         Slider flexGrowSlider = Slider.create(10);
@@ -341,10 +351,5 @@ public class FlexLayoutViewImpl extends ComponentView<HTMLDivElement> implements
 
     private boolean isVerticalDirection(FlexDirection flexDirection) {
         return FlexDirection.TOP_TO_BOTTOM.equals(flexDirection) || FlexDirection.BOTTOM_TO_TOP.equals(flexDirection);
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

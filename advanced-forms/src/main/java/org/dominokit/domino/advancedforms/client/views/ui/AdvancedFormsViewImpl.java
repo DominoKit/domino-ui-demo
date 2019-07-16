@@ -8,13 +8,13 @@ import elemental2.dom.HTMLDivElement;
 import elemental2.dom.Response;
 import jsinterop.base.Js;
 import jsinterop.base.JsPropertyMap;
-import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsPresenter;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
+import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsProxy;
 import org.dominokit.domino.advancedforms.client.views.AdvancedFormsView;
-import org.dominokit.domino.advancedforms.client.views.CodeResource;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
@@ -29,6 +29,7 @@ import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.tag.TagsInput;
 import org.dominokit.domino.ui.tag.store.LocalTagsStore;
 import org.dominokit.domino.ui.upload.FileUpload;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
 import java.util.ArrayList;
@@ -38,22 +39,18 @@ import java.util.List;
 
 import static org.jboss.gwt.elemento.core.Elements.br;
 
-@UiView(presentable = AdvancedFormsPresenter.class)
-public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> implements AdvancedFormsView {
+@UiView(presentable = AdvancedFormsProxy.class)
+@SampleClass
+public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implements AdvancedFormsView {
 
     private static final String IP_ADDRESS_REGEX = "^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$";
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element;
     private Card uploadCard;
     private Card tagsInputCard;
     private Card suggestBoxCard;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).asElement());
         element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").asElement());
 
@@ -66,13 +63,20 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
         initSuggestBoxExample();
 
         element.appendChild(uploadCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.uploadExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFileUploadExample()).asElement());
         element.appendChild(tagsInputCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tagsExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTagsInputExample()).asElement());
         element.appendChild(suggestBoxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.suggestBoxExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSuggestBoxExample()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = Elements.div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void initFileUploadExample() {
         FileUpload fileUpload = FileUpload.create()
                 .setIcon(Icons.ALL.touch_app())
@@ -95,8 +99,10 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                 });
 
         uploadCard.appendChild(fileUpload);
+
     }
 
+    @SampleMethod
     private void initTagsInputExample() {
         tagsInputCard
                 .appendChild(BlockHeader.create("FREE TEXT TAGS", "Free text tags accept any text value"))
@@ -201,6 +207,7 @@ public class AdvancedFormsViewImpl extends ComponentView<HTMLDivElement> impleme
                                         .setTagsColor(ColorScheme.PINK))));
     }
 
+    @SampleMethod
     private void initSuggestBoxExample() {
         LocalSuggestBoxStore localStore = LocalSuggestBoxStore.create()
                 .addSuggestion(SuggestItem.create("Schroeder Coleman"))

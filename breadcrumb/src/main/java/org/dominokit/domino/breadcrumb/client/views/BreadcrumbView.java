@@ -1,7 +1,6 @@
 package org.dominokit.domino.breadcrumb.client.views;
 
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.componentcase.shared.extension.DemoView;
+import org.dominokit.domino.componentcase.client.presenters.DemoView;
 
-public interface BreadcrumbView extends View, DemoView{
+public interface BreadcrumbView extends DemoView<DemoView.DemoViewUiHandlers> {
 }

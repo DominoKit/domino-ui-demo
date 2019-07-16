@@ -1,2 +1,0 @@
-countsCard.appendChild(TextBox.create("Name").setLength(10));
-countsCard.appendChild(TextArea.create("Description").setLength(100));

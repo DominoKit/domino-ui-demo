@@ -2,13 +2,13 @@ package org.dominokit.domino.collapse.client.views.ui;
 
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.collapse.client.presenters.CollapsePresenter;
-import org.dominokit.domino.collapse.client.views.CodeResource;
+import org.dominokit.domino.collapse.client.presenters.CollapseProxy;
 import org.dominokit.domino.collapse.client.views.CollapseView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Accordion;
@@ -21,31 +21,47 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = CollapsePresenter.class)
-public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements CollapseView {
+@UiView(presentable = CollapseProxy.class)
+@SampleClass
+public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements CollapseView {
 
     private static final String SAMPLE_CONTENT = "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.";
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
+    protected void init(HTMLDivElement root) {
+        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).asElement());
+
+        example();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example())
+                .asElement());
+
+        accordionSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample())
+                .asElement());
+
+        colorFullWithIcons();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
+                .asElement());
+
+        multiOpenItems();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
+                .asElement());
     }
 
     @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).asElement());
-        example();
-        accordionSample();
-        colorFullWithIcons();
-        multiOpenItems();
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
+    @SampleMethod
     private void example() {
 
         element.appendChild(BlockHeader.create("COLLAPSE").asElement());
@@ -78,10 +94,10 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                 .appendChild(collapsible)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void accordionSample() {
         element.appendChild(BlockHeader.create("ACCORDION").asElement());
         element.appendChild(Row.create()
@@ -141,10 +157,10 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                         .dangerFull())))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void colorFullWithIcons() {
 
         element.appendChild(Row.create()
@@ -191,11 +207,11 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                         ))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
-                .asElement());
+
 
     }
 
+    @SampleMethod
     private void multiOpenItems() {
 
         element.appendChild(Row.create()
@@ -226,8 +242,7 @@ public class CollapseViewImpl extends ComponentView<HTMLDivElement> implements C
                                         ))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
-                .asElement());
+
 
     }
 }

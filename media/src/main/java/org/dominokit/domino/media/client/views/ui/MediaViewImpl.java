@@ -1,45 +1,48 @@
 package org.dominokit.domino.media.client.views.ui;
 
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.media.client.views.CodeResource;
+import org.dominokit.domino.media.client.presenters.MediaProxy;
 import org.dominokit.domino.media.client.views.MediaView;
-import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.media.client.presenters.MediaPresenter;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.media.MediaObject;
-import elemental2.dom.HTMLDivElement;
-import elemental2.dom.Text;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.img;
+import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = MediaPresenter.class)
-public class MediaViewImpl extends ComponentView<HTMLDivElement> implements MediaView {
+@UiView(presentable = MediaProxy.class)
+@SampleClass
+public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements MediaView {
 
     private static final String SAMPLE_TEXT = "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.";
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("media", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("MEDIA OBJECT").asElement());
 
         defaultMedia();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
+
         mediaAlignment();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void defaultMedia() {
         element.appendChild(Card.create("DEFAULT MEDIA", "The default media displays a media object (images, video, audio) to the left or right of a content block.")
                 .appendChild(MediaObject.create()
@@ -77,9 +80,10 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .appendChild(TextNode.of(SAMPLE_TEXT)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
+
     }
 
+    @SampleMethod
     private void mediaAlignment() {
 
         element.appendChild(Card.create("MEDIA ALIGNMENT","The images or other media can be aligned top, middle, or bottom. The default is top aligned.")
@@ -108,6 +112,5 @@ public class MediaViewImpl extends ComponentView<HTMLDivElement> implements Medi
                         .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
     }
 }

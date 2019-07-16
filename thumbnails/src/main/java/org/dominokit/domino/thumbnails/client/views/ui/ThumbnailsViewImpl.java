@@ -1,13 +1,14 @@
 package org.dominokit.domino.thumbnails.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
+import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
+import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.thumbnails.client.views.CodeResource;
+import org.dominokit.domino.thumbnails.client.presenters.ThumbnailsProxy;
 import org.dominokit.domino.thumbnails.client.views.ThumbnailsView;
-import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.thumbnails.client.presenters.ThumbnailsPresenter;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -16,26 +17,36 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.thumbnails.Thumbnail;
-import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = ThumbnailsPresenter.class)
-public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements ThumbnailsView {
+@UiView(presentable = ThumbnailsProxy.class)
+@SampleClass
+public class ThumbnailsViewImpl extends BaseDemoView<HTMLDivElement> implements ThumbnailsView {
 
     private static final String SAMPLE_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
-    private final HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().asElement();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("thumbnails", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("THUMBNAILS").asElement());
 
         basicSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
 
         withExtraContentSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void basicSample() {
         element.appendChild(Card.create("DEFAULT EXAMPLE", "By default, thumbnails are designed to showcase linked images with minimal required markup")
                 .appendChild(Row.create()
@@ -53,9 +64,10 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                                 .css(Styles.img_responsive)))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+
     }
 
+    @SampleMethod
     private void withExtraContentSample() {
         element.appendChild(Card.create("CUSTOM CONTENT", "With a bit of extra markup, it's possible to add any kind of HTML content like headings, paragraphs, or buttons into thumbnails.")
                 .appendChild(Row.create()
@@ -88,13 +100,5 @@ public class ThumbnailsViewImpl extends ComponentView<HTMLDivElement> implements
                                         .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
                                         .appendCaptionChild(Button.createPrimary("BUTTON")))))
                 .asElement());
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
-
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

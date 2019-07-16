@@ -1,9 +1,0 @@
-//Use the IN transition, OUT transition for transaction appear/disappear animation
-//use duration to set the wait time before the notification automatically disappear
-
-Notification.create("You received a message")
-        .duration(5000)
-        .inTransition(Transition.LIGHT_SPEED_IN)
-        .outTransition(Transition.LIGHT_SPEED_OUT)
-        .setPosition(Notification.TOP_CENTER)
-        .show();

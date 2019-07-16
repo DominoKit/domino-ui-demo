@@ -1,4 +1,0 @@
-Pagination.create(5)
-        .markActivePage()
-        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber))
-        .setActivePage(3)

@@ -5,37 +5,32 @@ import com.google.gwt.resources.client.ResourceCallback;
 import com.google.gwt.resources.client.ResourceException;
 import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.profile.client.presenters.ProfilePresenter;
+import org.dominokit.domino.profile.client.presenters.ProfileProxy;
 import org.dominokit.domino.profile.client.views.ProfileView;
-import org.dominokit.domino.ui.button.DropdownButton;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.cards.HeaderAction;
+import org.dominokit.domino.ui.dropdown.DropDownMenu;
+import org.dominokit.domino.ui.dropdown.DropDownPosition;
 import org.dominokit.domino.ui.dropdown.DropdownAction;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.view.BaseElementView;
 import org.jboss.gwt.elemento.core.Elements;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.small;
 
-@UiView(presentable = ProfilePresenter.class)
-public class ProfileViewImpl implements ProfileView {
+@UiView(presentable = ProfileProxy.class)
+public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements ProfileView {
 
-    private final Card profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
-    private IsLayout layout;
-
-    public ProfileViewImpl() {
-    }
+    private Card profile;
 
     @Override
-    public void setLayout(IsLayout layout) {
-        this.layout = layout;
+    protected void init(HTMLDivElement root) {
         profile.style()
                 .add("profile-card")
                 .add("classy-card")
@@ -46,22 +41,23 @@ public class ProfileViewImpl implements ProfileView {
         profile.setBodyPadding("10px");
         profile.getBody().styler(style -> style.remove("bg-theme"));
         profile.getHeaderTitle().setAttribute("id", "demo-profile");
-        HTMLElement leftPanel = Js.cast(layout.getLeftPanel().get());
-        if (leftPanel.childElementCount > 0)
-            leftPanel.insertBefore(profile.asElement(), leftPanel.firstChild);
-        else
-            leftPanel.appendChild(profile.asElement());
+
 
         profile.appendChild(Elements.img(GWT.getModuleBaseURL() + "/images/user.png").style("border-radius:50%;"));
-        DropdownButton dropdownButton = DropdownButton.create(Icons.ALL.more_vert())
-                .linkify()
-                .setBackground(Color.TRANSPARENT)
-                .hideCaret()
-                .appendChild(DropdownAction.create("Action 1").addSelectionHandler(value -> Notification.createInfo(value).show()))
-                .appendChild(DropdownAction.create("Action 2").addSelectionHandler(value -> Notification.createInfo(value).show()));
+        HeaderAction headerAction=HeaderAction.create(Icons.ALL.more_vert()
+                .clickable());
+        DropDownMenu dropDownMenu=DropDownMenu.create(headerAction)
+                .setPosition(DropDownPosition.BOTTOM)
+                .addAction(DropdownAction.create("Action 1").addSelectionHandler(value -> Notification.createInfo(value).show()))
+                .addAction(DropdownAction.create("Action 2").addSelectionHandler(value -> Notification.createInfo(value).show()));
 
-        profile.getHeaderBar().appendChild(dropdownButton
-                .asElement());
+
+        headerAction.addClickListener(evt -> {
+            dropDownMenu.open();
+            evt.stopPropagation();
+        });
+
+        profile.addHeaderAction(headerAction);
         Style.of(profile).setHeight("186px");
         profile.asElement().appendChild(div().css("bg-classy").asElement());
 
@@ -85,7 +81,8 @@ public class ProfileViewImpl implements ProfileView {
     }
 
     @Override
-    public Content getContent() {
-        return layout.getContentPanel();
+    public HTMLDivElement createRoot() {
+        profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
+        return profile.asElement();
     }
 }

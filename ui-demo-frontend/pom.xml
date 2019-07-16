@@ -122,17 +122,6 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>menu-shared</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>menu-shared</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -150,17 +139,6 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>component-case-frontend-ui</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-shared</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-shared</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -199,17 +177,6 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>layouts</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>layouts</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
             <artifactId>appLayout</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
@@ -243,45 +210,134 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-frontend</artifactId>
+            <artifactId>splitPanel</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>splitPanel</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>flexlayout</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>components-frontend</artifactId>
+            <artifactId>flexlayout</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend</artifactId>
+            <artifactId>chips</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>chips</artifactId>
+            <version>1.0-SNAPSHOT</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>cards</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend</artifactId>
+            <artifactId>cards</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>infobox</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>infobox</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend-ui</artifactId>
+            <artifactId>buttons</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-frontend-ui</artifactId>
+            <artifactId>buttons</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-shared</artifactId>
+            <artifactId>alerts</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit.domino</groupId>
-            <artifactId>forms-shared</artifactId>
+            <artifactId>alerts</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>badges</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>badges</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>labels</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>labels</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>modals</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>modals</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>lists</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>lists</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>loaders</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>loaders</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -414,105 +470,6 @@
         <dependency>
             <groupId>org.dominokit.domino</groupId>
             <artifactId>animation</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>cards</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>cards</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>infobox</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>infobox</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>buttons</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>buttons</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>alerts</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>alerts</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>badges</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>badges</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>labels</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>labels</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>modals</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>modals</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>lists</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>lists</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>loaders</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>loaders</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -704,28 +661,6 @@
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>chips</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>chips</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>splitPanel</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>splitPanel</artifactId>
-            <version>1.0-SNAPSHOT</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
             <groupId>org.dominokit</groupId>
             <artifactId>domino-ui</artifactId>
             <version>${project.version}</version>
@@ -733,17 +668,6 @@
         <dependency>
             <groupId>org.dominokit</groupId>
             <artifactId>domino-ui</artifactId>
-            <version>${project.version}</version>
-            <classifier>sources</classifier>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>flexlayout</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>flexlayout</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -791,6 +715,7 @@
                     <moduleName>org.dominokit.domino.ui.demo.AppClientModule</moduleName>
                     <moduleShortName>app</moduleShortName>
                     <compilerArgs>
+                        <compilerArg>-XdisableCastChecking</compilerArg>
                         <!--<compilerArg>-style</compilerArg>-->
                         <!--<compilerArg>PRETTY</compilerArg>-->
                         <compilerArg>-compileReport</compilerArg>

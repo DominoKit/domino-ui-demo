@@ -1,15 +1,19 @@
 package org.dominokit.domino.menu.client.views;
 
 import org.dominokit.domino.api.client.mvp.view.ContentView;
-import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.menu.shared.extension.MenuContext;
+import org.dominokit.domino.api.client.mvp.view.HasUiHandlers;
+import org.dominokit.domino.api.client.mvp.view.UiHandlers;
 
-public interface MenuView extends ContentView {
-    void init(IsLayout layout);
+public interface MenuView extends ContentView, HasUiHandlers<MenuView.MenuUiHandlers> {
 
-    MenuContext.CanAddMenuItem addMenuItem(String title, String iconName, MenuContext.OnMenuSelectedHandler selectionHandler);
-
-    MenuContext.CanAddMenuItem addMenuItem(String title, String iconName);
-
-    void setTitle(String title);
+    interface MenuUiHandlers extends UiHandlers{
+        void onLocked();
+        void onUnLocked();
+        void onXLargeMedia();
+        void onLargeMedia();
+        void onMediumMedia();
+        void onSmallMedia();
+        void onXSmallMedia();
+        void onMenuItemSelected(String token);
+    }
 }

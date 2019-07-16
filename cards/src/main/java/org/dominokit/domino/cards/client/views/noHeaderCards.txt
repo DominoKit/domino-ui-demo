@@ -1,9 +1,0 @@
-element.appendChild(Row.create()
-    .addColumn(Column.span4().appendChild(Card.create()
-            .setBackground(Color.GREEN)
-            .appendChild(new Text(SAMPLE_CONTENT))))
-    .addColumn(Column.span4().appendChild(Card.create()
-            .setBackground(Color.LIGHT_BLUE).appendChild(new Text(SAMPLE_CONTENT))))
-    .addColumn(Column.span4().appendChild(Card.create()
-            .setBackground(Color.PURPLE).appendChild(new Text(SAMPLE_CONTENT))))
-    .asElement());

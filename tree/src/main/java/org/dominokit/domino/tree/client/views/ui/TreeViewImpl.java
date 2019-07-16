@@ -1,12 +1,12 @@
 package org.dominokit.domino.tree.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.tree.client.presenters.TreePresenter;
-import org.dominokit.domino.tree.client.views.CodeResource;
+import org.dominokit.domino.tree.client.presenters.TreeProxy;
 import org.dominokit.domino.tree.client.views.Countries;
 import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
@@ -18,15 +18,17 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.util.List;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = TreePresenter.class)
-public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeView {
+@UiView(presentable = TreeProxy.class)
+@SampleClass
+public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     private static final String COUNTRIES= "{\n" +
             "  \"countries\": [\n" +
@@ -230,19 +232,29 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
             "}";
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("tree", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("Tree").asElement());
 
         simpleTree();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
 
         nestedTree();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
 
         activeAndExpandIcons();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void simpleTree() {
-        Tree hardwareTree = Tree.create("HARDWARE")
+        Tree<String> hardwareTree = Tree.create("HARDWARE")
                 .appendChild(TreeItem.create("Computer", Icons.ALL.computer())
                         .addClickListener(evt -> Notification.create("Computer").show()))
                 .appendChild(TreeItem.create("Headset", Icons.ALL.headset())
@@ -261,7 +273,7 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                 .appendChild(TreeItem.create("Speaker", Icons.ALL.speaker())
                         .addClickListener(evt -> Notification.create("Speaker").show()));
 
-        Tree filesTree = Tree.create("FILES")
+        Tree<String> filesTree = Tree.create("FILES")
                 .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
                         .addClickListener(evt -> Notification.create("Folder").show()))
                 .appendChild(TreeItem.create("Folder open", Icons.ALL.folder_open())
@@ -285,9 +297,10 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                         .addColumn(Column.span6().appendChild(filesTree))
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
+
     }
 
+    @SampleMethod
     private void nestedTree() {
         Tree hardwareTree = Tree.create("HARDWARE")
                 .appendChild(TreeItem.create("Computer", Icons.ALL.desktop_windows())
@@ -321,8 +334,8 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
 
         TreeItem treeItem = TreeItem.create("File 3", Icons.ALL.description());
         TreeItem upload = TreeItem.create("Upload", Icons.ALL.cloud_upload());
-        Tree files = Tree.create("FILES");
-        Tree hardwareMenu2 = files
+        Tree<String> files = Tree.create("FILES");
+        Tree<String> hardwareMenu2 = files
                 .setAutoCollapse(false)
                 .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
                         .appendChild(TreeItem.create("My files", Icons.ALL.folder_special())
@@ -365,9 +378,10 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
         upload.expand(true);
         upload.activate(true);
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
+
     }
 
+    @SampleMethod
     private void activeAndExpandIcons() {
 
         List<Country> countries = Countries.MAPPER.read(COUNTRIES).getCountries();
@@ -476,11 +490,6 @@ public class TreeViewImpl extends ComponentView<HTMLDivElement> implements TreeV
                                 .appendChild(foldersExpand))
                         ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.featuredTree()).asElement());
-    }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

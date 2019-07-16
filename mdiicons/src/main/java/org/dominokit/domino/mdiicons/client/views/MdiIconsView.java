@@ -1,9 +1,6 @@
 package org.dominokit.domino.mdiicons.client.views;
 
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.componentcase.shared.extension.DemoView;
+import org.dominokit.domino.componentcase.client.presenters.DemoView;
 
-public interface MdiIconsView extends View, DemoView {
-    Content getContent();
+public interface MdiIconsView extends DemoView<DemoView.DemoViewUiHandlers> {
 }

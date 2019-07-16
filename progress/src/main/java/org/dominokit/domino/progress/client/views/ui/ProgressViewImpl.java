@@ -1,51 +1,64 @@
 package org.dominokit.domino.progress.client.views.ui;
 
-import com.google.gwt.user.client.Timer;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCase;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.progress.client.presenters.ProgressPresenter;
-import org.dominokit.domino.progress.client.views.CodeResource;
+import org.dominokit.domino.progress.client.presenters.ProgressProxy;
 import org.dominokit.domino.progress.client.views.ProgressView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.gwtproject.timer.client.Timer;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = ProgressPresenter.class)
-public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements ProgressView {
+@UiView(presentable = ProgressProxy.class)
+@SampleClass
+public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements ProgressView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private ProgressBar movingBar;
     private int animationFrame = 0;
     private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("progress", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("PROGRESS BARS").asElement());
 
         basicSample();
-        contextualAlternatives();
-        stripedSample();
-        animatedSample();
-        stackedSample();
-        materialDesignColors();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
 
+        contextualAlternatives();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+
+        stripedSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+
+        animatedSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+
+        stackedSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+
+        materialDesignColors();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void basicSample() {
         movingBar = ProgressBar.create(1000);
         //we are doing this since we want to move the progress for the demo,
@@ -83,9 +96,11 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
             animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
         };
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+
+        restartProgress();
     }
 
+    @SampleMethod
     private void contextualAlternatives() {
         element.appendChild(Card.create("CONTEXTUAL ALTERNATIVES", "Progress bars use some of the same button and alert classes for consistent styles.")
                 .appendChild(Progress.create()
@@ -110,9 +125,10 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+
     }
 
+    @SampleMethod
     private void stripedSample() {
         element.appendChild(Card.create("STRIPED", "Uses a gradient to create a striped effect.")
                 .appendChild(Progress.create()
@@ -137,9 +153,10 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+
     }
 
+    @SampleMethod
     private void animatedSample() {
         element.appendChild(Card.create("ANIMATED", "Animating the bar will add stripes by default.")
                 .appendChild(Progress.create()
@@ -164,9 +181,10 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(30)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+
     }
 
+    @SampleMethod
     private void stackedSample() {
         element.appendChild(Card.create("STACKED", "You can stack more than one progress bar in a progress element.")
                 .appendChild(Progress.create()
@@ -184,9 +202,10 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                         .asElement())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+
     }
 
+    @SampleMethod
     private void materialDesignColors() {
         element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You use material design colors to style the progress bar.")
                 .appendChild(Progress.create()
@@ -212,12 +231,9 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                                 .setValue(40)))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
     }
 
-    @Override
-    public ComponentCase.ComponentRevealedHandler restartProgress() {
-        return () -> {
+    private void restartProgress() {
             DomGlobal.cancelAnimationFrame(animationFrame);
             movingBar.setValue(0);
             movingBar.textExpression("{percent}%");
@@ -228,6 +244,5 @@ public class ProgressViewImpl extends ComponentView<HTMLDivElement> implements P
                 }
             }.schedule(1000);
 
-        };
     }
 }

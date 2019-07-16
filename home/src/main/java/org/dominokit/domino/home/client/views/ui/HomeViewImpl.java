@@ -4,10 +4,9 @@ import elemental2.dom.HTMLDivElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.ClientApp;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.api.shared.history.AppHistory;
-import org.dominokit.domino.api.shared.history.HistoryToken;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.home.client.presenters.HomePresenter;
+import org.dominokit.domino.history.AppHistory;
+import org.dominokit.domino.history.HistoryToken;
+import org.dominokit.domino.home.client.presenters.HomeProxy;
 import org.dominokit.domino.home.client.views.HomeView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
@@ -19,30 +18,26 @@ import org.dominokit.domino.ui.spin.HSpinSelect;
 import org.dominokit.domino.ui.spin.SpinItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.timer.client.Timer;
 
 import static elemental2.dom.DomGlobal.window;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = HomePresenter.class)
-public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeView {
+@UiView(presentable = HomeProxy.class)
+public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeView {
 
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private int direction = 1;
     private Timer timer;
     private HSpinSelect<String> spinSelect;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-
+    protected void init(HTMLDivElement root) {
         element.appendChild(BlockHeader.create("DOMINO-UI")
                 .asElement());
         element.appendChild(Paragraph.create("Java based lightweight UI library that in addition to performance and functionality brings elegance to enterprise web applications.")
@@ -61,7 +56,12 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
         initWhatOthersSay();
         initFollowUs();
         initPoweredBy();
+    }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
     private void initPoweredBy() {
@@ -157,7 +157,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                 .appendChild(spinSelect
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
                                                 .appendChild(img("https://secure.gravatar.com/avatar/7ec73ac46e7215d35633a18d134f44e7")
-                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Styles.default_shadow))
+                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Elevation.LEVEL_1.getStyle()))
                                                 .appendChild(h(3).textContent("Flavio Castro"))
                                                 .appendChild(Paragraph.create("After years working with GWT, Domino-ui came to the rescue, making the developers lives easier while providing a better and faster experience to the users."))
                                                 .appendChild(Paragraph.create("- Tech Leader / Architect @ Ardan1")
@@ -166,7 +166,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                         .italic())))
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
                                                 .appendChild(img("./images/sponsors/raul.jpg")
-                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Styles.default_shadow))
+                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Elevation.LEVEL_1.getStyle()))
                                                 .appendChild(h(3).textContent("Raúl Pampliega Mayoral"))
                                                 .appendChild(Paragraph.create("After trying out several ways to modernize our UI layer, Domino-ui make us really fast and it looks and feel amazing."))
                                                 .appendChild(Paragraph.create("- Software Engineer @ Babcock MCS Spain")
@@ -175,7 +175,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                         .italic())))
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
                                                 .appendChild(img("./images/sponsors/anas-zahran.jpg")
-                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Styles.default_shadow))
+                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Elevation.LEVEL_1.getStyle()))
                                                 .appendChild(h(3).textContent("Anas Zahran"))
                                                 .appendChild(Paragraph.create("Domino-ui can smoothly reduce the lines of code required to create a cross browser web application."))
                                                 .appendChild(Paragraph.create("- Technologist @ Progressoft")
@@ -184,7 +184,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                                                         .italic())))
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
                                                 .appendChild(img("./images/sponsors/saif-badran.jpg")
-                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Styles.default_shadow))
+                                                        .css(Styles.img_responsive, "person-pic", "quote-pic", Elevation.LEVEL_1.getStyle()))
                                                 .appendChild(h(3).textContent("Saif Badran"))
                                                 .appendChild(Paragraph.create("Domino-ui made it so simple. It's a real pleasure working on it, the way it generates professional, user-friendly interfaces is impressive!."))
                                                 .appendChild(Paragraph.create("- Software Engineer @ Progressoft")
@@ -410,7 +410,7 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                 .appendChild(div().css("home-section").css("slide-1").add(Row.create()
                         .appendChild(Column.span4()
                                 .appendChild(img("./images/insight/domino-ui-slide-1.png")
-                                        .css(Styles.img_responsive).css(Styles.default_shadow)))
+                                        .css(Styles.img_responsive).css(Elevation.LEVEL_1.getStyle())))
                         .appendChild(Column.span8()
                                 .appendChild(BlockHeader.create("Type safe"))
                                 .appendChild(Paragraph.create("Domino-ui is Java based compiled to JavaScript, which means during development of the application you have the power to refactor and keep your app maintainable all the time, but also you develop your application with the mature set of all tool chain java can provide, this include extremely powerful IDEs and mature build tools like maven and gradle, use domino-ui and bring your java team to the frontend world."))
@@ -424,13 +424,13 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                         )
                         .appendChild(Column.span4()
                                 .appendChild(img("./images/insight/domino-ui-slide-2.png")
-                                        .css(Styles.img_responsive).css(Styles.default_shadow))))
+                                        .css(Styles.img_responsive).css(Elevation.LEVEL_1.getStyle()))))
                         .add(div().css("breaker"))
                 )
                 .appendChild(div().css("home-section").css("slide-3").add(Row.create()
                         .appendChild(Column.span4()
                                 .appendChild(img("./images/insight/domino-ui-slide-3.png")
-                                        .css(Styles.img_responsive).css(Styles.default_shadow)))
+                                        .css(Styles.img_responsive).css(Elevation.LEVEL_1.getStyle())))
                         .appendChild(Column.span8()
                                 .appendChild(BlockHeader.create("Rich data table"))
                                 .appendChild(Paragraph.create("Almost every enterprise application uses data tables, domino-ui realise this fact and provides a rich, functional and elegant data table which is extendable with a rich set of ready to use plugins like selection plugin, marker plugin, record details plugin, search plugin and more, but this is not limited since the user can write his own plugins, and even better we are continuously adding more plugins."))
@@ -444,18 +444,17 @@ public class HomeViewImpl extends ComponentView<HTMLDivElement> implements HomeV
                         )
                         .appendChild(Column.span4()
                                 .appendChild(img("./images/insight/domino-ui-slide-4.png")
-                                        .css(Styles.img_responsive).css(Styles.default_shadow))))
+                                        .css(Styles.img_responsive).css(Elevation.LEVEL_1.getStyle()))))
                         .add(div().css("breaker"))
                 )
                 .appendChild(div().css("home-section").css("slide-5").add(Row.create()
                         .appendChild(Column.span4()
                                 .appendChild(img("./images/insight/domino-ui-slide-5.png")
-                                        .css(Styles.img_responsive).css(Styles.default_shadow)))
+                                        .css(Styles.img_responsive).css(Elevation.LEVEL_1.getStyle())))
                         .appendChild(Column.span8()
                                 .appendChild(BlockHeader.create("Typography & Font icons"))
                                 .appendChild(Paragraph.create("Icons and Typography can enhance the user experience of the application, domino-ui has a very good of font icons that can bring forms and other elements in the page into life, and this not only applies for enterprise applications but also for simple application like blogs, in domino-ui creating typography elements is very easy and stylish."))
                         ))
-
                 )
                 .asElement());
     }

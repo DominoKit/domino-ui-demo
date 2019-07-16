@@ -1,14 +1,20 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
+import com.google.gwt.resources.client.ExternalTextResource;
+import com.google.gwt.resources.client.ResourceCallback;
+import com.google.gwt.resources.client.ResourceException;
+import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.basicforms.client.presenters.BasicFormsPresenter;
+import org.dominokit.domino.api.shared.extension.Aggregate;
+import org.dominokit.domino.basicforms.client.presenters.BasicFormsProxy;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
-import org.dominokit.domino.basicforms.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
@@ -18,11 +24,15 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+
+import java.util.function.Consumer;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = BasicFormsPresenter.class)
-public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements BasicFormsView {
+@UiView(presentable = BasicFormsProxy.class)
+@SampleClass
+public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements BasicFormsView {
 
     private HTMLDivElement element = div().asElement();
     private Card inputCard;
@@ -32,13 +42,13 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
     private Card radioCard;
     private Card switchCard;
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
+    private CodeCard basicExamplesCard = new CodeCard();
+
+    protected BasicFormsCode basicFormsCode;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
+        basicFormsCode= new BasicFormsCode().init(this);
         element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").asElement());
 
@@ -61,20 +71,54 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         initSwitchExample();
 
         element.appendChild(inputCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textboxSamples()).asElement());
+
+        element.appendChild(basicExamplesCard.asElement());
+
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initBasicExamples(), value -> basicFormsCode.completeBasicExamples(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentWidths(), value -> basicFormsCode.completeDifferentWidths(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentSizes(), value -> basicFormsCode.completeDifferentSizes(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initFloatingLabel(), value -> basicFormsCode.completeFloatingLabels(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initInputStatus(), value -> basicFormsCode.completeInputStatus(value));
+
         element.appendChild(textAreaCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textareaSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(
+                CodeResource.INSTANCE.initBasicTextAreaExample()
+        ).asElement());
+
         element.appendChild(selectCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectExample()).asElement());
+
         element.appendChild(checkboxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.checkBoxSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initCheckboxExample()).asElement());
+
         element.appendChild(radioCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.radioSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initRadioExample()).asElement());
+
         element.appendChild(switchCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.switchSamples()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).asElement());
     }
 
+    @Aggregate(name="BasicFormsCode")
+    public void onCodeLoaded(String basicExamples, String differentWidths, String differentSizes, String floatingLabels, String inputStatus){
+        basicExamplesCard.setCode("// -------------- Basic examples\n" +
+                basicExamples +
+                "\n\n// -------------- Different widths\n" +
+                differentWidths +
+                "\n\n// -------------- Different Sizes\n" +
+                differentSizes +
+                "\n\n// -------------- Floating Label Examples\n" +
+                floatingLabels +
+                "\n\n// -------------- Input Status\n" +
+                inputStatus);
+    }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void initSwitchExample() {
         switchCard.appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"));
 
@@ -113,6 +157,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                         .appendChild(SwitchButton.create().setOffTitle("GREY").setColor(Color.GREY).check())));
     }
 
+    @SampleMethod
     private void initRadioExample() {
         radioCard.appendChild(h(5).textContent("Basic Examples"));
 
@@ -182,6 +227,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY).withGap()))));
     }
 
+    @SampleMethod
     private void initCheckboxExample() {
         checkboxCard.appendChild(h(5).textContent("Basic Examples"));
         checkboxCard.appendChild(Row.create()
@@ -257,6 +303,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         );
     }
 
+    @SampleMethod
     private void initSelectExample() {
 
         selectCard.appendChild(Row.create()
@@ -354,12 +401,14 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
         );
     }
 
+    @SampleMethod
     private void initBasicExamples() {
         inputCard.appendChild(BlockHeader.create("Basic Example"))
                 .appendChild(TextBox.create().setPlaceholder("Username"))
                 .appendChild(TextBox.password().setPlaceholder("Password"));
     }
 
+    @SampleMethod
     private void initDifferentWidths() {
 
         inputCard.appendChild(BlockHeader.create("Different Widths"))
@@ -389,6 +438,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 );
     }
 
+    @SampleMethod
     private void initDifferentSizes() {
         inputCard.appendChild(BlockHeader.create("Different Sizes"))
                 .appendChild(TextBox.create().setPlaceholder("Large Input").large())
@@ -396,6 +446,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(TextBox.create().setPlaceholder("Small Input").small());
     }
 
+    @SampleMethod
     private void initFloatingLabel() {
         inputCard.appendChild(BlockHeader.create("Floating Label Examples"))
                 .appendChild(TextBox.create("Username"))
@@ -408,6 +459,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                 .appendChild(TextBox.create("Email").floating());
     }
 
+    @SampleMethod
     private void initInputStatus() {
 
         inputCard.appendChild(BlockHeader.create("Input Status"))
@@ -418,6 +470,7 @@ public class BasicFormsViewImpl extends ComponentView<HTMLDivElement> implements
                                 .appendChild(TextBox.create("Disabled").disable())));
     }
 
+    @SampleMethod
     private void initBasicTextAreaExample() {
         textAreaCard.appendChild(BlockHeader.create("Basic Examples"))
                 .appendChild(TextArea.create().setPlaceholder("Start typing here..."));

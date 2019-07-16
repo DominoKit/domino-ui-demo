@@ -2,32 +2,40 @@ package org.dominokit.domino.carousel.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.carousel.client.presenters.CarouselPresenter;
+import org.dominokit.domino.carousel.client.presenters.CarouselProxy;
 import org.dominokit.domino.carousel.client.views.CarouselView;
-import org.dominokit.domino.carousel.client.views.CodeResource;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
 import org.dominokit.domino.ui.carousel.Slide;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = CarouselPresenter.class)
-public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements CarouselView {
+@UiView(presentable = CarouselProxy.class)
+@SampleClass
+public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements CarouselView {
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("CAROUSEL").asElement());
 
+        basicSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+    }
+
+    @SampleMethod
+    private void basicSample() {
         element.appendChild(Row.create()
                 .addColumn(Column.span6().appendChild(
                         Card.create()
@@ -38,7 +46,7 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
                                         .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg"))
                                         .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
                                 )
-                        ))
+                ))
                 .addColumn(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
@@ -51,13 +59,11 @@ public class CarouselViewImpl extends ComponentView<HTMLDivElement> implements C
                                 )
                         )
                 ).asElement());
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.carousel()).asElement());
-
     }
 
     @Override
-    public HTMLDivElement getElement() {
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 }

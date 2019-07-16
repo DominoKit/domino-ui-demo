@@ -1,73 +1,49 @@
 package org.dominokit.domino.themes.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLLIElement;
-import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.themes.client.presenters.ThemesPresenter;
+import org.dominokit.domino.themes.client.presenters.ThemesProxy;
 import org.dominokit.domino.themes.client.views.ThemesView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.view.BaseElementView;
 import org.jboss.gwt.elemento.core.Elements;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import static java.util.Objects.nonNull;
 
-@UiView(presentable = ThemesPresenter.class)
-public class ThemesViewImpl implements ThemesView {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ThemesViewImpl.class);
+@UiView(presentable = ThemesProxy.class)
+public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements ThemesView {
 
     private ThemesPanel themesPanel = ThemesPanel.create();
 
     private HTMLLIElement activeTheme;
     private Map<String, HTMLLIElement> themesElements = new HashMap<>();
-    private Card card = Card.create("Themes", "Select theme to apply.");
-    private ThemeAppliedHandler themeAppliedHandler;
-
-    public ThemesViewImpl() {
-
-    }
+    private Card card;
+    private ThemesUiHandlers uiHandlers;
 
     @Override
-    public void setLayout(final IsLayout layout) {
-
-        HTMLLIElement hideElement = makeIcon(Icons.HARDWARE_ICONS.keyboard_tab());
-        hideElement.addEventListener("click", e -> {
-            if (nonNull(Elements.label()))
-                layout.hideRightPanel();
-        });
-        card.getHeaderBar().appendChild(hideElement);
+    protected void init(HTMLDivElement root) {
+        card.addHeaderAction(Icons.HARDWARE_ICONS.keyboard_tab(), evt -> uiHandlers.onHideThemes());
         card.style().setMarginBottom("0px");
-        card.bodyStyle().setPadding("0px");
-        card.appendChild(themesPanel.asElement());
-        HTMLElement actionItem = Js.cast(layout.addActionItem("style").get());
-        actionItem.addEventListener("click", e -> {
-            layout.setRightPanelContent(getContent());
-            layout.showRightPanel();
-        });
+        card.fitContent();
+        card.appendChild(themesPanel);
     }
-
-    private HTMLLIElement makeIcon(Icon icon) {
-        return Elements.li().add(
-                Elements.a().add(icon.asElement()))
-                .asElement();
-    }
-
 
     @Override
-    public Content getContent() {
-        return (Content<HTMLDivElement>) card::asElement;
+    public HTMLDivElement createRoot() {
+        card = Card.create("Themes", "Select theme to apply.");
+        return card.asElement();
+    }
+
+    @Override
+    public void setUiHandlers(ThemesUiHandlers uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 
     @Override
@@ -104,9 +80,7 @@ public class ThemesViewImpl implements ThemesView {
         this.activeTheme = themeElement;
         themeElement.classList.add("active");
         theme.apply();
-        if (nonNull(themeAppliedHandler)) {
-            themeAppliedHandler.onThemeApplied(theme.getName());
-        }
+        uiHandlers.onThemeApplied(theme.getName());
     }
 
     @Override
@@ -115,10 +89,6 @@ public class ThemesViewImpl implements ThemesView {
             applyTheme(of(theme));
     }
 
-    @Override
-    public void onThemeApplied(ThemeAppliedHandler themeAppliedHandler) {
-        this.themeAppliedHandler = themeAppliedHandler;
-    }
 
     private static Theme of(String themeKey) {
         switch (themeKey) {

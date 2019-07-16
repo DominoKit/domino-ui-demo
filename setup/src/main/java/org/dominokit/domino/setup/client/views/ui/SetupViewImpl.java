@@ -1,27 +1,28 @@
 package org.dominokit.domino.setup.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.setup.client.views.SetupView;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.setup.client.presenters.SetupPresenter;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
+import org.dominokit.domino.setup.client.presenters.SetupProxy;
+import org.dominokit.domino.setup.client.views.SetupView;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = SetupPresenter.class)
-public class SetupViewImpl extends ComponentView<HTMLDivElement> implements SetupView{
+@UiView(presentable = SetupProxy.class)
+public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements SetupView{
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").asElement());
 
 
-        element.appendChild(CodeCard.createCodeCard("<dependency>\n" +
+        element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
                 "  <version>1.0-SNAPSHOT</version>\n" +
@@ -31,28 +32,29 @@ public class SetupViewImpl extends ComponentView<HTMLDivElement> implements Setu
                 "  <artifactId>domino-ui</artifactId>\n" +
                 "  <version>1.0-SNAPSHOT</version>\n" +
                 "  <classifier>sources</classifier>\n" +
-                "</dependency>")
+                "</dependency>").toSafeHtml().asString())
                 .setTitle("Maven dependencies")
-                .expand()
+                .apply(self -> self.getCard().show())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>")
+        element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>").toSafeHtml().asString())
                 .setTitle("gwt module inheritance")
-                .expand()
+                .apply(self -> self.getCard().show())
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
+        element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">")
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">").toSafeHtml().asString())
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
-                .expand()
+                .apply(self -> self.getCard().show())
                 .asElement());
     }
 
     @Override
-    public HTMLDivElement getElement() {
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 }

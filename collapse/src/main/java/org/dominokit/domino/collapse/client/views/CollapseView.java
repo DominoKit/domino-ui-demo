@@ -1,7 +1,6 @@
 package org.dominokit.domino.collapse.client.views;
 
-import org.dominokit.domino.api.client.mvp.view.View;
-import org.dominokit.domino.componentcase.shared.extension.DemoView;
+import org.dominokit.domino.componentcase.client.presenters.DemoView;
 
-public interface CollapseView extends View, DemoView{
+public interface CollapseView extends DemoView<DemoView.DemoViewUiHandlers> {
 }

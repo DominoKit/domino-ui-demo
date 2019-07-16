@@ -1,12 +1,12 @@
 package org.dominokit.domino.tabs.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.tabs.client.presenters.TabsPresenter;
-import org.dominokit.domino.tabs.client.views.CodeResource;
+import org.dominokit.domino.tabs.client.presenters.TabsProxy;
 import org.dominokit.domino.tabs.client.views.TabsView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Transition;
@@ -16,42 +16,64 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.tabs.*;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.b;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = TabsPresenter.class)
-public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsView {
+@UiView(presentable = TabsProxy.class)
+@SampleClass
+public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
     private HTMLDivElement element = div().asElement();
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TABS").asElement());
 
         basicSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+
         iconsOnly();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
+
         withIconsAndTextSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).asElement());
+
         closableTabsSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).asElement());
+
         materialDesignColorsSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+
         backgroundSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.backgroundSample()).asElement());
+
         initDifferentContentSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDifferentContentSample()).asElement());
+
         withAnimation();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+
         verticalTabs();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void basicSample() {
         element.appendChild(Card.create("EXAMPLE TAB", "Add quick, dynamic tab functionality to transition through panes of local content")
                 .appendChild(TabsPanel.create()
@@ -71,9 +93,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+
     }
 
+    @SampleMethod
     private void iconsOnly() {
         element.appendChild(Card.create("TABS WITH ONLY ICON TITLE")
                 .appendChild(TabsPanel.create()
@@ -93,9 +116,9 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
     }
 
+    @SampleMethod
     private void withIconsAndTextSample() {
         element.appendChild(Card.create("TABS WITH ICON TITLE")
                 .appendChild(TabsPanel.create()
@@ -115,9 +138,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).asElement());
+
     }
 
+    @SampleMethod
     private void closableTabsSample() {
         element.appendChild(Card.create("CLOSABLE TABS")
                 .appendChild(TabsPanel.create()
@@ -148,9 +172,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).asElement());
+
     }
 
+    @SampleMethod
     private void materialDesignColorsSample() {
         element.appendChild(Card.create("TABS WITH MATERIAL DESIGN COLORS", "You can use Material Design Colors")
                 .appendChild(Row.create()
@@ -203,9 +228,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+
     }
 
+    @SampleMethod
     private void backgroundSample() {
         element.appendChild(Card.create("TABS WITH MATERIAL DESIGN BACKGROUNDS", "You can use Material Design backgrounds")
                 .appendChild(Row.create()
@@ -264,15 +290,16 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignBackgroundsSample()).asElement());
+
     }
 
+    @SampleMethod
     private void initDifferentContentSample() {
         DominoElement<HTMLDivElement> contentContainer = DominoElement.of(div())
                 .appendChild(BlockHeader.create("TAB CONTENT"))
                 .styler(style -> style.setMarginTop("40px")
-                        .setPadding("20px")
-                        .add(Styles.default_shadow));
+                        .setPadding("20px"))
+                .elevate(Elevation.LEVEL_1);
         element.appendChild(Card.create("TABS WITH CONTENT CONTAINER", "Tabs can have different content container")
                 .appendChild(TabsPanel.create()
                         .setContentContainer(contentContainer)
@@ -293,9 +320,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 .appendChild(contentContainer)
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.differentContentContainerSample()).asElement());
+
     }
 
+    @SampleMethod
     private void withAnimation() {
         element.appendChild(Card.create("TABS WITH CUSTOM ANIMATIONS", "Animate the tabs content when they show up.")
                 .appendChild(Row.create()
@@ -336,9 +364,10 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+
     }
 
+    @SampleMethod
     private void verticalTabs() {
         element.appendChild(Card.create("VERTICAL TABS")
                 .appendChild(Row.create()
@@ -405,6 +434,6 @@ public class TabsViewImpl extends ComponentView<HTMLDivElement> implements TabsV
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).asElement());
+
     }
 }

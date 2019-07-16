@@ -33,6 +33,5 @@
 
   <modules>
     <module>menu-frontend</module>
-    <module>menu-shared</module>
   </modules>
 </project>

@@ -3,31 +3,30 @@ package org.dominokit.domino.grids.client.views.ui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.grids.client.presenters.GridsPresenter;
-import org.dominokit.domino.grids.client.views.CodeResource;
+import org.dominokit.domino.grids.client.presenters.GridsProxy;
 import org.dominokit.domino.grids.client.views.GridsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 import static org.jboss.gwt.elemento.core.Elements.span;
 
-@UiView(presentable = GridsPresenter.class)
-public class GridsViewImpl extends ComponentView<HTMLDivElement> implements GridsView {
+@UiView(presentable = GridsProxy.class)
+@SampleClass
+public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements GridsView {
 
-    private HTMLDivElement element = div().asElement();
-
-    public GridsViewImpl() {
-    }
+    private HTMLDivElement element;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("grids", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("GRIDS").asElement());
 
@@ -40,15 +39,30 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
             @Override
             public void onSuccess() {
                 grid12Columns();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid12Columns()).asElement());
+
                 grid16Columns();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid16Columns()).asElement());
+
                 grid18Columns();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid18Columns()).asElement());
+
                 grid24Columns();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid24Columns()).asElement());
+
                 grid32Columns();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).asElement());
             }
         });
-
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void grid12Columns() {
         element.appendChild(Card.create("12 Columns", "Default row is a 12 columns grid.")
                 .setCollapsible()
@@ -271,9 +285,10 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid12Columns()).asElement());
+
     }
 
+    @SampleMethod
     private void grid16Columns() {
         element.appendChild(Card.create("16 Columns")
                 .setCollapsible()
@@ -548,9 +563,10 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid16Columns()).asElement());
+
     }
 
+    @SampleMethod
     private void grid18Columns() {
         element.appendChild(Card.create("18 Columns")
                 .setCollapsible()
@@ -867,9 +883,10 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid18Columns()).asElement());
+
     }
 
+    @SampleMethod
     private void grid24Columns() {
         element.appendChild(Card.create("24 Columns")
                 .setCollapsible()
@@ -1304,9 +1321,10 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid24Columns()).asElement());
+
     }
 
+    @SampleMethod
     private void grid32Columns() {
         element.appendChild(Card.create("32 Columns")
                 .setCollapsible()
@@ -1839,11 +1857,6 @@ public class GridsViewImpl extends ComponentView<HTMLDivElement> implements Grid
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).asElement());
-    }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

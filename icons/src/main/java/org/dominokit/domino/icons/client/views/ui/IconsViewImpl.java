@@ -6,8 +6,7 @@ import elemental2.dom.*;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.icons.client.presenters.IconsPresenter;
+import org.dominokit.domino.icons.client.presenters.IconsProxy;
 import org.dominokit.domino.icons.client.views.IconsView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
@@ -17,6 +16,8 @@ import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.DominoDom;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.gwtproject.timer.client.Timer;
 import org.jboss.gwt.elemento.core.InputType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 import org.slf4j.Logger;
@@ -24,22 +25,17 @@ import org.slf4j.LoggerFactory;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = IconsPresenter.class)
-public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsView {
+@UiView(presentable = IconsProxy.class)
+public class IconsViewImpl extends BaseDemoView<HTMLElement> implements IconsView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IconsViewImpl.class);
 
     private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").asElement();
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
 
     @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
-    @Override
-    public void init() {
-
+    protected void init(HTMLElement root) {
+        uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
             @Override
             public void onFailure(Throwable reason) {
@@ -80,8 +76,16 @@ public class IconsViewImpl extends ComponentView<HTMLElement> implements IconsVi
                 placesIcons();
                 socialIcons();
                 toggleIcons();
+
+                uiHandlers.stopLoading();
             }
         });
+    }
+
+    @Override
+    public HTMLElement createRoot() {
+        element = div().asElement();
+        return element;
     }
 
     private void actionIcons() {

@@ -2,12 +2,12 @@ package org.dominokit.domino.timepicker.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.timepicker.client.presenters.TimePickerPresenter;
-import org.dominokit.domino.timepicker.client.views.CodeResource;
+import org.dominokit.domino.timepicker.client.presenters.TimePickerProxy;
 import org.dominokit.domino.timepicker.client.views.TimePickerView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -24,14 +24,16 @@ import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.timepicker.ClockStyle;
 import org.dominokit.domino.ui.timepicker.TimeBox;
 import org.dominokit.domino.ui.timepicker.TimePicker;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
 
 import java.util.Date;
 
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = TimePickerPresenter.class)
-public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements TimePickerView {
+@UiView(presentable = TimePickerProxy.class)
+@SampleClass
+public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements TimePickerView {
 
     private HTMLDivElement element = div().asElement();
 
@@ -41,16 +43,28 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
             .add(Styles.padding_0).get();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("TIME PICKERS").asElement());
 
-        inlined();
+        inline();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).asElement());
+
         popups();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+
         timeBox();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).asElement());
     }
 
-    private void inlined() {
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
+    private void inline() {
         element.appendChild(Card.create("INLINED")
                 .appendChild(Row.create()
                         .addColumn(column.copy().appendChild(TimePicker.create()
@@ -82,9 +96,10 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                                         DomGlobal.console.info(timePicker.getFormattedTime())))))
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlined()).asElement());
+
     }
 
+    @SampleMethod
     private void popups() {
         Button bluePopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
         TimePicker bluePopTimePicker = TimePicker.create()
@@ -202,9 +217,10 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+
     }
 
+    @SampleMethod
     private void timeBox() {
 
         Column column = this.column.copy()
@@ -235,13 +251,7 @@ public class TimePickerViewImpl extends ComponentView<HTMLDivElement> implements
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timebox()).asElement());
+
 
     }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
-
 }

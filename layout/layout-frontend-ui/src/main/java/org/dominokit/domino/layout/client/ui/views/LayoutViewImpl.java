@@ -3,42 +3,47 @@ package org.dominokit.domino.layout.client.ui.views;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
-import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.api.shared.extension.Content;
-import org.dominokit.domino.layout.client.presenters.LayoutPresenter;
+import org.dominokit.domino.api.client.mvp.slots.IsSlot;
+import org.dominokit.domino.api.client.mvp.slots.SlotsEntries;
+import org.dominokit.domino.layout.client.presenters.LayoutProxy;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.layout.shared.extension.LayoutContext;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
+import org.dominokit.domino.ui.loaders.Loader;
+import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.scroll.ScrollTop;
 import org.dominokit.domino.ui.search.Search;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.utils.ElementUtil;
+import org.dominokit.domino.view.BaseElementView;
+import org.dominokit.domino.view.slots.AppendElementSlot;
+import org.dominokit.domino.view.slots.SingleElementSlot;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.gwt.elemento.core.EventType;
 import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
 
-import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = LayoutPresenter.class)
-public class LayoutViewImpl implements LayoutView {
+@UiView(presentable = LayoutProxy.class)
+public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {
 
     private Layout layout = new Layout().setTitle("Domino UI demo");
 
-    private Content rightPanelContent;
+    private HTMLDivElement profileDiv = div().asElement();
+    private HTMLDivElement menuDiv = div().asElement();
+    private Loader loader;
 
-    public LayoutViewImpl() {
-
+    @Override
+    protected void init(HTMLDivElement root) {
         Search search = Search.create();
         layout
+                .spanLeftPanelUp()
                 .autoFixLeftPanel()
                 .getNavigationBar()
                 .insertBefore(search, layout.getNavigationBar().firstChild());
@@ -48,17 +53,18 @@ public class LayoutViewImpl implements LayoutView {
         layout.getTopBar()
                 .appendChild(li().css(Styles.pull_right).add(searchButton).asElement());
         layout.getTopBar().appendChild(li().css(Styles.pull_right).style("padding-top: 3px;").add(makeGithubLink()).asElement());
-        layout.showFooter();
         HTMLDivElement copyrightsElement = div()
                 .css(Theme.currentTheme.getScheme().darker_3().getBackground())
                 .css(Styles.align_center)
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
                         .textContent("© 2018 Copyright DominoKit")).asElement();
 
+        layout.showFooter();
         Row footerRow = createFooterRow();
 
         layout.getFooter().appendChild(footerRow);
         layout.getFooter().appendChild(copyrightsElement);
+
         Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
                 .remove(oldTheme.getScheme().darker_3().getBackground())
                 .add(newTheme.getScheme().darker_3().getBackground()));
@@ -66,6 +72,45 @@ public class LayoutViewImpl implements LayoutView {
         DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
                 .setBottom(60)
                 .asElement());
+
+        layout.getLeftPanel()
+                .appendChild(profileDiv)
+                .appendChild(menuDiv);
+
+        layout.getContentPanel()
+                .style().setMinHeight("calc(100vh - 365px)");
+        loader = Loader.create(layout.getContentPanel(), LoaderEffect.PULSE);
+
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        return layout.asElement();
+    }
+
+    @Override
+    public IsSlot<?> getContentSlot() {
+        return SingleElementSlot.of(layout.getContentPanel());
+    }
+
+    @Override
+    public IsSlot<?> getMenuPanelSlot() {
+        return SingleElementSlot.of(menuDiv);
+    }
+
+    @Override
+    public IsSlot<?> getProfilePanelSlot() {
+        return SingleElementSlot.of(profileDiv);
+    }
+
+    @Override
+    public IsSlot<?> getTopBarSlot() {
+        return AppendElementSlot.of(layout.getTopBar());
+    }
+
+    @Override
+    public IsSlot<?> getRightPanelSlot() {
+        return SingleElementSlot.of(layout.getRightPanel());
     }
 
     private Row createFooterRow() {
@@ -120,21 +165,6 @@ public class LayoutViewImpl implements LayoutView {
         return githubLink;
     }
 
-    @Override
-    public void addActionItem(String iconName, LayoutContext.SelectionHandler selectionHandler) {
-        HTMLElement actionItem = layout.addActionItem(Icon.create(iconName));
-        actionItem.addEventListener("click", evt -> selectionHandler.onSelected());
-    }
-
-    @Override
-    public void setRightPanelContent(Content content) {
-        if (nonNull(rightPanelContent) && !rightPanelContent.equals(content)) {
-            layout.getRightPanel().removeChild((HTMLDivElement) Js.cast(rightPanelContent.get()));
-        }
-
-        rightPanelContent = content;
-        layout.getRightPanel().appendChild((HTMLElement) Js.cast(content.get()));
-    }
 
     @Override
     public void toggleRightPanel() {
@@ -159,39 +189,8 @@ public class LayoutViewImpl implements LayoutView {
     }
 
     @Override
-    public Content getRightPanel() {
-        return (Content<HTMLElement>) () -> layout.getRightPanel().asElement();
-    }
-
-    @Override
-    public Content getLeftPanel() {
-        return (Content<HTMLElement>) () -> layout.getLeftPanel().asElement();
-    }
-
-    @Override
-    public Content getContentPanel() {
-        return (Content<HTMLDivElement>) () -> layout.getContentPanel().asElement();
-    }
-
-    @Override
-    public Content getTopBar() {
-        return (Content<HTMLElement>) () -> layout.getTopBar().asElement();
-    }
-
-    @Override
     public IsLayout setTitle(String title) {
         layout.setTitle(title);
-        return this;
-    }
-
-    @Override
-    public Content addActionItem(String icon) {
-        return (Content<HTMLElement>) () -> layout.addActionItem(Icon.create(icon));
-    }
-
-    @Override
-    public IsLayout show() {
-        layout.show(false);
         return this;
     }
 
@@ -224,5 +223,28 @@ public class LayoutViewImpl implements LayoutView {
         Layout.LeftPanelSize leftPanelSize = Layout.LeftPanelSize.valueOf(size);
         layout.setLeftPanelSize(leftPanelSize);
         return this;
+    }
+
+    @Override
+    public IsLayout scrollTop() {
+        ElementUtil.scrollTop();
+        return this;
+    }
+
+    @Override
+    public boolean isRightPanelVisible() {
+        return layout.isRightPanelVisible();
+    }
+
+    @Override
+    public void startLoading() {
+        DomGlobal.console.info("Start loading ----- > ");
+        loader.start();
+    }
+
+    @Override
+    public void stopLoading() {
+        DomGlobal.console.info("Stop loading ----- > ");
+        loader.stop();
     }
 }

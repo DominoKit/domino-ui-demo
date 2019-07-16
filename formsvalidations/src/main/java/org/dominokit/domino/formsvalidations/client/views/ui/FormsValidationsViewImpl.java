@@ -2,12 +2,12 @@ package org.dominokit.domino.formsvalidations.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsPresenter;
-import org.dominokit.domino.formsvalidations.client.views.CodeResource;
+import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsProxy;
 import org.dominokit.domino.formsvalidations.client.views.FormsValidationsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -20,12 +20,14 @@ import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Tooltip;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.gwt.elemento.core.Elements;
 
-@UiView(presentable = FormsValidationsPresenter.class)
-public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> implements FormsValidationsView {
+@UiView(presentable = FormsValidationsProxy.class)
+@SampleClass
+public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> implements FormsValidationsView {
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element;
     private Card helperTextCard;
     private Card iconsCard;
     private Card countsCard;
@@ -33,7 +35,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
     private Card readOnlyCard;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").asElement());
         helperTextCard = Card.create("HELPER TEXTS");
@@ -49,17 +51,24 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
         initReadOnly();
 
         element.appendChild(helperTextCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.helperText()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initHelperText()).asElement());
         element.appendChild(iconsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.addons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIcons()).asElement());
         element.appendChild(countsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.wordCount()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWordCount()).asElement());
         element.appendChild(validationsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.validations()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initValidations()).asElement());
         element.appendChild(readOnlyCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.readOnly()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initReadOnly()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = Elements.div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void initReadOnly() {
         readOnlyCard
                 .appendChild(Row.create()
@@ -87,6 +96,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                 );
     }
 
+    @SampleMethod
     private void initHelperText() {
         helperTextCard
                 .appendChild(BlockHeader.create("Text Box"))
@@ -126,6 +136,7 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                         .setHelperText("Notifications will be sent via the system"));
     }
 
+    @SampleMethod
     private void initIcons() {
         Icon cancel = Icons.ALL.cancel();
 
@@ -160,11 +171,13 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                 );
     }
 
+    @SampleMethod
     private void initWordCount() {
         countsCard.appendChild(TextBox.create("Name").setMaxLength(10));
         countsCard.appendChild(TextArea.create("Description").setMaxLength(100));
     }
 
+    @SampleMethod
     private void initValidations() {
         FieldsGrouping fieldsGrouping = FieldsGrouping.create();
         TextBox name = TextBox.create("Name").groupBy(fieldsGrouping);
@@ -222,10 +235,5 @@ public class FormsValidationsViewImpl extends ComponentView<HTMLDivElement> impl
                                                 Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
                                             }
                                         }))));
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

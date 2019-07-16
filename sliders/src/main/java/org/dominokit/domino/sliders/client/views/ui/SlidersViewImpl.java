@@ -1,12 +1,12 @@
 package org.dominokit.domino.sliders.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.sliders.client.presenters.SlidersPresenter;
-import org.dominokit.domino.sliders.client.views.CodeResource;
+import org.dominokit.domino.sliders.client.presenters.SlidersProxy;
 import org.dominokit.domino.sliders.client.views.SlidersView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.SwitchButton;
@@ -17,19 +17,21 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = SlidersPresenter.class)
-public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements SlidersView {
+@UiView(presentable = SlidersProxy.class)
+@SampleClass
+public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements SlidersView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private Card basicCard;
     private Card colorsSlidersCard;
     private Card sampleCard;
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
         element.appendChild(LinkToSourceCode.create("sliders", this.getClass()).asElement());
         basicCard = Card.create("BASIC SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
@@ -41,13 +43,20 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
 
         element.appendChild(BlockHeader.create("SLIDERS").asElement());
         element.appendChild(basicCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basic()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBasic()).asElement());
         element.appendChild(colorsSlidersCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initColors()).asElement());
         element.appendChild(sampleCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initExample()).asElement());
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void initBasic() {
         basicCard
                 .appendChild(Row.create()
@@ -138,6 +147,7 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
                 );
     }
 
+    @SampleMethod
     private void initColors() {
         colorsSlidersCard
                 .appendChild(Row.create()
@@ -172,6 +182,7 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
                 );
     }
 
+    @SampleMethod
     private void initExample() {
         HTMLDivElement rgbColorsDiv = div()
                 .style("height: 190px;")
@@ -345,8 +356,4 @@ public class SlidersViewImpl extends ComponentView<HTMLDivElement> implements Sl
         Notification.createInfo("Value " + value + " out of 200").show();
     }
 
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
-    }
 }

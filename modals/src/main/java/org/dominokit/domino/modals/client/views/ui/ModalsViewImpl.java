@@ -2,54 +2,164 @@ package org.dominokit.domino.modals.client.views.ui;
 
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.extension.Aggregate;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentCase.ComponentRemoveHandler;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.modals.client.presenters.ModalsPresenter;
-import org.dominokit.domino.modals.client.views.CodeResource;
+import org.dominokit.domino.modals.client.presenters.ModalsProxy;
 import org.dominokit.domino.modals.client.views.ModalsView;
+import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.ButtonSize;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
+import org.dominokit.domino.ui.modals.Window;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
-@UiView(presentable = ModalsPresenter.class)
-public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements ModalsView {
+@UiView(presentable = ModalsProxy.class)
+@SampleClass
+public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements ModalsView {
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private ModalDialog openedDialog;
 
+    private CodeCard modalSizesCard = new CodeCard();
+    private CodeCard modalColorsCard = new CodeCard();
+
+    private ModalSizeAggregator modalSizeAggregator;
+    private ModalColorAggregator modalColorAggregator;
+
     @Override
-    public HTMLDivElement getElement() {
+    protected void init(HTMLDivElement root) {
+
+        modalSizeAggregator = new ModalSizeAggregator().init(this);
+        modalColorAggregator = new ModalColorAggregator().init(this);
+
+        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
+        element.appendChild(BlockHeader.create("MODALS").asElement());
+
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initModalsSize(), value -> modalSizeAggregator.completeModalSizes(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.initModalColor(), value -> modalColorAggregator.completeModalColor(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.createModalDialog(), value -> {
+            modalColorAggregator.completeCreateModal(value);
+            modalSizeAggregator.completeCreateModal(value);
+        });
+
+        initModalsSize();
+        element.appendChild(modalSizesCard.asElement());
+
+        initSheets();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSheets())
+                .asElement());
+
+        initModalColor();
+        element.appendChild(modalColorsCard.asElement());
+
+        initWindow();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWindow())
+                .asElement());
+    }
+
+    @Aggregate(name = "ModalSizeAggregator")
+    public void onModalSizesCodeLoaded(String modalSizes, String createModal) {
+        modalSizesCard.setCode(
+                modalSizes +
+                        "\n\n//-------------------------------\n" +
+                        "\n\nprivate ModalDialog createModalDialog() {\n\n" +
+                        createModal + "\n" +
+                        "\n}");
+    }
+
+    @Aggregate(name = "ModalColorAggregator")
+    public void onModalColorCodeLoaded(String modalColor, String createModal) {
+        modalColorsCard.setCode(
+                modalColor +
+                        "\n\n//-------------------------------\n" +
+                        "\n\nprivate ModalDialog createModalDialog() {\n\n" +
+                        createModal + "\n" +
+                        "\n}");
+    }
+
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
         return element;
     }
 
-    private ComponentRemoveHandler closeHandler = () -> {
-        if (nonNull(openedDialog))
-            openedDialog.close();
-    };
+    @SampleMethod
+    private void initWindow() {
+        element.appendChild(Card.create("Window", "Use window to create modals that can be maximized and move.")
+                .appendChild(Row.create()
+                        .appendChild(Column.span3()
+                                .appendChild(Button.createDefault("SIMPLE WINDOW")
+                                        .addClickListener(evt -> {
+                                            new Window("Simple window")
+                                                    .setFixed()
+                                                    .setSize(IsModalDialog.ModalSize.SMALL)
+                                                    .setHeaderBackground(Color.PINK)
+                                                    .apply(self -> self
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                    )
+                                                    .open();
+                                        }))
+                        )
+                        .appendChild(Column.span3()
+                                .appendChild(Button.createDefault("MODAL WINDOW")
+                                        .addClickListener(evt -> {
+                                            new Window("Modal window")
+                                                    .setFixed()
+                                                    .setSize(IsModalDialog.ModalSize.SMALL)
+                                                    .setModal(true)
+                                                    .apply(self -> self
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                    )
+                                                    .open();
+                                        }))
+                        )
+                        .appendChild(Column.span3()
+                                .appendChild(Button.createDefault("NO DRAG WINDOW")
+                                        .addClickListener(evt -> {
+                                            new Window("No drag window")
+                                                    .setFixed()
+                                                    .setSize(IsModalDialog.ModalSize.SMALL)
+                                                    .setDraggable(false)
+                                                    .apply(self -> self
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                    )
+                                                    .open();
+                                        })))
+                        .appendChild(Column.span3()
+                                .appendChild(Button.createDefault("LARGE WINDOW")
+                                        .addClickListener(evt -> {
+                                            new Window("Large window")
+                                                    .setSize(IsModalDialog.ModalSize.LARGE)
+                                                    .setFixed()
+                                                    .apply(self -> self
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                            .appendChild(Paragraph.create(SAMPLE_CONTENT))
+                                                    )
+                                                    .open();
+                                        })))
 
-    @Override
-    public void init() {
-        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("MODALS").asElement());
-        initModalsSize();
-        initSheets();
-        initModalColor();
+                )
+                .asElement());
     }
 
+    @SampleMethod
     private void initSheets() {
 
         element.appendChild(Card.create("SHEETS MODALS", "Sheets are modal that stick to screen edges.")
@@ -173,8 +283,6 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                         })
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sheetModals())
-                .asElement());
 
     }
 
@@ -183,10 +291,10 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
         this.openedDialog = dialog;
     }
 
+    @SampleMethod
     private void initModalsSize() {
 
         // ------------ Default size -------------
-
 
         ModalDialog defaultSizeModal = createModalDialog();
 
@@ -218,10 +326,10 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                 )
                 .asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalsSize())
-                .asElement());
+
     }
 
+    @SampleMethod
     private void initModalColor() {
         //------------ Red ------------
         ModalDialog modalDialogRed = createModalDialog().setModalColor(Color.RED);
@@ -282,10 +390,10 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
                         .add(tealButton)
                 ).asElement());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initModalColor()).asElement());
 
     }
 
+    @SampleMethod
     private ModalDialog createModalDialog() {
         ModalDialog modal = ModalDialog.create("Modal title")
                 .setAutoClose(true);
@@ -304,7 +412,8 @@ public class ModalsViewImpl extends ComponentView<HTMLDivElement> implements Mod
     }
 
     @Override
-    public ComponentRemoveHandler cleanup() {
-        return closeHandler;
+    public void cleanup() {
+        if (nonNull(openedDialog))
+            openedDialog.close();
     }
 }

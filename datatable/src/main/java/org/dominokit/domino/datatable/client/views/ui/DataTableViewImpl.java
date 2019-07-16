@@ -6,13 +6,14 @@ import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import org.dominokit.domino.SampleClass;
+import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.componentcase.shared.extension.ComponentView;
-import org.dominokit.domino.datatable.client.presenters.DatatablePresenter;
-import org.dominokit.domino.datatable.client.views.CodeResource;
+import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
+import org.dominokit.domino.datatable.client.views.JsonResource;
 import org.dominokit.domino.datatable.client.views.model.*;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
@@ -36,6 +37,7 @@ import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,14 +46,16 @@ import java.util.stream.Collectors;
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
-@UiView(presentable = DatatablePresenter.class)
-public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements DatatableView {
+@UiView(presentable = DatatableProxy.class)
+@SampleClass
+public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements DatatableView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element;
     private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
 
     @Override
-    public void init() {
+    protected void init(HTMLDivElement root) {
+        uiHandlers.startLoading();
         element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
                 .appendChild(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
@@ -60,21 +64,52 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 .asElement());
 
         basicTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
+
         basicFixedTable();
-        selectionPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).asElement());
+
+        singleSelectionPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).asElement());
+
+        multiSelectionPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).asElement());
+
         markerPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
+
         recordDetailsPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
+
         tableHeaderBarPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).asElement());
+
         sortAndSearch();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
+
         simplePagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+
         scrollingPagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
+
         advancedPagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
+
         scrollableTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).asElement());
+
         topPanelPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+
         groupingTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).asElement());
+
         allInOne();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
+
         try {
-            CodeResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
+            JsonResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
                 @Override
                 public void onError(ResourceException e) {
                     DomGlobal.console.error("could not load json", e);
@@ -85,6 +120,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                     ContactList contactList = ContactList.MAPPER.read(resource.getText());
                     contactListParseHandlers.forEach(contactListParseHandler ->
                             contactListParseHandler.onContactsParsed(contactList.getContacts()));
+                    uiHandlers.stopLoading();
                 }
             });
         } catch (ResourceException e) {
@@ -92,8 +128,59 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         }
     }
 
+    @Override
+    public HTMLDivElement createRoot() {
+        element = div().asElement();
+        return element;
+    }
+
+    @SampleMethod
     private void groupingTable() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo1 -> ContactUiUtils.getBalanceElement(cellInfo1.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
         tableConfig.addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
                 cellInfo -> {
                     DominoElement.of(cellInfo.getElement())
@@ -117,12 +204,57 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).asElement());
+
     }
 
-
+    @SampleMethod
     private void basicTable() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
@@ -136,10 +268,9 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             table.load();
         });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
     }
 
+    @SampleMethod
     private void basicFixedTable() {
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
@@ -203,8 +334,6 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fixedBasicTable()).asElement());
     }
 
     private List<Contact> subList(List<Contact> contacts) {
@@ -215,8 +344,53 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
         return contacts.subList(from, to).stream().map(Contact::new).collect(Collectors.toList());
     }
 
-    private void selectionPlugin() {
-        TableConfig<Contact> singleSelectionTableConfig = createBasicTableConfig();
+    @SampleMethod
+    private void singleSelectionPlugin() {
+        TableConfig<Contact> singleSelectionTableConfig = new TableConfig<>();
+        singleSelectionTableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell1 -> {
+                            if (cell1.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell1 -> ContactUiUtils.getGenderElement(cell1.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell1 -> ContactUiUtils.getEyeColorElement(cell1.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo1 -> ContactUiUtils.getBalanceElement(cellInfo1.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell1 -> {
+                            if (cell1.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
         singleSelectionTableConfig.setMultiSelect(false);
         singleSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
         LocalListDataStore<Contact> singleLocalStore = new LocalListDataStore<>();
@@ -225,40 +399,139 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             Notification.create(selectedRecords.size() + "").show();
         });
 
-        TableConfig<Contact> multiSelectionTableConfig = createBasicTableConfig();
-        multiSelectionTableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
+        element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
+                .setCollapsible()
+                .appendChild(BlockHeader.create("SINGLE SELECTION"))
+                .appendChild(new TableStyleActions(singleSelectionTable))
+                .appendChild(singleSelectionTable.asElement())
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            singleLocalStore.setData(subList(contacts));
+            singleLocalStore.load();
+        });
+
+
+    }
+
+    @SampleMethod
+    private void multiSelectionPlugin() {
+
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+        tableConfig.addPlugin(new SelectionPlugin<>(ColorScheme.LIGHT_BLUE));
         LocalListDataStore<Contact> multiLocalStore = new LocalListDataStore<>();
-        DataTable<Contact> multiSelectionTable = new DataTable<>(multiSelectionTableConfig, multiLocalStore);
+        DataTable<Contact> multiSelectionTable = new DataTable<>(tableConfig, multiLocalStore);
         multiSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
             Notification.create(selectedRecords.size() + "").show();
         });
 
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
-                .appendChild(BlockHeader.create("SINGLE SELECTION"))
-                .appendChild(new TableStyleActions(singleSelectionTable))
-                .appendChild(singleSelectionTable.asElement())
-                .appendChild(br())
-                .appendChild(br())
-                .appendChild(br())
-                .appendChild(hr())
                 .appendChild(BlockHeader.create("MULTI SELECTION"))
                 .appendChild(new TableStyleActions(multiSelectionTable))
                 .appendChild(multiSelectionTable)
                 .asElement());
 
         contactListParseHandlers.add(contacts -> {
-            singleLocalStore.setData(subList(contacts));
-            singleLocalStore.load();
             multiLocalStore.setData(subList(contacts));
             multiSelectionTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectionPlugin()).asElement());
+
     }
 
+    @SampleMethod
     private void markerPlugin() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
         tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
@@ -274,11 +547,56 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
     }
 
+    @SampleMethod
     private void recordDetailsPlugin() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell1 -> {
+                            if (cell1.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell1 -> ContactUiUtils.getGenderElement(cell1.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell1 -> ContactUiUtils.getEyeColorElement(cell1.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell1 -> TextNode.of(cell1.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell1 -> {
+                            if (cell1.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
         tableConfig.addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
@@ -294,11 +612,57 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
+
     }
 
+    @SampleMethod
     private void tableHeaderBarPlugin() {
-        TableConfig<Contact> tableConfig = createBasicTableConfig();
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
         tableConfig.addPlugin(new SelectionPlugin<>());
         tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
@@ -347,119 +711,11 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             defaultTable.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.headerBarPlugin()).asElement());
+
     }
 
+    @SampleMethod
     private void sortAndSearch() {
-        TableConfig<Contact> tableConfig = createSortableTableConfig();
-        tableConfig.addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
-                .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
-                .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
-                .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
-                .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
-                .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
-                .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
-                .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
-                        .appendChild(SelectOption.create("blue", "Blue"))
-                        .appendChild(SelectOption.create("brown", "Brown"))
-                        .appendChild(SelectOption.create("green", "Green"))
-                )
-        );
-        LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
-        listStore.setRecordsSorter(new ContactSorter());
-        listStore.setSearchFilter(new ContactSearchFilter());
-        DataTable<Contact> table = new DataTable<>(tableConfig, listStore);
-
-        element.appendChild(Card.create("SORT PLUGIN & SEARCH HEADER ACTION", "Allows the table to fire events useful for datasource to sort and search the data")
-                .setCollapsible()
-                .appendChild(new TableStyleActions(table))
-                .appendChild(table)
-                .asElement());
-
-        contactListParseHandlers.add(contacts -> {
-            listStore.setData(subList(contacts));
-            table.load();
-        });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
-    }
-
-    private void simplePagination() {
-        SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);//page size
-        TableConfig<Contact> tableConfig = createSortableTableConfig();
-        tableConfig.addPlugin(simplePaginationPlugin);
-
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        localListDataStore.setRecordsSorter(new ContactSorter());
-        localListDataStore.setSearchFilter(new ContactSearchFilter());
-        localListDataStore.setPagination(simplePaginationPlugin.getSimplePagination());
-        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
-
-        element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
-                .setCollapsible()
-                .appendChild(new TableStyleActions(table))
-                .appendChild(table)
-                .asElement());
-
-        contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
-        });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
-    }
-
-    private void scrollingPagination() {
-        ScrollingPaginationPlugin<Contact> scrollingPagination = new ScrollingPaginationPlugin<>(10, 5);//page size
-        TableConfig<Contact> tableConfig = createSortableTableConfig();
-        tableConfig.addPlugin(scrollingPagination);
-
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        localListDataStore.setRecordsSorter(new ContactSorter());
-        localListDataStore.setSearchFilter(new ContactSearchFilter());
-        localListDataStore.setPagination(scrollingPagination.getPagination());
-        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
-
-        element.appendChild(Card.create("SCROLLING PAGINATION", "Scrolling pagination plugin allows navigation through a set of page at a time in datatable")
-                .setCollapsible()
-                .appendChild(new TableStyleActions(table))
-                .appendChild(table)
-                .asElement());
-
-        contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
-        });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
-    }
-
-    private void advancedPagination() {
-        AdvancedPaginationPlugin<Contact> advancedPagination = new AdvancedPaginationPlugin<>(10);//page size
-        TableConfig<Contact> tableConfig = createSortableTableConfig();
-        tableConfig.addPlugin(advancedPagination);
-
-        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        localListDataStore.setRecordsSorter(new ContactSorter());
-        localListDataStore.setSearchFilter(new ContactSearchFilter());
-        localListDataStore.setPagination(advancedPagination.getPagination());
-        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
-
-        element.appendChild(Card.create("ADVANCED PAGINATION", "Advanced pagination plugin allows navigation through pages from a dropdown list")
-                .setCollapsible()
-                .appendChild(new TableStyleActions(table))
-                .appendChild(table)
-                .asElement());
-
-        contactListParseHandlers.add(contacts -> {
-            localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
-        });
-
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
-    }
-
-    private TableConfig<Contact> createSortableTableConfig() {
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
@@ -514,16 +770,48 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                )
+                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
+                        .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
+                        .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
+                        .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
+                        .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
+                        .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
+                                .appendChild(SelectOption.create("blue", "Blue"))
+                                .appendChild(SelectOption.create("brown", "Brown"))
+                                .appendChild(SelectOption.create("green", "Green"))
+                        )
                 );
-        return tableConfig;
+        LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
+        listStore.setRecordsSorter(new ContactSorter());
+        listStore.setSearchFilter(new ContactSearchFilter());
+        DataTable<Contact> table = new DataTable<>(tableConfig, listStore);
+
+        element.appendChild(Card.create("SORT PLUGIN & SEARCH HEADER ACTION", "Allows the table to fire events useful for datasource to sort and search the data")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            listStore.setData(subList(contacts));
+            table.load();
+        });
+
+
     }
 
-    private TableConfig<Contact> createBasicTableConfig() {
+    @SampleMethod
+    private void simplePagination() {
+        SimplePaginationPlugin<Contact> simplePaginationPlugin = new SimplePaginationPlugin<>(10);//page size
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .textAlign("right")
                         .asHeader()
+                        .sortable()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
@@ -536,6 +824,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .sortable()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
 
@@ -548,6 +837,7 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                         .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .sortable()
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
@@ -564,9 +854,196 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
                             }
                             return TextNode.of("");
                         }));
-        return tableConfig;
+
+        tableConfig
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                )
+                .addPlugin(simplePaginationPlugin);
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter(new ContactSorter());
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
+        localListDataStore.setPagination(simplePaginationPlugin.getSimplePagination());
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("SIMPLE PAGINATION", "Simple pagination plugin allows the table to fire pagination events helpful for the datasource")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts, 0, 100));
+            table.load();
+        });
+
+
     }
 
+    @SampleMethod
+    private void scrollingPagination() {
+        ScrollingPaginationPlugin<Contact> scrollingPagination = new ScrollingPaginationPlugin<>(10, 5);//page size
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .sortable()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .sortable()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .sortable()
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
+        tableConfig
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                )
+                .addPlugin(scrollingPagination);
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter(new ContactSorter());
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
+        localListDataStore.setPagination(scrollingPagination.getPagination());
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("SCROLLING PAGINATION", "Scrolling pagination plugin allows navigation through a set of page at a time in datatable")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts, 0, 100));
+            table.load();
+        });
+
+
+    }
+
+    @SampleMethod
+    private void advancedPagination() {
+        AdvancedPaginationPlugin<Contact> advancedPagination = new AdvancedPaginationPlugin<>(10);//page size
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .sortable()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .sortable()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .sortable()
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                            }
+                            return TextNode.of("");
+                        }));
+
+        tableConfig
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
+                        .addActionElement(new HeaderBarPlugin.ClearSearch<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                )
+                .addPlugin(advancedPagination);
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter(new ContactSorter());
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
+        localListDataStore.setPagination(advancedPagination.getPagination());
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("ADVANCED PAGINATION", "Advanced pagination plugin allows navigation through pages from a dropdown list")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .asElement());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts, 0, 100));
+            table.load();
+        });
+
+
+    }
+
+    @SampleMethod
     private void scrollableTable() {
 
         TableConfig<Contact> tableConfig = new TableConfig<>();
@@ -644,10 +1121,11 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             table.load();
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollLoading()).asElement());
+
 
     }
 
+    @SampleMethod
     private void topPanelPlugin() {
         ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
         TableConfig<Contact> tableConfig = new TableConfig<>();
@@ -741,10 +1219,11 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+
 
     }
 
+    @SampleMethod
     private void allInOne() {
         ContactsTopPanel<Contact> topPanel = new ContactsTopPanel<>();
         ScrollingPaginationPlugin<Contact> scrollingPaginationPlugin = new ScrollingPaginationPlugin<>(10, 5);
@@ -896,15 +1375,10 @@ public class DataTableViewImpl extends ComponentView<HTMLDivElement> implements 
             topPanel.update(data);
         });
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
+
     }
 
     public interface ContactListParseHandler {
         void onContactsParsed(List<Contact> contacts);
-    }
-
-    @Override
-    public HTMLDivElement getElement() {
-        return element;
     }
 }

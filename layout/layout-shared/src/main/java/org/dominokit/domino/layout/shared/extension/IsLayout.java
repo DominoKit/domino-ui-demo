@@ -1,9 +1,23 @@
 package org.dominokit.domino.layout.shared.extension;
 
-import org.dominokit.domino.api.shared.extension.Content;
-
 public interface IsLayout {
-    IsLayout show();
+
+    interface Slots{
+        String RIGHT_PANEL = "right-panel";
+        String CONTENT = "content";
+        String TOP_BAR = "top-bar";
+        String MENU_PANEL = "menu-panel";
+        String PROFILE_PANEL = "profile-panel";
+    }
+
+    interface Store{
+        String LAYOUT = "layout";
+    }
+
+    interface GlobalLoader{
+        void startLoading();
+        void stopLoading();
+    }
 
     void toggleRightPanel();
 
@@ -17,22 +31,14 @@ public interface IsLayout {
 
     IsLayout hideLeftPanel();
 
-    Content getRightPanel();
-
-    Content getLeftPanel();
-
-    Content getContentPanel();
-
-    Content getTopBar();
-
     IsLayout setTitle(String title);
 
-    Content addActionItem(String icon);
-
-    void setRightPanelContent(Content content);
+    boolean isRightPanelVisible();
 
     IsLayout fixLeftPanelPosition();
     IsLayout unfixLeftPanelPosition();
 
     IsLayout setLeftPanelSize(String size);
+
+    IsLayout scrollTop();
 }

@@ -1,4 +1,0 @@
-element.appendChild(Card.create("ADVANCED PAGINATION", "Old style pagination with advanced page select.")
-        .appendChild(AdvancedPagination.create(50, 10)
-                .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
-        .asElement());

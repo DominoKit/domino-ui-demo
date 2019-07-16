@@ -12,18 +12,24 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoDom;
+import org.dominokit.domino.ui.utils.DominoElement;
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
+import org.jboss.gwt.elemento.core.Elements;
 import org.jboss.gwt.elemento.core.InputType;
+
+import java.util.function.Consumer;
 
 import static java.util.Objects.isNull;
 import static org.dominokit.domino.ui.code.Code.block;
 import static org.jboss.gwt.elemento.core.Elements.input;
+import static org.jboss.gwt.elemento.core.Elements.pre;
 
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     private HTMLInputElement copyInput = input(InputType.textarea)
             .style("visibility:hidden; width: 0px; height: 0px;").asElement();
     private String code;
-    private Code.Block codeBlock = block();
+    private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").asElement();
     private Card card = Card.create("Source Code")
             .setCollapsible()
             .hide()
@@ -51,8 +57,14 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
     }
 
     public static CodeCard createCodeCard(String code) {
+        return createCodeCard(code, null);
+    }
+
+    public static CodeCard createCodeCard(String code, String lang) {
         CodeCard codeCard = new CodeCard();
-        codeCard.codeBlock.setCode(code);
+        DominoElement.of(codeCard.codeBlock)
+                .clearElement()
+                .setInnerHtml(PR.prettyPrintOne(code, lang, false));
         codeCard.code = code;
         return codeCard;
     }
@@ -68,7 +80,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    codeCard.codeBlock.setCode(resource.getText());
+                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText(), null, false));
                     codeCard.code = resource.getText();
                 }
             });
@@ -76,8 +88,13 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
             DomGlobal.console.error("could not load code from external resource", e);
         }
 
-
         return codeCard;
+    }
+
+    public CodeCard setCode(String code) {
+        DominoElement.of(this.codeBlock).setInnerHtml(PR.prettyPrintOne(code, null, false));
+        this.code = code;
+        return this;
     }
 
 
@@ -95,10 +112,26 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
         return card;
     }
 
-    @Override
-    public CodeCard expand() {
-        card.show();
-        return this;
+    public static void completeFetchCode(ExternalTextResource resource, Consumer<String> consumer) {
+        try {
+            resource.getText(new ResourceCallback<TextResource>() {
+                @Override
+                public void onError(ResourceException e) {
+                    DomGlobal.console.error("could not load code from external resource", e);
+                }
+
+                @Override
+                public void onSuccess(TextResource resource) {
+                    consumer.accept(resource.getText());
+                }
+            });
+        } catch (Exception e) {
+            DomGlobal.console.error("could not load code from external resource", e);
+        }
+    }
+
+    public static HTMLPreElement preBlock(String code) {
+        return Elements.pre().css("prettyprint").innerHtml(new SafeHtmlBuilder().appendHtmlConstant(PR.prettyPrintOne(code, null, false)).toSafeHtml()).asElement();
     }
 
     @Override
