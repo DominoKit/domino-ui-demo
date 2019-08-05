@@ -87,7 +87,6 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
 
                             MethodTree methodTree = new MethodScanner().scan(method, trees);
                             try {
-                                messager.printMessage(Diagnostic.Kind.NOTE, "WRITING SMAPLE CODE FOR  : "+method.getSimpleName());
                                 FileObject resource = filer.createResource(StandardLocation.SOURCE_OUTPUT, elements.getPackageOf(element).getQualifiedName().toString(), method.getSimpleName().toString() + ".txt");
                                 OutputStream outputStream = resource.openOutputStream();
 

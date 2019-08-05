@@ -226,27 +226,39 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
     }
 
     private void initSponsors() {
-        element.appendChild(BlockHeader.create("SPONSORS").asElement());
+        element.appendChild(BlockHeader.create("SPONSORS & SUPPORTERS").asElement());
 
         element.appendChild(Card.create()
                 .styler(style -> style
                         .add("classy-card"))
                 .appendChild(Row.create()
-                        .appendChild(Column.span5()
-                                .offset1()
+                        .appendChild(Column.span4()
                                 .styler(style -> style.add(Styles.align_center))
                                 .appendChild(a()
                                         .attr("href", "https://www.vertispan.com/")
                                         .attr("target", "_blank")
-                                        .add(img("./images/sponsors/vertispan.png").css(Styles.img_responsive, Styles.cursor_pointer)))
+                                        .add(img("./images/sponsors/vertispan.png")
+                                                .style("width: 200px; margin-left:auto; margin-right:auto;")
+                                                .css(Styles.img_responsive, Styles.cursor_pointer)))
 
                         )
-                        .appendChild(Column.span5()
+                        .appendChild(Column.span4()
                                 .styler(style -> style.add(Styles.align_center))
                                 .appendChild(a()
                                         .attr("href", "https://www.progressoft.com/")
                                         .attr("target", "_blank")
-                                        .add(img("./images/sponsors/ProgressSoft.png").css(Styles.img_responsive, Styles.cursor_pointer)))
+                                        .add(img("./images/sponsors/ProgressSoft.png")
+                                                .style("width: 200px; margin-left:auto; margin-right:auto;")
+                                                .css(Styles.img_responsive, Styles.cursor_pointer)))
+                        )
+                        .appendChild(Column.span4()
+                                .styler(style -> style.add(Styles.align_center))
+                                .appendChild(a()
+                                        .attr("href", "https://www.ej-technologies.com/products/install4j/overview.html")
+                                        .attr("target", "_blank")
+                                        .add(img("./images/sponsors/install4j_large.png")
+                                                .style("margin-top: 20px; margin-left:auto; margin-right:auto;")
+                                                .css(Styles.img_responsive, Styles.cursor_pointer)))
                         )
 
                 ).appendChild(div().css("bg-classy"))
