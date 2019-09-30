@@ -1,5 +1,6 @@
 package org.dominokit.domino.tree.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -10,15 +11,23 @@ import org.dominokit.domino.tree.client.presenters.TreeProxy;
 import org.dominokit.domino.tree.client.views.Countries;
 import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.Elevation;
+import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.tree.ToggleTarget;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 import java.util.List;
 
@@ -30,7 +39,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
 
     private HTMLDivElement element;
 
-    private static final String COUNTRIES= "{\n" +
+    private static final String COUNTRIES = "{\n" +
             "  \"countries\": [\n" +
             "    {\n" +
             "      \"name\": \"Andorra\",\n" +
@@ -255,6 +264,8 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
     @SampleMethod
     private void simpleTree() {
         Tree<String> hardwareTree = Tree.create("HARDWARE")
+                .setToggleTarget(ToggleTarget.ICON)
+                .addItemClickListener(treeItem -> DomGlobal.console.info(treeItem.getValue()))
                 .appendChild(TreeItem.create("Computer", Icons.ALL.computer())
                         .addClickListener(evt -> Notification.create("Computer").show()))
                 .appendChild(TreeItem.create("Headset", Icons.ALL.headset())
@@ -336,7 +347,9 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
         TreeItem upload = TreeItem.create("Upload", Icons.ALL.cloud_upload());
         Tree<String> files = Tree.create("FILES");
         Tree<String> hardwareMenu2 = files
+                .setToggleTarget(ToggleTarget.ICON)
                 .setAutoCollapse(false)
+                .addItemClickListener(treeItem1 -> DomGlobal.console.info(treeItem1.getValue()))
                 .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
                         .appendChild(TreeItem.create("My files", Icons.ALL.folder_special())
                                 .appendChild(TreeItem.create("File 1", Icons.ALL.description())
@@ -393,7 +406,18 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                 .autoExpandFound();
 
         countries.forEach(country -> {
-            TreeItem countryItem=TreeItem.create(country.getName(), Icons.ALL.map());
+            TreeItem<String> countryItem = TreeItem.create(country.getName(), Icons.ALL.map());
+            countryItem
+                    .apply(self -> self
+                            .getIndicatorContainer()
+                            .style().setMinWidth("30px"))
+                    .setIndicatorContent(Badge.create(country.getCities().size() + "")
+                            .setBackground(Theme.currentTheme.getScheme().color())
+                            .styler(style -> style
+                                    .setMinWidth("30px")
+                                    .setDisplay("inline-block"))
+                            .elevate(Elevation.NONE)
+                    );
             citiesTree.appendChild(countryItem);
             country.getCities().forEach(city -> {
                 TreeItem cityItem = TreeItem.create(city, Icons.ALL.location_city());
@@ -486,9 +510,9 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                                 .appendChild(BlockHeader.create("Active icon"))
                                 .appendChild(citiesTree))
                         .addColumn(Column.span6()
-                                        .appendChild(BlockHeader.create("Expand icon"))
+                                .appendChild(BlockHeader.create("Expand icon"))
                                 .appendChild(foldersExpand))
-                        ).asElement());
+                ).asElement());
 
 
     }

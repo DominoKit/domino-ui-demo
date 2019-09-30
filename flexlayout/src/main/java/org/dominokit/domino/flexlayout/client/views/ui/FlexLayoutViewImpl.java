@@ -72,15 +72,15 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void initLayoutPlayground() {
-        RadioGroup alignItemsRadioGroup = RadioGroup.create("align-items").hide();
+        RadioGroup<String> alignItemsRadioGroup = RadioGroup.<String>create("align-items").hide();
         CheckBox fillHeightCheckBox = CheckBox.create("Fill height");
-        RadioGroup directionsRadioGroup = RadioGroup.create("direction");
-        RadioGroup justifyContentRadioGroup = RadioGroup.create("justify-content");
+        RadioGroup<String> directionsRadioGroup = RadioGroup.create("direction");
+        RadioGroup<String> justifyContentRadioGroup = RadioGroup.create("justify-content");
 
         // ********* settings part ********* //
         Button addBlockButton = Button.create("ADD BLOCK");
         Button resetButton = Button.create("RESET");
-        RadioGroup wrapRadioGroup = RadioGroup.create("wrap", "Wrap");
+        RadioGroup<String> wrapRadioGroup = RadioGroup.create("wrap", "Wrap");
         layoutPlaygroundCard.setBodyPaddingTop("40px")
                 .appendChild(Row.create()
                         .appendChild(Column.span6()
@@ -222,8 +222,8 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         Slider flexGrowSlider = Slider.create(10);
         Slider flexShrinkSlider = Slider.create(10);
         TextBox flexBasisTextBox = TextBox.create("Flex Basis").setHelperText("Default size of an element before the remaining space is distributed");
-        RadioGroup targetBlockRadioGroup = RadioGroup.create("target-block", "Target block # to play with");
-        RadioGroup alignSelfRadioGroup = RadioGroup.create("align-self", "Align self");
+        RadioGroup<String> targetBlockRadioGroup = RadioGroup.create("target-block", "Target block # to play with");
+        RadioGroup<String> alignSelfRadioGroup = RadioGroup.create("align-self", "Align self");
 
         flexItemsCard.setBodyPaddingTop("40px")
                 .appendChild(Row.create()

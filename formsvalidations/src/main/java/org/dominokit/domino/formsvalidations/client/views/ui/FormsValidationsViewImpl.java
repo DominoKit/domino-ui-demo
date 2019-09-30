@@ -91,7 +91,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                                         .check()
                                         .setReadOnly(true)))
                         .addColumn(Column.span12()
-                                .appendChild(SwitchButton.create("Required","Yes", "No")
+                                .appendChild(SwitchButton.create("Required", "Yes", "No")
                                         .setReadOnly(true)))
                 );
     }
@@ -123,9 +123,9 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                 .appendChild(Elements.hr())
                 .appendChild(Elements.br())
                 .appendChild(BlockHeader.create("Radio"))
-                .appendChild(RadioGroup.create("estimation", "Estimation")
-                        .addRadio(Radio.create("storyPoint", "Story points"))
-                        .addRadio(Radio.create("hours", "Effective hours"))
+                .appendChild(RadioGroup.<String>create("estimation", "Estimation")
+                        .appendChild(Radio.create("storyPoint", "Story points"))
+                        .appendChild(Radio.create("hours", "Effective hours"))
                         .horizontal()
                         .setHelperText("Helps with sprint reports")
                 )
@@ -183,9 +183,9 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         TextBox name = TextBox.create("Name").groupBy(fieldsGrouping);
         TextBox surename = TextBox.create("Surename").groupBy(fieldsGrouping);
         TextBox email = TextBox.create("Email").groupBy(fieldsGrouping);
-        RadioGroup gender = RadioGroup.create("gender", "Gender")
-                .addRadio(Radio.create("male", "Male"))
-                .addRadio(Radio.create("female", "Female"))
+        RadioGroup<String> gender = RadioGroup.<String>create("gender", "Gender")
+                .appendChild(Radio.create("male", "Male"))
+                .appendChild(Radio.create("female", "Female"))
                 .horizontal()
                 .groupBy(fieldsGrouping);
         TextArea description = TextArea.create("Description").groupBy(fieldsGrouping);

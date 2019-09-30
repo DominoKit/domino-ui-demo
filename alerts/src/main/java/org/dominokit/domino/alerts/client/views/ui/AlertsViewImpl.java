@@ -29,19 +29,6 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
     @Override
     protected void init(HTMLDivElement root) {
 
-        String code="@SampleMethod\n" +
-                "    private void basicAlerts() {\n" +
-                "        element.appendChild(Card.create(\"BASIC ALERTS\", \"Use one of the pre-customized alert types.\")\n" +
-                "                .appendChild(Alert.success().appendChild(Strong.of(\"Well done! \")).appendChild(\"You successfully read this important alert message.\"))\n" +
-                "                .appendChild(Alert.info().appendChild(Strong.of(\"Heads up! \")).appendChild(\"This alert needs your attention, but it's not super important.\"))\n" +
-                "                .appendChild(Alert.warning().appendChild(Strong.of(\"Warning! \")).appendChild(\"Better check yourself, you're not looking too good.\"))\n" +
-                "                .appendChild(Alert.error().appendChild(Strong.of(\"Oh snap! \")).appendChild(\"Change a few things up and try submitting again.\"))\n" +
-                "                .asElement());\n" +
-                "    }";
-        String result = PR.prettyPrintOne(code, null, false);
-
-        DomGlobal.console.info(result);
-
         element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).asElement());
         element.appendChild(BlockHeader.create("Alerts")
                 .asElement());

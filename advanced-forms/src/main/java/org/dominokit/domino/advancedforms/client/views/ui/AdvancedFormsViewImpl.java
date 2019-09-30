@@ -13,6 +13,7 @@ import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.advancedforms.client.presenters.AdvancedFormsProxy;
 import org.dominokit.domino.advancedforms.client.views.AdvancedFormsView;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.api.shared.extension.ContextAggregator;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.button.Button;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static org.jboss.gwt.elemento.core.Elements.br;
 
@@ -87,6 +89,9 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)"))
                 .onAddFile(fileItem -> {
 
+                    if(!fileItem.getFile().name.contains("IMG")){
+                        fileItem.remove();
+                    }
                     fileItem.addErrorHandler(request -> {
                         Notification.createDanger("Error while uploading " + request.responseText).show();
                     });
@@ -209,7 +214,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
 
     @SampleMethod
     private void initSuggestBoxExample() {
-        LocalSuggestBoxStore localStore = LocalSuggestBoxStore.create()
+        LocalSuggestBoxStore<String> localStore = LocalSuggestBoxStore.<String>create()
                 .addSuggestion(SuggestItem.create("Schroeder Coleman"))
                 .addSuggestion(SuggestItem.create("Renee Mcintyre"))
                 .addSuggestion(SuggestItem.create("Casey Garza"));
@@ -243,22 +248,44 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 );
 
 
-        SuggestBoxStore dynamicStore = (searchValue, suggestionsHandler) -> {
-            DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
-                    .then(Response::text)
-                    .then(json -> {
-                        List<SuggestItem> suggestItems = new ArrayList<>();
-                        JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
-                        for (int i = 0; i < randomNames.length; i++) {
-                            JsPropertyMap<String> nameProperties = randomNames.getAt(i);
-                            if (nameProperties.get("name").toLowerCase().contains(searchValue.toLowerCase())) {
-                                SuggestItem suggestItem = SuggestItem.create(nameProperties.get("name"));
-                                suggestItems.add(suggestItem);
+        SuggestBoxStore<String> dynamicStore = new SuggestBoxStore<String>() {
+
+            @Override
+            public void filter(String searchValue, SuggestionsHandler<String> suggestionsHandler) {
+                DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
+                        .then(Response::text)
+                        .then(json -> {
+                            List<SuggestItem<String>> suggestItems = new ArrayList<>();
+                            JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
+                            for (int i = 0; i < randomNames.length; i++) {
+                                JsPropertyMap<String> nameProperties = randomNames.getAt(i);
+                                if (nameProperties.get("name").toLowerCase().contains(searchValue.toLowerCase())) {
+                                    SuggestItem suggestItem = SuggestItem.create(nameProperties.get("name"));
+                                    suggestItems.add(suggestItem);
+                                }
                             }
-                        }
-                        suggestionsHandler.onSuggestionsReady(suggestItems);
-                        return null;
-                    });
+                            suggestionsHandler.onSuggestionsReady(suggestItems);
+                            return null;
+                        });
+            }
+
+            @Override
+            public void find(String searchValue, Consumer<SuggestItem<String>> handler) {
+                DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
+                        .then(Response::text)
+                        .then(json -> {
+                            JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
+                            for (int i = 0; i < randomNames.length; i++) {
+                                JsPropertyMap<String> nameProperties = randomNames.getAt(i);
+                                if (nameProperties.get("name").equals(searchValue)) {
+                                    SuggestItem suggestItem = SuggestItem.create(nameProperties.get("name"));
+                                    handler.accept(suggestItem);
+                                    return null;
+                                }
+                            }
+                            return null;
+                        });
+            }
         };
 
         suggestBoxCard

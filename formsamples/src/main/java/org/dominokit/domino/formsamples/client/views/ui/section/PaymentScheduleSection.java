@@ -38,7 +38,7 @@ public class PaymentScheduleSection implements ImportSection {
     private TextBox numberOfDaysTextBox;
     private Select<String> paymentScheduleAfterSelect;
     private TextBox percentageTextBox;
-    private RadioGroup paymentScheduleRadioGroup;
+    private RadioGroup<String> paymentScheduleRadioGroup;
     private ListGroup<PaymentScheduleItem> paymentScheduleItemsListGroup;
     private Button addButton;
     private Collapsible valuesContainerCollapsible;
@@ -87,11 +87,11 @@ public class PaymentScheduleSection implements ImportSection {
         paymentScheduleItemsListGroup = ListGroup.<PaymentScheduleItem>create()
                 .setSelectable(false);
 
-        paymentScheduleRadioGroup = RadioGroup.create("paymentSchedule")
-                .addRadio(Radio.create("SIGHT", "Payment Sight").withGap().check())
-                .addRadio(Radio.create("NEGOTIATION", "Negotiation").withGap())
-                .addRadio(Radio.create("ACCEPTANCE", "Acceptance at").withGap())
-                .addRadio(Radio.create("DEFERRED", "Deferred Payment").withGap())
+        paymentScheduleRadioGroup = RadioGroup.<String>create("paymentSchedule")
+                .appendChild(Radio.create("SIGHT", "Payment Sight").withGap().check())
+                .appendChild(Radio.create("NEGOTIATION", "Negotiation").withGap())
+                .appendChild(Radio.create("ACCEPTANCE", "Acceptance at").withGap())
+                .appendChild(Radio.create("DEFERRED", "Deferred Payment").withGap())
                 .addChangeHandler(selectedRadio -> {
                     if (selectedRadio.getValue().equals("DEFERRED") || selectedRadio.getValue().equals("ACCEPTANCE")) {
                         numberOfDaysColumn.show();

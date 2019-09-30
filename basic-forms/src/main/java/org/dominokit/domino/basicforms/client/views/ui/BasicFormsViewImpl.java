@@ -25,6 +25,7 @@ import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.utils.ScreenMedia;
 
 import java.util.function.Consumer;
 
@@ -48,7 +49,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @Override
     protected void init(HTMLDivElement root) {
-        basicFormsCode= new BasicFormsCode().init(this);
+        basicFormsCode = new BasicFormsCode().init(this);
         element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).asElement());
         element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").asElement());
 
@@ -98,8 +99,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).asElement());
     }
 
-    @Aggregate(name="BasicFormsCode")
-    public void onCodeLoaded(String basicExamples, String differentWidths, String differentSizes, String floatingLabels, String inputStatus){
+    @Aggregate(name = "BasicFormsCode")
+    public void onCodeLoaded(String basicExamples, String differentWidths, String differentSizes, String floatingLabels, String inputStatus) {
         basicExamplesCard.setCode("// -------------- Basic examples\n" +
                 basicExamples +
                 "\n\n// -------------- Different widths\n" +
@@ -161,26 +162,26 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void initRadioExample() {
         radioCard.appendChild(h(5).textContent("Basic Examples"));
 
-        Radio radio1 = Radio.create("radio1", "Radio - 1").check();
-        Radio radio2 = Radio.create("radio2", "Radio - 2");
-        Radio radio1Gap = Radio.create("radio1_gap", "Radio 1 - With Gap").withGap();
-        Radio radio2Gap = Radio.create("radio2_gap", "Radio 2 - With Gap").withGap();
+        Radio<String> radio1 = Radio.create("radio1", "Radio - 1").check();
+        Radio<String> radio2 = Radio.create("radio2", "Radio - 2");
+        Radio<String> radio1Gap = Radio.create("radio1_gap", "Radio 1 - With Gap").withGap();
+        Radio<String> radio2Gap = Radio.create("radio2_gap", "Radio 2 - With Gap").withGap();
 
-        RadioGroup horizontalRadioGroup = RadioGroup.create("test")
-                .addRadio(radio1)
-                .addRadio(radio2)
-                .addRadio(radio1Gap)
-                .addRadio(radio2Gap)
+        RadioGroup<String> horizontalRadioGroup = RadioGroup.<String>create("test")
+                .appendChild(radio1)
+                .appendChild(radio2)
+                .appendChild(radio1Gap)
+                .appendChild(radio2Gap)
                 .horizontal();
 
-        Radio firstDisabledRadio = Radio.create("radio1_disabled", "Radio - Disabled").check().disable();
-        Radio secondsDisabledRadio = Radio.create("radio2_disabled", "Radio - Disabled").withGap().check().disable();
+        Radio<String> firstDisabledRadio = Radio.<String>create("radio1_disabled", "Radio - Disabled").check().disable();
+        Radio<String> secondsDisabledRadio = Radio.<String>create("radio2_disabled", "Radio - Disabled").withGap().check().disable();
 
         firstDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
         secondsDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
 
-        RadioGroup firstDisabledGroup = RadioGroup.create("disabled").addRadio(firstDisabledRadio);
-        RadioGroup secondDisabledGroup = RadioGroup.create("disabled").addRadio(secondsDisabledRadio);
+        RadioGroup<String> firstDisabledGroup = RadioGroup.<String>create("disabled").appendChild(firstDisabledRadio);
+        RadioGroup<String> secondDisabledGroup = RadioGroup.<String>create("disabled").appendChild(secondsDisabledRadio);
 
         radioCard.appendChild(Row.create()
                 .addColumn(Column.span(6, 6, 9, 12, 12)
@@ -195,7 +196,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         radioCard.appendChild(Row.create()
                 .addColumn(Column.span(2, 6)
                         .appendChild(h(5).textContent("With Material Design Colors"))
-                        .appendChild(RadioGroup.create("color")
+                        .appendChild(RadioGroup.<String>create("color")
                                 .appendChild(Radio.create("RED", "RED").setColor(Color.RED).check())
                                 .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK))
                                 .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
@@ -211,7 +212,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(Radio.create("GREY", "GREY").setColor(Color.GREY))))
                 .addColumn(Column.span(2, 6)
                         .appendChild(h(5).textContent("With Material Design Colors with gap"))
-                        .appendChild(RadioGroup.create("color-with-gap")
+                        .appendChild(RadioGroup.<String>create("color-with-gap")
                                 .appendChild(Radio.create("RED", "RED").setColor(Color.RED).withGap().check())
                                 .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK).withGap())
                                 .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE).withGap())
@@ -232,7 +233,13 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         checkboxCard.appendChild(h(5).textContent("Basic Examples"));
         checkboxCard.appendChild(Row.create()
                 .addColumn(Column.span(2, 6)
-                        .appendChild(CheckBox.create("Default")))
+                        .appendChild(CheckBox.create("Default")
+                                .setReadOnly(true)
+                                .apply(self -> self.getLabelTextElement()
+                                        .hideOn(ScreenMedia.MEDIUM_AND_UP))
+                        )
+
+                )
                 .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Filled In").filledIn()))
                 .addColumn(Column.span(2, 6)
@@ -395,6 +402,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("UK", "United Kingdom"))
                                 )
                                 .selectAt(0)
+                                .open()
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 })))
@@ -404,8 +412,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initBasicExamples() {
         inputCard.appendChild(BlockHeader.create("Basic Example"))
-                .appendChild(TextBox.create().setPlaceholder("Username"))
-                .appendChild(TextBox.password().setPlaceholder("Password"));
+                .appendChild(TextBox.create().css("rounded").setLabel("User name").setPlaceholder("Username"))
+                .appendChild(TextBox.password().css("rounded").setLabel("Password").setPlaceholder("Password"));
     }
 
     @SampleMethod

@@ -5,7 +5,6 @@ import elemental2.dom.HTMLAnchorElement;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.client.mvp.slots.IsSlot;
-import org.dominokit.domino.api.client.mvp.slots.SlotsEntries;
 import org.dominokit.domino.layout.client.presenters.LayoutProxy;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
@@ -80,7 +79,6 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.getContentPanel()
                 .style().setMinHeight("calc(100vh - 365px)");
         loader = Loader.create(layout.getContentPanel(), LoaderEffect.PULSE);
-
     }
 
     @Override
@@ -238,13 +236,11 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     @Override
     public void startLoading() {
-        DomGlobal.console.info("Start loading ----- > ");
         loader.start();
     }
 
     @Override
     public void stopLoading() {
-        DomGlobal.console.info("Stop loading ----- > ");
         loader.stop();
     }
 }

@@ -27,6 +27,9 @@ import org.dominokit.domino.ui.datatable.plugins.*;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
+import org.dominokit.domino.ui.dropdown.DropDownMenu;
+import org.dominokit.domino.ui.dropdown.DropDownPosition;
+import org.dominokit.domino.ui.dropdown.DropdownAction;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
@@ -43,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.dominokit.domino.ui.style.Unit.in;
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -469,6 +473,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
             Notification.create(selectedRecords.size() + "").show();
         });
 
+
         element.appendChild(Card.create("SELECTION PLUGIN", "Enable row selection by adding the selection plugin, pass different selection style colors in the constructor.")
                 .setCollapsible()
                 .appendChild(BlockHeader.create("MULTI SELECTION"))
@@ -799,8 +804,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
             listStore.setData(subList(contacts));
             table.load();
         });
-
-
     }
 
     @SampleMethod
@@ -1122,7 +1125,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         });
 
 
-
     }
 
     @SampleMethod
@@ -1218,7 +1220,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
             table.load();
             topPanel.update(data);
         });
-
 
 
     }
