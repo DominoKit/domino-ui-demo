@@ -1,9 +1,5 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
-import com.google.gwt.resources.client.ExternalTextResource;
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.CSSProperties;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
@@ -13,6 +9,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Aggregate;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsProxy;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
@@ -21,13 +18,11 @@ import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.ui.utils.ScreenMedia;
-
-import java.util.function.Consumer;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -60,6 +55,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         radioCard = Card.create("RADIO");
         switchCard = Card.create("SWITCH BUTTONS");
 
+        initTempSample();
         initBasicExamples();
         initDifferentWidths();
         initDifferentSizes();
@@ -97,6 +93,40 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         element.appendChild(switchCard.asElement());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).asElement());
+    }
+
+    private void initTempSample() {
+        TestField field1 = new TestField("text", "User name");
+        TestField field2 = new TestField("text", "Password");
+        element.appendChild(Card.create()
+                .appendChild(Row.create()
+                        .appendChild(Column.span6()
+                                .appendChild(field1
+                                        .addLeftAddOn(Icons.ALL.account_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.account_mdi().clickable())
+                                        .setHelperText("This is the help text")
+                                        .setPrefix("$")
+                                        .setPostFix("@gmail.com")
+                                        .focus()
+                                )
+                        )
+                        .appendChild(Column.span6()
+                                .appendChild(field2
+                                        .addLeftAddOn(Icons.ALL.edit()
+                                                .addClickListener(evt -> {
+                                                    if (field2.isEnabled()) {
+                                                        DomGlobal.alert("hellllloikoikoi");
+                                                    }
+                                                }))
+                                        .disable())
+                        ))
+                .appendChild(Row.create()
+                        .appendChild(Column.span6()
+                                .appendChild(new TextBox("User name")
+                                        .setLeftAddon(Icons.ALL.edit().addClickListener(evt -> DomGlobal.alert("heheheh")))
+                                        .disable())
+                        ))
+                .asElement());
     }
 
     @Aggregate(name = "BasicFormsCode")
@@ -473,7 +503,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         inputCard.appendChild(BlockHeader.create("Input Status"))
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .appendChild(TextBox.create("Focused").focus()))
+                                .appendChild(TextBox.create("Focused")))
                         .addColumn(Column.span6()
                                 .appendChild(TextBox.create("Disabled").disable())));
     }
