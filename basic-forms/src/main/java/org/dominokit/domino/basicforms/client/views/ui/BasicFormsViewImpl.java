@@ -58,7 +58,6 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         initTempSample();
         initBasicExamples();
         initDifferentWidths();
-        initDifferentSizes();
         initFloatingLabel();
         initInputStatus();
         initBasicTextAreaExample();
@@ -73,7 +72,6 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initBasicExamples(), value -> basicFormsCode.completeBasicExamples(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentWidths(), value -> basicFormsCode.completeDifferentWidths(value));
-        CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentSizes(), value -> basicFormsCode.completeDifferentSizes(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initFloatingLabel(), value -> basicFormsCode.completeFloatingLabels(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initInputStatus(), value -> basicFormsCode.completeInputStatus(value));
 
@@ -96,8 +94,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     }
 
     private void initTempSample() {
-        TestField field1 = new TestField("text", "User name");
-        TestField field2 = new TestField("text", "Password");
+        TextBox field1 = TextBox.create("User name");
+        TextBox field2 = TextBox.create("Password");
         element.appendChild(Card.create()
                 .appendChild(Row.create()
                         .appendChild(Column.span6()
@@ -477,21 +475,11 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     }
 
     @SampleMethod
-    private void initDifferentSizes() {
-        inputCard.appendChild(BlockHeader.create("Different Sizes"))
-                .appendChild(TextBox.create().setPlaceholder("Large Input").large())
-                .appendChild(TextBox.create().setPlaceholder("Default Input"))
-                .appendChild(TextBox.create().setPlaceholder("Small Input").small());
-    }
-
-    @SampleMethod
     private void initFloatingLabel() {
         inputCard.appendChild(BlockHeader.create("Floating Label Examples"))
                 .appendChild(TextBox.create("Username"))
                 .appendChild(TextBox.password("Password"))
-                .appendChild(TextBox.create("Large Input").large())
                 .appendChild(TextBox.create("Default Input"))
-                .appendChild(TextBox.create("Small Input").small())
                 .appendChild(BlockHeader.create("Always floating"))
                 .appendChild(TextBox.create("Age").floating())
                 .appendChild(TextBox.create("Email").floating());
