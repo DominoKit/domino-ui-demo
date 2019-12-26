@@ -34,7 +34,7 @@ public class CertificateOfOriginPart implements ImportSection {
 
     private Card certificateOfOriginCard;
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public CertificateOfOriginPart(List<Country> countries) {
         certificateOfOriginCopiesTextBox = createCopiesField()
@@ -66,7 +66,7 @@ public class CertificateOfOriginPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .setLeftAddon(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain())
                 .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
                 .appendChild(SelectOption.create("Official trade office", "Official trade office"))
                 .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))
@@ -94,7 +94,7 @@ public class CertificateOfOriginPart implements ImportSection {
                 .setBodyPaddingTop("40px")
                 .hide();
 
-        certificateOfOriginCard.getHeaderDescription().appendChild(certificateOfOriginRequiredSwitchButton.asElement());
+        certificateOfOriginCard.getHeaderDescription().appendChild(certificateOfOriginRequiredSwitchButton.element());
 
 
         element.appendChild(certificateOfOriginCard
@@ -109,7 +109,7 @@ public class CertificateOfOriginPart implements ImportSection {
                 ).appendChild(Row.create()
                         .addColumn(Column.span6().copy().appendChild(certificateOfOriginOriginOfGoodsCountrySelect))
                         .addColumn(Column.span6().copy().appendChild(certificateOfOriginOriginOfLocalizationEntitiesCountrySelect)))
-                .asElement());
+                .element());
 
     }
 
@@ -145,7 +145,7 @@ public class CertificateOfOriginPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

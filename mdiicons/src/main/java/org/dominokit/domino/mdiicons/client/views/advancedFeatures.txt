@@ -91,4 +91,4 @@ element.appendChild(Card.create("Icons advanced features")
                             .inactive()))
     )
     .setCollapsible()
-    .asElement());
+    .element());

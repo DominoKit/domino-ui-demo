@@ -30,11 +30,11 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
                 .get();
 
         accountSelect = Select.<CorporateAccount>create(title)
-                .setLeftAddon(Icons.ALL.account_balance_wallet())
+                .addLeftAddOn(Icons.ALL.account_balance_wallet())
                 .setRightAddon(correspondentChargesAccountIcon);
 
-        Tooltip.create(correspondentChargesAccountIcon.asElement(), "Show details");
-        Style.of(Popover.create(correspondentChargesAccountIcon.asElement(), "Account details", accountDetails.asElement())
+        Tooltip.create(correspondentChargesAccountIcon.element(), "Show details");
+        Style.of(Popover.create(correspondentChargesAccountIcon.element(), "Account details", accountDetails.element())
                 .position(new AccountDetailsPopupPosition(accountSelect)))
                 .setWidth("330px");
 
@@ -52,8 +52,8 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
 
 
     @Override
-    public HTMLElement asElement() {
-        return accountSelect.asElement();
+    public HTMLElement element() {
+        return accountSelect.element();
     }
 
     @Override

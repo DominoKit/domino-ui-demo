@@ -15,7 +15,7 @@ public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSo
     private HTMLDivElement element = div().css("open-source", "bg-theme", Elevation.LEVEL_1.getStyle())
             .add(Icons.ALL.code())
             .add(span().textContent("Source code"))
-            .asElement();
+            .element();
 
     public static LinkToSourceCode create(String moduleName, Class impl) {
         return new LinkToSourceCode(moduleName, impl);
@@ -30,7 +30,7 @@ public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSo
     }
 
     @Override
-    public HTMLDivElement asElement() {
+    public HTMLDivElement element() {
         return element;
     }
 }

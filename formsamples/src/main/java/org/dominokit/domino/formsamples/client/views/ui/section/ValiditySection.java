@@ -34,11 +34,11 @@ public class ValiditySection implements ImportSection {
     private DateBox validityExpiryDateBox;
     private TextBox daysForShipmentTextBox;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public ValiditySection(List<Country> countries) {
-        element.appendChild(BlockHeader.create("Validity *").asElement());
+        element.appendChild(BlockHeader.create("Validity *").element());
 
         CountriesComponent countriesComponent = CountriesComponent.create(countries);
 
@@ -65,7 +65,7 @@ public class ValiditySection implements ImportSection {
                 .setAutoValidation(true)
                 .setPattern(DATE_PATTERN)
                 .setLabel("Expiry Date Of Credit")
-                .setLeftAddon(Icons.ALL.date_range())
+                .addLeftAddOn(Icons.ALL.date_range())
                 .setHelperText(DATE_PATTERN);
         validityExpiryDateBox.getInputElement().addEventListener("input", evt -> revalidate());
         validityExpiryDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
@@ -75,7 +75,7 @@ public class ValiditySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.looks_one())
+                .addLeftAddOn(Icons.ALL.looks_one())
                 .setHelperText(Constants.NUMBERS_ONLY);
         daysForShipmentTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -90,7 +90,7 @@ public class ValiditySection implements ImportSection {
                         .addColumn(span3().appendChild(citySelect))
                         .addColumn(span3().appendChild(numbersOnly(daysForShipmentTextBox)))
                 )
-                .asElement());
+                .element());
 
     }
 
@@ -117,7 +117,7 @@ public class ValiditySection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

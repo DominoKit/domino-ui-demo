@@ -32,44 +32,44 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("TABS").asElement());
+        element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).element());
+        element.appendChild(BlockHeader.create("TABS").element());
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
 
         iconsOnly();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).element());
 
         withIconsAndTextSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).element());
 
         closableTabsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).element());
 
         materialDesignColorsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).element());
 
         backgroundSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.backgroundSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.backgroundSample()).element());
 
         initDifferentContentSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDifferentContentSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDifferentContentSample()).element());
 
         withAnimation();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).element());
 
         verticalTabs();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -91,7 +91,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -114,7 +114,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 )
-                .asElement());
+                .element());
 
     }
 
@@ -136,7 +136,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -170,7 +170,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 .setClosable(true)
                         )
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -226,7 +226,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 )
                         )
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -288,7 +288,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 )
                         )
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -318,7 +318,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                 )
                 .appendChild(contentContainer)
-                .asElement());
+                .element());
 
 
     }
@@ -362,7 +362,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                         .setTransition(Transition.FADE_IN_RIGHT)
                                 ))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -432,7 +432,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 )
                         )
                 )
-                .asElement());
+                .element());
 
 
     }

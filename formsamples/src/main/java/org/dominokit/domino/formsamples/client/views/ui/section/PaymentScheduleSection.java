@@ -34,7 +34,7 @@ import static org.jboss.gwt.elemento.core.Elements.small;
 
 public class PaymentScheduleSection implements ImportSection {
 
-    private final HTMLElement validationMessageElement = small().textContent("Total payment schedules should be 100%").css(Color.RED.getStyle()).asElement();
+    private final HTMLElement validationMessageElement = small().textContent("Total payment schedules should be 100%").css(Color.RED.getStyle()).element();
     private TextBox numberOfDaysTextBox;
     private Select<String> paymentScheduleAfterSelect;
     private TextBox percentageTextBox;
@@ -43,14 +43,14 @@ public class PaymentScheduleSection implements ImportSection {
     private Button addButton;
     private Collapsible valuesContainerCollapsible;
     private Card paymentScheduleCard;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
     private final Row paymentSchedulerListGroupRow;
 
     public PaymentScheduleSection() {
 
         numberOfDaysTextBox = numbersOnly(TextBox.create("No. Of Days")
-                .setLeftAddon(Icons.ALL.looks_one())
+                .addLeftAddOn(Icons.ALL.looks_one())
                 .setHelperText(Constants.NUMBERS_ONLY))
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
@@ -61,7 +61,7 @@ public class PaymentScheduleSection implements ImportSection {
         paymentScheduleAfterSelect = Select.<String>create("After").appendChild(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
                 .appendChild(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
                 .appendChild(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
-                .setLeftAddon(Icons.ALL.redo())
+                .addLeftAddOn(Icons.ALL.redo())
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
 
@@ -74,7 +74,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .value("100")
                 .setRequired(true)
                 .groupBy(fieldsGrouping)
-                .setLeftAddon(i().css("fas", "fa-percent", "fa-sm"))
+                .addLeftAddOn(i().css("fas", "fa-percent", "fa-sm"))
                 .addValidator(() -> {
                     int percentage = Integer.parseInt(percentageTextBox.getValue());
                     int remainingPercentage = remainingPercentage();
@@ -92,8 +92,8 @@ public class PaymentScheduleSection implements ImportSection {
                 .appendChild(Radio.create("NEGOTIATION", "Negotiation").withGap())
                 .appendChild(Radio.create("ACCEPTANCE", "Acceptance at").withGap())
                 .appendChild(Radio.create("DEFERRED", "Deferred Payment").withGap())
-                .addChangeHandler(selectedRadio -> {
-                    if (selectedRadio.getValue().equals("DEFERRED") || selectedRadio.getValue().equals("ACCEPTANCE")) {
+                .addChangeHandler(value -> {
+                    if (value.equals("DEFERRED") || value.equals("ACCEPTANCE")) {
                         numberOfDaysColumn.show();
                         paymentScheduleAfterColumn.show();
                         numberOfDaysTextBox.setRequired(true);
@@ -121,7 +121,7 @@ public class PaymentScheduleSection implements ImportSection {
                             if (fieldsGrouping.validate().isValid()) {
                                 addPaymentSchedule();
                             }
-                        }).asElement());
+                        }).element());
 
 
         Row paymentTypeRow = Row.create()
@@ -136,7 +136,7 @@ public class PaymentScheduleSection implements ImportSection {
 
         HTMLDivElement valuesContainer = div()
                 .add(paymentTypeRow)
-                .add(paymentValuesRow).asElement();
+                .add(paymentValuesRow).element();
 
         valuesContainerCollapsible = Collapsible.create(valuesContainer)
                 .show();
@@ -149,7 +149,7 @@ public class PaymentScheduleSection implements ImportSection {
                                 .appendChild(paymentScheduleItemsListGroup))
                         .hide()
                 )
-                .asElement());
+                .element());
     }
 
     private void addPaymentSchedule() {
@@ -164,7 +164,7 @@ public class PaymentScheduleSection implements ImportSection {
         item.setPercentage(Integer.parseInt(percentageTextBox.getValue()));
         ListItem<PaymentScheduleItem> listItem = paymentScheduleItemsListGroup.addItem(item, paymentScheduleRadioGroup.getSelectedRadio().getLabel());
         Icon delete = Icons.ALL.delete();
-        delete.asElement().addEventListener("click", evt1 -> {
+        delete.element().addEventListener("click", evt1 -> {
             paymentScheduleItemsListGroup.removeItem(listItem);
             percentageTextBox.setValue(remainingPercentage() + "");
             addButton.show();
@@ -181,21 +181,21 @@ public class PaymentScheduleSection implements ImportSection {
                         .add(Styles.pull_right)
                         .setMarginTop("-3px")
                         .setMarginLeft("10px")
-                        .asElement());
+                        .element());
 
         if (numberOfDaysTextBox.isRequired()) {
             listItem.appendChild(Badge.create(item.getNumberOfDays() + " days after " + item.getAfterIncident().toLowerCase())
                     .setBackground(Color.GREEN)
                     .style()
                     .add(Styles.pull_right)
-                    .asElement());
+                    .element());
         }
 
         listItem.appendChild(Badge.create(item.getPercentage() + "%")
                 .setBackground(Color.GREEN)
                 .style()
                 .add(Styles.pull_right)
-                .asElement());
+                .element());
 
         int remainingPercentage = remainingPercentage();
         if (remainingPercentage == 0) {
@@ -250,7 +250,7 @@ public class PaymentScheduleSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

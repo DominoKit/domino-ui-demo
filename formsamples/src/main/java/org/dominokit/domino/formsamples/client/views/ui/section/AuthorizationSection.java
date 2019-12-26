@@ -33,7 +33,7 @@ public class AuthorizationSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
-        return card.asElement();
+    public HTMLElement element() {
+        return card.element();
     }
 }

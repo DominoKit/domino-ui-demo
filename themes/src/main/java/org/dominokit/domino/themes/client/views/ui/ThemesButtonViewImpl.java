@@ -22,7 +22,7 @@ public class ThemesButtonViewImpl extends BaseElementView<HTMLElement> implement
     public HTMLElement createRoot() {
         actionItem = LayoutActionItem.create(Icons.ALL.style()
                 .addClickListener(evt -> uiHandlers.onShowHideThemes()));
-        return actionItem.asElement();
+        return actionItem.element();
     }
 
     @Override

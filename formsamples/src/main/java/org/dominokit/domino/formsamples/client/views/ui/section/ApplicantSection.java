@@ -20,12 +20,12 @@ public class ApplicantSection implements ImportSection {
     private CorporateAccountsSelect lcSettlementAccountsSelect;
     private CorporateAccountsSelect collateralSettlementAccountsSelect;
     private CorporateAccountsSelect feesAndChargesAccountsSelect;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private final Card card;
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public ApplicantSection(CorporateProfile corporateProfile) {
-        element.appendChild(BlockHeader.create("Buyer (Applicant) *").asElement());
+        element.appendChild(BlockHeader.create("Buyer (Applicant) *").element());
         lcSettlementAccountsSelect = CorporateAccountsSelect.create("LC settlement accounts", corporateProfile);
         collateralSettlementAccountsSelect = CorporateAccountsSelect.create("Collateral settlement accounts", corporateProfile);
         feesAndChargesAccountsSelect = CorporateAccountsSelect.create("Fees and charges accounts", corporateProfile);
@@ -71,7 +71,7 @@ public class ApplicantSection implements ImportSection {
                                 .appendChild(feesAndChargesAccountsSelect)
                         )
                 )
-                .asElement());
+                .element());
     }
 
     @Override
@@ -117,7 +117,7 @@ public class ApplicantSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

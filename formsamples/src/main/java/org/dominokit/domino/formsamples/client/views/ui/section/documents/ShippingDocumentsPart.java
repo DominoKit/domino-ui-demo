@@ -28,7 +28,7 @@ public class ShippingDocumentsPart implements ImportSection {
 
 
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public ShippingDocumentsPart(List<Bank> banks) {
         Row shippingDocumentInfoRow = Row.create();
@@ -48,7 +48,7 @@ public class ShippingDocumentsPart implements ImportSection {
 
         orderOfBankSelect = Select.<Bank>create("Order of")
                 .groupBy(fieldsGrouping)
-                .setLeftAddon(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain())
                 .setAutoValidation(true)
                 .setRequired(true)
                 .addSelectionHandler(option -> revalidate());
@@ -61,7 +61,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .setLeftAddon(Icons.ALL.credit_card())
+                .addLeftAddOn(Icons.ALL.credit_card())
                 .appendChild(SelectOption.create("Prepaid", "Prepaid"))
                 .appendChild(SelectOption.create("Payable at destination", "Payable at destination"))
                 .addSelectionHandler(option -> revalidate());
@@ -70,7 +70,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.local_shipping())
+                .addLeftAddOn(Icons.ALL.local_shipping())
                 .appendChild(SelectOption.create("Ocean bills of lading in", "Ocean bills of lading in"))
                 .appendChild(SelectOption.create("Airway bill in", "Airway bill in"))
                 .appendChild(SelectOption.create("Truck consignment note", "Truck consignment note"))
@@ -93,7 +93,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .setBodyPaddingTop("40px")
                 .hide();
         card.getHeaderDescription()
-                .appendChild(shippingDocumentsSwitchButton.asElement());
+                .appendChild(shippingDocumentsSwitchButton.element());
 
         element.appendChild(card
                 .appendChild(Row.create()
@@ -105,7 +105,7 @@ public class ShippingDocumentsPart implements ImportSection {
                         .addColumn(span6().appendChild(orderOfBankSelect))
                         .addColumn(span6().appendChild(freightSelect)
                         ))
-                .asElement());
+                .element());
     }
 
     @Override
@@ -149,7 +149,7 @@ public class ShippingDocumentsPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

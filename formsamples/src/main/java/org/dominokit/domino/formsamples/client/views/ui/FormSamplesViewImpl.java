@@ -2047,7 +2047,7 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements
 
     @Override
     public HTMLElement createRoot() {
-        element = div().css("content-margin").asElement();
+        element = div().css("content-margin").element();
         return element;
     }
 
@@ -2067,10 +2067,10 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements
 
     private void reBuildForm() {
         ElementUtil.clear(element);
-        element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).element());
         addLCImportComponent = new AddLCImportComponent(corporateProfile, countries, beneficiaries, banks, currencies);
         addLCImportComponent.setUiHandlers(this.uiHandlers);
-        element.appendChild(addLCImportComponent.asElement());
+        element.appendChild(addLCImportComponent.element());
     }
 
     @Override

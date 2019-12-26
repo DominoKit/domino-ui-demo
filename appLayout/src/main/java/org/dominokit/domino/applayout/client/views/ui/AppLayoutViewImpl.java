@@ -29,27 +29,27 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
     private void initAppLayoutSample() {
-        element.appendChild(LinkToSourceCode.create("appLayout", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("LAYOUT", "Default domino-ui layout has, Navigation bar - 1,2,3 -, left panel - 4 -, center panel - 5 -, hidden footer - 6 - and hidden right panel - 7 -").asElement());
+        element.appendChild(LinkToSourceCode.create("appLayout", this.getClass()).element());
+        element.appendChild(BlockHeader.create("LAYOUT", "Default domino-ui layout has, Navigation bar - 1,2,3 -, left panel - 4 -, center panel - 5 -, hidden footer - 6 - and hidden right panel - 7 -").element());
         element.appendChild(Row.create()
                 .addColumn(Column.span6()
                         .appendChild(Card.create()
                                 .appendChild(Thumbnail.create()
                                         .setContent(img(GWT.getModuleBaseURL() + "images/layout/layout-1.png")
                                                 .css(Styles.img_responsive)
-                                                .asElement()))))
+                                                .element()))))
                 .addColumn(Column.span6()
                         .appendChild(Card.create()
                                 .appendChild(Thumbnail.create()
                                         .setContent(img(GWT.getModuleBaseURL() + "images/layout/layout-2.png")
                                                 .css(Styles.img_responsive)
-                                                .asElement()))))
-                .asElement());
+                                                .element()))))
+                .element());
 
         element.appendChild(Card.create("USAGE")
                 .appendChild(h(4).textContent("Basic"))
@@ -63,7 +63,7 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .appendChild(h(6).textContent("This will add the layout with pink theme."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Adding elements to navigation bar right side"))
-                .appendChild(CodeCard.preBlock("layout.getTopBar().appendChild(li().add(a().add(Icons.ALL.style())).asElement());"))
+                .appendChild(CodeCard.preBlock("layout.getTopBar().appendChild(li().add(a().add(Icons.ALL.style())).element());"))
                 .appendChild(h(6).textContent("This will add an icon to the right of the navigation bar."))
                 .appendChild(br())
                 .appendChild(h(4).textContent("Left panel"))
@@ -92,7 +92,7 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                         "                .appendChild(Tree.create(\"Menu\")\n" +
                         "                        .addTreeItem(TreeItem.create(\"Item1\", Icons.ALL.folder()))\n" +
                         "                        .addTreeItem(TreeItem.create(\"Item 2\", Icons.ALL.description()))\n" +
-                        "                        .asElement());"))
+                        "                        .element());"))
                 .appendChild(h(6).textContent("This will append a tree to the left panel, you can append any element of any kind."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Change left panel size"))
@@ -104,7 +104,7 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .appendChild(h(5).textContent("Add content to the center panel"))
                 .appendChild(CodeCard.preBlock("layout.getContentPanel()\n" +
                         "                .appendChild(BlockHeader.create(\"Title\", \"Some description\")\n" +
-                        "                        .asElement());"))
+                        "                        .element());"))
                 .appendChild(h(6).textContent("This wil add a block header to the center panel."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Clear the center panel"))
@@ -125,7 +125,7 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .appendChild(h(5).textContent("Adding content the right panel"))
                 .appendChild(CodeCard.preBlock("layout.getRightPanel()\n" +
                         "                .appendChild(BlockHeader.create(\"Settings\", \"System configurations\")\n" +
-                        "                        .asElement());"))
+                        "                        .element());"))
                 .appendChild(h(6).textContent("Right panel allows adding any element of any kind."))
                 .appendChild(br())
                 .appendChild(h(5).textContent("Clear the right panel"))
@@ -150,6 +150,6 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                         "                .appendChild(p().textContent(\"© 2018 Copyright DominoKit\"));"))
                 .appendChild(h(6).textContent("The footer allows adding any element of any kind"))
 
-                .asElement());
+                .element());
     }
 }

@@ -22,7 +22,7 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(BlockHeader.create("SAMPLES", " A set of apps and samples built with domino-ui").asElement());
+        element.appendChild(BlockHeader.create("SAMPLES", " A set of apps and samples built with domino-ui").element());
         element.appendChild(Row.create()
                 .appendChild(Column.span6()
                         .styler(style -> style.add(Styles.align_center))
@@ -77,12 +77,12 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                                         .appendChild(div().css("bg-classy"))
                         )
                 )
-                .asElement());
+                .element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 }

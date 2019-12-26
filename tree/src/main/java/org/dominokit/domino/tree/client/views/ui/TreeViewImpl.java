@@ -242,22 +242,22 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("tree", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("Tree").asElement());
+        element.appendChild(LinkToSourceCode.create("tree", this.getClass()).element());
+        element.appendChild(BlockHeader.create("Tree").element());
 
         simpleTree();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).element());
 
         nestedTree();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).element());
 
         activeAndExpandIcons();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -306,7 +306,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                 .appendChild(Row.create()
                         .addColumn(Column.span6().appendChild(hardwareTree))
                         .addColumn(Column.span6().appendChild(filesTree))
-                ).asElement());
+                ).element());
 
 
     }
@@ -382,7 +382,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                         .addColumn(Column.span6()
                                 .appendChild(BlockHeader.create("Auto collapse OFF"))
                                 .appendChild(hardwareMenu2))
-                ).asElement());
+                ).element());
 
         treeItem.expand(true);
         treeItem.activate(true);
@@ -512,7 +512,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                         .addColumn(Column.span6()
                                 .appendChild(BlockHeader.create("Expand icon"))
                                 .appendChild(foldersExpand))
-                ).asElement());
+                ).element());
 
 
     }

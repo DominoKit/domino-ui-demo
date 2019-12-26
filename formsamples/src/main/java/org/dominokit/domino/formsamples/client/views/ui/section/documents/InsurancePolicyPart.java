@@ -28,13 +28,13 @@ public class InsurancePolicyPart implements ImportSection {
 
     private Card insurancePolicyCard;
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public InsurancePolicyPart() {
 
         insuranceCompanyTextBox = TextBox.create("Insurance company")
                 .groupBy(fieldsGrouping)
-                .setLeftAddon(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.business())
                 .setAutoValidation(true)
                 .setRequired(true);
 
@@ -42,7 +42,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         insurancePolicyNumberTextBox = TextBox.create("Insurance policy number")
                 .groupBy(fieldsGrouping)
-                .setLeftAddon(Icons.ALL.phone())
+                .addLeftAddOn(Icons.ALL.phone())
                 .setAutoValidation(true)
                 .setRequired(true);
 
@@ -68,7 +68,7 @@ public class InsurancePolicyPart implements ImportSection {
                 .hide();
 
         insurancePolicyCard.getHeaderDescription()
-                .appendChild(insurancePolicyRequiredSwitchButton.asElement());
+                .appendChild(insurancePolicyRequiredSwitchButton.element());
 
         Row insurancePolicyRow = Row.create()
                 .addColumn(span6().appendChild(insuranceCompanyTextBox))
@@ -76,7 +76,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         element.appendChild(insurancePolicyCard
                 .appendChild(insurancePolicyRow)
-                .asElement());
+                .element());
     }
 
     @Override
@@ -108,7 +108,7 @@ public class InsurancePolicyPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

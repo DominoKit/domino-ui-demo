@@ -51,13 +51,13 @@ public class TableStyleActions implements IsElement<HTMLElement> {
                     }
                 }));
 
-        return a().add(initialIcon).asElement();
+        return a().add(initialIcon).element();
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return Style.of(Row.create()
-                .addColumn(column)).get().asElement();
+                .addColumn(column)).get().element();
     }
 
     @FunctionalInterface

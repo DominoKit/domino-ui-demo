@@ -27,22 +27,22 @@ import static org.jboss.gwt.elemento.core.Elements.img;
 @SampleClass
 public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements SpinSelectView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(BlockHeader.create("SPIN").asElement());
+        element.appendChild(BlockHeader.create("SPIN").element());
 
         horizontalSpin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSpin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSpin()).element());
 
         verticalSpin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -92,7 +92,7 @@ public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(TextNode.of("Porta ac consectetur ac"))))
                                         .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(TextNode.of("Vestibulum at eros"))))
                                 ))
-                ).asElement());
+                ).element());
 
 
     }
@@ -147,7 +147,7 @@ public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SpinItem.create("item 4", div().css("sample-spin-item").add(TextNode.of("Porta ac consectetur ac"))))
                                         .appendChild(SpinItem.create("item 5", div().css("sample-spin-item").add(TextNode.of("Vestibulum at eros"))))
                                 ))
-                ).asElement());
+                ).element());
 
 
     }

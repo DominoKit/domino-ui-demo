@@ -23,15 +23,15 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @SampleClass
 public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements CarouselView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("CAROUSEL").asElement());
+        element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).element());
+        element.appendChild(BlockHeader.create("CAROUSEL").element());
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
     }
 
     @SampleMethod
@@ -58,12 +58,12 @@ public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements Ca
                                         .startAutoSlide(3000)
                                 )
                         )
-                ).asElement());
+                ).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 }

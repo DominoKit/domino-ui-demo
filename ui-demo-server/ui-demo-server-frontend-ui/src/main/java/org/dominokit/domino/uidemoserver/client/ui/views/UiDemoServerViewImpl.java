@@ -16,11 +16,11 @@ public class UiDemoServerViewImpl extends BaseElementView<HTMLDivElement> implem
 
     @Override
     public void init(HTMLDivElement root) {
-        root.appendChild(h(1).textContent("Hello World! from module : UiDemoServer").asElement());
+        root.appendChild(h(1).textContent("Hello World! from module : UiDemoServer").element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        return div().asElement();
+        return div().element();
     }
 }

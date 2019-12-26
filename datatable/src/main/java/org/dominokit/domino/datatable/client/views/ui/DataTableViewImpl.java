@@ -30,7 +30,7 @@ import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.dropdown.DropDownMenu;
 import org.dominokit.domino.ui.dropdown.DropDownPosition;
 import org.dominokit.domino.ui.dropdown.DropdownAction;
-import org.dominokit.domino.ui.forms.SelectOption;
+import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -60,57 +60,57 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     @Override
     protected void init(HTMLDivElement root) {
         uiHandlers.startLoading();
-        element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).element());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
                 .appendChild(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
                         .attr("target", "_blank")
                         .textContent("Data table demo source code").asElement())
-                .asElement());
+                .element());
 
         basicTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
 
         basicFixedTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
 
         singleSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
 
         multiSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
 
         markerPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
 
         recordDetailsPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
 
         tableHeaderBarPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
 
         sortAndSearch();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
 
         simplePagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
 
         scrollingPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
 
         advancedPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
 
         scrollableTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
 
         topPanelPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
 
         groupingTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
 
         allInOne();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
 
         try {
             JsonResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
@@ -134,7 +134,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -151,9 +151,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -181,7 +181,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -201,7 +201,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -224,9 +224,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -254,7 +254,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -266,7 +266,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -288,9 +288,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -321,7 +321,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -332,7 +332,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(defaultTable))
                 .appendChild(defaultTable)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -361,9 +361,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -391,7 +391,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -407,8 +407,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(BlockHeader.create("SINGLE SELECTION"))
                 .appendChild(new TableStyleActions(singleSelectionTable))
-                .appendChild(singleSelectionTable.asElement())
-                .asElement());
+                .appendChild(singleSelectionTable.element())
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             singleLocalStore.setData(subList(contacts));
@@ -432,9 +432,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -462,7 +462,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -479,7 +479,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .appendChild(BlockHeader.create("MULTI SELECTION"))
                 .appendChild(new TableStyleActions(multiSelectionTable))
                 .appendChild(multiSelectionTable)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             multiLocalStore.setData(subList(contacts));
@@ -502,9 +502,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -532,7 +532,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -545,7 +545,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(defaultTable))
                 .appendChild(defaultTable)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -567,9 +567,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -597,12 +597,12 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
 
-        tableConfig.addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()));
+        tableConfig.addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
@@ -610,7 +610,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(defaultTable))
                 .appendChild(defaultTable)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -633,9 +633,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -663,7 +663,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -683,7 +683,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         }
                                     }));
 
-                    return a().add(selectInactiveIcon).asElement();
+                    return a().add(selectInactiveIcon).element();
                 })
                 .addActionElement(dataTable -> {
                     Icon selectInactiveIcon = Icons.ALL.check_circle()
@@ -698,7 +698,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         }
                                     }));
 
-                    return a().add(selectInactiveIcon).asElement();
+                    return a().add(selectInactiveIcon).element();
 
                 }));
 
@@ -709,7 +709,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(defaultTable))
                 .appendChild(defaultTable)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
@@ -733,9 +733,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -765,7 +765,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -798,7 +798,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             listStore.setData(subList(contacts));
@@ -821,9 +821,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -853,7 +853,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -876,7 +876,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
@@ -901,9 +901,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -933,7 +933,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -956,7 +956,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
@@ -981,9 +981,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1013,7 +1013,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }));
@@ -1036,7 +1036,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
@@ -1064,9 +1064,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1096,7 +1096,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }))
@@ -1117,7 +1117,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             scrollingDataSource.setData(contacts.subList(0, 100));
@@ -1145,9 +1145,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().asElement()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off().asElement()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1177,7 +1177,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }))
@@ -1185,8 +1185,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new TopPanelPlugin<Contact>() {
 
                     @Override
-                    public HTMLElement asElement() {
-                        return topPanel.asElement();
+                    public HTMLElement element() {
+                        return topPanel.element();
                     }
 
                     @Override
@@ -1212,7 +1212,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);
@@ -1242,9 +1242,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().asElement()).setColor(Color.GREEN_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off().asElement()).setColor(Color.RED_DARKEN_3.getHex()).asElement();
+                                return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1274,7 +1274,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
-                                        .setBackground(ColorScheme.GREEN.color()).asElement();
+                                        .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
                         }))
@@ -1282,8 +1282,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new TopPanelPlugin<Contact>() {
 
                     @Override
-                    public HTMLElement asElement() {
-                        return topPanel.asElement();
+                    public HTMLElement element() {
+                        return topPanel.element();
                     }
 
                     @Override
@@ -1307,7 +1307,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                                 }
                                             }));
 
-                            return a().add(selectInactiveIcon).asElement();
+                            return a().add(selectInactiveIcon).element();
                         })
                         .addActionElement(dataTable -> {
                             Icon selectInactiveIcon = Icons.ALL.check_circle()
@@ -1322,14 +1322,14 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                                 }
                                             }));
 
-                            return a().add(selectInactiveIcon).asElement();
+                            return a().add(selectInactiveIcon).element();
 
                         })
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
                         .addActionElement(new HeaderBarPlugin.ShowHideColumnsAction<>())
                 )
-                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).asElement()))
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
                 .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))
                 .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord())))
                 .addPlugin(new SortPlugin<>())
@@ -1367,7 +1367,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
-                .asElement());
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);

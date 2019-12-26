@@ -10,4 +10,4 @@ element.appendChild(Card.create("PRELOADERS - DIFFERENT SIZES")
                     .setSize(Preloader.Size.small))
             .add(Preloader.create()
                     .setSize(Preloader.Size.xSmall)))
-    .asElement());
+    .element());

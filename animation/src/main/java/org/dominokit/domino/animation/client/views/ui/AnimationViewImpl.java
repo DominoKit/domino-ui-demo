@@ -29,13 +29,13 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @SampleClass
 public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements AnimationView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private CodeCard createAnimationCard= new CodeCard();
     CreateAnimationAggregator createAnimationAggregator;
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -44,12 +44,12 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
 
         createAnimationAggregator = new CreateAnimationAggregator().init(this);
 
-        element.appendChild(LinkToSourceCode.create("animation", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("animation", this.getClass()).element());
         element.appendChild(BlockHeader.create("CSS ANIMATIONS")
                 .appendText("Pure css animations - ")
                 .appendChild(a().attr("href", "https://daneden.github.io/animate.css/")
                         .attr("target", "_blank").textContent("daneden.github.io/animate.css"))
-                .asElement()
+                .element()
         );
 
 
@@ -63,7 +63,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.PULSE)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -75,7 +75,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.SWING)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -87,7 +87,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.JELLO)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -99,7 +99,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.BOUNCE_IN_LEFT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -111,7 +111,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.BOUNCE_OUT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -123,7 +123,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.BOUNCE_OUT_RIGHT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -135,7 +135,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_IN_DOWN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -147,7 +147,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_IN_LEFT_BIG)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -159,7 +159,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_IN_UP)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -171,7 +171,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_OUT_DOWN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -183,7 +183,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_OUT_LEFT_BIG)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -195,7 +195,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FADE_OUT_UP)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -207,7 +207,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FLIP_IN_X)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -219,7 +219,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.FLIP_OUT_Y)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -231,7 +231,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ROTATE_IN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -243,7 +243,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ROTATE_IN_UP_LEFT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -255,7 +255,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ROTATE_OUT_DOWN_LEFT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -267,7 +267,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ROTATE_OUT_UP_RIGHT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -279,7 +279,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.SLIDE_IN_LEFT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -291,7 +291,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.SLIDE_OUT_DOWN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -303,7 +303,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ZOOM_IN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -315,7 +315,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ZOOM_IN_RIGHT)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -327,7 +327,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ZOOM_OUT_DOWN)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -339,7 +339,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ZOOM_OUT_UP)
                         ))
-                .asElement()
+                .element()
         );
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -351,7 +351,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .addColumn(Column.span4()
                         .appendChild(createCard(Transition.ROLL_OUT)
                         ))
-                .asElement()
+                .element()
         );
 
         CodeCard.completeFetchCode(CodeResource.INSTANCE.trnsitionType(), value -> createAnimationAggregator.completeTransitionType(value));
@@ -360,7 +360,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
         CodeCard.completeFetchCode(CodeResource.INSTANCE.infinite(), value -> createAnimationAggregator.completeInfinite(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.stop(), value -> createAnimationAggregator.completeStop(value));
 
-        element.appendChild(createAnimationCard.asElement());
+        element.appendChild(createAnimationCard.element());
     }
 
 

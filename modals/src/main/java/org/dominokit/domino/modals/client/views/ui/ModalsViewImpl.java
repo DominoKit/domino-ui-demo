@@ -46,8 +46,8 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
         modalSizeAggregator = new ModalSizeAggregator().init(this);
         modalColorAggregator = new ModalColorAggregator().init(this);
 
-        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("MODALS").asElement());
+        element.appendChild(LinkToSourceCode.create("modals", this.getClass()).element());
+        element.appendChild(BlockHeader.create("MODALS").element());
 
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initModalsSize(), value -> modalSizeAggregator.completeModalSizes(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initModalColor(), value -> modalColorAggregator.completeModalColor(value));
@@ -57,18 +57,18 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
         });
 
         initModalsSize();
-        element.appendChild(modalSizesCard.asElement());
+        element.appendChild(modalSizesCard.element());
 
         initSheets();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSheets())
-                .asElement());
+                .element());
 
         initModalColor();
-        element.appendChild(modalColorsCard.asElement());
+        element.appendChild(modalColorsCard.element());
 
         initWindow();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWindow())
-                .asElement());
+                .element());
     }
 
     @Aggregate(name = "ModalSizeAggregator")
@@ -93,7 +93,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -156,7 +156,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                         })))
 
                 )
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -281,7 +281,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                             .setMinWidth("200px")))
                                     ));
                         })
-                ).asElement());
+                ).element());
 
 
     }
@@ -324,7 +324,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         .span4(column -> column.appendChild(largeSizeButton))
                         .span4(column -> column.appendChild(smallSizeButton))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -388,7 +388,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         .add(orangeButton)
                         .add(greenButton)
                         .add(tealButton)
-                ).asElement());
+                ).element());
 
 
     }

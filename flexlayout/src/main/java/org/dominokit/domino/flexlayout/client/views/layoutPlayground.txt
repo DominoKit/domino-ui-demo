@@ -87,7 +87,7 @@ FlexLayout flexLayout = FlexLayout.create()
 layoutPlaygroundCard.appendChild(div()
         .css("demo-flex-layout-result-container")
         .add(flexLayout)
-        .asElement());
+        .element());
 
 // ********* listeners part ********* //
 directionsRadioGroup.addChangeHandler(direction -> {

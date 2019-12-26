@@ -35,7 +35,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @SampleClass
 public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements TimePickerView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     private Column column = Column.span4()
             .centerContent()
@@ -44,22 +44,22 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("TIME PICKERS").asElement());
+        element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).element());
+        element.appendChild(BlockHeader.create("TIME PICKERS").element());
 
         inline();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).element());
 
         popups();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).element());
 
         timeBox();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -94,7 +94,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .hideCloseButton()
                                 .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
                                         DomGlobal.console.info(timePicker.getFormattedTime())))))
-                .asElement());
+                .element());
 
 
     }
@@ -159,8 +159,8 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
 
-        blueModal.appendChild(blueDatePicker.asElement());
-        DomGlobal.document.body.appendChild(blueModal.asElement());
+        blueModal.appendChild(blueDatePicker.element());
+        DomGlobal.document.body.appendChild(blueModal.element());
 
         blueModalButton.addClickListener(evt -> blueModal.open());
 
@@ -179,7 +179,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
         pinkModal.appendChild(pinkDatePicker);
-        DomGlobal.document.body.appendChild(pinkModal.asElement());
+        DomGlobal.document.body.appendChild(pinkModal.element());
 
         pinkModalButton.addClickListener(evt -> pinkModal.open());
 
@@ -197,7 +197,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
         greenModal.appendChild(greenDatePicker);
-        DomGlobal.document.body.appendChild(greenModal.asElement());
+        DomGlobal.document.body.appendChild(greenModal.element());
 
         greenModalButton.addClickListener(evt -> greenModal.open());
 
@@ -215,7 +215,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().appendChild(pinkModalButton))
                         .addColumn(column.copy().appendChild(greenModalButton))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -249,7 +249,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().appendChild(timeBox2))
                         .addColumn(column.copy().appendChild(timeBox3))
                 )
-                .asElement());
+                .element());
 
 
 

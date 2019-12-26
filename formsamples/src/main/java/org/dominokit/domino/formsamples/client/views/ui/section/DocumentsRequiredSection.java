@@ -22,10 +22,10 @@ public class DocumentsRequiredSection implements ImportSection {
     private final InsurancePolicyPart insurancePolicyPart;
     private final OtherDocumentsPart otherDocumentsPart;
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public DocumentsRequiredSection(List<Bank> banks, List<Country> countries) {
-        element.appendChild(BlockHeader.create("Documents Required").asElement());
+        element.appendChild(BlockHeader.create("Documents Required").element());
 
         draftsPart = new DraftsPart();
         signedCommercialInvoicePart = new SignedCommercialInvoicePart(countries);
@@ -35,13 +35,13 @@ public class DocumentsRequiredSection implements ImportSection {
         insurancePolicyPart = new InsurancePolicyPart();
         otherDocumentsPart = new OtherDocumentsPart();
 
-        element.appendChild(draftsPart.asElement());
-        element.appendChild(signedCommercialInvoicePart.asElement());
-        element.appendChild(certificateOfOriginPart.asElement());
-        element.appendChild(packingListPart.asElement());
-        element.appendChild(shippingDocumentsPart.asElement());
-        element.appendChild(insurancePolicyPart.asElement());
-        element.appendChild(otherDocumentsPart.asElement());
+        element.appendChild(draftsPart.element());
+        element.appendChild(signedCommercialInvoicePart.element());
+        element.appendChild(certificateOfOriginPart.element());
+        element.appendChild(packingListPart.element());
+        element.appendChild(shippingDocumentsPart.element());
+        element.appendChild(insurancePolicyPart.element());
+        element.appendChild(otherDocumentsPart.element());
     }
 
     @Override
@@ -66,7 +66,7 @@ public class DocumentsRequiredSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

@@ -26,37 +26,37 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @SampleClass
 public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements PaginationView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("PAGINATION").asElement());
+        element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).element());
+        element.appendChild(BlockHeader.create("PAGINATION").element());
 
 
         defaultPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).element());
 
         activePageSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()).element());
 
         sizesSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).element());
 
         initScrollerPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initScrollerPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initScrollerPagination()).element());
 
         initAdvancedPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedPagination()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedPagination()).element());
 
-        element.appendChild(BlockHeader.create("PAGER").asElement());
+        element.appendChild(BlockHeader.create("PAGER").element());
         pagerNexPrevSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerNexPrevSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerNexPrevSample()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -66,7 +66,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 "Simple pagination inspired by Rdio, great for apps and search results. The large block is hard to miss, easily scalable, and provides large click areas.")
                 .appendChild(SimplePagination.create(5)
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+"")))
-                .asElement());
+                .element());
 
     }
 
@@ -77,7 +77,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .markActivePage()
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
                         .gotoPage(3))
-                .asElement());
+                .element());
 
 
     }
@@ -107,8 +107,8 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
                                         .gotoPage(3)
                                         .small()))
-                        .asElement())
-                .asElement());
+                        .element())
+                .element());
 
 
     }
@@ -118,7 +118,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(Card.create("SCROLLING PAGINATION", "For large number of pages scrolling pagiation allow viewing a set of pages at a time.")
                 .appendChild(ScrollingPagination.create(50, 10, 5)
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
-                .asElement());
+                .element());
 
 
     }
@@ -128,7 +128,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(Card.create("ADVANCED PAGINATION", "Old style pagination with advanced page select.")
                 .appendChild(AdvancedPagination.create(50, 10)
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
-                .asElement());
+                .element());
 
 
     }
@@ -145,7 +145,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows())
-                .asElement());
+                .element());
 
         element.appendChild(Card.create("PAGER ALIGNED TO EDGES", "Use expand to align the pager to the edges.")
                 .appendChild(Pager.create()
@@ -155,7 +155,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .previousText("Older")
                         .showArrows()
                         .show())
-                .asElement());
+                .element());
 
 
         element.appendChild(Card.create("PAGER WITH DISABLED LINK", "You can Disable/Enable pager links.")
@@ -167,7 +167,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .showArrows()
                         .show()
                         .disablePrevious())
-                .asElement());
+                .element());
 
 
 

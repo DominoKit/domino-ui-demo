@@ -35,19 +35,19 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("STEPPERS").asElement());
+        element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).element());
+        element.appendChild(BlockHeader.create("STEPPERS").element());
 
         verticalStepper();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalStepper()).element());
 
         horizontalStepper();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -60,7 +60,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox nameTextBox = TextBox.create("Name")
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label());
 
         nameTextBox.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
@@ -71,7 +71,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox email = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email());
 
         email.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
@@ -82,7 +82,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone());
 
         phone.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
@@ -154,7 +154,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         element.appendChild(Card.create("VERTICAL STEPPER")
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(stepper)))
-                .asElement());
+                .element());
 
 
     }
@@ -168,7 +168,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox nameTextBox = TextBox.create("Name")
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label());
         nameTextBox.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
                 stepper.next();
@@ -178,7 +178,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox email = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email());
 
         email.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
@@ -189,7 +189,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone());
 
         phone.getInputElement().addEventListener("keypress", evt -> {
             if (ElementUtil.isEnterKey(Js.uncheckedCast(evt))) {
@@ -260,7 +260,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         element.appendChild(Card.create("HORIZONTAL STEPPER")
                 .appendChild(Row.create()
                         .addColumn(span12().appendChild(stepper)))
-                .asElement());
+                .element());
 
 
     }

@@ -26,7 +26,7 @@ public class ContactUiUtils {
                 .style()
                 .setMargin("0px").get();
         Tooltip.create(progress, contact.getBalance());
-        return progress.asElement();
+        return progress.element();
     }
 
     public static ColorScheme getBalanceColor(double balance) {
@@ -47,21 +47,21 @@ public class ContactUiUtils {
 
     public static  HTMLElement getGenderElement(Contact contact) {
         if (Gender.male.equals(contact.getGender())) {
-            return i().css("fas fa-male fa-lg").asElement();
+            return i().css("fas fa-male fa-lg").element();
         } else {
-            return i().css("fas fa-female fa-lg").asElement();
+            return i().css("fas fa-female fa-lg").element();
         }
     }
 
     public static  HTMLElement getEyeColorElement(Contact contact) {
-        HTMLElement element = i().css("fas fa-eye fa-lg").asElement();
+        HTMLElement element = i().css("fas fa-eye fa-lg").element();
 
         if (EyeColor.blue.equals(contact.getEyeColor())) {
-            return Style.of(element).setColor(Color.BLUE.getHex()).asElement();
+            return Style.of(element).setColor(Color.BLUE.getHex()).element();
         } else if (EyeColor.green.equals(contact.getEyeColor())) {
-            return Style.of(element).setColor(Color.GREEN.getHex()).asElement();
+            return Style.of(element).setColor(Color.GREEN.getHex()).element();
         } else if (EyeColor.brown.equals(contact.getEyeColor())) {
-            return Style.of(element).setColor(Color.BROWN.getHex()).asElement();
+            return Style.of(element).setColor(Color.BROWN.getHex()).element();
         }
 
         return element;

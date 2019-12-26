@@ -24,11 +24,11 @@ public class BeneficiarySection implements ImportSection {
     private Select<Beneficiary> beneficiariesSelect;
     private Select<Account> accountsSelect;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public BeneficiarySection(List<Beneficiary> beneficiaries) {
-        element.appendChild(BlockHeader.create("Seller(Beneficiary) *").asElement());
+        element.appendChild(BlockHeader.create("Seller(Beneficiary) *").element());
 
         card = Card.create();
 
@@ -37,11 +37,11 @@ public class BeneficiarySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.label())
+                .addLeftAddOn(Icons.ALL.label())
                 .addSelectionHandler(option -> revalidate());
 
         accountsSelect = Select.<Account>create("Through")
-                .setLeftAddon(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.business())
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
@@ -73,7 +73,7 @@ public class BeneficiarySection implements ImportSection {
                                 .appendChild(accountsSelect)
                         )
                 )
-                .asElement());
+                .element());
     }
 
     private void revalidate() {
@@ -105,7 +105,7 @@ public class BeneficiarySection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

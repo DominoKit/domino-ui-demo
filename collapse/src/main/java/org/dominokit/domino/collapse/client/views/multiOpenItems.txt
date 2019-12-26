@@ -19,4 +19,4 @@ element.appendChild(Row.create()
                             .appendChild(AccordionPanel.create("Collapsible item 4", new Text(SAMPLE_CONTENT))
                                     .setIcon(Icons.ALL.folder_shared())
                                     .setColor(Color.ORANGE)))))
-    .asElement());
+    .element());

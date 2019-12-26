@@ -29,7 +29,7 @@ public class ShipmentDetailsSection implements ImportSection {
     private TextBox placeOfDestinationTextBox;
     private Select<String> termsOfDeliverySelect;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public ShipmentDetailsSection() {
@@ -42,7 +42,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .setPattern(DATE_PATTERN)
                 .setHelperText(DATE_PATTERN)
                 .setLabel("Latest Date Of Shipment")
-                .setLeftAddon(Icons.ALL.date_range());
+                .addLeftAddOn(Icons.ALL.date_range());
         latestDateOfShipmentDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
         latestDateOfShipmentDateBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -50,7 +50,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.local_shipping())
+                .addLeftAddOn(Icons.ALL.local_shipping())
                 .appendChild(SelectOption.create("AIR_FREIGHT", "Air Freight"))
                 .appendChild(SelectOption.create("SEA_FREIGHT", "Sea Freight"))
                 .appendChild(SelectOption.create("LAND", "Land"))
@@ -66,14 +66,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_on());
         shipmentFromTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         shipmentToTextBox = TextBox.create("Shipment To")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_on());
 
         shipmentToTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -81,14 +81,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_on());
         placeOfDestinationTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         termsOfDeliverySelect = Select.<String>create("Terms Of Delivery (Incoterms 2010)")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.card_membership())
+                .addLeftAddOn(Icons.ALL.card_membership())
                 .appendChild(SelectOption.create("EXW", "EXW – Ex Works (named place of delivery)"))
                 .appendChild(SelectOption.create("FCA", "FCA – Free Carrier (named place of delivery)"))
                 .appendChild(SelectOption.create("CPT", "CPT – Carriage Paid To (named place of destination)"))
@@ -102,7 +102,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .appendChild(SelectOption.create("CIF", "CIF – Cost, Insurance & Freight (named port of destination)"))
                 .addSelectionHandler(option -> revalidate());
 
-        element.appendChild(BlockHeader.create("Shipment Details *").asElement());
+        element.appendChild(BlockHeader.create("Shipment Details *").element());
 
         element.appendChild(card
                 .style()
@@ -123,7 +123,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .appendChild(Row.create()
                         .addColumn(span6().appendChild(termsOfDeliverySelect))
                         .addColumn(span6().appendChild(placeOfDestinationTextBox))
-                ).asElement());
+                ).element());
 
     }
 
@@ -154,7 +154,7 @@ public class ShipmentDetailsSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

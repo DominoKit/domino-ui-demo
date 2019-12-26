@@ -31,7 +31,7 @@ public class DraftsPart implements ImportSection {
     private final HTMLElement validationMessage = small()
             .textContent("At least one draft should be provided.")
             .css(Color.RED.getStyle())
-            .asElement();
+            .element();
     private Select<String> draftDrawnOnSelect;
     private TextBox atDaysTextBox;
     private Select<String> documentsRequiredFromSelect;
@@ -43,7 +43,7 @@ public class DraftsPart implements ImportSection {
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
     private Card draftsCard;
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public DraftsPart() {
 
@@ -54,7 +54,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.business())
                 .appendChild(SelectOption.create("Progressoft", "Progressoft"))
                 .appendChild(SelectOption.create("Clusus", "Clusus"))
                 .appendChild(SelectOption.create("Bank XYZ", "Bank XYZ"))
@@ -65,13 +65,13 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setHelperText(NUMBERS_ONLY)
-                .setLeftAddon(Icons.ALL.looks_one());
+                .addLeftAddOn(Icons.ALL.looks_one());
 
         documentsRequiredFromSelect = Select.<String>create("From")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.date_range())
+                .addLeftAddOn(Icons.ALL.date_range())
                 .appendChild(SelectOption.create("shipmentDate", "Shipment Date"))
                 .appendChild(SelectOption.create("commercialDate", "Commercial Date"))
                 .appendChild(SelectOption.create("billOfLading", "Bill Of Lading"));
@@ -82,7 +82,7 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .addValidator(() -> validatePercent(draftsPercentage))
-                .setLeftAddon(i()
+                .addLeftAddOn(i()
                         .css("fas", "fa-percent", "fa-sm")
                         .style("margin-left: 15px;padding-right: 6px;"));
 
@@ -91,7 +91,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .setLeftAddon(Icons.ALL.insert_drive_file())
+                .addLeftAddOn(Icons.ALL.insert_drive_file())
                 .appendChild(SelectOption.create("Invoice value", "Invoice value"))
                 .appendChild(SelectOption.create("IC value", "IC value"));
 
@@ -112,8 +112,8 @@ public class DraftsPart implements ImportSection {
                 revalidate();
             }
         });
-        draftsCard.getHeaderBar().appendChild(addDraftButton.asElement());
-        draftsCard.getHeaderDescription().appendChild(draftsRequiredSwitch.asElement());
+        draftsCard.getHeaderBar().appendChild(addDraftButton.element());
+        draftsCard.getHeaderDescription().appendChild(draftsRequiredSwitch.element());
         element.appendChild(draftsCard
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
@@ -130,7 +130,7 @@ public class DraftsPart implements ImportSection {
                 ).appendChild(Row.create()
                         .addColumn(Column.span12()
                                 .appendChild(draftsListGroup))
-                ).asElement());
+                ).element());
     }
 
 
@@ -150,7 +150,7 @@ public class DraftsPart implements ImportSection {
                                 .setMarginTop("-3px")
                                 .setMarginLeft("10px").get();
 
-                        delete.asElement().addEventListener("click", evt1 -> {
+                        delete.element().addEventListener("click", evt1 -> {
                             draftsListGroup.removeItem(draftsItemListItem);
                             revalidate();
                         });
@@ -218,7 +218,7 @@ public class DraftsPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

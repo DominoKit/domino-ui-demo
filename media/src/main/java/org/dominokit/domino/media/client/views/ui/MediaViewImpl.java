@@ -26,19 +26,19 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("media", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("MEDIA OBJECT").asElement());
+        element.appendChild(LinkToSourceCode.create("media", this.getClass()).element());
+        element.appendChild(BlockHeader.create("MEDIA OBJECT").element());
 
         defaultMedia();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).element());
 
         mediaAlignment();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -78,7 +78,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
                                 .attr("width", "64")
                                 .attr("height", "64")))
                         .appendChild(TextNode.of(SAMPLE_TEXT)))
-                .asElement());
+                .element());
 
 
     }
@@ -110,7 +110,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
                         .alignLeftMedia(MediaObject.MediaAlign.BOTTOM)
                         .appendChild(Paragraph.create(SAMPLE_TEXT))
                         .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                .asElement());
+                .element());
 
     }
 }

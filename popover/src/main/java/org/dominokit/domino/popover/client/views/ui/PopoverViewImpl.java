@@ -29,19 +29,19 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("popover", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("TOOLTIPS & POPOVER").asElement());
+        element.appendChild(LinkToSourceCode.create("popover", this.getClass()).element());
+        element.appendChild(BlockHeader.create("TOOLTIPS & POPOVER").element());
 
         tooltips();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tooltips()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tooltips()).element());
 
         popover();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popover()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popover()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -79,7 +79,7 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
                         .addColumn(Column.span3()
                                 .appendChild(tooltip_on_left))
                         )
-                .asElement());
+                .element());
 
 
     }
@@ -116,7 +116,7 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
                                 .appendChild(popover_on_bottom))
                         .addColumn(Column.span3()
                                 .appendChild(popover_on_left)))
-                .asElement());
+                .element());
 
 
     }

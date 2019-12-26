@@ -26,33 +26,33 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
 
     private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("lists", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("LIST GROUPS").asElement());
+        element.appendChild(LinkToSourceCode.create("lists", this.getClass()).element());
+        element.appendChild(BlockHeader.create("LIST GROUPS").element());
 
         basicListsSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicListsSample())
-                .asElement());
+                .element());
 
         selectableSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectableSample())
-                .asElement());
+                .element());
 
         coloredSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredSample())
-                .asElement());
+                .element());
 
         richItems();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
-                .asElement());
+                .element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
+        element = Elements.div().element();
         return element;
     }
 
@@ -68,7 +68,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                         .appendChild("Morbi leo risus")
                                         .appendChild("Porta ac consectetur ac")
                                         .appendChild("Vestibulum at eros")
-                                        .asElement()).asElement()))
+                                        .element()).element()))
                 .addColumn(Column.span6()
                         .appendChild(Card.create("BADGES", "Add the badges component to any list group item and it will automatically be positioned on the right.")
                                 .appendChild(SimpleListGroup.create()
@@ -87,7 +87,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                         .appendChild(SimpleListItem.create("Vestibulum at eros")
                                                 .appendChild(Badge.create("Pending")
                                                         .setBackground(Color.PURPLE))))))
-                .asElement());
+                .element());
 
 
 
@@ -117,7 +117,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                         .appendChild(listGroup)))
                 .addColumn(Column.span6().appendChild(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
                         .appendChild(disabledItems)))
-                .asElement());
+                .element());
 
 
     }
@@ -145,7 +145,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                         .appendChild(contextualGroup)))
                 .addColumn(Column.span6().appendChild(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
                         .appendChild(coloredGroup)))
-                .asElement());
+                .element());
 
 
     }
@@ -161,7 +161,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                 .appendChild(listGroup.createItem("value5", SAMPLE_CONTENT).setHeading("Vestibulum at eros"));
 
         element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
-                .appendChild(listGroup).asElement());
+                .appendChild(listGroup).element());
 
 
     }

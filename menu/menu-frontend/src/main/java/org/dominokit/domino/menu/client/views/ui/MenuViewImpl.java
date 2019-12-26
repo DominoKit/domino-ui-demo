@@ -36,7 +36,7 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
     @Override
     protected void init(HTMLDivElement root) {
 
-        menu.getHeader().appendChild(lockIcon.asElement());
+        menu.getHeader().appendChild(lockIcon.element());
 
         menu.enableSearch()
                 .autoExpandFound()
@@ -46,11 +46,11 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
         lockIcon.addClickListener(evt -> {
             if (locked) {
                 uiHandlers.onUnLocked();
-                lockIcon.asElement().textContent = Icons.ALL.lock().getName();
+                lockIcon.element().textContent = Icons.ALL.lock().getName();
                 locked = false;
             } else {
                 uiHandlers.onLocked();
-                lockIcon.asElement().textContent = Icons.ALL.lock_open().getName();
+                lockIcon.element().textContent = Icons.ALL.lock_open().getName();
                 locked = true;
             }
         });
@@ -62,13 +62,28 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
     private void addMenuItems() {
         menu
                 .appendChild(TreeItem.create("Home", Icons.ALL.home())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("home"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "home"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("home");
+                        })
                 )
                 .appendChild(TreeItem.create("Setup", Icons.ALL.build())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("setup"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "setup"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("setup");
+                        })
                 )
                 .appendChild(TreeItem.create("Samples", Icons.ALL.pages())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("samples"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "samples"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("samples");
+                        })
                 )
                 .appendChild(TreeItem.create("Layout", Icons.ALL.dashboard())
                         .appendChild(makeSubMenu("App layout", "layout/app-layout"))
@@ -117,38 +132,77 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
                         .appendChild(makeSubMenu("Login samples", "forms/login-sample"))
                 )
                 .appendChild(TreeItem.create("Data table", Icons.ALL.view_list())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("datatable"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "datatable"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("datatable");
+                        })
                 )
                 .appendChild(TreeItem.create("Icons", Icons.ALL.spa())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("icons"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "icons"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("icons");
+                        })
                 )
                 .appendChild(TreeItem.create("MDI Icons", Icons.ALL.local_florist())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("mdiicons"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "mdiicons"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("mdiicons");
+                        })
                 )
                 .appendChild(TreeItem.create("Typography", Icons.ALL.text_fields())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("typography"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "typography"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("typography");
+                        })
                 )
                 .appendChild(TreeItem.create("Helper classes", Icons.ALL.layers())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("helpers"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "helpers"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("helpers");
+                        })
                 )
                 .appendChild(TreeItem.create("Colors", Icons.ALL.color_lens())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("colors"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "colors"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("colors");
+                        })
                 )
                 .appendChild(TreeItem.create("Animations", Icons.ALL.movie())
-                        .addClickListener(evt -> uiHandlers.onMenuItemSelected("animations"))
+                        .apply(self -> self.getClickableElement()
+                                .setAttribute("href", "animations"))
+                        .addClickListener(evt -> {
+                            evt.preventDefault();
+                            uiHandlers.onMenuItemSelected("animations");
+                        })
                 );
     }
 
     private TreeItem<String> makeSubMenu(String title, String token) {
         return TreeItem.create(title)
                 .setActiveIcon(Icons.ALL.keyboard_arrow_right())
-                .addClickListener(evt -> uiHandlers.onMenuItemSelected(token));
+                .apply(self -> self.getClickableElement().setAttribute("href", token))
+                .addClickListener(evt -> {
+                    evt.preventDefault();
+                    uiHandlers.onMenuItemSelected(token);
+                });
     }
 
     @Override
     public HTMLDivElement createRoot() {
         menu = Tree.create("Demo menu");
-        return menu.asElement();
+        return menu.element();
     }
 
     @Override

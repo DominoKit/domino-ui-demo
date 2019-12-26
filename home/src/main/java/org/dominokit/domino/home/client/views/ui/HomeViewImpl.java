@@ -39,11 +39,11 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
     @Override
     protected void init(HTMLDivElement root) {
         element.appendChild(BlockHeader.create("DOMINO-UI")
-                .asElement());
+                .element());
         element.appendChild(Paragraph.create("Java based lightweight UI library that in addition to performance and functionality brings elegance to enterprise web applications.")
                 .styler(style -> style.setColor("#666")
                         .setMarginBottom("30px"))
-                .asElement());
+                .element());
         initCards();
 
         quickInsight();
@@ -60,7 +60,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -75,7 +75,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .attr("target", "_blank")
                         .add(img("./images/home/gwt-logo.png")
                                 .style("width: 64px;")))
-                .asElement());
+                .element());
     }
 
     private void initFollowUs() {
@@ -90,11 +90,11 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .attr("target", "_blank")
                         .add(img("./images/home/facebook_circle-512.png")
                                 .style("width: 50px;")))
-                .asElement());
+                .element());
     }
 
     private void initHelpAndSupport() {
-        element.appendChild(BlockHeader.create("HELP & SUPPORT").asElement());
+        element.appendChild(BlockHeader.create("HELP & SUPPORT").element());
         element.appendChild(Card.create()
                 .styler(style -> style
                         .add("classy-card"))
@@ -142,11 +142,11 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                         .setTooltip("Dominokit"))
                         ))
                 .appendChild(div().css("bg-classy"))
-                .asElement());
+                .element());
     }
 
     private void initWhatOthersSay() {
-        element.appendChild(BlockHeader.create("WHAT OTHERS SAY").asElement());
+        element.appendChild(BlockHeader.create("WHAT OTHERS SAY").element());
         spinSelect = HSpinSelect.create();
         element.appendChild(Card.create()
                 .styler(style -> style
@@ -195,7 +195,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         )
 
                 ).appendChild(div().css("bg-classy"))
-                .asElement());
+                .element());
 
         timer = new Timer() {
             @Override
@@ -226,7 +226,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
     }
 
     private void initSponsors() {
-        element.appendChild(BlockHeader.create("SPONSORS & SUPPORTERS").asElement());
+        element.appendChild(BlockHeader.create("SPONSORS & SUPPORTERS").element());
 
         element.appendChild(Card.create()
                 .styler(style -> style
@@ -262,11 +262,11 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         )
 
                 ).appendChild(div().css("bg-classy"))
-                .asElement());
+                .element());
     }
 
     private void initAuthors() {
-        element.appendChild(BlockHeader.create("AUTHORS").asElement());
+        element.appendChild(BlockHeader.create("AUTHORS").element());
         element.appendChild(Card.create()
                 .styler(style -> style
                         .add(Color.BLACK.getBackground())
@@ -309,7 +309,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         )
 
                 ).appendChild(div().css("bg-classy"))
-                .asElement());
+                .element());
 
     }
 
@@ -411,11 +411,11 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                 ))
                                 ))
                 )))
-                .asElement());
+                .element());
     }
 
     private void quickInsight() {
-        element.appendChild(BlockHeader.create("QUICK INSIGHT").asElement());
+        element.appendChild(BlockHeader.create("QUICK INSIGHT").element());
         element.appendChild(Card.create()
                 .styler(style -> style.add("home-sections", "gs-background", "demo-docs"))
                 .setBodyPadding("0px")
@@ -468,6 +468,6 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .appendChild(Paragraph.create("Icons and Typography can enhance the user experience of the application, domino-ui has a very good of font icons that can bring forms and other elements in the page into life, and this not only applies for enterprise applications but also for simple application like blogs, in domino-ui creating typography elements is very easy and stylish."))
                         ))
                 )
-                .asElement());
+                .element());
     }
 }

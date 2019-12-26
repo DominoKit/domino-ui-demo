@@ -25,18 +25,18 @@ public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("PRELOADERS").asElement());
+        element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).element());
+        element.appendChild(BlockHeader.create("PRELOADERS").element());
 
         sizesSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).element());
         colorsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -54,7 +54,7 @@ public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .setSize(Preloader.Size.small))
                         .add(Preloader.create()
                                 .setSize(Preloader.Size.xSmall)))
-                .asElement());
+                .element());
 
     }
 
@@ -88,7 +88,7 @@ public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .setColor(Color.TEAL))
                         .add(Preloader.create()
                                 .setColor(Color.INDIGO)))
-                .asElement());
+                .element());
 
 
 

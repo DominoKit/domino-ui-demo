@@ -16,7 +16,7 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 
 public class AddLCImportComponent implements IsElement<HTMLDivElement> {
 
-    private HTMLDivElement element = div().css("content-margin").asElement();
+    private HTMLDivElement element = div().css("content-margin").element();
 
     private CorporateProfile corporateProfile;
     private List<Country> countries;
@@ -59,20 +59,20 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
         confirmationInstructionsSection = new ConfirmationInstructionsSection(this.corporateProfile);
         correspondentChargesInstructionsSection = new CorrespondentChargesInstructionsSection(this.corporateProfile);
 
-        element.appendChild(generalSection.asElement());
-        element.appendChild(issuerBankSection.asElement());
-        element.appendChild(authorizationSection.asElement());
-        element.appendChild(applicantSection.asElement());
-        element.appendChild(beneficiarySection.asElement());
-        element.appendChild(creditAmountAndToleranceSection.asElement());
-        element.appendChild(paymentScheduleSection.asElement());
-        element.appendChild(validitySection.asElement());
-        element.appendChild(shipmentDetailsSection.asElement());
-        element.appendChild(documentsRequiredSection.asElement());
-        element.appendChild(goodsDescriptionSection.asElement());
-        element.appendChild(BlockHeader.create("Instructions").asElement());
-        element.appendChild(confirmationInstructionsSection.asElement());
-        element.appendChild(correspondentChargesInstructionsSection.asElement());
+        element.appendChild(generalSection.element());
+        element.appendChild(issuerBankSection.element());
+        element.appendChild(authorizationSection.element());
+        element.appendChild(applicantSection.element());
+        element.appendChild(beneficiarySection.element());
+        element.appendChild(creditAmountAndToleranceSection.element());
+        element.appendChild(paymentScheduleSection.element());
+        element.appendChild(validitySection.element());
+        element.appendChild(shipmentDetailsSection.element());
+        element.appendChild(documentsRequiredSection.element());
+        element.appendChild(goodsDescriptionSection.element());
+        element.appendChild(BlockHeader.create("Instructions").element());
+        element.appendChild(confirmationInstructionsSection.element());
+        element.appendChild(correspondentChargesInstructionsSection.element());
 
         element.appendChild(Row.create()
                 .style()
@@ -87,7 +87,7 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
                                 })
                                 .style()
                                 .setMinWidth("120px").get()))
-                .asElement());
+                .element());
     }
 
     public boolean isFormValid() {
@@ -129,7 +129,7 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
     }
 
     @Override
-    public HTMLDivElement asElement() {
+    public HTMLDivElement element() {
         return element;
     }
 }

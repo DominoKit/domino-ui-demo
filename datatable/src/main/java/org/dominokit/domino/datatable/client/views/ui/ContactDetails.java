@@ -77,7 +77,7 @@ public class ContactDetails implements IsElement<HTMLElement> {
     }
 
     @Override
-    public HTMLElement asElement() {
-        return rowElement.asElement();
+    public HTMLElement element() {
+        return rowElement.element();
     }
 }

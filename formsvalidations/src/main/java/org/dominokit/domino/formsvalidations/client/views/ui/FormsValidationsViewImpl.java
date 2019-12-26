@@ -36,8 +36,8 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("FIELDS DECORATION").asElement());
+        element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).element());
+        element.appendChild(BlockHeader.create("FIELDS DECORATION").element());
         helperTextCard = Card.create("HELPER TEXTS");
         iconsCard = Card.create("ADDONS");
         countsCard = Card.create("WORD COUNTER");
@@ -50,21 +50,21 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         initValidations();
         initReadOnly();
 
-        element.appendChild(helperTextCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initHelperText()).asElement());
-        element.appendChild(iconsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIcons()).asElement());
-        element.appendChild(countsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWordCount()).asElement());
-        element.appendChild(validationsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initValidations()).asElement());
-        element.appendChild(readOnlyCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initReadOnly()).asElement());
+        element.appendChild(helperTextCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initHelperText()).element());
+        element.appendChild(iconsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIcons()).element());
+        element.appendChild(countsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWordCount()).element());
+        element.appendChild(validationsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initValidations()).element());
+        element.appendChild(readOnlyCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initReadOnly()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
+        element = Elements.div().element();
         return element;
     }
 
@@ -141,29 +141,29 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         Icon cancel = Icons.ALL.cancel();
 
         TextBox username = TextBox.create("Username")
-                .setLeftAddon(Icons.ALL.account_circle())
+                .addLeftAddOn(Icons.ALL.account_circle())
                 .setRightAddon(cancel);
         cancel.addClickListener(evt -> username.clear())
                 .style().setCursor("pointer");
 
         HTMLElement showIcon = Icons.ALL.remove_red_eye().clickable()
                 .style()
-                .setCursor("pointer").asElement();
+                .setCursor("pointer").element();
         TextBox password = TextBox.password("Password")
-                .setLeftAddon(Icons.ALL.https().asElement())
+                .addLeftAddOn(Icons.ALL.https().element())
                 .setRightAddon(showIcon);
 
-        showIcon.addEventListener("mousedown", evt -> password.getInputElement().asElement().type = "text");
-        showIcon.addEventListener("mouseup", evt -> password.getInputElement().asElement().type = "password");
+        showIcon.addEventListener("mousedown", evt -> password.getInputElement().element().type = "text");
+        showIcon.addEventListener("mouseup", evt -> password.getInputElement().element().type = "password");
 
         Icon info = Icons.ALL.info();
         Tooltip.create(info, "All system pages will be shown in the selected language");
         iconsCard.appendChild(username)
                 .appendChild(password)
                 .appendChild(TextArea.create("Description")
-                        .setLeftAddon(Icons.ALL.description()))
+                        .addLeftAddOn(Icons.ALL.description()))
                 .appendChild(Select.<String>create("Language")
-                        .setLeftAddon(Icons.ALL.language())
+                        .addLeftAddOn(Icons.ALL.language())
                         .setRightAddon(info)
                         .appendChild(SelectOption.create("english", "English"))
                         .appendChild(SelectOption.create("france", "France"))

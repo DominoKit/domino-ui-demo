@@ -26,7 +26,7 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @SampleClass
 public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements ChipsView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     private Card simpleCard;
     private Card removableCard;
@@ -37,8 +37,8 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("chips", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("CHIPS").asElement());
+        element.appendChild(LinkToSourceCode.create("chips", this.getClass()).element());
+        element.appendChild(BlockHeader.create("CHIPS").element());
         simpleCard = Card.create("SIMPLE CHIPS");
         removableCard = Card.create("REMOVABLE CHIPS");
         iconChipsCard = Card.create("CHIPS WITH ICONS");
@@ -53,23 +53,23 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
         initChipsWithLettersExample();
         initSelectableChipsExample();
 
-        element.appendChild(simpleCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSimpleExample()).asElement());
-        element.appendChild(removableCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initRemovableExample()).asElement());
-        element.appendChild(iconChipsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithIconsExample()).asElement());
-        element.appendChild(imagesChipsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithImagesExample()).asElement());
-        element.appendChild(lettersChipsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithLettersExample()).asElement());
-        element.appendChild(selectableChipsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectableChipsExample()).asElement());
+        element.appendChild(simpleCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSimpleExample()).element());
+        element.appendChild(removableCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initRemovableExample()).element());
+        element.appendChild(iconChipsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithIconsExample()).element());
+        element.appendChild(imagesChipsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithImagesExample()).element());
+        element.appendChild(lettersChipsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithLettersExample()).element());
+        element.appendChild(selectableChipsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectableChipsExample()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 

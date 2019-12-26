@@ -17,15 +17,15 @@ public final class AccountDetails implements IsElement<HTMLDivElement> {
 
     public AccountDetails() {
         accountNumberHeader = TextBox.create("Account number")
-                .setLeftAddon(Icons.ALL.account_balance_wallet())
+                .addLeftAddOn(Icons.ALL.account_balance_wallet())
                 .setReadOnly(true);
 
         ibanHeader = TextBox.create("IBAN")
-                .setLeftAddon(Icons.ALL.code())
+                .addLeftAddOn(Icons.ALL.code())
                 .setReadOnly(true);
 
         currencyHeader = TextBox.create("Currency")
-                .setLeftAddon(Icons.ALL.attach_money())
+                .addLeftAddOn(Icons.ALL.attach_money())
                 .setReadOnly(true);
 
         element = Row.create()
@@ -40,11 +40,11 @@ public final class AccountDetails implements IsElement<HTMLDivElement> {
                 )
                 .addColumn(Column.span12()
                         .appendChild(currencyHeader)
-                ).asElement();
+                ).element();
     }
 
     @Override
-    public HTMLDivElement asElement() {
+    public HTMLDivElement element() {
         return element;
     }
 

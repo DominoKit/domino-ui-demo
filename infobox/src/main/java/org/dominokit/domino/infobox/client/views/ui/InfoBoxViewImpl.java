@@ -22,26 +22,26 @@ import org.jboss.gwt.elemento.core.Elements;
 @SampleClass
 public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements InfoBoxView{
 
-    private HTMLDivElement element= Elements.div().asElement();
+    private HTMLDivElement element= Elements.div().element();
     private Counter counter;
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).element());
 
         basicInfoBoxes();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicInfoBoxes()).element());
 
         hoverZoomEffect();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.hoverZoomEffect()).element());
 
         rightAligned();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element= Elements.div().asElement();
+        element= Elements.div().element();
         return element;
     }
 
@@ -53,7 +53,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
 
     @SampleMethod
     private void basicInfoBoxes() {
-        element.appendChild(BlockHeader.create("BASIC INFO BOX AND COUNTERS", "Simple info box without effects, and counters to update the value.").asElement());
+        element.appendChild(BlockHeader.create("BASIC INFO BOX AND COUNTERS", "Simple info box without effects, and counters to update the value.").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "125")
@@ -64,7 +64,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                         .setIconBackground(Color.PURPLE)))
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.favorite(), "LIKES", "1432")
                         .setIconBackground(Color.DEEP_PURPLE)))
-                .asElement());
+                .element());
 
         InfoBox new_orders = InfoBox.create(Icons.ALL.shopping_cart(), "NEW ORDERS", "0");
         InfoBox new_members = InfoBox.create(Icons.ALL.face(), "NEW MEMBERS", "0");
@@ -80,7 +80,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                         .setIconBackground(Color.PURPLE)))
                 .addColumn(Column.span3().appendChild(likes
                         .setIconBackground(Color.DEEP_PURPLE)))
-                .asElement());
+                .element());
 
         counter = Counter.countFrom(0)
                 .countTo(125)
@@ -99,7 +99,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
 
     @SampleMethod
     private void hoverZoomEffect() {
-        element.appendChild(BlockHeader.create("HOVER EFFECTS", "Apply Zoom or Expand effects on hover").asElement());
+        element.appendChild(BlockHeader.create("HOVER EFFECTS", "Apply Zoom or Expand effects on hover").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.email(), "MESSAGES", "15")
@@ -114,7 +114,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.gps_fixed(), "LOCATION", "Jordan")
                         .setBackground(Color.DEEP_PURPLE)
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM)))
-                .asElement());
+                .element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.equalizer(), "BOUNCE RATE", "62%")
@@ -133,14 +133,14 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                         .setIconBackground(Color.LIME)
                         .setBackground(Color.LIME)
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
-                .asElement());
+                .element());
 
 
     }
 
     @SampleMethod
     private void rightAligned() {
-        element.appendChild(BlockHeader.create("ICON ALIGN AND COUNTERS", "Change icon position, and update info value with counters").asElement());
+        element.appendChild(BlockHeader.create("ICON ALIGN AND COUNTERS", "Change icon position, and update info value with counters").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.email(), "MESSAGES", "15")
@@ -163,7 +163,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                         .setIconColor(Color.DEEP_PURPLE)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.ZOOM)))
-                .asElement());
+                .element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(InfoBox.create(Icons.ALL.equalizer(), "BOUNCE RATE", "62%")
@@ -186,7 +186,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                         .setBackground(Color.LIME)
                         .flip()
                         .setHoverEffect(InfoBox.HoverEffect.EXPAND)))
-                .asElement());
+                .element());
 
 
     }

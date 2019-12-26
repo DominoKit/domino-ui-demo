@@ -26,33 +26,33 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
 
     private static final String SAMPLE_CONTENT = "Quis pharetra a pharetra fames blandit. Risus faucibus velit Risus imperdiet mattis neque volutpat, etiam lacinia netus dictum magnis per facilisi sociosqu. Volutpat. Ridiculus nostra.";
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
         cardsWithHeaders();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).element());
 
         coloredCards();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredCards()).element());
 
         collapsibleCards();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.collapsibleCards()).element());
 
         noHeaderCards();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
+        element = Elements.div().element();
         return element;
     }
 
     @SampleMethod
     private void cardsWithHeaders() {
-        element.appendChild(LinkToSourceCode.create("cards", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").asElement());
+        element.appendChild(LinkToSourceCode.create("cards", this.getClass()).element());
+        element.appendChild(BlockHeader.create("CARDS WITH HEADERS", "cards can have a header that has a Title and an optional description.").element());
         element.appendChild(Row.create()
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
@@ -73,14 +73,14 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                                 .appendChild(TextNode.of(SAMPLE_CONTENT))
                                 .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                                 .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
-                .asElement());
+                .element());
 
 
     }
 
     @SampleMethod
     private void coloredCards() {
-        element.appendChild(BlockHeader.create("COLORED CARDS", "You can control the background color of card, card header and card body.").asElement());
+        element.appendChild(BlockHeader.create("COLORED CARDS", "You can control the background color of card, card header and card body.").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Light Blue Card", "Description text here...")
@@ -98,7 +98,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
-                .asElement());
+                .element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Pink Card", "Description text here...")
@@ -116,7 +116,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
-                .asElement());
+                .element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Light Blue Card", "Description text here...")
@@ -137,14 +137,14 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
-                .asElement());
+                .element());
 
 
     }
 
     @SampleMethod
     private void collapsibleCards() {
-        element.appendChild(BlockHeader.create("COLLAPSIBLE CARDS", "cards can be collapsible.").asElement());
+        element.appendChild(BlockHeader.create("COLLAPSIBLE CARDS", "cards can be collapsible.").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
@@ -166,14 +166,14 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
-                .asElement());
+                .element());
 
 
     }
 
     @SampleMethod
     private void noHeaderCards() {
-        element.appendChild(BlockHeader.create("NO HEADER CARDS", "You can also create cards without headers.").asElement());
+        element.appendChild(BlockHeader.create("NO HEADER CARDS", "You can also create cards without headers.").element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create()
@@ -183,7 +183,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .setBackground(Color.LIGHT_BLUE).appendChild(TextNode.of(SAMPLE_CONTENT))))
                 .addColumn(Column.span4().appendChild(Card.create()
                         .setBackground(Color.PURPLE).appendChild(TextNode.of(SAMPLE_CONTENT))))
-                .asElement());
+                .element());
 
 
     }

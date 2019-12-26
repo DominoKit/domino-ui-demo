@@ -32,45 +32,45 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
 
     private static final String SAMPLE_CONTENT = "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.";
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).element());
 
         example();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example())
-                .asElement());
+                .element());
 
         accordionSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample())
-                .asElement());
+                .element());
 
         colorFullWithIcons();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
-                .asElement());
+                .element());
 
         multiOpenItems();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
-                .asElement());
+                .element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
     @SampleMethod
     private void example() {
 
-        element.appendChild(BlockHeader.create("COLLAPSE").asElement());
+        element.appendChild(BlockHeader.create("COLLAPSE").element());
         HTMLDivElement well = div()
                 .add(div()
                         .css("well")
                         .textContent(SAMPLE_CONTENT)
-                        .asElement())
-                .asElement();
+                        .element())
+                .element();
 
         Collapsible collapsible = Collapsible.create(well);
         EventListener collapsibleListener = evt -> collapsible.toggleDisplay();
@@ -90,16 +90,16 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                 .appendChild(button.builder()
                                         .css(Styles.m_b_15).build()
                                         .setBackground(Color.CYAN)
-                                        .asElement())
+                                        .element())
                                 .appendChild(collapsible)))
-                .asElement());
+                .element());
 
 
     }
 
     @SampleMethod
     private void accordionSample() {
-        element.appendChild(BlockHeader.create("ACCORDION").asElement());
+        element.appendChild(BlockHeader.create("ACCORDION").element());
         element.appendChild(Row.create()
                 .addColumn(Column.span6()
                         .appendChild(Card.create("BASIC EXAMPLES", "Extend the default collapse behavior to create an accordion with the panel component.")
@@ -122,7 +122,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                         .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
                                         .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
                                         .warning())
-                                .appendChild(b().textContent("Panel Danger").asElement())
+                                .appendChild(b().textContent("Panel Danger").element())
                                 .appendChild(Accordion.create()
                                         .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
                                         .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
@@ -155,7 +155,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                         .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
                                         .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
                                         .dangerFull())))
-                .asElement());
+                .element());
 
 
     }
@@ -205,7 +205,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                                 .setHeaderBackground(Color.ORANGE)
                                                 .setBodyBackground(Color.ORANGE)
                                         ))))
-                .asElement());
+                .element());
 
 
 
@@ -240,7 +240,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                                 .setHeaderBackground(Color.ORANGE)
                                                 .setBodyBackground(Color.ORANGE)
                                         ))))
-                .asElement());
+                .element());
 
 
 

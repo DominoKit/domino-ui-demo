@@ -35,7 +35,7 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MdiIconsViewImpl.class);
     private HTMLDivElement element;
-    private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").asElement();
+    private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").element();
 
     @Override
     protected void init(HTMLDivElement root) {
@@ -49,12 +49,12 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
             @Override
             public void onSuccess() {
                 element.appendChild(copyInput);
-                element.appendChild(LinkToSourceCode.create("mdiicons", MdiIconsViewImpl.this.getClass()).asElement());
+                element.appendChild(LinkToSourceCode.create("mdiicons", MdiIconsViewImpl.this.getClass()).element());
                 element.appendChild(BlockHeader.create("MDI Icons", "Find more about MDI icons at ")
                         .appendChild(a().attr("href", "https://materialdesignicons.com/")
                                 .attr("target", "_blank")
                                 .textContent("https://materialdesignicons.com/"))
-                        .asElement());
+                        .element());
                 MdiTags.TAGS.forEach(tag -> addIconsByTag(tag));
                 addIconsByTag(MdiTags.UNTAGGED);
                 mdiEffects();
@@ -68,7 +68,7 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
     private void addIconsByTag(String tag) {
         Card card = Card.create(tag.isEmpty() ? "Untagged" : tag)
                 .setCollapsible();
-        element.appendChild(card.asElement());
+        element.appendChild(card.element());
         List<Supplier<MdiIcon>> suppliers = MdiByTagFactory.get(tag);
         int rows = (suppliers.size() / 4) + ((suppliers.size() % 4) > 0 ? 1 : 0);
         for (int i = 0; i < rows; i++) {
@@ -82,7 +82,7 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -180,9 +180,9 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
                                         .inactive()))
                 )
                 .setCollapsible()
-                .asElement());
+                .element());
 
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFeatures()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedFeatures()).element());
     }
 
     private HtmlContentBuilder<HTMLDivElement> createMdiDemoIcon(BaseIcon icon) {
@@ -199,7 +199,7 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
                 .add(icon)
                 .add(element);
         String iconName = icon.getName();
-        iconContainer.asElement().addEventListener("click", evt -> {
+        iconContainer.element().addEventListener("click", evt -> {
             String name = (iconName.replace("mdi-", "").replace("-", "_")) + (iconName.contains("mdi") ? "_mdi" : "");
             copyInput.value = "Icons.ALL." + name + "()";
             copyInput.select();

@@ -34,7 +34,7 @@ public class OtherDocumentsPart implements ImportSection {
 
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public OtherDocumentsPart() {
         otherDocumentsCopiesTextBox = createCopiesField()
@@ -56,7 +56,7 @@ public class OtherDocumentsPart implements ImportSection {
                             if (fieldsGrouping.validate().isValid()) {
                                 addOtherDocumentItem();
                             }
-                        }).asElement());
+                        }).element());
 
         otherDocumentListGroupRow = Row.create()
                 .hide();
@@ -71,7 +71,7 @@ public class OtherDocumentsPart implements ImportSection {
                                 .appendChild(otherDocumentsItemListGroup)
                         )
                 )
-                .asElement());
+                .element());
     }
 
     private void addOtherDocumentItem() {
@@ -82,7 +82,7 @@ public class OtherDocumentsPart implements ImportSection {
                 .setMarginTop("-3px")
                 .setMarginLeft("10px").get();
 
-        delete.asElement()
+        delete.element()
                 .addEventListener("click", evt1 -> {
                     otherDocumentsItemListGroup.removeItem(listItem);
                     if (otherDocumentsItemListGroup.getAllValues().size() == 0) {
@@ -128,7 +128,7 @@ public class OtherDocumentsPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

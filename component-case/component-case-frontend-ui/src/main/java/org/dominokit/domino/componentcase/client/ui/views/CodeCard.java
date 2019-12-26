@@ -27,9 +27,9 @@ import static org.jboss.gwt.elemento.core.Elements.pre;
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     private HTMLInputElement copyInput = input(InputType.textarea)
-            .style("visibility:hidden; width: 0px; height: 0px;").asElement();
+            .style("visibility:hidden; width: 0px; height: 0px;").element();
     private String code;
-    private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").asElement();
+    private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").element();
     private Card card = Card.create("Source Code")
             .setCollapsible()
             .hide()
@@ -131,11 +131,11 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
     }
 
     public static HTMLPreElement preBlock(String code) {
-        return Elements.pre().css("prettyprint").innerHtml(new SafeHtmlBuilder().appendHtmlConstant(PR.prettyPrintOne(code, null, false)).toSafeHtml()).asElement();
+        return Elements.pre().css("prettyprint").innerHtml(new SafeHtmlBuilder().appendHtmlConstant(PR.prettyPrintOne(code, null, false)).toSafeHtml()).element();
     }
 
     @Override
-    public HTMLDivElement asElement() {
-        return card.asElement();
+    public HTMLDivElement element() {
+        return card.element();
     }
 }

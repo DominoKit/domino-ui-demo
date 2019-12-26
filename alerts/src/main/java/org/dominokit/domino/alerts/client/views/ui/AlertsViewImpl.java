@@ -24,32 +24,32 @@ import static org.jboss.gwt.elemento.core.Elements.a;
 @SampleClass
 public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements AlertsView {
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().element();
 
     @Override
     protected void init(HTMLDivElement root) {
 
-        element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).asElement());
+        element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).element());
         element.appendChild(BlockHeader.create("Alerts")
-                .asElement());
+                .element());
 
         basicAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()).element());
 
         customBackground();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.customBackground())
-                .asElement());
+                .element());
 
         dismissibleAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).element());
 
         linksInAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
+        element = Elements.div().element();
         return element;
     }
 
@@ -60,7 +60,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                 .appendChild(Alert.info().appendChild(Strong.of("Heads up! ")).appendChild("This alert needs your attention, but it's not super important."))
                 .appendChild(Alert.warning().appendChild(Strong.of("Warning! ")).appendChild("Better check yourself, you're not looking too good."))
                 .appendChild(Alert.error().appendChild(Strong.of("Oh snap! ")).appendChild("Change a few things up and try submitting again."))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -76,7 +76,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id"))
                 .appendChild(Alert.create(Color.RED)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id"))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -95,7 +95,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                 .appendChild(Alert.create(Color.GREEN)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible())
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -104,23 +104,23 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                 .appendChild(Alert.success()
                         .appendChild(Strong.of("Well done! "))
                         .appendChild("You successfully read ")
-                        .appendChild(a().add("important alert message.").asElement()))
+                        .appendChild(a().add("important alert message.").element()))
                 .appendChild(Alert.info()
                         .appendChild(Strong.of("Heads up! "))
                         .appendChild("This ")
-                        .appendChild(a().add("alert needs your attention, ").asElement())
+                        .appendChild(a().add("alert needs your attention, ").element())
                         .appendChild("but it's not super important."))
                 .appendChild(Alert.warning()
                         .appendChild(Strong.of("Warning! "))
                         .appendChild("Better check yourself, ")
-                        .appendChild(a().add("you're not looking too good.").asElement()))
+                        .appendChild(a().add("you're not looking too good.").element()))
                 .appendChild(Alert.error()
                         .appendChild(Strong.of("Oh snap! "))
-                        .appendChild(a().add("Change a few things up").asElement())
+                        .appendChild(a().add("Change a few things up").element())
                         .appendChild(" and try submitting again."))
                 .appendChild(Alert.create(Color.PINK)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id ")
-                        .appendChild(a().add("alert link.").asElement()))
-                .asElement());
+                        .appendChild(a().add("alert link.").element()))
+                .element());
     }
 }

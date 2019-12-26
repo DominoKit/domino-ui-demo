@@ -61,22 +61,22 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("datepicker", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("DATE PICKERS").asElement());
+        element.appendChild(LinkToSourceCode.create("datepicker", this.getClass()).element());
+        element.appendChild(BlockHeader.create("DATE PICKERS").element());
 
         inline();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).element());
 
         popups();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).element());
 
         dateBox();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dateBox()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dateBox()).element());
     }
 
     @Override
     public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element = div().element();
         return element;
     }
 
@@ -140,7 +140,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     .setBackground(ColorScheme.GREEN.darker_2())
                                                     .show();
                                         }))))
-                .appendChild(BlockHeader.create("Header hidden").asElement())
+                .appendChild(BlockHeader.create("Header hidden").element())
                 .appendChild(Row.create()
                         .addColumn(Column.span4()
                                 .centerContent()
@@ -199,7 +199,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     .setBackground(ColorScheme.GREEN.darker_2())
                                                     .show();
                                         }))))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -288,7 +288,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
 
         blueModal.appendChild(blueDatePicker);
-        DomGlobal.document.body.appendChild(blueModal.asElement());
+        DomGlobal.document.body.appendChild(blueModal.element());
 
         blueModalButton.addClickListener(evt -> blueModal.open());
 
@@ -312,7 +312,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
         amberModal.appendChild(amberDatePicker);
-        DomGlobal.document.body.appendChild(amberModal.asElement());
+        DomGlobal.document.body.appendChild(amberModal.element());
 
         amberModalButton.addClickListener(evt -> amberModal.open());
 
@@ -335,7 +335,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
         greenModal.appendChild(greenDatePicker);
-        DomGlobal.document.body.appendChild(greenModal.asElement());
+        DomGlobal.document.body.appendChild(greenModal.element());
 
         greenModalButton.addClickListener(evt -> greenModal.open());
 
@@ -351,7 +351,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().appendChild(blueModalButton))
                         .addColumn(column.copy().appendChild(amberModalButton))
                         .addColumn(column.copy().appendChild(greenModalButton)))
-                .asElement());
+                .element());
 
     }
 
@@ -381,8 +381,8 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().deCenterContent().appendChild(dateBox1))
                         .addColumn(column.copy().deCenterContent().appendChild(dateBox2))
                         .addColumn(column.copy().deCenterContent().appendChild(dateBox3))
-                        .asElement())
-                .asElement());
+                        .element())
+                .element());
 
     }
 

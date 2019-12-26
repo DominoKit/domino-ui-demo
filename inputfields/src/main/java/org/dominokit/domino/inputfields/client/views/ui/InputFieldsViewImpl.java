@@ -30,7 +30,7 @@ public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements
 
     @Override
     protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).element());
         element.appendChild(BlockHeader.create("INPUT FIELDS"));
         numberFieldsCard = Card.create("NUMBER FIELDS");
         advancedFieldsCard = Card.create("ADVANCED FIELDS");
@@ -47,7 +47,7 @@ public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements
     @Override
     public HTMLDivElement createRoot() {
         element = DominoElement.of(div());
-        return element.asElement();
+        return element.element();
     }
 
     @SampleMethod
