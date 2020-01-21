@@ -25,7 +25,9 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
+        element = Elements.div().element();
         element.appendChild(BlockHeader.create("BREADCRUMBS").element());
 
         basicBreadcrumb();
@@ -43,11 +45,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
         alignment();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.alignment())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

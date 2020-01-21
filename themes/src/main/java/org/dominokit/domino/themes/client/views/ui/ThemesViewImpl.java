@@ -28,16 +28,14 @@ public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements T
     private ThemesUiHandlers uiHandlers;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        card = Card.create("Themes", "Select theme to apply.");
+
         card.addHeaderAction(Icons.HARDWARE_ICONS.keyboard_tab(), evt -> uiHandlers.onHideThemes());
         card.style().setMarginBottom("0px");
         card.fitContent();
         card.appendChild(themesPanel);
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        card = Card.create("Themes", "Select theme to apply.");
         return card.element();
     }
 

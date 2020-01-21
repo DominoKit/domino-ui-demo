@@ -34,7 +34,8 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
     private MenuUiHandlers uiHandlers;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        menu = Tree.create("Demo menu");
 
         menu.getHeader().appendChild(lockIcon.element());
 
@@ -57,6 +58,8 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
 
         addMenuItems();
         addMediaQueries();
+
+        return menu.element();
     }
 
     private void addMenuItems() {
@@ -197,12 +200,6 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
                     evt.preventDefault();
                     uiHandlers.onMenuItemSelected(token);
                 });
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        menu = Tree.create("Demo menu");
-        return menu.element();
     }
 
     @Override

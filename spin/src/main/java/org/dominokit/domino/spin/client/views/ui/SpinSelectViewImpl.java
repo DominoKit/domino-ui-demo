@@ -30,7 +30,8 @@ public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(BlockHeader.create("SPIN").element());
 
         horizontalSpin();
@@ -38,11 +39,7 @@ public class SpinSelectViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         verticalSpin();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSpin()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

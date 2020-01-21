@@ -30,7 +30,9 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
     private Card profile;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
+
         profile.style()
                 .add("profile-card")
                 .add("classy-card")
@@ -78,11 +80,7 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
         } catch (Exception e) {
             DomGlobal.console.error("Failed to load build time : ", e);
         }
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
         return profile.element();
     }
 }

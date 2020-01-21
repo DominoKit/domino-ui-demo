@@ -52,7 +52,8 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
     private Card suggestBoxCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = Elements.div().element();
         element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).element());
         element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").element());
 
@@ -71,11 +72,6 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
         element.appendChild(tagsInputCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTagsInputExample()).element());
 
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

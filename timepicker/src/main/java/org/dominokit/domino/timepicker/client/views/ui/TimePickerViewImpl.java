@@ -43,7 +43,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
             .add(Styles.padding_0).get();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).element());
         element.appendChild(BlockHeader.create("TIME PICKERS").element());
 
@@ -55,11 +55,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         timeBox();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

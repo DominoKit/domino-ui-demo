@@ -31,7 +31,9 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
     private Card sampleCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("sliders", this.getClass()).element());
         basicCard = Card.create("BASIC SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
@@ -48,11 +50,7 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initColors()).element());
         element.appendChild(sampleCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initExample()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

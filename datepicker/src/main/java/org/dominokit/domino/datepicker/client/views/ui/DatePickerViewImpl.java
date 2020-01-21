@@ -60,7 +60,9 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
     }
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("datepicker", this.getClass()).element());
         element.appendChild(BlockHeader.create("DATE PICKERS").element());
 
@@ -72,11 +74,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         dateBox();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dateBox()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

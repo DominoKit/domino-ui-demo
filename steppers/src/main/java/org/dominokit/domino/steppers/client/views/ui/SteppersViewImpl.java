@@ -34,7 +34,9 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("steppers", this.getClass()).element());
         element.appendChild(BlockHeader.create("STEPPERS").element());
 
@@ -43,11 +45,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
 
         horizontalStepper();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalStepper()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

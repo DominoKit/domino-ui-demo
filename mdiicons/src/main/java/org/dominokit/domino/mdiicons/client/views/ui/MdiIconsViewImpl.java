@@ -38,7 +38,9 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
     private HTMLInputElement copyInput = input(InputType.textarea).style("visibility:hidden; width: 0px; height: 0px;").element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
             @Override
@@ -62,7 +64,7 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
             }
         });
 
-
+        return element;
     }
 
     private void addIconsByTag(String tag) {
@@ -78,12 +80,6 @@ public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements Md
                 row.appendChild(Column.span3().appendChild(createMdiDemoIcon(suppliers.get(j).get())));
             }
         }
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
     }
 
     private void mdiEffects() {

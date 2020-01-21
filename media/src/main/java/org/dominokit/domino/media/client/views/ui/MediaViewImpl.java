@@ -25,7 +25,9 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("media", this.getClass()).element());
         element.appendChild(BlockHeader.create("MEDIA OBJECT").element());
 
@@ -34,11 +36,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
 
         mediaAlignment();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

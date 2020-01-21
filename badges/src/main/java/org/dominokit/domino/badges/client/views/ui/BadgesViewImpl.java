@@ -27,7 +27,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
     private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("badges", this.getClass()).element());
         element.appendChild(BlockHeader.create("BADGES").element());
 
@@ -40,11 +40,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
         listExample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

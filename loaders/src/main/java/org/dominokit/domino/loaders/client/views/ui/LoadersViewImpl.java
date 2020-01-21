@@ -30,7 +30,8 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = Elements.div().element();
 
         this.element.appendChild(LinkToSourceCode.create("loaders", this.getClass()).element());
         this.element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").element());
@@ -38,6 +39,8 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
         initSample();
         this.element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample())
                 .element());
+
+        return element;
 
     }
 
@@ -86,12 +89,6 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
                 .element());
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
-        return element;
     }
 
     private Card createCard(LoaderEffect effect, String loadingText, Color bodyBackground, Color headerBackground) {

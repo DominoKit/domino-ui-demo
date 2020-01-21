@@ -58,7 +58,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         uiHandlers.startLoading();
         element.appendChild(LinkToSourceCode.create("datatable", this.getClass()).element());
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
@@ -130,13 +132,10 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         } catch (ResourceException e) {
             DomGlobal.console.error("could not load json", e);
         }
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
+
 
     @SampleMethod
     private void groupingTable() {

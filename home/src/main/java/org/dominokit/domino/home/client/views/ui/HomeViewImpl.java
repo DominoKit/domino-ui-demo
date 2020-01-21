@@ -37,7 +37,9 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
     private HSpinSelect<String> spinSelect;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(BlockHeader.create("DOMINO-UI")
                 .element());
         element.appendChild(Paragraph.create("Java based lightweight UI library that in addition to performance and functionality brings elegance to enterprise web applications.")
@@ -56,11 +58,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
         initWhatOthersSay();
         initFollowUs();
         initPoweredBy();
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

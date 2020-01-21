@@ -1,8 +1,6 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
-import elemental2.dom.DomGlobal;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -21,18 +19,11 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.modals.BaseModal;
-import org.dominokit.domino.ui.modals.ModalDialog;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.DominoElement;
-import org.dominokit.domino.ui.utils.ScreenMedia;
-import org.dominokit.domino.ui.utils.TextNode;
-import org.jboss.gwt.elemento.core.EventType;
-
-import java.util.Objects;
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -54,7 +45,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     protected BasicFormsCode basicFormsCode;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         basicFormsCode = new BasicFormsCode().init(this);
         element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).element());
         element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").element());
@@ -107,6 +98,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         element.appendChild(switchCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -240,12 +233,6 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 inputStatus);
     }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
-    }
-
     @SampleMethod
     private void initSwitchExample() {
         switchCard.appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"));
@@ -360,13 +347,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         checkboxCard.appendChild(h(5).textContent("Basic Examples"));
         checkboxCard.appendChild(Row.create()
                 .addColumn(Column.span(2, 6)
-                        .appendChild(CheckBox.create("Default")
-                                .setReadOnly(true)
-                                .apply(self -> self.getLabelTextElement()
-                                        .hideOn(ScreenMedia.MEDIUM_AND_UP))
-                        )
-
-                )
+                        .appendChild(CheckBox.create("Default")))
                 .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Filled In").filledIn()))
                 .addColumn(Column.span(2, 6)

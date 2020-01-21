@@ -41,7 +41,8 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
     private ModalColorAggregator modalColorAggregator;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
 
         modalSizeAggregator = new ModalSizeAggregator().init(this);
         modalColorAggregator = new ModalColorAggregator().init(this);
@@ -69,6 +70,8 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
         initWindow();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWindow())
                 .element());
+
+        return element;
     }
 
     @Aggregate(name = "ModalSizeAggregator")
@@ -89,12 +92,6 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         "\n\nprivate ModalDialog createModalDialog() {\n\n" +
                         createModal + "\n" +
                         "\n}");
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
     }
 
     @SampleMethod

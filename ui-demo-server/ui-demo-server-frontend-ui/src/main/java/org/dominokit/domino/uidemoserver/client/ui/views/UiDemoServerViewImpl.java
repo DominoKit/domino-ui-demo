@@ -15,12 +15,8 @@ import static org.jboss.gwt.elemento.core.Elements.h;
 public class UiDemoServerViewImpl extends BaseElementView<HTMLDivElement> implements UiDemoServerView{
 
     @Override
-    public void init(HTMLDivElement root) {
-        root.appendChild(h(1).textContent("Hello World! from module : UiDemoServer").element());
+    public HTMLDivElement init() {
+        return div().add(h(1).textContent("Hello World! from module : UiDemoServer").element()).element();
     }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        return div().element();
-    }
 }

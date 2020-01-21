@@ -35,7 +35,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).element());
         element.appendChild(BlockHeader.create("TABS").element());
 
@@ -65,11 +65,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
 
         verticalTabs();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

@@ -33,11 +33,12 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("waves", this.getClass()).element());
         element.appendChild(BlockHeader.create("WAVES", "Click effect inspired by Google's Material Design")
                 .element());
-
 
         element.appendChild(Row.create()
                 .addColumn(Column.span6()
@@ -337,6 +338,8 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                         "//to add Waves to elements that does not extend from WaveElement use the WaveSupport class\n\n" +
                         CodeResource.INSTANCE.sample()
         ).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -345,11 +348,5 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
         WavesSupport.addFor(element)
                 .setWavesColor(WaveColor.YELLOW)
                 .applyWaveStyle(WaveStyle.CIRCLE);
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
     }
 }

@@ -26,7 +26,9 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("grids", this.getClass()).element());
         element.appendChild(BlockHeader.create("GRIDS").element());
 
@@ -54,11 +56,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                 element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).element());
             }
         });
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

@@ -27,7 +27,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("splitPanel", this.getClass()).element());
         element.appendChild(BlockHeader.create("SPLIT PANEL").element());
 
@@ -46,11 +46,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         combined();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

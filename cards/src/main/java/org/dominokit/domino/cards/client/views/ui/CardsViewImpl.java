@@ -29,7 +29,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
     private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         cardsWithHeaders();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.cardsWithHeaders()).element());
 
@@ -41,11 +41,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
 
         noHeaderCards();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.noHeaderCards()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

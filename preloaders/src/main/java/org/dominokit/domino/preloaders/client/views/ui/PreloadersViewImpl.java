@@ -24,7 +24,9 @@ public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).element());
         element.appendChild(BlockHeader.create("PRELOADERS").element());
 
@@ -32,11 +34,7 @@ public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).element());
         colorsSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

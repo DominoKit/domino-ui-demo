@@ -29,7 +29,9 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
     private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("progress", this.getClass()).element());
         element.appendChild(BlockHeader.create("PROGRESS BARS").element());
 
@@ -50,11 +52,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
 
         materialDesignColors();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

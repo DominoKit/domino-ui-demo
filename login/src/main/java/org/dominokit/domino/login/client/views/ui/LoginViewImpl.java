@@ -32,7 +32,9 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(BlockHeader.create("LOGIN", "Sample login dialogs").element());
         element.appendChild(LinkToSourceCode.create("login", LoginViewImpl.class).element());
 
@@ -53,6 +55,8 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
 
         sample6();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample6()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -236,11 +240,4 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                         ))
                 .element());
     }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
-    }
-
 }

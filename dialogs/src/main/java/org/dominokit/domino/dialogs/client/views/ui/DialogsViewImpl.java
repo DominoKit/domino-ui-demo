@@ -36,12 +36,14 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).element());
         element.appendChild(BlockHeader.create("DIALOGS").element());
 
         sample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -152,12 +154,6 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
                                 .appendChild(createDemoButton(customContent)))
                 )
                 .element());
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
     }
 
     private Button createDemoButton(MessageDialog dialog) {

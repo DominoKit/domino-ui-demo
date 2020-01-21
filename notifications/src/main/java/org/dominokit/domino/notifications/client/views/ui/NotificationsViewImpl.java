@@ -28,7 +28,9 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).element());
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendChild(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
@@ -51,11 +53,7 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
         withAnimation();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

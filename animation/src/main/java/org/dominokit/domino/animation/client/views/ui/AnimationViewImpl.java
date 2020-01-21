@@ -34,13 +34,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
     CreateAnimationAggregator createAnimationAggregator;
 
     @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
-    }
-
-    @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
 
         createAnimationAggregator = new CreateAnimationAggregator().init(this);
 
@@ -361,6 +355,8 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
         CodeCard.completeFetchCode(CodeResource.INSTANCE.stop(), value -> createAnimationAggregator.completeStop(value));
 
         element.appendChild(createAnimationCard.element());
+
+        return element;
     }
 
 

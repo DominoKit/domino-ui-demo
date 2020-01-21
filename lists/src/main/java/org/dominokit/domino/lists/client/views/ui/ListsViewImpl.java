@@ -29,7 +29,8 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
     private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(LinkToSourceCode.create("lists", this.getClass()).element());
         element.appendChild(BlockHeader.create("LIST GROUPS").element());
 
@@ -48,11 +49,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
         richItems();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

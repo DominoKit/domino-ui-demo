@@ -35,7 +35,9 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
     private Card readOnlyCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = Elements.div().element();
+
         element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).element());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").element());
         helperTextCard = Card.create("HELPER TEXTS");
@@ -60,13 +62,10 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initValidations()).element());
         element.appendChild(readOnlyCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initReadOnly()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
+
 
     @SampleMethod
     private void initReadOnly() {

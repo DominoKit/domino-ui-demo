@@ -241,7 +241,8 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
             "}";
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
         element.appendChild(LinkToSourceCode.create("tree", this.getClass()).element());
         element.appendChild(BlockHeader.create("Tree").element());
 
@@ -253,11 +254,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
 
         activeAndExpandIcons();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

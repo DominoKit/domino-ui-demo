@@ -29,10 +29,11 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).element());
         element.appendChild(BlockHeader.create("PAGINATION").element());
-
 
         defaultPagination();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).element());
@@ -52,11 +53,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(BlockHeader.create("PAGER").element());
         pagerNexPrevSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerNexPrevSample()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

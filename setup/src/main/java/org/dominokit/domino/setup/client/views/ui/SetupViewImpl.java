@@ -17,7 +17,8 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").element());
 
@@ -76,11 +77,8 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                 .setDescription("The path depends on your module and index page setup.")
                 .apply(self -> self.getCard().show())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
+
 }

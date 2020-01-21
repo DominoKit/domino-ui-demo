@@ -28,7 +28,8 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).element());
         element.appendChild(BlockHeader.create("HELPER CLASSES").element());
 
@@ -47,11 +48,7 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
         marginAndPaddingSpaces();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.marginAndPaddingSpaces())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

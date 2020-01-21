@@ -27,15 +27,13 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).element());
         element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").element());
         initLayoutSamples();
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

@@ -39,7 +39,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
     private Loader loader;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         Search search = Search.create();
         layout
                 .spanLeftPanelUp()
@@ -79,10 +79,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.getContentPanel()
                 .style().setMinHeight("calc(100vh - 365px)");
         loader = Loader.create(layout.getContentPanel(), LoaderEffect.PULSE);
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
         return layout.element();
     }
 

@@ -20,13 +20,13 @@ import org.jboss.gwt.elemento.core.Elements;
 
 @UiView(presentable = InfoBoxProxy.class)
 @SampleClass
-public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements InfoBoxView{
+public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements InfoBoxView {
 
-    private HTMLDivElement element= Elements.div().element();
+    private HTMLDivElement element = Elements.div().element();
     private Counter counter;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("infobox", this.getClass()).element());
 
         basicInfoBoxes();
@@ -37,14 +37,9 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
 
         rightAligned();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.rightAligned()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element= Elements.div().element();
         return element;
     }
-
 
     @Override
     public void restartCounters() {
@@ -92,7 +87,6 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
                     bookmarks.getValueElement().setTextContent(Integer.toString(count));
                     likes.getValueElement().setTextContent(Integer.toString(count));
                 });
-
 
 
     }

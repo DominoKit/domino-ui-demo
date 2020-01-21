@@ -28,7 +28,9 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("typography", this.getClass()).element());
         element.appendChild(BlockHeader.create("TYPOGRAPHY").element());
 
@@ -49,11 +51,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         lists();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

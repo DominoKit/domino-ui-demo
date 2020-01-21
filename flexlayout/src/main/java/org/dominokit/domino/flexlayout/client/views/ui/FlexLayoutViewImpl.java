@@ -41,7 +41,9 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private Card flexItemsCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).element());
         element.appendChild(BlockHeader.create("FLEX LAYOUT").element());
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
@@ -62,13 +64,10 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()).element());
         element.appendChild(flexItemsCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
+
 
     @SampleMethod
     private void initLayoutPlayground() {

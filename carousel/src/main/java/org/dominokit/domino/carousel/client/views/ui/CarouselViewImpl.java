@@ -26,12 +26,14 @@ public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements Ca
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).element());
         element.appendChild(BlockHeader.create("CAROUSEL").element());
 
         basicSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -59,11 +61,5 @@ public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements Ca
                                 )
                         )
                 ).element());
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
-        return element;
     }
 }

@@ -23,13 +23,9 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        initAppLayoutSample();
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
+    protected HTMLDivElement init() {
         element = div().element();
+        initAppLayoutSample();
         return element;
     }
 

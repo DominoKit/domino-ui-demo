@@ -41,7 +41,9 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
             @Override
@@ -103,11 +105,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                 uiHandlers.stopLoading();
             }
         });
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

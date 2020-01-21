@@ -36,7 +36,8 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
     private Card selectableChipsCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(LinkToSourceCode.create("chips", this.getClass()).element());
         element.appendChild(BlockHeader.create("CHIPS").element());
         simpleCard = Card.create("SIMPLE CHIPS");
@@ -65,11 +66,7 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initChipsWithLettersExample()).element());
         element.appendChild(selectableChipsCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectableChipsExample()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

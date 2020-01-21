@@ -23,7 +23,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("colors", this.getClass()).element());
         element.appendChild(BlockHeader.create("COLORS").element());
 
@@ -284,11 +284,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                         )
                         .element())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 

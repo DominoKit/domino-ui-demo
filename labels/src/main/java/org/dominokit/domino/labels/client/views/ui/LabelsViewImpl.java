@@ -24,7 +24,8 @@ public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements Labe
     private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+
         element.appendChild(LinkToSourceCode.create("labels", this.getClass()).element());
         element.appendChild(BlockHeader.create("LABELS").element());
 
@@ -33,11 +34,7 @@ public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements Labe
 
         initMaterialLabels();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

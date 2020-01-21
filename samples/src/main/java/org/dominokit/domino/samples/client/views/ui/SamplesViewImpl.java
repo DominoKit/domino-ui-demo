@@ -21,7 +21,9 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         element.appendChild(BlockHeader.create("SAMPLES", " A set of apps and samples built with domino-ui").element());
         element.appendChild(Row.create()
                 .appendChild(Column.span6()
@@ -78,11 +80,8 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                         )
                 )
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
+
 }

@@ -26,7 +26,7 @@ import org.slf4j.LoggerFactory;
 import static org.jboss.gwt.elemento.core.Elements.*;
 
 @UiView(presentable = IconsProxy.class)
-public class IconsViewImpl extends BaseDemoView<HTMLElement> implements IconsView {
+public class IconsViewImpl extends BaseDemoView<HTMLDivElement> implements IconsView {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IconsViewImpl.class);
 
@@ -34,7 +34,9 @@ public class IconsViewImpl extends BaseDemoView<HTMLElement> implements IconsVie
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
             @Override
@@ -80,11 +82,7 @@ public class IconsViewImpl extends BaseDemoView<HTMLElement> implements IconsVie
                 uiHandlers.stopLoading();
             }
         });
-    }
 
-    @Override
-    public HTMLElement createRoot() {
-        element = div().element();
         return element;
     }
 

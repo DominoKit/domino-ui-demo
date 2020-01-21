@@ -27,7 +27,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
     private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
 
         element.appendChild(LinkToSourceCode.create("alerts", AlertsViewImpl.class).element());
         element.appendChild(BlockHeader.create("Alerts")
@@ -45,11 +45,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
 
         linksInAlerts();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().element();
         return element;
     }
 

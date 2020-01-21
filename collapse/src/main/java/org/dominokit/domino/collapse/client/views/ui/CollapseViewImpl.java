@@ -35,7 +35,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
     private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).element());
 
         example();
@@ -53,11 +53,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
         multiOpenItems();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
                 .element());
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().element();
         return element;
     }
 
