@@ -30,14 +30,17 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = Elements.div().element();
 
-        this.element.appendChild(LinkToSourceCode.create("loaders", this.getClass()).asElement());
-        this.element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").asElement());
+        this.element.appendChild(LinkToSourceCode.create("loaders", this.getClass()).element());
+        this.element.appendChild(BlockHeader.create("Loaders", "Use loaders to mask an element until some action is completed.").element());
 
         initSample();
         this.element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample())
-                .asElement());
+                .element());
+
+        return element;
 
     }
 
@@ -49,7 +52,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                         .appendChild(createCard(LoaderEffect.FACEBOOK, "Loading ... ", Color.LIGHT_BLUE, Color.BLUE)))
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.IOS, "Loading ... ", Color.LIGHT_GREEN, Color.GREEN)))
-                .asElement());
+                .element());
 
         this.element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -58,7 +61,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                         .appendChild(createCard(LoaderEffect.ROTATION, "Waiting ... ", Color.LIGHT_BLUE, Color.BLUE)))
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.ROUND_BOUNCE, "Waiting ... ", Color.LIGHT_GREEN, Color.GREEN)))
-                .asElement());
+                .element());
 
         this.element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -67,7 +70,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                         .appendChild(createCard(LoaderEffect.WIN8, " ... ", Color.LIGHT_BLUE, Color.BLUE)))
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.WIN8_LINEAR, " ... ", Color.LIGHT_GREEN, Color.GREEN)))
-                .asElement());
+                .element());
 
         this.element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -76,7 +79,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                         .appendChild(createCard(LoaderEffect.PROGRESS_BAR, "Loading ... ", Color.LIGHT_BLUE, Color.BLUE)))
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.BOUNCE_PULSE, "Loading ... ", Color.LIGHT_GREEN, Color.GREEN)))
-                .asElement());
+                .element());
 
         this.element.appendChild(Row.create()
                 .addColumn(Column.span4()
@@ -85,13 +88,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                         .appendChild(createCard(LoaderEffect.STRETCH, "", Color.LIGHT_BLUE, Color.BLUE)))
                 .addColumn(Column.span4()
                         .appendChild(createCard(LoaderEffect.NONE, "", Color.LIGHT_GREEN, Color.GREEN)))
-                .asElement());
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
-        return element;
+                .element());
     }
 
     private Card createCard(LoaderEffect effect, String loadingText, Color bodyBackground, Color headerBackground) {
@@ -100,7 +97,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                 .setHeaderBackground(headerBackground);
 
         EventListener loaderListener = e -> {
-            Loader loader = Loader.create(card.asElement(), effect)
+            Loader loader = Loader.create(card.element(), effect)
                     .setLoadingText(loadingText)
                     .start();
             new Timer() {
@@ -125,7 +122,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
         Card card = Card.create("Loaders", "loader sample");
         Button button = Button.createDefault("CLICK ME")
                 .addClickListener(evt -> {
-                    Loader loader = Loader.create(card.asElement(), LoaderEffect.PULSE)
+                    Loader loader = Loader.create(card.element(), LoaderEffect.PULSE)
                             .setLoadingText("Loading ...")
                             .start();
                     new Timer() {

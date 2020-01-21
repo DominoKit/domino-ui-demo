@@ -19,7 +19,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
     private SwitchButton correspondentChargesSwitch;
     private CorporateAccountsSelect corporateAccountsSelect;
     private Card correspondentChargesInstructionsCard;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public CorrespondentChargesInstructionsSection(CorporateProfile corporateProfile) {
 
@@ -43,7 +43,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
                     }
                 });
 
-        correspondentChargesInstructionsCard.getHeaderDescription().appendChild(correspondentChargesSwitch.asElement());
+        correspondentChargesInstructionsCard.getHeaderDescription().appendChild(correspondentChargesSwitch.element());
 
         corporateAccountsSelect = CorporateAccountsSelect.create("Charges Instructions", corporateProfile);
         corporateAccountsSelect.getAccountSelect()
@@ -55,7 +55,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
         element.appendChild(correspondentChargesInstructionsCard
                 .appendChild(Row.create()
                         .addColumn(Column.span6().appendChild(corporateAccountsSelect))
-                ).asElement());
+                ).element());
     }
 
     @Override
@@ -83,7 +83,7 @@ public class CorrespondentChargesInstructionsSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

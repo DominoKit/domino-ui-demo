@@ -15,14 +15,10 @@ public class ThemesButtonViewImpl extends BaseElementView<HTMLElement> implement
     private ThemesButtonUiHandlers uiHandlers;
 
     @Override
-    protected void init(HTMLElement root) {
-    }
-
-    @Override
-    public HTMLElement createRoot() {
+    protected HTMLElement init() {
         actionItem = LayoutActionItem.create(Icons.ALL.style()
                 .addClickListener(evt -> uiHandlers.onShowHideThemes()));
-        return actionItem.asElement();
+        return actionItem.element();
     }
 
     @Override

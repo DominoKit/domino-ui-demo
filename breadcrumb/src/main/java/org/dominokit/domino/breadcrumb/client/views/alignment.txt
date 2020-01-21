@@ -28,4 +28,4 @@ element.appendChild(Card.create("ALIGNMENTS")
             .appendChild(Icons.ALL.attachment(), " File ", evt -> {
             })
     )
-    .asElement());
+    .element());

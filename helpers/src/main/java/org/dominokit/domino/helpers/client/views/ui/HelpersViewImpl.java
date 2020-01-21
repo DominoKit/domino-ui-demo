@@ -25,33 +25,30 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements HelpersView {
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.";
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("HELPER CLASSES").asElement());
+    protected HTMLDivElement init() {
+
+        element.appendChild(LinkToSourceCode.create("helpers", this.getClass()).element());
+        element.appendChild(BlockHeader.create("HELPER CLASSES").element());
 
         textStyles();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles())
-                .asElement());
+                .element());
 
         fontSize();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSize())
-                .asElement());
+                .element());
 
         textAligns();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textAligns())
-                .asElement());
+                .element());
 
         marginAndPaddingSpaces();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.marginAndPaddingSpaces())
-                .asElement());
-    }
+                .element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -120,7 +117,7 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
                                 .appendChild(Paragraph.create("Text blue grey color").overLine().setColor(Color.BLUE_GREY))
                         )
                         )
-                .asElement());
+                .element());
 
 
     }
@@ -145,7 +142,7 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
                         .addColumn(Column.span2().appendChild(div().css(Styles.font_48).textContent("font-48")))
                         .addColumn(Column.span2().appendChild(div().css(Styles.font_50).textContent("font-50")))
                         )
-                .asElement());
+                .element());
 
 
     }
@@ -172,7 +169,7 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
                                 .appendChild(div().css(Styles.align_justify).textContent(SAMPLE_TEXT))
                         )
                         )
-                .asElement());
+                .element());
 
 
     }
@@ -392,6 +389,6 @@ public class HelpersViewImpl extends BaseDemoView<HTMLDivElement> implements Hel
                                 .appendChild(code().textContent(".padding-0"))
                         )
                         )
-                .asElement());
+                .element());
     }
 }

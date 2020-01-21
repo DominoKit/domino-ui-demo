@@ -1,5 +1,6 @@
 package org.dominokit.domino.inputfields.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -29,8 +30,10 @@ public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements
     private Card advancedFieldsCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).asElement());
+    protected HTMLDivElement init() {
+        element = DominoElement.div();
+
+        element.appendChild(LinkToSourceCode.create("inputfields", this.getClass()).element());
         element.appendChild(BlockHeader.create("INPUT FIELDS"));
         numberFieldsCard = Card.create("NUMBER FIELDS");
         advancedFieldsCard = Card.create("ADVANCED FIELDS");
@@ -42,12 +45,8 @@ public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initNumberFields()));
         element.appendChild(advancedFieldsCard);
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedFields()));
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = DominoElement.of(div());
-        return element.asElement();
+        return element.element();
     }
 
     @SampleMethod
@@ -56,27 +55,40 @@ public class InputFieldsViewImpl extends BaseDemoView<HTMLDivElement> implements
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("Integer box")))
                         .appendChild(Column.span12().appendChild(IntegerBox.create("Integer box")
-                                .value(456465))))
+                                .value(456465)
+                                .setAutoValidation(true)
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )))
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("Double box")))
                         .appendChild(Column.span12().appendChild(DoubleBox.create("Double box")
-                                .value(1234.357892))))
+                                .value(1234.357892)
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )))
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("Long box")))
                         .appendChild(Column.span12().appendChild(LongBox.create("Long box")
-                                .value(654654654351138L))))
+                                .value(654654654351138L)
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )))
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("Float box")))
                         .appendChild(Column.span12().appendChild(FloatBox.create("Float box")
-                                .value(987164.54789600024F))))
+                                .value(987164.54789600024F)
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )))
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("Short box")))
                         .appendChild(Column.span12().appendChild(ShortBox.create("Short box")
-                                .value((short) 5486))))
+                                .value((short) 5486)
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )))
                 .appendChild(Row.create()
                         .appendChild(Column.span12().appendChild(BlockHeader.create("BigDecimal box")))
                         .appendChild(Column.span12().appendChild(BigDecimalBox.create("BigDecimal box")
-                                .value(new BigDecimal(5477996.32148451)))));
+                                .value(new BigDecimal(5477996.32148451))
+                                .apply(self -> self.addChangeHandler(value -> DomGlobal.console.info(self.getValue())))
+                        )));
     }
 
     @SampleMethod

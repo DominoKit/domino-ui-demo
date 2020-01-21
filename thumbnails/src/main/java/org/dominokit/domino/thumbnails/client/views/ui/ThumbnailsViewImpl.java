@@ -26,23 +26,19 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 public class ThumbnailsViewImpl extends BaseDemoView<HTMLDivElement> implements ThumbnailsView {
 
     private static final String SAMPLE_TEXT = "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s";
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("thumbnails", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("THUMBNAILS").asElement());
+    protected HTMLDivElement init() {
+        element.appendChild(LinkToSourceCode.create("thumbnails", this.getClass()).element());
+        element.appendChild(BlockHeader.create("THUMBNAILS").element());
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
 
         withExtraContentSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).asElement());
-    }
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withExtraContentSample()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -62,7 +58,7 @@ public class ThumbnailsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(Column.span3().appendChild(Thumbnail.create()
                                 .setContent(img(GWT.getModuleBaseURL() + "/images/image-gallery/8.jpg")
                                                 .css(Styles.img_responsive)))))
-                .asElement());
+                .element());
 
 
     }
@@ -99,6 +95,6 @@ public class ThumbnailsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendCaptionChild(h(3).textContent("Thumbnail label"))
                                         .appendCaptionChild(Paragraph.create(SAMPLE_TEXT))
                                         .appendCaptionChild(Button.createPrimary("BUTTON")))))
-                .asElement());
+                .element());
     }
 }

@@ -41,9 +41,11 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private Card flexItemsCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("FLEX LAYOUT").asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).element());
+        element.appendChild(BlockHeader.create("FLEX LAYOUT").element());
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
                 .style("color: #666;")
                 .add(a().attr("href", "https://css-tricks.com/snippets/css/a-guide-to-flexbox/")
@@ -51,24 +53,21 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .add(TextNode.of(" Or flex documentation on "))
                 .add(a().attr("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/flex")
                         .textContent("MDN."))
-                .asElement());
+                .element());
         layoutPlaygroundCard = Card.create("LAYOUT PLAYGROUND");
         flexItemsCard = Card.create("FLEX ITEMS");
 
         initLayoutPlayground();
         initFlexItems();
 
-        element.appendChild(layoutPlaygroundCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()).asElement());
-        element.appendChild(flexItemsCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()).asElement());
-    }
+        element.appendChild(layoutPlaygroundCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()).element());
+        element.appendChild(flexItemsCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
+
 
     @SampleMethod
     private void initLayoutPlayground() {
@@ -161,11 +160,11 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         layoutPlaygroundCard.appendChild(div()
                 .css("demo-flex-layout-result-container")
                 .add(flexLayout)
-                .asElement());
+                .element());
 
         // ********* listeners part ********* //
         directionsRadioGroup.addChangeHandler(direction -> {
-            FlexDirection flexDirection = FlexDirection.valueOf(direction.getValue());
+            FlexDirection flexDirection = FlexDirection.valueOf(direction);
             if (fillHeightCheckBox.isChecked() || isVerticalDirection(flexDirection)) {
                 flexLayout.style().add("fill-height");
             } else {
@@ -185,15 +184,15 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         });
 
         justifyContentRadioGroup.addChangeHandler(direction -> {
-            flexLayout.setJustifyContent(FlexJustifyContent.valueOf(direction.getValue()));
+            flexLayout.setJustifyContent(FlexJustifyContent.valueOf(direction));
         });
 
         alignItemsRadioGroup.addChangeHandler(direction -> {
-            flexLayout.setAlignItems(FlexAlign.valueOf(direction.getValue()));
+            flexLayout.setAlignItems(FlexAlign.valueOf(direction));
         });
 
         wrapRadioGroup.addChangeHandler(value -> {
-            flexLayout.setWrap(FlexWrap.valueOf(value.getValue()));
+            flexLayout.setWrap(FlexWrap.valueOf(value));
         });
 
         List<FlexItem> dynamicAddedItems = new ArrayList<>();
@@ -292,7 +291,7 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         flexItemsCard.appendChild(div()
                 .css("demo-flex-layout-result-container")
                 .add(flexLayout)
-                .asElement());
+                .element());
 
 
         orderSlider.addSlideHandler(value -> {
@@ -312,7 +311,7 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         alignSelfRadioGroup.addChangeHandler(value -> {
             items.get(targetBlockRadioGroup.getValue())
-                    .setAlignSelf(FlexAlign.valueOf(value.getValue()));
+                    .setAlignSelf(FlexAlign.valueOf(value));
         });
 
         flexBasisTextBox.addChangeHandler(value -> {

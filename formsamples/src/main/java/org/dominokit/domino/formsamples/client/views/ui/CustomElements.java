@@ -21,7 +21,7 @@ public class CustomElements {
     public static final String NUMBER_OF_COPIES = "Number of copies";
 
     public static TextBox createDescriptionField() {
-        return TextBox.create("Description").setLeftAddon(Icons.ALL.description())
+        return TextBox.create("Description").addLeftAddOn(Icons.ALL.description())
                 .setAutoValidation(true)
                 .setRequired(true);
     }
@@ -36,14 +36,14 @@ public class CustomElements {
     public static TextBox createCopiesField() {
         return numbersOnly(TextBox.create(NUMBER_OF_COPIES))
                 .setHelperText(NUMBERS_ONLY)
-                .setLeftAddon(Icons.ALL.content_copy())
+                .addLeftAddOn(Icons.ALL.content_copy())
                 .setAutoValidation(true)
                 .setRequired(true);
     }
 
     public static Select<Country> createCountriesSelect(String label, List<Country> countries) {
         Select<Country> countrySelect = Select.create(label);
-        countrySelect.setLeftAddon(Icons.ALL.map());
+        countrySelect.addLeftAddOn(Icons.ALL.map());
 
         countries.forEach(country -> {
             countrySelect.appendChild(SelectOption.create(country, country.getName()));

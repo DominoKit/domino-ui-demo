@@ -16,17 +16,17 @@ public class GoodsDescriptionSection implements ImportSection {
 
     private TextArea goodsDescriptionTextArea;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public GoodsDescriptionSection() {
-        element.appendChild(BlockHeader.create("Goods Description *").asElement());
+        element.appendChild(BlockHeader.create("Goods Description *").element());
 
         goodsDescriptionTextArea = TextArea.create("Goods Description")
                 .setAutoValidation(true)
                 .setRequired(true)
                 .autoSize()
                 .setRows(3)
-                .setLeftAddon(Icons.ALL.description());
+                .addLeftAddOn(Icons.ALL.description());
 
         goodsDescriptionTextArea.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -36,7 +36,7 @@ public class GoodsDescriptionSection implements ImportSection {
 
         element.appendChild(card
                 .appendChild(goodsDescriptionTextArea)
-                .asElement());
+                .element());
     }
 
     @Override
@@ -62,7 +62,7 @@ public class GoodsDescriptionSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

@@ -20,7 +20,7 @@ public class ConfirmationInstructionsSection implements ImportSection {
     private SwitchButton confirmationChargesOnSwitch;
     private CorporateAccountsSelect confirmationChargesAccountSelect;
     private Card confirmationInstructionsCard;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public ConfirmationInstructionsSection(CorporateProfile corporateProfile) {
 
@@ -59,7 +59,7 @@ public class ConfirmationInstructionsSection implements ImportSection {
         confirmationInstructionsCard = Card.create("Confirmation Instructions", "")
                 .hide();
         confirmationInstructionsCard.getHeaderDescription()
-                .appendChild(chargesInstructionsRequiredSwitch.asElement());
+                .appendChild(chargesInstructionsRequiredSwitch.element());
 
         confirmationInstructionsCard.bodyStyle()
                 .setPaddingTop("40px");
@@ -68,7 +68,7 @@ public class ConfirmationInstructionsSection implements ImportSection {
                 .appendChild(Row.create()
                         .addColumn(Column.span6().appendChild(confirmationChargesOnSwitch))
                         .addColumn(Column.span6().appendChild(confirmationChargesAccountSelect))
-                ).asElement());
+                ).element());
     }
 
     @Override
@@ -101,7 +101,7 @@ public class ConfirmationInstructionsSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

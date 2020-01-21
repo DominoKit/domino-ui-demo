@@ -246,43 +246,12 @@ pre.prettyprint {
     min-height: 50px;
 }
 
-.gs-background::after {
-    content: "";
-    background-size: cover;
-    opacity: 0.2;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-}
-
 .demo-nav-card {
     transition: transform 100ms ease;
 }
 
 .demo-nav-card:hover {
     transform: scale(1.05);
-}
-
-.demo-carousel::after {
-    background-image: url("./images/greyscale-5.jpg");
-}
-
-.demo-getting-started::after {
-    background-image: url("./images/greyscale-4.jpg");
-}
-
-.demo-docs::after {
-    background-image: url("./images/greyscale-3.jpg");
-}
-
-.demo-sample-apps::after {
-    background-image: url("./images/greyscale-2.jpg");
-}
-
-.demo-github::after {
-    background-image: url("./images/greyscale-6.jpg");
 }
 
 .home-section {
@@ -335,9 +304,6 @@ pre.prettyprint {
     border-right: 1px solid #c1c0c0;
 }
 
-.home-sections::after {
-    background-image: url("./images/greyscale-3.jpg");
-}
 
 .home-sections.gs-background::after {
     opacity: 0.15;
@@ -347,22 +313,6 @@ pre.prettyprint {
     width: 35%;
     border-radius: 50%;
     display: inline-block;
-}
-
-.classy-card {
-    z-index: 1;
-}
-
-.bg-classy {
-    background-image: url(./images/greyscale-3.jpg);
-    background-size: cover;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    left: 0px;
-    z-index: -1;
-    opacity: 0.1;
 }
 
 .img-responsive.person-pic.quote-pic {

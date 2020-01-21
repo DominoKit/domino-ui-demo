@@ -25,37 +25,35 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @SampleClass
 public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implements NotificationsView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("notifications", this.getClass()).element());
         element.appendChild(BlockHeader.create("NOTIFICATIONS", "Taken by Bootstrap Notification ")
                 .appendChild(a().attr("href", "https://github.com/mouse0270/bootstrap-notify")
                         .attr("target", "_blank")
                         .textContent("github.com/mouse0270/bootstrap-notify"))
-                .asElement());
+                .element());
 
         notificationsPosition();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsPosition())
-                .asElement());
+                .element());
 
         notificationsTypes();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.notificationsTypes())
-                .asElement());
+                .element());
 
         withMaterialColors();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withMaterialColors())
-                .asElement());
+                .element());
 
         withAnimation();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation())
-                .asElement());
-    }
+                .element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -108,7 +106,7 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                         .addColumn(Column.span2().appendChild(bottomCenter.block()))
                         .addColumn(Column.span2().appendChild(bottomRight.block()))
                         )
-                .asElement());
+                .element());
 
 
     }
@@ -148,7 +146,7 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                         .addColumn(Column.span2().appendChild(warning.block()))
                         .addColumn(Column.span2().appendChild(info.block()))
                         )
-                .asElement());
+                .element());
 
     }
 
@@ -257,7 +255,7 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                         .addColumn(Column.span2().appendChild(lightGreenButton.block()))
                         .addColumn(Column.span2().appendChild(blackButton.block()))
                         )
-                .asElement());
+                .element());
 
 
 
@@ -487,7 +485,7 @@ public class NotificationsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 .appendChild(Row.create()
                         .addColumn(Column.span2().appendChild(lightSpeedInOut.block()))
                         )
-                .asElement());
+                .element());
 
 
     }

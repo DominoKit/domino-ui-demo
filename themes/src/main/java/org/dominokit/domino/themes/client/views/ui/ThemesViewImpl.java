@@ -28,17 +28,15 @@ public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements T
     private ThemesUiHandlers uiHandlers;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        card = Card.create("Themes", "Select theme to apply.");
+
         card.addHeaderAction(Icons.HARDWARE_ICONS.keyboard_tab(), evt -> uiHandlers.onHideThemes());
         card.style().setMarginBottom("0px");
         card.fitContent();
         card.appendChild(themesPanel);
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        card = Card.create("Themes", "Select theme to apply.");
-        return card.asElement();
+        return card.element();
     }
 
     @Override
@@ -58,7 +56,7 @@ public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements T
 
     private HTMLLIElement addTheme(Theme theme, boolean active) {
 
-        HTMLLIElement themeElement = Elements.li().add(Elements.div().css(theme.getThemeStyle().replace("theme-", ""))).add(Elements.span().textContent(theme.getName())).asElement();
+        HTMLLIElement themeElement = Elements.li().add(Elements.div().css(theme.getThemeStyle().replace("theme-", ""))).add(Elements.span().textContent(theme.getName())).element();
         themesElements.put(theme.getName(), themeElement);
         if (active) {
             themeElement.classList.add("active");

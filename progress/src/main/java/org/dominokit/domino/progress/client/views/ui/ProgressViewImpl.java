@@ -29,32 +29,30 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
     private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("progress", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("PROGRESS BARS").asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("progress", this.getClass()).element());
+        element.appendChild(BlockHeader.create("PROGRESS BARS").element());
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
 
         contextualAlternatives();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).element());
 
         stripedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).element());
 
         animatedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).element());
 
         stackedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).element());
 
         materialDesignColors();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).asElement());
-    }
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -63,7 +61,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
         movingBar = ProgressBar.create(1000);
         //we are doing this since we want to move the progress for the demo,
         // in real use cases progress bar value increases by some data feedback.
-        movingBar.asElement().style.setProperty("transition", "width 500ms linear", "important");
+        movingBar.element().style.setProperty("transition", "width 500ms linear", "important");
 
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendChild(Progress.create()
@@ -85,7 +83,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .setValue(40)))
                 .appendChild(Progress.create()
                         .appendChild(movingBar))
-                .asElement());
+                .element());
 
         animationFrameCallback = p0 -> {
             if (movingBar.getValue() >= movingBar.getMaxValue()) {
@@ -123,7 +121,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .showText()
                                 .danger()
                                 .setValue(30)))
-                .asElement());
+                .element());
 
 
     }
@@ -151,7 +149,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .striped()
                                 .danger()
                                 .setValue(30)))
-                .asElement());
+                .element());
 
 
     }
@@ -179,7 +177,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .animate()
                                 .danger()
                                 .setValue(30)))
-                .asElement());
+                .element());
 
 
     }
@@ -199,8 +197,8 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .striped()
                                 .danger()
                                 .setValue(20))
-                        .asElement())
-                .asElement());
+                        .element())
+                .element());
 
 
     }
@@ -229,7 +227,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .setBackground(Color.BROWN)
                                 .striped()
                                 .setValue(40)))
-                .asElement());
+                .element());
 
     }
 

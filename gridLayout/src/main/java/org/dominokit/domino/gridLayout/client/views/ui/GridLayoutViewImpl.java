@@ -27,15 +27,13 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").asElement());
-        initLayoutSamples();
-    }
+    protected HTMLDivElement init() {
+        element = div().element();
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
+        element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).element());
+        element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").element());
+        initLayoutSamples();
+
         return element;
     }
 
@@ -50,11 +48,11 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         gridLayout.getLeftElement().style().add("demo-layout-section", "demo-left");
         gridLayout.getRightElement().style().add("demo-layout-section", "demo-right");
 
-        gridLayout.getContentElement().appendChild(span().textContent("Content").asElement());
-        gridLayout.getHeaderElement().appendChild(span().textContent("Header").asElement());
-        gridLayout.getFooterElement().appendChild(span().textContent("Footer").asElement());
-        gridLayout.getLeftElement().appendChild(span().textContent("Left").asElement());
-        gridLayout.getRightElement().appendChild(span().textContent("Right").asElement());
+        gridLayout.getContentElement().appendChild(span().textContent("Content").element());
+        gridLayout.getHeaderElement().appendChild(span().textContent("Header").element());
+        gridLayout.getFooterElement().appendChild(span().textContent("Footer").element());
+        gridLayout.getLeftElement().appendChild(span().textContent("Left").element());
+        gridLayout.getRightElement().appendChild(span().textContent("Right").element());
 
         Slider headerSlider = Slider.create(6, 0, 0)
                 .withThumb()
@@ -164,7 +162,7 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         )
                 )
                 .appendChild(gridLayout)
-                .asElement());
+                .element());
         element.appendChild(Card.create("USAGE")
                 .appendChild(BlockHeader.create("Basic", "Grid layout is a 12 columns grid based layout with a content section and another 4 optional sections: Header. Footer, Left and Right. ")
                         .appendChild(a().attr("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/grid")
@@ -205,7 +203,7 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(h(6).textContent("You can hide all sections except the content section."))
                 .appendChild(br())
 
-                .asElement());
+                .element());
 
     }
 }

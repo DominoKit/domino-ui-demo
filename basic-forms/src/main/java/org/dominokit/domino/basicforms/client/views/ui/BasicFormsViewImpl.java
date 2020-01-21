@@ -1,11 +1,6 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
-import com.google.gwt.resources.client.ExternalTextResource;
-import com.google.gwt.resources.client.ResourceCallback;
-import com.google.gwt.resources.client.ResourceException;
-import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.CSSProperties;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -13,21 +8,22 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Aggregate;
 import org.dominokit.domino.basicforms.client.presenters.BasicFormsProxy;
 import org.dominokit.domino.basicforms.client.views.BasicFormsView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.dominokit.domino.ui.utils.ScreenMedia;
-
-import java.util.function.Consumer;
+import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -35,7 +31,8 @@ import static org.jboss.gwt.elemento.core.Elements.*;
 @SampleClass
 public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements BasicFormsView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
+    private Card fieldsStylesCard;
     private Card inputCard;
     private Card textAreaCard;
     private Card selectCard;
@@ -48,11 +45,12 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     protected BasicFormsCode basicFormsCode;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         basicFormsCode = new BasicFormsCode().init(this);
-        element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").asElement());
+        element.appendChild(LinkToSourceCode.create("basic-forms", this.getClass()).element());
+        element.appendChild(BlockHeader.create("BASIC FORM ELEMENTS").element());
 
+        fieldsStylesCard = Card.create("FIELDS STYLES", "Lined & Rounded");
         inputCard = Card.create("INPUT", "Different sizes and widths.");
         textAreaCard = Card.create("TEXTAREA");
         selectCard = Card.create("SELECT");
@@ -60,9 +58,9 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         radioCard = Card.create("RADIO");
         switchCard = Card.create("SWITCH BUTTONS");
 
+        initDifferentStyles();
         initBasicExamples();
         initDifferentWidths();
-        initDifferentSizes();
         initFloatingLabel();
         initInputStatus();
         initBasicTextAreaExample();
@@ -71,52 +69,168 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         initRadioExample();
         initSwitchExample();
 
-        element.appendChild(inputCard.asElement());
+        element.appendChild(fieldsStylesCard.element());
+        element.appendChild(CodeCard.createCodeCard(
+                CodeResource.INSTANCE.initDifferentStyles()
+        ).element());
 
-        element.appendChild(basicExamplesCard.asElement());
+        element.appendChild(inputCard.element());
+        element.appendChild(basicExamplesCard.element());
 
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initBasicExamples(), value -> basicFormsCode.completeBasicExamples(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentWidths(), value -> basicFormsCode.completeDifferentWidths(value));
-        CodeCard.completeFetchCode(CodeResource.INSTANCE.initDifferentSizes(), value -> basicFormsCode.completeDifferentSizes(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initFloatingLabel(), value -> basicFormsCode.completeFloatingLabels(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.initInputStatus(), value -> basicFormsCode.completeInputStatus(value));
 
-        element.appendChild(textAreaCard.asElement());
+        element.appendChild(textAreaCard.element());
         element.appendChild(CodeCard.createCodeCard(
                 CodeResource.INSTANCE.initBasicTextAreaExample()
-        ).asElement());
+        ).element());
 
-        element.appendChild(selectCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectExample()).asElement());
+        element.appendChild(selectCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectExample()).element());
 
-        element.appendChild(checkboxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initCheckboxExample()).asElement());
+        element.appendChild(checkboxCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initCheckboxExample()).element());
 
-        element.appendChild(radioCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initRadioExample()).asElement());
+        element.appendChild(radioCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initRadioExample()).element());
 
-        element.appendChild(switchCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).asElement());
+        element.appendChild(switchCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSwitchExample()).element());
+
+        return element;
+    }
+
+    @SampleMethod
+    private void initDifferentStyles() {
+
+        fieldsStylesCard
+                .apply(self -> self.getBody().style().setPadding("50px"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span4()
+                                .appendChild(BlockHeader.create("LINED"))
+                                .appendChild(hr())
+                                .appendChild(BlockHeader.create("Normal"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .value("ahmad.bawaneh")
+                                )
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.LINED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.email_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.plus_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("ahmad.bawaneh")
+                                        .setReadOnly(false)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                                .appendChild(BlockHeader.create("Invalid"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.LINED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.email_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.plus_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .setReadOnly(false)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                        .invalidate("Sub domain not found")
+                                )
+                                .appendChild(BlockHeader.create("Readonly"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.LINED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.email_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.plus_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .setReadOnly(true)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                                .appendChild(BlockHeader.create("Disabled"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.LINED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.email_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.plus_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .disable()
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .offset6()
+                                .appendChild(BlockHeader.create("ROUNDED"))
+                                .appendChild(hr())
+                                .appendChild(BlockHeader.create("Normal"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.ROUNDED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.account_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.account_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("ahmad.bawaneh")
+                                        .setReadOnly(false)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                                .appendChild(BlockHeader.create("Invalid"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.ROUNDED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.account_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.account_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .setReadOnly(false)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                        .invalidate("Sub domain not found")
+                                )
+                                .appendChild(BlockHeader.create("Readonly"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.ROUNDED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.account_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.account_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .setReadOnly(true)
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                                .appendChild(BlockHeader.create("Disabled"))
+                                .appendChild(TextBox.create("Domain email")
+                                        .setFieldStyle(FieldStyle.ROUNDED)
+                                        .setMaxLength(50)
+                                        .addLeftAddOn(Icons.ALL.account_mdi().clickable())
+                                        .addRightAddOn(Icons.ALL.account_mdi().clickable())
+                                        .setHelperText("Should be a subdomain of dominokit")
+                                        .value("random.name")
+                                        .disable()
+                                        .setPrefix("domino.")
+                                        .setPostFix("@dominokit.org")
+                                )
+                        )
+                );
     }
 
     @Aggregate(name = "BasicFormsCode")
-    public void onCodeLoaded(String basicExamples, String differentWidths, String differentSizes, String floatingLabels, String inputStatus) {
+    public void onCodeLoaded(String basicExamples, String differentWidths, String floatingLabels, String inputStatus) {
         basicExamplesCard.setCode("// -------------- Basic examples\n" +
                 basicExamples +
                 "\n\n// -------------- Different widths\n" +
                 differentWidths +
-                "\n\n// -------------- Different Sizes\n" +
-                differentSizes +
                 "\n\n// -------------- Floating Label Examples\n" +
                 floatingLabels +
                 "\n\n// -------------- Input Status\n" +
                 inputStatus);
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
-        return element;
     }
 
     @SampleMethod
@@ -177,8 +291,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         Radio<String> firstDisabledRadio = Radio.<String>create("radio1_disabled", "Radio - Disabled").check().disable();
         Radio<String> secondsDisabledRadio = Radio.<String>create("radio2_disabled", "Radio - Disabled").withGap().check().disable();
 
-        firstDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
-        secondsDisabledRadio.asElement().style.margin = CSSProperties.MarginUnionType.of("5px");
+        firstDisabledRadio.element().style.margin = CSSProperties.MarginUnionType.of("5px");
+        secondsDisabledRadio.element().style.margin = CSSProperties.MarginUnionType.of("5px");
 
         RadioGroup<String> firstDisabledGroup = RadioGroup.<String>create("disabled").appendChild(firstDisabledRadio);
         RadioGroup<String> secondDisabledGroup = RadioGroup.<String>create("disabled").appendChild(secondsDisabledRadio);
@@ -188,20 +302,20 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(horizontalRadioGroup)
                         .appendChild(firstDisabledGroup)
                         .appendChild(secondDisabledGroup))
-                .asElement());
+                .element());
 
         radioCard.appendChild(br());
 
 
         radioCard.appendChild(Row.create()
-                .addColumn(Column.span(2, 6)
+                .addColumn(Column.span(3, 6)
                         .appendChild(h(5).textContent("With Material Design Colors"))
                         .appendChild(RadioGroup.<String>create("color")
-                                .appendChild(Radio.create("RED", "RED").setColor(Color.RED).check())
+                                .appendChild(Radio.create("RED", "RED").setColor(Color.RED))
                                 .appendChild(Radio.create("PINK", "PINK").setColor(Color.PINK))
                                 .appendChild(Radio.create("DEEP PURPLE", "DEEP PURPLE").setColor(Color.DEEP_PURPLE))
                                 .appendChild(Radio.create("INDIGO", "INDIGO").setColor(Color.INDIGO))
-                                .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE))
+                                .appendChild(Radio.create("BLUE", "BLUE").setColor(Color.BLUE).check())
                                 .appendChild(Radio.create("CYAN", "CYAN").setColor(Color.CYAN))
                                 .appendChild(Radio.create("TEAL", "TEAL").setColor(Color.TEAL))
                                 .appendChild(Radio.create("GREEN", "GREEN").setColor(Color.GREEN))
@@ -233,13 +347,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         checkboxCard.appendChild(h(5).textContent("Basic Examples"));
         checkboxCard.appendChild(Row.create()
                 .addColumn(Column.span(2, 6)
-                        .appendChild(CheckBox.create("Default")
-                                .setReadOnly(true)
-                                .apply(self -> self.getLabelTextElement()
-                                        .hideOn(ScreenMedia.MEDIUM_AND_UP))
-                        )
-
-                )
+                        .appendChild(CheckBox.create("Default")))
                 .addColumn(Column.span(2, 6)
                         .appendChild(CheckBox.create("Filled In").filledIn()))
                 .addColumn(Column.span(2, 6)
@@ -402,7 +510,6 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("UK", "United Kingdom"))
                                 )
                                 .selectAt(0)
-                                .open()
                                 .addSelectionHandler(option -> {
                                     Notification.create("Item selected [ " + option.getValue() + " ]").show();
                                 })))
@@ -412,8 +519,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initBasicExamples() {
         inputCard.appendChild(BlockHeader.create("Basic Example"))
-                .appendChild(TextBox.create().css("rounded").setLabel("User name").setPlaceholder("Username"))
-                .appendChild(TextBox.password().css("rounded").setLabel("Password").setPlaceholder("Password"));
+                .appendChild(TextBox.create().setLabel("User name").setPlaceholder("Username"))
+                .appendChild(TextBox.password().setLabel("Password").setPlaceholder("Password"));
     }
 
     @SampleMethod
@@ -447,21 +554,11 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     }
 
     @SampleMethod
-    private void initDifferentSizes() {
-        inputCard.appendChild(BlockHeader.create("Different Sizes"))
-                .appendChild(TextBox.create().setPlaceholder("Large Input").large())
-                .appendChild(TextBox.create().setPlaceholder("Default Input"))
-                .appendChild(TextBox.create().setPlaceholder("Small Input").small());
-    }
-
-    @SampleMethod
     private void initFloatingLabel() {
         inputCard.appendChild(BlockHeader.create("Floating Label Examples"))
                 .appendChild(TextBox.create("Username"))
                 .appendChild(TextBox.password("Password"))
-                .appendChild(TextBox.create("Large Input").large())
                 .appendChild(TextBox.create("Default Input"))
-                .appendChild(TextBox.create("Small Input").small())
                 .appendChild(BlockHeader.create("Always floating"))
                 .appendChild(TextBox.create("Age").floating())
                 .appendChild(TextBox.create("Email").floating());
@@ -473,7 +570,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         inputCard.appendChild(BlockHeader.create("Input Status"))
                 .appendChild(Row.create()
                         .addColumn(Column.span6()
-                                .appendChild(TextBox.create("Focused").focus()))
+                                .appendChild(TextBox.create("Focused")))
                         .addColumn(Column.span6()
                                 .appendChild(TextBox.create("Disabled").disable())));
     }

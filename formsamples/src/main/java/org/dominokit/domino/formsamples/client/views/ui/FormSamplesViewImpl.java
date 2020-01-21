@@ -19,7 +19,7 @@ import java.util.List;
 import static org.jboss.gwt.elemento.core.Elements.div;
 
 @UiView(presentable = FormSamplesProxy.class)
-public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements FormSamplesView, FormSamplesView.FormSamplesUIHandlers {
+public class FormSamplesViewImpl extends BaseElementView<HTMLDivElement> implements FormSamplesView, FormSamplesView.FormSamplesUIHandlers {
 
 
     //TODO move to server side
@@ -2032,7 +2032,8 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements
     private FormSamplesUIHandlers uiHandlers;
 
     @Override
-    protected void init(HTMLElement root) {
+    protected HTMLDivElement init() {
+        element = div().css("content-margin").element();
         Scheduler.get().scheduleDeferred(() -> {
             this.corporateProfile = CorporateProfile.MAPPER.read(PROFILE_JSON);
             this.countries = Countries.MAPPER.read(COUNTRIES_JSON).getCountries();
@@ -2043,11 +2044,7 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements
             reBuildForm();
 
         });
-    }
 
-    @Override
-    public HTMLElement createRoot() {
-        element = div().css("content-margin").asElement();
         return element;
     }
 
@@ -2067,10 +2064,10 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLElement> implements
 
     private void reBuildForm() {
         ElementUtil.clear(element);
-        element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("formsamples", this.getClass()).element());
         addLCImportComponent = new AddLCImportComponent(corporateProfile, countries, beneficiaries, banks, currencies);
         addLCImportComponent.setUiHandlers(this.uiHandlers);
-        element.appendChild(addLCImportComponent.asElement());
+        element.appendChild(addLCImportComponent.element());
     }
 
     @Override

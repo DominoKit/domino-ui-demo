@@ -24,33 +24,29 @@ import static org.jboss.gwt.elemento.core.Elements.hr;
 @SampleClass
 public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements SplitPanelView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("splitPanel", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("SPLIT PANEL").asElement());
+    protected HTMLDivElement init() {
+        element.appendChild(LinkToSourceCode.create("splitPanel", this.getClass()).element());
+        element.appendChild(BlockHeader.create("SPLIT PANEL").element());
 
         horizontalSplitPanel();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSplitPanel()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.horizontalSplitPanel()).element());
 
         verticalSplitPanel();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSplitPanel()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSplitPanel()).element());
 
 
         splitPanelMinMax();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.splitPanelMinMax()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.splitPanelMinMax()).element());
 
         multiSplit();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSplit()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSplit()).element());
 
         combined();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).asElement());
-    }
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -65,7 +61,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
                         .setHeight("400px")
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -81,7 +77,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(div().css("demo-split-div", Color.GREEN_LIGHTEN_4.getBackground())))
                         .setHeight("400px")
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -112,7 +108,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
                         .setHeight("400px")
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -146,7 +142,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
                         .setHeight("400px")
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -176,7 +172,7 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
                         .setHeight("400px")
                 )
-                .asElement());
+                .element());
 
 
     }

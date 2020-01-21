@@ -33,7 +33,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
 
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
 
     public SignedCommercialInvoicePart(List<Country> countries) {
@@ -71,7 +71,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .setLeftAddon(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain())
                 .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
                 .appendChild(SelectOption.create("Official trade office", "Official trade office"))
                 .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))
@@ -97,7 +97,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
 
 
         signedCommercialInvoiceInCard.getHeaderDescription()
-                .appendChild(signedCommercialInvoiceRequiredSwitchButton.asElement());
+                .appendChild(signedCommercialInvoiceRequiredSwitchButton.element());
 
         element.appendChild(signedCommercialInvoiceInCard
                 .appendChild(Row.create()
@@ -111,7 +111,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 ).appendChild(Row.create()
                         .addColumn(span6().appendChild(signedCommercialOriginOfGoodsCountrySelect))
                         .addColumn(span6().appendChild(signedCommercialOriginOfLocalizationEntityCountrySelect)))
-                .asElement());
+                .element());
     }
 
     @Override
@@ -144,7 +144,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

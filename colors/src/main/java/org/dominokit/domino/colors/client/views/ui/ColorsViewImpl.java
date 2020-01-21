@@ -20,12 +20,12 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @UiView(presentable = ColorsProxy.class)
 public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements ColorsView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("colors", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("COLORS").asElement());
+    protected HTMLDivElement init() {
+        element.appendChild(LinkToSourceCode.create("colors", this.getClass()).element());
+        element.appendChild(BlockHeader.create("COLORS").element());
 
         element.appendChild(Card.create("MATERIAL DESIGN COLORS", "Taken by Google's Material Design Color page which link is ")
                 .appendDescriptionChild(a()
@@ -82,7 +82,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                                 .appendChild(makeColorBox(ColorScheme.DEEP_PURPLE.lighten_5()))
                         )
 
-                        .asElement())
+                        .element())
                 .appendChild(Row.create()
                         .addColumn(Column.span3()
                                 .appendChild(makeColorBox(ColorScheme.INDIGO.darker_4()))
@@ -132,7 +132,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                                 .appendChild(makeColorBox(ColorScheme.CYAN.lighten_4()))
                                 .appendChild(makeColorBox(ColorScheme.CYAN.lighten_5()))
                         )
-                        .asElement())
+                        .element())
                 .appendChild(Row.create()
                         .addColumn(Column.span3()
                                 .appendChild(makeColorBox(ColorScheme.TEAL.darker_4()))
@@ -182,7 +182,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                                 .appendChild(makeColorBox(ColorScheme.LIME.lighten_4()))
                                 .appendChild(makeColorBox(ColorScheme.LIME.lighten_5()))
                         )
-                        .asElement())
+                        .element())
                 .appendChild(Row.create()
                         .addColumn(Column.span3()
                                 .appendChild(makeColorBox(ColorScheme.YELLOW.darker_4()))
@@ -232,7 +232,7 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                                 .appendChild(makeColorBox(ColorScheme.DEEP_ORANGE.lighten_4()))
                                 .appendChild(makeColorBox(ColorScheme.DEEP_ORANGE.lighten_5()))
                         )
-                        .asElement())
+                        .element())
                 .appendChild(Row.create()
                         .addColumn(Column.span3()
                                 .appendChild(makeColorBox(ColorScheme.BROWN.darker_4()))
@@ -282,13 +282,9 @@ public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements Colo
                                 .appendChild(makeColorBox(ColorScheme.BLACK.lighten_4()))
                                 .appendChild(makeColorBox(ColorScheme.BLACK.lighten_5()))
                         )
-                        .asElement())
-                .asElement());
-    }
+                        .element())
+                .element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 

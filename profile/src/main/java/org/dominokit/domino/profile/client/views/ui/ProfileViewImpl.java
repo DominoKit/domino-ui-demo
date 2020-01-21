@@ -30,7 +30,9 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
     private Card profile;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
+
         profile.style()
                 .add("profile-card")
                 .add("classy-card")
@@ -59,7 +61,7 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
 
         profile.addHeaderAction(headerAction);
         Style.of(profile).setHeight("186px");
-        profile.asElement().appendChild(div().css("bg-classy").asElement());
+        profile.element().appendChild(div().css("bg-classy").element());
 
         try {
             CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {
@@ -71,18 +73,14 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
                 @Override
                 public void onSuccess(TextResource resource) {
                     profile.getHeaderTitle().appendChild(small().textContent(resource.getText())
-                            .asElement());
+                            .element());
                     DomGlobal.console.info(resource.getText());
                 }
             });
         } catch (Exception e) {
             DomGlobal.console.error("Failed to load build time : ", e);
         }
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
-        return profile.asElement();
+        return profile.element();
     }
 }

@@ -34,12 +34,12 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     private Layout layout = new Layout().setTitle("Domino UI demo");
 
-    private HTMLDivElement profileDiv = div().asElement();
-    private HTMLDivElement menuDiv = div().asElement();
+    private HTMLDivElement profileDiv = div().element();
+    private HTMLDivElement menuDiv = div().element();
     private Loader loader;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
         Search search = Search.create();
         layout
                 .spanLeftPanelUp()
@@ -50,13 +50,13 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         HtmlContentBuilder<HTMLAnchorElement> searchButton = a().css("js-right-sidebar").add(Icons.ALL.search());
         searchButton.on(EventType.click, event -> search.open());
         layout.getTopBar()
-                .appendChild(li().css(Styles.pull_right).add(searchButton).asElement());
-        layout.getTopBar().appendChild(li().css(Styles.pull_right).style("padding-top: 3px;").add(makeGithubLink()).asElement());
+                .appendChild(li().css(Styles.pull_right).add(searchButton).element());
+        layout.getTopBar().appendChild(li().css(Styles.pull_right).style("padding-top: 3px;").add(makeGithubLink()).element());
         HTMLDivElement copyrightsElement = div()
                 .css(Theme.currentTheme.getScheme().darker_3().getBackground())
                 .css(Styles.align_center)
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
-                        .textContent("© 2018 Copyright DominoKit")).asElement();
+                        .textContent("© 2018 Copyright DominoKit")).element();
 
         layout.showFooter();
         Row footerRow = createFooterRow();
@@ -70,7 +70,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
         DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
                 .setBottom(60)
-                .asElement());
+                .element());
 
         layout.getLeftPanel()
                 .appendChild(profileDiv)
@@ -79,11 +79,8 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.getContentPanel()
                 .style().setMinHeight("calc(100vh - 365px)");
         loader = Loader.create(layout.getContentPanel(), LoaderEffect.PULSE);
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        return layout.asElement();
+        return layout.element();
     }
 
     @Override
@@ -156,7 +153,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
     }
 
     private HTMLAnchorElement makeGithubLink() {
-        HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x", "js-right-sidebar").asElement();
+        HTMLAnchorElement githubLink = a().css("fab fa-github fa-2x", "js-right-sidebar").element();
         githubLink.addEventListener("click", evt -> {
             DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank");
         });

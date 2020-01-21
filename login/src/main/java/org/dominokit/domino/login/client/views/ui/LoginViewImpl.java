@@ -32,27 +32,31 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(BlockHeader.create("LOGIN", "Sample login dialogs").asElement());
-        element.appendChild(LinkToSourceCode.create("login", LoginViewImpl.class).asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(BlockHeader.create("LOGIN", "Sample login dialogs").element());
+        element.appendChild(LinkToSourceCode.create("login", LoginViewImpl.class).element());
 
         sample1();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample1()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample1()).element());
 
         sample2();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample2()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample2()).element());
 
         sample3();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample3()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample3()).element());
 
         sample4();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample4()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample4()).element());
 
         sample5();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample5()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample5()).element());
 
         sample6();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample6()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample6()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -72,7 +76,7 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                         .setContent("Login")
                                         .block())
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -83,11 +87,11 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                         .appendChild(Card.create("LOGIN")
                                 .setHeaderBackground(Color.THEME)
                                 .appendChild(TextBox.create("User name")
-                                        .setLeftAddon(Icons.ALL.person())
+                                        .addLeftAddOn(Icons.ALL.person())
                                         .setRequired(true)
                                         .setAutoValidation(true))
                                 .appendChild(TextBox.password("Password")
-                                        .setLeftAddon(Icons.ALL.security())
+                                        .addLeftAddOn(Icons.ALL.security())
                                         .setRequired(true)
                                         .setAutoValidation(true))
                                 .appendChild(CheckBox.create("Remember me")
@@ -97,7 +101,7 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                         .setContent("Login")
                                         .block())
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -108,11 +112,11 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                         .appendChild(Card.create("LOGIN")
                                 .setHeaderBackground(Color.THEME)
                                 .appendChild(TextBox.create("User name")
-                                        .setLeftAddon(Icons.ALL.person())
+                                        .addLeftAddOn(Icons.ALL.person())
                                         .setRequired(true)
                                         .setAutoValidation(true))
                                 .appendChild(TextBox.password("Password")
-                                        .setLeftAddon(Icons.ALL.security())
+                                        .addLeftAddOn(Icons.ALL.security())
                                         .setRequired(true)
                                         .setAutoValidation(true))
                                 .appendChild(CheckBox.create("Remember me")
@@ -127,7 +131,7 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                                 .style()
                                                 .add(Styles.pull_right)))
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -152,7 +156,7 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                 )
 
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -172,12 +176,12 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                                 .css("login-avatar")))
                                 .appendChild(DominoElement.of(div().css(Styles.padding_30))
                                         .appendChild(TextBox.create("User name")
-                                                .setLeftAddon(Icons.ALL.person())
+                                                .addLeftAddOn(Icons.ALL.person())
                                                 .floating()
                                                 .setRequired(true)
                                                 .setAutoValidation(true))
                                         .appendChild(TextBox.password("Password")
-                                                .setLeftAddon(Icons.ALL.security())
+                                                .addLeftAddOn(Icons.ALL.security())
                                                 .floating()
                                                 .setRequired(true)
                                                 .setAutoValidation(true))
@@ -188,7 +192,7 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                 )
 
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -216,12 +220,12 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                                         .css(Styles.p_t_60)
                                                         .style("height: 100%;"))
                                                         .appendChild(TextBox.create("User name")
-                                                                .setLeftAddon(Icons.ALL.person())
+                                                                .addLeftAddOn(Icons.ALL.person())
                                                                 .floating()
                                                                 .setRequired(true)
                                                                 .setAutoValidation(true))
                                                         .appendChild(TextBox.password("Password")
-                                                                .setLeftAddon(Icons.ALL.security())
+                                                                .addLeftAddOn(Icons.ALL.security())
                                                                 .floating()
                                                                 .setRequired(true)
                                                                 .setAutoValidation(true))
@@ -234,13 +238,6 @@ public class LoginViewImpl extends BaseDemoView<HTMLDivElement> implements Login
                                                 ))
                                 )
                         ))
-                .asElement());
+                .element());
     }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
-        return element;
-    }
-
 }

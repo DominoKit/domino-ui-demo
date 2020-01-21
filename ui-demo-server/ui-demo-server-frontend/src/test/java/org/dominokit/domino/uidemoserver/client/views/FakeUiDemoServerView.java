@@ -11,7 +11,7 @@ public class FakeUiDemoServerView extends FakeView implements UiDemoServerView {
     private FakeElement root;
 
     @Override
-    protected void init(FakeElement root) {
+    protected void initRoot(FakeElement root) {
         this.root = root;
     }
 }

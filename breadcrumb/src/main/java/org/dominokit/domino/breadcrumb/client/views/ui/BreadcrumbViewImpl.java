@@ -25,35 +25,33 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(BlockHeader.create("BREADCRUMBS").asElement());
+    protected HTMLDivElement init() {
+
+        element = Elements.div().element();
+        element.appendChild(BlockHeader.create("BREADCRUMBS").element());
 
         basicBreadcrumb();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicBreadcrumb())
-                .asElement());
+                .element());
 
         coloredBreadcrumb();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredBreadcrumb())
-                .asElement());
+                .element());
 
         breadcrumbWithBackground();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.breadcrumbWithBackground())
-                .asElement());
+                .element());
 
         alignment();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.alignment())
-                .asElement());
-    }
+                .element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
         return element;
     }
 
     @SampleMethod
     private void basicBreadcrumb() {
-        element.appendChild(LinkToSourceCode.create("breadcrumb", this.getClass()).asElement());
+        element.appendChild(LinkToSourceCode.create("breadcrumb", this.getClass()).element());
         element.appendChild(Row.create()
                 .addColumn(Column.span6()
                         .appendChild(Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
@@ -94,7 +92,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -186,7 +184,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -278,7 +276,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .asElement());
+                .element());
 
     }
 
@@ -314,7 +312,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(Icons.ALL.attachment(), " File ", evt -> {
                         })
                 )
-                .asElement());
+                .element());
 
     }
 }

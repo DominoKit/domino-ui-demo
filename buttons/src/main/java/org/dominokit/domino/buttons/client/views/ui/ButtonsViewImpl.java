@@ -41,7 +41,9 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
+    protected HTMLDivElement init() {
+        element = div().element();
+
         uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
             @Override
@@ -51,63 +53,59 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
 
             @Override
             public void onSuccess() {
-                element.appendChild(LinkToSourceCode.create("buttons", ButtonsViewImpl.this.getClass()).asElement());
-                element.appendChild(BlockHeader.create("BUTTONS").asElement());
+                element.appendChild(LinkToSourceCode.create("buttons", ButtonsViewImpl.this.getClass()).element());
+                element.appendChild(BlockHeader.create("BUTTONS").element());
                 initBootstrapButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBootstrapButtons()).element());
 
                 initMaterialDesignButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialDesignButtons()).element());
 
                 initButtonSizes();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonSizes()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonSizes()).element());
 
                 initBlockButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBlockButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBlockButtons()).element());
 
                 initDisabledButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDisabledButtons()).element());
 
                 initButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtons()).element());
 
                 initTextButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTextButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTextButtons()).element());
 
-                element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").asElement());
+                element.appendChild(BlockHeader.create("BUTTON GROUPS", "Group a series of buttons together on a single line with the button group").element());
                 initButtonsBasicGroup();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsBasicGroup()).element());
 
                 initButtonsToolbar();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initButtonsToolbar()).element());
 
                 initSizingGroup();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSizingGroup()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSizingGroup()).element());
 
                 initNestingGroup();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initNestingGroup()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initNestingGroup()).element());
 
                 initVerticalGroup();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initVerticalGroup()).element());
 
-                element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").asElement());
+                element.appendChild(BlockHeader.create("BUTTON DROPDOWNS", "Use any button to trigger a dropdown menu by placing it within a .btn-group and providing the proper menu markup.").element());
                 initSingleDropdownButtons();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSingleDropdownButtons()).element());
 
                 initSplitButton();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSplitButton()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSplitButton()).element());
 
                 initDropDownPosition();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDropDownPosition()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDropDownPosition()).element());
 
                 uiHandlers.stopLoading();
             }
         });
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -156,7 +154,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -194,7 +192,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                                 .separator()
                                 .appendChild(DropdownAction.create("Separated link")))
                         .style().setMargin("10px"))
-                .asElement());
+                .element());
 
 
     }
@@ -244,7 +242,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .separator()
                         .appendChild(DropdownAction.create("Separated link"))
                         .style().setMargin(px.of(5)))
-                .asElement());
+                .element());
 
 
     }
@@ -261,7 +259,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .appendChild(Button.createDanger("Button"))
                         .verticalAlign()
                         .style().setMargin(px.of(5)))
-                .asElement());
+                .element());
 
 
     }
@@ -323,7 +321,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
 
 
     }
@@ -368,7 +366,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                                         .appendChild(Button.createDefault("RIGHT"))
                                         .setSize(ButtonSize.XSMALL)
                                         .style().setMargin("15px"))))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -436,7 +434,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                                         .setMargin(px.of(5))
                                         .setFloat("left")))
                 )
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -483,7 +481,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .appendChild(Button.create("RIGHT").setBackground(Color.PURPLE))
                         .style()
                         .setMargin(px.of(5))
-                        .setMinWidth(px.of(120))).asElement());
+                        .setMinWidth(px.of(120))).element());
     }
 
     @SampleMethod
@@ -524,7 +522,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -641,7 +639,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                                         .setSize(ButtonSize.LARGE)
                                         .setButtonType(StyleType.DANGER)
                                         .style().setMargin(px.of(5))))
-                ).asElement());
+                ).element());
     }
 
     private HTMLHeadingElement heading(String content) {
@@ -650,7 +648,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                 .setMarginBottom("0px")
                 .setFontSize("15px")
                 .setColor("#000")
-                .setDisplay("block").get().asElement();
+                .setDisplay("block").get().element();
     }
 
     @SampleMethod
@@ -681,7 +679,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -712,7 +710,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
 
     }
 
@@ -810,7 +808,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                                                             .setMargin(px.of(5))
                                                             .setMinWidth(px.of(200))))));
                         })
-                ).asElement());
+                ).element());
 
     }
 
@@ -842,7 +840,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -868,6 +866,6 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .style()
                         .setMargin(px.of(5))
                         .setMinWidth(px.of(120)))
-                .asElement());
+                .element());
     }
 }

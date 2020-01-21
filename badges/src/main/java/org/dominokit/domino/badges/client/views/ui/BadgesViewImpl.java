@@ -24,27 +24,23 @@ import org.jboss.gwt.elemento.core.Elements;
 public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements BadgesView {
 
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("badges", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("BADGES").asElement());
+    protected HTMLDivElement init() {
+        element.appendChild(LinkToSourceCode.create("badges", this.getClass()).element());
+        element.appendChild(BlockHeader.create("BADGES").element());
 
         buttonExample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExample()).element());
 
         buttonExamplesWithMaterialDesignColors();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.buttonExamplesWithMaterialDesignColors()).element());
 
         listExample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
-                .asElement());
-    }
+                .element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
         return element;
     }
 
@@ -74,7 +70,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                                 .appendChild(Badge.create("3"))
                                 ))
                         )
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -109,7 +105,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                                 .appendChild(Badge.create("47"))
                                 ))
                         )
-                .asElement());
+                .element());
     }
 
     @SampleMethod
@@ -124,7 +120,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
                 .appendChild(listGroup)
-                .asElement());
+                .element());
     }
 
 }

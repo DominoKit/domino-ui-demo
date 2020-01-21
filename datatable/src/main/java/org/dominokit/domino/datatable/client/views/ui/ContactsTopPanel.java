@@ -33,14 +33,14 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private InfoBox femaleCount = InfoBox.create(i().css("fas fa-female fa-lg").asElement(), "FEMALES", "0")
+    private InfoBox femaleCount = InfoBox.create(i().css("fas fa-female fa-lg").element(), "FEMALES", "0")
             .setIconColor(Color.PINK)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private InfoBox maleCount = InfoBox.create(i().css("fas fa-male fa-lg").asElement(), "MALES", "0")
+    private InfoBox maleCount = InfoBox.create(i().css("fas fa-male fa-lg").element(), "MALES", "0")
             .setIconColor(Color.BLUE)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)
@@ -100,8 +100,8 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
     }
 
     @Override
-    public HTMLElement asElement() {
-        return row.asElement();
+    public HTMLElement element() {
+        return row.element();
     }
 
     public void update(List<Contact> contacts) {

@@ -28,32 +28,30 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("typography", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("TYPOGRAPHY").asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("typography", this.getClass()).element());
+        element.appendChild(BlockHeader.create("TYPOGRAPHY").element());
 
         bodyCopy();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.bodyCopy()).element());
 
         fontSizes();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.fontSizes()).element());
 
         heading();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.heading()).element());
 
         textStyles();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.textStyles()).element());
 
         blockqoute();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.blockqoute()).element());
 
         lists();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).asElement());
-    }
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.lists()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -119,7 +117,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .add(li().textContent("Aenean sit amet erat nunc"))
                                         .add(li().textContent("Eget porttitor lorem"))
                                 )
-                        )).asElement()
+                        )).element()
         );
 
 
@@ -130,7 +128,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(Card.create("BODY COPY", "Use LEAD style make a paragraph with larger fonts on big screens.")
                 .appendChild(p().css(Styles.LEAD).textContent(Constants.SMALLER_PARAGRAPH))
                 .appendChild(p().textContent(Constants.LARGE_PARAGRAPH))
-                .appendChild(p().textContent(Constants.SMALL_PARAGRAPH)).asElement()
+                .appendChild(p().textContent(Constants.SMALL_PARAGRAPH)).element()
         );
 
 
@@ -155,7 +153,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_12).textContent("font-12")))
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_10).textContent("font-10")))
                                 .appendChild(Paragraph.create().appendChild(b().css(Styles.font_6).textContent("font-6")))
-                        )).asElement());
+                        )).element());
 
 
 
@@ -176,7 +174,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
                 .appendChild(h(6).textContent("h6. Text Heading."))
                 .appendChild(Paragraph.create(Constants.SAMPLE_TEXT))
-                .asElement()
+                .element()
         );
 
 
@@ -246,7 +244,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(Paragraph.create("Text orange color").overLine().setColor(Color.ORANGE))
                                 .appendChild(Paragraph.create("Text blue grey color").overLine().setColor(Color.BLUE_GREY))
                         )
-                ).asElement());
+                ).element());
 
 
     }
@@ -264,7 +262,7 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendFooterChild(TextNode.of("Someone famous in "))
                         .appendFooterChild(cite().textContent("source title."))
                         .reverse()
-                ).asElement());
+                ).element());
 
 
     }

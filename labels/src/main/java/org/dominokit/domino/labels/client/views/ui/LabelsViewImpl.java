@@ -21,23 +21,20 @@ import org.jboss.gwt.elemento.core.Elements;
 @SampleClass
 public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements LabelsView {
 
-    private HTMLDivElement element = Elements.div().asElement();
+    private HTMLDivElement element = Elements.div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("LABELS").asElement());
+    protected HTMLDivElement init() {
+
+        element.appendChild(LinkToSourceCode.create("labels", this.getClass()).element());
+        element.appendChild(BlockHeader.create("LABELS").element());
 
         initLabels();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLabels()).element());
 
         initMaterialLabels();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).asElement());
-    }
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initMaterialLabels()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
         return element;
     }
 
@@ -83,7 +80,7 @@ public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements Labe
                         .addColumn(column.copy().appendChild(Label.create("Yellow")
                                 .setBackground(Color.YELLOW)
                                 .style().setMargin("10px"))))
-                .asElement());
+                .element());
 
 
     }
@@ -125,7 +122,7 @@ public class LabelsViewImpl extends BaseDemoView<HTMLDivElement> implements Labe
                 .appendChild(Elements.h(6)
                         .textContent("Example heading ")
                         .add(Label.createDefault("New")))
-                .asElement());
+                .element());
 
 
 

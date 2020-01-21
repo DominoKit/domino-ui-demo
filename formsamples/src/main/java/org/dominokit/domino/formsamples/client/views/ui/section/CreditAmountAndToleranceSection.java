@@ -31,11 +31,11 @@ public class CreditAmountAndToleranceSection implements ImportSection {
     private TextBox toleranceTextBox;
     private CheckBox maximumCheckBox;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public CreditAmountAndToleranceSection(List<CurrencyData> currencies) {
-        element.appendChild(BlockHeader.create("Credit Amount And Tolerance *").asElement());
+        element.appendChild(BlockHeader.create("Credit Amount And Tolerance *").element());
 
         card = Card.create();
 
@@ -96,11 +96,11 @@ public class CreditAmountAndToleranceSection implements ImportSection {
                         )
                         .addColumn(Column.span3()
                                 .appendChild(toleranceTextBox
-                                        .setLeftAddon(i().css("fas", "fa-percent", "fa-sm")))
+                                        .addLeftAddOn(i().css("fas", "fa-percent", "fa-sm")))
                         )
 
                 )
-                .asElement());
+                .element());
 
     }
 
@@ -141,7 +141,7 @@ public class CreditAmountAndToleranceSection implements ImportSection {
 
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

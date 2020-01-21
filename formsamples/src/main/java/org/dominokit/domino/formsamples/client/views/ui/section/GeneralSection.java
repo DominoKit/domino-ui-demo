@@ -21,10 +21,10 @@ public class GeneralSection implements ImportSection {
 
     private DateBox creationDateBox;
     private TextBox placeTextBox;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     public GeneralSection(CorporateProfile corporateProfile) {
-        element.appendChild(BlockHeader.create("General").asElement());
+        element.appendChild(BlockHeader.create("General").element());
 
         creationDateBox = DateBox.create();
         placeTextBox = TextBox.create("Place")
@@ -42,7 +42,7 @@ public class GeneralSection implements ImportSection {
                                         .setPattern(DATE_PATTERN)
                                         .setHelperText(DATE_PATTERN)
                                         .setLabel("Date")
-                                        .setLeftAddon(Icons.ALL.date_range())
+                                        .addLeftAddOn(Icons.ALL.date_range())
                                         .setReadOnly(true)
                                         .value(new Date())))
                         .addColumn(Column.span6()
@@ -51,10 +51,10 @@ public class GeneralSection implements ImportSection {
                                 .get()
                                 .appendChild(placeTextBox
                                         .setReadOnly(true)
-                                        .setLeftAddon(Icons.ALL.location_on())
+                                        .addLeftAddOn(Icons.ALL.location_on())
                                         .value(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))
                 )
-                .asElement());
+                .element());
     }
 
 
@@ -70,7 +70,7 @@ public class GeneralSection implements ImportSection {
 
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

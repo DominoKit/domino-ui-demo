@@ -23,7 +23,7 @@ public class PackingListPart implements ImportSection {
     private SwitchButton packingListRequiredSwitchButton;
     private TextBox packingListTextBox;
     private Card packingListCard;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public PackingListPart() {
@@ -50,14 +50,14 @@ public class PackingListPart implements ImportSection {
                 .hide();
 
         packingListCard.getHeaderDescription()
-                .appendChild(packingListRequiredSwitchButton.asElement());
+                .appendChild(packingListRequiredSwitchButton.element());
 
 
         element.appendChild(packingListCard
                 .appendChild(Row.create()
                         .addColumn(Column.span4().appendChild(packingListCopiesTextBox.setRequired(true).setAutoValidation(true)))
                         .addColumn(Column.span8().appendChild(packingListTextBox.setRequired(true).setAutoValidation(true))))
-                .asElement());
+                .element());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class PackingListPart implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

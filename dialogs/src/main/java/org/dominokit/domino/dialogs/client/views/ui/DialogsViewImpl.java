@@ -33,15 +33,17 @@ import static org.jboss.gwt.elemento.core.Elements.div;
 @SampleClass
 public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements DialogsView {
 
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("DIALOGS").asElement());
+    protected HTMLDivElement init() {
+        element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).element());
+        element.appendChild(BlockHeader.create("DIALOGS").element());
 
         sample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample()).asElement());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample()).element());
+
+        return element;
     }
 
     @SampleMethod
@@ -151,13 +153,7 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
                                 .appendChild(Paragraph.create("Custom content"))
                                 .appendChild(createDemoButton(customContent)))
                 )
-                .asElement());
-    }
-
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
-        return element;
+                .element());
     }
 
     private Button createDemoButton(MessageDialog dialog) {

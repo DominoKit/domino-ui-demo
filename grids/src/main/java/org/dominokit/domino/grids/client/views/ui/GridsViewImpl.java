@@ -26,9 +26,11 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
     private HTMLDivElement element;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("grids", this.getClass()).asElement());
-        element.appendChild(BlockHeader.create("GRIDS").asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("grids", this.getClass()).element());
+        element.appendChild(BlockHeader.create("GRIDS").element());
 
         GWT.runAsync(new RunAsyncCallback() {
             @Override
@@ -39,26 +41,22 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
             @Override
             public void onSuccess() {
                 grid12Columns();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid12Columns()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid12Columns()).element());
 
                 grid16Columns();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid16Columns()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid16Columns()).element());
 
                 grid18Columns();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid18Columns()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid18Columns()).element());
 
                 grid24Columns();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid24Columns()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid24Columns()).element());
 
                 grid32Columns();
-                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).asElement());
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.grid32Columns()).element());
             }
         });
-    }
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -283,7 +281,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                                 .offset3()
                                 .appendChild(div().css("sample-div").add(span().css("counter"))))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -561,7 +559,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                                 .offset4()
                                 .appendChild(div().css("sample-div").add(span().css("counter"))))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -881,7 +879,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                                 .offset6()
                                 .appendChild(div().css("sample-div").add(span().css("counter"))))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -1319,7 +1317,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                                 .offset8()
                                 .appendChild(div().css("sample-div").add(span().css("counter"))))
                 )
-                .asElement());
+                .element());
 
 
     }
@@ -1855,7 +1853,7 @@ public class GridsViewImpl extends BaseDemoView<HTMLDivElement> implements Grids
                                 .offset10()
                                 .appendChild(div().css("sample-div").add(span().css("counter"))))
                 )
-                .asElement());
+                .element());
 
 
     }

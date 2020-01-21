@@ -27,11 +27,11 @@ public class IssuerBankSection implements ImportSection {
     private TextBox issuerContactPersonTextBox;
     private Row issuerBankInfoRow;
     private Card card;
-    private HTMLDivElement element = div().asElement();
+    private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
     public IssuerBankSection(CorporateProfile corporateProfile) {
-        element.appendChild(BlockHeader.create("Issuer Bank *").asElement());
+        element.appendChild(BlockHeader.create("Issuer Bank *").element());
 
         List<Bank> banks = corporateProfile.getBanks();
         BanksComponent banksComponent = BanksComponent.create(banks);
@@ -54,11 +54,11 @@ public class IssuerBankSection implements ImportSection {
         issuerBankInfoRow = Row.create()
                 .addColumn(Column.span6()
                         .appendChild(issuerAddressTextBox
-                                .setLeftAddon(Icons.ALL.location_on())
+                                .addLeftAddOn(Icons.ALL.location_on())
                                 .setReadOnly(true)))
                 .addColumn(Column.span6()
                         .appendChild(issuerContactPersonTextBox
-                                .setLeftAddon(Icons.ALL.person())
+                                .addLeftAddOn(Icons.ALL.person())
                                 .setReadOnly(true))
                 ).hide();
 
@@ -76,7 +76,7 @@ public class IssuerBankSection implements ImportSection {
                         .addColumn(Column.span6().appendChild(issuerBanksSelect))
                         .addColumn(Column.span6().appendChild(issuerBranchesSelect))
                 ).appendChild(issuerBankInfoRow)
-                .asElement());
+                .element());
 
         issuerBanksSelect.focus();
 
@@ -104,7 +104,7 @@ public class IssuerBankSection implements ImportSection {
     }
 
     @Override
-    public HTMLElement asElement() {
+    public HTMLElement element() {
         return element;
     }
 }

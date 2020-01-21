@@ -31,8 +31,10 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
     private Card sampleCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("sliders", this.getClass()).asElement());
+    protected HTMLDivElement init() {
+        element = div().element();
+
+        element.appendChild(LinkToSourceCode.create("sliders", this.getClass()).element());
         basicCard = Card.create("BASIC SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
         sampleCard = Card.create("SLIDERS EXAMPLE");
@@ -41,18 +43,14 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
         initColors();
         initExample();
 
-        element.appendChild(BlockHeader.create("SLIDERS").asElement());
-        element.appendChild(basicCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBasic()).asElement());
-        element.appendChild(colorsSlidersCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initColors()).asElement());
-        element.appendChild(sampleCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initExample()).asElement());
-    }
+        element.appendChild(BlockHeader.create("SLIDERS").element());
+        element.appendChild(basicCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBasic()).element());
+        element.appendChild(colorsSlidersCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initColors()).element());
+        element.appendChild(sampleCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initExample()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = div().asElement();
         return element;
     }
 
@@ -91,9 +89,9 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                 .appendChild(Row.create()
                         .addColumn(Column.span12()
                                 .appendChild(BlockHeader.create("SLIDERS CAN HAVE MIN AND MAX VALUES")
-                                        .appendChild(span().textContent("Min: 100").asElement())
-                                        .appendChild(br().asElement())
-                                        .appendChild(span().textContent("Max: 200").asElement())
+                                        .appendChild(span().textContent("Min: 100").element())
+                                        .appendChild(br().element())
+                                        .appendChild(span().textContent("Max: 200").element())
                                 ))
                 )
                 .appendChild(Row.create()
@@ -110,11 +108,11 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                 .appendChild(Row.create()
                         .addColumn(Column.span12()
                                 .appendChild(BlockHeader.create("SLIDERS WITH STEP")
-                                        .appendChild(span().textContent("MIN: 100").asElement())
-                                        .appendChild(br().asElement())
-                                        .appendChild(span().textContent("MAX: 200").asElement())
-                                        .appendChild(br().asElement())
-                                        .appendChild(span().textContent("STEP: 10").asElement())
+                                        .appendChild(span().textContent("MIN: 100").element())
+                                        .appendChild(br().element())
+                                        .appendChild(span().textContent("MAX: 200").element())
+                                        .appendChild(br().element())
+                                        .appendChild(span().textContent("STEP: 10").element())
                                 ))
                 )
                 .appendChild(Row.create()
@@ -131,11 +129,11 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                 .appendChild(Row.create()
                         .addColumn(Column.span12()
                                 .appendChild(BlockHeader.create("SLIDERS WITH ANY STEP")
-                                        .appendChild(span().textContent("MIN: 100").asElement())
-                                        .appendChild(br().asElement())
-                                        .appendChild(span().textContent("MAX: 200").asElement())
-                                        .appendChild(br().asElement())
-                                        .appendChild(span().textContent("STEP: ANY").asElement())
+                                        .appendChild(span().textContent("MIN: 100").element())
+                                        .appendChild(br().element())
+                                        .appendChild(span().textContent("MAX: 200").element())
+                                        .appendChild(br().element())
+                                        .appendChild(span().textContent("STEP: ANY").element())
                                 ))
                 )
                 .appendChild(Row.create()
@@ -186,7 +184,7 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
     private void initExample() {
         HTMLDivElement rgbColorsDiv = div()
                 .style("height: 190px;")
-                .asElement();
+                .element();
 
         Slider redSlider = Slider.create(255, 0)
                 .style()
@@ -251,8 +249,8 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                                         .addColumn(Column.span2().appendChild(h(5).textContent("B")))
                                         .addColumn(Column.span10().appendChild(blueTextBox))
                                 ))
-                        .asElement())
-                .asElement();
+                        .element())
+                .element();
 
         redSlider.addSlideHandler(value -> {
             updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);

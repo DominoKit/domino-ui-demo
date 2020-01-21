@@ -24,4 +24,4 @@ element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS","You can use the m
                     .setColor(Color.TEAL))
             .add(Preloader.create()
                     .setColor(Color.INDIGO)))
-    .asElement());
+    .element());

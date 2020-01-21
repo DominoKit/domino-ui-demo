@@ -2,8 +2,8 @@ HTMLDivElement well = div().css("sample-div")
     .add(div()
             .css("well")
             .textContent(SAMPLE_CONTENT)
-            .asElement())
-    .asElement();
+            .element())
+    .element();
 
 Collapsible collapsible = Collapsible.create(well);
 EventListener collapsibleListener = evt -> collapsible.toggleDisplay();
@@ -23,6 +23,6 @@ element.appendChild(Row.create()
                     .appendChild(button.builder()
                             .css(Styles.m_b_15).build()
                             .setBackground(Color.CYAN)
-                            .asElement())
+                            .element())
                     .appendChild(collapsible)))
-    .asElement());
+    .element());

@@ -52,9 +52,10 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
     private Card suggestBoxCard;
 
     @Override
-    protected void init(HTMLDivElement root) {
-        element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).asElement());
-        element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").asElement());
+    protected HTMLDivElement init() {
+        element = Elements.div().element();
+        element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).element());
+        element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").element());
 
         uploadCard = Card.create("FILE UPLOAD - DRAG & DROP OR WITH CLICK & CHOOSE");
         tagsInputCard = Card.create("TAGS INPUT");
@@ -64,17 +65,13 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
         initTagsInputExample();
         initSuggestBoxExample();
 
-        element.appendChild(uploadCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFileUploadExample()).asElement());
-        element.appendChild(tagsInputCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTagsInputExample()).asElement());
-        element.appendChild(suggestBoxCard.asElement());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSuggestBoxExample()).asElement());
-    }
+        element.appendChild(uploadCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFileUploadExample()).element());
+        element.appendChild(suggestBoxCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSuggestBoxExample()).element());
+        element.appendChild(tagsInputCard.element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initTagsInputExample()).element());
 
-    @Override
-    public HTMLDivElement createRoot() {
-        element = Elements.div().asElement();
         return element;
     }
 

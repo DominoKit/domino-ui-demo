@@ -21,10 +21,10 @@ public class CurrenciesComponent {
 
     public CurrenciesComponent() {
         currencySelect = Select.<CurrencyData>create("Currency")
-                .setLeftAddon(i().css("fas", "fa-money-bill-alt", "fa-lg"));
+                .addLeftAddOn(i().css("fas", "fa-money-bill-alt", "fa-lg"));
         amountField = numbersOnly(TextBox.create("Amount")
                 .setHelperText("Numbers only")
-                .setLeftAddon(Icons.ALL.attach_money()));
+                .addLeftAddOn(Icons.ALL.attach_money()));
 
         amountField.getInputElement().addEventListener("change", evt -> formatAmount(currencySelect.getSelectedOption()));
 
