@@ -16,7 +16,7 @@ import org.dominokit.domino.view.BaseElementView;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = FormSamplesProxy.class)
 public class FormSamplesViewImpl extends BaseElementView<HTMLDivElement> implements FormSamplesView, FormSamplesView.FormSamplesUIHandlers {

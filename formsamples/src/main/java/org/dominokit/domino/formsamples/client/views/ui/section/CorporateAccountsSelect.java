@@ -11,7 +11,7 @@ import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.IsCollapsible;
-import org.jboss.gwt.elemento.core.IsElement;
+import org.jboss.elemento.IsElement;
 
 public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollapsible<CorporateAccountsSelect> {
 

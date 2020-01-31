@@ -19,10 +19,10 @@ import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.view.BaseElementView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.small;
 
 @UiView(presentable = ProfileProxy.class)
 public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements ProfileView {

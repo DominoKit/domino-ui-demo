@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.media.MediaObject;
 import org.dominokit.domino.ui.utils.TextNode;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = MediaProxy.class)
 @SampleClass

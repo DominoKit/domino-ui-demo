@@ -20,15 +20,15 @@ import org.dominokit.domino.ui.icons.*;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.DominoDom;
-import org.jboss.gwt.elemento.core.InputType;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.jboss.elemento.InputType;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = MdiIconsProxy.class)
 public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements MdiIconsView {

@@ -21,7 +21,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 @UiView(presentable = FormsValidationsProxy.class)
 @SampleClass

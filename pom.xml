@@ -78,7 +78,7 @@
 
         <material.version>2.0</material.version>
         <vertx.version>3.8.1</vertx.version>
-        <elemento.version>0.9.6</elemento.version>
+        <elemento.version>1.0.0-rc1</elemento.version>
         <jackson.version>1.0-SNAPSHOT</jackson.version>
         <domino.history.version>1.0-rc.4-SNAPSHOT</domino.history.version>
     </properties>
@@ -111,18 +111,8 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>org.jboss.gwt.elemento</groupId>
+                <groupId>org.jboss.elemento</groupId>
                 <artifactId>elemento-core</artifactId>
-                <version>${elemento.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.gwt.elemento</groupId>
-                <artifactId>elemento-template-api</artifactId>
-                <version>${elemento.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jboss.gwt.elemento</groupId>
-                <artifactId>elemento-template-processor</artifactId>
                 <version>${elemento.version}</version>
             </dependency>
             <dependency>

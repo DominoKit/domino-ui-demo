@@ -2,7 +2,7 @@ package org.dominokit.domino.formsamples.client.views.ui.section;
 
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
-import org.jboss.gwt.elemento.core.IsElement;
+import org.jboss.elemento.IsElement;
 
 public interface ImportSection extends IsElement<HTMLElement> {
 

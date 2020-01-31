@@ -13,7 +13,7 @@ import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class ConfirmationInstructionsSection implements ImportSection {
     private SwitchButton chargesInstructionsRequiredSwitch;

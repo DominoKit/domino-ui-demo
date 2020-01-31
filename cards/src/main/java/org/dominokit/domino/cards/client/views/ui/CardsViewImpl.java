@@ -18,7 +18,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 @UiView(presentable = CardsProxy.class)
 @SampleClass

@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.elemento.Elements.i;
 
 public class CurrenciesComponent {
 

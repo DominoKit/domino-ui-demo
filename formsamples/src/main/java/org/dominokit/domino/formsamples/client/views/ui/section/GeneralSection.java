@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import java.util.Date;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.DATE_PATTERN;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class GeneralSection implements ImportSection {
 

@@ -24,7 +24,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = ModalsProxy.class)
 @SampleClass

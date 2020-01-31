@@ -48,7 +48,7 @@ import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.style.Unit.in;
 import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = DatatableProxy.class)
 @SampleClass
@@ -66,7 +66,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         element.appendChild(BlockHeader.create("DATA TABLES", "For detailed demo code please visit: ")
                 .appendChild(a().attr("href", "https://github.com/DominoKit/domino-ui-demo/tree/master/datatable")
                         .attr("target", "_blank")
-                        .textContent("Data table demo source code").asElement())
+                        .textContent("Data table demo source code").element())
                 .element());
 
         basicTable();

@@ -17,7 +17,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = CarouselProxy.class)
 @SampleClass

@@ -19,7 +19,7 @@ import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = PopoverProxy.class)
 @SampleClass

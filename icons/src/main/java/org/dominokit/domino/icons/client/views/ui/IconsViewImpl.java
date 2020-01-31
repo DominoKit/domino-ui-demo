@@ -18,12 +18,12 @@ import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.DominoDom;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.timer.client.Timer;
-import org.jboss.gwt.elemento.core.InputType;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.jboss.elemento.InputType;
+import org.jboss.elemento.HtmlContentBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = IconsProxy.class)
 public class IconsViewImpl extends BaseDemoView<HTMLDivElement> implements IconsView {

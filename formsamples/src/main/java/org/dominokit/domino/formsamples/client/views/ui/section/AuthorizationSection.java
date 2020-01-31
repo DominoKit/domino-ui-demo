@@ -5,7 +5,7 @@ import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.style.Styles;
 
-import static org.jboss.gwt.elemento.core.Elements.p;
+import static org.jboss.elemento.Elements.p;
 
 public class AuthorizationSection implements ImportSection {
 

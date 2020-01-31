@@ -25,7 +25,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = BasicFormsProxy.class)
 @SampleClass

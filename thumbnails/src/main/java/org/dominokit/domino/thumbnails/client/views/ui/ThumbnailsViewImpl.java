@@ -19,7 +19,7 @@ import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.thumbnails.Thumbnail;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = ThumbnailsProxy.class)
 @SampleClass

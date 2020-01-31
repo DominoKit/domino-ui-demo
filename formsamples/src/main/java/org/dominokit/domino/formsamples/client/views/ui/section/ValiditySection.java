@@ -24,7 +24,7 @@ import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.is
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
 import static org.dominokit.domino.ui.grid.Column.span3;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class ValiditySection implements ImportSection {
 

@@ -17,8 +17,8 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.hr;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.hr;
 
 @UiView(presentable = SplitPanelProxy.class)
 @SampleClass

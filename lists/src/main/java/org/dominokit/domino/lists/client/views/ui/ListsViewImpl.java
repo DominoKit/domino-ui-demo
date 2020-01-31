@@ -18,7 +18,7 @@ import org.dominokit.domino.ui.lists.SimpleListGroup;
 import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 @UiView(presentable = ListsProxy.class)
 @SampleClass

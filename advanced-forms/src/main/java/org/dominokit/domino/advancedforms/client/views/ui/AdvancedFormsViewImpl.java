@@ -31,7 +31,7 @@ import org.dominokit.domino.ui.tag.TagsInput;
 import org.dominokit.domino.ui.tag.store.LocalTagsStore;
 import org.dominokit.domino.ui.upload.FileUpload;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,7 +39,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.function.Consumer;
 
-import static org.jboss.gwt.elemento.core.Elements.br;
+import static org.jboss.elemento.Elements.br;
 
 @UiView(presentable = AdvancedFormsProxy.class)
 @SampleClass

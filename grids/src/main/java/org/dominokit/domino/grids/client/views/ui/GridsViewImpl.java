@@ -16,8 +16,8 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.span;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.span;
 
 @UiView(presentable = GridsProxy.class)
 @SampleClass

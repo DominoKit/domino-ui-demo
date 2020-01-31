@@ -2,17 +2,28 @@ package org.dominokit.domino.themes.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLUListElement;
-import org.jboss.gwt.elemento.core.IsElement;
-import org.jboss.gwt.elemento.template.DataElement;
-import org.jboss.gwt.elemento.template.Templated;
+import org.jboss.elemento.IsElement;
 
-@Templated
-public abstract class ThemesPanel implements IsElement<HTMLDivElement> {
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.ul;
 
-    @DataElement
-    HTMLUListElement themesContainer;
+public class ThemesPanel implements IsElement<HTMLDivElement> {
+
+    private final HTMLDivElement root;
+    final HTMLUListElement themesContainer;
+
+    public ThemesPanel() {
+        this.root = div().style("position: relative; width: auto")
+                .add(themesContainer = ul().css("demo-choose-skin").style("width: auto").element())
+                .element();
+    }
+
+    @Override
+    public HTMLDivElement element() {
+        return root;
+    }
 
     static ThemesPanel create() {
-        return new Templated_ThemesPanel();
+        return new ThemesPanel();
     }
 }

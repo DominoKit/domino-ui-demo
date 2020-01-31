@@ -19,7 +19,7 @@ import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.math.BigDecimal;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = InputFieldsProxy.class)
 @SampleClass

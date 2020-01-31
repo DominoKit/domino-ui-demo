@@ -8,8 +8,8 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.uidemoserver.client.presenters.UiDemoServerProxy;
 import org.dominokit.domino.uidemoserver.client.views.UiDemoServerView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.h;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
 
 @UiView(presentable = UiDemoServerProxy.class)
 public class UiDemoServerViewImpl extends BaseElementView<HTMLDivElement> implements UiDemoServerView{

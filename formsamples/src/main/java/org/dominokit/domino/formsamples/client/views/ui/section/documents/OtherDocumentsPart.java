@@ -23,7 +23,7 @@ import org.dominokit.domino.ui.style.Styles;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
 import static org.dominokit.domino.ui.grid.Column.*;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class OtherDocumentsPart implements ImportSection {
 

@@ -9,7 +9,7 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = SetupProxy.class)
 public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements SetupView{

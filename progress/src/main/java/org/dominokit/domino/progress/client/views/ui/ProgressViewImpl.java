@@ -17,7 +17,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.timer.client.Timer;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = ProgressProxy.class)
 @SampleClass
