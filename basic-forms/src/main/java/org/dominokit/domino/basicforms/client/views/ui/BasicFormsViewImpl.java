@@ -12,18 +12,15 @@ import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
-import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.gwt.elemento.core.Elements.*;
 
@@ -423,7 +420,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span6()
-                        .appendChild(Select.create()
+                        .appendChild(Select.<String>create()
                                 .appendChild(SelectOption.create("nothing", "-- please select --"))
                                 .appendChild(SelectOption.create("value10", "10"))
                                 .appendChild(SelectOption.create("value20", "20"))
@@ -470,7 +467,9 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span12()
                         .appendChild(Select.<String>create("Country")
-                                .appendChild(SelectOption.create("nothing", "-- please select --"))
+                                .appendChild(SelectOption.create("nothing", "-- please select --")
+                                    .setExcludeFromSearchResults(true)
+                                )
                                 .appendChild(SelectOption.create("USA", "America (USA)"))
                                 .appendChild(SelectOption.create("ARG", "Argentina"))
                                 .appendChild(SelectOption.create("BRA", "Brazil"))
