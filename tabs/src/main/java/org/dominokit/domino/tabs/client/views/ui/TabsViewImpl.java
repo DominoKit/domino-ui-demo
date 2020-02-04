@@ -23,8 +23,8 @@ import org.dominokit.domino.ui.tabs.*;
 import org.dominokit.domino.ui.utils.DominoElement;
 
 import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.gwt.elemento.core.Elements.b;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.b;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = TabsProxy.class)
 @SampleClass

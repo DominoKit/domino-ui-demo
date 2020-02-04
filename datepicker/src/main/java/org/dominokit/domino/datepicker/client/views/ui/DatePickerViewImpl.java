@@ -31,7 +31,7 @@ import org.gwtproject.i18n.shared.DateTimeFormatInfo;
 
 import java.util.Date;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = DatePickerProxy.class)
 @SampleClass

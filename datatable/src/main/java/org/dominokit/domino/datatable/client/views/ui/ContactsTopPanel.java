@@ -11,11 +11,11 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.infoboxes.InfoBox;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
-import org.jboss.gwt.elemento.core.IsElement;
+import org.jboss.elemento.IsElement;
 
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.elemento.Elements.i;
 
 public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
 

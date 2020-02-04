@@ -24,10 +24,10 @@ import org.dominokit.domino.view.BaseElementView;
 import org.dominokit.domino.view.slots.AppendElementSlot;
 import org.dominokit.domino.view.slots.SingleElementSlot;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-import org.jboss.gwt.elemento.core.EventType;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.jboss.elemento.EventType;
+import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = LayoutProxy.class)
 public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {

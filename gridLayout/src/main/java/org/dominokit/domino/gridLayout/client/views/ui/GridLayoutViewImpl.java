@@ -19,7 +19,7 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = GridLayoutProxy.class)
 public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements GridLayoutView {

@@ -10,7 +10,7 @@ import org.dominokit.domino.ui.header.BlockHeader;
 
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class DocumentsRequiredSection implements ImportSection {
 

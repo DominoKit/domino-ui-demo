@@ -14,10 +14,10 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
-import org.jboss.gwt.elemento.core.IsElement;
+import org.jboss.elemento.IsElement;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.img;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.img;
 
 public class ContactDetails implements IsElement<HTMLElement> {
 

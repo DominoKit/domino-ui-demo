@@ -22,9 +22,9 @@ import org.dominokit.domino.ui.style.Styles;
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.NUMBERS_ONLY;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.i;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.small;
 
 public class DraftsPart implements ImportSection {
 

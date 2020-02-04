@@ -16,7 +16,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class CertificateOfOriginPart implements ImportSection {
 

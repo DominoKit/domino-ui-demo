@@ -19,8 +19,8 @@ import org.dominokit.domino.ui.pagination.ScrollingPagination;
 import org.dominokit.domino.ui.pagination.SimplePagination;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.gwt.elemento.core.Elements.b;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.b;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = PaginationProxy.class)
 @SampleClass

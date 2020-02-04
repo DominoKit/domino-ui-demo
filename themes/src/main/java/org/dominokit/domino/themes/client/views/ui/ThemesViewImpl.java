@@ -10,7 +10,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.themes.Theme;
 import org.dominokit.domino.view.BaseElementView;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 import java.util.HashMap;
 import java.util.Map;

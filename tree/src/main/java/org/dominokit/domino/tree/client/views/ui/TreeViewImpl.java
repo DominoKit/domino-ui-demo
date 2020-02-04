@@ -31,7 +31,7 @@ import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = TreeProxy.class)
 @SampleClass

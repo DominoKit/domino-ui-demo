@@ -24,7 +24,7 @@ import org.dominokit.domino.ui.style.WavesSupport;
 import org.dominokit.domino.waves.client.presenters.WavesProxy;
 import org.dominokit.domino.waves.client.views.WavesView;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = WavesProxy.class)
 @SampleClass

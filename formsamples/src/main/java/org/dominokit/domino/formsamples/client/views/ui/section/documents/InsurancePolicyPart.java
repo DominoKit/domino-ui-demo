@@ -16,7 +16,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
 import static org.dominokit.domino.ui.grid.Column.span6;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class InsurancePolicyPart implements ImportSection {
 

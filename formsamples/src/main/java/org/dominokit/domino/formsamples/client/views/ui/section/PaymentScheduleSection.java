@@ -28,9 +28,9 @@ import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.ma
 import static org.dominokit.domino.ui.grid.Column.span12;
 import static org.dominokit.domino.ui.grid.Column.span4;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.i;
-import static org.jboss.gwt.elemento.core.Elements.small;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
+import static org.jboss.elemento.Elements.small;
 
 public class PaymentScheduleSection implements ImportSection {
 

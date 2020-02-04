@@ -7,7 +7,7 @@ import org.dominokit.domino.ui.icons.Icons;
 
 import java.util.List;
 
-import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.elemento.Elements.i;
 
 public class CountriesComponent {
 

@@ -8,9 +8,9 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Style;
-import org.jboss.gwt.elemento.core.IsElement;
+import org.jboss.elemento.IsElement;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
+import static org.jboss.elemento.Elements.a;
 
 public class TableStyleActions implements IsElement<HTMLElement> {
 

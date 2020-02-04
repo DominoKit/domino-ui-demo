@@ -22,8 +22,8 @@ import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import java.util.List;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.i;
 
 public class CreditAmountAndToleranceSection implements ImportSection {
     private TextBox amountFieldTextBox;

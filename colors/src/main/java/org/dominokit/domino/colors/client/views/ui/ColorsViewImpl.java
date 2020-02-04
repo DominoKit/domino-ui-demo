@@ -12,10 +12,10 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.jboss.gwt.elemento.core.builder.HtmlContentBuilder;
+import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = ColorsProxy.class)
 public class ColorsViewImpl extends BaseDemoView<HTMLDivElement> implements ColorsView {

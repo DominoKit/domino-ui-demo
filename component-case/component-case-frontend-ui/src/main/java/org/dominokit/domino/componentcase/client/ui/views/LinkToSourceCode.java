@@ -7,8 +7,8 @@ import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
-import static org.jboss.gwt.elemento.core.Elements.span;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.span;
 
 public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSourceCode> {
 

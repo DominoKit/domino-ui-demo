@@ -12,7 +12,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Style;
 
-import static org.jboss.gwt.elemento.core.Elements.i;
+import static org.jboss.elemento.Elements.i;
 
 public class ContactUiUtils {
 

@@ -16,9 +16,9 @@ import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
+import static org.jboss.elemento.Elements.a;
 
 @UiView(presentable = AlertsProxy.class)
 @SampleClass

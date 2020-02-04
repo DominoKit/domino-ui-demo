@@ -18,8 +18,8 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 
-import static org.jboss.gwt.elemento.core.Elements.a;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = NotificationsProxy.class)
 @SampleClass

@@ -29,7 +29,7 @@ import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
 
 import java.util.Date;
 
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = TimePickerProxy.class)
 @SampleClass

@@ -20,7 +20,7 @@ import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 import org.gwtproject.timer.client.Timer;
-import org.jboss.gwt.elemento.core.Elements;
+import org.jboss.elemento.Elements;
 
 @UiView(presentable = LoadersProxy.class)
 @SampleClass

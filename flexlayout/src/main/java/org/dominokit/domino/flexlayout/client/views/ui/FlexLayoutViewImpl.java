@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
-import static org.jboss.gwt.elemento.core.Elements.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = FlexLayoutProxy.class)
 @SampleClass

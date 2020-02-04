@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
-import static org.jboss.gwt.elemento.core.Elements.div;
+import static org.jboss.elemento.Elements.div;
 
 public class PackingListPart implements ImportSection {
 

@@ -14,15 +14,15 @@ import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoDom;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-import org.jboss.gwt.elemento.core.Elements;
-import org.jboss.gwt.elemento.core.InputType;
+import org.jboss.elemento.Elements;
+import org.jboss.elemento.InputType;
 
 import java.util.function.Consumer;
 
 import static java.util.Objects.isNull;
 import static org.dominokit.domino.ui.code.Code.block;
-import static org.jboss.gwt.elemento.core.Elements.input;
-import static org.jboss.gwt.elemento.core.Elements.pre;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.pre;
 
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
