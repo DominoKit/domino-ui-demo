@@ -468,7 +468,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .addColumn(Column.span12()
                         .appendChild(Select.<String>create("Country")
                                 .appendChild(SelectOption.create("nothing", "-- please select --")
-                                    .setExcludeFromSearchResults(true)
+                                        .setExcludeFromSearchResults(true)
                                 )
                                 .appendChild(SelectOption.create("USA", "America (USA)"))
                                 .appendChild(SelectOption.create("ARG", "Argentina"))

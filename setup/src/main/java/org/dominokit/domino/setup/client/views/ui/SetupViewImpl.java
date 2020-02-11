@@ -7,6 +7,7 @@ import org.dominokit.domino.setup.client.presenters.SetupProxy;
 import org.dominokit.domino.setup.client.views.SetupView;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.utils.DominoElement;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import static org.jboss.elemento.Elements.div;
@@ -18,7 +19,7 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
 
     @Override
     protected HTMLDivElement init() {
-
+        element = DominoElement.div().element();
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").element());
 

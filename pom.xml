@@ -236,8 +236,8 @@
 <!--                                <codeserverArg>PRETTY</codeserverArg>-->
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
-                                <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                                <!--<codeserverArg>172.20.202.67</codeserverArg>-->
+                                <codeserverArg>-bindAddress</codeserverArg>
+                                <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
@@ -282,8 +282,8 @@
                                 <codeserverArg>PRETTY</codeserverArg>
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
-                                <!--<codeserverArg>-bindAddress</codeserverArg>-->
-                                <!--<codeserverArg>172.20.202.67</codeserverArg>-->
+                                <codeserverArg>-bindAddress</codeserverArg>
+                                <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>

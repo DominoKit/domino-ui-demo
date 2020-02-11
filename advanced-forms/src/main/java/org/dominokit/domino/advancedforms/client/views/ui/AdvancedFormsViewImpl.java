@@ -85,10 +85,8 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 .appendChild(Elements.h(3).textContent("Drop files here or click to upload."))
                 .appendChild(Elements.em().textContent("(This is just a demo upload. Selected files are not actually uploaded)"))
                 .onAddFile(fileItem -> {
+                    Notification.createInfo("File added. "+fileItem.getFileName()).show();
 
-                    if(!fileItem.getFile().name.contains("IMG")){
-                        fileItem.remove();
-                    }
                     fileItem.addErrorHandler(request -> {
                         Notification.createDanger("Error while uploading " + request.responseText).show();
                     });
