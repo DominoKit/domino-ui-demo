@@ -4,7 +4,7 @@ public class Contact {
 
     private int index;
     private boolean active;
-    private String balance;
+    private Double balance;
     private String picture;
     private short age;
     private EyeColor eyeColor;
@@ -51,11 +51,11 @@ public class Contact {
         this.active = active;
     }
 
-    public String getBalance() {
+    public Double getBalance() {
         return balance;
     }
 
-    public void setBalance(String balance) {
+    public void setBalance(Double balance) {
         this.balance = balance;
     }
 
@@ -139,8 +139,8 @@ public class Contact {
         this.about = about;
     }
 
-    public double getDoubleBalance() {
-        return Double.parseDouble(this.getBalance().replace(",", "").replace("$", ""));
+    public String stringBalance(){
+        return "$"+balance;
     }
 
     @Override

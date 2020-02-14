@@ -42,6 +42,7 @@ import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -71,6 +72,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         basicTable();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
+
+        editableTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
 
         basicFixedTable();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
@@ -262,6 +266,182 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+            table.load();
+        });
+    }
+
+    @SampleMethod
+    private void editableTable() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("edit_save", "")
+                        .styleCell(element -> element.style.setProperty("vertical-align", "top"))
+                        .setCellRenderer(cell -> Icons.ALL.pencil_mdi()
+                                .clickable()
+                                .setTooltip("Edit")
+                                .addClickListener(evt -> cell.getTableRow().edit())
+                                .element()
+                        )
+                        .setEditableCellRenderer(cell -> Icons.ALL.content_save_mdi()
+                                .clickable()
+                                .setTooltip("Save")
+                                .addClickListener(evt -> {
+                                    if(cell.getTableRow().validate().isValid()) {
+                                        cell.getTableRow().save();
+                                    }
+                                })
+                                .element())
+                )
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                )
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        })
+                        .setEditableCellRenderer(cell -> {
+                            CheckBox activeCheckBox = CheckBox.create("")
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .value(cell.getRecord().isActive());
+                            cell.setDirtyRecordHandler(dirty -> dirty.setActive(activeCheckBox.getValue()));
+                            return activeCheckBox.element();
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                        .setEditableCellRenderer(cell -> {
+                            TextBox nameBox = TextBox.create()
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .value(cell.getRecord().getName());
+
+                            cell.setDirtyRecordHandler(dirty -> dirty.setName(nameBox.getValue()));
+                            return nameBox.element();
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .setEditableCellRenderer(cell -> {
+                            Select<Gender> genderSelect = Select.<Gender>create()
+                                    .styler(style -> style.setMinWidth("100px"))
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .appendChild(SelectOption.create(Gender.male, "Male", "Male"))
+                                    .appendChild(SelectOption.create(Gender.female, "female", "female"))
+                                    .value(cell.getRecord().getGender());
+                            cell.setDirtyRecordHandler(dirty -> dirty.setGender(genderSelect.getValue()));
+                            return genderSelect.element();
+                        })
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .setEditableCellRenderer(cell -> {
+                            Select<EyeColor> eyeColorSelect = Select.<EyeColor>create()
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .appendChild(SelectOption.create(EyeColor.blue, "Blue", "Blue"))
+                                    .appendChild(SelectOption.create(EyeColor.brown, "Brown", "Brown"))
+                                    .appendChild(SelectOption.create(EyeColor.green, "Green", "Green"))
+                                    .value(cell.getRecord().getEyeColor());
+                            cell.setDirtyRecordHandler(dirty -> dirty.setEyeColor(eyeColorSelect.getValue()));
+                            return eyeColorSelect.element();
+                        })
+                        .textAlign("center"))
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> ContactUiUtils.getBalanceElement(cell.getRecord()))
+                        .setEditableCellRenderer(cell -> {
+                            DoubleBox doubleBox = DoubleBox.create()
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .setMaxValue(4000.0)
+                                    .value(cell.getRecord().getBalance());
+                            cell.setDirtyRecordHandler(dirty -> dirty.setBalance(doubleBox.getValue().doubleValue()));
+                            cell.setCellValidator(doubleBox::validate);
+                            return doubleBox.element();
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                        .setEditableCellRenderer(cell -> {
+                            EmailBox emailBox = EmailBox.create()
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .value(cell.getRecord().getEmail());
+                            cell.setDirtyRecordHandler(dirty -> dirty.setEmail(emailBox.getValue()));
+                            return emailBox.element();
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                        .setEditableCellRenderer(cell -> {
+                            TelephoneBox telephoneBox = TelephoneBox.create()
+                                    .setFieldStyle(FieldStyle.ROUNDED)
+                                    .value(cell.getRecord().getPhone());
+
+                            cell.setDirtyRecordHandler(dirty -> dirty.setPhone(telephoneBox.getValue()));
+                            return telephoneBox.element();
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .styleCell(element -> {
+                            element.style.setProperty("vertical-align", "top");
+                        })
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        })
+                )
+                .setDirtyRecordHandlers(Contact::new, (originalRecord, dirtyRecord) -> {
+                    originalRecord.setActive(dirtyRecord.isActive());
+                    originalRecord.setPhone(dirtyRecord.getPhone());
+                    originalRecord.setEmail(dirtyRecord.getEmail());
+                    originalRecord.setBalance(dirtyRecord.getBalance());
+                    originalRecord.setEyeColor(dirtyRecord.getEyeColor());
+                    originalRecord.setGender(dirtyRecord.getGender());
+                    originalRecord.setName(dirtyRecord.getName());
+                });
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("EDITABLE TABLE", "Render cells as editable fields and save the row data.")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)

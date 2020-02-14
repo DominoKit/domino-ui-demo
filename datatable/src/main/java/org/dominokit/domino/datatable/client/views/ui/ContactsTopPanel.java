@@ -108,8 +108,8 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
         totalItemsCount.getValueElement().setTextContent(contacts.size() + "");
         long males = contacts.stream().filter(c -> Gender.male.equals(c.getGender())).count();
         long females = contacts.stream().filter(c -> Gender.female.equals(c.getGender())).count();
-        long goods = contacts.stream().filter(c -> c.getDoubleBalance() >= 2000).count();
-        long bads = contacts.stream().filter(c -> c.getDoubleBalance() < 2000).count();
+        long goods = contacts.stream().filter(c -> c.getBalance() >= 2000).count();
+        long bads = contacts.stream().filter(c -> c.getBalance() < 2000).count();
         this.femaleCount.getValueElement().setTextContent(females + "");
         this.maleCount.getValueElement().setTextContent(males + "");
         this.goodCount.getValueElement().setTextContent(goods + "");

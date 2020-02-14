@@ -2,7 +2,7 @@
   {
     "index": 0,
     "active": false,
-    "balance": "$1,721.26",
+    "balance": "1721.26",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 24,
     "eyeColor": "green",
@@ -17,7 +17,7 @@
   {
     "index": 1,
     "active": false,
-    "balance": "$3,946.10",
+    "balance": "3946.10",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "brown",
@@ -32,7 +32,7 @@
   {
     "index": 2,
     "active": true,
-    "balance": "$1,474.42",
+    "balance": "1474.42",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 31,
     "eyeColor": "green",
@@ -47,7 +47,7 @@
   {
     "index": 3,
     "active": false,
-    "balance": "$2,550.47",
+    "balance": "2550.47",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 35,
     "eyeColor": "brown",
@@ -62,7 +62,7 @@
   {
     "index": 4,
     "active": true,
-    "balance": "$407.62",
+    "balance": "407.62",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 24,
     "eyeColor": "green",
@@ -77,7 +77,7 @@
   {
     "index": 5,
     "active": false,
-    "balance": "$3,228.42",
+    "balance": "3228.42",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "brown",
@@ -92,7 +92,7 @@
   {
     "index": 6,
     "active": false,
-    "balance": "$2,377.26",
+    "balance": "2377.26",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 21,
     "eyeColor": "brown",
@@ -107,7 +107,7 @@
   {
     "index": 7,
     "active": false,
-    "balance": "$3,387.41",
+    "balance": "3387.41",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "green",
@@ -122,7 +122,7 @@
   {
     "index": 8,
     "active": true,
-    "balance": "$1,706.90",
+    "balance": "1706.90",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "green",
@@ -137,7 +137,7 @@
   {
     "index": 9,
     "active": false,
-    "balance": "$3,783.45",
+    "balance": "3783.45",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "blue",
@@ -152,7 +152,7 @@
   {
     "index": 10,
     "active": false,
-    "balance": "$2,496.66",
+    "balance": "2496.66",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 33,
     "eyeColor": "blue",
@@ -167,7 +167,7 @@
   {
     "index": 11,
     "active": false,
-    "balance": "$1,425.09",
+    "balance": "1425.09",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "blue",
@@ -182,7 +182,7 @@
   {
     "index": 12,
     "active": true,
-    "balance": "$1,945.95",
+    "balance": "1945.95",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "brown",
@@ -197,7 +197,7 @@
   {
     "index": 13,
     "active": false,
-    "balance": "$1,632.72",
+    "balance": "1632.72",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "blue",
@@ -212,7 +212,7 @@
   {
     "index": 14,
     "active": false,
-    "balance": "$3,660.09",
+    "balance": "3660.09",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "brown",
@@ -227,7 +227,7 @@
   {
     "index": 15,
     "active": false,
-    "balance": "$2,889.11",
+    "balance": "2889.11",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "green",
@@ -242,7 +242,7 @@
   {
     "index": 16,
     "active": false,
-    "balance": "$3,734.53",
+    "balance": "3734.53",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "blue",
@@ -257,7 +257,7 @@
   {
     "index": 17,
     "active": true,
-    "balance": "$2,189.62",
+    "balance": "2189.62",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 34,
     "eyeColor": "brown",
@@ -272,7 +272,7 @@
   {
     "index": 18,
     "active": true,
-    "balance": "$1,855.21",
+    "balance": "1855.21",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 33,
     "eyeColor": "green",
@@ -287,7 +287,7 @@
   {
     "index": 19,
     "active": false,
-    "balance": "$2,274.81",
+    "balance": "2274.81",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "green",
@@ -302,7 +302,7 @@
   {
     "index": 20,
     "active": true,
-    "balance": "$2,524.74",
+    "balance": "2524.74",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 38,
     "eyeColor": "blue",
@@ -317,7 +317,7 @@
   {
     "index": 21,
     "active": false,
-    "balance": "$2,218.08",
+    "balance": "2218.08",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "green",
@@ -332,7 +332,7 @@
   {
     "index": 22,
     "active": false,
-    "balance": "$2,436.88",
+    "balance": "2436.88",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 24,
     "eyeColor": "blue",
@@ -347,7 +347,7 @@
   {
     "index": 23,
     "active": false,
-    "balance": "$3,899.36",
+    "balance": "3899.36",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "blue",
@@ -362,7 +362,7 @@
   {
     "index": 24,
     "active": true,
-    "balance": "$3,949.49",
+    "balance": "3949.49",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 22,
     "eyeColor": "green",
@@ -377,7 +377,7 @@
   {
     "index": 25,
     "active": true,
-    "balance": "$3,937.65",
+    "balance": "3937.65",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 38,
     "eyeColor": "green",
@@ -392,7 +392,7 @@
   {
     "index": 26,
     "active": true,
-    "balance": "$1,976.88",
+    "balance": "1976.88",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 27,
     "eyeColor": "green",
@@ -407,7 +407,7 @@
   {
     "index": 27,
     "active": false,
-    "balance": "$1,118.76",
+    "balance": "1118.76",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 34,
     "eyeColor": "green",
@@ -422,7 +422,7 @@
   {
     "index": 28,
     "active": true,
-    "balance": "$2,890.64",
+    "balance": "2890.64",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "green",
@@ -437,7 +437,7 @@
   {
     "index": 29,
     "active": true,
-    "balance": "$2,970.61",
+    "balance": "2970.61",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 21,
     "eyeColor": "blue",
@@ -452,7 +452,7 @@
   {
     "index": 30,
     "active": true,
-    "balance": "$2,158.43",
+    "balance": "2158.43",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "green",
@@ -467,7 +467,7 @@
   {
     "index": 31,
     "active": false,
-    "balance": "$1,960.53",
+    "balance": "1960.53",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 23,
     "eyeColor": "brown",
@@ -482,7 +482,7 @@
   {
     "index": 32,
     "active": false,
-    "balance": "$2,154.58",
+    "balance": "2154.58",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 32,
     "eyeColor": "brown",
@@ -497,7 +497,7 @@
   {
     "index": 33,
     "active": false,
-    "balance": "$1,478.84",
+    "balance": "1478.84",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "green",
@@ -512,7 +512,7 @@
   {
     "index": 34,
     "active": true,
-    "balance": "$1,747.12",
+    "balance": "1747.12",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 38,
     "eyeColor": "green",
@@ -527,7 +527,7 @@
   {
     "index": 35,
     "active": true,
-    "balance": "$3,909.27",
+    "balance": "3909.27",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 21,
     "eyeColor": "green",
@@ -542,7 +542,7 @@
   {
     "index": 36,
     "active": false,
-    "balance": "$2,199.06",
+    "balance": "2199.06",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 34,
     "eyeColor": "brown",
@@ -557,7 +557,7 @@
   {
     "index": 37,
     "active": true,
-    "balance": "$3,816.64",
+    "balance": "3816.64",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 34,
     "eyeColor": "brown",
@@ -572,7 +572,7 @@
   {
     "index": 38,
     "active": false,
-    "balance": "$2,890.97",
+    "balance": "2890.97",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 36,
     "eyeColor": "brown",
@@ -587,7 +587,7 @@
   {
     "index": 39,
     "active": true,
-    "balance": "$3,272.51",
+    "balance": "3272.51",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "brown",
@@ -602,7 +602,7 @@
   {
     "index": 40,
     "active": false,
-    "balance": "$2,614.41",
+    "balance": "2614.41",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 36,
     "eyeColor": "green",
@@ -617,7 +617,7 @@
   {
     "index": 41,
     "active": true,
-    "balance": "$3,091.66",
+    "balance": "3091.66",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "green",
@@ -632,7 +632,7 @@
   {
     "index": 42,
     "active": true,
-    "balance": "$3,926.34",
+    "balance": "3926.34",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "blue",
@@ -647,7 +647,7 @@
   {
     "index": 43,
     "active": true,
-    "balance": "$3,143.52",
+    "balance": "3143.52",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "brown",
@@ -662,7 +662,7 @@
   {
     "index": 44,
     "active": false,
-    "balance": "$3,825.38",
+    "balance": "3825.38",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "green",
@@ -677,7 +677,7 @@
   {
     "index": 45,
     "active": true,
-    "balance": "$2,719.69",
+    "balance": "2719.69",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 31,
     "eyeColor": "green",
@@ -692,7 +692,7 @@
   {
     "index": 46,
     "active": true,
-    "balance": "$3,075.69",
+    "balance": "3075.69",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 33,
     "eyeColor": "blue",
@@ -707,7 +707,7 @@
   {
     "index": 47,
     "active": false,
-    "balance": "$2,617.04",
+    "balance": "2617.04",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "brown",
@@ -722,7 +722,7 @@
   {
     "index": 48,
     "active": false,
-    "balance": "$3,947.37",
+    "balance": "3947.37",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "blue",
@@ -737,7 +737,7 @@
   {
     "index": 49,
     "active": false,
-    "balance": "$2,187.96",
+    "balance": "2187.96",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "green",
@@ -752,7 +752,7 @@
   {
     "index": 50,
     "active": true,
-    "balance": "$3,153.89",
+    "balance": "3153.89",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 35,
     "eyeColor": "brown",
@@ -767,7 +767,7 @@
   {
     "index": 51,
     "active": false,
-    "balance": "$2,895.58",
+    "balance": "2895.58",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "brown",
@@ -782,7 +782,7 @@
   {
     "index": 52,
     "active": false,
-    "balance": "$3,642.80",
+    "balance": "3642.80",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 21,
     "eyeColor": "blue",
@@ -797,7 +797,7 @@
   {
     "index": 53,
     "active": true,
-    "balance": "$1,727.17",
+    "balance": "1727.17",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 33,
     "eyeColor": "brown",
@@ -812,7 +812,7 @@
   {
     "index": 54,
     "active": true,
-    "balance": "$3,353.75",
+    "balance": "3353.75",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 38,
     "eyeColor": "brown",
@@ -827,7 +827,7 @@
   {
     "index": 55,
     "active": false,
-    "balance": "$3,979.40",
+    "balance": "3979.40",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "brown",
@@ -842,7 +842,7 @@
   {
     "index": 56,
     "active": true,
-    "balance": "$2,732.11",
+    "balance": "2732.11",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 30,
     "eyeColor": "green",
@@ -857,7 +857,7 @@
   {
     "index": 57,
     "active": false,
-    "balance": "$3,809.48",
+    "balance": "3809.48",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 23,
     "eyeColor": "green",
@@ -872,7 +872,7 @@
   {
     "index": 58,
     "active": false,
-    "balance": "$2,892.99",
+    "balance": "2892.99",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "blue",
@@ -887,7 +887,7 @@
   {
     "index": 59,
     "active": true,
-    "balance": "$2,473.45",
+    "balance": "2473.45",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 27,
     "eyeColor": "green",
@@ -902,7 +902,7 @@
   {
     "index": 60,
     "active": false,
-    "balance": "$1,923.72",
+    "balance": "1923.72",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 27,
     "eyeColor": "green",
@@ -917,7 +917,7 @@
   {
     "index": 61,
     "active": false,
-    "balance": "$3,880.67",
+    "balance": "3880.67",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 38,
     "eyeColor": "blue",
@@ -932,7 +932,7 @@
   {
     "index": 62,
     "active": false,
-    "balance": "$2,318.35",
+    "balance": "2318.35",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 24,
     "eyeColor": "green",
@@ -947,7 +947,7 @@
   {
     "index": 63,
     "active": false,
-    "balance": "$1,111.59",
+    "balance": "1111.59",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 36,
     "eyeColor": "brown",
@@ -962,7 +962,7 @@
   {
     "index": 64,
     "active": true,
-    "balance": "$2,236.67",
+    "balance": "2236.67",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 33,
     "eyeColor": "blue",
@@ -977,7 +977,7 @@
   {
     "index": 65,
     "active": true,
-    "balance": "$1,149.31",
+    "balance": "1149.31",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 39,
     "eyeColor": "green",
@@ -992,7 +992,7 @@
   {
     "index": 66,
     "active": true,
-    "balance": "$3,224.38",
+    "balance": "3224.38",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 23,
     "eyeColor": "blue",
@@ -1007,7 +1007,7 @@
   {
     "index": 67,
     "active": true,
-    "balance": "$1,021.86",
+    "balance": "1021.86",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 27,
     "eyeColor": "brown",
@@ -1022,7 +1022,7 @@
   {
     "index": 68,
     "active": true,
-    "balance": "$2,981.29",
+    "balance": "2981.29",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "blue",
@@ -1037,7 +1037,7 @@
   {
     "index": 69,
     "active": false,
-    "balance": "$2,758.77",
+    "balance": "2758.77",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 39,
     "eyeColor": "blue",
@@ -1052,7 +1052,7 @@
   {
     "index": 70,
     "active": false,
-    "balance": "$1,878.29",
+    "balance": "1878.29",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "green",
@@ -1067,7 +1067,7 @@
   {
     "index": 71,
     "active": false,
-    "balance": "$2,438.70",
+    "balance": "2438.70",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 35,
     "eyeColor": "blue",
@@ -1082,7 +1082,7 @@
   {
     "index": 72,
     "active": false,
-    "balance": "$2,296.47",
+    "balance": "2296.47",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 31,
     "eyeColor": "green",
@@ -1097,7 +1097,7 @@
   {
     "index": 73,
     "active": false,
-    "balance": "$1,610.31",
+    "balance": "1610.31",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "green",
@@ -1112,7 +1112,7 @@
   {
     "index": 74,
     "active": false,
-    "balance": "$1,044.78",
+    "balance": "1044.78",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 30,
     "eyeColor": "brown",
@@ -1127,7 +1127,7 @@
   {
     "index": 75,
     "active": false,
-    "balance": "$1,325.78",
+    "balance": "1325.78",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 35,
     "eyeColor": "green",
@@ -1142,7 +1142,7 @@
   {
     "index": 76,
     "active": false,
-    "balance": "$2,497.53",
+    "balance": "2497.53",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 34,
     "eyeColor": "brown",
@@ -1157,7 +1157,7 @@
   {
     "index": 77,
     "active": false,
-    "balance": "$3,217.30",
+    "balance": "3217.30",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "blue",
@@ -1172,7 +1172,7 @@
   {
     "index": 78,
     "active": true,
-    "balance": "$3,891.86",
+    "balance": "3891.86",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "brown",
@@ -1187,7 +1187,7 @@
   {
     "index": 79,
     "active": true,
-    "balance": "$1,133.99",
+    "balance": "1133.99",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 30,
     "eyeColor": "brown",
@@ -1202,7 +1202,7 @@
   {
     "index": 80,
     "active": true,
-    "balance": "$2,913.71",
+    "balance": "2913.71",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "green",
@@ -1217,7 +1217,7 @@
   {
     "index": 81,
     "active": false,
-    "balance": "$3,095.85",
+    "balance": "3095.85",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "green",
@@ -1232,7 +1232,7 @@
   {
     "index": 82,
     "active": true,
-    "balance": "$3,858.78",
+    "balance": "3858.78",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 39,
     "eyeColor": "brown",
@@ -1247,7 +1247,7 @@
   {
     "index": 83,
     "active": false,
-    "balance": "$2,048.51",
+    "balance": "2048.51",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 28,
     "eyeColor": "green",
@@ -1262,7 +1262,7 @@
   {
     "index": 84,
     "active": false,
-    "balance": "$1,756.17",
+    "balance": "1756.17",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 22,
     "eyeColor": "brown",
@@ -1277,7 +1277,7 @@
   {
     "index": 85,
     "active": true,
-    "balance": "$1,354.28",
+    "balance": "1354.28",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 22,
     "eyeColor": "green",
@@ -1292,7 +1292,7 @@
   {
     "index": 86,
     "active": false,
-    "balance": "$1,873.60",
+    "balance": "1873.60",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "brown",
@@ -1307,7 +1307,7 @@
   {
     "index": 87,
     "active": false,
-    "balance": "$2,196.45",
+    "balance": "2196.45",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 23,
     "eyeColor": "blue",
@@ -1322,7 +1322,7 @@
   {
     "index": 88,
     "active": true,
-    "balance": "$2,246.38",
+    "balance": "2246.38",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 32,
     "eyeColor": "brown",
@@ -1337,7 +1337,7 @@
   {
     "index": 89,
     "active": true,
-    "balance": "$3,524.02",
+    "balance": "3524.02",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 23,
     "eyeColor": "green",
@@ -1352,7 +1352,7 @@
   {
     "index": 90,
     "active": true,
-    "balance": "$3,336.15",
+    "balance": "3336.15",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "brown",
@@ -1367,7 +1367,7 @@
   {
     "index": 91,
     "active": true,
-    "balance": "$1,303.65",
+    "balance": "1303.65",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 22,
     "eyeColor": "blue",
@@ -1382,7 +1382,7 @@
   {
     "index": 92,
     "active": true,
-    "balance": "$3,679.75",
+    "balance": "3679.75",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 30,
     "eyeColor": "brown",
@@ -1397,7 +1397,7 @@
   {
     "index": 93,
     "active": true,
-    "balance": "$1,127.72",
+    "balance": "1127.72",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 37,
     "eyeColor": "blue",
@@ -1412,7 +1412,7 @@
   {
     "index": 94,
     "active": false,
-    "balance": "$2,024.08",
+    "balance": "2024.08",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "green",
@@ -1427,7 +1427,7 @@
   {
     "index": 95,
     "active": false,
-    "balance": "$1,337.21",
+    "balance": "1337.21",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 40,
     "eyeColor": "blue",
@@ -1442,7 +1442,7 @@
   {
     "index": 96,
     "active": false,
-    "balance": "$2,320.95",
+    "balance": "2320.95",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 20,
     "eyeColor": "brown",
@@ -1457,7 +1457,7 @@
   {
     "index": 97,
     "active": true,
-    "balance": "$1,917.76",
+    "balance": "1917.76",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 30,
     "eyeColor": "green",
@@ -1472,7 +1472,7 @@
   {
     "index": 98,
     "active": false,
-    "balance": "$3,641.58",
+    "balance": "3641.58",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 25,
     "eyeColor": "green",
@@ -1487,7 +1487,7 @@
   {
     "index": 99,
     "active": true,
-    "balance": "$3,197.37",
+    "balance": "3197.37",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 29,
     "eyeColor": "green",
@@ -1502,7 +1502,7 @@
   {
     "index": 100,
     "active": false,
-    "balance": "$2,682.77",
+    "balance": "2682.77",
     "picture": "https://randomuser.me/api/portraits/med/gender/index.jpg",
     "age": 26,
     "eyeColor": "blue",

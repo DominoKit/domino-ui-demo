@@ -50,7 +50,7 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
     }
 
     private boolean filterByEyeBalance(Contact contact, String searchText) {
-        return contact.getDoubleBalance() == Double.parseDouble(searchText);
+        return contact.getBalance() == Double.parseDouble(searchText);
     }
 
     private boolean filterByEyeColor(Contact contact, String searchText) {
@@ -62,7 +62,7 @@ public class ContactSearchFilter implements SearchFilter<Contact> {
     }
 
     private boolean filterByStatus(Contact contact, String searchValue) {
-        return contact.isActive() == Boolean.valueOf(searchValue);
+        return contact.isActive() == Boolean.parseBoolean(searchValue);
     }
 
     private boolean foundBySearch(Contact contact, Filter searchFilter) {

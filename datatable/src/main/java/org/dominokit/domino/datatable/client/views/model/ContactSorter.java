@@ -19,9 +19,9 @@ public class ContactSorter implements RecordsSorter<Contact> {
 
         if ("balance".equals(sortBy)) {
             if (SortDirection.ASC.equals(sortDirection)) {
-                return Comparator.comparingDouble(Contact::getDoubleBalance);
+                return Comparator.comparingDouble(Contact::getBalance);
             } else {
-                return (o1, o2) -> Double.compare(o2.getDoubleBalance(), o1.getDoubleBalance());
+                return (o1, o2) -> Double.compare(o2.getBalance(), o1.getBalance());
             }
         }
 
