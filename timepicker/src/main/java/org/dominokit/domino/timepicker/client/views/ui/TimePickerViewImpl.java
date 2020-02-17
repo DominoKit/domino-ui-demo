@@ -25,7 +25,7 @@ import org.dominokit.domino.ui.timepicker.ClockStyle;
 import org.dominokit.domino.ui.timepicker.TimeBox;
 import org.dominokit.domino.ui.timepicker.TimePicker;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_de;
+import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_de;
 
 import java.util.Date;
 

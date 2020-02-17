@@ -25,9 +25,9 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.gwtproject.i18n.client.impl.cldr.DateTimeFormatInfoImpl_fr;
 import org.gwtproject.i18n.shared.DateTimeFormat;
-import org.gwtproject.i18n.shared.DateTimeFormatInfo;
+import org.gwtproject.i18n.shared.cldr.DateTimeFormatInfo;
+import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_fr;
 
 import java.util.Date;
 
