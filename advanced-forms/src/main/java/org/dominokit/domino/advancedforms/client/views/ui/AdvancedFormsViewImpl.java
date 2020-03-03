@@ -18,6 +18,8 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.dropdown.DropDownMenu;
+import org.dominokit.domino.ui.dropdown.DropdownAction;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
@@ -53,6 +55,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
 
     @Override
     protected HTMLDivElement init() {
+
         element = Elements.div().element();
         element.appendChild(LinkToSourceCode.create("advanced-forms", AdvancedFormsViewImpl.class).element());
         element.appendChild(BlockHeader.create("ADVANCED FORM ELEMENTS").element());

@@ -37,6 +37,20 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
 
     @Override
     protected HTMLDivElement init() {
+
+        element.appendChild(Button.create("1").addClickListener(evt -> {
+            MessageDialog.createMessage("TEST", () -> {}).success().open();
+        }).element());
+
+        element.appendChild(Button.create("2").addClickListener(evt -> {
+            MessageDialog.createMessage("Success Operation",
+                    "Well done! You successfully read this important alert message.",
+                    () -> Notification.create("Dialog closed").show())
+                    .success()
+                    .open();
+        }).element());
+
+
         element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).element());
         element.appendChild(BlockHeader.create("DIALOGS").element());
 

@@ -15,9 +15,6 @@
  */
 package org.dominokit.domino.demo;
 
-import com.google.gwt.core.client.GWT;
-import com.google.gwt.resources.client.ClientBundle;
-import com.google.gwt.resources.client.ExternalTextResource;
 import com.squareup.javapoet.*;
 import com.sun.source.tree.MethodTree;
 import com.sun.source.util.Trees;
@@ -27,10 +24,11 @@ import org.dominokit.domino.apt.commons.AbstractProcessingStep;
 import org.dominokit.domino.apt.commons.DominoTypeBuilder;
 import org.dominokit.domino.apt.commons.ExceptionUtil;
 import org.dominokit.domino.apt.commons.StepBuilder;
+import org.gwtproject.resources.client.ClientBundle;
+import org.gwtproject.resources.client.ExternalTextResource;
 
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.*;
-import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import java.io.IOException;
