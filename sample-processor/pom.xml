@@ -15,6 +15,10 @@
 
     <dependencies>
         <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-user</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.dominokit</groupId>
             <artifactId>domino-apt-commons</artifactId>
             <version>1.0-rc.4-SNAPSHOT</version>
