@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modules>
         <module>ui-demo-frontend</module>
         <module>ui-demo-backend</module>
@@ -60,8 +61,8 @@
         <module>mdiicons</module>
         <module>sample-processor</module>
         <module>sample-annotations</module>
-    <module>ui-demo-server</module>
-  </modules>
+        <module>ui-demo-server</module>
+    </modules>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.dominokit.domino</groupId>
@@ -227,24 +228,28 @@
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
                             <compilerArgs>
-<!--                                <compilerArg>-style</compilerArg>-->
-<!--                                <compilerArg>PRETTY</compilerArg>-->
+                                <!--                                <compilerArg>-style</compilerArg>-->
+                                <!--                                <compilerArg>PRETTY</compilerArg>-->
                                 <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>
-<!--                                <codeserverArg>-style</codeserverArg>-->
-<!--                                <codeserverArg>PRETTY</codeserverArg>-->
+                                <!--                                <codeserverArg>-style</codeserverArg>-->
+                                <!--                                <codeserverArg>PRETTY</codeserverArg>-->
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
                                 <codeserverArg>-bindAddress</codeserverArg>
                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java</codeserverArg>
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
+                                </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations</codeserverArg>
+                                <codeserverArg>
+                                    /mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
+                                </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources</codeserverArg>
+                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
+                                </codeserverArg>
                             </codeserverArgs>
                         </configuration>
                     </plugin>

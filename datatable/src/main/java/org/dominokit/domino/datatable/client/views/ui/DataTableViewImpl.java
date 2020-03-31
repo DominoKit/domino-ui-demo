@@ -6,6 +6,7 @@ import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.Node;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -949,13 +950,19 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             return TextNode.of("");
                         }));
 
+        ColumnHeaderFilterPlugin<Contact> contactColumnHeaderFilterPlugin = ColumnHeaderFilterPlugin.<Contact>create();
         tableConfig
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                        .addActionElement(dataTable -> Icons.ALL.show_chart()
+                                .clickable()
+                                .addClickListener(evt -> contactColumnHeaderFilterPlugin.getFiltersRowElement()
+                                        .toggleDisplay())
+                                .element())
                 )
-                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
+                .addPlugin(contactColumnHeaderFilterPlugin
                         .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
                         .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
                         .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())

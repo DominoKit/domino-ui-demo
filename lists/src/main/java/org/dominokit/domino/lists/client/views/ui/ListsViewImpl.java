@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.lists.client.presenters.ListsProxy;
@@ -12,19 +13,30 @@ import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.lists.SimpleListGroup;
-import org.dominokit.domino.ui.lists.SimpleListItem;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.uidemoserver.shared.model.Contact;
+import org.dominokit.domino.uidemoserver.shared.services.DemoServiceFactory;
 import org.jboss.elemento.Elements;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static org.dominokit.domino.ui.style.Styles.*;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = ListsProxy.class)
 @SampleClass
 public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements ListsView {
-
-    private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
 
     private HTMLDivElement element = Elements.div().element();
 
@@ -34,132 +46,196 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
         element.appendChild(LinkToSourceCode.create("lists", this.getClass()).element());
         element.appendChild(BlockHeader.create("LIST GROUPS").element());
 
-        basicListsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicListsSample())
-                .element());
-
-        selectableSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.selectableSample())
-                .element());
-
-        coloredSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.coloredSample())
-                .element());
-
-        richItems();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.richItems())
+        listSample();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listSample())
                 .element());
 
         return element;
     }
 
     @SampleMethod
-    private void basicListsSample() {
+    private void listSample() {
 
-        element.appendChild(Row.create()
-                .addColumn(Column.span6()
-                        .appendChild(Card.create("BASIC EXAMPLES", "The most basic list group is simply an unordered list with list items, and the proper classes.")
-                                .appendChild(SimpleListGroup.create()
-                                        .appendChild("Cras justo odio")
-                                        .appendChild("Dapibus ac facilisis in")
-                                        .appendChild("Morbi leo risus")
-                                        .appendChild("Porta ac consectetur ac")
-                                        .appendChild("Vestibulum at eros")
-                                        .element()).element()))
-                .addColumn(Column.span6()
-                        .appendChild(Card.create("BADGES", "Add the badges component to any list group item and it will automatically be positioned on the right.")
-                                .appendChild(SimpleListGroup.create()
-                                        .appendChild(SimpleListItem.create("Cras justo odio")
-                                                .appendChild(Badge.create("14 new")
-                                                        .setBackground(Color.PINK)))
-                                        .appendChild(SimpleListItem.create("Dapibus ac facilisis in")
-                                                .appendChild(Badge.create("99 unread")
-                                                        .setBackground(Color.CYAN)))
-                                        .appendChild(SimpleListItem.create("Morbi leo risus")
-                                                .appendChild(Badge.create("99+")
-                                                        .setBackground(Color.TEAL)))
-                                        .appendChild(SimpleListItem.create("Porta ac consectetur ac")
-                                                .appendChild(Badge.create("21")
-                                                        .setBackground(Color.ORANGE)))
-                                        .appendChild(SimpleListItem.create("Vestibulum at eros")
-                                                .appendChild(Badge.create("Pending")
-                                                        .setBackground(Color.PURPLE))))))
+        ListGroup<Contact> singleSelectList = ListGroup.create();
+        ListGroup<Contact> multiSelectList = ListGroup.create();
+        element.appendChild(Card.create()
+                .appendChild(Row.create()
+                        .appendChild(Column.span6()
+                                .appendChild(h(4).textContent("Single select"))
+                                .appendChild(singleSelectList
+                                        .setItemRenderer((listGroup, item) -> {
+                                            item
+                                                    .setSelectable(true)
+                                                    .appendChild(FlexLayout
+                                                            .create()
+                                                            .apply(self -> {
+                                                                if (!item.getValue().isActive()) {
+                                                                    self.css(Color.GREY_LIGHTEN_4.getBackground());
+                                                                }
+                                                            })
+                                                            .appendChild(FlexItem.create()
+                                                                    .styler(style -> style.setWidth("5px"))
+                                                                    .css(ContactUiUtils.getColor(item.getValue()).getBackground())
+                                                            )
+
+                                                            .appendChild(FlexItem.create()
+                                                                    .appendChild(DominoElement.of(img(ContactUiUtils.getAvatarUrl(item.getValue())))
+                                                                            .apply(self -> {
+                                                                                if (!item.getValue().isActive()) {
+                                                                                    self.style().setProperty("filter", "grayscale(100%)");
+                                                                                }
+                                                                            })
+                                                                    )
+                                                            )
+                                                            .appendChild(FlexItem.create()
+                                                                    .setFlexGrow(1)
+                                                                    .css(padding_5)
+                                                                    .styler(style -> style
+                                                                            .setLineHeight("62px")
+                                                                    )
+                                                                    .appendChild(TextNode.of(item.getValue().getName()))
+                                                            )
+                                                            .appendChild(FlexItem.create()
+                                                                    .styler(style -> style.setLineHeight("43px"))
+                                                                    .css(padding_10)
+                                                                    .appendChild(Badge
+                                                                            .create(item.getValue().getBalance() + "")
+                                                                            .setBackground(ContactUiUtils.getBalanceColor(item.getValue()).color())
+                                                                    )
+                                                            )
+
+                                                            .appendChild(FlexItem.create()
+                                                                    .css(p_l_10, p_r_15)
+                                                                    .styler(style -> style
+                                                                            .setLineHeight("62px")
+                                                                            .setPaddingTop("3px")
+                                                                    )
+                                                                    .appendChild(ContactUiUtils.getGenderElement(item.getValue()))
+                                                            )
+                                                    )
+                                                    .setDisabled(!item.getValue().isActive())
+                                                    .onSelectionChange((item1, selected) -> {
+                                                        if (selected) {
+                                                            item.css(Theme.currentTheme.getScheme().color().getBackground());
+                                                        } else {
+                                                            item.removeCss(Theme.currentTheme.getScheme().color().getBackground());
+                                                        }
+                                                    });
+                                        })
+                                )
+                        )
+                        .appendChild(Column.span6()
+                                .appendChild(h(4).textContent("Multi select"))
+                                .appendChild(multiSelectList
+                                        .setMultiSelect(true)
+                                        .setItemRenderer((listGroup, item) -> {
+                                            item
+                                                    .setSelectable(true)
+                                                    .appendChild(FlexLayout
+                                                            .create()
+                                                            .apply(self -> {
+                                                                if (!item.getValue().isActive()) {
+                                                                    self.css(Color.GREY_LIGHTEN_4.getBackground());
+                                                                }
+                                                            })
+                                                            .appendChild(FlexItem.create()
+                                                                    .styler(style -> style.setWidth("5px"))
+                                                                    .css(ContactUiUtils.getColor(item.getValue()).getBackground())
+                                                            )
+
+                                                            .appendChild(FlexItem.create()
+                                                                    .appendChild(DominoElement.of(img(ContactUiUtils.getAvatarUrl(item.getValue())))
+                                                                            .apply(self -> {
+                                                                                if (!item.getValue().isActive()) {
+                                                                                    self.style().setProperty("filter", "grayscale(100%)");
+                                                                                }
+                                                                            })
+                                                                    )
+                                                            )
+                                                            .appendChild(FlexItem.create()
+                                                                    .setFlexGrow(1)
+                                                                    .css(padding_5)
+                                                                    .styler(style -> style
+                                                                            .setLineHeight("62px")
+                                                                    )
+                                                                    .appendChild(TextNode.of(item.getValue().getName()))
+                                                            )
+                                                            .appendChild(FlexItem.create()
+                                                                    .styler(style -> style.setLineHeight("43px"))
+                                                                    .css(padding_10)
+                                                                    .appendChild(Badge
+                                                                            .create(item.getValue().getBalance() + "")
+                                                                            .setBackground(ContactUiUtils.getBalanceColor(item.getValue()).color())
+                                                                    )
+                                                            )
+
+                                                            .appendChild(FlexItem.create()
+                                                                    .css(p_l_10, p_r_15)
+                                                                    .styler(style -> style
+                                                                            .setLineHeight("62px")
+                                                                            .setPaddingTop("3px")
+                                                                    )
+                                                                    .appendChild(ContactUiUtils.getGenderElement(item.getValue()))
+                                                            )
+                                                    )
+                                                    .setDisabled(!item.getValue().isActive())
+                                                    .onSelectionChange((item1, selected) -> {
+                                                        if (selected) {
+                                                            item.css(Theme.currentTheme.getScheme().color().getBackground());
+                                                        } else {
+                                                            item.removeCss(Theme.currentTheme.getScheme().color().getBackground());
+                                                        }
+                                                    });
+                                        })
+                                )
+                        ))
                 .element());
 
 
-
+        Random random = new Random();
+        int i = random.nextInt(100);
+        DemoServiceFactory.INSTANCE
+                .list()
+                .onSuccess(items -> {
+                    singleSelectList.setItems(items.subList(i, i + 10));
+                    multiSelectList.setItems(items.subList(i, i + 10));
+                })
+                .onFailed(failedResponse -> {
+                })
+                .send();
     }
 
-    @SampleMethod
-    private void selectableSample() {
-        ListGroup<String> listGroup = ListGroup.create();
-        listGroup
-                .multiSelect()
-                .appendChild(listGroup.createItem("Value1", "Cras justo odio").select())
-                .appendChild(listGroup.createItem("Value2", "Dapibus ac facilisis in"))
-                .appendChild(listGroup.createItem("Value3", "Morbi leo risus"))
-                .appendChild(listGroup.createItem("Value4", "Porta ac consectetur ac"))
-                .appendChild(listGroup.createItem("Value5", "Vestibulum at eros"));
-
-        ListGroup<String> disabledItems = ListGroup.create();
-        disabledItems
-                .appendChild(disabledItems.createItem("Value1", "Cras justo odio").disable())
-                .appendChild(disabledItems.createItem("Value2", "Dapibus ac facilisis in").select())
-                .appendChild(disabledItems.createItem("Value3", "Morbi leo risus").disable())
-                .appendChild(disabledItems.createItem("Value4", "Porta ac consectetur ac"))
-                .appendChild(disabledItems.createItem("Value5", "Vestibulum at eros"));
-
-        element.appendChild(Row.create()
-                .addColumn(Column.span6().appendChild(Card.create("SELECTABLE ITEMS", "Use ListGroup instead of SimpleListGroup to make items selectable, use multiSelect to select more than one item.")
-                        .appendChild(listGroup)))
-                .addColumn(Column.span6().appendChild(Card.create("DISABLED ITEMS", "List group items can be disabled and prevented from being selected.")
-                        .appendChild(disabledItems)))
-                .element());
-
-
+    private Color getStatusColor(Status status) {
+        if (Status.ONLINE.equals(status)) {
+            return Color.GREEN;
+        } else if (Status.AWAY.equals(status)) {
+            return Color.AMBER;
+        } else if (Status.DO_NOT_DISTURB.equals(status)) {
+            return Color.RED;
+        } else {
+            return Color.GREY;
+        }
     }
 
-    @SampleMethod
-    private void coloredSample() {
-        ListGroup<String> contextualGroup = ListGroup.create();
-        contextualGroup
-                .appendChild(contextualGroup.createItem("Value1", "Cras justo odio").select().success())
-                .appendChild(contextualGroup.createItem("Value2", "Dapibus ac facilisis in").info())
-                .appendChild(contextualGroup.createItem("Value3", "Morbi leo risus").warning())
-                .appendChild(contextualGroup.createItem("Value4", "Porta ac consectetur ac").error())
-                .appendChild(contextualGroup.createItem("Value5", "Vestibulum at eros"));
-
-        ListGroup<String> coloredGroup = ListGroup.create();
-        coloredGroup
-                .appendChild(coloredGroup.createItem("Value1", "Cras justo odio").disable().setBackground(Color.PINK))
-                .appendChild(coloredGroup.createItem("Value2", "Dapibus ac facilisis in").setBackground(Color.TEAL))
-                .appendChild(coloredGroup.createItem("Value3", "Morbi leo risus").setBackground(Color.LIGHT_GREEN))
-                .appendChild(coloredGroup.createItem("Value4", "Porta ac consectetur ac").setBackground(Color.AMBER))
-                .appendChild(coloredGroup.createItem("Value5", "Vestibulum at eros").setBackground(Color.DEEP_PURPLE));
-
-        element.appendChild(Row.create()
-                .addColumn(Column.span6().appendChild(Card.create("CONTEXTUAL CLASSES", "Use contextual classes to style list items.")
-                        .appendChild(contextualGroup)))
-                .addColumn(Column.span6().appendChild(Card.create("MATERIAL DESIGN COLORS", "Use Material design background colors to style list items.")
-                        .appendChild(coloredGroup)))
-                .element());
-
-
+    private List<Person> createList(int size) {
+        List<Person> collect = IntStream.range(0, size)
+                .mapToObj(i -> new Person(i, "name-" + i, randomStatus(i)))
+                .collect(Collectors.toList());
+        return collect;
     }
 
-    @SampleMethod
-    private void richItems() {
-        ListGroup<String> listGroup = ListGroup.create();
-        listGroup
-                .appendChild(listGroup.createItem("value1", SAMPLE_CONTENT).setHeading("Cras justo odio"))
-                .appendChild(listGroup.createItem("value2", SAMPLE_CONTENT).setHeading("Dapibus ac facilisis in"))
-                .appendChild(listGroup.createItem("value3", SAMPLE_CONTENT).setHeading("Morbi leo risus"))
-                .appendChild(listGroup.createItem("value4", SAMPLE_CONTENT).setHeading("Porta ac consectetur ac").select())
-                .appendChild(listGroup.createItem("value5", SAMPLE_CONTENT).setHeading("Vestibulum at eros"));
-
-        element.appendChild(Card.create("RICH ITEMS", "Add rich items with header and description.")
-                .appendChild(listGroup).element());
-
-
+    private Status randomStatus(int seed) {
+        Random random = new Random(seed);
+        int i = random.nextInt(100);
+        if (i < 25) {
+            return Status.ONLINE;
+        } else if (i < 50) {
+            return Status.AWAY;
+        } else if (i < 75) {
+            return Status.DO_NOT_DISTURB;
+        } else {
+            return Status.OFFLINE;
+        }
     }
+
 }

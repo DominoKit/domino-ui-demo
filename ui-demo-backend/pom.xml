@@ -46,6 +46,11 @@
             <groupId>org.dominokit.domino.logging</groupId>
             <artifactId>domino-log4j-server-logging</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.dominokit.domino</groupId>
+            <artifactId>ui-demo-server-backend</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

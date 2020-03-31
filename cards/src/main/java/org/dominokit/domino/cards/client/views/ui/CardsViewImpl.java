@@ -70,8 +70,6 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                                 .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                                 .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
-
-
     }
 
     @SampleMethod

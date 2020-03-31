@@ -1,5 +1,6 @@
 package org.dominokit.domino.tabs.client.views.ui;
 
+import elemental2.dom.Element;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -11,16 +12,20 @@ import org.dominokit.domino.tabs.client.presenters.TabsProxy;
 import org.dominokit.domino.tabs.client.views.TabsView;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Transition;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.datatable.ColumnConfig;
+import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.TableConfig;
+import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Elevation;
-import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.style.*;
 import org.dominokit.domino.ui.tabs.*;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.elemento.Elements.b;

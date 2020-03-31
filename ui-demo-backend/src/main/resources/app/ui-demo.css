@@ -338,7 +338,273 @@ pre.prettyprint {
     margin-top: 30px;
     margin-bottom: 30px;
 }
-
 .demo-icon-container .demo-google-material-icon .icon-name.demo-mdi-icon-name{
     top: -5px;
+}
+
+.button-demo ul {
+    padding-left: 0;
+}
+
+.button-demo ul li {
+    list-style: none;
+    padding-left: 0;
+    display: inline-block;
+    margin-right: 7px;
+}
+
+.button-demo ul li .btn {
+    display: block;
+    min-width: 175px;
+}
+
+.button-demo .btn {
+    margin-right: 8px;
+    margin-bottom: 13px;
+    min-width: 120px;
+}
+
+.demo-button-groups .btn-group {
+    margin-right: 10px;
+}
+
+.demo-button-toolbar .btn-toolbar {
+    float: left;
+    margin-right: 25px;
+}
+
+.demo-button-nesting > .btn-group {
+    margin-right: 15px;
+}
+
+.demo-checkbox label,
+.demo-radio-button label {
+    min-width: 150px;
+}
+
+.demo-knob-chart div {
+    margin-right: 15px;
+}
+
+.demo-switch .switch {
+    display: inline-block;
+    min-width: 170px;
+}
+
+.demo-switch .demo-switch-title {
+    min-width: 95px;
+    display: inline-block;
+}
+
+.demo-color-box {
+    padding: 15px 0;
+    text-align: center;
+    margin-bottom: 20px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+    -webkit-box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+    box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
+}
+
+.demo-color-box .color-name {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.demo-color-box .color-code,
+.demo-color-box .color-class-name {
+    font-size: 13px;
+}
+
+.demo-image-copyright {
+    text-align: right;
+    font-style: italic;
+    font-size: 12px;
+    color: #777;
+    margin: 5px 0 10px 0;
+}
+
+.demo-image-copyright a {
+    font-weight: bold;
+    color: #555 !important;
+}
+
+.demo-tagsinput-area {
+    margin-bottom: 50px !important;
+}
+
+.demo-icon-container .demo-google-material-icon {
+    margin-bottom: 5px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.demo-icon-container .demo-google-material-icon .icon-name {
+    position: relative;
+    top: -8px;
+    left: 7px;
+}
+
+.demo-icon-container .demo-google-material-icon .material-icons {
+    width: 24px;
+}
+
+.demo-icon-container .demo-google-material-icon .mdi {
+    width: 24px;
+}
+
+.demo-preloader .preloader {
+    margin-right: 10px;
+}
+
+.irs-demo {
+    margin-bottom: 40px;
+}
+
+.irs-demo .irs {
+    margin-top: 15px;
+}
+
+
+.demo-choose-skin {
+    list-style: none;
+    padding-left: 0;
+    overflow-y: hidden;
+}
+
+.demo-choose-skin li {
+    border-bottom: 1px solid #eee;
+    padding: 10px 10px 4px 10px;
+    position: relative;
+    cursor: pointer;
+}
+
+.demo-choose-skin li.active {
+    background-color: #eee;
+}
+
+.demo-choose-skin li.active:after {
+    font-family: 'Material Icons';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    content: '\E876';
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.demo-choose-skin li:hover {
+    background-color: #eee;
+}
+
+.demo-choose-skin li div {
+    width: 24px;
+    height: 24px;
+    display: inline-block;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    -ms-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.demo-choose-skin li span {
+    position: relative;
+    bottom: 7px;
+    left: 5px;
+}
+
+.demo-choose-skin .red {
+    background-color: #F44336;
+}
+
+.demo-choose-skin .pink {
+    background-color: #E91E63;
+}
+
+.demo-choose-skin .purple {
+    background-color: #9C27B0;
+}
+
+.demo-choose-skin .deep-purple {
+    background-color: #673AB7;
+}
+
+.demo-choose-skin .indigo {
+    background-color: #3F51B5;
+}
+
+.demo-choose-skin .blue {
+    background-color: #2196F3;
+}
+
+.demo-choose-skin .light-blue {
+    background-color: #03A9F4;
+}
+
+.demo-choose-skin .cyan {
+    background-color: #00BCD4;
+}
+
+.demo-choose-skin .teal {
+    background-color: #009688;
+}
+
+.demo-choose-skin .green {
+    background-color: #4CAF50;
+}
+
+.demo-choose-skin .light-green {
+    background-color: #8BC34A;
+}
+
+.demo-choose-skin .lime {
+    background-color: #CDDC39;
+}
+
+.demo-choose-skin .yellow {
+    background-color: #ffe821;
+}
+
+.demo-choose-skin .amber {
+    background-color: #FFC107;
+}
+
+.demo-choose-skin .orange {
+    background-color: #FF9800;
+}
+
+.demo-choose-skin .deep-orange {
+    background-color: #FF5722;
+}
+
+.demo-choose-skin .brown {
+    background-color: #795548;
+}
+
+.demo-choose-skin .grey {
+    background-color: #9E9E9E;
+}
+
+.demo-choose-skin .blue-grey {
+    background-color: #607D8B;
+}
+
+.demo-choose-skin .black {
+    background-color: #000000;
+}
+
+.demo-choose-skin .white {
+    background-color: #ffffff;
+}
+
+.d-patreon {
+    top: -3px;
+}
+
+.d-patreon img {
+    width: 150px;
+    height: 35px;
+    border-radius: 20px;
 }

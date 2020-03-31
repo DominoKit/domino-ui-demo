@@ -12,6 +12,8 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
@@ -19,6 +21,7 @@ import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
@@ -43,8 +46,36 @@ public class OtherDocumentsPart implements ImportSection {
         otherDocumentsDescriptionTextBox = createDescriptionField()
                 .groupBy(fieldsGrouping);
 
+        otherDocumentListGroupRow = Row.create()
+                .hide();
+
         otherDocumentsItemListGroup = ListGroup.<OtherDocumentsItem>create()
-                .setSelectable(false);
+                .setItemRenderer((listGroup, listItem) -> {
+                    Icon delete = Icons.ALL.delete()
+                            .clickable()
+                            .styler(style -> style.add(Styles.pull_right)
+                                    .setMarginTop("-3px")
+                                    .setMarginLeft("10px")
+                            )
+                            .addClickListener(evt -> {
+                                otherDocumentsItemListGroup.removeItem(listItem);
+                                if (otherDocumentsItemListGroup.getValues().size() == 0) {
+                                    otherDocumentListGroupRow.hide();
+                                }
+                            });
+
+                    listItem
+                            .appendChild(FlexLayout.create()
+                                    .css(Styles.padding_10)
+                                    .appendChild(FlexItem.create()
+                                            .appendChild(TextNode.of(listItem.getValue().getDescription()))
+                                            .setFlexGrow(1)
+                                    )
+                                    .appendChild(FlexItem.create().appendChild(delete))
+                                    .appendChild(FlexItem.create().appendChild(createCopiesBadge(listItem.getValue())))
+                            );
+
+                });
 
         Card otherDocumentsCard = Card.create("Other documents").setBodyPaddingTop("40px");
         otherDocumentsCard.getHeaderBar()
@@ -58,8 +89,7 @@ public class OtherDocumentsPart implements ImportSection {
                             }
                         }).element());
 
-        otherDocumentListGroupRow = Row.create()
-                .hide();
+
         element.appendChild(otherDocumentsCard
                 .appendChild(Row.create()
                         .addColumn(span4().appendChild(otherDocumentsCopiesTextBox.setRequired(true)))
@@ -76,28 +106,11 @@ public class OtherDocumentsPart implements ImportSection {
 
     private void addOtherDocumentItem() {
         OtherDocumentsItem item = makeNewOtherDocument();
-        ListItem<OtherDocumentsItem> listItem = otherDocumentsItemListGroup.addItem(item, item.getDescription());
-        Icon delete = Style.of(Icons.ALL.delete())
-                .add(Styles.pull_right)
-                .setMarginTop("-3px")
-                .setMarginLeft("10px").get();
-
-        delete.element()
-                .addEventListener("click", evt1 -> {
-                    otherDocumentsItemListGroup.removeItem(listItem);
-                    if (otherDocumentsItemListGroup.getAllValues().size() == 0) {
-                        otherDocumentListGroupRow.hide();
-                    }
-                });
+        otherDocumentsItemListGroup.addItem(item);
 
         if (otherDocumentListGroupRow.isHidden()) {
             otherDocumentListGroupRow.show();
         }
-
-        listItem
-                .appendChild(delete)
-                .appendChild(createCopiesBadge(item));
-
         otherDocumentsCopiesTextBox.clear();
         otherDocumentsCopiesTextBox.clearInvalid();
         otherDocumentsDescriptionTextBox.clear();
@@ -119,7 +132,7 @@ public class OtherDocumentsPart implements ImportSection {
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
         DocumentsRequired documentsRequired = letterOfCredit.getDocumentsRequired();
-        documentsRequired.setOtherDocuments(otherDocumentsItemListGroup.getAllValues());
+        documentsRequired.setOtherDocuments(otherDocumentsItemListGroup.getValues());
     }
 
     @Override

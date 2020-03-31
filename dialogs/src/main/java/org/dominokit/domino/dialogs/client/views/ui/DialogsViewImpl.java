@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.dialogs.client.presenters.DialogsProxy;
@@ -17,15 +18,19 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.dialogs.MessageDialog;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.lists.SimpleListGroup;
-import org.dominokit.domino.ui.lists.SimpleListItem;
+import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.utils.TextNode;
+import org.jboss.elemento.IsElement;
+
+import java.util.Arrays;
 
 import static org.jboss.elemento.Elements.div;
 
@@ -93,23 +98,57 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
         MessageDialog customContent = MessageDialog.createMessage("Custom content",
                 "You can customize the dialog content",
                 () -> Notification.create("Dialog closed").show())
-                .appendChild(SimpleListGroup.create()
-                        .appendChild(SimpleListItem.create("Cras justo odio")
-                                .appendChild(Badge.create("14 new").setBackground(Color.PINK)))
-
-                        .appendChild(SimpleListItem.create("Dapibus ac facilisis in")
-                                .appendChild(Badge.create("99 unread").setBackground(Color.CYAN)))
-
-                        .appendChild(SimpleListItem.create("Morbi leo risus")
-                                .appendChild(Badge.create("99+").setBackground(Color.TEAL)))
-
-                        .appendChild(SimpleListItem.create("Porta ac consectetur ac")
-                                .appendChild(Badge.create("21").setBackground(Color.ORANGE)))
-
-                        .appendChild(SimpleListItem.create("Vestibulum at eros")
-                                .appendChild(Badge.create("Pending").setBackground(Color.PURPLE)))
-                        .style()
-                        .setTextAlign("left"));
+                .appendChild(ListGroup.<IsElement<?>>create()
+                        .setItemRenderer((listGroup, listItem) -> listItem.appendChild(listItem.getValue()))
+                        .setItems(Arrays.asList(
+                                FlexLayout.create()
+                                        .css(Styles.padding_10)
+                                        .appendChild(FlexItem.create()
+                                                .setFlexGrow(1)
+                                                .appendChild(TextNode.of("Cras justo odio"))
+                                        )
+                                        .appendChild(FlexItem.create()
+                                                .appendChild(Badge.create("14 new").setBackground(Color.PINK))
+                                        ),
+                                FlexLayout.create()
+                                        .css(Styles.padding_10)
+                                        .appendChild(FlexItem.create()
+                                                .setFlexGrow(1)
+                                                .appendChild(TextNode.of("Dapibus ac facilisis in"))
+                                        )
+                                        .appendChild(FlexItem.create()
+                                                .appendChild(Badge.create("99 unread").setBackground(Color.PINK))
+                                        ),
+                                FlexLayout.create()
+                                        .css(Styles.padding_10)
+                                        .appendChild(FlexItem.create()
+                                                .setFlexGrow(1)
+                                                .appendChild(TextNode.of("Morbi leo risus"))
+                                        )
+                                        .appendChild(FlexItem.create()
+                                                .appendChild(Badge.create("99+").setBackground(Color.CYAN))
+                                        ),
+                                FlexLayout.create()
+                                        .css(Styles.padding_10)
+                                        .appendChild(FlexItem.create()
+                                                .setFlexGrow(1)
+                                                .appendChild(TextNode.of("Porta ac consectetur ac"))
+                                        )
+                                        .appendChild(FlexItem.create()
+                                                .appendChild(Badge.create("21").setBackground(Color.ORANGE))
+                                        ),
+                                FlexLayout.create()
+                                        .css(Styles.padding_10)
+                                        .appendChild(FlexItem.create()
+                                                .setFlexGrow(1)
+                                                .appendChild(TextNode.of("Vestibulum at eros"))
+                                        )
+                                        .appendChild(FlexItem.create()
+                                                .appendChild(Badge.create("Pending").setBackground(Color.PURPLE))
+                                        )
+                                )
+                        )
+                );
 
 
         element.appendChild(Card.create("EXAMPLES")

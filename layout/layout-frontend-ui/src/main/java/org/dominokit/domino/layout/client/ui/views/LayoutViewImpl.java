@@ -58,6 +58,13 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
                         .textContent("© 2018 Copyright DominoKit")).element();
 
+        layout.getTopBar()
+                .appendChild(li().add(a()
+                        .attr("href", "https://www.patreon.com/bePatron?u=30748189")
+                        .css("d-patreon")
+                        .add(img("/images/become_a_patron_button@2x.png"))
+                ));
+
         layout.showFooter();
         Row footerRow = createFooterRow();
 

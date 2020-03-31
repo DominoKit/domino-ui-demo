@@ -13,11 +13,17 @@ import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 import org.jboss.elemento.Elements;
+
+import java.util.Arrays;
 
 @UiView(presentable = BadgesProxy.class)
 @SampleClass
@@ -111,16 +117,44 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
     @SampleMethod
     private void listExample() {
 
-        ListGroup<String> listGroup = ListGroup.create();
-        listGroup.addItem("SomeValue").setText("Cras justo odio").appendChild(Badge.create("14 new").setBackground(Color.RED));
-        listGroup.addItem("SomeValue").setText("Dapibus ac facilisis in").appendChild(Badge.create("99 unread").setBackground(Color.CYAN));
-        listGroup.addItem("SomeValue").setText("Morbi leo risus").appendChild(Badge.create("99+").setBackground(Color.TEAL));
-        listGroup.addItem("SomeValue").setText("Porta ac consectetur ac").appendChild(Badge.create("21").setBackground(Color.ORANGE));
-        listGroup.addItem("SomeValue").setText("Vestibulum at eros").appendChild(Badge.create("18").setBackground(Color.PURPLE));
+        ListGroup<BadgeSample> listGroup = ListGroup.<BadgeSample>create()
+                .setItemRenderer((listGroup1, listItem) -> {
+                    listItem.appendChild(FlexLayout.create()
+                            .css(Styles.padding_10)
+                            .appendChild(FlexItem.create()
+                                    .setFlexGrow(1)
+                                    .appendChild(TextNode.of(listItem.getValue().desc))
+                            )
+                            .appendChild(FlexItem.create()
+                                    .appendChild(Badge.create(listItem.getValue().badgeText)
+                                            .setBackground(listItem.getValue().color)
+                                    )
+                            )
+                    );
+                })
+                .setItems(Arrays.asList(
+                        new BadgeSample("Cras justo odio", "14 new", Color.RED),
+                        new BadgeSample("Dapibus ac facilisis in", "99 unread", Color.CYAN),
+                        new BadgeSample("Morbi leo risus", "99+", Color.TEAL),
+                        new BadgeSample("Porta ac consectetur ac", "21", Color.ORANGE),
+                        new BadgeSample("Vestibulum at eros", "18", Color.PURPLE)
+                ));
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
                 .appendChild(listGroup)
                 .element());
+    }
+
+    private static class BadgeSample{
+        private final String desc;
+        private final String badgeText;
+        private final Color color;
+
+        public BadgeSample(String desc, String badgeText, Color color) {
+            this.desc = desc;
+            this.badgeText = badgeText;
+            this.color = color;
+        }
     }
 
 }

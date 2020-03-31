@@ -39,8 +39,6 @@
     </build>
 
     <modules>
-        <module>ui-demo-server-frontend</module>
-        <module>ui-demo-server-frontend-ui</module>
         <module>ui-demo-server-shared</module>
         <module>ui-demo-server-backend</module>
     </modules>

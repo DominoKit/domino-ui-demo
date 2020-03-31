@@ -235,7 +235,9 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         switchCard.appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"));
 
         switchCard.appendChild(Row.create()
-                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("OFF").setOnTitle("ON")))
+                .addColumn(Column.span3().appendChild(SwitchButton.create("Active", "off", "on")
+                        .addChangeHandler(value -> Notification.createInfo("test " +value).show())
+                        .setOffTitle("OFF").setOnTitle("ON")))
                 .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
 
         switchCard.appendChild(h(5).textContent("With Material Design Colors"));

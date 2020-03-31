@@ -720,7 +720,7 @@
                         <!--<compilerArg>PRETTY</compilerArg>-->
                         <compilerArg>-compileReport</compilerArg>
                         <compilerArg>-extra</compilerArg>
-                        <compilerArg>${build.directory}/gwt/extra</compilerArg>
+                        <compilerArg>${project.build.directory}/gwt/extra</compilerArg>
                     </compilerArgs>
                     <codeserverArgs>
                         <codeserverArg>-port</codeserverArg>

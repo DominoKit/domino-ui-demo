@@ -12,12 +12,15 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.NUMBERS_ONLY;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
@@ -48,7 +51,29 @@ public class DraftsPart implements ImportSection {
     public DraftsPart() {
 
         draftsListGroup = ListGroup.<DraftsItem>create()
-                .setSelectable(false);
+                .setItemRenderer((listGroup, listItem) -> {
+                    listItem.appendChild(FlexLayout.create()
+                            .css(Styles.padding_10)
+                            .appendChild(FlexItem.create()
+                                    .setFlexGrow(1)
+                                    .appendChild(TextNode.of(formattedDraftItem(listItem.getValue())))
+                            )
+                            .appendChild(FlexItem.create()
+                                    .appendChild(Icons.ALL.delete()
+                                            .clickable()
+                                            .styler(style -> style
+                                                    .setMarginTop("-3px")
+                                                    .setMarginLeft("10px")
+                                            )
+                                            .addClickListener(evt -> {
+                                                        listGroup.removeItem(listItem);
+                                                        revalidate();
+                                                    }
+                                            )
+                                    )
+                            )
+                    );
+                });
 
         draftDrawnOnSelect = Select.<String>create("Draft Drawn On")
                 .groupBy(fieldsGrouping)
@@ -134,7 +159,6 @@ public class DraftsPart implements ImportSection {
     }
 
 
-
     private Button initAddButton() {
         Button addDraftButton = Button.createDefault(Icons.ALL.add()).setContent("ADD").linkify()
                 .addClickListener(evt -> {
@@ -142,19 +166,7 @@ public class DraftsPart implements ImportSection {
 
                         DraftsItem draftsItem = makeDraftItem();
 
-                        ListItem<DraftsItem> draftsItemListItem = draftsListGroup.addItem(draftsItem, formattedDraftItem(draftsItem));
-
-                        Icon delete = Icons.ALL.delete()
-                                .style()
-                                .add(Styles.pull_right)
-                                .setMarginTop("-3px")
-                                .setMarginLeft("10px").get();
-
-                        delete.element().addEventListener("click", evt1 -> {
-                            draftsListGroup.removeItem(draftsItemListItem);
-                            revalidate();
-                        });
-                        draftsItemListItem.appendChild(delete);
+                        draftsListGroup.addItem(draftsItem);
 
                         atDaysTextBox.clear();
                         draftDrawnOnSelect.clear();
@@ -184,7 +196,7 @@ public class DraftsPart implements ImportSection {
         DocumentsRequired documentsRequired = letterOfCredit.getDocumentsRequired();
         documentsRequired.setDraftRequired(draftsRequiredSwitch.getValue());
         if (documentsRequired.isDraftRequired())
-            documentsRequired.setDrafts(draftsListGroup.getAllValues());
+            documentsRequired.setDrafts(draftsListGroup.getValues());
     }
 
     @Override
@@ -196,7 +208,7 @@ public class DraftsPart implements ImportSection {
     }
 
     private void revalidate() {
-        if(isInvalidatedCard(draftsCard)) {
+        if (isInvalidatedCard(draftsCard)) {
             boolean valid = isValid();
             if (valid) {
                 markCardValidation(draftsCard, true, false);
@@ -206,15 +218,15 @@ public class DraftsPart implements ImportSection {
     }
 
     private void markWithValidationMessage(boolean valid) {
-        if(!valid){
+        if (!valid) {
             draftsCard.getHeaderDescription().appendChild(validationMessage);
-        }else{
+        } else {
             validationMessage.remove();
         }
     }
 
     private boolean isValid() {
-        return !draftsRequiredSwitch.getValue() || !draftsListGroup.getAllValues().isEmpty();
+        return !draftsRequiredSwitch.getValue() || !draftsListGroup.getValues().isEmpty();
     }
 
     @Override
