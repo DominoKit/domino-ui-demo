@@ -397,6 +397,14 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
         List<Country> countries = Countries.MAPPER.read(COUNTRIES).getCountries();
 
         Tree citiesTree = Tree.create("CITIES")
+                .setFilter((treeItem, searchToken) -> {
+                            boolean result = treeItem.getTitle().toLowerCase().contains(searchToken.toLowerCase());
+                            if(treeItem.getParent().isPresent()) {
+                                result = result || treeItem.getParent().get().getTitle().toLowerCase().contains(searchToken.toLowerCase());
+                            }
+                            return result;
+                        }
+                )
                 .setAutoCollapse(false)
                 .enableFolding()
                 .enableSearch()

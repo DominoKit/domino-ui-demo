@@ -1,5 +1,6 @@
 package org.dominokit.domino.lists.client.views.ui;
 
+import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -32,7 +33,8 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static org.dominokit.domino.ui.style.Styles.*;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.img;
 
 @UiView(presentable = ListsProxy.class)
 @SampleClass
@@ -193,7 +195,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
 
 
         Random random = new Random();
-        int i = random.nextInt(100);
+        int i = random.nextInt(100 - 10);
         DemoServiceFactory.INSTANCE
                 .list()
                 .onSuccess(items -> {
