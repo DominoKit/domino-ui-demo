@@ -4,6 +4,7 @@ import org.dominokit.domino.api.client.annotations.presenter.*;
 import org.dominokit.domino.api.client.mvp.Store;
 import org.dominokit.domino.api.client.mvp.StoreRegistry;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
+import org.dominokit.domino.api.shared.extension.PredefinedSlots;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
@@ -12,7 +13,7 @@ import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 @AutoRoute(routeOnce = true)
 @Singleton
 @AutoReveal
-@Slot(ViewBaseClientPresenter.DOCUMENT_BODY)
+@Slot(PredefinedSlots.BODY_SLOT)
 @OnStateChanged(LayoutEvent.class)
 @RegisterSlots({
         IsLayout.Slots.CONTENT,

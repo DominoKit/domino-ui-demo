@@ -75,7 +75,7 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
                                 .appendChild(tooltip_on_bottom))
                         .addColumn(Column.span3()
                                 .appendChild(tooltip_on_left))
-                        )
+                )
                 .element());
 
 

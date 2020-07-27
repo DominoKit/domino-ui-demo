@@ -2,6 +2,7 @@ package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -236,7 +237,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         switchCard.appendChild(Row.create()
                 .addColumn(Column.span3().appendChild(SwitchButton.create("Active", "off", "on")
-                        .addChangeHandler(value -> Notification.createInfo("test " +value).show())
+                        .addChangeHandler(value -> Notification.createInfo("test " + value).show())
                         .setOffTitle("OFF").setOnTitle("ON")))
                 .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
 

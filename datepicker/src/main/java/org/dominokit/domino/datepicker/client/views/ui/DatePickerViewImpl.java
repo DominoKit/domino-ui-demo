@@ -350,7 +350,6 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().appendChild(amberModalButton))
                         .addColumn(column.copy().appendChild(greenModalButton)))
                 .element());
-
     }
 
     @SampleMethod

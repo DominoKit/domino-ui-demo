@@ -69,7 +69,7 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                                                 .attr("target","_blank")
                                                 .add(h(5).textContent("Frank Hossfeld")))
                                         .appendChild(a()
-                                                .attr("href", "http://www.mvp4g.org/gwt-boot-starter-nalu/GwtBootStarterNalu.html#application/setUp")
+                                                .attr("href", "http://www.mvp4g.org/boot-starter-nalu/BootStarterNalu.html")
                                                 .attr("target", "_blank")
                                                 .add(h(5).textContent("Visit")))
                                         .appendChild(a()

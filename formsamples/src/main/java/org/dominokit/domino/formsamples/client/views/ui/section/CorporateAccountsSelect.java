@@ -31,7 +31,7 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
 
         accountSelect = Select.<CorporateAccount>create(title)
                 .addLeftAddOn(Icons.ALL.account_balance_wallet())
-                .setRightAddon(correspondentChargesAccountIcon);
+                .addRightAddOn(correspondentChargesAccountIcon);
 
         Tooltip.create(correspondentChargesAccountIcon.element(), "Show details");
         Style.of(Popover.create(correspondentChargesAccountIcon.element(), "Account details", accountDetails.element())

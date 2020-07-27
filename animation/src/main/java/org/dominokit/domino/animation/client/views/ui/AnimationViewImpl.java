@@ -348,7 +348,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .element()
         );
 
-        CodeCard.completeFetchCode(CodeResource.INSTANCE.trnsitionType(), value -> createAnimationAggregator.completeTransitionType(value));
+        CodeCard.completeFetchCode(CodeResource.INSTANCE.transitionType(), value -> createAnimationAggregator.completeTransitionType(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.delay(), value -> createAnimationAggregator.completeDelay(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.onBeforeStart(), value -> createAnimationAggregator.completeBeforeStart(value));
         CodeCard.completeFetchCode(CodeResource.INSTANCE.infinite(), value -> createAnimationAggregator.completeInfinite(value));
@@ -412,7 +412,6 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
             }
         });
 
-
         card.appendChild(animationCard)
                 .appendChild(Elements.div().css("button-demo").attr("style", "text-align: center")
                         .add(animate)
@@ -423,7 +422,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
     }
 
     @SampleMethod
-    private void trnsitionType() {
+    private void transitionType() {
 
         Animation.create(element)
                 .transition(Transition.BOUNCE)

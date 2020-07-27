@@ -141,7 +141,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
 
         TextBox username = TextBox.create("Username")
                 .addLeftAddOn(Icons.ALL.account_circle())
-                .setRightAddon(cancel);
+                .addRightAddOn(cancel);
         cancel.addClickListener(evt -> username.clear())
                 .style().setCursor("pointer");
 
@@ -150,7 +150,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                 .setCursor("pointer").element();
         TextBox password = TextBox.password("Password")
                 .addLeftAddOn(Icons.ALL.https().element())
-                .setRightAddon(showIcon);
+                .addRightAddOn(showIcon);
 
         showIcon.addEventListener("mousedown", evt -> password.getInputElement().element().type = "text");
         showIcon.addEventListener("mouseup", evt -> password.getInputElement().element().type = "password");
@@ -163,7 +163,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                         .addLeftAddOn(Icons.ALL.description()))
                 .appendChild(Select.<String>create("Language")
                         .addLeftAddOn(Icons.ALL.language())
-                        .setRightAddon(info)
+                        .addRightAddOn(info)
                         .appendChild(SelectOption.create("english", "English"))
                         .appendChild(SelectOption.create("france", "France"))
                         .appendChild(SelectOption.create("arabic", "Arabic"))

@@ -263,40 +263,41 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
         Tree<String> hardwareTree = Tree.create("HARDWARE")
                 .setToggleTarget(ToggleTarget.ICON)
                 .addItemClickListener(treeItem -> DomGlobal.console.info(treeItem.getValue()))
-                .appendChild(TreeItem.create("Computer", Icons.ALL.computer())
+                .appendChild(TreeItem.create("Computer", Icons.ALL.laptop_mdi())
                         .addClickListener(evt -> Notification.create("Computer").show()))
-                .appendChild(TreeItem.create("Headset", Icons.ALL.headset())
+                .appendChild(TreeItem.create("Headset", Icons.ALL.headset_mdi())
                         .addClickListener(evt -> Notification.create("Headset").show()))
-                .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard())
+                .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard_mdi())
                         .addClickListener(evt -> Notification.create("Keyboard").show()))
-                .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse())
+                .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse_mdi())
                         .addClickListener(evt -> Notification.create("Mouse").show()))
                 .addSeparator()
-                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop())
+                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop_mdi())
                         .addClickListener(evt -> Notification.create("Laptop").show()))
-                .appendChild(TreeItem.create("Smart phone", Icons.ALL.smartphone())
+                .appendChild(TreeItem.create("Smart phone", Icons.ALL.cellphone_mdi())
                         .addClickListener(evt -> Notification.create("Smart phone").show()))
-                .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet())
+                .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet_mdi())
                         .addClickListener(evt -> Notification.create("Tablet").show()))
-                .appendChild(TreeItem.create("Speaker", Icons.ALL.speaker())
+                .appendChild(TreeItem.create("Speaker", Icons.ALL.speaker_mdi())
                         .addClickListener(evt -> Notification.create("Speaker").show()));
 
         Tree<String> filesTree = Tree.create("FILES")
-                .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
+                .setToggleTarget(ToggleTarget.ICON)
+                .appendChild(TreeItem.create("Folder", Icons.ALL.folder_mdi())
                         .addClickListener(evt -> Notification.create("Folder").show()))
-                .appendChild(TreeItem.create("Folder open", Icons.ALL.folder_open())
+                .appendChild(TreeItem.create("Folder open", Icons.ALL.folder_open_mdi())
                         .addClickListener(evt -> Notification.create("Folder open").show()))
-                .appendChild(TreeItem.create("Upload", Icons.ALL.file_upload())
+                .appendChild(TreeItem.create("Upload", Icons.ALL.file_upload_mdi())
                         .addClickListener(evt -> Notification.create("Upload").show()))
-                .appendChild(TreeItem.create("Download", Icons.ALL.file_download())
+                .appendChild(TreeItem.create("Download", Icons.ALL.file_download_mdi())
                         .addClickListener(evt -> Notification.create("Download").show()))
-                .appendChild(TreeItem.create("New folder", Icons.ALL.create_new_folder())
+                .appendChild(TreeItem.create("New folder", Icons.ALL.folder_plus_mdi())
                         .addClickListener(evt -> Notification.create("New folder").show()))
-                .appendChild(TreeItem.create("Shared", Icons.ALL.folder_shared())
+                .appendChild(TreeItem.create("Shared", Icons.ALL.folder_account_mdi())
                         .addClickListener(evt -> Notification.create("Shared").show()))
-                .appendChild(TreeItem.create("Attachments", Icons.ALL.attachment())
+                .appendChild(TreeItem.create("Attachments", Icons.ALL.attachment_mdi())
                         .addClickListener(evt -> Notification.create("Attachments").show()))
-                .appendChild(TreeItem.create("Cloud", Icons.ALL.cloud())
+                .appendChild(TreeItem.create("Cloud", Icons.ALL.cloud_mdi())
                         .addClickListener(evt -> Notification.create("Cloud").show()));
 
         element.appendChild(Card.create("SIMPLE MENU")
@@ -311,32 +312,32 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
     @SampleMethod
     private void nestedTree() {
         Tree hardwareTree = Tree.create("HARDWARE")
-                .appendChild(TreeItem.create("Computer", Icons.ALL.desktop_windows())
+                .appendChild(TreeItem.create("Computer", Icons.ALL.desktop_classic_mdi())
                         .addClickListener(evt -> Notification.create("Computer").show())
 
-                        .appendChild(TreeItem.create("Headset", Icons.ALL.headset())
+                        .appendChild(TreeItem.create("Headset", Icons.ALL.headset_mdi())
                                 .addClickListener(evt -> Notification.create("Headset").show()))
-                        .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard())
+                        .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard_mdi())
                                 .addClickListener(evt -> Notification.create("Keyboard").show()))
-                        .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse())
+                        .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse_mdi())
                                 .addClickListener(evt -> Notification.create("Mouse").show())))
 
-                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop())
+                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop_mdi())
                         .addClickListener(evt -> Notification.create("Laptop").show())
 
-                        .appendChild(TreeItem.create("Chromebook", Icons.ALL.laptop_chromebook())
+                        .appendChild(TreeItem.create("Chromebook", Icons.ALL.laptop_chromebook_mdi())
                                 .addClickListener(evt -> Notification.create("Chromebook").show()))
-                        .appendChild(TreeItem.create("MacBook", Icons.ALL.laptop_mac())
+                        .appendChild(TreeItem.create("MacBook", Icons.ALL.laptop_mac_mdi())
                                 .addClickListener(evt -> Notification.create("MacBook").show())))
 
-                .appendChild(TreeItem.create("Smart phone", Icons.ALL.smartphone())
+                .appendChild(TreeItem.create("Smart phone", Icons.ALL.cellphone_mdi())
                         .addClickListener(evt -> Notification.create("Smart phone").show())
 
-                        .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet())
+                        .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet_mdi())
                                 .addClickListener(evt -> Notification.create("Tablet").show()))
-                        .appendChild(TreeItem.create("Android", Icons.ALL.phone_android())
+                        .appendChild(TreeItem.create("Android", Icons.ALL.cellphone_android_mdi())
                                 .addClickListener(evt -> Notification.create("Android").show()))
-                        .appendChild(TreeItem.create("iPhone", Icons.ALL.phone_iphone())
+                        .appendChild(TreeItem.create("iPhone", Icons.ALL.cellphone_iphone_mdi())
                                 .addClickListener(evt -> Notification.create("iPhone").show())));
 
 
@@ -347,7 +348,7 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                 .setToggleTarget(ToggleTarget.ICON)
                 .setAutoCollapse(false)
                 .addItemClickListener(treeItem1 -> DomGlobal.console.info(treeItem1.getValue()))
-                .appendChild(TreeItem.create("Folder", Icons.ALL.folder())
+                .appendChild(TreeItem.create("Folder", Icons.ALL.folder_mdi())
                         .appendChild(TreeItem.create("My files", Icons.ALL.folder_special())
                                 .appendChild(TreeItem.create("File 1", Icons.ALL.description())
                                         .addClickListener(evt -> Notification.create("File 1").show()))
@@ -387,7 +388,6 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
         files.deactivateAll();
         upload.expand(true);
         upload.activate(true);
-
 
     }
 

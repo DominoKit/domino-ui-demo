@@ -16,6 +16,9 @@ import org.dominokit.domino.ui.splitpanel.VSplitPanel;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.ui.style.Unit;
+import org.dominokit.domino.ui.utils.DominoElement;
+import org.jboss.elemento.Elements;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.hr;
@@ -62,8 +65,6 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .setHeight("400px")
                 )
                 .element());
-
-
     }
 
     @SampleMethod
