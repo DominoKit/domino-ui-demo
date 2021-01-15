@@ -19,6 +19,6 @@
     <set-property name="locale" value="en"/>
     <set-configuration-property name="includeSourceMapUrl"
                                 value="static/gwt/extra/app/symbolMaps/__HASH___sourceMap__FRAGMENT__.json"/>
-
+    
     <collapse-all-properties/>
 </module>

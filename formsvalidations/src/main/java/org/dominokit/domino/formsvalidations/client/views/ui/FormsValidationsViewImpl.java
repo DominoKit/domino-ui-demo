@@ -186,6 +186,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                 .appendChild(Radio.create("male", "Male"))
                 .appendChild(Radio.create("female", "Female"))
                 .horizontal()
+                .setShowRequiredIndicator(false)
                 .groupBy(fieldsGrouping);
         TextArea description = TextArea.create("Description").groupBy(fieldsGrouping);
         TextBox password = TextBox.password("Password").groupBy(fieldsGrouping);

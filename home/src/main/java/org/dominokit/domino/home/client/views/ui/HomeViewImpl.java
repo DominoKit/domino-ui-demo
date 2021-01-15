@@ -379,7 +379,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                             AppHistory history = Js.uncheckedCast(ClientApp.make().getHistory());
                                                             HistoryToken samples = history
                                                                     .currentToken()
-                                                                    .replaceLastFragment("samples");
+                                                                    .replaceLastPath("samples");
                                                             history.pushState(samples.value());
                                                             history.fireCurrentStateHistory();
 

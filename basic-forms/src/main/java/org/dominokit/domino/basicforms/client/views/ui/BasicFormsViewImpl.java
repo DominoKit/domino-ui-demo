@@ -1,6 +1,7 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
@@ -13,6 +14,7 @@ import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
@@ -20,8 +22,11 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.popover.Popover;
+import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
+import org.dominokit.domino.ui.utils.DominoElement;
 
 import static org.jboss.elemento.Elements.*;
 
@@ -67,6 +72,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         initRadioExample();
         initSwitchExample();
 
+        element.appendChild(selectCard.element());
+
         element.appendChild(fieldsStylesCard.element());
         element.appendChild(CodeCard.createCodeCard(
                 CodeResource.INSTANCE.initDifferentStyles()
@@ -85,7 +92,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 CodeResource.INSTANCE.initBasicTextAreaExample()
         ).element());
 
-        element.appendChild(selectCard.element());
+
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectExample()).element());
 
         element.appendChild(checkboxCard.element());
@@ -470,6 +477,40 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         selectCard.appendChild(Row.create()
                 .addColumn(Column.span12()
                         .appendChild(Select.<String>create("Country")
+                                .setCreatable(true)
+                                .apply(self -> {
+                                    self.setOnAddOptionHandler((input, completeHandler) -> {
+                                        TextBox countryName = TextBox.create("Name").value(input).focus();
+                                        TextBox countryCode = TextBox.create("code");
+                                        self.closeMenu(countryName::focus);
+                                        Button addButton = Button.createPrimary("Add");
+                                        Popover.create(self, "Add country", DominoElement.div()
+                                                .appendChild(Row.create()
+                                                        .appendChild(Column.span12()
+                                                                .appendChild(countryName)
+                                                        )
+                                                )
+                                                .appendChild(Row.create()
+                                                        .appendChild(Column.span12()
+                                                                .appendChild(countryCode)
+                                                        )
+                                                )
+                                                .appendChild(Row.create()
+                                                        .appendChild(Column.span12()
+                                                                .appendChild(addButton)
+                                                        )
+                                                ).element()
+                                        )
+                                                .apply(popover -> addButton.addClickListener(evt -> {
+                                                    completeHandler.accept(SelectOption.create(countryCode.getValue().toUpperCase(), countryName.getValue()));
+                                                    popover.close();
+                                                }))
+                                                .position(PopupPosition.BEST_FIT)
+                                                .show();
+
+                                    });
+
+                                })
                                 .appendChild(SelectOption.create("nothing", "-- please select --")
                                         .setExcludeFromSearchResults(true)
                                 )

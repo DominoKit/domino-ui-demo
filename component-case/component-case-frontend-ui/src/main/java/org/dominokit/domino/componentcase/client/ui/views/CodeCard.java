@@ -32,7 +32,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
     private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").element();
     private Card card = Card.create("Source Code")
             .setCollapsible()
-            .hide()
+            .collapse()
             .appendChild(codeBlock);
 
     public CodeCard() {

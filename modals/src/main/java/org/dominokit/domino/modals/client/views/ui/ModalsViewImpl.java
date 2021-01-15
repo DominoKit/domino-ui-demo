@@ -15,17 +15,19 @@ import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.modals.Window;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = ModalsProxy.class)
 @SampleClass
@@ -389,8 +391,6 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         .add(greenButton)
                         .add(tealButton)
                 ).element());
-
-
     }
 
     @SampleMethod
