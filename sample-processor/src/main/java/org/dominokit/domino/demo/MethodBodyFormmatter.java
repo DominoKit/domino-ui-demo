@@ -1,6 +1,5 @@
 package org.dominokit.domino.demo;
 
-
 import com.google.googlejavaformat.java.Formatter;
 import com.google.googlejavaformat.java.FormatterException;
 

@@ -4,9 +4,9 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>org.dominokit.domino</groupId>
+        <groupId>org.dominokit</groupId>
         <artifactId>layout</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>HEAD-SNAPSHOT</version>
     </parent>
 
     <artifactId>layout-shared</artifactId>
@@ -17,8 +17,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.dominokit.domino.api</groupId>
-            <artifactId>domino-api-shared</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-api-shared</artifactId>
         </dependency>
     </dependencies>
 

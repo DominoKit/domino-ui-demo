@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
     <artifactId>domino-ui-demo</artifactId>
-    <groupId>org.dominokit.domino</groupId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>org.dominokit</groupId>
+    <version>HEAD-SNAPSHOT</version>
   </parent>
 
     <artifactId>login</artifactId>
@@ -20,16 +20,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.api</groupId>
-            <artifactId>domino-api-shared</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-api-shared</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.api</groupId>
-            <artifactId>domino-api-client</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-api-client</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.api</groupId>
-            <artifactId>domino-api-client</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-api-client</artifactId>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
@@ -37,34 +37,29 @@
             <artifactId>domino-slf4j-logger</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.apt</groupId>
-            <artifactId>apt-client</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-apt-client</artifactId>
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino.test</groupId>
-            <artifactId>domino-client-test</artifactId>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-client-test</artifactId>
             <scope>test</scope>
         </dependency>
+
         <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>1.7.25</version>
-            <scope>test</scope>
+            <groupId>org.dominokit</groupId>
+            <artifactId>component-case-frontend-ui</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
+            <groupId>org.dominokit</groupId>
             <artifactId>component-case-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>org.dominokit.domino</groupId>
-            <artifactId>component-case-frontend-ui</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
         <dependency>
-            <groupId>org.dominokit.domino</groupId>
+            <groupId>org.dominokit</groupId>
             <artifactId>sample-processor</artifactId>
             <version>${project.version}</version>
             <scope>provided</scope>

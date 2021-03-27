@@ -135,7 +135,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .add(DominoElement.of(img("./images/sponsors/vertispan.png")
                                         .style("width: 128px;"))
                                         .setTooltip("Vertispan"))
-                                .add(DominoElement.of(img("./images/sponsors/domino-logo-2.png")
+                                .add(DominoElement.of(img("./images/sponsors/domino-logo-256.png")
                                         .style("width: 50px;"))
                                         .setTooltip("Dominokit"))
                         ))

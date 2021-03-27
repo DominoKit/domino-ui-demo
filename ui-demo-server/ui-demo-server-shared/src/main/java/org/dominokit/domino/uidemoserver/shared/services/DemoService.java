@@ -1,6 +1,6 @@
 package org.dominokit.domino.uidemoserver.shared.services;
 
-import org.dominokit.domino.rest.shared.request.service.annotations.RequestFactory;
+import org.dominokit.rest.shared.request.service.annotations.RequestFactory;
 import org.dominokit.domino.uidemoserver.shared.model.Contact;
 
 import javax.ws.rs.GET;

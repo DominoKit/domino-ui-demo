@@ -15,12 +15,15 @@
  */
 package org.dominokit.domino.demo;
 
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ParseResult;
+import com.github.javaparser.ast.CompilationUnit;
+import com.github.javaparser.ast.body.MethodDeclaration;
+import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ExternalTextResource;
 import com.squareup.javapoet.*;
-import com.sun.source.tree.MethodTree;
-import com.sun.source.util.Trees;
 import org.apache.commons.io.IOUtils;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.apt.commons.AbstractProcessingStep;
@@ -29,24 +32,24 @@ import org.dominokit.domino.apt.commons.ExceptionUtil;
 import org.dominokit.domino.apt.commons.StepBuilder;
 
 import javax.annotation.processing.ProcessingEnvironment;
-import javax.lang.model.element.*;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.Modifier;
 import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
-import java.util.Collections;
-import java.util.Set;
-
-import static java.util.Objects.nonNull;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.*;
 
 public class SampleCodeProcessorStep extends AbstractProcessingStep {
 
-    private final Trees trees;
-
     public SampleCodeProcessorStep(ProcessingEnvironment processingEnv) {
         super(processingEnv);
-        this.trees = Trees.instance(processingEnv);
     }
 
     public static class Builder extends StepBuilder<SampleCodeProcessorStep> {
@@ -60,44 +63,84 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
 
         for (Element element : elementsByAnnotation) {
             try {
-                TypeElement clazz = (TypeElement) element;
+                InputStream in = null;
+                try {
+                    final FileObject tempResource;
+                    tempResource = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", "ignore.tmp");
+                    final URI uri = tempResource.toUri();
+                    Path path = Paths.get(uri);
+                    while (!path.endsWith("target") && !path.toAbsolutePath().toString().equals("/")) {
+                        path = path.getParent();
+                    }
+                    if (path.endsWith("target")) {
+                        List<String> paths = new ArrayList<>();
+                        paths.addAll(Arrays.asList("src", "main", "java"));
+                        paths.addAll(Arrays.asList(elements.getPackageOf(element).getQualifiedName().toString().split("\\.")));
+                        paths.add(element.getSimpleName().toString() + ".java");
+                        String[] pathsArray = new String[paths.size()];
+                        paths.toArray(pathsArray);
 
-                TypeSpec.Builder codeResource = DominoTypeBuilder.interfaceBuilder("CodeResource", SampleCodeProcessor.class)
-                        .addSuperinterface(ClientBundle.class)
-                        .addModifiers(Modifier.PUBLIC);
-                ClassName elementType = ClassName.bestGuess(elements.getPackageOf(element).getQualifiedName().toString() + ".CodeResource");
-                codeResource.addField(FieldSpec.builder(elementType, "INSTANCE")
-                        .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
-                        .initializer("$T.create($T.class)", GWT.class, elementType)
-                        .build());
+                        TypeSpec.Builder codeResource = DominoTypeBuilder.interfaceBuilder("CodeResource", SampleCodeProcessor.class)
+                                .addSuperinterface(ClientBundle.class)
+                                .addModifiers(Modifier.PUBLIC);
+                        ClassName elementType = ClassName.bestGuess(elements.getPackageOf(element).getQualifiedName().toString() + ".CodeResource");
+                        codeResource.addField(FieldSpec.builder(elementType, "INSTANCE")
+                                .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
+                                .initializer("$T.create($T.class)", GWT.class, elementType)
+                                .build());
 
-                clazz.getEnclosedElements()
-                        .stream()
-                        .filter(e -> e.getKind().equals(ElementKind.METHOD))
-                        .filter(e -> nonNull(e.getAnnotation(SampleMethod.class)))
-                        .map(e -> (ExecutableElement) e)
-                        .forEach(method -> {
-                            codeResource.addMethod(MethodSpec.methodBuilder(method.getSimpleName().toString())
-                                    .addAnnotation(AnnotationSpec.builder(ClientBundle.Source.class)
-                                            .addMember("value", "$S", method.getSimpleName().toString() + ".txt")
-                                            .build())
-                                    .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
-                                    .returns(ExternalTextResource.class)
-                                    .build());
+                        path = Paths.get(path.getParent().toAbsolutePath().toString(), pathsArray);
+                        if (path.toFile().exists()) {
+                            JavaParser parser = new JavaParser();
+                            in = new FileInputStream(path.toFile());
+                            ParseResult<CompilationUnit> parse = parser.parse(in);
+                            parse.ifSuccessful(compilationUnit -> {
+                                new VoidVisitorAdapter<Object>(){
 
-                            MethodTree methodTree = new MethodScanner().scan(method, trees);
-                            try {
-                                FileObject resource = filer.createResource(StandardLocation.SOURCE_OUTPUT, elements.getPackageOf(element).getQualifiedName().toString(), method.getSimpleName().toString() + ".txt");
-                                OutputStream outputStream = resource.openOutputStream();
+                                    @Override
+                                    public void visit(MethodDeclaration methodDeclaration, Object arg) {
+                                        methodDeclaration.getAnnotationByClass(SampleMethod.class).ifPresent(annotationExpr -> {
+                                            methodDeclaration.getBody().ifPresent(blockStmt -> {
+                                                messager.printMessage(Diagnostic.Kind.NOTE, blockStmt.toString());
+                                                String methodName = methodDeclaration.getName().toString();
+                                                codeResource.addMethod(MethodSpec.methodBuilder(methodName)
+                                                        .addAnnotation(AnnotationSpec.builder(ClientBundle.Source.class)
+                                                                .addMember("value", "$S", methodName + ".txt")
+                                                                .build())
+                                                        .addModifiers(Modifier.PUBLIC, Modifier.ABSTRACT)
+                                                        .returns(ExternalTextResource.class)
+                                                        .build());
 
-                                IOUtils.write(MethodBodyFormmatter.format(methodTree.getBody().toString()), outputStream);
-                                outputStream.close();
-                            } catch (IOException e) {
-                                ExceptionUtil.messageStackTrace(messager, e, method);
-                            }
-                        });
+                                                try {
+                                                    FileObject resource = filer.createResource(StandardLocation.SOURCE_OUTPUT, elements.getPackageOf(element).getQualifiedName().toString(), methodName + ".txt");
+                                                    OutputStream outputStream = resource.openOutputStream();
 
-                writeSource(Collections.singletonList(codeResource), elements.getPackageOf(element).getQualifiedName().toString());
+                                                    IOUtils.write(MethodBodyFormmatter.format(blockStmt.toString()), outputStream);
+                                                    outputStream.close();
+                                                } catch (IOException e) {
+                                                    ExceptionUtil.messageStackTrace(messager, e, element);
+                                                }
+                                            });
+                                        });
+
+                                    }
+                                }.visit(compilationUnit, null);
+                            });
+                        }
+
+
+
+                        writeSource(Collections.singletonList(codeResource), elements.getPackageOf(element).getQualifiedName().toString());
+
+
+
+                    }
+
+                } catch (Exception ex) {
+                    ExceptionUtil.messageStackTrace(messager, ex, element);
+                } finally {
+                    in.close();
+                }
 
 
             } catch (Exception e) {

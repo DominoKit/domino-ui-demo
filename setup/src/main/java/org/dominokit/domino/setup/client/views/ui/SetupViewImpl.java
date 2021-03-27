@@ -23,21 +23,36 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
         element.appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").element());
 
+        element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder()
+                .appendEscaped("<dependency>\n" +
+                "  <groupId>org.dominokit</groupId>\n" +
+                "  <artifactId>domino-ui</artifactId>\n" +
+                "  <version>1.0.0-RC1</version>\n" +
+                "</dependency>\n" +
+                "<dependency>\n" +
+                "  <groupId>org.dominokit</groupId>\n" +
+                "  <artifactId>domino-ui</artifactId>\n" +
+                "  <version>1.0.0-RC1</version>\n" +
+                "  <classifier>sources</classifier>\n" +
+                "</dependency>").toSafeHtml().asString())
+                .setTitle("Maven release dependencies")
+                .apply(self -> self.getCard().expand())
+                .element());
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder()
                 .appendEscaped("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0-SNAPSHOT</version>\n" +
+                "  <version>HEAD-SNAPSHOT</version>\n" +
                 "</dependency>\n" +
                 "<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0-SNAPSHOT</version>\n" +
+                "  <version>HEAD-SNAPSHOT</version>\n" +
                 "  <classifier>sources</classifier>\n" +
                 "</dependency>").toSafeHtml().asString())
-                .setTitle("Maven dependencies")
-                .apply(self -> self.getCard().show())
+                .setTitle("Maven snapshot dependencies")
+                .apply(self -> self.getCard().expand())
                 .element());
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder()
@@ -62,12 +77,12 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                         "\t</snapshots>\n" +
                         "</repository>").toSafeHtml().asString())
                 .setTitle("Snapshot repositories")
-                .apply(self -> self.getCard().show())
+                .apply(self -> self.getCard().expand())
                 .element());
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<inherits name=\"org.dominokit.domino.ui.DominoUI\"/>").toSafeHtml().asString())
                 .setTitle("gwt module inheritance")
-                .apply(self -> self.getCard().show())
+                .apply(self -> self.getCard().expand())
                 .element());
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
@@ -76,7 +91,7 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                 "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">").toSafeHtml().asString())
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
-                .apply(self -> self.getCard().show())
+                .apply(self -> self.getCard().expand())
                 .element());
 
         return element;

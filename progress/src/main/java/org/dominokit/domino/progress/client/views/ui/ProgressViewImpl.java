@@ -1,6 +1,7 @@
 package org.dominokit.domino.progress.client.views.ui;
 
 import elemental2.dom.DomGlobal;
+import elemental2.dom.FrameRequestCallback;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -26,7 +27,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
     private HTMLDivElement element;
     private ProgressBar movingBar;
     private int animationFrame = 0;
-    private DomGlobal.RequestAnimationFrameCallbackFn animationFrameCallback;
+    private FrameRequestCallback animationFrameCallback;
 
     @Override
     protected HTMLDivElement init() {

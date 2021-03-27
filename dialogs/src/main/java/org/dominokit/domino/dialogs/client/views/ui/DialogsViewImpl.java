@@ -88,7 +88,7 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
         MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
                 "You can customize the header content",
                 () -> Notification.create("Dialog closed").show())
-                .onOpen(() -> Animation.create(heart)
+                .addOpenListener(() -> Animation.create(heart)
                         .duration(400)
                         .infinite()
                         .transition(Transition.PULSE)

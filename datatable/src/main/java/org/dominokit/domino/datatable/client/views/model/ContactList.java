@@ -1,6 +1,6 @@
 package org.dominokit.domino.datatable.client.views.model;
 
-import org.dominokit.jacksonapt.annotation.JSONMapper;
+import org.dominokit.jackson.annotation.JSONMapper;
 
 import java.util.List;
 

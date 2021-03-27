@@ -1,6 +1,6 @@
 package org.dominokit.domino.uidemoserver.shared.model;
 
-import org.dominokit.jacksonapt.annotation.JSONMapper;
+import org.dominokit.jackson.annotation.JSONMapper;
 
 import java.util.List;
 

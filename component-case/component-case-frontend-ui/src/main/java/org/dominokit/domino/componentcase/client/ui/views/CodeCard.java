@@ -80,7 +80,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText(), null, false));
+                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<","&lt;").replace(">", "&gt;"), null, false));
                     codeCard.code = resource.getText();
                 }
             });

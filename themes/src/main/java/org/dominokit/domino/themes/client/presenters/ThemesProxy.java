@@ -9,6 +9,8 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.themes.client.views.ThemesView;
 
+import java.util.List;
+
 import static java.util.Objects.nonNull;
 
 @PresenterProxy
@@ -20,7 +22,7 @@ import static java.util.Objects.nonNull;
 public class ThemesProxy extends ViewBaseClientPresenter<ThemesView> implements ThemesView.ThemesUiHandlers {
 
     @QueryParameter("theme")
-    String theme;
+    List<String> theme;
 
     private IsLayout layout;
 
@@ -57,8 +59,8 @@ public class ThemesProxy extends ViewBaseClientPresenter<ThemesView> implements 
     }
 
     private void applyTheme() {
-        if (nonNull(theme)) {
-            view.applyTheme(theme);
+        if (nonNull(theme) && !theme.isEmpty()) {
+            view.applyTheme(theme.get(0));
         }
     }
 

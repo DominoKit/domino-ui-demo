@@ -55,3 +55,4 @@ src/main/webapp/gwt_bree/
 **/.vertx/
 
 **/file-uploads/
+**/pom.xml.versionsBackup

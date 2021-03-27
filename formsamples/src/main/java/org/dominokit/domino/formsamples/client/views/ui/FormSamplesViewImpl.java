@@ -2089,7 +2089,7 @@ public class FormSamplesViewImpl extends BaseElementView<HTMLDivElement> impleme
     public void onCreate(LetterOfCredit letterOfCredit) {
         MessageDialog.createMessage("Your item created.")
                 .success()
-                .onClose(() -> {
+                .addCloseListener(() -> {
                     ElementUtil.scrollTop();
                     reBuildForm();
                 })
