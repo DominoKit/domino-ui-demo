@@ -2,14 +2,19 @@ package org.dominokit.domino.formsamples.client.views.ui.section;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.dominokit.domino.formsamples.shared.model.*;
+import org.dominokit.domino.formsamples.shared.model.Applicant;
+import org.dominokit.domino.formsamples.shared.model.CollateralSettlementAccount;
+import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
+import org.dominokit.domino.formsamples.shared.model.CorporateProfile;
+import org.dominokit.domino.formsamples.shared.model.FeesAndChargesSettlementAccount;
+import org.dominokit.domino.formsamples.shared.model.LcSettlementAccount;
+import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.style.Style;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;

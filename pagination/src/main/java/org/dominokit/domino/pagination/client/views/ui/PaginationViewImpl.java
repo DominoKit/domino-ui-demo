@@ -5,6 +5,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.pagination.client.presenters.PaginationProxy;
@@ -17,7 +18,6 @@ import org.dominokit.domino.ui.pagination.AdvancedPagination;
 import org.dominokit.domino.ui.pagination.Pager;
 import org.dominokit.domino.ui.pagination.ScrollingPagination;
 import org.dominokit.domino.ui.pagination.SimplePagination;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.elemento.Elements.b;
 import static org.jboss.elemento.Elements.div;

@@ -12,9 +12,12 @@ import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.style.Style;
 
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createRequiredField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
 import static org.jboss.elemento.Elements.div;
 
 public class PackingListPart implements ImportSection {

@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.Constants;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
@@ -18,9 +19,15 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.b;
+import static org.jboss.elemento.Elements.cite;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.ol;
+import static org.jboss.elemento.Elements.p;
+import static org.jboss.elemento.Elements.ul;
 
 @UiView(presentable = TypographyProxy.class)
 @SampleClass

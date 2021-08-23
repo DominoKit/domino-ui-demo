@@ -8,6 +8,7 @@ import org.dominokit.domino.animation.client.presenters.AnimationProxy;
 import org.dominokit.domino.animation.client.views.AnimationView;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.api.shared.extension.Aggregate;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.animations.Animation;
@@ -20,10 +21,11 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.elemento.Elements;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.img;
 
 @UiView(presentable = AnimationProxy.class)
 @SampleClass

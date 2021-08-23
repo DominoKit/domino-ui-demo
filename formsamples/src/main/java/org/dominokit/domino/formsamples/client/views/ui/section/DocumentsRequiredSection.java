@@ -2,7 +2,13 @@ package org.dominokit.domino.formsamples.client.views.ui.section;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.dominokit.domino.formsamples.client.views.ui.section.documents.*;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.CertificateOfOriginPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.DraftsPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.InsurancePolicyPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.OtherDocumentsPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.PackingListPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.ShippingDocumentsPart;
+import org.dominokit.domino.formsamples.client.views.ui.section.documents.SignedCommercialInvoicePart;
 import org.dominokit.domino.formsamples.shared.model.Bank;
 import org.dominokit.domino.formsamples.shared.model.Country;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;

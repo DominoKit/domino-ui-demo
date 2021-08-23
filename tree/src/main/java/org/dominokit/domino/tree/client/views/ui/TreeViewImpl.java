@@ -5,6 +5,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.tree.client.presenters.TreeProxy;
@@ -13,11 +14,8 @@ import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
@@ -26,8 +24,6 @@ import org.dominokit.domino.ui.themes.Theme;
 import org.dominokit.domino.ui.tree.ToggleTarget;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 import java.util.List;
 

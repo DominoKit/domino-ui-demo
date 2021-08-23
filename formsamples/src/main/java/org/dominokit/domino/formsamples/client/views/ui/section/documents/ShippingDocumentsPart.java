@@ -3,15 +3,28 @@ package org.dominokit.domino.formsamples.client.views.ui.section.documents;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.client.views.ui.section.ImportSection;
-import org.dominokit.domino.formsamples.shared.model.*;
+import org.dominokit.domino.formsamples.shared.model.AirwayBill;
+import org.dominokit.domino.formsamples.shared.model.Bank;
+import org.dominokit.domino.formsamples.shared.model.DocumentsRequired;
+import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
+import org.dominokit.domino.formsamples.shared.model.OceanBillsOfLanding;
+import org.dominokit.domino.formsamples.shared.model.TruckConsignmentNote;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.FieldsGrouping;
+import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.forms.SelectOption;
+import org.dominokit.domino.ui.forms.SwitchButton;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.Icons;
 
 import java.util.List;
 
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createRequiredField;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
 import static org.dominokit.domino.ui.grid.Column.span6;
 import static org.jboss.elemento.Elements.div;
 

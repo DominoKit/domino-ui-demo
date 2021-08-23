@@ -1,6 +1,11 @@
 package org.dominokit.domino.formsamples.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.presenter.*;
+import org.dominokit.domino.api.client.annotations.presenter.AutoReveal;
+import org.dominokit.domino.api.client.annotations.presenter.AutoRoute;
+import org.dominokit.domino.api.client.annotations.presenter.DependsOn;
+import org.dominokit.domino.api.client.annotations.presenter.EventsGroup;
+import org.dominokit.domino.api.client.annotations.presenter.PresenterProxy;
+import org.dominokit.domino.api.client.annotations.presenter.Slot;
 import org.dominokit.domino.componentcase.client.presenters.ComponentCasePresenter;
 import org.dominokit.domino.formsamples.client.views.FormSamplesView;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;

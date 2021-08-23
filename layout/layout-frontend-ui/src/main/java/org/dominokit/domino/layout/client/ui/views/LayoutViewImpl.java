@@ -27,7 +27,12 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.img;
+import static org.jboss.elemento.Elements.li;
+import static org.jboss.elemento.Elements.p;
 
 @UiView(presentable = LayoutProxy.class)
 public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {

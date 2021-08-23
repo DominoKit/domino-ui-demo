@@ -80,9 +80,9 @@
         <vertx.version>3.9.0</vertx.version>
         <elemento.version>1.0.3</elemento.version>
         <elemental2.version>1.1.0</elemental2.version>
-        <domino.jackson.version>1.0.0-RC2</domino.jackson.version>
-        <domino.history.version>1.0.0-RC1</domino.history.version>
-        <domino.ui.version>1.0.0-RC1</domino.ui.version>
+        <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
+        <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
+        <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
         <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
     </properties>
 
@@ -186,6 +186,20 @@
         <pluginManagement>
             <plugins>
                 <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-source-plugin</artifactId>
+                    <version>3.2.1</version>
+                    <executions>
+                        <execution>
+                            <id>attach-sources</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>jar-no-fork</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>3.7.0</version>
                 </plugin>
@@ -205,16 +219,9 @@
                     </configuration>
                 </plugin>
                 <plugin>
-                    <artifactId>maven-source-plugin</artifactId>
-                    <version>3.0.1</version>
-                    <executions>
-                        <execution>
-                            <id>attach-sources</id>
-                            <goals>
-                                <goal>jar-no-fork</goal>
-                            </goals>
-                        </execution>
-                    </executions>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.8.1</version>
                 </plugin>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -287,14 +294,13 @@
                                 <!--                                <codeserverArg>0.0.0.0</codeserverArg>-->
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>
-                                    /mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
+                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>

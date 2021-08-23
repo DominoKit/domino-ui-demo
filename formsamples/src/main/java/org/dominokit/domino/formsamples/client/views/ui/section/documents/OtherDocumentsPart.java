@@ -17,15 +17,15 @@ import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.lists.ListItem;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
-import static org.dominokit.domino.ui.grid.Column.*;
+import static org.dominokit.domino.ui.grid.Column.span12;
+import static org.dominokit.domino.ui.grid.Column.span4;
+import static org.dominokit.domino.ui.grid.Column.span8;
 import static org.jboss.elemento.Elements.div;
 
 public class OtherDocumentsPart implements ImportSection {

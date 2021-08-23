@@ -4,7 +4,6 @@ import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Elevation;
-import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 import static org.jboss.elemento.Elements.div;

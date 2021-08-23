@@ -13,15 +13,17 @@ import org.dominokit.domino.ui.forms.CheckBox;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.utils.ElementUtil;
-import org.dominokit.domino.ui.forms.validations.ValidationResult;
 
 import java.util.List;
 
-import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.*;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
+import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.validatePercent;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.i;
 

@@ -6,6 +6,7 @@ import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.chips.client.presenters.ChipsProxy;
 import org.dominokit.domino.chips.client.views.ChipsView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.cards.Card;
@@ -18,9 +19,10 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.br;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.img;
 
 @UiView(presentable = ChipsProxy.class)
 @SampleClass

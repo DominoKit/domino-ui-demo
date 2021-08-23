@@ -34,7 +34,9 @@ import java.util.function.Function;
 
 import static org.dominokit.domino.ui.grid.Column.span12;
 import static org.dominokit.domino.ui.grid.Column.span6;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.span;
 
 @UiView(presentable = SteppersProxy.class)
 @SampleClass

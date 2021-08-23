@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.labels.client.presenters.LabelsProxy;
@@ -14,7 +15,6 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.labels.Label;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.elemento.Elements;
 
 @UiView(presentable = LabelsProxy.class)

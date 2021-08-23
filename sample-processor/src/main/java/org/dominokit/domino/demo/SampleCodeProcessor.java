@@ -19,12 +19,10 @@ import com.google.auto.service.AutoService;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.apt.commons.BaseProcessor;
-import org.dominokit.domino.ui.MdiIconsFactory;
 
 import javax.annotation.processing.Processor;
 import javax.annotation.processing.RoundEnvironment;
 import javax.lang.model.SourceVersion;
-import javax.lang.model.element.Element;
 import javax.lang.model.element.ElementKind;
 import javax.lang.model.element.TypeElement;
 import java.util.HashSet;

@@ -1,13 +1,13 @@
 package org.dominokit.domino.cards.client.views.ui;
 
 import elemental2.dom.DomGlobal;
-import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.cards.client.presenters.CardsProxy;
 import org.dominokit.domino.cards.client.views.CardsView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.cards.Card;
@@ -17,7 +17,6 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.TextNode;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.elemento.Elements;
 
 @UiView(presentable = CardsProxy.class)
@@ -132,8 +131,6 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
                         .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
-
-
     }
 
     @SampleMethod
@@ -155,7 +152,6 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
-                        .hide()
                         .setHeaderBackground(Color.CYAN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
                         .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))

@@ -1,7 +1,5 @@
 package org.dominokit.domino.formsamples.shared.model;
 
-import org.dominokit.jackson.annotation.JSONMapper;
-
 public class CurrencyData {
 
     private String currencyCode;

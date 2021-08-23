@@ -5,21 +5,28 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.inputfields.client.presenters.InputFieldsProxy;
 import org.dominokit.domino.inputfields.client.views.InputFieldsView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.BigDecimalBox;
+import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.forms.DoubleBox;
+import org.dominokit.domino.ui.forms.EmailBox;
+import org.dominokit.domino.ui.forms.FloatBox;
+import org.dominokit.domino.ui.forms.IntegerBox;
+import org.dominokit.domino.ui.forms.LongBox;
+import org.dominokit.domino.ui.forms.ShortBox;
+import org.dominokit.domino.ui.forms.TelephoneBox;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.utils.DominoElement;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.math.BigDecimal;
-
-import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = InputFieldsProxy.class)
 @SampleClass

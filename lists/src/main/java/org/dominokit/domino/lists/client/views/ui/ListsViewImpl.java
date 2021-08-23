@@ -1,6 +1,5 @@
 package org.dominokit.domino.lists.client.views.ui;
 
-import elemental2.dom.Event;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -26,13 +25,15 @@ import org.dominokit.domino.uidemoserver.shared.model.Contact;
 import org.dominokit.domino.uidemoserver.shared.services.DemoServiceFactory;
 import org.jboss.elemento.Elements;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import static org.dominokit.domino.ui.style.Styles.*;
+import static org.dominokit.domino.ui.style.Styles.p_l_10;
+import static org.dominokit.domino.ui.style.Styles.p_r_15;
+import static org.dominokit.domino.ui.style.Styles.padding_10;
+import static org.dominokit.domino.ui.style.Styles.padding_5;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.img;
 

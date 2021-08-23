@@ -2,9 +2,15 @@ package org.dominokit.domino.icons.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
-import elemental2.dom.*;
+import elemental2.dom.ClipboardEvent;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.icons.client.presenters.IconsProxy;
 import org.dominokit.domino.icons.client.views.IconsView;
@@ -16,14 +22,16 @@ import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.DominoDom;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.gwtproject.timer.client.Timer;
-import org.jboss.elemento.InputType;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.InputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.p;
+import static org.jboss.elemento.Elements.span;
 
 @UiView(presentable = IconsProxy.class)
 public class IconsViewImpl extends BaseDemoView<HTMLDivElement> implements IconsView {

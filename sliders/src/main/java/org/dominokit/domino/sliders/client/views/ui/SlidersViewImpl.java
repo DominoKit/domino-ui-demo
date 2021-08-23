@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.sliders.client.presenters.SlidersProxy;
@@ -17,9 +18,12 @@ import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.br;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.hr;
+import static org.jboss.elemento.Elements.span;
 
 @UiView(presentable = SlidersProxy.class)
 @SampleClass

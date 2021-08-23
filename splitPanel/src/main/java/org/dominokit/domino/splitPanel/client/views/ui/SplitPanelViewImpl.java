@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.splitPanel.client.presenters.SplitPanelProxy;
@@ -15,10 +16,6 @@ import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.dominokit.domino.ui.style.Unit;
-import org.dominokit.domino.ui.utils.DominoElement;
-import org.jboss.elemento.Elements;
 
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.hr;

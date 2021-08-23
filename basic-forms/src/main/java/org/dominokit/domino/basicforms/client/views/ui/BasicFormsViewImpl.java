@@ -1,9 +1,7 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -16,7 +14,16 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.forms.FieldStyle;
+import org.dominokit.domino.ui.forms.Radio;
+import org.dominokit.domino.ui.forms.RadioGroup;
+import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.forms.SelectOption;
+import org.dominokit.domino.ui.forms.SelectOptionGroup;
+import org.dominokit.domino.ui.forms.SwitchButton;
+import org.dominokit.domino.ui.forms.TextArea;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
@@ -28,7 +35,10 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.br;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.hr;
 
 @UiView(presentable = BasicFormsProxy.class)
 @SampleClass

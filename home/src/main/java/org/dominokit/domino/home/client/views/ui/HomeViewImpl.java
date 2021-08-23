@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.ClientApp;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.history.AppHistory;
 import org.dominokit.domino.history.HistoryToken;
 import org.dominokit.domino.home.client.presenters.HomeProxy;
@@ -21,11 +22,14 @@ import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.DominoElement;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.gwtproject.timer.client.Timer;
 
 import static elemental2.dom.DomGlobal.window;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.hr;
+import static org.jboss.elemento.Elements.img;
 
 @UiView(presentable = HomeProxy.class)
 public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeView {

@@ -1,27 +1,32 @@
 package org.dominokit.domino.collapse.client.views.ui;
 
-import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.collapse.client.presenters.CollapseProxy;
 import org.dominokit.domino.collapse.client.views.CollapseView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
+import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Accordion;
 import org.dominokit.domino.ui.collapsible.AccordionPanel;
+import org.dominokit.domino.ui.collapsible.AnimationCollapseStrategy;
+import org.dominokit.domino.ui.collapsible.CollapseDuration;
 import org.dominokit.domino.ui.collapsible.Collapsible;
+import org.dominokit.domino.ui.collapsible.DisplayCollapseStrategy;
+import org.dominokit.domino.ui.collapsible.HeightCollapseStrategy;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import static org.jboss.elemento.Elements.b;
 import static org.jboss.elemento.Elements.div;
@@ -61,36 +66,84 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
     private void example() {
 
         element.appendChild(BlockHeader.create("COLLAPSE").element());
-        HTMLDivElement well = div()
-                .add(div()
+        HTMLDivElement heightDiv = DominoElement.div()
+                .setHeight("100px")
+                .appendChild(div()
                         .css("well")
                         .textContent(SAMPLE_CONTENT)
                         .element())
                 .element();
 
-        Collapsible collapsible = Collapsible.create(well);
-        EventListener collapsibleListener = evt -> collapsible.toggleDisplay();
+        HTMLDivElement displayDiv = DominoElement.div()
+                .setHeight("100px")
+                .appendChild(div()
+                        .css("well")
+                        .textContent(SAMPLE_CONTENT)
+                        .element())
+                .element();
 
-        Button anchorButton = Button.create("LINK WITH HREF");
-        anchorButton.getClickableElement().addEventListener("click", collapsibleListener);
+        HTMLDivElement animationDiv = DominoElement.div()
+                .setHeight("100px")
+                .appendChild(div()
+                        .css("well")
+                        .textContent(SAMPLE_CONTENT)
+                        .element())
+                .element();
 
-        Button button = Button.create("BUTTON");
-        button.getClickableElement().addEventListener("click", collapsibleListener);
+        Collapsible heightCollapsible = Collapsible.create(heightDiv)
+                .setStrategy(new HeightCollapseStrategy());
 
-        element.appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
-                                .appendChild(anchorButton.builder()
-                                        .css(Styles.m_b_15).build().setBackground(Color.PINK))
-                                .appendChild(TextNode.of("\n"))
-                                .appendChild(button.builder()
-                                        .css(Styles.m_b_15).build()
-                                        .setBackground(Color.CYAN)
-                                        .element())
-                                .appendChild(collapsible)))
-                .element());
+        Collapsible displayCollapsible = Collapsible.create(displayDiv)
+                .setStrategy(new DisplayCollapseStrategy());
 
+        Collapsible animationCollapsible = Collapsible.create(animationDiv)
+                .setStrategy(new AnimationCollapseStrategy(Transition.SLIDE_IN_LEFT, Transition.SLIDE_OUT_RIGHT, CollapseDuration._500ms));
 
+        Button heightCollapseButton = Button.create("Height collapse");
+        heightCollapseButton.getClickableElement().addEventListener("click", evt -> heightCollapsible.toggleDisplay());
+
+        Button displayCollapseButton = Button.create("Display collapse");
+        displayCollapseButton.getClickableElement().addEventListener("click", evt -> displayCollapsible.toggleDisplay());
+
+        Button animationCollapseButton = Button.create("Animation collapse");
+        animationCollapseButton.getClickableElement().addEventListener("click", evt -> animationCollapsible.toggleDisplay());
+
+        element
+                .appendChild(Row.create()
+                        .addColumn(Column.span12()
+                                .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
+                                        .appendChild(Row.create()
+                                                .appendChild(Column.span12()
+                                                        .appendChild(heightCollapseButton.builder()
+                                                                .css(Styles.m_b_15).build()
+                                                                .setBackground(Color.CYAN)
+                                                        )
+                                                        .appendChild(heightDiv)
+                                                )
+                                        )
+                                        .appendChild(Row.create()
+                                                .appendChild(Column.span12()
+                                                        .appendChild(displayCollapseButton.builder()
+                                                                .css(Styles.m_b_15).build()
+                                                                .setBackground(Color.CYAN)
+                                                                .element())
+                                                        .appendChild(displayDiv)
+                                                )
+                                        )
+                                        .appendChild(Row.create()
+                                                .appendChild(Column.span12()
+                                                        .appendChild(animationCollapseButton.builder()
+                                                                .css(Styles.m_b_15).build()
+                                                                .setBackground(Color.CYAN)
+                                                                .element()
+                                                        )
+                                                        .appendChild(animationDiv)
+                                                )
+                                        )
+                                )
+                        )
+                        .element()
+                );
     }
 
     @SampleMethod
@@ -102,6 +155,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                 .setCollapsible()
                                 .appendChild(b().textContent("Panel Primary"))
                                 .appendChild(Accordion.create()
+                                        .setPanelCollapseStrategy(new HeightCollapseStrategy())
                                         .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
                                         .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
                                         .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
@@ -204,7 +258,6 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                 .element());
 
 
-
     }
 
     @SampleMethod
@@ -237,7 +290,6 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                                 .setBodyBackground(Color.ORANGE)
                                         ))))
                 .element());
-
 
 
     }

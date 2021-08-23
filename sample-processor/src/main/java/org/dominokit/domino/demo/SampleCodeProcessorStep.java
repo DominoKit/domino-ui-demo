@@ -23,7 +23,11 @@ import com.github.javaparser.ast.visitor.VoidVisitorAdapter;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.resources.client.ClientBundle;
 import com.google.gwt.resources.client.ExternalTextResource;
-import com.squareup.javapoet.*;
+import com.squareup.javapoet.AnnotationSpec;
+import com.squareup.javapoet.ClassName;
+import com.squareup.javapoet.FieldSpec;
+import com.squareup.javapoet.MethodSpec;
+import com.squareup.javapoet.TypeSpec;
 import org.apache.commons.io.IOUtils;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.apt.commons.AbstractProcessingStep;
@@ -44,7 +48,11 @@ import java.io.OutputStream;
 import java.net.URI;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
 
 public class SampleCodeProcessorStep extends AbstractProcessingStep {
 

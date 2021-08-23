@@ -2,7 +2,12 @@ package org.dominokit.domino.mdiicons.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
-import elemental2.dom.*;
+import elemental2.dom.ClipboardEvent;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLInputElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
@@ -16,19 +21,27 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.Row_12;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.*;
+import org.dominokit.domino.ui.icons.BaseIcon;
+import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiByTagFactory;
+import org.dominokit.domino.ui.icons.MdiIcon;
+import org.dominokit.domino.ui.icons.MdiTags;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.utils.DominoDom;
-import org.jboss.elemento.InputType;
 import org.jboss.elemento.HtmlContentBuilder;
+import org.jboss.elemento.InputType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
 import java.util.function.Supplier;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.span;
 
 @UiView(presentable = MdiIconsProxy.class)
 public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements MdiIconsView {

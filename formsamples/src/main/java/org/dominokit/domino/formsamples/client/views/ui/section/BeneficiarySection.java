@@ -2,7 +2,11 @@ package org.dominokit.domino.formsamples.client.views.ui.section;
 
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
-import org.dominokit.domino.formsamples.shared.model.*;
+import org.dominokit.domino.formsamples.shared.model.Account;
+import org.dominokit.domino.formsamples.shared.model.Beneficiary;
+import org.dominokit.domino.formsamples.shared.model.ContactPerson;
+import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
+import org.dominokit.domino.formsamples.shared.model.SellerBeneficiary;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.Select;
@@ -11,7 +15,6 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Style;
 
 import java.util.List;
 

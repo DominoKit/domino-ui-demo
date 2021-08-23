@@ -1,8 +1,8 @@
 package org.dominokit.domino.formsamples.client.views.ui.section;
 
-import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
 import elemental2.dom.ClientRect;
 import elemental2.dom.HTMLElement;
+import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.popover.PopupPosition;
 

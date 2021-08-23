@@ -2,15 +2,13 @@ package org.dominokit.domino.setup.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.setup.client.presenters.SetupProxy;
 import org.dominokit.domino.setup.client.views.SetupView;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-
-import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = SetupProxy.class)
 public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements SetupView{

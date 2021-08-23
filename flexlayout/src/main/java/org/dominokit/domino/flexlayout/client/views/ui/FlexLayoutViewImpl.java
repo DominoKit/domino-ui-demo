@@ -4,6 +4,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutProxy;
@@ -16,13 +17,17 @@ import org.dominokit.domino.ui.forms.RadioGroup;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.*;
+import org.dominokit.domino.ui.grid.flex.FlexAlign;
+import org.dominokit.domino.ui.grid.flex.FlexDirection;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
+import org.dominokit.domino.ui.grid.flex.FlexWrap;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.utils.TextNode;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +35,10 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.p;
 
 @UiView(presentable = FlexLayoutProxy.class)
 @SampleClass

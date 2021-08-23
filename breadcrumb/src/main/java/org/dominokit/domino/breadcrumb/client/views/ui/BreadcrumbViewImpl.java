@@ -6,6 +6,7 @@ import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.breadcrumb.client.presenters.BreadcrumbProxy;
 import org.dominokit.domino.breadcrumb.client.views.BreadcrumbView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.breadcrumbs.Breadcrumb;
@@ -15,7 +16,6 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.jboss.elemento.Elements;
 
 @UiView(presentable = BreadcrumbProxy.class)

@@ -1,6 +1,13 @@
 package org.dominokit.domino.layout.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.presenter.*;
+import org.dominokit.domino.api.client.annotations.presenter.AutoReveal;
+import org.dominokit.domino.api.client.annotations.presenter.AutoRoute;
+import org.dominokit.domino.api.client.annotations.presenter.OnReveal;
+import org.dominokit.domino.api.client.annotations.presenter.OnStateChanged;
+import org.dominokit.domino.api.client.annotations.presenter.PresenterProxy;
+import org.dominokit.domino.api.client.annotations.presenter.RegisterSlots;
+import org.dominokit.domino.api.client.annotations.presenter.Singleton;
+import org.dominokit.domino.api.client.annotations.presenter.Slot;
 import org.dominokit.domino.api.client.mvp.Store;
 import org.dominokit.domino.api.client.mvp.StoreRegistry;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;

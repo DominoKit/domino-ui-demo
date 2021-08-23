@@ -4,10 +4,14 @@ import com.google.gwt.resources.client.ExternalTextResource;
 import com.google.gwt.resources.client.ResourceCallback;
 import com.google.gwt.resources.client.ResourceException;
 import com.google.gwt.resources.client.TextResource;
-import elemental2.dom.*;
+import elemental2.dom.ClipboardEvent;
+import elemental2.dom.DomGlobal;
+import elemental2.dom.EventListener;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLInputElement;
+import elemental2.dom.HTMLPreElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.code.Code;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
@@ -19,10 +23,7 @@ import org.jboss.elemento.InputType;
 
 import java.util.function.Consumer;
 
-import static java.util.Objects.isNull;
-import static org.dominokit.domino.ui.code.Code.block;
 import static org.jboss.elemento.Elements.input;
-import static org.jboss.elemento.Elements.pre;
 
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 

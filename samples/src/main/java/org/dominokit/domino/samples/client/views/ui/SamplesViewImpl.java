@@ -2,6 +2,7 @@ package org.dominokit.domino.samples.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
+import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.samples.client.presenters.SamplesProxy;
 import org.dominokit.domino.samples.client.views.SamplesView;
 import org.dominokit.domino.ui.Typography.Paragraph;
@@ -11,9 +12,12 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.h;
+import static org.jboss.elemento.Elements.hr;
+import static org.jboss.elemento.Elements.img;
 
 @UiView(presentable = SamplesProxy.class)
 public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements SamplesView {
