@@ -26,7 +26,6 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
-import org.dominokit.domino.ui.datatable.events.SimplePaginationPlugin;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.AdvancedPaginationPlugin;
@@ -38,6 +37,7 @@ import org.dominokit.domino.ui.datatable.plugins.RecordDetailsPlugin;
 import org.dominokit.domino.ui.datatable.plugins.RowMarkerPlugin;
 import org.dominokit.domino.ui.datatable.plugins.ScrollingPaginationPlugin;
 import org.dominokit.domino.ui.datatable.plugins.SelectionPlugin;
+import org.dominokit.domino.ui.datatable.plugins.SimplePaginationPlugin;
 import org.dominokit.domino.ui.datatable.plugins.SortPlugin;
 import org.dominokit.domino.ui.datatable.plugins.TopPanelPlugin;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.BooleanHeaderFilter;
@@ -471,7 +471,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            table.load();
         });
     }
 
@@ -1264,10 +1263,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
-                        .setWidth("70px"))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                        .setWidth("80px")
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
@@ -1281,23 +1278,21 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setWidth("100px")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
                         .textAlign("center"))
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .styleHeader(head -> Style.of(head).setWidth("100px"))
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center")
-                        .maxWidth("120px"))
+                        .textAlign("center"))
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
                         .sortable()
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
-                        .setWidth("200px"))
+                        .setWidth("250px"))
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setWidth("250px")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setWidth("200px")
+                        .setWidth("150px")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
@@ -1345,10 +1340,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
-                        .setWidth("70px"))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                        .setWidth("80px")
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
@@ -1362,23 +1355,21 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px"))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setWidth("100px")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
                         .textAlign("center"))
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .styleHeader(head -> Style.of(head).setWidth("100px"))
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center")
-                        .maxWidth("120px"))
+                        .textAlign("center"))
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
                         .sortable()
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
-                        .setWidth("200px"))
+                        .setWidth("250px"))
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setWidth("250px")
+                        .setWidth("300px")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setWidth("200px")
+                        .setWidth("150px")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {

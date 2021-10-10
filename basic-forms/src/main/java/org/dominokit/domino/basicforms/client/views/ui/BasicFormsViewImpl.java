@@ -82,7 +82,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         initRadioExample();
         initSwitchExample();
 
-        element.appendChild(selectCard.element());
+
 
         element.appendChild(fieldsStylesCard.element());
         element.appendChild(CodeCard.createCodeCard(
@@ -103,6 +103,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
         ).element());
 
 
+        element.appendChild(selectCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectExample()).element());
 
         element.appendChild(checkboxCard.element());

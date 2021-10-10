@@ -155,7 +155,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .add("classy-card"))
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
-                                .condenced()
+                                .condense()
                                 .appendChild(spinSelect
                                         .appendChild(SpinItem.create("", DominoElement.of(div().css(Styles.align_center))
                                                 .appendChild(img("https://secure.gravatar.com/avatar/7ec73ac46e7215d35633a18d134f44e7")
@@ -331,7 +331,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                         .add(Row.create()
                                                 .fullSpan(column -> column
                                                         .styler(style -> style.add(Styles.align_center))
-                                                        .condenced()
+                                                        .condense()
                                                         .styler(style -> style.setMarginTop("20px"))
                                                         .appendChild(Button.create("GO")
                                                                 .linkify()
@@ -353,7 +353,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .add(Row.create()
                                         .fullSpan(column -> column
                                                 .styler(style -> style.add(Styles.align_center))
-                                                .condenced()
+                                                .condense()
                                                 .styler(style -> style.setMarginTop("20px"))
                                                 .appendChild(Button.create("GO")
                                                         .linkify()
@@ -374,7 +374,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .add(Row.create()
                                         .fullSpan(column -> column
                                                 .styler(style -> style.add(Styles.align_center))
-                                                .condenced()
+                                                .condense()
                                                 .styler(style -> style.setMarginTop("20px"))
                                                 .appendChild(Button.create("GO")
                                                         .linkify()
@@ -404,7 +404,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .add(Row.create()
                                         .fullSpan(column -> column
                                                 .styler(style -> style.add(Styles.align_center))
-                                                .condenced()
+                                                .condense()
                                                 .styler(style -> style.setMarginTop("20px"))
                                                 .appendChild(Button.create("GO")
                                                         .linkify()
