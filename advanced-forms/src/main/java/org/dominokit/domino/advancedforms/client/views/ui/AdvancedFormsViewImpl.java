@@ -250,7 +250,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
 
             @Override
             public void filter(String searchValue, SuggestionsHandler<String> suggestionsHandler) {
-                DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
+                DomGlobal.fetch("https://restcountries.com/v2/all?fields=name")
                         .then(Response::text)
                         .then(json -> {
                             List<SuggestItem<String>> suggestItems = new ArrayList<>();
@@ -269,7 +269,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
 
             @Override
             public void find(String searchValue, Consumer<SuggestItem<String>> handler) {
-                DomGlobal.fetch("https://restcountries.eu/rest/v2/all")
+                DomGlobal.fetch("https://restcountries.com/v2/all?fields=name")
                         .then(Response::text)
                         .then(json -> {
                             JsArray<JsPropertyMap<String>> randomNames = Js.cast(Global.JSON.parse(json));
