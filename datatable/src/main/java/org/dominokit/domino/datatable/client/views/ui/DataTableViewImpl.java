@@ -10,17 +10,11 @@ import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
-import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
-import org.dominokit.domino.datatable.client.views.model.Contact;
-import org.dominokit.domino.datatable.client.views.model.ContactList;
-import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
-import org.dominokit.domino.datatable.client.views.model.ContactSorter;
-import org.dominokit.domino.datatable.client.views.model.EyeColor;
-import org.dominokit.domino.datatable.client.views.model.Gender;
+import org.dominokit.domino.datatable.client.views.model.*;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
@@ -28,33 +22,11 @@ import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
-import org.dominokit.domino.ui.datatable.plugins.AdvancedPaginationPlugin;
-import org.dominokit.domino.ui.datatable.plugins.BodyScrollPlugin;
-import org.dominokit.domino.ui.datatable.plugins.ColumnHeaderFilterPlugin;
-import org.dominokit.domino.ui.datatable.plugins.GroupingPlugin;
-import org.dominokit.domino.ui.datatable.plugins.HeaderBarPlugin;
-import org.dominokit.domino.ui.datatable.plugins.RecordDetailsPlugin;
-import org.dominokit.domino.ui.datatable.plugins.RowMarkerPlugin;
-import org.dominokit.domino.ui.datatable.plugins.ScrollingPaginationPlugin;
-import org.dominokit.domino.ui.datatable.plugins.SelectionPlugin;
-import org.dominokit.domino.ui.datatable.plugins.SimplePaginationPlugin;
-import org.dominokit.domino.ui.datatable.plugins.SortPlugin;
-import org.dominokit.domino.ui.datatable.plugins.TopPanelPlugin;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.BooleanHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.DoubleHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.EnumHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.SelectHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.*;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
-import org.dominokit.domino.ui.forms.CheckBox;
-import org.dominokit.domino.ui.forms.DoubleBox;
-import org.dominokit.domino.ui.forms.EmailBox;
-import org.dominokit.domino.ui.forms.FieldStyle;
-import org.dominokit.domino.ui.forms.Select;
-import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.forms.TelephoneBox;
-import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -92,53 +64,55 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textContent("Data table demo source code").element())
                 .element());
 
-        basicTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
+//        basicTable();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
+//
+//        editableTable();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
+//
+//        basicFixedTable();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
+//
+//        singleSelectionPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+//
+//        multiSelectionPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
+//
+//        markerPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+//
+//        recordDetailsPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+//
+//        tableHeaderBarPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
+//
+//        sortAndSearch();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
+//
+//        simplePagination();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
+//
+//        scrollingPagination();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
+//
+//        advancedPagination();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
+//
+//        scrollableTable();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
+//
+//        topPanelPlugin();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
+//
+//        groupingTable();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
+//
+//        allInOne();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
 
-        editableTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
-
-        basicFixedTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
-
-        singleSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
-
-        multiSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
-
-        markerPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
-
-        recordDetailsPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
-
-        tableHeaderBarPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
-
-        sortAndSearch();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
-
-        simplePagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
-
-        scrollingPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
-
-        advancedPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
-
-        scrollableTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
-
-        topPanelPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
-
-        groupingTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
-
-        allInOne();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
+        treeGrid();
 
         try {
             JsonResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
@@ -160,6 +134,28 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         }
 
         return element;
+    }
+
+    private void treeGrid() {
+        TableConfig<TreeGridSample> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<TreeGridSample>create("id", "ID")
+                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getId() + ""))
+                )
+                .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
+                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
+                );
+
+        tableConfig.addPlugin(new TreeGridPlugin<>("id"));
+        LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
+        DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
+        element.appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")
+                .setCollapsible()
+                .appendChild(table)
+                .element());
+
+        localListDataStore.setData(TreeGridSample.create());
+        table.load();
     }
 
 
@@ -315,7 +311,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 .clickable()
                                 .setTooltip("Save")
                                 .addClickListener(evt -> {
-                                    if(cell.getTableRow().validate().isValid()) {
+                                    if (cell.getTableRow().validate().isValid()) {
                                         cell.getTableRow().save();
                                     }
                                 })
