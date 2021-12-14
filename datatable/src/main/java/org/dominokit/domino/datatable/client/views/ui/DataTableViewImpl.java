@@ -15,6 +15,7 @@ import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
 import org.dominokit.domino.datatable.client.views.model.*;
+import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
@@ -27,6 +28,10 @@ import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.flex.FlexAlign;
+import org.dominokit.domino.ui.grid.flex.FlexDirection;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -39,11 +44,12 @@ import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = DatatableProxy.class)
 @SampleClass
@@ -146,7 +152,14 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
                 );
 
-        tableConfig.addPlugin(new TreeGridPlugin<>("id"));
+        tableConfig.addPlugin(new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()), item -> {
+            return FlexLayout.create()
+                    .setDirection(FlexDirection.LEFT_TO_RIGHT)
+                    .setAlignItems(FlexAlign.CENTER)
+                    .appendChild(FlexItem.create().appendChild(Icons.ALL.file_mdi()))
+                    .appendChild(FlexItem.create().appendChild(TextNode.of(item.getName())))
+                    .element();
+        }));
         LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
         DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
         element.appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")

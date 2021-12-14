@@ -1,11 +1,9 @@
 package org.dominokit.domino.datatable.client.views.model;
 
-import org.dominokit.domino.datatable.client.views.ui.TreeNode;
-
 import java.util.ArrayList;
 import java.util.List;
 
-public class TreeGridSample implements TreeNode<TreeGridSample> {
+public class TreeGridSample {
 
     private int id;
     private String name;
@@ -32,6 +30,10 @@ public class TreeGridSample implements TreeNode<TreeGridSample> {
     }
 
     @Override
+    public String toString() {
+        return "ID = " + id + ", name = " + name;
+    }
+
     public List<TreeGridSample> getItems() {
         return items;
     }
