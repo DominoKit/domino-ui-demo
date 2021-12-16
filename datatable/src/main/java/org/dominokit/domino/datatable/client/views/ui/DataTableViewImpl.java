@@ -6,21 +6,22 @@ import com.google.gwt.resources.client.TextResource;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLTableCellElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
+import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
 import org.dominokit.domino.datatable.client.views.model.*;
+import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.datatable.ColumnConfig;
-import org.dominokit.domino.ui.datatable.DataTable;
-import org.dominokit.domino.ui.datatable.TableConfig;
+import org.dominokit.domino.ui.datatable.*;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.*;
@@ -28,10 +29,6 @@ import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.forms.*;
-import org.dominokit.domino.ui.grid.flex.FlexAlign;
-import org.dominokit.domino.ui.grid.flex.FlexDirection;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -42,10 +39,7 @@ import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.function.Predicate;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.style.Unit.px;
@@ -145,23 +139,66 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private void treeGrid() {
         TableConfig<TreeGridSample> tableConfig = new TableConfig<>();
         tableConfig
+                .addColumn(ColumnConfig.<TreeGridSample>create("edit_save", "")
+                        .styleCell(element -> element.style.setProperty("vertical-align", "top"))
+                        .setWidth("40px")
+                        .setFixed(true)
+                        .setCellRenderer(cell -> Icons.ALL.pencil_mdi()
+                                .clickable()
+                                .setTooltip("Edit")
+                                .addClickListener(evt -> cell.getTableRow().edit())
+                                .element()
+                        )
+                        .setEditableCellRenderer(cell -> Icons.ALL.content_save_mdi()
+                                .clickable()
+                                .setTooltip("Save")
+                                .addClickListener(evt -> {
+                                    if (cell.getTableRow().validate().isValid()) {
+                                        cell.getTableRow().save();
+                                    }
+                                })
+                                .element())
+                )
                 .addColumn(ColumnConfig.<TreeGridSample>create("id", "ID")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getId() + ""))
+                        .setEditableCellRenderer(cellInfo -> {
+                            return TextBox.create().element();
+                        })
                 )
                 .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                );
+                        .setEditableCellRenderer(cellInfo -> {
+                            return TextBox.create().element();
+                        })
+                )
+                .setDirtyRecordHandlers(original -> {
+                    DomGlobal.console.info(original.toString());
+                    return original;
+                }, (originalRecord, dirtyRecord) -> {
+                    DomGlobal.console.info(dirtyRecord.toString());
+                });
 
-        tableConfig.addPlugin(new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()), item -> {
-            return FlexLayout.create()
-                    .setDirection(FlexDirection.LEFT_TO_RIGHT)
-                    .setAlignItems(FlexAlign.CENTER)
-                    .appendChild(FlexItem.create().appendChild(Icons.ALL.file_mdi()))
-                    .appendChild(FlexItem.create().appendChild(TextNode.of(item.getName())))
+        TreeGridPlugin<TreeGridSample> treeGridPlugin = new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()));
+        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
+            HTMLTableCellElement cellElement = DominoElement.of(td())
+                    .setAttribute("colspan", "2")
+                    .appendChild(Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0"))
                     .element();
-        }));
+
+            RowCell<TreeGridSample> rowCell =
+                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
+            return Collections.singletonList(rowCell);
+        });
+        tableConfig.addPlugin(treeGridPlugin);
+//        tableConfig.addPlugin(new SelectionPlugin<>());
+        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
+        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
+        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
         LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
         DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
+        table.addSelectionListener((selectedTableRows, selectedRecords) -> {
+            selectedRecords.forEach(treeGridSample -> DomGlobal.console.info(treeGridSample.toString()));
+        });
         element.appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")
                 .setCollapsible()
                 .appendChild(table)
