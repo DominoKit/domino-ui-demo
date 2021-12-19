@@ -139,61 +139,29 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private void treeGrid() {
         TableConfig<TreeGridSample> tableConfig = new TableConfig<>();
         tableConfig
-                .addColumn(ColumnConfig.<TreeGridSample>create("edit_save", "")
-                        .styleCell(element -> element.style.setProperty("vertical-align", "top"))
-                        .setWidth("40px")
-                        .setFixed(true)
-                        .setCellRenderer(cell -> Icons.ALL.pencil_mdi()
-                                .clickable()
-                                .setTooltip("Edit")
-                                .addClickListener(evt -> cell.getTableRow().edit())
-                                .element()
-                        )
-                        .setEditableCellRenderer(cell -> Icons.ALL.content_save_mdi()
-                                .clickable()
-                                .setTooltip("Save")
-                                .addClickListener(evt -> {
-                                    if (cell.getTableRow().validate().isValid()) {
-                                        cell.getTableRow().save();
-                                    }
-                                })
-                                .element())
-                )
                 .addColumn(ColumnConfig.<TreeGridSample>create("id", "ID")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getId() + ""))
-                        .setEditableCellRenderer(cellInfo -> {
-                            return TextBox.create().element();
-                        })
                 )
                 .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                        .setEditableCellRenderer(cellInfo -> {
-                            return TextBox.create().element();
-                        })
-                )
-                .setDirtyRecordHandlers(original -> {
-                    DomGlobal.console.info(original.toString());
-                    return original;
-                }, (originalRecord, dirtyRecord) -> {
-                    DomGlobal.console.info(dirtyRecord.toString());
-                });
+                );
 
         TreeGridPlugin<TreeGridSample> treeGridPlugin = new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()));
-        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
-            HTMLTableCellElement cellElement = DominoElement.of(td())
-                    .setAttribute("colspan", "2")
-                    .appendChild(Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0"))
-                    .element();
-
-            RowCell<TreeGridSample> rowCell =
-                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
-            return Collections.singletonList(rowCell);
-        });
+//        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
+//            HTMLTableCellElement cellElement = DominoElement.of(td())
+//                    .setAttribute("colspan", "2")
+//                    .appendChild(Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0"))
+//                    .element();
+//
+//            RowCell<TreeGridSample> rowCell =
+//                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
+//            return Collections.singletonList(rowCell);
+//        });
         tableConfig.addPlugin(treeGridPlugin);
-//        tableConfig.addPlugin(new SelectionPlugin<>());
-        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
-        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
-        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
+        tableConfig.addPlugin(new SelectionPlugin<>());
+//        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
+//        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
+//        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
         LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
         DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
         table.addSelectionListener((selectedTableRows, selectedRecords) -> {

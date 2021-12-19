@@ -1,10 +1,8 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
+import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTableCellElement;
-import org.dominokit.domino.ui.datatable.ColumnConfig;
-import org.dominokit.domino.ui.datatable.DataTable;
-import org.dominokit.domino.ui.datatable.RowCell;
-import org.dominokit.domino.ui.datatable.TableRow;
+import org.dominokit.domino.ui.datatable.*;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
 import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -27,7 +25,7 @@ import static java.util.Objects.nonNull;
 public class TreeGridPlugin<T> implements DataTablePlugin<T> {
 
     public static final String TREE_GRID_ROW_LEVEL = "tree-grid-row-level";
-    public static final String TREE_GRID_EXPAND_COLLAPSE = "tree-grid-expand-collapse";
+    public static final String TREE_GRID_EXPAND_COLLAPSE = "plugin-utility-column";
     public static final int DEFAULT_INDENT = 20;
     public static final int BASE_PADDING = 10;
 
@@ -45,32 +43,55 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
     }
 
     @Override
+    public Optional<HTMLElement> getUtilityElement(DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
+        Optional<Collection<T>> items = itemsFunction.apply(cellInfo.getRecord());
+        if (!isParent(items)) {
+            return Optional.of(leafIconSupplier.get().element());
+        }
+        return Optional.of(expandIconSupplier.get()
+                .setToggleIcon(collapseIconSupplier.get())
+                .toggleOnClick(true)
+                .clickable()
+                .addClickListener(evt -> {
+                    Optional.ofNullable(cellInfo.getTableRow().getMetaObject("tree-grid-sub-items"))
+                            .map(o -> (TreeGridSubItems<T>) o)
+                            .ifPresent(subItems -> subItems.items.forEach(BaseDominoElement::toggleDisplay));
+                })
+                .element());
+    }
+
+    @Override
+    public Optional<HTMLElement> getUtilityHeaderElement(DataTable<T> dataTable, String columnTitle) {
+        return Optional.of(expandIconSupplier.get().clickable().element());
+    }
+
+    @Override
     public void onBeforeAddHeaders(DataTable<T> dataTable) {
-        dataTable
-                .getTableConfig()
-                .insertColumnFirst(
-                        ColumnConfig.<T>create(TREE_GRID_EXPAND_COLLAPSE)
-                                .setSortable(false)
-                                .setPluginColumn(true)
-                                .styleHeader(element -> Style.of(element).setWidth("3px", true))
-                                .styleCell(element -> Style.of(element).setWidth("3px", true))
-                                .setCellRenderer(
-                                        cell -> {
-                                            Optional<Collection<T>> items = itemsFunction.apply(cell.getRecord());
-                                            if (!isParent(items)) {
-                                                return leafIconSupplier.get().element();
-                                            }
-                                            return expandIconSupplier.get()
-                                                    .setToggleIcon(collapseIconSupplier.get())
-                                                    .toggleOnClick(true)
-                                                    .clickable()
-                                                    .addClickListener(evt -> {
-                                                        Optional.ofNullable(cell.getTableRow().getMetaObject("tree-grid-sub-items"))
-                                                                .map(o -> (TreeGridSubItems<T>) o)
-                                                                .ifPresent(subItems -> subItems.items.forEach(BaseDominoElement::toggleDisplay));
-                                                    })
-                                                    .element();
-                                        }));
+//        dataTable
+//                .getTableConfig()
+//                .insertColumnFirst(
+//                        ColumnConfig.<T>create(TREE_GRID_EXPAND_COLLAPSE)
+//                                .setSortable(false)
+//                                .setPluginColumn(true)
+//                                .styleHeader(element -> Style.of(element).setWidth("3px", true))
+//                                .styleCell(element -> Style.of(element).setWidth("3px", true))
+//                                .setCellRenderer(
+//                                        cell -> {
+//                                            Optional<Collection<T>> items = itemsFunction.apply(cell.getRecord());
+//                                            if (!isParent(items)) {
+//                                                return leafIconSupplier.get().element();
+//                                            }
+//                                            return expandIconSupplier.get()
+//                                                    .setToggleIcon(collapseIconSupplier.get())
+//                                                    .toggleOnClick(true)
+//                                                    .clickable()
+//                                                    .addClickListener(evt -> {
+//                                                        Optional.ofNullable(cell.getTableRow().getMetaObject("tree-grid-sub-items"))
+//                                                                .map(o -> (TreeGridSubItems<T>) o)
+//                                                                .ifPresent(subItems -> subItems.items.forEach(BaseDominoElement::toggleDisplay));
+//                                                    })
+//                                                    .element();
+//                                        }));
     }
 
     @Override
@@ -101,6 +122,7 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
             subRow.addMetaObject(new TreeGridRowLevel(treeGridRowLevel.level + 1));
             dataTable.getTableConfig().getPlugins().forEach(plugin -> plugin.onBeforeAddRow(dataTable, subRow));
             dataTable.getTableConfig().drawRecord(dataTable, subRow);
+            dataTable.getItems().add(subRow);
             subRows.add(subRow);
 
             getRowCellElement(subRow, indentColumn).setPaddingLeft(Unit.px.of(treeGridRowLevel.level * indent + BASE_PADDING));
