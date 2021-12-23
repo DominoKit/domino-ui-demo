@@ -139,14 +139,14 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private void treeGrid() {
         TableConfig<TreeGridSample> tableConfig = new TableConfig<>();
         tableConfig
-                .addColumn(ColumnConfig.<TreeGridSample>create("id", "ID")
-                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getId() + ""))
-                )
                 .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                );
+                )
+                .setUtilityColumnTitle("ID")
+                .setMultiSelect(true);
 
         TreeGridPlugin<TreeGridSample> treeGridPlugin = new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()));
+        treeGridPlugin.setIndentColumnElementSupplier(tableRow -> TextNode.of(tableRow.getRecord().getId() + ""));
 //        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
 //            HTMLTableCellElement cellElement = DominoElement.of(td())
 //                    .setAttribute("colspan", "2")
@@ -157,8 +157,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 //                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
 //            return Collections.singletonList(rowCell);
 //        });
-        tableConfig.addPlugin(treeGridPlugin);
+        treeGridPlugin.setIndent(60);
         tableConfig.addPlugin(new SelectionPlugin<>());
+        tableConfig.addPlugin(treeGridPlugin);
 //        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
 //        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
 //        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
