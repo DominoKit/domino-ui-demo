@@ -1,15 +1,15 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
-import elemental2.dom.*;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import elemental2.dom.HTMLDivElement;
+import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLTableCellElement;
+import elemental2.dom.Node;
 import org.dominokit.domino.ui.datatable.*;
+import org.dominokit.domino.ui.datatable.events.*;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Unit;
-import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
@@ -24,6 +24,7 @@ import static java.util.Objects.nonNull;
 public class TreeGridPlugin<T> implements DataTablePlugin<T> {
 
     public static final String TREE_GRID_ROW_LEVEL = "tree-grid-row-level";
+    public static final String TREE_GRID_ROW_TOGGLE_ICON = "tree-grid-row-toggle-icon";
     public static final String TREE_GRID_EXPAND_COLLAPSE = "plugin-utility-column";
     public static final int DEFAULT_INDENT = 20;
     public static final int BASE_PADDING = 10;
@@ -37,6 +38,8 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
     private Supplier<BaseIcon<?>> leafIconSupplier = () -> Icons.ALL.circle_medium_mdi().size18();
     private Function<TableRow<T>, Node> indentColumnElementSupplier = tableRow -> TextNode.empty();
     private int indent = DEFAULT_INDENT;
+    private BaseIcon<?> headerIcon;
+    private int expandedCount = 0;
 
     public TreeGridPlugin(String indentColumn, Function<T, Optional<Collection<T>>> itemsFunction) {
         this.indentColumn = indentColumn;
@@ -44,33 +47,102 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
     }
 
     @Override
+    public boolean requiresUtilityColumn() {
+        return true;
+    }
+
+    @Override
     public Optional<List<HTMLElement>> getUtilityElements(DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
-        HTMLElement icon;
+        BaseIcon<?> icon;
         Optional<Collection<T>> items = itemsFunction.apply(cellInfo.getRecord());
+        TableRow<T> tableRow = cellInfo.getTableRow();
         if (!isParent(items)) {
-            icon = leafIconSupplier.get().element();
+            icon = leafIconSupplier.get();
         } else {
             icon = expandIconSupplier.get()
                     .setToggleIcon(collapseIconSupplier.get())
-                    .toggleOnClick(true)
-                    .clickable()
-                    .addClickListener(evt -> {
-                        Optional.ofNullable(cellInfo.getTableRow().getChildren())
-                                .ifPresent(subItems -> subItems.forEach(BaseDominoElement::toggleDisplay));
-                    })
-                    .element();
+                    .clickable();
+            icon.addClickListener(evt -> {
+                if (icon.isToggled()) {
+                    collapse(tableRow);
+                } else {
+                    expand(tableRow);
+                }
+            });
         }
         icon.setAttribute("order", ICON_ORDER);
         DominoElement<HTMLDivElement> title = DominoElement.div()
                 .setAttribute("order", "100")
-                .appendChild(indentColumnElementSupplier.apply(cellInfo.getTableRow()));
-        return Optional.of(Arrays.asList(icon, title.element()));
+                .appendChild(indentColumnElementSupplier.apply(tableRow));
+        tableRow.addMetaObject(new TreeGridRowToggleIcon(icon));
+        return Optional.of(Arrays.asList(icon.element(), title.element()));
+    }
+
+    private void expand(TableRow<T> row) {
+        expand(row, true);
+        if(row.isRoot()) {
+            increment();
+        }
+    }
+
+    private void expand(TableRow<T> row, boolean recursive) {
+        row.show();
+        if (recursive) {
+            TreeGridRowToggleIcon treeGridRowToggleIcon = row.getMetaObject(TREE_GRID_ROW_TOGGLE_ICON);
+            if (!treeGridRowToggleIcon.icon.isToggled()) {
+                treeGridRowToggleIcon.icon.toggleIcon();
+            }
+            for (TableRow<T> child : row.getChildren()) {
+                expand(child, false);
+            }
+        }
+    }
+
+    private void collapse(TableRow<T> row) {
+        TreeGridRowToggleIcon treeGridRowToggleIcon = row.getMetaObject(TREE_GRID_ROW_TOGGLE_ICON);
+        if (treeGridRowToggleIcon.icon.isToggled()) {
+            treeGridRowToggleIcon.icon.toggleIcon();
+        }
+        for (TableRow<T> child : row.getChildren()) {
+            child.hide();
+            collapse(child);
+        }
+        if(row.isRoot()) {
+            decrement();
+        }
+    }
+
+    private void increment() {
+        expandedCount++;
+        if (!headerIcon.isToggled()) {
+            headerIcon.toggleIcon();
+        }
+    }
+
+    private void decrement() {
+        expandedCount--;
+        if (expandedCount == 0 && headerIcon.isToggled()) {
+            headerIcon.toggleIcon();
+        }
     }
 
     @Override
     public Optional<List<HTMLElement>> getUtilityHeaderElements(DataTable<T> dataTable, String columnTitle) {
-        BaseIcon<?> baseIcon = expandIconSupplier.get();
+        BaseIcon<?> baseIcon = expandIconSupplier.get()
+                .setToggleIcon(collapseIconSupplier.get())
+                .clickable();
+        baseIcon.addClickListener(evt -> {
+            if (baseIcon.isToggled()) {
+                dataTable.getRows()
+                        .forEach(this::collapse);
+            } else {
+                dataTable.getRows()
+                        .forEach(this::expand);
+            }
+            baseIcon.toggleIcon();
+        });
         baseIcon.setAttribute("order", ICON_ORDER);
+        headerIcon = baseIcon;
         return Optional.of(singletonList(baseIcon.clickable().element()));
     }
 
@@ -105,16 +177,31 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
             dataTable.getRows().add(subRow);
             subRow.setParent(tableRow);
             subRows.add(subRow);
-
-//            getRowCellElement(subRow, indentColumn).setPaddingLeft(Unit.px.of(treeGridRowLevel.level * indent + BASE_PADDING));
-            getRowCellElement(subRow, TREE_GRID_EXPAND_COLLAPSE).setPaddingLeft(Unit.px.of(treeGridRowLevel.level * indent + BASE_PADDING));
+            getRowCellElement(subRow).setPaddingLeft(Unit.px.of(treeGridRowLevel.level * indent + BASE_PADDING));
         }
         tableRow.setChildren(subRows);
     }
 
-    private DominoElement<HTMLTableCellElement> getRowCellElement(TableRow<T> subRow, String name) {
+    @Override
+    public void handleEvent(TableEvent event) {
+        switch (event.getType()){
+            case SortEvent.SORT_EVENT:
+            case DataSortEvent.EVENT:
+            case SearchEvent.SEARCH_EVENT:
+            case SearchClearedEvent.SEARCH_EVENT_CLEARED:
+            case TableDataUpdatedEvent.DATA_UPDATED:
+            case TablePageChangeEvent.PAGINATION_EVENT:
+                if (headerIcon.isToggled()) {
+                    headerIcon.toggleIcon();
+                }
+                expandedCount = 0;
+                break;
+        }
+    }
+
+    private DominoElement<HTMLTableCellElement> getRowCellElement(TableRow<T> subRow) {
         return DominoElement.of(subRow.getRowCells()
-                .get(name)
+                .get(TreeGridPlugin.TREE_GRID_EXPAND_COLLAPSE)
                 .getCellInfo()
                 .getElement());
     }
@@ -183,6 +270,19 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
         @Override
         public String getKey() {
             return TREE_GRID_ROW_LEVEL;
+        }
+    }
+
+    public static class TreeGridRowToggleIcon implements TableRow.RowMetaObject {
+        private final BaseIcon<?> icon;
+
+        public TreeGridRowToggleIcon(BaseIcon<?> icon) {
+            this.icon = icon;
+        }
+
+        @Override
+        public String getKey() {
+            return TREE_GRID_ROW_TOGGLE_ICON;
         }
     }
 

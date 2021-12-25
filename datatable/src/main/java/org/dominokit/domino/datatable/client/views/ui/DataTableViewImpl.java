@@ -141,7 +141,11 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         tableConfig
                 .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
+                        .setSortable(true)
                 )
+                .onUtilityColumn(utilityColumn -> {
+                    utilityColumn.setSortable(true, "id");
+                })
                 .setUtilityColumnTitle("ID")
                 .setMultiSelect(true);
 
@@ -158,12 +162,31 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 //            return Collections.singletonList(rowCell);
 //        });
         treeGridPlugin.setIndent(60);
+        tableConfig.addPlugin(new SortPlugin<>());
         tableConfig.addPlugin(new SelectionPlugin<>());
         tableConfig.addPlugin(treeGridPlugin);
 //        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
-//        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
-//        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
+        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
+        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
         LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
+        localListDataStore.setRecordsSorter((sortBy, sortDirection) -> {
+            if(sortBy.equals("id")){
+                if (sortDirection.equals(SortDirection.ASC)) {
+                    return Comparator.comparing(TreeGridSample::getId);
+                } else {
+                    return (o1, o2) -> Integer.compare(o2.getId(), o1.getId());
+                }
+            } else {
+                if (sortDirection.equals(SortDirection.ASC)) {
+                    return Comparator.comparing(TreeGridSample::getName);
+                } else {
+                    return (o1, o2) -> o2.getName().compareTo(o1.getName());
+                }
+            }
+        }, (items, comparator) -> {
+            items.sort(comparator);
+            items.forEach(treeGridSample -> sortChildren(treeGridSample, comparator));
+        });
         DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
         table.addSelectionListener((selectedTableRows, selectedRecords) -> {
             selectedRecords.forEach(treeGridSample -> DomGlobal.console.info(treeGridSample.toString()));
@@ -177,6 +200,12 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         table.load();
     }
 
+    private void sortChildren(TreeGridSample item, Comparator<TreeGridSample> comparator){
+        item.getItems().sort(comparator);
+        for (TreeGridSample itemItem : item.getItems()) {
+            sortChildren(itemItem, comparator);
+        }
+    }
 
     @SampleMethod
     private void groupingTable() {
