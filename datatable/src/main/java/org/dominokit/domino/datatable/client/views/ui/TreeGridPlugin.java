@@ -7,6 +7,7 @@ import elemental2.dom.Node;
 import org.dominokit.domino.ui.datatable.*;
 import org.dominokit.domino.ui.datatable.events.*;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.style.Unit;
@@ -33,9 +34,9 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
     private final String indentColumn;
     private final Function<T, Optional<Collection<T>>> itemsFunction;
     private ParentRowCellsSupplier<T> parentRowCellsSupplier;
-    private Supplier<BaseIcon<?>> expandIconSupplier = () -> Icons.ALL.menu_right_mdi().size18();
-    private Supplier<BaseIcon<?>> collapseIconSupplier = () -> Icons.ALL.menu_down_mdi().size18();
-    private Supplier<BaseIcon<?>> leafIconSupplier = () -> Icons.ALL.circle_medium_mdi().size18();
+    private Supplier<BaseIcon<?>> expandIconSupplier = Icons.ALL::menu_right_mdi;
+    private Supplier<BaseIcon<?>> collapseIconSupplier = Icons.ALL::menu_down_mdi;
+    private Supplier<BaseIcon<?>> leafIconSupplier = Icons.ALL::circle_medium_mdi;
     private Function<TableRow<T>, Node> indentColumnElementSupplier = tableRow -> TextNode.empty();
     private int indent = DEFAULT_INDENT;
     private BaseIcon<?> headerIcon;
@@ -49,33 +50,6 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
     @Override
     public boolean requiresUtilityColumn() {
         return true;
-    }
-
-    @Override
-    public Optional<List<HTMLElement>> getUtilityElements(DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
-        BaseIcon<?> icon;
-        Optional<Collection<T>> items = itemsFunction.apply(cellInfo.getRecord());
-        TableRow<T> tableRow = cellInfo.getTableRow();
-        if (!isParent(items)) {
-            icon = leafIconSupplier.get();
-        } else {
-            icon = expandIconSupplier.get()
-                    .setToggleIcon(collapseIconSupplier.get())
-                    .clickable();
-            icon.addClickListener(evt -> {
-                if (icon.isToggled()) {
-                    collapse(tableRow);
-                } else {
-                    expand(tableRow);
-                }
-            });
-        }
-        icon.setAttribute("order", ICON_ORDER);
-        DominoElement<HTMLDivElement> title = DominoElement.div()
-                .setAttribute("order", "100")
-                .appendChild(indentColumnElementSupplier.apply(tableRow));
-        tableRow.addMetaObject(new TreeGridRowToggleIcon(icon));
-        return Optional.of(Arrays.asList(icon.element(), title.element()));
     }
 
     private void expand(TableRow<T> row) {
@@ -126,24 +100,65 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
         }
     }
 
+    private DominoElement<HTMLTableCellElement> getRowCellElement(TableRow<T> subRow) {
+        return DominoElement.of(subRow.getRowCells()
+                .get(TreeGridPlugin.TREE_GRID_EXPAND_COLLAPSE)
+                .getCellInfo()
+                .getElement());
+    }
+
     @Override
-    public Optional<List<HTMLElement>> getUtilityHeaderElements(DataTable<T> dataTable, String columnTitle) {
-        BaseIcon<?> baseIcon = expandIconSupplier.get()
-                .setToggleIcon(collapseIconSupplier.get())
-                .clickable();
-        baseIcon.addClickListener(evt -> {
-            if (baseIcon.isToggled()) {
-                dataTable.getRows()
-                        .forEach(this::collapse);
-            } else {
-                dataTable.getRows()
-                        .forEach(this::expand);
-            }
-            baseIcon.toggleIcon();
-        });
-        baseIcon.setAttribute("order", ICON_ORDER);
-        headerIcon = baseIcon;
-        return Optional.of(singletonList(baseIcon.clickable().element()));
+    public Optional<List<HTMLElement>> getUtilityElements(DataTable<T> dataTable, CellRenderer.CellInfo<T> cellInfo) {
+        BaseIcon<?> icon;
+        Optional<Collection<T>> items = itemsFunction.apply(cellInfo.getRecord());
+        TableRow<T> tableRow = cellInfo.getTableRow();
+        if (!isParent(items)) {
+            icon = leafIconSupplier.get();
+        } else {
+            icon = expandIconSupplier.get()
+                    .setToggleIcon(collapseIconSupplier.get())
+                    .clickable();
+            icon.addClickListener(evt -> {
+                if (icon.isToggled()) {
+                    collapse(tableRow);
+                } else {
+                    expand(tableRow);
+                }
+                evt.stopPropagation();
+            });
+        }
+        icon.setAttribute("order", ICON_ORDER);
+        DominoElement<HTMLDivElement> title = DominoElement.div()
+                .setAttribute("order", "100")
+                .appendChild(indentColumnElementSupplier.apply(tableRow));
+        tableRow.addMetaObject(new TreeGridRowToggleIcon(icon));
+        return Optional.of(Arrays.asList(icon.element(), title.element()));
+    }
+
+    @Override
+    public void onHeaderAdded(DataTable<T> dataTable, ColumnConfig<T> column) {
+        if(column.isUtilityColumn()){
+            BaseIcon<?> baseIcon = expandIconSupplier.get()
+                    .setToggleIcon(collapseIconSupplier.get())
+                    .clickable();
+            baseIcon.addClickListener(evt -> {
+                if (baseIcon.isToggled()) {
+                    dataTable.getRows()
+                            .forEach(this::collapse);
+                } else {
+                    dataTable.getRows()
+                            .forEach(this::expand);
+                }
+                baseIcon.toggleIcon();
+                evt.stopPropagation();
+            });
+            headerIcon = baseIcon;
+            column.getHeaderLayout()
+                    .appendChild(FlexItem.create()
+                            .setOrder(10)
+                        .appendChild(baseIcon)
+                    );
+        }
     }
 
     @Override
@@ -197,13 +212,6 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
                 expandedCount = 0;
                 break;
         }
-    }
-
-    private DominoElement<HTMLTableCellElement> getRowCellElement(TableRow<T> subRow) {
-        return DominoElement.of(subRow.getRowCells()
-                .get(TreeGridPlugin.TREE_GRID_EXPAND_COLLAPSE)
-                .getCellInfo()
-                .getElement());
     }
 
     public TreeGridPlugin<T> setParentRowCellsSupplier(ParentRowCellsSupplier<T> parentRowCellsSupplier) {
