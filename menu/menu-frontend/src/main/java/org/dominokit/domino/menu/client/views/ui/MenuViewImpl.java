@@ -105,6 +105,7 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
                         .appendChild(makeSubMenu("Chips", "components/chips"))
                         .appendChild(makeSubMenu("Collapse", "components/collapse"))
                         .appendChild(makeSubMenu("Dialogs", "components/dialogs"))
+                        .appendChild(makeSubMenu("Drop down menu", "components/dropdown"))
                         .appendChild(makeSubMenu("Info box", "components/infobox"))
                         .appendChild(makeSubMenu("Labels", "components/labels"))
                         .appendChild(makeSubMenu("Lists", "components/lists"))

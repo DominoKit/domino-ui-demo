@@ -10,6 +10,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.pagination.client.presenters.PaginationProxy;
 import org.dominokit.domino.pagination.client.views.PaginationView;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -112,8 +113,17 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void initScrollerPagination() {
+        ScrollingPagination scrollingPagination = ScrollingPagination.create(50, 10, 5);
         element.appendChild(Card.create("SCROLLING PAGINATION", "For large number of pages scrolling pagiation allow viewing a set of pages at a time.")
-                .appendChild(ScrollingPagination.create(50, 10, 5)
+                        .appendChild(Button.create("update by 100")
+                                .addClickListener(evt -> scrollingPagination.updatePages(100)))
+                        .appendChild(Button.create("update by 100 not silent")
+                                .addClickListener(evt -> scrollingPagination.updatePages(100, false)))
+                 .appendChild(Button.create("update by 0")
+                                .addClickListener(evt -> scrollingPagination.updatePages(0)))
+                 .appendChild(Button.create("update by 0 not silent")
+                                .addClickListener(evt -> scrollingPagination.updatePages(0, false)))
+                .appendChild(scrollingPagination
                         .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
                 .element());
 

@@ -122,7 +122,7 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
     private void withIconsAndTextSample() {
         element.appendChild(Card.create("TABS WITH ICON TITLE")
                 .appendChild(TabsPanel.create()
-                        .appendChild(Tab.create(Icons.ALL.home(), " HOME")
+                        .appendChild(Tab.create(Icons.ALL.home_mdi(), " HOME")
                                 .appendChild(b().textContent("Home Content"))
                                 .appendChild(Paragraph.create(SAMPLE_TEXT)))
                         .appendChild(Tab.create(Icons.ALL.face(), " PROFILE")
