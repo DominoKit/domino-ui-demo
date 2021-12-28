@@ -93,7 +93,7 @@ public class DropDown extends BaseDominoElement<HTMLDivElement, DropDown> {
 
         menuNavigation =
                 MenuNavigation.create(dropDownItems)
-                        .onSelect(item -> item.)
+                        .onSelect(DropDownItem::select)
                         .focusCondition(IsCollapsible::isExpanded)
                         .onFocus(
                                 item -> {
@@ -104,6 +104,13 @@ public class DropDown extends BaseDominoElement<HTMLDivElement, DropDown> {
                         .onEscape(this::close);
 
         element.addEventListener("keydown", menuNavigation);
+    }
+
+    /**
+     * @return True if the menu is opened, false otherwise
+     */
+    public boolean isOpened() {
+        return element.isAttached();
     }
 
     public DropDown setIcon(BaseIcon<?> icon) {

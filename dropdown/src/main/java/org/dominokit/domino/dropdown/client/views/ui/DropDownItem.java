@@ -12,19 +12,25 @@ import org.dominokit.domino.ui.icons.BaseIcon;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.utils.HasDeselectionHandler;
 import org.dominokit.domino.ui.utils.HasSelectSupport;
 import org.dominokit.domino.ui.utils.HasSelectionHandler;
+import org.dominokit.domino.ui.utils.HasSelectionHandler.SelectionHandler;
 import org.dominokit.domino.ui.utils.HasSelectionSupport;
 import org.dominokit.domino.ui.utils.Selectable;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.IsElement;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.li;
 
-public class DropDownItem<T extends DropDownItem<T>> extends BaseDominoElement<HTMLLIElement, T> implements Selectable<T>, HasSelectionHandler {
+public class DropDownItem<T extends DropDownItem<T>> extends BaseDominoElement<HTMLLIElement, T> implements Selectable<T>, HasSelectionHandler<T, T>, HasDeselectionHandler<T> {
 
     private final DominoElement<HTMLLIElement> root = DominoElement.of(li().css("drop-down-item"));
     private final DominoElement<HTMLAnchorElement> linkElement = DominoElement.of(a())
@@ -41,6 +47,9 @@ public class DropDownItem<T extends DropDownItem<T>> extends BaseDominoElement<H
 
     DropDown dropDown;
     private DropDown parent;
+
+    private final List<HasSelectionHandler.SelectionHandler<T>> selectionHandlers = new ArrayList<>();
+    private final List<HasDeselectionHandler.DeselectionHandler> deselectionHandlers = new ArrayList<>();
 
     public DropDownItem() {
         init((T) this);
@@ -173,27 +182,66 @@ public class DropDownItem<T extends DropDownItem<T>> extends BaseDominoElement<H
 
     @Override
     public T select() {
-        return null;
+        return select(false);
     }
 
     @Override
     public T deselect() {
-        return null;
+        return select(false);
     }
 
     @Override
     public T select(boolean silent) {
-        return null;
+        setAttribute("selected", true);
+        if(!silent){
+            selectionHandlers.forEach(handler -> handler.onSelection((T) this));
+        }
+        return (T) this;
     }
 
     @Override
     public T deselect(boolean silent) {
-        return null;
+        setAttribute("selected", false);
+        if(!silent){
+            deselectionHandlers.forEach(DeselectionHandler::onDeselection);
+        }
+        return (T) this;
+    }
+
+    public T focus(){
+        getClickableElement().focus();
+        return (T) this;
     }
 
     @Override
     public boolean isSelected() {
-        return false;
+        return Optional.ofNullable(getAttribute("selected"))
+                .map(Boolean::parseBoolean)
+                .orElse(false);
+    }
+
+    @Override
+    public T addSelectionHandler(HasSelectionHandler.SelectionHandler<T> selectionHandler) {
+        if(nonNull(selectionHandler)){
+            selectionHandlers.add(selectionHandler);
+        }
+        return (T) this;
+    }
+
+    @Override
+    public T removeSelectionHandler(HasSelectionHandler.SelectionHandler<T> selectionHandler) {
+        if(nonNull(selectionHandler)){
+            selectionHandlers.remove(selectionHandler);
+        }
+        return (T) this;
+    }
+
+    @Override
+    public T addDeselectionHandler(DeselectionHandler deselectionHandler) {
+        if(nonNull(deselectionHandler)){
+            deselectionHandlers.add(deselectionHandler);
+        }
+        return (T) this;
     }
 
     @Override
