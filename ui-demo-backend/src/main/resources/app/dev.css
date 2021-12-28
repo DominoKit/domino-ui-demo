@@ -1,3 +1,11 @@
 input:-internal-autofill-selected {
     background-color: transparent !important;
 }
+
+.dt-cm-utility {
+    white-space: nowrap;
+}
+
+.dt-cm-utility > .flex-layout {
+    display: inline-flex;
+}

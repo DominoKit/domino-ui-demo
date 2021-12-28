@@ -298,8 +298,7 @@ public class TreeGridPlugin<T> implements DataTablePlugin<T> {
         @Override
         public void render(DataTable<T> dataTable, TableRow<T> tableRow) {
             List<ColumnConfig<T>> columns = dataTable.getTableConfig().getColumns();
-            ColumnConfig<T> indentColumnConfig = dataTable.getTableConfig().getColumnByName(indentColumn);
-            columns.subList(0, columns.indexOf(indentColumnConfig)).forEach(tableRow::renderCell);
+            columns.stream().filter(ColumnConfig::isPluginColumn).forEach(tableRow::renderCell);
 
             List<RowCell<T>> rowCells = parentRowCellsSupplier.get(dataTable, tableRow);
             rowCells.forEach(rowCell -> {

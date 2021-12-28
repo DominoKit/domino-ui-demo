@@ -29,6 +29,8 @@ import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -141,26 +143,39 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         tableConfig
                 .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
                         .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
+                        .setWidth("100px")
+                        .setSortable(true)
+                )
+                .addColumn(ColumnConfig.<TreeGridSample>create("name1", "NAME")
+                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
+                        .setWidth("100px")
+                        .setSortable(true)
+                )
+                .addColumn(ColumnConfig.<TreeGridSample>create("name2", "NAME")
+                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
+                        .setWidth("100px")
                         .setSortable(true)
                 )
                 .onUtilityColumn(utilityColumn -> {
                     utilityColumn.setSortable(true, "id");
+                    utilityColumn.setWidth("500px");
                 })
                 .setUtilityColumnTitle("ID")
+                .setFixed(true)
                 .setMultiSelect(true);
 
         TreeGridPlugin<TreeGridSample> treeGridPlugin = new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()));
-        treeGridPlugin.setIndentColumnElementSupplier(tableRow -> TextNode.of(tableRow.getRecord().getId() + ""));
-//        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
-//            HTMLTableCellElement cellElement = DominoElement.of(td())
-//                    .setAttribute("colspan", "2")
-//                    .appendChild(Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0"))
-//                    .element();
+        treeGridPlugin.setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0").element());
+        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
+            HTMLTableCellElement cellElement = DominoElement.of(td())
+                    .setAttribute("colspan", "3")
+//                    .setWidth("500px")
+                    .element();
 //
-//            RowCell<TreeGridSample> rowCell =
-//                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
-//            return Collections.singletonList(rowCell);
-//        });
+            RowCell<TreeGridSample> rowCell =
+                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("name"));
+            return Collections.singletonList(rowCell);
+        });
         treeGridPlugin.setIndent(60);
         tableConfig.addPlugin(new SortPlugin<>());
         tableConfig.addPlugin(new SelectionPlugin<>());
@@ -191,10 +206,12 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         table.addSelectionListener((selectedTableRows, selectedRecords) -> {
             selectedRecords.forEach(treeGridSample -> DomGlobal.console.info(treeGridSample.toString()));
         });
-        element.appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")
-                .setCollapsible()
-                .appendChild(table)
-                .element());
+        element.appendChild(Row.create()
+                .appendChild(Column.span6()
+                        .appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")
+                                .setCollapsible()
+                                .appendChild(table))
+                ).element());
 
         localListDataStore.setData(TreeGridSample.create());
         table.load();
