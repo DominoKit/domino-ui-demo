@@ -1,5 +1,7 @@
 package org.dominokit.domino.datatable.client.views.model;
 
+import java.util.List;
+
 public class Contact {
 
     private int index;
@@ -15,6 +17,7 @@ public class Contact {
     private String phone;
     private String address;
     private String about;
+    private List<Contact> friends;
 
     public Contact() {
     }
@@ -143,6 +146,14 @@ public class Contact {
         return "$"+balance;
     }
 
+    public void setFriends(List<Contact> subList) {
+        this.friends = subList;
+    }
+
+    public List<Contact> getFriends() {
+        return friends;
+    }
+
     @Override
     public String toString() {
         return "Contact{" +
@@ -150,5 +161,4 @@ public class Contact {
                 ", name='" + name + '\'' +
                 '}';
     }
-
 }

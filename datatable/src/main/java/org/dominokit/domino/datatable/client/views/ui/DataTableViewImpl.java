@@ -16,19 +16,53 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
-import org.dominokit.domino.datatable.client.views.model.*;
+import org.dominokit.domino.datatable.client.views.model.Contact;
+import org.dominokit.domino.datatable.client.views.model.ContactList;
+import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
+import org.dominokit.domino.datatable.client.views.model.ContactSorter;
+import org.dominokit.domino.datatable.client.views.model.EyeColor;
+import org.dominokit.domino.datatable.client.views.model.Gender;
+import org.dominokit.domino.datatable.client.views.model.TreeGridSample;
 import org.dominokit.domino.ui.Typography.Paragraph;
-import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.datatable.*;
+import org.dominokit.domino.ui.datatable.CellRenderer;
+import org.dominokit.domino.ui.datatable.ColumnConfig;
+import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.RowCell;
+import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
-import org.dominokit.domino.ui.datatable.plugins.*;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
+import org.dominokit.domino.ui.datatable.plugins.AdvancedPaginationPlugin;
+import org.dominokit.domino.ui.datatable.plugins.BodyScrollPlugin;
+import org.dominokit.domino.ui.datatable.plugins.ColumnHeaderFilterPlugin;
+import org.dominokit.domino.ui.datatable.plugins.GroupingPlugin;
+import org.dominokit.domino.ui.datatable.plugins.HeaderBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.RecordDetailsPlugin;
+import org.dominokit.domino.ui.datatable.plugins.RowClickPlugin;
+import org.dominokit.domino.ui.datatable.plugins.RowMarkerPlugin;
+import org.dominokit.domino.ui.datatable.plugins.ScrollingPaginationPlugin;
+import org.dominokit.domino.ui.datatable.plugins.SelectionPlugin;
+import org.dominokit.domino.ui.datatable.plugins.SimplePaginationPlugin;
+import org.dominokit.domino.ui.datatable.plugins.SortDirection;
+import org.dominokit.domino.ui.datatable.plugins.SortPlugin;
+import org.dominokit.domino.ui.datatable.plugins.TopPanelPlugin;
+import org.dominokit.domino.ui.datatable.plugins.TreeGridPlugin;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.BooleanHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.DoubleHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.EnumHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.SelectHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
-import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.forms.DoubleBox;
+import org.dominokit.domino.ui.forms.EmailBox;
+import org.dominokit.domino.ui.forms.FieldStyle;
+import org.dominokit.domino.ui.forms.Select;
+import org.dominokit.domino.ui.forms.SelectOption;
+import org.dominokit.domino.ui.forms.TelephoneBox;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
@@ -41,11 +75,20 @@ import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
+import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.elemento.Elements.*;
+import static org.jboss.elemento.Elements.a;
+import static org.jboss.elemento.Elements.div;
+import static org.jboss.elemento.Elements.fieldset;
+import static org.jboss.elemento.Elements.td;
 
 @UiView(presentable = DatatableProxy.class)
 @SampleClass
@@ -66,55 +109,60 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textContent("Data table demo source code").element())
                 .element());
 
-//        basicTable();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
-//
-//        editableTable();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
-//
-//        basicFixedTable();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
-//
-//        singleSelectionPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
-//
-//        multiSelectionPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
-//
-//        markerPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
-//
-//        recordDetailsPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
-//
-//        tableHeaderBarPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
-//
-//        sortAndSearch();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
-//
-//        simplePagination();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
-//
-//        scrollingPagination();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
-//
-//        advancedPagination();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
-//
-//        scrollableTable();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
-//
-//        topPanelPlugin();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
-//
-//        groupingTable();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
-//
-//        allInOne();
-//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
+        basicTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
 
-        treeGrid();
+        editableTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
+
+        basicFixedTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
+
+        singleSelectionPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+
+        multiSelectionPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
+
+        markerPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+
+        recordDetailsPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+
+        tableHeaderBarPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
+
+        sortAndSearch();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
+
+        simplePagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
+
+        scrollingPagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
+
+        advancedPagination();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
+
+        scrollableTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
+
+        topPanelPlugin();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
+
+        groupingTable();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
+
+        treeGridFullParentSpan();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
+
+        treeGridParentColumns();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
+
+        allInOne();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
+
 
         try {
             JsonResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
@@ -126,8 +174,12 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 @Override
                 public void onSuccess(TextResource resource) {
                     ContactList contactList = ContactList.MAPPER.read(resource.getText());
+                    List<Contact> contacts = contactList.getContacts();
+                    List<Contact> level1 = addFriends(contacts, contacts.subList(0, 50));
+                    List<Contact> level2 = addFriends(contacts, level1);
+                    List<Contact> level3 = addFriends(contacts, level2);
                     contactListParseHandlers.forEach(contactListParseHandler ->
-                            contactListParseHandler.onContactsParsed(contactList.getContacts()));
+                            contactListParseHandler.onContactsParsed(contacts));
                     uiHandlers.stopLoading();
                 }
             });
@@ -138,86 +190,180 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         return element;
     }
 
-    private void treeGrid() {
-        TableConfig<TreeGridSample> tableConfig = new TableConfig<>();
-        tableConfig
-                .addColumn(ColumnConfig.<TreeGridSample>create("name", "NAME")
-                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                        .setWidth("100px")
-                        .setSortable(true)
-                )
-                .addColumn(ColumnConfig.<TreeGridSample>create("name1", "NAME")
-                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                        .setWidth("100px")
-                        .setSortable(true)
-                )
-                .addColumn(ColumnConfig.<TreeGridSample>create("name2", "NAME")
-                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().getName()))
-                        .setWidth("100px")
-                        .setSortable(true)
-                )
-                .onUtilityColumn(utilityColumn -> {
-                    utilityColumn.setSortable(true, "id");
-                    utilityColumn.setWidth("500px");
-                })
-                .setUtilityColumnTitle("ID")
-                .setFixed(true)
-                .setMultiSelect(true);
+    private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
+        List<Contact> result = new ArrayList<>();
+        contacts.forEach(contact -> {
+            int start = new Random().nextInt(50);
+            List<Contact> friends = pool.subList(start, start + new Random().nextInt(5))
+                    .stream()
+                    .map(Contact::new)
+                    .collect(Collectors.toList());
 
-        TreeGridPlugin<TreeGridSample> treeGridPlugin = new TreeGridPlugin<>("id", treeGridSample -> Optional.ofNullable(treeGridSample.getItems()));
-        treeGridPlugin.setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().toString()).setMarginBottom("0").element());
-        treeGridPlugin.setParentRowCellsSupplier((dataTable, tableRow) -> {
-            HTMLTableCellElement cellElement = DominoElement.of(td())
-                    .setAttribute("colspan", "3")
-//                    .setWidth("500px")
-                    .element();
-//
-            RowCell<TreeGridSample> rowCell =
-                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("name"));
-            return Collections.singletonList(rowCell);
+            contacts.forEach(c -> c.setFriends(friends));
+            result.addAll(friends);
         });
-        treeGridPlugin.setIndent(60);
-        tableConfig.addPlugin(new SortPlugin<>());
-        tableConfig.addPlugin(new SelectionPlugin<>());
-        tableConfig.addPlugin(treeGridPlugin);
-//        tableConfig.addPlugin(new RowClickPlugin<>(cellInfo -> DomGlobal.console.info(cellInfo.getRecord().toString())));
-        tableConfig.addPlugin(new RecordDetailsPlugin<>(cellInfo -> TextNode.of(cellInfo.getRecord().toString())));
-        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ColorScheme.BLUE));
-        LocalListDataStore<TreeGridSample> localListDataStore = new LocalListDataStore<>();
-        localListDataStore.setRecordsSorter((sortBy, sortDirection) -> {
-            if(sortBy.equals("id")){
-                if (sortDirection.equals(SortDirection.ASC)) {
-                    return Comparator.comparing(TreeGridSample::getId);
-                } else {
-                    return (o1, o2) -> Integer.compare(o2.getId(), o1.getId());
-                }
-            } else {
-                if (sortDirection.equals(SortDirection.ASC)) {
-                    return Comparator.comparing(TreeGridSample::getName);
-                } else {
-                    return (o1, o2) -> o2.getName().compareTo(o1.getName());
-                }
-            }
-        }, (items, comparator) -> {
-            items.sort(comparator);
-            items.forEach(treeGridSample -> sortChildren(treeGridSample, comparator));
-        });
-        DataTable<TreeGridSample> table = new DataTable<>(tableConfig, localListDataStore);
-        table.addSelectionListener((selectedTableRows, selectedRecords) -> {
-            selectedRecords.forEach(treeGridSample -> DomGlobal.console.info(treeGridSample.toString()));
-        });
-        element.appendChild(Row.create()
-                .appendChild(Column.span6()
-                        .appendChild(Card.create("Tree grid PLUGIN", "The plugin allows splitting the table data into different groups.")
-                                .setCollapsible()
-                                .appendChild(table))
-                ).element());
 
-        localListDataStore.setData(TreeGridSample.create());
-        table.load();
+        return result;
     }
 
-    private void sortChildren(TreeGridSample item, Comparator<TreeGridSample> comparator){
+    @SampleMethod
+    private void treeGridFullParentSpan() {
+
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .onUtilityColumn(utilityColumn -> {
+                    utilityColumn.setSortable(true, "id");
+                })
+                .setUtilityColumnTitle("First name")
+                .setMultiSelect(true)
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new SelectionPlugin<>())
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
+                    itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
+                })
+                        .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+                        .setParentRowCellsSupplier((dataTable, tableRow) -> {
+                            HTMLTableCellElement cellElement = DominoElement.of(td())
+                                    .setAttribute("colspan", "8")
+                                    .element();
+                            RowCell<Contact> rowCell =
+                                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
+                            return Collections.singletonList(rowCell);
+                        })
+                        .setIndent(60));
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("TREE GRID PLUGIN - Full parent span", "Render records in tree style with expand and collapse features")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(contacts.subList(0, 25));
+            table.load();
+        });
+    }
+
+    @SampleMethod
+    private void treeGridParentColumns() {
+
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .onUtilityColumn(utilityColumn -> {
+                    utilityColumn.setSortable(true, "id");
+                })
+                .setUtilityColumnTitle("First name")
+                .setMultiSelect(true)
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new SelectionPlugin<>())
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
+                    itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
+                })
+                        .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+
+                        .setIndent(60));
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("TREE GRID PLUGIN - Parent with columns", "Render records in tree style with expand and collapse features")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(contacts.subList(0, 25));
+            table.load();
+        });
+    }
+
+    private void sortChildren(TreeGridSample item, Comparator<TreeGridSample> comparator) {
         item.getItems().sort(comparator);
         for (TreeGridSample itemItem : item.getItems()) {
             sortChildren(itemItem, comparator);
@@ -317,7 +463,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
-
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
@@ -603,6 +748,10 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     private List<Contact> subList(List<Contact> contacts) {
         return subList(contacts, 0, 15);
+    }
+
+    private List<Contact> subList(List<Contact> contacts, int size) {
+        return subList(contacts, 0, size);
     }
 
     private List<Contact> subList(List<Contact> contacts, int from, int to) {
