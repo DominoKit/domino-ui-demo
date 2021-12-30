@@ -193,8 +193,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
         List<Contact> result = new ArrayList<>();
         contacts.forEach(contact -> {
-            int start = new Random().nextInt(50);
-            List<Contact> friends = pool.subList(start, start + new Random().nextInt(5))
+            int start = new Random().nextInt(50) + 1;
+            List<Contact> friends = pool.subList(start, start + new Random(new Date().getTime()).nextInt(5) + 1)
                     .stream()
                     .map(Contact::new)
                     .collect(Collectors.toList());
@@ -251,9 +251,10 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             return TextNode.of("");
                         }))
                 .onUtilityColumn(utilityColumn -> {
-                    utilityColumn.setSortable(true, "id");
+                    utilityColumn
+                            .setTitle("First name")
+                            .setSortable(true, "id");
                 })
-                .setUtilityColumnTitle("First name")
                 .setMultiSelect(true)
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
@@ -333,19 +334,17 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             return TextNode.of("");
                         }))
                 .onUtilityColumn(utilityColumn -> {
-                    utilityColumn.setSortable(true, "id");
+                    utilityColumn
+                            .setSortable(true, "id")
+                            .setTitle("First name");
                 })
-                .setUtilityColumnTitle("First name")
                 .setMultiSelect(true)
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
                 .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
-                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
-                    itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
-                })
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> itemsConsumer.accept(Optional.ofNullable(parent.getFriends())))
                         .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
-
                         .setIndent(60));
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
