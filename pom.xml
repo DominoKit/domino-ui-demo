@@ -340,10 +340,10 @@
                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/home/rjeeb/Development/git/domino-ui/src/main/java</codeserverArg>
+                                <codeserverArg>/home/rjeeb/git/domino-ui/domino-ui/src/main/java</codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>
-                                    /home/rjeeb/Development/git/domino-ui/target/generated-sources/annotations
+                                    /home/rjeeb/git/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>
