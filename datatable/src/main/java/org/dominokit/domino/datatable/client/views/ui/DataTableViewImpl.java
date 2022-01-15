@@ -110,58 +110,58 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .element());
 
         basicTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicTable()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
 
         editableTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.editableTable()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
 
         basicFixedTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
 
         singleSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
 
         multiSelectionPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
 
         markerPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
 
         recordDetailsPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
 
         tableHeaderBarPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
 
         sortAndSearch();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
 
         simplePagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simplePagination()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.simplePagination()).element());
 
         scrollingPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
 
         advancedPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
 
         scrollableTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
 
         topPanelPlugin();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
 
         groupingTable();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.groupingTable()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupingTable()).element());
 
         treeGridFullParentSpan();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
 
         treeGridParentColumns();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
 
         allInOne();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.allInOne()).element());
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.allInOne()).element());
 
 
         try {
@@ -175,9 +175,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 public void onSuccess(TextResource resource) {
                     ContactList contactList = ContactList.MAPPER.read(resource.getText());
                     List<Contact> contacts = contactList.getContacts();
-                    List<Contact> level1 = addFriends(contacts, contacts.subList(0, 50));
+                    List<Contact> level1 = addFriends(contacts, contacts.subList(0, 20));
                     List<Contact> level2 = addFriends(contacts, level1);
-                    List<Contact> level3 = addFriends(contacts, level2);
+                    addFriends(contacts, level2);
                     contactListParseHandlers.forEach(contactListParseHandler ->
                             contactListParseHandler.onContactsParsed(contacts));
                     uiHandlers.stopLoading();
@@ -192,16 +192,16 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
         List<Contact> result = new ArrayList<>();
-        contacts.forEach(contact -> {
-            int start = new Random().nextInt(50) + 1;
-            List<Contact> friends = pool.subList(start, start + new Random(new Date().getTime()).nextInt(5) + 1)
-                    .stream()
-                    .map(Contact::new)
-                    .collect(Collectors.toList());
+        for(int i=0; i<contacts.size();i++) {
+            int start = new Random(new Date().getTime()+(i*i)).nextInt(20);
+                List<Contact> friends = pool.subList(start, start + new Random(new Date().getTime()+(i*2)).nextInt(5))
+                        .stream()
+                        .map(Contact::new)
+                        .collect(Collectors.toList());
 
-            contacts.forEach(c -> c.setFriends(friends));
-            result.addAll(friends);
-        });
+                contacts.forEach(c -> c.setFriends(friends));
+                result.addAll(friends);
+        }
 
         return result;
     }
@@ -286,6 +286,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(contacts.subList(0, 25));
             table.load();
+            localListDataStore.addRecord(new Contact(contacts.get(0)));
         });
     }
 
