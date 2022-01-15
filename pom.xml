@@ -7,7 +7,7 @@
         <module>layout</module>
         <module>themes</module>
         <module>profile</module>
-        <module>menu</module>
+        <module>demomenu</module>
         <module>component-case</module>
         <module>home</module>
         <module>setup</module>
@@ -42,7 +42,7 @@
         <module>tabs</module>
         <module>thumbnails</module>
         <module>dialogs</module>
-        <module>dropdown</module>
+        <module>menu</module>
         <module>popover</module>
         <module>waves</module>
         <module>basic-forms</module>
@@ -291,8 +291,8 @@
                                 <!--                                <codeserverArg>PRETTY</codeserverArg>-->
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
-                                <!--                                <codeserverArg>-bindAddress</codeserverArg>-->
-                                <!--                                <codeserverArg>0.0.0.0</codeserverArg>-->
+                                                                <codeserverArg>-bindAddress</codeserverArg>
+                                                                <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java

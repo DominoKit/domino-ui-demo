@@ -110,12 +110,12 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>menu-frontend</artifactId>
+            <artifactId>demomenu-frontend</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>menu-frontend</artifactId>
+            <artifactId>demomenu-frontend</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -703,12 +703,12 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>dropdown</artifactId>
+            <artifactId>menu</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>dropdown</artifactId>
+            <artifactId>menu</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>

@@ -5,11 +5,11 @@
 
     <parent>
         <groupId>org.dominokit</groupId>
-        <artifactId>domino-ui-demo</artifactId>
+        <artifactId>demomenu</artifactId>
         <version>HEAD-SNAPSHOT</version>
     </parent>
 
-    <artifactId>menu</artifactId>
+    <artifactId>demomenu-frontend</artifactId>
     <packaging>gwt-lib</packaging>
 
     <dependencies>
@@ -38,14 +38,12 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>component-case-frontend-ui</artifactId>
+            <artifactId>layout-shared</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>sample-processor</artifactId>
-            <version>${project.version}</version>
-            <scope>provided</scope>
+            <artifactId>domino-mvp-gwt-view</artifactId>
         </dependency>
     </dependencies>
 
@@ -65,7 +63,7 @@
                 <artifactId>gwt-maven-plugin</artifactId>
                 <extensions>true</extensions>
                 <configuration>
-                    <moduleName>org.dominokit.domino.menu.MenuClientModule</moduleName>
+                    <moduleName>org.dominokit.domino.demomenu.DemoMenuClientModule</moduleName>
                 </configuration>
             </plugin>
             <plugin>

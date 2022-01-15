@@ -12,11 +12,15 @@ import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLPreElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.collapsible.CollapseStrategy;
+import org.dominokit.domino.ui.collapsible.DisplayCollapseStrategy;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoDom;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.gwtproject.core.client.Scheduler;
+import org.gwtproject.core.client.impl.SchedulerImpl;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.Elements;
 import org.jboss.elemento.InputType;
@@ -31,13 +35,13 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
             .style("visibility:hidden; width: 0px; height: 0px;").element();
     private String code;
     private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").element();
-    private Card card = Card.create("Source Code")
-            .setCollapsible()
-            .collapse()
-            .appendChild(codeBlock);
+    private Card card;
 
     public CodeCard() {
         copyInput.value = code;
+        card = Card.create("Source Code")
+                .setCollapsible()
+                .appendChild(codeBlock);
         card.addHeaderAction(Icons.ALL.content_copy()
                 .setTooltip("Copy code"), evt -> {
             copyInput.select();
@@ -63,6 +67,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     public static CodeCard createCodeCard(String code, String lang) {
         CodeCard codeCard = new CodeCard();
+        codeCard.getCard().collapse();
         DominoElement.of(codeCard.codeBlock)
                 .clearElement()
                 .setInnerHtml(PR.prettyPrintOne(code, lang, false));
@@ -72,6 +77,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     public static CodeCard createCodeCard(ExternalTextResource codeResource) {
         CodeCard codeCard = new CodeCard();
+        codeCard.getCard().collapse();
         try {
             codeResource.getText(new ResourceCallback<TextResource>() {
                 @Override
@@ -81,13 +87,42 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<","&lt;").replace(">", "&gt;"), null, false));
+                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
                     codeCard.code = resource.getText();
                 }
             });
         } catch (ResourceException e) {
             DomGlobal.console.error("could not load code from external resource", e);
         }
+
+        return codeCard;
+    }
+
+    public static CodeCard createLazyCodeCard(ExternalTextResource codeResource) {
+        CodeCard codeCard = new CodeCard();
+        codeCard.getCard().setBodyCollapseStrategy(new DisplayCollapseStrategy());
+        codeCard.getCard().collapse();
+        codeCard.getCard().addExpandListener(() -> {
+            try {
+                codeResource.getText(new ResourceCallback<TextResource>() {
+                    @Override
+                    public void onError(ResourceException e) {
+                        DomGlobal.console.error("could not load code from external resource", e);
+                    }
+
+                    @Override
+                    public void onSuccess(TextResource resource) {
+                        DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
+                        codeCard.code = resource.getText();
+                    }
+                });
+            } catch (ResourceException e) {
+                DomGlobal.console.error("could not load code from external resource", e);
+            }
+        });
+        codeCard.getCard().addCollapseListener(() -> {
+            DominoElement.of(codeCard.codeBlock).clearElement();
+        });
 
         return codeCard;
     }

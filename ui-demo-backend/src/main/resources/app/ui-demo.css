@@ -12,6 +12,10 @@ pre.prettyprint {
         padding: 20px 0px;
         text-align: center;
     }
+
+    .d-patreon img {
+        margin-top: 12px;
+    }
 }
 
 @media screen and (min-width: 992px) {
@@ -604,7 +608,13 @@ pre.prettyprint {
 }
 
 .d-patreon img {
-    width: 150px;
+    width: 35px;
     height: 35px;
-    border-radius: 20px;
+}
+
+.demo-context-menu-target {
+    text-align: center;
+    font-size: 48px;
+    line-height: 600px;
+    color: #cecece;
 }
