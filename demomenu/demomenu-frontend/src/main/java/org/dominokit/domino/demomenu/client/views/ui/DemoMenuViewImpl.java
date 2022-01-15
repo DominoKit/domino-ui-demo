@@ -1,9 +1,9 @@
-package org.dominokit.domino.menu.client.views.ui;
+package org.dominokit.domino.demomenu.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.menu.client.presenters.MenuProxy;
-import org.dominokit.domino.menu.client.views.MenuView;
+import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.demomenu.client.presenters.DemoMenuProxy;
 import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -18,8 +18,8 @@ import org.dominokit.domino.view.BaseElementView;
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.dominokit.domino.ui.style.Unit.vh;
 
-@UiView(presentable = MenuProxy.class)
-public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements MenuView {
+@UiView(presentable = DemoMenuProxy.class)
+public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements DemoMenuView {
 
     private Tree<String> menu;
     private Icon lockIcon = Icons.ALL.lock_open()
@@ -105,6 +105,7 @@ public class MenuViewImpl extends BaseElementView<HTMLDivElement> implements Men
                         .appendChild(makeSubMenu("Chips", "components/chips"))
                         .appendChild(makeSubMenu("Collapse", "components/collapse"))
                         .appendChild(makeSubMenu("Dialogs", "components/dialogs"))
+                        .appendChild(makeSubMenu("Menu", "components/menu"))
                         .appendChild(makeSubMenu("Info box", "components/infobox"))
                         .appendChild(makeSubMenu("Labels", "components/labels"))
                         .appendChild(makeSubMenu("Lists", "components/lists"))

@@ -109,7 +109,6 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
                                     public void visit(MethodDeclaration methodDeclaration, Object arg) {
                                         methodDeclaration.getAnnotationByClass(SampleMethod.class).ifPresent(annotationExpr -> {
                                             methodDeclaration.getBody().ifPresent(blockStmt -> {
-                                                messager.printMessage(Diagnostic.Kind.NOTE, blockStmt.toString());
                                                 String methodName = methodDeclaration.getName().toString();
                                                 codeResource.addMethod(MethodSpec.methodBuilder(methodName)
                                                         .addAnnotation(AnnotationSpec.builder(ClientBundle.Source.class)

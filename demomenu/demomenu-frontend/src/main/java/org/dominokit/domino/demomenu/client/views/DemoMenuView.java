@@ -1,10 +1,10 @@
-package org.dominokit.domino.menu.client.views;
+package org.dominokit.domino.demomenu.client.views;
 
 import org.dominokit.domino.api.client.mvp.view.ContentView;
 import org.dominokit.domino.api.client.mvp.view.HasUiHandlers;
 import org.dominokit.domino.api.client.mvp.view.UiHandlers;
 
-public interface MenuView extends ContentView, HasUiHandlers<MenuView.MenuUiHandlers> {
+public interface DemoMenuView extends ContentView, HasUiHandlers<DemoMenuView.MenuUiHandlers> {
 
     interface MenuUiHandlers extends UiHandlers{
         void onLocked();

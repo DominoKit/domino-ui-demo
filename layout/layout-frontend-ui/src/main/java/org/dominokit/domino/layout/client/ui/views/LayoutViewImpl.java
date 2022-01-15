@@ -10,16 +10,22 @@ import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
+import org.dominokit.domino.ui.menu.DropMenu;
+import org.dominokit.domino.ui.menu.SimpleMenuItem;
 import org.dominokit.domino.ui.scroll.ScrollTop;
 import org.dominokit.domino.ui.search.Search;
+import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.ElementUtil;
+import org.dominokit.domino.ui.utils.ScreenMedia;
 import org.dominokit.domino.view.BaseElementView;
 import org.dominokit.domino.view.slots.AppendElementSlot;
 import org.dominokit.domino.view.slots.SingleElementSlot;
@@ -27,12 +33,14 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HtmlContentBuilder;
 
+import static org.dominokit.domino.ui.utils.DominoElement.picture;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.img;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.p;
+import static org.jboss.elemento.Elements.source;
 
 @UiView(presentable = LayoutProxy.class)
 public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {
@@ -56,22 +64,56 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         searchButton.on(EventType.click, event -> search.open());
         layout.getTopBar()
                 .appendChild(li().css(Styles.pull_right).add(searchButton).element());
-        layout.getTopBar().appendChild(li().css(Styles.pull_right).style("padding-top: 3px;").add(makeGithubLink()).element());
+        layout.getTopBar()
+                .appendChild(DominoElement.of(li().css(Styles.pull_right).style("padding-top: 3px;")
+                                .add(makeGithubLink())
+                        )
+                        .showOn(ScreenMedia.MEDIUM_AND_UP)
+                        .hideOn(ScreenMedia.SMALL_AND_DOWN)
+                        .element());
+        layout.getTopBar()
+                .appendChild(DominoElement.of(li().add(a()
+                                        .attr("href", "https://www.patreon.com/bePatron?u=30748189")
+                                        .css("d-patreon")
+                                        .add(img("/images/patreon-2296036-1911995.png"))
+                                ))
+                                .showOn(ScreenMedia.MEDIUM_AND_UP)
+                                .hideOn(ScreenMedia.SMALL_AND_DOWN)
+                );
+
+        ;
+        layout.getTopBar()
+                .appendChild(DominoElement.of(li().css(Styles.pull_right)
+                                .add(a()
+                                        .css(Styles.m_t_10)
+                                        .add(Icons.ALL.dots_vertical_mdi()
+                                                .clickable()
+                                                .setColor(Color.WHITE)
+                                        )
+                                ))
+                        .showOn(ScreenMedia.SMALL_AND_DOWN)
+                        .hideOn(ScreenMedia.MEDIUM_AND_UP)
+                        .setDropMenu(DropMenu.<String>create()
+                                .setUseSmallScreensDirection(false)
+                                .appendChild(SimpleMenuItem.<String>create("Github")
+                                        .addLeftAddOn(FlexItem.of(Icons.ALL.github_circle_mdi()))
+                                        .addSelectionHandler(selectable -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"))
+                                )
+                                .appendChild(SimpleMenuItem.<String>create("Patreon")
+                                        .addLeftAddOn(FlexItem.of(Icons.ALL.patreon_mdi()))
+                                        .addSelectionHandler(selectable -> DomGlobal.window.open("https://www.patreon.com/bePatron?u=30748189", "_blank"))
+                                )
+                        ));
+
+
+        layout.showFooter();
+        Row footerRow = createFooterRow();
+
         HTMLDivElement copyrightsElement = div()
                 .css(Theme.currentTheme.getScheme().darker_3().getBackground())
                 .css(Styles.align_center)
                 .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
                         .textContent("© 2018 Copyright DominoKit")).element();
-
-        layout.getTopBar()
-                .appendChild(li().add(a()
-                        .attr("href", "https://www.patreon.com/bePatron?u=30748189")
-                        .css("d-patreon")
-                        .add(img("/images/become_a_patron_button@2x.png"))
-                ));
-
-        layout.showFooter();
-        Row footerRow = createFooterRow();
 
         layout.getFooter().appendChild(footerRow);
         layout.getFooter().appendChild(copyrightsElement);

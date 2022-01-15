@@ -2,8 +2,6 @@
 <module>
   <inherits name="com.google.gwt.user.User" />
 
-
-
   <source path="" />
 
   <entry-point class="org.dominokit.domino.menu.client.MenuClientModule" />
