@@ -403,7 +403,7 @@ public class AnimationViewImpl extends BaseDemoView<HTMLDivElement> implements A
                     .transition(transition)
                     .infinite()
                     .duration(1000);
-            if (Style.of(animationCard).contains("animated")) {
+            if (Style.of(animationCard).containsCss("animated")) {
                 animation.stop();
                 Style.of(animate).setDisplay("inline-block");
                 infiniteAnimate.setContent("INFINITE");

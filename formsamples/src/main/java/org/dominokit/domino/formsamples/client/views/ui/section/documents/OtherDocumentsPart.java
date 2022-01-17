@@ -53,7 +53,7 @@ public class OtherDocumentsPart implements ImportSection {
                 .setItemRenderer((listGroup, listItem) -> {
                     Icon delete = Icons.ALL.delete()
                             .clickable()
-                            .styler(style -> style.add(Styles.pull_right)
+                            .styler(style -> style.addCss(Styles.pull_right)
                                     .setMarginTop("-3px")
                                     .setMarginLeft("10px")
                             )
@@ -108,7 +108,7 @@ public class OtherDocumentsPart implements ImportSection {
         OtherDocumentsItem item = makeNewOtherDocument();
         otherDocumentsItemListGroup.addItem(item);
 
-        if (otherDocumentListGroupRow.isHidden()) {
+        if (otherDocumentListGroupRow.isCollapsed()) {
             otherDocumentListGroupRow.show();
         }
         otherDocumentsCopiesTextBox.clear();
@@ -121,7 +121,7 @@ public class OtherDocumentsPart implements ImportSection {
         return Badge.create(item.getNumberOfCopies() + " Copies")
                 .setBackground(Color.GREEN)
                 .style()
-                .add(Styles.pull_right).get();
+                .addCss(Styles.pull_right).get();
     }
 
     private OtherDocumentsItem makeNewOtherDocument() {

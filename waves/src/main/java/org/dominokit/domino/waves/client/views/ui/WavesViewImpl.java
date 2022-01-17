@@ -588,7 +588,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
     private void sample() {
         HTMLElement element = div().element();
         WavesSupport.addFor(element)
-                .setWavesColor(WaveColor.YELLOW)
+                .setWaveColor(WaveColor.YELLOW)
                 .applyWaveStyle(WaveStyle.CIRCLE);
     }
 }

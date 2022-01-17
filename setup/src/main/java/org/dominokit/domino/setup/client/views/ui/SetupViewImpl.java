@@ -25,12 +25,12 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                 .appendEscaped("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC1</version>\n" +
+                "  <version>1.0.0-RC10</version>\n" +
                 "</dependency>\n" +
                 "<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC1</version>\n" +
+                "  <version>1.0.0-RC10</version>\n" +
                 "  <classifier>sources</classifier>\n" +
                 "</dependency>").toSafeHtml().asString())
                 .setTitle("Maven release dependencies")

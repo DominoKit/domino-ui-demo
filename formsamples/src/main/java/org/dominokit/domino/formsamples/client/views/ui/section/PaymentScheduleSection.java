@@ -220,9 +220,9 @@ public class PaymentScheduleSection implements ImportSection {
             addButton.hide();
             valuesContainerCollapsible.hide();
         } else {
-            if (addButton.isHidden())
+            if (addButton.isCollapsed())
                 addButton.show();
-            if (valuesContainerCollapsible.isHidden())
+            if (valuesContainerCollapsible.isCollapsed())
                 valuesContainerCollapsible.show();
             percentageTextBox.setValue(remainingPercentage + "");
         }

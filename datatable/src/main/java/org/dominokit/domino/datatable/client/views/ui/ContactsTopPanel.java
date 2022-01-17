@@ -87,10 +87,10 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
 
     public ContactsTopPanel() {
         femaleCount.getIconElement().style()
-                .setProperty("bottom", "15px");
+                .setCssProperty("bottom", "15px");
         maleCount.getIconElement()
                 .style()
-                .setProperty("bottom", "15px");
+                .setCssProperty("bottom", "15px");
     }
 
     public void update(TableDataUpdatedEvent<Contact> event) {

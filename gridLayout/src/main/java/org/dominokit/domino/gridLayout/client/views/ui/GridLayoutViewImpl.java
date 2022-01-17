@@ -43,11 +43,11 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .style()
                 .setHeight("500px").get();
 
-        gridLayout.getContentElement().style().add("demo-layout-section", "demo-content");
-        gridLayout.getHeaderElement().style().add("demo-layout-section", "demo-header");
-        gridLayout.getFooterElement().style().add("demo-layout-section", "demo-l-footer");
-        gridLayout.getLeftElement().style().add("demo-layout-section", "demo-left");
-        gridLayout.getRightElement().style().add("demo-layout-section", "demo-right");
+        gridLayout.getContentElement().style().addCss("demo-layout-section", "demo-content");
+        gridLayout.getHeaderElement().style().addCss("demo-layout-section", "demo-header");
+        gridLayout.getFooterElement().style().addCss("demo-layout-section", "demo-l-footer");
+        gridLayout.getLeftElement().style().addCss("demo-layout-section", "demo-left");
+        gridLayout.getRightElement().style().addCss("demo-layout-section", "demo-right");
 
         gridLayout.getContentElement().appendChild(span().textContent("Content").element());
         gridLayout.getHeaderElement().appendChild(span().textContent("Header").element());

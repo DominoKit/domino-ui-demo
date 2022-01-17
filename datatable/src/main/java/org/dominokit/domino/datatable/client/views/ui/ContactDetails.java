@@ -21,7 +21,7 @@ import static org.jboss.elemento.Elements.img;
 public class ContactDetails implements IsElement<HTMLElement> {
 
     private Row rowElement = Row.create()
-            .style().add(Styles.margin_0).get();
+            .style().addCss(Styles.margin_0).get();
     private CellRenderer.CellInfo<Contact> cell;
 
     public ContactDetails(CellRenderer.CellInfo<Contact> cell) {

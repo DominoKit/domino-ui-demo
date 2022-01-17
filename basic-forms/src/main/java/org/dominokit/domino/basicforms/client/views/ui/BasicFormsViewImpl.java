@@ -247,6 +247,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 floatingLabels +
                 "\n\n// -------------- Input Status\n" +
                 inputStatus);
+        basicExamplesCard.getCard().collapse();
     }
 
     @SampleMethod

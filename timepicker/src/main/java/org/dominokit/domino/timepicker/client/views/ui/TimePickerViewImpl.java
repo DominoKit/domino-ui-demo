@@ -40,7 +40,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private Column column = Column.span4()
             .centerContent()
             .style()
-            .add(Styles.padding_0).get();
+            .addCss(Styles.padding_0).get();
 
     @Override
     protected HTMLDivElement init() {
@@ -221,7 +221,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         Column column = this.column.copy()
                 .style()
-                .remove(Styles.padding_0).get();
+                .removeCss(Styles.padding_0).get();
 
         TimeBox timeBox1 = TimeBox.create()
                 .setLabel("Wakeup");

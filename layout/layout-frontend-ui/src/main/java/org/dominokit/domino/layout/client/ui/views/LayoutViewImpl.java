@@ -15,8 +15,8 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
-import org.dominokit.domino.ui.menu.DropMenu;
-import org.dominokit.domino.ui.menu.SimpleMenuItem;
+import org.dominokit.domino.ui.menu.Menu;
+import org.dominokit.domino.ui.menu.MenuItem;
 import org.dominokit.domino.ui.scroll.ScrollTop;
 import org.dominokit.domino.ui.search.Search;
 import org.dominokit.domino.ui.style.Color;
@@ -33,14 +33,12 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 import org.jboss.elemento.EventType;
 import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.dominokit.domino.ui.utils.DominoElement.picture;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.h;
 import static org.jboss.elemento.Elements.img;
 import static org.jboss.elemento.Elements.li;
 import static org.jboss.elemento.Elements.p;
-import static org.jboss.elemento.Elements.source;
 
 @UiView(presentable = LayoutProxy.class)
 public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {
@@ -93,17 +91,19 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
                                 ))
                         .showOn(ScreenMedia.SMALL_AND_DOWN)
                         .hideOn(ScreenMedia.MEDIUM_AND_UP)
-                        .setDropMenu(DropMenu.<String>create()
+                        .setDropMenu(Menu.<String>create()
                                 .setUseSmallScreensDirection(false)
-                                .appendChild(SimpleMenuItem.<String>create("Github")
+                                .appendChild(MenuItem.<String>create("Github")
                                         .addLeftAddOn(FlexItem.of(Icons.ALL.github_circle_mdi()))
                                         .addSelectionHandler(selectable -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"))
                                 )
-                                .appendChild(SimpleMenuItem.<String>create("Patreon")
+                                .appendChild(MenuItem.<String>create("Patreon")
                                         .addLeftAddOn(FlexItem.of(Icons.ALL.patreon_mdi()))
                                         .addSelectionHandler(selectable -> DomGlobal.window.open("https://www.patreon.com/bePatron?u=30748189", "_blank"))
                                 )
-                        ));
+                        )
+                        )
+        ;
 
 
         layout.showFooter();
@@ -119,8 +119,8 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.getFooter().appendChild(copyrightsElement);
 
         Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
-                .remove(oldTheme.getScheme().darker_3().getBackground())
-                .add(newTheme.getScheme().darker_3().getBackground()));
+                .removeCss(oldTheme.getScheme().darker_3().getBackground())
+                .addCss(newTheme.getScheme().darker_3().getBackground()));
 
         DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
                 .setBottom(60)
@@ -166,7 +166,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         return Row.create()
                 .style()
                 .setMargin("0px")
-                .add("demo-footer")
+                .addCss("demo-footer")
                 .get()
                 .addColumn(Column.span4()
                         .style()

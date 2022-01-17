@@ -137,30 +137,28 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         )
                 )
                 .appendChild(Row.create()
-                        .fullSpan(column -> {
-                            column.appendChild(resetButton.linkify().style().add(Styles.pull_right))
-                                    .appendChild(addBlockButton.linkify().style().add(Styles.pull_right));
-                        })
+                        .fullSpan(column -> column.appendChild(resetButton.linkify().style().addCss(Styles.pull_right))
+                                .appendChild(addBlockButton.linkify().style().addCss(Styles.pull_right)))
                 );
 
         // ********* flex layout part ********* //
         FlexLayout flexLayout = FlexLayout.create()
                 .style()
-                .add("demo-flex-layout-container")
+                .addCss("demo-flex-layout-container")
                 .get()
                 .appendChild(FlexItem.create()
                         .style()
-                        .add("demo-flex-layout-block")
+                        .addCss("demo-flex-layout-block")
                         .get()
                         .appendChild(h(4)))
                 .appendChild(FlexItem.create()
                         .style()
-                        .add("demo-flex-layout-block")
+                        .addCss("demo-flex-layout-block")
                         .get()
                         .appendChild(h(4)))
                 .appendChild(FlexItem.create()
                         .style()
-                        .add("demo-flex-layout-block")
+                        .addCss("demo-flex-layout-block")
                         .get()
                         .appendChild(h(4)))
                 .setDirection(FlexDirection.LEFT_TO_RIGHT);
@@ -174,9 +172,9 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         directionsRadioGroup.addChangeHandler(direction -> {
             FlexDirection flexDirection = FlexDirection.valueOf(direction);
             if (fillHeightCheckBox.isChecked() || isVerticalDirection(flexDirection)) {
-                flexLayout.style().add("fill-height");
+                flexLayout.style().addCss("fill-height");
             } else {
-                flexLayout.style().remove("fill-height");
+                flexLayout.style().removeCss("fill-height");
             }
             flexLayout.setDirection(flexDirection);
         });
@@ -184,31 +182,25 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         fillHeightCheckBox.addChangeHandler(value -> {
             if (value) {
                 alignItemsRadioGroup.show();
-                flexLayout.style().add("fill-height");
+                flexLayout.style().addCss("fill-height");
             } else {
                 alignItemsRadioGroup.hide();
-                flexLayout.style().remove("fill-height");
+                flexLayout.style().removeCss("fill-height");
             }
         });
 
-        justifyContentRadioGroup.addChangeHandler(direction -> {
-            flexLayout.setJustifyContent(FlexJustifyContent.valueOf(direction));
-        });
+        justifyContentRadioGroup.addChangeHandler(direction -> flexLayout.setJustifyContent(FlexJustifyContent.valueOf(direction)));
 
-        alignItemsRadioGroup.addChangeHandler(direction -> {
-            flexLayout.setAlignItems(FlexAlign.valueOf(direction));
-        });
+        alignItemsRadioGroup.addChangeHandler(direction -> flexLayout.setAlignItems(FlexAlign.valueOf(direction)));
 
-        wrapRadioGroup.addChangeHandler(value -> {
-            flexLayout.setWrap(FlexWrap.valueOf(value));
-        });
+        wrapRadioGroup.addChangeHandler(value -> flexLayout.setWrap(FlexWrap.valueOf(value)));
 
-        List<FlexItem> dynamicAddedItems = new ArrayList<>();
+        List<FlexItem<HTMLDivElement>> dynamicAddedItems = new ArrayList<>();
 
         addBlockButton.addClickListener(evt -> {
-            FlexItem item = FlexItem.create()
+            FlexItem<HTMLDivElement> item = FlexItem.create()
                     .style()
-                    .add("demo-flex-layout-block")
+                    .addCss("demo-flex-layout-block")
                     .get()
                     .appendChild(h(4));
             flexLayout.appendChild(item);
@@ -216,7 +208,7 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
         });
 
         resetButton.addClickListener(evt -> {
-            for (FlexItem dynamicAddedItem : dynamicAddedItems) {
+            for (FlexItem<HTMLDivElement> dynamicAddedItem : dynamicAddedItems) {
                 dynamicAddedItem.remove();
             }
             dynamicAddedItems.clear();
@@ -277,17 +269,17 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         FlexLayout flexLayout = FlexLayout.create()
                 .style()
-                .add("demo-flex-layout-container")
-                .add("fill-height")
+                .addCss("demo-flex-layout-container")
+                .addCss("fill-height")
                 .get()
                 .setDirection(FlexDirection.LEFT_TO_RIGHT);
 
-        Map<String, FlexItem> items = new HashMap<>();
+        Map<String, FlexItem<HTMLDivElement>> items = new HashMap<>();
         for (int i = 0; i < 5; i++) {
-            FlexItem item = FlexItem.create()
+            FlexItem<HTMLDivElement> item = FlexItem.create()
                     .style()
-                    .add("demo-flex-layout-block")
-                    .add(colorOf(i + 1).getBackground())
+                    .addCss("demo-flex-layout-block")
+                    .addCss(colorOf(i + 1).getBackground())
                     .get()
                     .setAlignSelf(FlexAlign.START)
                     .setOrder(i + 1)
@@ -302,30 +294,20 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .element());
 
 
-        orderSlider.addSlideHandler(value -> {
-            items.get(targetBlockRadioGroup.getValue())
-                    .setOrder((int) value);
-        });
+        orderSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
+                .setOrder((int) value));
 
-        flexGrowSlider.addSlideHandler(value -> {
-            items.get(targetBlockRadioGroup.getValue())
-                    .setFlexGrow((int) value);
-        });
+        flexGrowSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
+                .setFlexGrow((int) value));
 
-        flexShrinkSlider.addSlideHandler(value -> {
-            items.get(targetBlockRadioGroup.getValue())
-                    .setFlexShrink((int) value);
-        });
+        flexShrinkSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
+                .setFlexShrink((int) value));
 
-        alignSelfRadioGroup.addChangeHandler(value -> {
-            items.get(targetBlockRadioGroup.getValue())
-                    .setAlignSelf(FlexAlign.valueOf(value));
-        });
+        alignSelfRadioGroup.addChangeHandler(value -> items.get(targetBlockRadioGroup.getValue())
+                .setAlignSelf(FlexAlign.valueOf(value)));
 
-        flexBasisTextBox.addChangeHandler(value -> {
-            items.get(targetBlockRadioGroup.getValue())
-                    .setFlexBasis(value);
-        });
+        flexBasisTextBox.addChangeHandler(value -> items.get(targetBlockRadioGroup.getValue())
+                .setFlexBasis(value));
 
         targetBlockRadioGroup.addChangeHandler(value -> {
             FlexItem flexItem = items.get(targetBlockRadioGroup.getValue());

@@ -83,7 +83,7 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
                 .warning();
 
         Icon heart = Icons.ALL.favorite()
-                .style().add(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
+                .style().addCss(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
 
         MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
                 "You can customize the header content",

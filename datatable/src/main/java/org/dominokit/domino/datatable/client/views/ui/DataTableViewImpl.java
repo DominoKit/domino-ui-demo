@@ -39,12 +39,10 @@ import org.dominokit.domino.ui.datatable.plugins.ColumnHeaderFilterPlugin;
 import org.dominokit.domino.ui.datatable.plugins.GroupingPlugin;
 import org.dominokit.domino.ui.datatable.plugins.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.RecordDetailsPlugin;
-import org.dominokit.domino.ui.datatable.plugins.RowClickPlugin;
 import org.dominokit.domino.ui.datatable.plugins.RowMarkerPlugin;
 import org.dominokit.domino.ui.datatable.plugins.ScrollingPaginationPlugin;
 import org.dominokit.domino.ui.datatable.plugins.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.plugins.SimplePaginationPlugin;
-import org.dominokit.domino.ui.datatable.plugins.SortDirection;
 import org.dominokit.domino.ui.datatable.plugins.SortPlugin;
 import org.dominokit.domino.ui.datatable.plugins.TopPanelPlugin;
 import org.dominokit.domino.ui.datatable.plugins.TreeGridPlugin;
@@ -63,8 +61,6 @@ import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.TelephoneBox;
 import org.dominokit.domino.ui.forms.TextBox;
-import org.dominokit.domino.ui.grid.Column;
-import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
@@ -87,7 +83,6 @@ import java.util.stream.Collectors;
 import static org.dominokit.domino.ui.style.Unit.px;
 import static org.jboss.elemento.Elements.a;
 import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.fieldset;
 import static org.jboss.elemento.Elements.td;
 
 @UiView(presentable = DatatableProxy.class)
@@ -96,6 +91,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     private HTMLDivElement element;
     private List<ContactListParseHandler> contactListParseHandlers = new ArrayList<>();
+    private Random random = new Random();
 
     @Override
     protected HTMLDivElement init() {
@@ -193,8 +189,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
         List<Contact> result = new ArrayList<>();
         for(int i=0; i<contacts.size();i++) {
-            int start = new Random(new Date().getTime()+(i*i)).nextInt(20);
-                List<Contact> friends = pool.subList(start, start + new Random(new Date().getTime()+(i*2)).nextInt(5))
+            int start = random.nextInt(20);
+                List<Contact> friends = pool.subList(start, start + random.nextInt(5))
                         .stream()
                         .map(Contact::new)
                         .collect(Collectors.toList());
@@ -277,7 +273,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
-        element.appendChild(Card.create("TREE GRID PLUGIN - Full parent span", "Render records in tree style with expand and collapse features")
+        element.appendChild(Card.create("TREE GRID PLUGIN - Full PARENT SPAN", "Render records in tree style with expand and collapse features")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
@@ -286,7 +282,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(contacts.subList(0, 25));
             table.load();
-            localListDataStore.addRecord(new Contact(contacts.get(0)));
         });
     }
 
@@ -351,7 +346,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
-        element.appendChild(Card.create("TREE GRID PLUGIN - Parent with columns", "Render records in tree style with expand and collapse features")
+        element.appendChild(Card.create("TREE GRID PLUGIN - PARENT WITH COLUMNS", "Render records in tree style with expand and collapse features")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
@@ -421,9 +416,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 cellInfo -> {
                     DominoElement.of(cellInfo.getElement())
                             .style()
-                            .setProperty("border-bottom", "1px solid #afafaf")
+                            .setCssProperty("border-bottom", "1px solid #afafaf")
                             .setPadding(px.of(5))
-                            .add(ColorScheme.INDIGO.lighten_5().getBackground());
+                            .addCss(ColorScheme.INDIGO.lighten_5().getBackground());
                     return TextNode.of(cellInfo.getRecord().getGender().getLabel());
                 }));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
@@ -730,7 +725,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
-                        }));
+                        }))
+                .addPlugin(new SortPlugin<>());
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
@@ -1085,7 +1081,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             .clickable()
                             .setTooltip("Select Inactive")
                             .addClickListener(evt ->
-                                    dataTable.getItems().forEach(item -> {
+                                    dataTable.getRows().forEach(item -> {
                                         if (!item.getRecord().isActive()) {
                                             item.select();
                                         } else {
@@ -1100,7 +1096,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             .clickable()
                             .setTooltip("Select Active")
                             .addClickListener(evt ->
-                                    dataTable.getItems().forEach(tableRow -> {
+                                    dataTable.getRows().forEach(tableRow -> {
                                         if (tableRow.getRecord().isActive()) {
                                             tableRow.select();
                                         } else {
@@ -1470,7 +1466,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setFixed(true)
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .sortable()
-                        .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
+                        .styleCell(cellElement -> Style.of(cellElement).setCssProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
@@ -1547,7 +1543,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setFixed(true)
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .sortable()
-                        .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
+                        .styleCell(cellElement -> Style.of(cellElement).setCssProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
@@ -1640,7 +1636,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .sortable()
-                        .styleCell(cellElement -> Style.of(cellElement).setProperty("vertical-align", "middle"))
+                        .styleCell(cellElement -> Style.of(cellElement).setCssProperty("vertical-align", "middle"))
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
@@ -1707,7 +1703,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                     .clickable()
                                     .setTooltip("Select Inactive")
                                     .addClickListener(evt ->
-                                            dataTable.getItems().forEach(item -> {
+                                            dataTable.getRows().forEach(item -> {
                                                 if (!item.getRecord().isActive()) {
                                                     item.select();
                                                 } else {
@@ -1722,7 +1718,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                     .clickable()
                                     .setTooltip("Select Active")
                                     .addClickListener(evt ->
-                                            dataTable.getItems().forEach(tableRow -> {
+                                            dataTable.getRows().forEach(tableRow -> {
                                                 if (tableRow.getRecord().isActive()) {
                                                     tableRow.select();
                                                 } else {
@@ -1758,9 +1754,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         cellInfo -> {
                             DominoElement.of(cellInfo.getElement())
                                     .style()
-                                    .setProperty("border-bottom", "1px solid #afafaf")
+                                    .setCssProperty("border-bottom", "1px solid #afafaf")
                                     .setPadding(px.of(5))
-                                    .add(ColorScheme.INDIGO.lighten_5().getBackground());
+                                    .addCss(ColorScheme.INDIGO.lighten_5().getBackground());
                             return TextNode.of(cellInfo.getRecord().getGender().getLabel());
                         }));
 

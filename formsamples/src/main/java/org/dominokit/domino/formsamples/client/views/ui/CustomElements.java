@@ -53,7 +53,7 @@ public class CustomElements {
 
     public static void markCardValidation(Card card, boolean isValid, boolean scroll) {
         if (!isValid) {
-            card.style().add("invalid-section");
+            card.style().addCss("invalid-section");
 
             if (scroll) {
                 ElementUtil.scrollToElement(card);
@@ -61,12 +61,12 @@ public class CustomElements {
                 DomGlobal.document.documentElement.scrollTop = DomGlobal.document.documentElement.scrollTop - 110;
             }
         } else {
-            card.style().remove("invalid-section");
+            card.style().removeCss("invalid-section");
         }
     }
 
     public static boolean isInvalidatedCard(Card card) {
-        return card.style().contains("invalid-section");
+        return card.style().containsCss("invalid-section");
     }
 
     public static void markCardValidation(Card card, boolean isValid) {

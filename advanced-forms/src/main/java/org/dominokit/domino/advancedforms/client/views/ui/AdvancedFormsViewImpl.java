@@ -218,7 +218,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 .addSuggestion(SuggestItem.create("Casey Garza"));
         TextBox friendNameBox = TextBox.create("Your friend name")
                 .setHelperText("Add friend name as suggestion");
-        KeyboardEvents.listenOn(friendNameBox)
+        KeyboardEvents.listenOnKeyDown(friendNameBox)
                 .onEnter(evt -> {
                     localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
                     friendNameBox.clear();

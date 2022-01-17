@@ -1,6 +1,6 @@
 package org.dominokit.domino.formsamples.client.views.ui.section;
 
-import elemental2.dom.ClientRect;
+import elemental2.dom.DOMRect;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
 import org.dominokit.domino.ui.forms.Select;
@@ -18,8 +18,8 @@ public class AccountDetailsPopupPosition implements PopupPosition {
 
     @Override
     public void position(HTMLElement tooltip, HTMLElement target) {
-        ClientRect targetRect = accountSelect.element().getBoundingClientRect();
-        ClientRect tooltipRect = tooltip.getBoundingClientRect();
+        DOMRect targetRect = accountSelect.element().getBoundingClientRect();
+        DOMRect tooltipRect = tooltip.getBoundingClientRect();
         tooltip.style.setProperty("top", ((targetRect.top + window.scrollY) - tooltipRect.height) + "px");
         tooltip.style.setProperty("left", targetRect.left + window.scrollX + ((targetRect.width - tooltipRect.width) / 2) + "px");
     }

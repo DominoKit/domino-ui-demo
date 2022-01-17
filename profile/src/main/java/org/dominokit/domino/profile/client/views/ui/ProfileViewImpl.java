@@ -34,14 +34,14 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
         profile = Card.createProfile("Vegegoku", "vegegoku@bo3.com");
 
         profile.style()
-                .add("profile-card")
-                .add("classy-card")
-                .add("bg-theme");
+                .addCss("profile-card")
+                .addCss("classy-card")
+                .addCss("bg-theme");
         profile.setHeaderBackground(Color.TRANSPARENT);
         profile.setBodyBackground(Color.TRANSPARENT);
-        profile.getHeader().style().remove("bg-theme");
+        profile.getHeader().style().removeCss("bg-theme");
         profile.setBodyPadding("10px");
-        profile.getBody().styler(style -> style.remove("bg-theme"));
+        profile.getBody().styler(style -> style.removeCss("bg-theme"));
         profile.getHeaderTitle().setAttribute("id", "demo-profile");
 
 
@@ -50,8 +50,8 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
                 .clickable());
         DropDownMenu dropDownMenu=DropDownMenu.create(headerAction)
                 .setPosition(DropDownPosition.BOTTOM)
-                .addAction(DropdownAction.create("Action 1").addSelectionHandler(value -> Notification.createInfo(value).show()))
-                .addAction(DropdownAction.create("Action 2").addSelectionHandler(value -> Notification.createInfo(value).show()));
+                .appendChild(DropdownAction.create("Action 1").addSelectionHandler(value -> Notification.createInfo(value).show()))
+                .appendChild(DropdownAction.create("Action 2").addSelectionHandler(value -> Notification.createInfo(value).show()));
 
 
         headerAction.addClickListener(evt -> {

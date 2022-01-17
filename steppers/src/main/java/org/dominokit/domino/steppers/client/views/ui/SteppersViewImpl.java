@@ -92,21 +92,21 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button prevButton = Button.createDefault("Previous")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button finishButton = Button.createDefault("Finish")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         DominoElement<HTMLDivElement> completeContent = DominoElement.div()
@@ -124,16 +124,11 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .setDirection(Stepper.StepperDirection.VERTICAL)
                 .apply(self -> self
                         .appendChild(Step.create("Contact name", "Contact name step")
-//                                .addStateChangeListener((oldState, step, stepper1) -> {
-//                                    if(step.isActive()) {
-//                                        Notification.create("Step state changed : STEP - 1").show();
-//                                    }
-//                                })
                                 .appendChild(Row.create()
                                         .appendChild(span6()
                                                 .appendChild(nameTextBox
                                                         .apply(nameBox -> {
-                                                            KeyboardEvents.listenOn(nameBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(nameBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -159,7 +154,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(emailTextBox
                                                         .apply(emailBox -> {
-                                                            KeyboardEvents.listenOn(emailBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(emailBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -183,7 +178,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(phone
                                                         .apply(phoneBox -> {
-                                                            KeyboardEvents.listenOn(phoneBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(phoneBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -272,21 +267,21 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button prevButton = Button.createDefault("Previous")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button finishButton = Button.createDefault("Finish")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         DominoElement<HTMLDivElement> completeContent = DominoElement.div()
@@ -304,7 +299,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                         .appendChild(span6()
                                                 .appendChild(nameTextBox
                                                         .apply(nameBox -> {
-                                                            KeyboardEvents.listenOn(nameBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(nameBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -325,7 +320,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(emailTextBox
                                                         .apply(emailBox -> {
-                                                            KeyboardEvents.listenOn(emailBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(emailBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -347,7 +342,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(phone
                                                         .apply(phoneBox -> {
-                                                            KeyboardEvents.listenOn(phoneBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(phoneBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -441,21 +436,21 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button prevButton = Button.createDefault("Previous")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button finishButton = Button.createDefault("Finish")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         DominoElement<HTMLDivElement> completeContent = DominoElement.div()
@@ -499,7 +494,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                         .appendChild(span6()
                                                 .appendChild(nameTextBox
                                                         .apply(nameBox -> {
-                                                            KeyboardEvents.listenOn(nameBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(nameBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -521,7 +516,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(emailTextBox
                                                         .apply(emailBox -> {
-                                                            KeyboardEvents.listenOn(emailBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(emailBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -542,7 +537,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(phone
                                                         .apply(phoneBox -> {
-                                                            KeyboardEvents.listenOn(phoneBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(phoneBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -630,21 +625,21 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button prevButton = Button.createDefault("Previous")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         Button finishButton = Button.createDefault("Finish")
                 .linkify()
                 .styler(style -> style
                         .setMinWidth("120px")
-                        .add(Styles.m_l_5, Styles.m_r_5)
+                        .addCss(Styles.m_l_5, Styles.m_r_5)
                 );
 
         DominoElement<HTMLDivElement> completeContent = DominoElement.div()
@@ -709,7 +704,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                         .appendChild(span6()
                                                 .appendChild(nameTextBox
                                                         .apply(nameBox -> {
-                                                            KeyboardEvents.listenOn(nameBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(nameBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -730,7 +725,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(emailTextBox
                                                         .apply(emailBox -> {
-                                                            KeyboardEvents.listenOn(emailBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(emailBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();
@@ -751,7 +746,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                 .appendChild(Row.create()
                                         .appendChild(span6().appendChild(phone
                                                         .apply(phoneBox -> {
-                                                            KeyboardEvents.listenOn(phoneBox.getInputElement())
+                                                            KeyboardEvents.listenOnKeyDown(phoneBox.getInputElement())
                                                                     .onEnter(evt -> {
                                                                         if (self.getActiveStep().validate().isValid()) {
                                                                             self.getActiveStep().complete();

@@ -31,11 +31,11 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
         element.appendChild(BlockHeader.create("SAMPLES", " A set of apps and samples built with domino-ui").element());
         element.appendChild(Row.create()
                 .appendChild(Column.span6()
-                        .styler(style -> style.add(Styles.align_center))
+                        .styler(style -> style.addCss(Styles.align_center))
                         .appendChild(
                                 Card.create()
                                         .styler(style -> style
-                                                .add("classy-card"))
+                                                .addCss("classy-card"))
                                         .appendChild(img("./images/samples/dominodo.png")
                                                 .css(Styles.img_responsive)
                                                 .css(Elevation.LEVEL_1.getStyle()))
@@ -56,11 +56,11 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                         )
                 )
                 .appendChild(Column.span6()
-                        .styler(style -> style.add(Styles.align_center))
+                        .styler(style -> style.addCss(Styles.align_center))
                         .appendChild(
                                 Card.create()
                                         .styler(style -> style
-                                                .add("classy-card"))
+                                                .addCss("classy-card"))
                                         .appendChild(img("./images/samples/nalu-initializer.png")
                                                 .css(Styles.img_responsive)
                                                 .css(Elevation.LEVEL_1.getStyle()))

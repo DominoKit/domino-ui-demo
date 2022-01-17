@@ -26,7 +26,7 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
         accountDetails = new AccountDetails();
 
         Icon correspondentChargesAccountIcon = Style.of(Icons.ALL.info_outline())
-                .setProperty("cursor", "pointer")
+                .setCssProperty("cursor", "pointer")
                 .get();
 
         accountSelect = Select.<CorporateAccount>create(title)

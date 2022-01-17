@@ -85,7 +85,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                                                     .appendChild(DominoElement.of(img(ContactUiUtils.getAvatarUrl(item.getValue())))
                                                                             .apply(self -> {
                                                                                 if (!item.getValue().isActive()) {
-                                                                                    self.style().setProperty("filter", "grayscale(100%)");
+                                                                                    self.style().setCssProperty("filter", "grayscale(100%)");
                                                                                 }
                                                                             })
                                                                     )
@@ -150,7 +150,7 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                                                     .appendChild(DominoElement.of(img(ContactUiUtils.getAvatarUrl(item.getValue())))
                                                                             .apply(self -> {
                                                                                 if (!item.getValue().isActive()) {
-                                                                                    self.style().setProperty("filter", "grayscale(100%)");
+                                                                                    self.style().setCssProperty("filter", "grayscale(100%)");
                                                                                 }
                                                                             })
                                                                     )

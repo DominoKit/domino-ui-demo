@@ -1602,7 +1602,7 @@ public class IconsViewImpl extends BaseDemoView<HTMLDivElement> implements Icons
 
     private Row makeRow() {
         return Row.create()
-                .style().add("demo-icon-container").get();
+                .style().addCss("demo-icon-container").get();
     }
 
     private HtmlContentBuilder<HTMLDivElement> createNormalDemoIcon(BaseIcon icon) {

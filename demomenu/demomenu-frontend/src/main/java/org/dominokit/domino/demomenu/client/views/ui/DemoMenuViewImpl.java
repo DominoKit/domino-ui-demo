@@ -27,7 +27,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
             .setMarginBottom("0px")
             .setMarginTop("0px")
             .setCursor("pointer")
-            .add(Styles.pull_right)
+            .addCss(Styles.pull_right)
             .get();
     private boolean locked = false;
     private Collapsible lockCollapsible = Collapsible.create(lockIcon).show();
@@ -105,12 +105,12 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Chips", "components/chips"))
                         .appendChild(makeSubMenu("Collapse", "components/collapse"))
                         .appendChild(makeSubMenu("Dialogs", "components/dialogs"))
-                        .appendChild(makeSubMenu("Menu", "components/menu"))
                         .appendChild(makeSubMenu("Info box", "components/infobox"))
                         .appendChild(makeSubMenu("Labels", "components/labels"))
                         .appendChild(makeSubMenu("Lists", "components/lists"))
                         .appendChild(makeSubMenu("Loaders", "components/loaders"))
                         .appendChild(makeSubMenu("Media objects", "components/media"))
+                        .appendChild(makeSubMenu("Menu", "components/menu"))
                         .appendChild(makeSubMenu("Modals", "components/modals"))
                         .appendChild(makeSubMenu("Notifications", "components/notifications"))
                         .appendChild(makeSubMenu("Pagination", "components/pagination"))

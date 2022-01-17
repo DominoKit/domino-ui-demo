@@ -83,6 +83,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         "\n\nprivate ModalDialog createModalDialog() {\n\n" +
                         createModal + "\n" +
                         "\n}");
+        modalSizesCard.getCard().collapse();
     }
 
     @Aggregate(name = "ModalColorAggregator")
@@ -93,6 +94,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                         "\n\nprivate ModalDialog createModalDialog() {\n\n" +
                         createModal + "\n" +
                         "\n}");
+        modalColorsCard.getCard().collapse();
     }
 
     @SampleMethod
