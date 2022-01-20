@@ -724,8 +724,8 @@
                     <moduleShortName>app</moduleShortName>
                     <compilerArgs>
                         <compilerArg>-XdisableCastChecking</compilerArg>
-                        <!--<compilerArg>-style</compilerArg>-->
-                        <!--<compilerArg>PRETTY</compilerArg>-->
+                        <compilerArg>-style</compilerArg>
+                        <compilerArg>PRETTY</compilerArg>
                         <compilerArg>-compileReport</compilerArg>
                         <compilerArg>-extra</compilerArg>
                         <compilerArg>${project.build.directory}/gwt/extra</compilerArg>
@@ -733,8 +733,8 @@
                     <codeserverArgs>
                         <codeserverArg>-port</codeserverArg>
                         <codeserverArg>9875</codeserverArg>
-                        <!--<codeserverArg>-style</codeserverArg>-->
-                        <!--<codeserverArg>PRETTY</codeserverArg>-->
+                        <codeserverArg>-style</codeserverArg>
+                        <codeserverArg>PRETTY</codeserverArg>
                         <!--<codeserverArg>-bindAddress</codeserverArg>-->
                         <!--<codeserverArg>192.168.1.5</codeserverArg>-->
                     </codeserverArgs>

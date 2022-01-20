@@ -258,7 +258,9 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .addColumn(Column.span3().appendChild(SwitchButton.create("Active", "off", "on")
                         .addChangeHandler(value -> Notification.createInfo("test " + value).show())
                         .setOffTitle("OFF").setOnTitle("ON")))
-                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
+                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable()))
+                .addColumn(Column.span3().appendChild(SwitchButton.create().setReadOnly(true).check()))
+        );
 
         switchCard.appendChild(h(5).textContent("With Material Design Colors"));
 

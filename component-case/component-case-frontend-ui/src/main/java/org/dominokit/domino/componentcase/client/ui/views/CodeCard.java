@@ -10,6 +10,7 @@ import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLInputElement;
 import elemental2.dom.HTMLPreElement;
+import elemental2.dom.HTMLTextAreaElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.CollapseStrategy;
@@ -28,10 +29,11 @@ import org.jboss.elemento.InputType;
 import java.util.function.Consumer;
 
 import static org.jboss.elemento.Elements.input;
+import static org.jboss.elemento.Elements.textarea;
 
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
-    private HTMLInputElement copyInput = input(InputType.textarea)
+    private HTMLTextAreaElement copyInput = textarea()
             .style("visibility:hidden; width: 0px; height: 0px;").element();
     private String code;
     private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").element();

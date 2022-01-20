@@ -282,13 +282,13 @@
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
                             <compilerArgs>
-                                <!--                                <compilerArg>-style</compilerArg>-->
-                                <!--                                <compilerArg>PRETTY</compilerArg>-->
+                                                                <compilerArg>-style</compilerArg>
+                                                                <compilerArg>PRETTY</compilerArg>
                                 <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>
-                                <!--                                <codeserverArg>-style</codeserverArg>-->
-                                <!--                                <codeserverArg>PRETTY</codeserverArg>-->
+                                                                <codeserverArg>-style</codeserverArg>
+                                                                <codeserverArg>PRETTY</codeserverArg>
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
                                                                 <codeserverArg>-bindAddress</codeserverArg>
@@ -303,6 +303,8 @@
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
+                                <codeserverArg>-src</codeserverArg>
+                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui-shared/src/main/java</codeserverArg>
                             </codeserverArgs>
                         </configuration>
                     </plugin>
