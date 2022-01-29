@@ -23,6 +23,7 @@ import org.dominokit.domino.ui.popover.PopupPosition;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.Styles;
 import org.dominokit.domino.ui.timepicker.ClockStyle;
+import org.dominokit.domino.ui.timepicker.InputTimeBox;
 import org.dominokit.domino.ui.timepicker.TimeBox;
 import org.dominokit.domino.ui.timepicker.TimePicker;
 import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_de;
@@ -56,7 +57,30 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         timeBox();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).element());
 
+        inputTimeBox();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inputTimeBox()).element());
         return element;
+    }
+
+    @SampleMethod
+    private void inputTimeBox() {
+        Column column = Column.span6()
+                .style()
+                .removeCss(Styles.padding_0).get();
+
+        InputTimeBox timeBox1 = InputTimeBox.create()
+                .setLabel("Clock 12");
+
+        InputTimeBox timeBox2 = InputTimeBox.create()
+                .setLabel("Clock 24")
+                .setClockStyle(ClockStyle._24);
+
+        element.appendChild(Card.create("INPUT TIME BOX")
+                .appendChild(Row.create()
+                        .addColumn(column.copy().appendChild(timeBox1))
+                        .addColumn(column.copy().appendChild(timeBox2))
+                )
+                .element());
     }
 
     @SampleMethod
@@ -246,8 +270,5 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(column.copy().appendChild(timeBox3))
                 )
                 .element());
-
-
-
     }
 }
