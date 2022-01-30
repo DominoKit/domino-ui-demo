@@ -188,15 +188,15 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
         List<Contact> result = new ArrayList<>();
-        for(int i=0; i<contacts.size();i++) {
+        for (int i = 0; i < contacts.size(); i++) {
             int start = random.nextInt(20);
-                List<Contact> friends = pool.subList(start, start + random.nextInt(5))
-                        .stream()
-                        .map(Contact::new)
-                        .collect(Collectors.toList());
+            List<Contact> friends = pool.subList(start, start + random.nextInt(5))
+                    .stream()
+                    .map(Contact::new)
+                    .collect(Collectors.toList());
 
-                contacts.forEach(c -> c.setFriends(friends));
-                result.addAll(friends);
+            contacts.forEach(c -> c.setFriends(friends));
+            result.addAll(friends);
         }
 
         return result;
@@ -692,7 +692,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-                            }
+        }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setWidth("200px")
@@ -1182,7 +1182,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
-                        .addActionElement(dataTable -> Icons.ALL.show_chart()
+                        .addActionElement(dataTable -> Icons.ALL.filter_menu_outline_mdi()
                                 .clickable()
                                 .addClickListener(evt -> contactColumnHeaderFilterPlugin.getFiltersRowElement()
                                         .toggleDisplay())

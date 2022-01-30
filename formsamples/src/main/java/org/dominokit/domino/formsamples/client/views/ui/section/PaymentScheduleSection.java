@@ -117,7 +117,10 @@ public class PaymentScheduleSection implements ImportSection {
                             .appendChild(flexLayout
                                     .appendChild(FlexItem.create()
                                             .setFlexGrow(1)
-                                            .appendChild(TextNode.of(paymentScheduleRadioGroup.getSelectedRadio().getLabel().get()))
+                                            .apply(self -> {
+                                                paymentScheduleRadioGroup.getSelectedRadio().getLabel()
+                                                        .ifPresent(s -> self.appendChild(TextNode.of(s)));
+                                            })
                                     )
                                     .appendChild(FlexItem.create()
                                             .appendChild(delete)
