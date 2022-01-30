@@ -16,7 +16,6 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
-import org.dominokit.domino.datatable.client.views.model.City;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.datatable.client.views.model.ContactList;
 import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
@@ -26,7 +25,6 @@ import org.dominokit.domino.datatable.client.views.model.Gender;
 import org.dominokit.domino.datatable.client.views.model.TreeGridSample;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.badges.Badge;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
@@ -61,7 +59,6 @@ import org.dominokit.domino.ui.forms.EmailBox;
 import org.dominokit.domino.ui.forms.FieldStyle;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TelephoneBox;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.header.BlockHeader;
@@ -107,60 +104,60 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .attr("target", "_blank")
                         .textContent("Data table demo source code").element())
                 .element());
-//
-//        basicTable();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
-//
-//        editableTable();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
+
+        basicTable();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
+
+        editableTable();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
 
         basicFixedTable();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
 
-//        singleSelectionPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
-//
-//        multiSelectionPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
-//
-//        markerPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
-//
-//        recordDetailsPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
-//
-//        tableHeaderBarPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
-//
-//        sortAndSearch();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
-//
-//        simplePagination();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.simplePagination()).element());
-//
-//        scrollingPagination();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
-//
-//        advancedPagination();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
-//
-//        scrollableTable();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
-//
-//        topPanelPlugin();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
-//
-//        groupingTable();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupingTable()).element());
-//
-//        treeGridFullParentSpan();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
-//
-//        treeGridParentColumns();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
-//
-//        allInOne();
-//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.allInOne()).element());
+        singleSelectionPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+
+        multiSelectionPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
+
+        markerPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+
+        recordDetailsPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+
+        tableHeaderBarPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
+
+        sortAndSearch();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
+
+        simplePagination();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.simplePagination()).element());
+
+        scrollingPagination();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
+
+        advancedPagination();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
+
+        scrollableTable();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
+
+        topPanelPlugin();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
+
+        groupingTable();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupingTable()).element());
+
+        treeGridFullParentSpan();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
+
+        treeGridParentColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
+
+        allInOne();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.allInOne()).element());
 
 
         try {
@@ -680,142 +677,69 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     @SampleMethod
     private void basicFixedTable() {
-//        TableConfig<Contact> tableConfig = new TableConfig<>();
-//        tableConfig
-//                .setFixed(true)
-//                .addColumn(ColumnConfig.<Contact>create("id", "#")
-//                        .textAlign("right")
-//                        .asHeader()
-//                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
-//
-//                .addColumn(ColumnConfig.<Contact>create("status", "Status")
-//                        .textAlign("center")
-//                        .setCellRenderer(cell -> {
-//                            if (cell.getTableRow().getRecord().isActive()) {
-//                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
-//                            } else {
-//                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-//                            }
-//                        }))
-//                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-//                        .setWidth("200px")
-//                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
-//
-//                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-//                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-//                        .textAlign("center"))
-//
-//                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-//                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-//                        .textAlign("center"))
-//
-//                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-//                        .setWidth("250px")
-//                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
-//
-//                .addColumn(ColumnConfig.<Contact>create("email", "Email")
-//                        .setWidth("300px")
-//                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
-//
-//                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-//                        .setWidth("150px")
-//                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
-//
-//                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-//                        .setCellRenderer(cell -> {
-//                            if (cell.getTableRow().getRecord().getAge() < 35) {
-//                                return Badge.create("Young")
-//                                        .setBackground(ColorScheme.GREEN.color()).element();
-//                            }
-//                            return TextNode.of("");
-//                        }))
-//                .addPlugin(new SortPlugin<>());
-//        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-//        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
-//        defaultTable.bordered();
-//        element.appendChild(Card.create("BASIC TABLE - FIXED", "Fixed tables will use the specified column width and will have scrolls when elements exceeds the body height. ")
-//                .setCollapsible()
-//                .appendChild(new TableStyleActions(defaultTable))
-//                .appendChild(defaultTable)
-//                .element());
-//
-//        contactListParseHandlers.add(contacts -> {
-//            localListDataStore.setData(subList(contacts));
-//            defaultTable.load();
-//        });
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .setFixed(true)
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
-        List<City> cities = new ArrayList<>();
-        for (int i = 0; i < 5000; i++) {
-            cities.add(new City(i, "name - " + i, "code - " + i, i % 2 > 0));
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
         }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setWidth("200px")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
-        TableConfig<City> tableConfig = new TableConfig<City>()
-                .addColumn(ColumnConfig.<City>create("name", "Name")
-                        .setCellRenderer(cellInfo -> DominoElement.div().appendChild(TextNode.of(cellInfo.getRecord().getName())).element())
-                )
-                .addColumn(ColumnConfig.<City>create("code", "code")
-                        .setCellRenderer(cellInfo -> DominoElement.div().appendChild(TextNode.of(cellInfo.getRecord().getCode())).element())
-                )
-                .addColumn(ColumnConfig.<City>create("boolean", "boolean")
-                                .setCellRenderer(cellInfo -> {
-//                            return FlexLayout.create()
-//                                    .appendChild(FlexItem.create().setTextContent(cellInfo.getRecord().getName()))
-//                                    .appendChild(FlexItem.create().setTextContent(cellInfo.getRecord().getName()))
-//                                    .element();
-//                            return DominoElement.div()
-//                            .appendChild(TextNode.of(cellInfo.getRecord().getName()))
-//                            .appendChild(TextNode.of(cellInfo.getRecord().getName()))
-//                                    .element();
-                            SwitchButton switchButton = SwitchButton.create();
-                            switchButton.setColor(Color.BLUE);
-                            switchButton.setValue(cellInfo.getRecord().isFlag());
-                            if (!cellInfo.getRecord().isFlag()) switchButton.disable();
-                            switchButton.getOnOffLabelElement().style().setCursor("default");
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
 
-                                int iValue = Integer.parseInt(String.valueOf(cellInfo.getRecord().getId()));
-                                switchButton.addChangeHandler(isOn -> {
-                                    DomGlobal.console.info("iValue : "+iValue);
-                                });
-                                    return switchButton
-//                                        .apply(self -> self.getNotesContainer().remove())
-                                            .element();
-                                })
-                )
-//                .addColumn(ColumnConfig.<City>create("text", "text")
-//                                .setCellRenderer(cellInfo -> {
-//
-//
-//                                    return TextBox.create()
-//                                            .value(cellInfo.getRecord().getName())
-////                                        .apply(self -> self.getNotesContainer().remove())
-//                                            .element();
-//                                })
-//                )
-                ;
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
 
-        LocalListDataStore<City> localListDataStore = new LocalListDataStore<>();
-        DataTable<City> cityDataTable = new DataTable<>(tableConfig, localListDataStore);
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setWidth("250px")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
-        ;
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setWidth("300px")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setWidth("150px")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .addPlugin(new SortPlugin<>());
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("BASIC TABLE - FIXED", "Fixed tables will use the specified column width and will have scrolls when elements exceeds the body height. ")
-                .appendChild(Button.create("reset data")
-                        .addClickListener(evt -> {
-                            localListDataStore.setData(new ArrayList<>());
-                        })
-                )
-                .appendChild(Button.create("fill data")
-                        .addClickListener(evt -> {
-                            DomGlobal.console.time("test");
-                            localListDataStore.setData(cities);
-                            DomGlobal.console.timeEnd("test");
-                        })
-                )
-                .appendChild(cityDataTable)
-                .element()
+                .setCollapsible()
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
+                .element());
 
-        );
-
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+            defaultTable.load();
+        });
     }
 
     private List<Contact> subList(List<Contact> contacts) {
@@ -1258,7 +1182,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
                         .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
-                        .addActionElement(dataTable -> Icons.ALL.show_chart()
+                        .addActionElement(dataTable -> Icons.ALL.filter_menu_outline_mdi()
                                 .clickable()
                                 .addClickListener(evt -> contactColumnHeaderFilterPlugin.getFiltersRowElement()
                                         .toggleDisplay())

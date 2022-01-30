@@ -114,8 +114,8 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                 .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
-                                                        .appendChild(heightCollapseButton.builder()
-                                                                .css(Styles.m_b_15).build()
+                                                        .appendChild(heightCollapseButton
+                                                                .css(Styles.m_b_15)
                                                                 .setBackground(Color.CYAN)
                                                         )
                                                         .appendChild(heightDiv)
@@ -123,8 +123,8 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                         )
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
-                                                        .appendChild(displayCollapseButton.builder()
-                                                                .css(Styles.m_b_15).build()
+                                                        .appendChild(displayCollapseButton
+                                                                .css(Styles.m_b_15)
                                                                 .setBackground(Color.CYAN)
                                                                 .element())
                                                         .appendChild(displayDiv)
@@ -132,8 +132,8 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                         )
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
-                                                        .appendChild(animationCollapseButton.builder()
-                                                                .css(Styles.m_b_15).build()
+                                                        .appendChild(animationCollapseButton
+                                                                .css(Styles.m_b_15)
                                                                 .setBackground(Color.CYAN)
                                                                 .element()
                                                         )
