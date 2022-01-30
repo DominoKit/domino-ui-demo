@@ -38,7 +38,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ui-demo-backend/target/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
-          remote: scp/home/ubuntu/apps/domino-ui-demo
+          remote: ../home/ubuntu/apps/domino-ui-demo/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
