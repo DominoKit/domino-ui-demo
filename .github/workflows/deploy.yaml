@@ -37,7 +37,7 @@ jobs:
       - name: Copy jar over ssh
         uses: garygrossgarten/github-action-scp@release
         with:
-          local: ../../ui-demo-backend/target/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
+          local: ui-demo-backend/target/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
           remote: scp/home/ubuntu/apps/domino-ui-demo
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
