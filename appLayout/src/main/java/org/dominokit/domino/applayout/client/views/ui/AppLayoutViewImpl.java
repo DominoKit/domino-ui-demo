@@ -88,8 +88,8 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                 .appendChild(h(5).textContent("Add content to the left panel"))
                 .appendChild(CodeCard.preBlock("layout.getLeftPanel()\n" +
                         "                .appendChild(Tree.create(\"Menu\")\n" +
-                        "                        .addTreeItem(TreeItem.create(\"Item1\", Icons.ALL.folder()))\n" +
-                        "                        .addTreeItem(TreeItem.create(\"Item 2\", Icons.ALL.description()))\n" +
+                        "                        .appendChild(TreeItem.create(\"Item1\", Icons.ALL.folder()))\n" +
+                        "                        .appendChild(TreeItem.create(\"Item 2\", Icons.ALL.description()))\n" +
                         "                        .element());"))
                 .appendChild(h(6).textContent("This will append a tree to the left panel, you can append any element of any kind."))
                 .appendChild(br())
