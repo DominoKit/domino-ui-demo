@@ -282,8 +282,8 @@
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
                             <compilerArgs>
-                                <!--                                <compilerArg>-style</compilerArg>-->
-                                <!--                                <compilerArg>PRETTY</compilerArg>-->
+<!--                                                                <compilerArg>-style</compilerArg>-->
+<!--                                                                <compilerArg>PRETTY</compilerArg>-->
                                 <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>
@@ -291,17 +291,18 @@
                                 <!--                                <codeserverArg>PRETTY</codeserverArg>-->
                                 <codeserverArg>-port</codeserverArg>
                                 <codeserverArg>9875</codeserverArg>
-                                                                <codeserverArg>-bindAddress</codeserverArg>
-                                                                <codeserverArg>0.0.0.0</codeserverArg>
+                                <codeserverArg>-bindAddress</codeserverArg>
+                                <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
+                                <codeserverArg>
+                                    /mnt/drive2/Development/Dominokit/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>

@@ -25,6 +25,7 @@ import org.dominokit.domino.datatable.client.views.model.Gender;
 import org.dominokit.domino.datatable.client.views.model.TreeGridSample;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
@@ -72,6 +73,7 @@ import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
@@ -105,61 +107,67 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textContent("Data table demo source code").element())
                 .element());
 
-        basicTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
-
-        editableTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
+//        basicTable();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
+//
+//        editableTable();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
 
         basicFixedTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
 
-        singleSelectionPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+//        singleSelectionPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
+//
+//        multiSelectionPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
+//
+//        markerPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+//
+//        recordDetailsPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+//
+//        tableHeaderBarPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
+//
+//        sortAndSearch();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
+//
+//        simplePagination();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.simplePagination()).element());
+//
+//        scrollingPagination();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
+//
+//        advancedPagination();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
+//
+//        scrollableTable();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
+//
+//        topPanelPlugin();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
+//
+//        groupingTable();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupingTable()).element());
+//
+//        treeGridFullParentSpan();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
+//
+//        treeGridParentColumns();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
+//
+//        allInOne();
+//        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.allInOne()).element());
 
-        multiSelectionPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.multiSelectionPlugin()).element());
 
-        markerPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.markerPlugin()).element());
+        initData();
 
-        recordDetailsPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.recordDetailsPlugin()).element());
+        return element;
+    }
 
-        tableHeaderBarPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.tableHeaderBarPlugin()).element());
-
-        sortAndSearch();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.sortAndSearch()).element());
-
-        simplePagination();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.simplePagination()).element());
-
-        scrollingPagination();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollingPagination()).element());
-
-        advancedPagination();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.advancedPagination()).element());
-
-        scrollableTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.scrollableTable()).element());
-
-        topPanelPlugin();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.topPanelPlugin()).element());
-
-        groupingTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupingTable()).element());
-
-        treeGridFullParentSpan();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
-
-        treeGridParentColumns();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
-
-        allInOne();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.allInOne()).element());
-
-
+    private void initData() {
         try {
             JsonResource.INSTANCE.generatedJson().getText(new ResourceCallback<TextResource>() {
                 @Override
@@ -182,8 +190,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         } catch (ResourceException e) {
             DomGlobal.console.error("could not load json", e);
         }
-
-        return element;
     }
 
     private List<Contact> addFriends(List<Contact> pool, List<Contact> contacts) {
@@ -668,6 +674,14 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
                 .appendChild(table)
+                .apply(self -> {
+                    self.appendChild(Button.create("readd").addClickListener(evt -> {
+                        self.getBody().clearElement();
+                        DataTable<Contact> newtable = new DataTable<>(tableConfig, localListDataStore);
+                        self.appendChild(newtable);
+                    }));
+                })
+
                 .element());
 
         contactListParseHandlers.add(contacts -> {
@@ -682,7 +696,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setFixed(true)
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .textAlign("right")
-                        .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
@@ -692,7 +705,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-        }
+                            }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setWidth("200px")
@@ -726,7 +739,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             }
                             return TextNode.of("");
                         }))
-                .addPlugin(new SortPlugin<>());
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(ColumnLockPlugin.create(2));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
@@ -734,12 +748,23 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .setCollapsible()
                 .appendChild(new TableStyleActions(defaultTable))
                 .appendChild(defaultTable)
+                .apply(self -> {
+                    self.appendChild(Button.create("Redraw")
+                            .addClickListener(evt -> {
+                                self.remove();
+                                basicFixedTable();
+                                initData();
+                            })
+                    );
+                })
                 .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
             defaultTable.load();
         });
+
+
     }
 
     private List<Contact> subList(List<Contact> contacts) {
