@@ -63,6 +63,7 @@
         <module>sample-processor</module>
         <module>sample-annotations</module>
         <module>ui-demo-server</module>
+        <module>dnd</module>
     </modules>
 
     <modelVersion>4.0.0</modelVersion>

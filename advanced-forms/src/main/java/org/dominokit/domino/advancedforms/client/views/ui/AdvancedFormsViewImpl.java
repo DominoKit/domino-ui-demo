@@ -32,7 +32,7 @@ import org.dominokit.domino.ui.keyboard.KeyboardEvents;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.tag.TagsInput;
-import org.dominokit.domino.ui.tag.store.LocalTagsStore;
+import org.dominokit.domino.ui.tag.store.OrderedLocalTagsStore;
 import org.dominokit.domino.ui.upload.FileUpload;
 import org.jboss.elemento.Elements;
 
@@ -119,10 +119,10 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                 );
 
         Person schroeder_coleman = new Person(1, "Schroeder Coleman");
-        LocalTagsStore<Person> personsStore = LocalTagsStore.<Person>create()
-                .addItem("Schroeder Coleman", schroeder_coleman)
-                .addItem("Renee Mcintyre", new Person(2, "Renee Mcintyre"))
-                .addItem("Casey Garza", new Person(3, "Casey Garza"));
+        OrderedLocalTagsStore<Person> personsStore = OrderedLocalTagsStore.<Person>create()
+               .addItem("Schroeder Coleman", schroeder_coleman)
+               .addItem("Renee Mcintyre", new Person(2, "Renee Mcintyre"))
+               .addItem("Casey Garza", new Person(3, "Casey Garza"));
 
         TagsInput<Person> objectTags = TagsInput.create("Friends", personsStore);
         objectTags.setValue(Collections.singletonList(schroeder_coleman));

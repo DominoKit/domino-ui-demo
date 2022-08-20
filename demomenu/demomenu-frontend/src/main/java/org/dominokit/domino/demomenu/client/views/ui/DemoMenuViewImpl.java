@@ -123,6 +123,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Tooltip & Popover", "components/tooltips-popover"))
                         .appendChild(makeSubMenu("Tree", "components/tree"))
                         .appendChild(makeSubMenu("Waves", "components/waves"))
+                        .appendChild(makeSubMenu("Drag and drop", "components/dnd"))
                 )
                 .appendChild(TreeItem.create("Forms", Icons.ALL.assignment())
                         .appendChild(makeSubMenu("Basic forms", "forms/basic-form-elements"))
