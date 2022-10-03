@@ -46,7 +46,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .setPattern(DATE_PATTERN)
                 .setHelperText(DATE_PATTERN)
                 .setLabel("Latest Date Of Shipment")
-                .addLeftAddOn(Icons.ALL.date_range());
+                .addLeftAddOn(Icons.ALL.calendar_range_mdi());
         latestDateOfShipmentDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
         latestDateOfShipmentDateBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -54,7 +54,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.local_shipping())
+                .addLeftAddOn(Icons.ALL.ship_wheel_mdi())
                 .appendChild(SelectOption.create("AIR_FREIGHT", "Air Freight"))
                 .appendChild(SelectOption.create("SEA_FREIGHT", "Sea Freight"))
                 .appendChild(SelectOption.create("LAND", "Land"))
@@ -70,14 +70,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_enter_mdi());
         shipmentFromTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         shipmentToTextBox = TextBox.create("Shipment To")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_enter_mdi());
 
         shipmentToTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -85,14 +85,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_on());
+                .addLeftAddOn(Icons.ALL.location_enter_mdi());
         placeOfDestinationTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         termsOfDeliverySelect = Select.<String>create("Terms Of Delivery (Incoterms 2010)")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.card_membership())
+                .addLeftAddOn(Icons.ALL.wallet_membership_mdi())
                 .appendChild(SelectOption.create("EXW", "EXW – Ex Works (named place of delivery)"))
                 .appendChild(SelectOption.create("FCA", "FCA – Free Carrier (named place of delivery)"))
                 .appendChild(SelectOption.create("CPT", "CPT – Carriage Paid To (named place of destination)"))

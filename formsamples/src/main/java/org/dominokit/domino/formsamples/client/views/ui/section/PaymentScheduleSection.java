@@ -9,19 +9,14 @@ import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.forms.FieldsGrouping;
-import org.dominokit.domino.ui.forms.Radio;
-import org.dominokit.domino.ui.forms.RadioGroup;
-import org.dominokit.domino.ui.forms.Select;
-import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
@@ -34,9 +29,7 @@ import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.ma
 import static org.dominokit.domino.ui.grid.Column.span12;
 import static org.dominokit.domino.ui.grid.Column.span4;
 import static org.dominokit.domino.ui.utils.ElementUtil.numbersOnly;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.i;
-import static org.jboss.elemento.Elements.small;
+import static org.jboss.elemento.Elements.*;
 
 public class PaymentScheduleSection implements ImportSection {
 
@@ -56,7 +49,7 @@ public class PaymentScheduleSection implements ImportSection {
     public PaymentScheduleSection() {
 
         numberOfDaysTextBox = numbersOnly(TextBox.create("No. Of Days")
-                .addLeftAddOn(Icons.ALL.looks_one())
+                .addLeftAddOn(Icons.ALL.looks_mdi())
                 .setHelperText(Constants.NUMBERS_ONLY))
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
@@ -67,7 +60,7 @@ public class PaymentScheduleSection implements ImportSection {
         paymentScheduleAfterSelect = Select.<String>create("After").appendChild(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
                 .appendChild(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
                 .appendChild(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
-                .addLeftAddOn(Icons.ALL.redo())
+                .addLeftAddOn(Icons.ALL.redo_mdi())
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
 
@@ -94,7 +87,7 @@ public class PaymentScheduleSection implements ImportSection {
 
         paymentScheduleItemsListGroup = ListGroup.<PaymentScheduleItem>create()
                 .setItemRenderer((listGroup, listItem) -> {
-                    Icon delete = Icons.ALL.delete()
+                    MdiIcon delete = Icons.ALL.delete_mdi()
                             .clickable()
                             .styler(style -> style
                                     .setMarginTop("-3px")
@@ -161,7 +154,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .horizontal();
 
         paymentScheduleCard = Card.create("Payment Schedule *");
-        addButton = Button.createDefault(Icons.ALL.add())
+        addButton = Button.createDefault(Icons.ALL.plus_mdi())
                 .setContent("ADD")
                 .linkify()
                 .style()

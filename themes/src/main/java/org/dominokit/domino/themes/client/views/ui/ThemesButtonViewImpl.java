@@ -16,7 +16,7 @@ public class ThemesButtonViewImpl extends BaseElementView<HTMLElement> implement
 
     @Override
     protected HTMLElement init() {
-        actionItem = LayoutActionItem.create(Icons.ALL.style()
+        actionItem = LayoutActionItem.create(Icons.ALL.theme_light_dark_mdi()
                 .addClickListener(evt -> uiHandlers.onShowHideThemes()));
         return actionItem.element();
     }

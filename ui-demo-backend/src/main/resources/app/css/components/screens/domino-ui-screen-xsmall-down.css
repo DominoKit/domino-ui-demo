@@ -1,0 +1,34 @@
+@media screen and (max-width: 768px){
+    .dui-layout {
+        --dui-left-drawer-width: calc(var(--dui-drawer-small-screens-width));
+        --dui-right-drawer-width: calc(var(--dui-drawer-small-screens-width));
+    }
+
+    .dui-left-drawer{
+
+    }
+
+    .dui-layout-left-drawer-md {
+        --dui-left-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+
+    .dui-layout-left-drawer-lg {
+        --dui-left-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+
+    .dui-layout-left-drawer-xlg {
+        --dui-left-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+
+    .dui-layout-right-drawer-md {
+        --dui-right-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+
+    .dui-layout-right-drawer-lg {
+        --dui-right-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+
+    .dui-layout-right-drawer-xlg {
+        --dui-right-drawer-width: var(--dui-drawer-small-screens-width);
+    }
+}

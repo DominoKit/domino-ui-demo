@@ -20,6 +20,11 @@
             <groupId>org.dominokit</groupId>
             <artifactId>domino-mvp-api-shared</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>domino-mvp-apt-shared</artifactId>
+            <scope>provided</scope>
+        </dependency>
     </dependencies>
 
     <build>

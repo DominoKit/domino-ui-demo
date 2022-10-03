@@ -82,7 +82,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
     @SampleMethod
     private void initFileUploadExample() {
         FileUpload fileUpload = FileUpload.create()
-                .setIcon(Icons.ALL.touch_app())
+                .setIcon(Icons.ALL.apps_mdi())
                 .setUrl("http://localhost:8080/form")
                 .multipleFiles()
                 .accept("image/*")
@@ -233,7 +233,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                         .appendChild(Column.span4()
                                 .appendChild(friendNameBox))
                         .appendChild(Column.span2()
-                                .appendChild(Button.createPrimary(Icons.ALL.add()).setContent("ADD FRIEND")
+                                .appendChild(Button.createPrimary(Icons.ALL.plus_mdi()).setContent("ADD FRIEND")
                                         .addClickListener(evt -> {
                                             localStore.addSuggestion(SuggestItem.create(friendNameBox.getValue()));
                                             friendNameBox.clear();

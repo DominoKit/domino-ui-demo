@@ -1,3 +1,54 @@
+@import url(./css/animation.css?v=${project.version});
+@import url(./css/colors.css?v=${project.version});
+@import url(./css/display.css?v=${project.version});
+@import url(./css/spacing.css?v=${project.version});
+@import url(./css/components/domino-ui-alert.css?v=${project.version});
+@import url(./css/components/domino-ui-app-layout.css?v=${project.version});
+@import url(./css/components/domino-ui-badge.css?v=${project.version});
+@import url(./css/components/domino-ui-breadcrumb.css?v=${project.version});
+@import url(./css/components/domino-ui-buttons.css?v=${project.version});
+@import url(./css/components/domino-ui-cards.css?v=${project.version});
+@import url(./css/components/domino-ui-chips.css?v=${project.version});
+@import url(./css/components/domino-ui-collapse.css?v=${project.version});
+@import url(./css/components/domino-ui-fields.css?v=${project.version});
+@import url(./css/components/domino-ui-fonts.css?v=${project.version});
+@import url(./css/components/domino-ui-forms.css?v=${project.version});
+@import url(./css/components/domino-ui-icons.css?v=${project.version});
+@import url(./css/components/domino-ui-infobox.css?v=${project.version});
+@import url(./css/components/domino-ui-labels.css?v=${project.version});
+@import url(./css/components/domino-ui-list-group.css?v=${project.version});
+@import url(./css/components/domino-ui-media-objects.css?v=${project.version});
+@import url(./css/components/domino-ui-menu.css?v=${project.version});
+@import url(./css/components/domino-ui-navbar.css?v=${project.version});
+@import url(./css/components/domino-ui-notification.css?v=${project.version});
+@import url(./css/components/domino-ui-pagination.css?v=${project.version});
+@import url(./css/components/domino-ui-preloaders.css?v=${project.version});
+@import url(./css/components/domino-ui-progressbar.css?v=${project.version});
+@import url(./css/components/domino-ui-search.css?v=${project.version});
+@import url(./css/components/domino-ui-sliders.css?v=${project.version});
+@import url(./css/components/domino-ui-tabs.css?v=${project.version});
+@import url(./css/components/domino-ui-thumbnails.css?v=${project.version});
+@import url(./css/components/domino-ui-tree.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xsmall.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xsmall-up.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xsmall-down.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-small.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-small-up.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-small-down.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-medium.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-medium-up.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-medium-down.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-large.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-large-up.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-large-down.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xlarge.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xlarge-up.css?v=${project.version});
+@import url(./css/components/screens/domino-ui-screen-xlarge-down.css?v=${project.version});
+@import url(./css/components/theme-default.css?v=${project.version});
+@import url(./css/temp/domino-ui-loaders.css);
+@import url(./css/temp/domino-ui-waitMe.css);
+
+
 .locked-column {
     position: sticky;
     box-shadow: inset 0 0 0 9999px rgb(0 0 0 / 5%);
@@ -12,17 +63,7 @@
     background-color: #ffffff;
 }
 
-/*.table-striped > tbody > tr.dom-ui-dt-tr-odd:not([class*="details-tr"]):not([class*="bg-"]) .locked-column {*/
-/*    background-color: #f9f9f9;*/
-/*}*/
-/*.table-striped > tbody > tr.dom-ui-dt-tr-even:not([class*="details-tr"]):not([class*="bg-"]) .locked-column {*/
-/*    background-color: #ffffff;*/
-/*}*/
+.dui.theme-default .dui-layout-has-footer {
+    --dui-footer-height:287px
+}
 
-/*.table-hover > tbody > tr:hover:not([class*="details-tr"]):not([class*="bg-"])  .locked-column{*/
-/*    background-color: #f5f5f5;*/
-/*}*/
-
-/*.table-cm-header.locked-column {*/
-/*    background-color: #ffffff;*/
-/*}*/

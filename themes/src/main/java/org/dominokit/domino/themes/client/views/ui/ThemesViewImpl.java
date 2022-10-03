@@ -31,7 +31,7 @@ public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements T
     protected HTMLDivElement init() {
         card = Card.create("Themes", "Select theme to apply.");
 
-        card.addHeaderAction(Icons.HARDWARE_ICONS.keyboard_tab(), evt -> uiHandlers.onHideThemes());
+        card.addHeaderAction(Icons.ALL.arrow_collapse_left_mdi(), evt -> uiHandlers.onHideThemes());
         card.style().setMarginBottom("0px");
         card.fitContent();
         card.appendChild(themesPanel);

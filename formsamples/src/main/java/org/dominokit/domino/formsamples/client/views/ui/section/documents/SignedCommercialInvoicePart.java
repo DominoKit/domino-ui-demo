@@ -82,7 +82,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .addLeftAddOn(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain_mdi())
                 .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
                 .appendChild(SelectOption.create("Official trade office", "Official trade office"))
                 .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))

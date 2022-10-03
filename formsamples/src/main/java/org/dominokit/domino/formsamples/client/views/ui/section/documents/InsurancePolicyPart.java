@@ -34,7 +34,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         insuranceCompanyTextBox = TextBox.create("Insurance company")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.bank_mdi())
                 .setAutoValidation(true)
                 .setRequired(true);
 
@@ -42,7 +42,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         insurancePolicyNumberTextBox = TextBox.create("Insurance policy number")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.phone())
+                .addLeftAddOn(Icons.ALL.phone_mdi())
                 .setAutoValidation(true)
                 .setRequired(true);
 

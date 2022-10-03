@@ -46,7 +46,7 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
 
 
         profile.appendChild(Elements.img(GWT.getModuleBaseURL() + "/images/user.png").style("border-radius:50%;"));
-        HeaderAction headerAction=HeaderAction.create(Icons.ALL.more_vert()
+        HeaderAction headerAction=HeaderAction.create(Icons.ALL.dots_vertical_mdi()
                 .clickable());
         DropDownMenu dropDownMenu=DropDownMenu.create(headerAction)
                 .setPosition(DropDownPosition.BOTTOM)

@@ -17,15 +17,15 @@ public final class AccountDetails implements IsElement<HTMLDivElement> {
 
     public AccountDetails() {
         accountNumberHeader = TextBox.create("Account number")
-                .addLeftAddOn(Icons.ALL.account_balance_wallet())
+                .addLeftAddOn(Icons.ALL.wallet_mdi())
                 .setReadOnly(true);
 
         ibanHeader = TextBox.create("IBAN")
-                .addLeftAddOn(Icons.ALL.code())
+                .addLeftAddOn(Icons.ALL.code_array_mdi())
                 .setReadOnly(true);
 
         currencyHeader = TextBox.create("Currency")
-                .addLeftAddOn(Icons.ALL.attach_money())
+                .addLeftAddOn(Icons.ALL.home_currency_usd_mdi())
                 .setReadOnly(true);
 
         element = Row.create()

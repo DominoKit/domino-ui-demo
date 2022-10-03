@@ -202,7 +202,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void popups() {
-        Button bluePopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button bluePopupButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.BLUE.color());
         DatePicker bluePopDatePicker = DatePicker.create()
                 .showBorder()
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
@@ -224,7 +224,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
 
-        Button amberPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
+        Button amberPopupButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.AMBER.color());
         DatePicker amberPopDatePicker = DatePicker.create(new Date(), new DateTimeFormatInfoImpl_fr())
                 .setColorScheme(ColorScheme.AMBER)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
@@ -246,7 +246,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
 
-        Button greenPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenPopupButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.GREEN.color());
         DatePicker greenPopDatePicker = DatePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
@@ -268,7 +268,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .show());
 
 
-        Button blueModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button blueModalButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.BLUE.color());
         DatePicker blueDatePicker = DatePicker.create()
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
                     DateTimeFormat dateTimeFormat = Formatter.getFormat(dateTimeFormatInfo.dateFormatFull(), dateTimeFormatInfo);
@@ -291,7 +291,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         blueModalButton.addClickListener(evt -> blueModal.open());
 
 
-        Button amberModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.AMBER.color());
+        Button amberModalButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.AMBER.color());
         DatePicker amberDatePicker = DatePicker.create()
                 .setColorScheme(ColorScheme.AMBER)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {
@@ -315,7 +315,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         amberModalButton.addClickListener(evt -> amberModal.open());
 
 
-        Button greenModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenModalButton = Button.create(Icons.ALL.calendar_range_mdi()).setBackground(ColorScheme.GREEN.color());
         DatePicker greenDatePicker = DatePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addDateSelectionHandler((date, dateTimeFormatInfo) -> {

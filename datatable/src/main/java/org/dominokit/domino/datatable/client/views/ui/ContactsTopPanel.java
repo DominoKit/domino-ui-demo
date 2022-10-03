@@ -17,14 +17,14 @@ import static org.jboss.elemento.Elements.i;
 
 public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
 
-    private InfoBox loaded_items_count = InfoBox.create(Icons.ALL.timelapse(), "LOADED ITEMS COUNT", "0")
+    private InfoBox loaded_items_count = InfoBox.create(Icons.ALL.timelapse_mdi(), "LOADED ITEMS COUNT", "0")
             .setIconColor(Color.INDIGO)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private InfoBox totalItemsCount = InfoBox.create(Icons.ALL.timelapse(), "TOTAL ITEMS COUNT", "0")
+    private InfoBox totalItemsCount = InfoBox.create(Icons.ALL.timelapse_mdi(), "TOTAL ITEMS COUNT", "0")
             .setIconColor(Color.INDIGO)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)
@@ -45,14 +45,14 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private InfoBox goodCount = InfoBox.create(Icons.ALL.timelapse(), "GOOD BALANCE ", "0")
+    private InfoBox goodCount = InfoBox.create(Icons.ALL.timelapse_mdi(), "GOOD BALANCE ", "0")
             .setIconColor(Color.GREEN)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)
             .removeShadow()
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
-    private InfoBox dangerCount = InfoBox.create(Icons.ALL.timelapse(), "LOW BALANCE", "0")
+    private InfoBox dangerCount = InfoBox.create(Icons.ALL.timelapse_mdi(), "LOW BALANCE", "0")
             .setIconColor(Color.RED)
             .setIconBackground(Color.WHITE)
             .setBackground(Color.WHITE)

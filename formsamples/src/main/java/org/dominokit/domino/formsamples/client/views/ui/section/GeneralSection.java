@@ -42,7 +42,7 @@ public class GeneralSection implements ImportSection {
                                         .setPattern(DATE_PATTERN)
                                         .setHelperText(DATE_PATTERN)
                                         .setLabel("Date")
-                                        .addLeftAddOn(Icons.ALL.date_range())
+                                        .addLeftAddOn(Icons.ALL.calendar_range_mdi())
                                         .setReadOnly(true)
                                         .value(new Date())))
                         .addColumn(Column.span6()
@@ -51,7 +51,7 @@ public class GeneralSection implements ImportSection {
                                 .get()
                                 .appendChild(placeTextBox
                                         .setReadOnly(true)
-                                        .addLeftAddOn(Icons.ALL.location_on())
+                                        .addLeftAddOn(Icons.ALL.location_enter_mdi())
                                         .value(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))
                 )
                 .element());

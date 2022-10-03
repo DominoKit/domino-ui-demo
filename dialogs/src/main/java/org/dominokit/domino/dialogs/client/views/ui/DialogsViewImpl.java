@@ -21,8 +21,8 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
@@ -82,7 +82,7 @@ public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements Dia
                 () -> Notification.create("Dialog closed").show())
                 .warning();
 
-        Icon heart = Icons.ALL.favorite()
+        MdiIcon heart = Icons.ALL.star_mdi()
                 .style().addCss(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
 
         MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",

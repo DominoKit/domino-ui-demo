@@ -63,8 +63,8 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.TelephoneBox;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
@@ -222,9 +222,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
@@ -305,9 +305,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
@@ -384,9 +384,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -457,9 +457,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -543,9 +543,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         })
                         .setEditableCellRenderer(cell -> {
@@ -702,9 +702,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -792,9 +792,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -863,9 +863,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -933,9 +933,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -998,9 +998,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell1 -> {
                             if (cell1.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1064,9 +1064,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1102,7 +1102,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         tableConfig.addPlugin(new SelectionPlugin<>());
         tableConfig.addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                 .addActionElement(dataTable -> {
-                    Icon selectInactiveIcon = Icons.ALL.highlight_off()
+                    MdiIcon selectInactiveIcon = Icons.ALL.close_circle_mdi()
                             .clickable()
                             .setTooltip("Select Inactive")
                             .addClickListener(evt ->
@@ -1117,7 +1117,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                     return a().add(selectInactiveIcon).element();
                 })
                 .addActionElement(dataTable -> {
-                    Icon selectInactiveIcon = Icons.ALL.check_circle()
+                    MdiIcon selectInactiveIcon = Icons.ALL.check_circle_mdi()
                             .clickable()
                             .setTooltip("Select Active")
                             .addClickListener(evt ->
@@ -1164,9 +1164,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1258,9 +1258,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1338,9 +1338,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1418,9 +1418,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1499,9 +1499,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1576,9 +1576,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1671,9 +1671,9 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.check_circle_mdi().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
-                                return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                return Style.of(Icons.ALL.close_circle_mdi().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -1724,7 +1724,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 })
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(dataTable -> {
-                            Icon selectInactiveIcon = Icons.ALL.highlight_off()
+                            MdiIcon selectInactiveIcon = Icons.ALL.close_circle_mdi()
                                     .clickable()
                                     .setTooltip("Select Inactive")
                                     .addClickListener(evt ->
@@ -1739,7 +1739,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             return a().add(selectInactiveIcon).element();
                         })
                         .addActionElement(dataTable -> {
-                            Icon selectInactiveIcon = Icons.ALL.check_circle()
+                            MdiIcon selectInactiveIcon = Icons.ALL.check_circle_mdi()
                                     .clickable()
                                     .setTooltip("Select Active")
                                     .addClickListener(evt ->

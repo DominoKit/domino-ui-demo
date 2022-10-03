@@ -63,7 +63,7 @@ public class DraftsPart implements ImportSection {
                                     .appendChild(TextNode.of(formattedDraftItem(listItem.getValue())))
                             )
                             .appendChild(FlexItem.create()
-                                    .appendChild(Icons.ALL.delete()
+                                    .appendChild(Icons.ALL.delete_mdi()
                                             .clickable()
                                             .styler(style -> style
                                                     .setMarginTop("-3px")
@@ -83,7 +83,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.bank_mdi())
                 .appendChild(SelectOption.create("Progressoft", "Progressoft"))
                 .appendChild(SelectOption.create("Clusus", "Clusus"))
                 .appendChild(SelectOption.create("Bank XYZ", "Bank XYZ"))
@@ -94,13 +94,13 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setHelperText(NUMBERS_ONLY)
-                .addLeftAddOn(Icons.ALL.looks_one());
+                .addLeftAddOn(Icons.ALL.looks_mdi());
 
         documentsRequiredFromSelect = Select.<String>create("From")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.date_range())
+                .addLeftAddOn(Icons.ALL.calendar_range_mdi())
                 .appendChild(SelectOption.create("shipmentDate", "Shipment Date"))
                 .appendChild(SelectOption.create("commercialDate", "Commercial Date"))
                 .appendChild(SelectOption.create("billOfLading", "Bill Of Lading"));
@@ -120,7 +120,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.insert_drive_file())
+                .addLeftAddOn(Icons.ALL.file_document_box_mdi())
                 .appendChild(SelectOption.create("Invoice value", "Invoice value"))
                 .appendChild(SelectOption.create("IC value", "IC value"));
 
@@ -164,7 +164,7 @@ public class DraftsPart implements ImportSection {
 
 
     private Button initAddButton() {
-        Button addDraftButton = Button.createDefault(Icons.ALL.add()).setContent("ADD").linkify()
+        Button addDraftButton = Button.createDefault(Icons.ALL.plus_mdi()).setContent("ADD").linkify()
                 .addClickListener(evt -> {
                     if (fieldsGrouping.validate().isValid()) {
 

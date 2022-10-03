@@ -52,22 +52,22 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
                                 .appendChild(TextNode.of(SAMPLE_CONTENT))
-                                .addHeaderAction(Icons.ALL.more_vert(), event -> {
+                                .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> {
                                     DomGlobal.console.info("More action selected");
                                 })))
 
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
                                 .appendChild(TextNode.of(SAMPLE_CONTENT))
-                                .addHeaderAction(Icons.AV_ICONS.mic(), event -> {
+                                .addHeaderAction(Icons.ALL.microphone_mdi(), event -> {
                                     DomGlobal.console.info("Play sound");
                                 })))
 
                 .addColumn(Column.span4()
                         .appendChild(Card.create("Card Title", "Description text here...")
                                 .appendChild(TextNode.of(SAMPLE_CONTENT))
-                                .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                                .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                                .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))
+                                .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
     }
 
@@ -79,36 +79,36 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                 .addColumn(Column.span4().appendChild(Card.create("Light Blue Card", "Description text here...")
                         .setBackground(Color.LIGHT_BLUE)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Light Green Card", "Description text here...")
                         .setBackground(Color.LIGHT_GREEN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Amber card", "Description text here...")
                         .setBackground(Color.AMBER)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
 
         element.appendChild(Row.create()
                 .addColumn(Column.span4().appendChild(Card.create("Pink Card", "Description text here...")
                         .setHeaderBackground(Color.PINK)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Blue Grey Card", "Description text here...")
                         .setHeaderBackground(Color.BLUE_GREY)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Deep Orange card", "Description text here...")
                         .setHeaderBackground(Color.DEEP_ORANGE)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
 
         element.appendChild(Row.create()
@@ -116,20 +116,20 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .setHeaderBackground(Color.BLUE)
                         .setBodyBackground(Color.LIGHT_BLUE)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Light Green Card", "Description text here...")
                         .setHeaderBackground(Color.GREEN)
                         .setBodyBackground(Color.LIGHT_GREEN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Amber card", "Description text here...")
                         .setHeaderBackground(Color.ORANGE)
                         .setBodyBackground(Color.AMBER)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
     }
 
@@ -142,20 +142,20 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                         .setCollapsible()
                         .setHeaderBackground(Color.THEME)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.ALL.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
                         .setHeaderBackground(Color.BROWN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))))
 
                 .addColumn(Column.span4().appendChild(Card.create("Card Title", "Description text here...")
                         .setCollapsible()
                         .setHeaderBackground(Color.CYAN)
                         .appendChild(TextNode.of(SAMPLE_CONTENT))
-                        .addHeaderAction(Icons.AV_ICONS.mic(), event -> DomGlobal.console.info("Play sound"))
-                        .addHeaderAction(Icons.NAVIGATION_ICONS.more_vert(), event -> DomGlobal.console.info("More action selected"))))
+                        .addHeaderAction(Icons.ALL.microphone_mdi(), event -> DomGlobal.console.info("Play sound"))
+                        .addHeaderAction(Icons.ALL.dots_vertical_mdi(), event -> DomGlobal.console.info("More action selected"))))
                 .element());
 
 

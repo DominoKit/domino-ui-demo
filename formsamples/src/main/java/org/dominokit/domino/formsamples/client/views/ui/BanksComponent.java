@@ -19,7 +19,7 @@ public class BanksComponent {
         banksSelect = Select.<Bank>create("Bank")
                 .addLeftAddOn(i().css("fas", "fa-university", "fa-lg"));
         branchesSelect = Select.<Branch>create("Branch")
-                .addLeftAddOn(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain_mdi())
                 .disable();
 
         banksSelect.addSelectionHandler(option -> {

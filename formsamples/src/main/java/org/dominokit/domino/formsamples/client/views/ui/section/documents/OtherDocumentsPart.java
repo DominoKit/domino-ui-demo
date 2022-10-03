@@ -14,8 +14,8 @@ import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
@@ -23,9 +23,7 @@ import org.dominokit.domino.ui.utils.TextNode;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createCopiesField;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.createDescriptionField;
-import static org.dominokit.domino.ui.grid.Column.span12;
-import static org.dominokit.domino.ui.grid.Column.span4;
-import static org.dominokit.domino.ui.grid.Column.span8;
+import static org.dominokit.domino.ui.grid.Column.*;
 import static org.jboss.elemento.Elements.div;
 
 public class OtherDocumentsPart implements ImportSection {
@@ -51,7 +49,7 @@ public class OtherDocumentsPart implements ImportSection {
 
         otherDocumentsItemListGroup = ListGroup.<OtherDocumentsItem>create()
                 .setItemRenderer((listGroup, listItem) -> {
-                    Icon delete = Icons.ALL.delete()
+                    MdiIcon delete = Icons.ALL.delete_mdi()
                             .clickable()
                             .styler(style -> style.addCss(Styles.pull_right)
                                     .setMarginTop("-3px")
@@ -79,7 +77,7 @@ public class OtherDocumentsPart implements ImportSection {
 
         Card otherDocumentsCard = Card.create("Other documents").setBodyPaddingTop("40px");
         otherDocumentsCard.getHeaderBar()
-                .appendChild(Button.createDefault(Icons.ALL.add())
+                .appendChild(Button.createDefault(Icons.ALL.plus_mdi())
                         .setContent("ADD")
                         .styler(style -> style.setMarginTop("-10px"))
                         .linkify()

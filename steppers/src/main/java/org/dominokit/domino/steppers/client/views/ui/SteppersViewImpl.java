@@ -73,20 +73,20 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label_mdi());
 
 
         TextBox emailTextBox = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email_mdi());
 
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone_mdi());
 
         Button nextButton = Button.createDefault("Next")
                 .linkify()
@@ -248,20 +248,20 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label_mdi());
 
 
         TextBox emailTextBox = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email_mdi());
 
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone_mdi());
 
         Button nextButton = Button.createDefault("Next")
                 .linkify()
@@ -417,20 +417,20 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label_mdi());
 
 
         TextBox emailTextBox = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email_mdi());
 
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone_mdi());
 
         Button nextButton = Button.createDefault("Next")
                 .linkify()
@@ -606,20 +606,20 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.label());
+                .addLeftAddOn(Icons.ALL.label_mdi());
 
 
         TextBox emailTextBox = TextBox.create("Email")
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.email());
+                .addLeftAddOn(Icons.ALL.email_mdi());
 
         TextBox phone = ElementUtil.numbersOnly(TextBox.create("Phone"))
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setFixErrorsPosition(true)
-                .addLeftAddOn(Icons.ALL.phone());
+                .addLeftAddOn(Icons.ALL.phone_mdi());
 
         Button nextButton = Button.createDefault("Next")
                 .linkify()

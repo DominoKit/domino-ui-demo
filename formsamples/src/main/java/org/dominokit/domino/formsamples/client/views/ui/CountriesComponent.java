@@ -18,7 +18,7 @@ public class CountriesComponent {
         countriesSelect = Select.<Country>create("Country")
                 .addLeftAddOn(i().css("fas", "fa-globe", "fa-lg"));
         citiesSelect = Select.<String>create("City")
-                .addLeftAddOn(Icons.ALL.location_city())
+                .addLeftAddOn(Icons.ALL.city_mdi())
                 .disable();
 
         countriesSelect.addSelectionHandler(option -> {

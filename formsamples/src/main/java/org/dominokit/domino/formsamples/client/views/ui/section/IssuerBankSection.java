@@ -58,11 +58,11 @@ public class IssuerBankSection implements ImportSection {
         issuerBankInfoRow = Row.create()
                 .addColumn(Column.span6()
                         .appendChild(issuerAddressTextBox
-                                .addLeftAddOn(Icons.ALL.location_on())
+                                .addLeftAddOn(Icons.ALL.location_enter_mdi())
                                 .setReadOnly(true)))
                 .addColumn(Column.span6()
                         .appendChild(issuerContactPersonTextBox
-                                .addLeftAddOn(Icons.ALL.person())
+                                .addLeftAddOn(Icons.ALL.account_mdi())
                                 .setReadOnly(true))
                 ).hide();
 

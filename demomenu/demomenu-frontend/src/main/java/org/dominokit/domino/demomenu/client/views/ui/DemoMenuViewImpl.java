@@ -5,8 +5,8 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
 import org.dominokit.domino.demomenu.client.presenters.DemoMenuProxy;
 import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Calc;
@@ -22,7 +22,7 @@ import static org.dominokit.domino.ui.style.Unit.vh;
 public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements DemoMenuView {
 
     private Tree<String> menu;
-    private Icon lockIcon = Icons.ALL.lock_open()
+    private MdiIcon lockIcon = Icons.ALL.lock_open_mdi()
             .style()
             .setMarginBottom("0px")
             .setMarginTop("0px")
@@ -47,11 +47,11 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
         lockIcon.addClickListener(evt -> {
             if (locked) {
                 uiHandlers.onUnLocked();
-                lockIcon.element().textContent = Icons.ALL.lock().getName();
+                lockIcon.element().textContent = Icons.ALL.lock_mdi().getName();
                 locked = false;
             } else {
                 uiHandlers.onLocked();
-                lockIcon.element().textContent = Icons.ALL.lock_open().getName();
+                lockIcon.element().textContent = Icons.ALL.lock_open_mdi().getName();
                 locked = true;
             }
         });
@@ -64,7 +64,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
 
     private void addMenuItems() {
         menu
-                .appendChild(TreeItem.create("Home", Icons.ALL.home())
+                .appendChild(TreeItem.create("Home", Icons.ALL.home_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "home"))
                         .addClickListener(evt -> {
@@ -72,7 +72,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("home");
                         })
                 )
-                .appendChild(TreeItem.create("Setup", Icons.ALL.build())
+                .appendChild(TreeItem.create("Setup", Icons.ALL.wrench_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "setup"))
                         .addClickListener(evt -> {
@@ -80,7 +80,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("setup");
                         })
                 )
-                .appendChild(TreeItem.create("Samples", Icons.ALL.pages())
+                .appendChild(TreeItem.create("Samples", Icons.ALL.apps_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "samples"))
                         .addClickListener(evt -> {
@@ -88,14 +88,14 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("samples");
                         })
                 )
-                .appendChild(TreeItem.create("Layout", Icons.ALL.dashboard())
+                .appendChild(TreeItem.create("Layout", Icons.ALL.view_dashboard_mdi())
                         .appendChild(makeSubMenu("App layout", "layout/app-layout"))
                         .appendChild(makeSubMenu("Grid layout", "layout/grid-layout"))
                         .appendChild(makeSubMenu("Grids", "layout/grids"))
                         .appendChild(makeSubMenu("Split panel", "layout/split-panel"))
                         .appendChild(makeSubMenu("Flex layout", "layout/flex-layout"))
                 )
-                .appendChild(TreeItem.create("Components", Icons.ALL.widgets())
+                .appendChild(TreeItem.create("Components", Icons.ALL.widgets_mdi())
                         .appendChild(makeSubMenu("Alerts", "components/alerts"))
                         .appendChild(makeSubMenu("Badges", "components/badges"))
                         .appendChild(makeSubMenu("Breadcrumbs", "components/breadcrumbs"))
@@ -124,7 +124,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Tree", "components/tree"))
                         .appendChild(makeSubMenu("Waves", "components/waves"))
                 )
-                .appendChild(TreeItem.create("Forms", Icons.ALL.assignment())
+                .appendChild(TreeItem.create("Forms", Icons.ALL.textbox_mdi())
                         .appendChild(makeSubMenu("Basic forms", "forms/basic-form-elements"))
                         .appendChild(makeSubMenu("Advanced forms", "forms/advanced-form-elements"))
                         .appendChild(makeSubMenu("Date picker", "forms/datepicker"))
@@ -135,7 +135,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Form sample", "forms/form-sample"))
                         .appendChild(makeSubMenu("Login samples", "forms/login-sample"))
                 )
-                .appendChild(TreeItem.create("Data table", Icons.ALL.view_list())
+                .appendChild(TreeItem.create("Data table", Icons.ALL.view_list_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "datatable"))
                         .addClickListener(evt -> {
@@ -143,7 +143,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("datatable");
                         })
                 )
-                .appendChild(TreeItem.create("Icons", Icons.ALL.spa())
+                .appendChild(TreeItem.create("Icons", Icons.ALL.spa_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "icons"))
                         .addClickListener(evt -> {
@@ -151,7 +151,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("icons");
                         })
                 )
-                .appendChild(TreeItem.create("MDI Icons", Icons.ALL.local_florist())
+                .appendChild(TreeItem.create("MDI Icons", Icons.ALL.flower_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "mdiicons"))
                         .addClickListener(evt -> {
@@ -159,7 +159,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("mdiicons");
                         })
                 )
-                .appendChild(TreeItem.create("Typography", Icons.ALL.text_fields())
+                .appendChild(TreeItem.create("Typography", Icons.ALL.format_font_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "typography"))
                         .addClickListener(evt -> {
@@ -167,7 +167,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("typography");
                         })
                 )
-                .appendChild(TreeItem.create("Helper classes", Icons.ALL.layers())
+                .appendChild(TreeItem.create("Helper classes", Icons.ALL.layers_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "helpers"))
                         .addClickListener(evt -> {
@@ -175,7 +175,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("helpers");
                         })
                 )
-                .appendChild(TreeItem.create("Colors", Icons.ALL.color_lens())
+                .appendChild(TreeItem.create("Colors", Icons.ALL.select_color_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "colors"))
                         .addClickListener(evt -> {
@@ -183,7 +183,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("colors");
                         })
                 )
-                .appendChild(TreeItem.create("Animations", Icons.ALL.movie())
+                .appendChild(TreeItem.create("Animations", Icons.ALL.animation_mdi())
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "animations"))
                         .addClickListener(evt -> {
@@ -195,7 +195,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
 
     private TreeItem<String> makeSubMenu(String title, String token) {
         return TreeItem.create(title)
-                .setActiveIcon(Icons.ALL.keyboard_arrow_right())
+                .setActiveIcon(Icons.ALL.arrow_up_mdi())
                 .apply(self -> self.getClickableElement().setAttribute("href", token))
                 .addClickListener(evt -> {
                     evt.preventDefault();

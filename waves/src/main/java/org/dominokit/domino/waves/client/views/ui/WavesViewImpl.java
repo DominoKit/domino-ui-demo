@@ -311,7 +311,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                                 .appendChild(TextNode.of("Default"))
                                                         )
                                                         .appendChild(FlexItem.create()
-                                                                .appendChild(Button.createDefault(Icons.ALL.mic())
+                                                                .appendChild(Button.createDefault(Icons.ALL.microphone_mdi())
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
                                                         ),
@@ -322,7 +322,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createPrimary(Icons.ALL.keyboard())
+                                                                        .createPrimary(Icons.ALL.keyboard_mdi())
                                                                         .setWaveColor(WaveColor.LIGHT)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -334,7 +334,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.content_cut())
+                                                                        .createDefault(Icons.ALL.content_cut_mdi())
                                                                         .setWaveColor(WaveColor.RED)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -346,7 +346,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.content_paste())
+                                                                        .createDefault(Icons.ALL.content_paste_mdi())
                                                                         .setWaveColor(WaveColor.PINK)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -358,7 +358,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.access_alarm())
+                                                                        .createDefault(Icons.ALL.alarm_mdi())
                                                                         .setWaveColor(WaveColor.PURPLE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -370,7 +370,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.access_time())
+                                                                        .createDefault(Icons.ALL.timeline_mdi())
                                                                         .setWaveColor(WaveColor.DEEP_PURPLE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -382,7 +382,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.account_box())
+                                                                        .createDefault(Icons.ALL.account_mdi())
                                                                         .setWaveColor(WaveColor.INDIGO)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -394,7 +394,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.airline_seat_flat())
+                                                                        .createDefault(Icons.ALL.seat_mdi())
                                                                         .setWaveColor(WaveColor.BLUE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -406,7 +406,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.alarm())
+                                                                        .createDefault(Icons.ALL.alarm_mdi())
                                                                         .setWaveColor(WaveColor.LIGHT_BLUE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -418,7 +418,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.ac_unit())
+                                                                        .createDefault(Icons.ALL.air_conditioner_mdi())
                                                                         .setWaveColor(WaveColor.CYAN)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -430,7 +430,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.apps())
+                                                                        .createDefault(Icons.ALL.apps_mdi())
                                                                         .setWaveColor(WaveColor.TEAL)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -442,7 +442,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.assessment())
+                                                                        .createDefault(Icons.ALL.assistant_mdi())
                                                                         .setWaveColor(WaveColor.GREEN)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -454,7 +454,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.android())
+                                                                        .createDefault(Icons.ALL.android_mdi())
                                                                         .setWaveColor(WaveColor.LIGHT_GREEN)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -466,7 +466,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.album())
+                                                                        .createDefault(Icons.ALL.album_mdi())
                                                                         .setWaveColor(WaveColor.LIME)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -478,7 +478,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.aspect_ratio())
+                                                                        .createDefault(Icons.ALL.aspect_ratio_mdi())
                                                                         .setWaveColor(WaveColor.YELLOW)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -490,7 +490,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.autorenew())
+                                                                        .createDefault(Icons.ALL.autorenew_mdi())
                                                                         .setWaveColor(WaveColor.AMBER)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -502,7 +502,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.add_a_photo())
+                                                                        .createDefault(Icons.ALL.plus_mdi())
                                                                         .setWaveColor(WaveColor.ORANGE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -514,7 +514,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.add_location())
+                                                                        .createDefault(Icons.ALL.location_enter_mdi())
                                                                         .setWaveColor(WaveColor.DEEP_ORANGE)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -526,7 +526,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.add_box())
+                                                                        .createDefault(Icons.ALL.plus_box_mdi())
                                                                         .setWaveColor(WaveColor.BROWN)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -538,7 +538,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.remove_from_queue())
+                                                                        .createDefault(Icons.ALL.book_remove_mdi())
                                                                         .setWaveColor(WaveColor.GREY)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -550,7 +550,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.add_to_queue())
+                                                                        .createDefault(Icons.ALL.book_plus_mdi())
                                                                         .setWaveColor(WaveColor.BLUE_GREY)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))
@@ -562,7 +562,7 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
                                                         )
                                                         .appendChild(FlexItem.create()
                                                                 .appendChild(Button
-                                                                        .createDefault(Icons.ALL.adjust())
+                                                                        .createDefault(Icons.ALL.adjust_mdi())
                                                                         .setWaveColor(WaveColor.BLACK)
                                                                         .circle()
                                                                         .setSize(ButtonSize.SMALL))

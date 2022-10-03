@@ -40,11 +40,11 @@ public class BeneficiarySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.label())
+                .addLeftAddOn(Icons.ALL.label_mdi())
                 .addSelectionHandler(option -> revalidate());
 
         accountsSelect = Select.<Account>create("Through")
-                .addLeftAddOn(Icons.ALL.business())
+                .addLeftAddOn(Icons.ALL.bank_mdi())
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)

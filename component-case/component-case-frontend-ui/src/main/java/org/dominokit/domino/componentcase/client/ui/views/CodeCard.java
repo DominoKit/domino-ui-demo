@@ -38,7 +38,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
         card = Card.create("Source Code")
                 .setCollapsible()
                 .appendChild(codeBlock);
-        card.addHeaderAction(Icons.ALL.content_copy()
+        card.addHeaderAction(Icons.ALL.content_copy_mdi()
                 .setTooltip("Copy code"), evt -> {
             copyInput.select();
             EventListener copyListener = e -> {

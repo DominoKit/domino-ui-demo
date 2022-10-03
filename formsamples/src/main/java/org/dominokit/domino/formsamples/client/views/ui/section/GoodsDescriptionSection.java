@@ -26,7 +26,7 @@ public class GoodsDescriptionSection implements ImportSection {
                 .setRequired(true)
                 .autoSize()
                 .setRows(3)
-                .addLeftAddOn(Icons.ALL.description());
+                .addLeftAddOn(Icons.ALL.note_mdi());
 
         goodsDescriptionTextArea.getInputElement().addEventListener("input", evt -> revalidate());
 

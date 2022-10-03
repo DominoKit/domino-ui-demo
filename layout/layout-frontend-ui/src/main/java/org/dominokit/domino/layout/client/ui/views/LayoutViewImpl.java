@@ -8,42 +8,42 @@ import org.dominokit.domino.api.client.mvp.slots.IsSlot;
 import org.dominokit.domino.layout.client.presenters.LayoutProxy;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
+import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.layout.Layout;
+import org.dominokit.domino.ui.layout.AppLayout;
+import org.dominokit.domino.ui.layout.AppLayoutStyles;
+import org.dominokit.domino.ui.layout.LeftDrawerSize;
+import org.dominokit.domino.ui.layout.NavBarUtility;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
+import org.dominokit.domino.ui.menu.CustomMenuItem;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.scroll.ScrollTop;
-import org.dominokit.domino.ui.search.Search;
-import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.Spacing;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.themes.Theme;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.ElementUtil;
-import org.dominokit.domino.ui.utils.ScreenMedia;
 import org.dominokit.domino.view.BaseElementView;
 import org.dominokit.domino.view.slots.AppendElementSlot;
 import org.dominokit.domino.view.slots.SingleElementSlot;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-import org.jboss.elemento.EventType;
-import org.jboss.elemento.HtmlContentBuilder;
 
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.h;
-import static org.jboss.elemento.Elements.img;
-import static org.jboss.elemento.Elements.li;
-import static org.jboss.elemento.Elements.p;
+import java.util.Optional;
+
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = LayoutProxy.class)
 public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements LayoutView {
 
-    private Layout layout = new Layout().setTitle("Domino UI demo");
+    private AppLayout layout;
 
     private HTMLDivElement profileDiv = div().element();
     private HTMLDivElement menuDiv = div().element();
@@ -51,95 +51,260 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     @Override
     protected HTMLDivElement init() {
-        Search search = Search.create();
-        layout
-                .spanLeftPanelUp()
-                .autoFixLeftPanel()
-                .getNavigationBar()
-                .insertBefore(search, layout.getNavigationBar().firstChild());
+//        Search search = Search.create();
+        layout = AppLayout.create("Domino UI demo")
+                .toggleLeftDrawerSpanUp()
+                .toggleLeftDrawerSpanDown()
+                .toggleLeftOverlay()
+                .withContent((parent, self) -> {
+                            self.appendChild(DominoElement.div().addCss("dui-bg-white", "dui-p-8")
+                                    .appendChild(new Select<String, String>(source -> Optional.of(SimpleSelectOption.create(source, source, source, source)
+                                                    .addLeftAddOn(Icons.ALL.earth_mdi())
+                                            ))
+                                                    .setLabel("Select field")
+                                                    .setPlaceholder("Select place holder")
+                                                    .setOptionValueRenderer((select, option) -> DominoElement.span().setTextContent(String.valueOf(option.getValue())).element())
+                                                    .addItems("Jordan", "Japan", "Jamaica", "South america", "South korea", "Egypt")
+                                                    .setClearable(true)
+                                                    .setSearchable(true)
+                                                    .withValue("Jordan")
+                                                    .addLeftAddOn(Icons.ALL.earth_mdi())
+                                                    .setMissingItemHandler(SimpleSelectOption::create)
+                                    )
+                                    .appendChild(new MultiSelect<String, String>(source -> Optional.of(SimpleSelectOption.create(source, source, source, source)))
+                                            .setLabel("Select field")
+                                            .setPlaceholder("Select place holder")
+                                            .setOptionValueRenderer((select, option) -> DominoElement.span().addCss(Spacing.M_X_0_5).setTextContent(option.getValue() + ",").element())
+                                            .addItems("Jordan", "Japan", "Jamaica", "South america", "South korea", "Egypt")
+                                            .setClearable(true)
+                                            .setSearchable(true)
+                                            .setAutoCloseOnSelect(false)
+                                            .addLeftAddOn(Icons.ALL.earth_mdi())
+                                            .setMissingItemHandler(SimpleSelectOption::create)
+                                    )
+                                    .appendChild(new SuggestionBox<String>(LocalSuggestBoxStore.<String, String>create(source -> Optional.of(SimpleSelectOption.create(source, source, source, source)), "sample", "test", "value", "testing", "volume")
+                                                    .setMissingHandlers(missingValue -> Optional.of(SimpleSelectOption.create(missingValue)),
+                                                            inputValue -> Optional.of(SimpleSelectOption.create(inputValue))
+                                                    )
+                                            )
+                                                    .setOptionValueRenderer((select, option) -> DominoElement.span().addCss(Spacing.M_X_0_5).setTextContent(option.getValue() + ",")
+                                                            .apply(e -> e.addClickListener(evt -> option.deselect()))
+                                                            .element())
+                                                    .setLabel("Suggest box")
+                                                    .setPlaceholder("Start typing...")
+                                    )
+                                    .appendChild(new MultiSuggestBox<String>(LocalSuggestBoxStore.<String, String>create(source -> Optional.of(SimpleSelectOption.create(source, source, source, source)), "sample", "test", "value", "testing", "volume")
+                                                    .setMissingHandlers(missingValue -> Optional.of(SimpleSelectOption.create(missingValue)),
+                                                            inputValue -> Optional.of(SimpleSelectOption.create(inputValue))
+                                                    )
+                                            )
+                                                    .setOptionValueRenderer((select, option) -> DominoElement.span().addCss(Spacing.M_X_0_5).setTextContent(option.getValue() + ",")
+                                                            .apply(e -> e.addClickListener(evt -> option.deselect()))
+                                                            .element())
+                                                    .setLabel("Multi Suggest box")
+                                                    .setPlaceholder("Start typing...")
+                                    )
 
-        HtmlContentBuilder<HTMLAnchorElement> searchButton = a().css("js-right-sidebar").add(Icons.ALL.search());
-        searchButton.on(EventType.click, event -> search.open());
-        layout.getTopBar()
-                .appendChild(li().css(Styles.pull_right).add(searchButton).element());
-        layout.getTopBar()
-                .appendChild(DominoElement.of(li().css(Styles.pull_right).style("padding-top: 3px;")
-                                .add(makeGithubLink())
-                        )
-                        .showOn(ScreenMedia.MEDIUM_AND_UP)
-                        .hideOn(ScreenMedia.SMALL_AND_DOWN)
-                        .element());
-        layout.getTopBar()
-                .appendChild(DominoElement.of(li().add(a()
-                                        .attr("href", "https://www.patreon.com/bePatron?u=30748189")
-                                        .css("d-patreon")
-                                        .add(img("/images/patreon-2296036-1911995.png"))
-                                ))
-                                .showOn(ScreenMedia.MEDIUM_AND_UP)
-                                .hideOn(ScreenMedia.SMALL_AND_DOWN)
-                );
+                                    .appendChild(TextBox.create("Domain")
+                                            .addLeftAddOn(Icons.ALL.server_mdi().clickable())
+                                            .addRightAddOn(Icons.ALL.database_mdi().clickable())
+                                            .setPrefix("Server address")
+                                            .setPostfix("Database")
+                                            .setMaxLength(100)
+                                            .setHelperText("This is a sample text field")
+                                            .setRequired(true, "this field is required")
+                                            .setAutoValidation(true)
+                                            .setPlaceholder("Place holder")
+                                            .fixErrorsPosition(true)
+                                            .setCountFormatter((count, maxCount) -> "Remains : " + (maxCount - count))
+                                    )
+                                    .appendChild(CheckBox.create("Sample checkbox")
+                                            .setLabel("Checkbox label")
+                                            .filled(true)
+                                            .setHelperText("Checkbox helper text")
+                                            .setRequired(true)
+                                    )
+                                    .appendChild(SwitchButton.create()
+                                            .setHelperText("Switch note"))
+                                    .appendChild(SwitchButton.create("Enable user", "Yes")
+                                            .setHelperText("Switch note")
+                                            .check())
+                                    .appendChild(SwitchButton.create("Enable user", "No", "Yes")
+                                            .condenseLabels()
+                                            .setHelperText("Switch note"))
 
-        ;
-        layout.getTopBar()
-                .appendChild(DominoElement.of(li().css(Styles.pull_right)
-                                .add(a()
-                                        .css(Styles.m_t_10)
-                                        .add(Icons.ALL.dots_vertical_mdi()
-                                                .clickable()
-                                                .setColor(Color.WHITE)
-                                        )
-                                ))
-                        .showOn(ScreenMedia.SMALL_AND_DOWN)
-                        .hideOn(ScreenMedia.MEDIUM_AND_UP)
-                        .setDropMenu(Menu.<String>create()
-                                .setUseSmallScreensDirection(false)
-                                .appendChild(MenuItem.<String>create("Github")
-                                        .addLeftAddOn(FlexItem.of(Icons.ALL.github_circle_mdi()))
-                                        .addSelectionHandler(selectable -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"))
-                                )
-                                .appendChild(MenuItem.<String>create("Patreon")
-                                        .addLeftAddOn(FlexItem.of(Icons.ALL.patreon_mdi()))
-                                        .addSelectionHandler(selectable -> DomGlobal.window.open("https://www.patreon.com/bePatron?u=30748189", "_blank"))
-                                )
-                        )
-                        )
-        ;
+                                    .appendChild(RadioGroup.<String>create("sample", "Radio group")
+                                            .appendChild(Radio.create("value1", "Option-1"))
+                                            .appendChild(Radio.create("value2", "Option-2"))
+                                            .appendChild(Radio.create("value3", "Option-3"))
+                                            .appendChild(Radio.create("value4", "Option-4"))
+                                            .appendChild(Radio.create("value5", "Option-5"))
+                                    )
+                                    .appendChild(RadioGroup.<String>create("sample2", "Radio group")
+                                            .withGap(true)
+                                            .appendChild(Radio.create("value1", "Option-1"))
+                                            .appendChild(Radio.create("value2", "Option-2"))
+                                            .appendChild(Radio.create("value3", "Option-3"))
+                                            .appendChild(Radio.create("value4", "Option-4"))
+                                            .appendChild(Radio.create("value5", "Option-5"))
+                                    )
+                                    .appendChild(RadioGroup.<String>create("sample3", "Radio group")
+                                            .withGap(true)
+                                            .vertical()
+                                            .appendChild(Radio.create("value1", "Option-1"))
+                                            .appendChild(Radio.create("value2", "Option-2"))
+                                            .appendChild(Radio.create("value3", "Option-3"))
+                                            .appendChild(Radio.create("value4", "Option-4"))
+                                            .appendChild(Radio.create("value5", "Option-5"))
+                                    )
 
+                                    .appendChild(Menu.<String>create()
+                                            .setIcon(Icons.ALL.file_mdi())
+                                            .setTitle("Files")
+                                            .appendAction(Icons.ALL.folder_key_outline_mdi()
+                                                    .size18()
+                                                    .clickable()
+                                                    .addClickListener(evt -> {
+                                                        Notification.create("Action clicked").show();
+                                                    })
+                                            )
+                                            .appendAction(Icons.ALL.folder_heart_outline_mdi()
+                                                    .size18()
+                                                    .clickable()
+                                                    .addClickListener(evt -> {
+                                                        Notification.create("Action clicked").show();
+                                                    })
+                                            )
+                                            .setSearchable(true)
+                                            .setMissingItemHandler((token, menu) -> menu.appendChild(MenuItem.create(token, "The item was initially missing")))
+                                            .appendChild(MenuItem.<String>create("New ...")
+                                                    .setKey("new-key")
+                                                    .value("new-value")
+                                            )
+                                            .appendChild(MenuItem.<String>create("Open")
+                                                    .setKey("open-key")
+                                                    .value("open-value")
+                                                    .addLeftAddOn(FlexItem.of(Icons.ALL.folder_open_mdi().size18()))
+                                            )
+                                            .appendChild(MenuItem.<String>create("Close")
+                                                    .setKey("close-key")
+                                                    .value("close-value")
+                                                    .addLeftAddOn(FlexItem.of(Icons.ALL.close_box_mdi().size18()))
+                                            )
+                                            .appendChild(MenuItem.<String>create("Close all")
+                                                    .setKey("close-all-key")
+                                                    .value("close-all-value")
+                                                    .addLeftAddOn(FlexItem.of(Icons.ALL.close_box_multiple_mdi().size18()))
+                                            ).appendSeparator()
+                                            .appendChild(CustomMenuItem.create()
+                                                    .setKey("custom-key")
+                                                    .value("custom-value")
+                                                    .appendChild(FlexLayout.create()
+                                                            .css("dui-flex", "dui-w-full", "dui-justify-center", "dui-gap-4")
+                                                            .setJustifyContent(FlexJustifyContent.CENTER)
+                                                            .setGap("10px")
+                                                            .appendChild(FlexItem.create().appendChild(Icons.ALL.content_cut_mdi().size18().setTooltip("Cut").clickable()))
+                                                            .appendChild(FlexItem.create().appendChild(Icons.ALL.content_copy_mdi().size18().setTooltip("Copy").clickable()))
+                                                            .appendChild(FlexItem.create().appendChild(Icons.ALL.content_paste_mdi().size18().setTooltip("Paste").clickable()))
+                                                    )
+                                            )
+                                            .appendSeparator()
+                                            .appendChild(MenuItem.<String>create("Project structure")
+                                                    .setKey("structure-key")
+                                                    .value("structure-value")
+                                                    .addLeftAddOn(FlexItem.of(Icons.ALL.folder_settings_variant_mdi().size18()))
+                                            )
+                                            .appendChild(MenuItem.<String>create("Settings")
+                                                    .setKey("settings-key")
+                                                    .value("settings-value")
+                                                    .addLeftAddOn(FlexItem.of(Icons.ALL.settings_mdi().size18()))
+                                            )
+                                            .appendSeparator()
+                                            .appendChild(MenuItem.<String>create("Invalidate cache", "Takes effect after restart")
+                                                    .setKey("cache-key")
+                                                    .value("cache-value")
+                                            )
+                                            .appendChild(MenuItem.<String>create("Restart")
+                                                    .setKey("restart-key")
+                                                    .value("restart-value")
+                                                    .addRightAddOn(FlexItem.of(Icons.ALL.information_mdi()
+                                                                    .size18()
+                                                                    .setTooltip("Just a tool tip!")
+                                                            )
+                                                    )
+                                            )
+                                            .addSelectionListener((menuItem, selectedItems) -> {
+                                                menuItem.ifPresent(item -> {
+                                                    Notification.create("Key : " + item.getKey() + ", value : " + item.getValue()).show();
+                                                });
+                                            })
+                                    )
+                            );
 
-        layout.showFooter();
-        Row footerRow = createFooterRow();
+                        }
+                )
+                .withNavBar((parent, self) -> {
+                    self
+//                            .appendChild(search)
+//                            .appendChild(NavBarUtility.of(Icons.ALL.magnify_mdi()
+//                                            .css("dui-clickable")
+//                                            .addClickListener(evt -> search.open())
+//                                    )
+//                            )
+                            .appendChild(NavBarUtility.of(Icons.ALL.github_face_mdi()
+                                            .css("dui-clickable")
+                                            .addClickListener(evt -> DomGlobal.window.open("https://github.com/DominoKit/domino-ui", "_blank"))
+                                    )
 
-        HTMLDivElement copyrightsElement = div()
-                .css(Theme.currentTheme.getScheme().darker_3().getBackground())
-                .css(Styles.align_center)
-                .add(p().style("line-height: 45px; height: 45px; margin: 0px;")
-                        .textContent("© 2018 Copyright DominoKit")).element();
+                            )
+                            .appendChild(NavBarUtility.of(DominoElement.of(img("/images/patreon-2296036-1911995.png"))
+                                            .css("dui", "dui-clickable", "dui-w-8", "dui-h-8")
 
-        layout.getFooter().appendChild(footerRow);
-        layout.getFooter().appendChild(copyrightsElement);
+                                            .addClickListener(evt -> DomGlobal.window.open("https://www.patreon.com/bePatron?u=30748189", "_blank"))
+                                    )
 
-        Theme.addThemeChangeHandler((oldTheme, newTheme) -> Style.of(copyrightsElement)
-                .removeCss(oldTheme.getScheme().darker_3().getBackground())
-                .addCss(newTheme.getScheme().darker_3().getBackground()));
+                            )
+                            .appendChild(NavBarUtility.of(Icons.ALL.dots_vertical_mdi()
+                                            .css("dui-clickable")
+                                            .addClickListener(evt -> {
+                                            })
+                                    )
 
-        DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_upward())
+                            )
+                    ;
+                });
+
+        layout.withFooter((layout, footer) -> {
+            footer.appendChild(DominoElement.div()
+                    .css("dui-p-4")
+                    .appendChild(createFooterRow())
+                    .appendChild(div()
+                            .css(Styles.align_center)
+                            .add(p().css("dui")
+                                    .style("line-height: 45px; height: 45px; margin: 0px; text-align: center;")
+                                    .textContent("© 2018 Copyright DominoKit")).element())
+
+            );
+        });
+
+        DomGlobal.document.body.appendChild(ScrollTop.create(Icons.ALL.arrow_up_mdi())
                 .setBottom(60)
                 .element());
 
-        layout.getLeftPanel()
-                .appendChild(profileDiv)
-                .appendChild(menuDiv);
+        layout.withLeftDrawerContent((parent, drawer) -> {
+            drawer
+                    .appendChild(profileDiv)
+                    .appendChild(menuDiv);
+        });
 
-        layout.getContentPanel()
-                .style().setMinHeight("calc(100vh - 365px)");
-        loader = Loader.create(layout.getContentPanel(), LoaderEffect.PULSE);
+        loader = Loader.create(layout.getContent(), LoaderEffect.PULSE);
 
         return layout.element();
     }
 
     @Override
     public IsSlot<?> getContentSlot() {
-        return SingleElementSlot.of(layout.getContentPanel());
+        return SingleElementSlot.of(layout.getContent());
     }
 
     @Override
@@ -154,12 +319,12 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     @Override
     public IsSlot<?> getTopBarSlot() {
-        return AppendElementSlot.of(layout.getTopBar());
+        return AppendElementSlot.of(layout.getNavBar());
     }
 
     @Override
     public IsSlot<?> getRightPanelSlot() {
-        return SingleElementSlot.of(layout.getRightPanel());
+        return SingleElementSlot.of(layout.getRightDrawerContent());
     }
 
     private Row createFooterRow() {
@@ -217,60 +382,59 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     @Override
     public void toggleRightPanel() {
-        layout.toggleRightPanel();
+        layout.toggleRightDrawer();
     }
 
     @Override
     public void toggleLeftPanel() {
-        layout.toggleLeftPanel();
+        layout.toggleLeftDrawer();
     }
 
     @Override
     public IsLayout showLeftPanel() {
-        layout.showLeftPanel();
+        layout.toggleLeftDrawer();
         return this;
     }
 
     @Override
     public IsLayout hideLeftPanel() {
-        layout.hideLeftPanel();
+        layout.toggleLeftDrawer();
         return this;
     }
 
     @Override
     public IsLayout setTitle(String title) {
-        layout.setTitle(title);
+        layout.withNavBar((layout, navbar) -> navbar.setTitle(title));
         return this;
     }
 
     @Override
     public IsLayout showRightPanel() {
-        layout.showRightPanel();
+        layout.toggleRightDrawer();
         return this;
     }
 
     @Override
     public IsLayout hideRightPanel() {
-        layout.hideRightPanel();
+        layout.toggleRightDrawer();
         return this;
     }
 
     @Override
     public IsLayout fixLeftPanelPosition() {
-        layout.fixLeftPanelPosition();
+//        layout.fixLeftPanelPosition();
         return this;
     }
 
     @Override
     public IsLayout unfixLeftPanelPosition() {
-        layout.unfixLeftPanelPosition();
+//        layout.unfixLeftPanelPosition();
         return this;
     }
 
     @Override
     public IsLayout setLeftPanelSize(String size) {
-        Layout.LeftPanelSize leftPanelSize = Layout.LeftPanelSize.valueOf(size);
-        layout.setLeftPanelSize(leftPanelSize);
+        layout.setLeftDrawerSize(LeftDrawerSize.valueOf(size));
         return this;
     }
 
@@ -282,7 +446,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
 
     @Override
     public boolean isRightPanelVisible() {
-        return layout.isRightPanelVisible();
+        return layout.containsCss(AppLayoutStyles.RIGHT_OPEN.getCssClass());
     }
 
     @Override

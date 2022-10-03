@@ -61,7 +61,7 @@ public class ShippingDocumentsPart implements ImportSection {
 
         orderOfBankSelect = Select.<Bank>create("Order of")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.domain())
+                .addLeftAddOn(Icons.ALL.domain_mdi())
                 .setAutoValidation(true)
                 .setRequired(true)
                 .addSelectionHandler(option -> revalidate());
@@ -74,7 +74,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .addLeftAddOn(Icons.ALL.credit_card())
+                .addLeftAddOn(Icons.ALL.credit_card_mdi())
                 .appendChild(SelectOption.create("Prepaid", "Prepaid"))
                 .appendChild(SelectOption.create("Payable at destination", "Payable at destination"))
                 .addSelectionHandler(option -> revalidate());
@@ -83,7 +83,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.local_shipping())
+                .addLeftAddOn(Icons.ALL.ship_wheel_mdi())
                 .appendChild(SelectOption.create("Ocean bills of lading in", "Ocean bills of lading in"))
                 .appendChild(SelectOption.create("Airway bill in", "Airway bill in"))
                 .appendChild(SelectOption.create("Truck consignment note", "Truck consignment note"))

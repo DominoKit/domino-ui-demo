@@ -65,7 +65,7 @@ public class ValiditySection implements ImportSection {
                 .setAutoValidation(true)
                 .setPattern(DATE_PATTERN)
                 .setLabel("Expiry Date Of Credit")
-                .addLeftAddOn(Icons.ALL.date_range())
+                .addLeftAddOn(Icons.ALL.calendar_range_mdi())
                 .setHelperText(DATE_PATTERN);
         validityExpiryDateBox.getInputElement().addEventListener("input", evt -> revalidate());
         validityExpiryDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
@@ -75,7 +75,7 @@ public class ValiditySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.looks_one())
+                .addLeftAddOn(Icons.ALL.looks_mdi())
                 .setHelperText(Constants.NUMBERS_ONLY);
         daysForShipmentTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 

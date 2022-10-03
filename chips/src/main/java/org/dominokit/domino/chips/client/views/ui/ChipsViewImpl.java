@@ -129,28 +129,28 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
                                 .addClickListener(evt -> {
                                     Notification.createSuccess("Added to your calendar").show();
                                 })
-                                .setLeftIcon(Icons.ALL.date_range())
+                                .setLeftIcon(Icons.ALL.calendar_range_mdi())
                         )
                         .appendChild(Chip.create()
                                 .setValue("Bookmark")
                                 .addClickListener(evt -> {
                                     Notification.createSuccess("Bookmark added").show();
                                 })
-                                .setLeftIcon(Icons.ALL.bookmark())
+                                .setLeftIcon(Icons.ALL.bookmark_mdi())
                         )
                         .appendChild(Chip.create()
                                 .setValue("Set alarm")
                                 .addClickListener(evt -> {
                                     Notification.createSuccess("Alarm has been set").show();
                                 })
-                                .setLeftIcon(Icons.ALL.alarm())
+                                .setLeftIcon(Icons.ALL.alarm_mdi())
                         )
                         .appendChild(Chip.create()
                                 .setValue("Get directions")
                                 .addClickListener(evt -> {
                                     Notification.createSuccess("Directions has been sent to your email").show();
                                 })
-                                .setLeftIcon(Icons.ALL.directions())
+                                .setLeftIcon(Icons.ALL.directions_mdi())
                         ))
         );
     }
@@ -249,19 +249,19 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
     @SampleMethod
     private void initSelectableChipsExample() {
         Chip tops = Chip.create("Tops").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        tops.addSelectionHandler(value -> tops.setLeftIcon(Icons.ALL.check()));
+        tops.addSelectionHandler(value -> tops.setLeftIcon(Icons.ALL.check_mdi()));
         tops.addDeselectionHandler(tops::removeLeftAddon);
 
         Chip bottoms = Chip.create("Bottoms").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        bottoms.addSelectionHandler(value -> bottoms.setLeftIcon(Icons.ALL.check()));
+        bottoms.addSelectionHandler(value -> bottoms.setLeftIcon(Icons.ALL.check_mdi()));
         bottoms.addDeselectionHandler(bottoms::removeLeftAddon);
 
         Chip shoes = Chip.create("Shoes").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        shoes.addSelectionHandler(value -> shoes.setLeftIcon(Icons.ALL.check()));
+        shoes.addSelectionHandler(value -> shoes.setLeftIcon(Icons.ALL.check_mdi()));
         shoes.addDeselectionHandler(shoes::removeLeftAddon);
 
         Chip accessories = Chip.create("Accessories").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        accessories.addSelectionHandler(value -> accessories.setLeftIcon(Icons.ALL.check()));
+        accessories.addSelectionHandler(value -> accessories.setLeftIcon(Icons.ALL.check_mdi()));
         accessories.addDeselectionHandler(accessories::removeLeftAddon);
 
         selectableChipsCard.appendChild(Row.create()

@@ -12,7 +12,7 @@ import static org.jboss.elemento.Elements.span;
 public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSourceCode> {
 
     private HTMLDivElement element = div().css("open-source", "bg-theme", Elevation.LEVEL_1.getStyle())
-            .add(Icons.ALL.code())
+            .add(Icons.ALL.codepen_mdi())
             .add(span().textContent("Source code"))
             .element();
 

@@ -25,8 +25,8 @@ import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Tooltip;
 import org.jboss.elemento.Elements;
@@ -145,32 +145,32 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
 
     @SampleMethod
     private void initIcons() {
-        Icon cancel = Icons.ALL.cancel();
+        MdiIcon cancel = Icons.ALL.cancel_mdi();
 
         TextBox username = TextBox.create("Username")
-                .addLeftAddOn(Icons.ALL.account_circle())
+                .addLeftAddOn(Icons.ALL.account_circle_mdi())
                 .addRightAddOn(cancel);
         cancel.addClickListener(evt -> username.clear())
                 .style().setCursor("pointer");
 
-        HTMLElement showIcon = Icons.ALL.remove_red_eye().clickable()
+        HTMLElement showIcon = Icons.ALL.eye_off_mdi().clickable()
                 .style()
                 .setCursor("pointer").element();
         TextBox password = TextBox.password("Password")
-                .addLeftAddOn(Icons.ALL.https().element())
+                .addLeftAddOn(Icons.ALL.protocol_mdi().element())
                 .addRightAddOn(showIcon);
 
         showIcon.addEventListener("mousedown", evt -> password.getInputElement().element().type = "text");
         showIcon.addEventListener("mouseup", evt -> password.getInputElement().element().type = "password");
 
-        Icon info = Icons.ALL.info();
+        MdiIcon info = Icons.ALL.information_mdi();
         Tooltip.create(info, "All system pages will be shown in the selected language");
         iconsCard.appendChild(username)
                 .appendChild(password)
                 .appendChild(TextArea.create("Description")
-                        .addLeftAddOn(Icons.ALL.description()))
+                        .addLeftAddOn(Icons.ALL.note_mdi()))
                 .appendChild(Select.<String>create("Language")
-                        .addLeftAddOn(Icons.ALL.language())
+                        .addLeftAddOn(Icons.ALL.earth_mdi())
                         .addRightAddOn(info)
                         .appendChild(SelectOption.create("english", "English"))
                         .appendChild(SelectOption.create("france", "France"))

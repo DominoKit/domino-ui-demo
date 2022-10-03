@@ -121,7 +121,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void popups() {
-        Button bluePopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button bluePopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.BLUE.color());
         TimePicker bluePopTimePicker = TimePicker.create()
                 .showBorder()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
@@ -136,7 +136,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .show());
 
 
-        Button pinkPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+        Button pinkPopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.PINK.color());
         TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
@@ -151,7 +151,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .show());
 
 
-        Button greenPopupButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenPopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.GREEN.color());
         TimePicker greenPopDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
@@ -166,7 +166,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .show());
 
 
-        Button blueModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.BLUE.color());
+        Button blueModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.BLUE.color());
         TimePicker blueDatePicker = TimePicker.create()
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
                         DomGlobal.console.info(picker.getFormattedTime()));
@@ -185,7 +185,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         blueModalButton.addClickListener(evt -> blueModal.open());
 
 
-        Button pinkModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.PINK.color());
+        Button pinkModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.PINK.color());
         TimePicker pinkDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.PINK)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
@@ -204,7 +204,7 @@ public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         pinkModalButton.addClickListener(evt -> pinkModal.open());
 
 
-        Button greenModalButton = Button.create(Icons.ALL.event()).setBackground(ColorScheme.GREEN.color());
+        Button greenModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.GREEN.color());
         TimePicker greenDatePicker = TimePicker.create()
                 .setColorScheme(ColorScheme.GREEN)
                 .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->

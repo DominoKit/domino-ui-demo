@@ -24,7 +24,7 @@ public class CurrenciesComponent {
                 .addLeftAddOn(i().css("fas", "fa-money-bill-alt", "fa-lg"));
         amountField = numbersOnly(TextBox.create("Amount")
                 .setHelperText("Numbers only")
-                .addLeftAddOn(Icons.ALL.attach_money()));
+                .addLeftAddOn(Icons.ALL.wallet_plus_mdi()));
 
         amountField.getInputElement().addEventListener("change", evt -> formatAmount(currencySelect.getSelectedOption()));
 

@@ -6,60 +6,59 @@
         <module>ui-demo-backend</module>
         <module>layout</module>
         <module>themes</module>
-        <module>profile</module>
-        <module>demomenu</module>
-        <module>component-case</module>
-        <module>home</module>
-        <module>setup</module>
-        <module>samples</module>
-        <module>appLayout</module>
-        <module>gridLayout</module>
-        <module>grids</module>
-        <module>splitPanel</module>
-        <module>flexlayout</module>
-        <module>chips</module>
-        <module>cards</module>
-        <module>infobox</module>
-        <module>buttons</module>
-        <module>alerts</module>
-        <module>badges</module>
-        <module>labels</module>
-        <module>modals</module>
-        <module>lists</module>
-        <module>loaders</module>
-        <module>icons</module>
-        <module>breadcrumb</module>
-        <module>collapse</module>
-        <module>typography</module>
-        <module>helpers</module>
-        <module>colors</module>
-        <module>animation</module>
-        <module>notifications</module>
-        <module>media</module>
-        <module>pagination</module>
-        <module>preloaders</module>
-        <module>progress</module>
-        <module>tabs</module>
-        <module>thumbnails</module>
-        <module>dialogs</module>
-        <module>menu</module>
-        <module>popover</module>
-        <module>waves</module>
-        <module>basic-forms</module>
-        <module>datepicker</module>
-        <module>advanced-forms</module>
-        <module>timepicker</module>
-        <module>formsvalidations</module>
-        <module>datatable</module>
-        <module>sliders</module>
-        <module>steppers</module>
-        <module>formsamples</module>
-        <module>carousel</module>
-        <module>tree</module>
-        <module>spin</module>
-        <module>inputfields</module>
-        <module>login</module>
-        <module>mdiicons</module>
+<!--        <module>profile</module>-->
+<!--        <module>demomenu</module>-->
+<!--        <module>component-case</module>-->
+<!--        <module>home</module>-->
+<!--        <module>setup</module>-->
+<!--        <module>samples</module>-->
+<!--        <module>appLayout</module>-->
+<!--        <module>gridLayout</module>-->
+<!--        <module>grids</module>-->
+<!--        <module>splitPanel</module>-->
+<!--        <module>flexlayout</module>-->
+<!--        <module>chips</module>-->
+<!--        <module>cards</module>-->
+<!--        <module>infobox</module>-->
+<!--        <module>buttons</module>-->
+<!--        <module>alerts</module>-->
+<!--        <module>badges</module>-->
+<!--        <module>labels</module>-->
+<!--        <module>modals</module>-->
+<!--        <module>lists</module>-->
+<!--        <module>loaders</module>-->
+<!--        <module>breadcrumb</module>-->
+<!--        <module>collapse</module>-->
+<!--        <module>typography</module>-->
+<!--        <module>helpers</module>-->
+<!--        <module>colors</module>-->
+<!--        <module>animation</module>-->
+<!--        <module>notifications</module>-->
+<!--        <module>media</module>-->
+<!--        <module>pagination</module>-->
+<!--        <module>preloaders</module>-->
+<!--        <module>progress</module>-->
+<!--        <module>tabs</module>-->
+<!--        <module>thumbnails</module>-->
+<!--        <module>dialogs</module>-->
+<!--        <module>menu</module>-->
+<!--        <module>popover</module>-->
+<!--        <module>waves</module>-->
+<!--        <module>basic-forms</module>-->
+<!--        <module>datepicker</module>-->
+<!--        <module>advanced-forms</module>-->
+<!--        <module>timepicker</module>-->
+<!--        <module>formsvalidations</module>-->
+<!--        <module>datatable</module>-->
+<!--        <module>sliders</module>-->
+<!--        <module>steppers</module>-->
+<!--        <module>formsamples</module>-->
+<!--        <module>carousel</module>-->
+<!--        <module>tree</module>-->
+<!--        <module>spin</module>-->
+<!--        <module>inputfields</module>-->
+<!--        <module>login</module>-->
+<!--        <module>mdiicons</module>-->
         <module>sample-processor</module>
         <module>sample-annotations</module>
         <module>ui-demo-server</module>
@@ -73,8 +72,8 @@
     <packaging>pom</packaging>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -110,7 +109,7 @@
             <dependency>
                 <groupId>com.google.gwt</groupId>
                 <artifactId>gwt</artifactId>
-                <version>2.9.0</version>
+                <version>2.10.0</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -215,7 +214,7 @@
                     <version>1.0.0</version>
                     <extensions>true</extensions>
                     <configuration>
-                        <sourceLevel>1.8</sourceLevel>
+                        <sourceLevel>11</sourceLevel>
                         <failOnError>true</failOnError>
                     </configuration>
                 </plugin>
@@ -295,14 +294,14 @@
                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/drive2/Development/Dominokit/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>/media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>
-                                    /mnt/drive2/Development/Dominokit/domino-ui/domino-ui/target/generated-sources/annotations
+                                    /media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/mnt/drive2/Development/Dominokit/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>/media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>
