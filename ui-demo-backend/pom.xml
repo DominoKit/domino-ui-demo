@@ -44,7 +44,7 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
-            <artifactId>domino-mvp-log4j-server-logging</artifactId>
+            <artifactId>domino-mvp-server-logging</artifactId>
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>

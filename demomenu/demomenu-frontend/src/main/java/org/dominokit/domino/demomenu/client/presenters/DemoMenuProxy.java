@@ -1,30 +1,24 @@
 package org.dominokit.domino.demomenu.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.presenter.AutoReveal;
-import org.dominokit.domino.api.client.annotations.presenter.AutoRoute;
-import org.dominokit.domino.api.client.annotations.presenter.DependsOn;
-import org.dominokit.domino.api.client.annotations.presenter.EventsGroup;
-import org.dominokit.domino.api.client.annotations.presenter.OnBeforeReveal;
-import org.dominokit.domino.api.client.annotations.presenter.PresenterProxy;
-import org.dominokit.domino.api.client.annotations.presenter.Slot;
-import org.dominokit.domino.api.client.mvp.StoreRegistry;
-import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
+import org.dominokit.domino.api.client.annotations.presenter.*;
+import org.dominokit.domino.api.client.mvp.presenter.ViewablePresenter;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
+import org.dominokit.domino.layout.shared.extension.LayoutStoreImpl;
 
 @PresenterProxy
 @AutoRoute(routeOnce = true)
 @AutoReveal
 @Slot(IsLayout.Slots.MENU_PANEL)
 @DependsOn(@EventsGroup(LayoutEvent.class))
-public class DemoMenuProxy extends ViewBaseClientPresenter<DemoMenuView> implements DemoMenuView.MenuUiHandlers {
+public class DemoMenuProxy extends ViewablePresenter<DemoMenuView> implements DemoMenuView.MenuUiHandlers {
 
     private IsLayout layout;
 
     @OnBeforeReveal
     public void getLayout() {
-        StoreRegistry.INSTANCE.<IsLayout>consumeData("layout", isLayout -> this.layout= isLayout);
+        LayoutStoreImpl.INSTANCE.getData().ifPresent(isLayout -> this.layout = isLayout);
     }
 
     @Override

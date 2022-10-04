@@ -1,5 +1,9 @@
 package org.dominokit.domino.layout.shared.extension;
 
+import org.dominokit.domino.api.shared.annotations.events.EventContext;
+import org.dominokit.domino.api.shared.extension.IsDominoEvent;
+
+@EventContext
 public interface IsLayout {
 
     interface Slots{
@@ -14,6 +18,7 @@ public interface IsLayout {
         String LAYOUT = "layout";
     }
 
+    @EventContext
     interface GlobalLoader{
         void startLoading();
         void stopLoading();
