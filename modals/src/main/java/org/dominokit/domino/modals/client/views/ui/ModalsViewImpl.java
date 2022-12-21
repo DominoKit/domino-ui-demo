@@ -22,6 +22,7 @@ import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.modals.Window;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.utils.DominoUIConfig;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;

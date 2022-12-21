@@ -85,7 +85,7 @@
         <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
         <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
         <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
-        <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
+        <domino.mvp.version>1.0.0-RC11</domino.mvp.version>
     </properties>
 
     <repositories>
@@ -296,13 +296,13 @@
                                                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/target/generated-sources/annotations
+                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/CODE/GIT/domino-kit/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>

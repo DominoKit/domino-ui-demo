@@ -1,1 +1,1 @@
-Last build on : ${maven.build.timestamp}
+Last build on : ${maven.build.timestamp},Domino-ui version: ${domino.ui.version}

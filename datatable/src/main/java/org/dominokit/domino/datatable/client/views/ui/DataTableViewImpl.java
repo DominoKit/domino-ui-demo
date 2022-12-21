@@ -3,10 +3,14 @@ package org.dominokit.domino.datatable.client.views.ui;
 import com.google.gwt.resources.client.ResourceCallback;
 import com.google.gwt.resources.client.ResourceException;
 import com.google.gwt.resources.client.TextResource;
+import elemental2.core.Global;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLElement;
 import elemental2.dom.HTMLTableCellElement;
+import jsinterop.annotations.JsProperty;
+import jsinterop.annotations.JsType;
+import jsinterop.base.Js;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -16,39 +20,23 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.datatable.client.presenters.DatatableProxy;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.JsonResource;
-import org.dominokit.domino.datatable.client.views.model.Contact;
-import org.dominokit.domino.datatable.client.views.model.ContactList;
-import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
-import org.dominokit.domino.datatable.client.views.model.ContactSorter;
-import org.dominokit.domino.datatable.client.views.model.EyeColor;
-import org.dominokit.domino.datatable.client.views.model.Gender;
-import org.dominokit.domino.datatable.client.views.model.TreeGridSample;
+import org.dominokit.domino.datatable.client.views.model.*;
 import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.datatable.CellRenderer;
-import org.dominokit.domino.ui.datatable.ColumnConfig;
-import org.dominokit.domino.ui.datatable.DataTable;
-import org.dominokit.domino.ui.datatable.RowCell;
-import org.dominokit.domino.ui.datatable.TableConfig;
+import org.dominokit.domino.ui.datatable.*;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.*;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.BooleanHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.DoubleHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.EnumHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.SelectHeaderFilter;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
+import org.dominokit.domino.ui.datatable.plugins.pincolumns.PinColumnMeta;
+import org.dominokit.domino.ui.datatable.plugins.pincolumns.PinColumnsPlugin;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
-import org.dominokit.domino.ui.forms.CheckBox;
-import org.dominokit.domino.ui.forms.DoubleBox;
-import org.dominokit.domino.ui.forms.EmailBox;
-import org.dominokit.domino.ui.forms.FieldStyle;
-import org.dominokit.domino.ui.forms.Select;
-import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.forms.TelephoneBox;
-import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexDirection;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
@@ -63,19 +51,11 @@ import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
-import java.util.Random;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.td;
+import static org.jboss.elemento.Elements.*;
 
 @UiView(presentable = DatatableProxy.class)
 @SampleClass
@@ -145,8 +125,26 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         treeGridFullParentSpan();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridFullParentSpan()).element());
 
+        lazyTreeGridFullParentSpan();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.lazyTreeGridFullParentSpan()).element());
+
         treeGridParentColumns();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.treeGridParentColumns()).element());
+
+        lazyTreeGridParentColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.lazyTreeGridParentColumns()).element());
+
+        resizableColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.resizableColumns()).element());
+
+        pinColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.pinColumns()).element());
+
+        groupColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupColumns()).element());
+
+        groupPinResizeColumns();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.groupPinResizeColumns()).element());
 
         dragAndDrop();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.dragAndDrop()).element());
@@ -190,47 +188,47 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         DragDropPlugin<Contact> dragDropPlugin = new DragDropPlugin<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
-                                       .textAlign("right")
-                                       .asHeader()
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                                       .textAlign("center")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().isActive()) {
-                                               return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
-                                           } else {
-                                               return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-                                           }
-                                       }))
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                                       .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                                       .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                                       .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().getAge() < 35) {
-                                               return Badge.create("Young")
-                                                           .setBackground(ColorScheme.GREEN.color()).element();
-                                           }
-                                           return TextNode.of("");
-                                       }))
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
                 .addPlugin(dragDropPlugin);
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
@@ -242,47 +240,47 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         DragDropPlugin<Contact> dragDropPlugin2 = new DragDropPlugin<>();
         tableConfig2
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
-                                       .textAlign("right")
-                                       .asHeader()
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                                       .textAlign("center")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().isActive()) {
-                                               return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
-                                           } else {
-                                               return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-                                           }
-                                       }))
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                                       .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                                       .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                                       .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().getAge() < 35) {
-                                               return Badge.create("Young")
-                                                           .setBackground(ColorScheme.GREEN.color()).element();
-                                           }
-                                           return TextNode.of("");
-                                       }))
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
                 .addPlugin(dragDropPlugin2);
 
         LocalListDataStore<Contact> localListDataStore2 = new LocalListDataStore<>();
@@ -291,23 +289,321 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         dragDropPlugin.linkWith(table2);
         dragDropPlugin2.linkWith(table);
 
-        element.appendChild(Card.create("DRAG & DROP different tables", "Moving records by dragging and dropping them from/to data tables")
-                                .setCollapsible()
-                                .appendChild(new TableStyleActions(table))
-                                .appendChild(FlexLayout.create()
-                                        .setDirection(FlexDirection.LEFT_TO_RIGHT)
-                                        .setJustifyContent(FlexJustifyContent.SPACE_BETWEEN)
-                                        .appendChild(FlexItem.create().appendChild(table))
-                                        .appendChild(FlexItem.create().appendChild(table2))
-                                )
-                                .element());
+        element.appendChild(Card.create("DRAG & DROP DIFFERENT TABLES", "Moving records by dragging and dropping them from/to data tables")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(FlexLayout.create()
+                        .setGap("20px")
+                        .setDirection(FlexDirection.TOP_TO_BOTTOM)
+                        .setJustifyContent(FlexJustifyContent.SPACE_BETWEEN)
+                        .appendChild(FlexItem.create()
+                                .appendChild(BlockHeader.create("TABLE - 1"))
+                                .appendChild(table))
+                        .appendChild(FlexItem.create()
+                                .appendChild(BlockHeader.create("TABLE - 2"))
+                                .appendChild(table2))
+                )
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts);
             localListDataStore.setData(data.subList(0, data.size() / 2));
-            table.load();
             localListDataStore2.setData(data.subList(data.size() / 2, data.size()));
-            table2.load();
+        });
+    }
+
+    @SampleMethod
+    private void resizableColumns() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .setFixed(true)
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .applyMeta(ResizeColumnMeta.create().setResizable(false))
+                )
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .addPlugin(new ResizeColumnsPlugin<>());
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("RESIZABLE COLUMNS", "Allow the user to change the size of the table columns.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+        });
+    }
+
+    @SampleMethod
+    private void pinColumns() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .setFixed(true)
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                )
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        })
+                        .applyMeta(PinColumnMeta.left())
+                )
+                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                        .setWidth("300px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center")
+                        .setWidth("300px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center")
+                        .setWidth("300px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                        .setWidth("500px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                        .setWidth("500px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                        .setWidth("400px")
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        })
+                        .applyMeta(PinColumnMeta.right())
+                )
+                .addPlugin(new PinColumnsPlugin<Contact>().configure(config -> config
+                        .setShowPinMenu(true)
+                        .setShowPinIcon(true)
+                ));
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("PIN COLUMNS", "The pin columns plugin allow the user to pin columns left or right so they dont scroll with the table.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+        });
+    }
+
+    @SampleMethod
+    private void groupColumns() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("personalInfo", "Personal info")
+                        .addColumn(ColumnConfig.<Contact>create("identity", "Identity")
+                                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                                        .textAlign("right")
+                                        .asHeader()
+                                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                                )
+                                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                                )
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                                .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                                .textAlign("center")
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                                .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                                .textAlign("center")
+                        )
+                )
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        })
+                )
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                )
+                .addColumn(ColumnConfig.<Contact>create("contact", "Contact")
+                        .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                        )
+
+                        .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                        )
+                )
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        })
+                );
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+        table.bordered();
+        element.appendChild(Card.create("GROUP COLUMNS", "Group columns together for resize and pinning.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
+        });
+    }
+
+
+    @SampleMethod
+    private void groupPinResizeColumns() {
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .setFixed(true)
+                .addColumn(ColumnConfig.<Contact>create("identity", "Identity")
+                        .addColumn(ColumnConfig.<Contact>create("id", "#")
+                                .textAlign("right")
+                                .asHeader()
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                        )
+                        .applyMeta(PinColumnMeta.left())
+                )
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center")
+                )
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center")
+                )
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        })
+                )
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                )
+                .addColumn(ColumnConfig.<Contact>create("contact", "Contact")
+                        .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                        )
+
+                        .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                        )
+                )
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        })
+                )
+                .addPlugin(new PinColumnsPlugin<Contact>()
+                        .configure(config -> config
+                                .setShowPinIcon(true)
+                                .setShowPinMenu(true))
+                )
+                .addPlugin(new ResizeColumnsPlugin<>())
+        ;
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+        table.bordered();
+        element.appendChild(Card.create("GROUP, PIN, RESIZE COLUMNS", "Column groups works with ping and resize plugins.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(subList(contacts));
         });
     }
 
@@ -316,61 +612,60 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
-                                       .textAlign("right")
-                                       .asHeader()
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                                       .textAlign("center")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().isActive()) {
-                                               return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
-                                           } else {
-                                               return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-                                           }
-                                       }))
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                                       .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                                       .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                                       .textAlign("center"))
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                                       .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                                       .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                                       .setCellRenderer(cell -> {
-                                           if (cell.getTableRow().getRecord().getAge() < 35) {
-                                               return Badge.create("Young")
-                                                           .setBackground(ColorScheme.GREEN.color()).element();
-                                           }
-                                           return TextNode.of("");
-                                       }))
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
                 .addPlugin(new DragDropPlugin<>());
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("DRAG & DROP", "Reorder records by dragging and dropping them")
-                                .setCollapsible()
-                                .appendChild(new TableStyleActions(table))
-                                .appendChild(table)
-                                .element());
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            table.load();
         });
     }
 
@@ -445,18 +740,24 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
                 .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
                 .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
-                    itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
-                })
-                        .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
-                        .setParentRowCellsSupplier((dataTable, tableRow) -> {
-                            HTMLTableCellElement cellElement = DominoElement.of(td())
-                                    .setAttribute("colspan", "8")
-                                    .element();
-                            RowCell<Contact> rowCell =
-                                    new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
-                            return Collections.singletonList(rowCell);
+                            DomGlobal.console.info("Loading items for : " + parent.getName());
+                            itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
                         })
-                        .setIndent(60));
+                                .configure(config -> {
+                                    config
+                                            .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+                                            .setParentRowCellsSupplier((dataTable, tableRow) -> {
+                                                HTMLTableCellElement cellElement = DominoElement.of(td())
+                                                        .setAttribute("colspan", "8")
+                                                        .element();
+                                                RowCell<Contact> rowCell =
+                                                        new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
+                                                return Collections.singletonList(rowCell);
+                                            })
+                                            .setIndent(60)
+                                            .setLazy(false);
+                                })
+                );
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
@@ -469,7 +770,93 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(contacts.subList(0, 25));
-            table.load();
+        });
+    }
+
+    @SampleMethod
+    private void lazyTreeGridFullParentSpan() {
+
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .onUtilityColumn(utilityColumn -> {
+                    utilityColumn
+                            .setTitle("First name")
+                            .setSortable(true, "id");
+                })
+                .setMultiSelect(true)
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new SelectionPlugin<>())
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
+                            DomGlobal.console.info("Loading items for : " + parent.getName());
+                            itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
+                        })
+                                .configure(config -> {
+                                    config
+                                            .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+                                            .setParentRowCellsSupplier((dataTable, tableRow) -> {
+                                                HTMLTableCellElement cellElement = DominoElement.of(td())
+                                                        .setAttribute("colspan", "8")
+                                                        .element();
+                                                RowCell<Contact> rowCell =
+                                                        new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement), dataTable.getTableConfig().getColumnByName("id"));
+                                                return Collections.singletonList(rowCell);
+                                            })
+                                            .setIndent(60);
+                                })
+                );
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("LAZY TREE GRID PLUGIN - Full PARENT SPAN", "Render records in tree style with expand and collapse features, ")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(contacts.subList(0, 25));
         });
     }
 
@@ -527,9 +914,15 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
                 .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
-                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> itemsConsumer.accept(Optional.ofNullable(parent.getFriends())))
-                        .setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
-                        .setIndent(60));
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
+                            DomGlobal.console.info("Loading items for : " + parent.getName());
+                            itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
+                        })
+                                .configure(config -> {
+                                    config.setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+                                            .setIndent(60);
+                                })
+                );
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
@@ -542,7 +935,85 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(contacts.subList(0, 25));
-            table.load();
+        });
+    }
+
+    @SampleMethod
+    private void lazyTreeGridParentColumns() {
+
+        TableConfig<Contact> tableConfig = new TableConfig<>();
+        tableConfig
+                .addColumn(ColumnConfig.<Contact>create("id", "#")
+                        .textAlign("right")
+                        .asHeader()
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+
+                .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                        .textAlign("center")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().isActive()) {
+                                return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                            } else {
+                                return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                            }
+                        }))
+                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .textAlign("center"))
+
+                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+
+                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+
+                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+
+                .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
+                        .setCellRenderer(cell -> {
+                            if (cell.getTableRow().getRecord().getAge() < 35) {
+                                return Badge.create("Young")
+                                        .setBackground(ColorScheme.GREEN.color()).element();
+                            }
+                            return TextNode.of("");
+                        }))
+                .onUtilityColumn(utilityColumn -> {
+                    utilityColumn
+                            .setSortable(true, "id")
+                            .setTitle("First name");
+                })
+                .setMultiSelect(true)
+                .addPlugin(new SortPlugin<>())
+                .addPlugin(new SelectionPlugin<>())
+                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord())))
+                .addPlugin(new TreeGridPlugin<Contact>((parent, itemsConsumer) -> {
+                            DomGlobal.console.info("Loading items for : " + parent.getName());
+                            itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
+                        })
+                                .configure(config -> {
+                                    config.setIndentColumnElementSupplier(tableRow -> Paragraph.create(tableRow.getRecord().getName()).setMarginBottom("0").element())
+                                            .setIndent(60)
+                                            .setLazy(true);
+                                })
+                );
+
+        LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
+        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+
+        element.appendChild(Card.create("LAZY TREE GRID PLUGIN - PARENT WITH COLUMNS", "Render records in tree style with expand and collapse features, sub records wont be loaded until the row is expanded.")
+                .setCollapsible()
+                .appendChild(new TableStyleActions(table))
+                .appendChild(table)
+                .element());
+
+        contactListParseHandlers.add(contacts -> {
+            localListDataStore.setData(contacts.subList(0, 25));
         });
     }
 
@@ -620,10 +1091,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            table.load();
         });
-
-
     }
 
     @SampleMethod
@@ -643,27 +1111,31 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
-                        }))
+                        })
+                )
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                        .textAlign("center"))
+                        .textAlign("center")
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center"))
-
+                        .textAlign("center")
+                )
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
@@ -684,7 +1156,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            table.load();
         });
     }
 
@@ -693,7 +1164,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("edit_save", "")
-                        .styleCell(element -> element.style.setProperty("vertical-align", "top"))
                         .setCellRenderer(cell -> Icons.ALL.pencil_mdi()
                                 .clickable()
                                 .setTooltip("Edit")
@@ -711,17 +1181,11 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 .element())
                 )
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
                 )
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .textAlign("center")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
@@ -739,9 +1203,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setEditableCellRenderer(cell -> {
                             TextBox nameBox = TextBox.create()
@@ -753,9 +1214,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
                         .setEditableCellRenderer(cell -> {
                             Select<Gender> genderSelect = Select.<Gender>create()
@@ -770,9 +1228,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("center"))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
                         .setEditableCellRenderer(cell -> {
                             Select<EyeColor> eyeColorSelect = Select.<EyeColor>create()
@@ -786,9 +1241,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                         .textAlign("center"))
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> ContactUiUtils.getBalanceElement(cell.getRecord()))
                         .setEditableCellRenderer(cell -> {
                             DoubleBox doubleBox = DoubleBox.create()
@@ -801,9 +1253,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
                         .setEditableCellRenderer(cell -> {
                             EmailBox emailBox = EmailBox.create()
@@ -814,9 +1263,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
                         .setEditableCellRenderer(cell -> {
                             TelephoneBox telephoneBox = TelephoneBox.create()
@@ -828,9 +1274,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                        .styleCell(element -> {
-                            element.style.setProperty("vertical-align", "top");
-                        })
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
@@ -880,7 +1323,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 return Style.of(Icons.ALL.check_circle()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
-        }
+                            }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setWidth("200px")
@@ -926,7 +1369,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            defaultTable.load();
         });
     }
 
@@ -1077,7 +1519,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             multiLocalStore.setData(subList(contacts));
-            multiSelectionTable.load();
         });
 
 
@@ -1143,7 +1584,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            defaultTable.load();
         });
 
     }
@@ -1208,7 +1648,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            defaultTable.load();
         });
 
 
@@ -1307,7 +1746,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
-            defaultTable.load();
         });
 
 
@@ -1321,7 +1759,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("right")
                         .asHeader()
                         .sortable()
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
@@ -1331,29 +1770,41 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
-                        }))
+                        })
+                        .applyMeta(ColumnFilterMeta.of(BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both")))
+                )
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .sortable()
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
-
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                        .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                        .textAlign("center"))
-
+                        .textAlign("center")
+                        .applyMeta(ColumnFilterMeta.of(EnumHeaderFilter.<Contact, Gender>create(Gender.values())))
+                )
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center"))
-
+                        .textAlign("center")
+                        .applyMeta(ColumnFilterMeta.of(SelectHeaderFilter.<Contact>create()
+                                .appendChild(SelectOption.create("blue", "Blue"))
+                                .appendChild(SelectOption.create("brown", "Brown"))
+                                .appendChild(SelectOption.create("green", "Green"))
+                        ))
+                )
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
                         .sortable()
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
-
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                        .applyMeta(ColumnFilterMeta.of(DoubleHeaderFilter.<Contact>create()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                        .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                        .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
@@ -1376,19 +1827,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         .toggleDisplay())
                                 .element())
                 )
-                .addPlugin(contactColumnHeaderFilterPlugin
-                        .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
-                        .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
-                        .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
-                        .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
-                                .appendChild(SelectOption.create("blue", "Blue"))
-                                .appendChild(SelectOption.create("brown", "Brown"))
-                                .appendChild(SelectOption.create("green", "Green"))
-                        )
-                );
+                .addPlugin(contactColumnHeaderFilterPlugin);
+
         LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
         listStore.setRecordsSorter(new ContactSorter());
         listStore.setSearchFilter(new ContactSearchFilter());
@@ -1402,7 +1842,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             listStore.setData(subList(contacts));
-            table.load();
         });
     }
 
@@ -1480,7 +1919,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
         });
 
 
@@ -1560,7 +1998,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
         });
 
 
@@ -1640,7 +2077,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts, 0, 100));
-            table.load();
         });
 
 
@@ -1717,7 +2153,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         contactListParseHandlers.add(contacts -> {
             scrollingDataSource.setData(contacts.subList(0, 100));
-            table.load();
         });
 
 
@@ -1809,7 +2244,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);
             scrollingDataSource.setData(data);
-            table.load();
             topPanel.update(data);
         });
 
@@ -1828,40 +2262,69 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
-                        .setWidth("70px"))
-                .addColumn(ColumnConfig.<Contact>create("status", "Status")
-                        .setWidth("80px")
-                        .textAlign("center")
-                        .setCellRenderer(cell -> {
-                            if (cell.getTableRow().getRecord().isActive()) {
-                                return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
-                            } else {
-                                return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
-                            }
-                        }))
-                .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .sortable()
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
-                        .setWidth("200px"))
-                .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setWidth("100px")
-                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                        .textAlign("center"))
-                .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                        .styleHeader(head -> Style.of(head).setWidth("100px"))
-                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center")
-                        .maxWidth("120px"))
-                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .sortable()
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
-                        .setWidth("200px"))
-                .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setWidth("250px")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
-                .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setWidth("200px")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone())))
+                        .setWidth("70px")
+                )
+                .addColumn(ColumnConfig.<Contact>create("group 1", "Group 1")
+                        .addColumn(ColumnConfig.<Contact>create("status", "Status")
+                                .setWidth("80px")
+                                .textAlign("center")
+                                .setCellRenderer(cell -> {
+                                    if (cell.getTableRow().getRecord().isActive()) {
+                                        return Style.of(Icons.ALL.check_circle().element()).setColor(Color.GREEN_DARKEN_3.getHex()).element();
+                                    } else {
+                                        return Style.of(Icons.ALL.highlight_off().element()).setColor(Color.RED_DARKEN_3.getHex()).element();
+                                    }
+                                })
+                                .applyMeta(ColumnFilterMeta.of(BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both")))
+
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
+                                .sortable()
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                                .setWidth("200px")
+                                .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                        )
+                )
+                .addColumn(ColumnConfig.<Contact>create("group 2", "Group 2")
+                        .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
+                                .setWidth("100px")
+                                .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                                .textAlign("center")
+                                .applyMeta(ColumnFilterMeta.of(EnumHeaderFilter.<Contact, Gender>create(Gender.values())))
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
+                                .styleHeader(head -> Style.of(head).setWidth("100px"))
+                                .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                                .textAlign("center")
+                                .maxWidth("120px")
+                                .applyMeta(ColumnFilterMeta.of(SelectHeaderFilter.<Contact>create()
+                                                .appendChild(SelectOption.create("blue", "Blue"))
+                                                .appendChild(SelectOption.create("brown", "Brown"))
+                                                .appendChild(SelectOption.create("green", "Green"))
+                                        )
+                                )
+                        )
+                )
+                .addColumn(ColumnConfig.<Contact>create("group 3", "Group 3")
+                        .addColumn(ColumnConfig.<Contact>create("group 2", "Group 2")
+                                .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
+                                        .sortable()
+                                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                                        .setWidth("200px")
+                                        .applyMeta(ColumnFilterMeta.of(DoubleHeaderFilter.<Contact>create()))
+                                )
+                                .addColumn(ColumnConfig.<Contact>create("email", "Email")
+                                        .setWidth("250px")
+                                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                                        .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                                )
+                        )
+                        .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
+                                .setWidth("200px")
+                                .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
+                                .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                        )
+                )
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
@@ -1869,7 +2332,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         .setBackground(ColorScheme.GREEN.color()).element();
                             }
                             return TextNode.of("");
-                        }))
+                        })
+                )
                 .addPlugin(scrollingPaginationPlugin)
                 .addPlugin(new TopPanelPlugin<Contact>() {
 
@@ -1925,19 +2389,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                 .addPlugin(new SelectionPlugin<>(ColorScheme.BLUE))
                 .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord())))
                 .addPlugin(new SortPlugin<>())
-                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create()
-                        .addHeaderFilter("firstName", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("email", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("phone", TextHeaderFilter.<Contact>create())
-                        .addHeaderFilter("status", BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both"))
-                        .addHeaderFilter("gender", EnumHeaderFilter.<Contact, Gender>create(Gender.values()))
-                        .addHeaderFilter("balance", DoubleHeaderFilter.<Contact>create())
-                        .addHeaderFilter("eyeColor", SelectHeaderFilter.<Contact>create()
-                                .appendChild(SelectOption.create("blue", "Blue"))
-                                .appendChild(SelectOption.create("brown", "Brown"))
-                                .appendChild(SelectOption.create("green", "Green"))
-                        )
-                )
+                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
                         cellInfo -> {
                             DominoElement.of(cellInfo.getElement())
@@ -1964,7 +2416,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         contactListParseHandlers.add(contacts -> {
             List<Contact> data = subList(contacts, 0, 100);
             localListDataSource.setData(data);
-            table.load();
             topPanel.update(data);
         });
 

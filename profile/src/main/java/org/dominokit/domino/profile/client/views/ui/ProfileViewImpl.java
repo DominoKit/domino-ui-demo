@@ -21,6 +21,8 @@ import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.view.BaseElementView;
 import org.jboss.elemento.Elements;
 
+import java.util.Arrays;
+
 import static org.jboss.elemento.Elements.div;
 import static org.jboss.elemento.Elements.small;
 
@@ -72,8 +74,13 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    profile.getHeaderTitle().appendChild(small().textContent(resource.getText())
-                            .element());
+                    Arrays.asList(resource.getText().split(","))
+                                    .forEach(s -> {
+                                        profile.getHeaderTitle()
+                                                .appendChild(small().textContent(s)
+                                                        .element());
+                                    });
+
                     DomGlobal.console.info(resource.getText());
                 }
             });
