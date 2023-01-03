@@ -22,6 +22,7 @@ import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
+import org.dominokit.domino.ui.search.SearchBox;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
