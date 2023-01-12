@@ -84,7 +84,7 @@
         <elemental2.version>1.1.0</elemental2.version>
         <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
         <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
-        <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
+        <domino.ui.version>1.0.0-RC15</domino.ui.version>
         <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
     </properties>
 
