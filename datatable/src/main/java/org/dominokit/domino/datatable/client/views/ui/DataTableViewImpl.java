@@ -81,14 +81,19 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .textContent("Data table demo source code").element())
                 .element());
 
+        element.appendChild(
+                Row.create()
+                        .appendChild(Column.span12().apply(this::basic)).element()
+        );
+
         basicTable();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
 
-        editableTable();
-        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
-
         basicFixedTable();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicFixedTable()).element());
+
+        editableTable();
+        element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.editableTable()).element());
 
         singleSelectionPlugin();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.singleSelectionPlugin()).element());
@@ -187,6 +192,199 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         }
 
         return element;
+    }
+
+    private void basic(Column column) {
+        TableConfig<Car> tableConfig = new TableConfig<Car>()
+                .setFixed(true)
+                .setWidth("1114px")
+                .addColumn(ColumnConfig.<Car>create("index", "ID")
+                        .setCellRenderer(
+                                cell -> TextNode.of("" + cell.getRecord().getId())
+                        )
+                        .setWidth("64px")
+                )
+                .addColumn(ColumnConfig.<Car>create("make", "Make")
+                        .setCellRenderer(
+                                cell -> TextNode.of(cell.getTableRow().getRecord().getMake())
+                        )
+                        .applyMeta(PinColumnMeta.left())
+                        .setWidth("200px")
+                        .minWidth("150px")
+                )
+                .addColumn(ColumnConfig.<Car>create("model", "Model")
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getModel()))
+                        .setWidth("400px")
+                        .minWidth("200px")
+                        .maxWidth("600px")
+                )
+                .addColumn(ColumnConfig.<Car>create("price", "Price")
+                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().price + ""))
+                        .setWidth("150px")
+                )
+                .addColumn(ColumnConfig.<Car>create("color", "Color")
+                        .setCellRenderer(cell -> TextNode.of(cell.getRecord().getColor().getLabel()))
+                        .setWidth("300px")
+                )
+                .addPlugin(new ResizeColumnsPlugin<Car>().configure(config -> config.setClipContent(true)))
+//                .addPlugin(new ResizeColumnsPlugin<Car>())
+//                .addPlugin(new PinColumnsPlugin<Car>().configure(config -> config
+//                                .setShowPinIcon(true)
+//                                .setShowPinMenu(true)
+//                        )
+//                )
+        ;
+
+        LocalListDataStore<Car> store = new LocalListDataStore<>();
+        DataTable<Car> dataTable = new DataTable<>(tableConfig, store)
+                .condense();
+
+        int initialValue = 50;
+
+        List<Car> backingData = new ArrayList<>(generateData(initialValue));
+        IntegerBox countBox = IntegerBox.create("Row Count")
+                .setMarginBottom("0")
+                .value(initialValue);
+        countBox.addChangeHandler(value -> {
+            if (countBox.validate().isValid()) {
+                backingData.clear();
+                backingData.addAll(generateData(countBox.getValue()));
+            }
+        });
+
+        column.appendChild(Card.create("Basic Grid")
+                .appendChild(FlexLayout.create()
+                        .setDirection(FlexDirection.LEFT_TO_RIGHT)
+                        .setGap("15px")
+                        .appendChild(countBox)
+                        .appendChild(Button.createPrimary("Load Data")
+                                .addClickListener(evt -> {
+                                    if (countBox.validate().isValid()) {
+                                        store.setData(backingData);
+                                        dataTable.load();
+                                    }
+                                })
+                        )
+                )
+                .appendChild(dataTable)
+        );
+    }
+
+    private List<Car> generateData(int records) {
+        Data data = Js.cast(Global.JSON.parse(Resources.resources.makeModelData().getText()));
+        MakeModel[] makeModels = data.getData();
+        List<Car> cars = new ArrayList<>();
+        for (int i = 0; i < records; i++) {
+            Random random = new Random();
+            MakeModel makeModel = makeModels[random.nextInt(makeModels.length)];
+            double price = random.nextDouble() * 50_000;
+            CarColor color = CarColor.values()[random.nextInt(CarColor.values().length)];
+            cars.add(new Car(i + 1, makeModel.getMake(), makeModel.getModel(), price, color));
+        }
+        return cars;
+    }
+
+
+    private enum CarColor {
+        RED,
+        BLUE,
+        YELLOW;
+
+        String getLabel() {
+            return name().charAt(0) + name().substring(1).toLowerCase();
+        }
+    }
+
+    interface Resources extends ClientBundle {
+
+        public static final Resources resources = GWT.create(Resources.class);
+
+        @Source("make_model.json")
+        TextResource makeModelData();
+    }
+
+    @JsType(isNative = true)
+    interface MakeModel {
+        @JsProperty
+        String getMake();
+
+        @JsProperty
+        String getModel();
+
+        @JsProperty
+        int getYear();
+    }
+
+    @JsType(isNative = true)
+    interface Data {
+        @JsProperty
+        MakeModel[] getData();
+    }
+
+    private static final class Car {
+        private int id;
+        private String make;
+        private String model;
+        private double price;
+        private CarColor color;
+
+        public Car() {
+        }
+
+        public Car(String make, String model, double price, CarColor color) {
+            this.make = make;
+            this.model = model;
+            this.price = price;
+            this.color = color;
+        }
+
+        public Car(int id, String make, String model, double price, CarColor color) {
+            this.id = id;
+            this.make = make;
+            this.model = model;
+            this.price = price;
+            this.color = color;
+        }
+
+        public CarColor getColor() {
+            return color;
+        }
+
+        public void setColor(CarColor color) {
+            this.color = color;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public void setId(int id) {
+            this.id = id;
+        }
+
+        public String getMake() {
+            return make;
+        }
+
+        public void setMake(String make) {
+            this.make = make;
+        }
+
+        public String getModel() {
+            return model;
+        }
+
+        public void setModel(String model) {
+            this.model = model;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
+        }
     }
 
     @SampleMethod
@@ -343,7 +541,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
                         .setWidth("200px")
                         .minWidth("100px")
-                        .maxWidth("15em")
+                        .maxWidth("300")
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
@@ -398,11 +596,15 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
     private void pinColumns() {
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
+                .setFixed(true)
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .textAlign("right")
                         .asHeader()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setWidth("100px")
+                        .minWidth("100px")
                 )
+
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
                         .setCellRenderer(cell -> {
@@ -412,37 +614,39 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
                         })
+                        .setWidth("100px")
+                        .minWidth("100px")
                         .applyMeta(PinColumnMeta.left())
                 )
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
-                        .setWidth("300px")
+                        .setWidth("200px")
                 )
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
                         .textAlign("center")
-                        .setWidth("300px")
+                        .setWidth("200px")
+                        .minWidth("200px")
                 )
-
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
                         .textAlign("center")
-                        .setWidth("300px")
+                        .setWidth("200px")
+                        .minWidth("200px")
                 )
-
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
-                        .setWidth("500px")
+                        .setWidth("400px")
                 )
-
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
-                        .setWidth("500px")
+                        .setWidth("400px")
+                        .minWidth("400px")
                 )
-
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
                         .setWidth("400px")
+                        .minWidth("400px")
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
@@ -453,25 +657,24 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             }
                             return TextNode.of("");
                         })
+                        .setWidth("100px")
+                        .minWidth("100px")
                         .applyMeta(PinColumnMeta.right())
                 )
-                .addPlugin(new PinColumnsPlugin<Contact>().configure(config -> config
-                        .setShowPinMenu(true)
-                        .setShowPinIcon(true)
-                ));
-
+                .addPlugin(new PinColumnsPlugin<Contact>().configure(config -> config.setShowPinMenu(true).setShowPinIcon(true)));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
-        DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
+        DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("PIN COLUMNS", "The pin columns plugin allow the user to pin columns left or right so they dont scroll with the table.")
                 .setCollapsible()
-                .appendChild(new TableStyleActions(table))
-                .appendChild(table)
+                .appendChild(new TableStyleActions(defaultTable))
+                .appendChild(defaultTable)
                 .element());
 
         contactListParseHandlers.add(contacts -> {
             localListDataStore.setData(subList(contacts));
         });
+
     }
 
     @SampleMethod
@@ -695,6 +898,8 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         })
                 )
                 .addPlugin(summaryPlugin)
+                .addPlugin(new PinColumnsPlugin<Contact>().configure(confg-> confg.setShowPinMenu(true)))
+                .addPlugin(new ResizeColumnsPlugin<Contact>().configure(config -> config.setClipContent(true)))
         ;
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
@@ -1256,9 +1461,18 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
+        table.onAttached(mutationRecord -> {});
+        HTMLElement tEle = table.element();
+
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
+                        .apply(self->{
+                            self
+                                    .appendChild(Button.create("ADD").addClickListener(evt -> self.appendChild(table)))
+                                    .appendChild(Button.create("REMOVE").addClickListener(evt -> table.remove()));
+                        })
+
                 .appendChild(table)
                 .element());
 
@@ -1416,7 +1630,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
     @SampleMethod
     private void basicFixedTable() {
-        SummaryPlugin<Contact, ContactSummary> summaryPlugin = new SummaryPlugin<>();
         TableConfig<Contact> tableConfig = new TableConfig<>();
         tableConfig
                 .setFixed(true)
@@ -1434,36 +1647,30 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                             } else {
                                 return Style.of(Icons.ALL.highlight_off()).setColor(Color.RED_DARKEN_3.getHex()).element();
                             }
-                        }))
+                        })
+                )
                 .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
-                        .setWidth("200px")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName())))
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getName()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                         .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
-                        .textAlign("center"))
-
+                        .textAlign("center")
+                )
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
-                        .textAlign("center"))
-
+                        .textAlign("center")
+                )
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setWidth("250px")
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
                 )
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setWidth("900px")
-                        .minWidth("900px")
-                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail())))
-
+                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getEmail()))
+                )
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setWidth("800px")
-                        .minWidth("880px")
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getPhone()))
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                        .setWidth("500px")
                         .setCellRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
                                 return Badge.create("Young")
@@ -1875,7 +2082,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .sortable()
                         .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getIndex() + 1 + ""))
                 )
-
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .textAlign("center")
                         .setCellRenderer(cell -> {
@@ -1941,8 +2147,7 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                                         .toggleDisplay())
                                 .element())
                 )
-                .addPlugin(contactColumnHeaderFilterPlugin)
-                .addPlugin(new ResizeColumnsPlugin<>());
+                .addPlugin(contactColumnHeaderFilterPlugin);
 
         LocalListDataStore<Contact> listStore = new LocalListDataStore<>();
         listStore.setRecordsSorter(new ContactSorter());
