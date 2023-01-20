@@ -28,8 +28,10 @@ import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.*;
+import org.dominokit.domino.ui.datatable.events.SelectAllEvent;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
 import org.dominokit.domino.ui.datatable.events.TableEvent;
+import org.dominokit.domino.ui.datatable.events.TableEventListener;
 import org.dominokit.domino.ui.datatable.plugins.*;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
 import org.dominokit.domino.ui.datatable.plugins.pincolumns.PinColumnMeta;
@@ -80,6 +82,11 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
                         .attr("target", "_blank")
                         .textContent("Data table demo source code").element())
                 .element());
+
+//        element.appendChild(
+//                Row.create()
+//                        .appendChild(Column.span12().apply(this::basic)).element()
+//        );
 
         basicTable();
         element.appendChild(CodeCard.createLazyCodeCard(CodeResource.INSTANCE.basicTable()).element());
@@ -188,6 +195,200 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
 
         return element;
     }
+
+//    private void basic(Column column) {
+//        TableConfig<Car> tableConfig = new TableConfig<Car>()
+//                .setFixed(true)
+//                .addColumn(ColumnConfig.<Car>create("index", "ID")
+//                        .setCellRenderer(
+//                                cell -> TextNode.of("" + cell.getRecord().getId())
+//                        )
+//                        .setWidth("64px")
+//                )
+//                .addColumn(ColumnConfig.<Car>create("make", "Make")
+//                        .setCellRenderer(
+//                                cell -> TextNode.of(cell.getTableRow().getRecord().getMake())
+//                        )
+//                        .applyMeta(PinColumnMeta.left())
+//                        .setWidth("200px")
+//                )
+//                .addColumn(ColumnConfig.<Car>create("model", "Model")
+//                        .setCellRenderer(cell -> TextNode.of(cell.getTableRow().getRecord().getModel()))
+//                        .setWidth("800px")
+//                )
+//                .addColumn(ColumnConfig.<Car>create("price", "Price")
+//                        .setCellRenderer(cellInfo -> TextNode.of(cellInfo.getRecord().price + ""))
+//                        .setWidth("600px")
+//                )
+//                .addColumn(ColumnConfig.<Car>create("color", "Color")
+//                        .setCellRenderer(cell -> TextNode.of(cell.getRecord().getColor().getLabel()))
+//                        .setWidth("600px")
+//                )
+//                .addPlugin(new ResizeColumnsPlugin<Car>().configure(config -> config.setClipContent(false)))
+//                .addPlugin(new PinColumnsPlugin<Car>().configure(config -> config
+//                                .setShowPinIcon(true)
+//                                .setShowPinMenu(true)
+//                        )
+//                );
+//        ;
+//
+//        LocalListDataStore<Car> store = new LocalListDataStore<>();
+//        DataTable<Car> dataTable = new DataTable<>(tableConfig, store)
+//                .condense();
+//
+//        int initialValue = 50;
+//
+//        List<Car> backingData = new ArrayList<>(generateData(initialValue));
+//        IntegerBox countBox = IntegerBox.create("Row Count")
+//                .setMarginBottom("0")
+//                .value(initialValue);
+//        countBox.addChangeHandler(value -> {
+//            if (countBox.validate().isValid()) {
+//                backingData.clear();
+//                backingData.addAll(generateData(countBox.getValue()));
+//            }
+//        });
+//
+//        column.appendChild(Card.create("Basic Grid")
+//                .appendChild(FlexLayout.create()
+//                        .setDirection(FlexDirection.LEFT_TO_RIGHT)
+//                        .setGap("15px")
+//                        .appendChild(countBox)
+//                        .appendChild(Button.createPrimary("Load Data")
+//                                .addClickListener(evt -> {
+//                                    if (countBox.validate().isValid()) {
+//                                        store.setData(backingData);
+//                                        dataTable.load();
+//                                    }
+//                                })
+//                        )
+//                )
+//                .apply(self -> {
+//                    self
+//                            .appendChild(Button.create("remove").addClickListener(evt -> dataTable.remove()))
+//                            .appendChild(Button.create("add").addClickListener(evt -> self.appendChild(dataTable)));
+//                })
+//
+//                .appendChild(dataTable)
+//        );
+//    }
+//
+//    private List<Car> generateData(int records) {
+//        Data data = Js.cast(Global.JSON.parse(Resources.resources.makeModelData().getText()));
+//        MakeModel[] makeModels = data.getData();
+//        List<Car> cars = new ArrayList<>();
+//        for (int i = 0; i < records; i++) {
+//            Random random = new Random();
+//            MakeModel makeModel = makeModels[random.nextInt(makeModels.length)];
+//            double price = random.nextDouble() * 50_000;
+//            CarColor color = CarColor.values()[random.nextInt(CarColor.values().length)];
+//            cars.add(new Car(i + 1, makeModel.getMake(), makeModel.getModel(), price, color));
+//        }
+//        return cars;
+//    }
+//
+//
+//    private enum CarColor {
+//        RED,
+//        BLUE,
+//        YELLOW;
+//
+//        String getLabel() {
+//            return name().charAt(0) + name().substring(1).toLowerCase();
+//        }
+//    }
+//
+//    interface Resources extends ClientBundle {
+//
+//        public static final Resources resources = GWT.create(Resources.class);
+//
+//        @Source("make_model.json")
+//        TextResource makeModelData();
+//    }
+//
+//    @JsType(isNative = true)
+//    interface MakeModel {
+//        @JsProperty
+//        String getMake();
+//
+//        @JsProperty
+//        String getModel();
+//
+//        @JsProperty
+//        int getYear();
+//    }
+//
+//    @JsType(isNative = true)
+//    interface Data {
+//        @JsProperty
+//        MakeModel[] getData();
+//    }
+//
+//    private static final class Car {
+//        private int id;
+//        private String make;
+//        private String model;
+//        private double price;
+//        private CarColor color;
+//
+//        public Car() {
+//        }
+//
+//        public Car(String make, String model, double price, CarColor color) {
+//            this.make = make;
+//            this.model = model;
+//            this.price = price;
+//            this.color = color;
+//        }
+//
+//        public Car(int id, String make, String model, double price, CarColor color) {
+//            this.id = id;
+//            this.make = make;
+//            this.model = model;
+//            this.price = price;
+//            this.color = color;
+//        }
+//
+//        public CarColor getColor() {
+//            return color;
+//        }
+//
+//        public void setColor(CarColor color) {
+//            this.color = color;
+//        }
+//
+//        public int getId() {
+//            return id;
+//        }
+//
+//        public void setId(int id) {
+//            this.id = id;
+//        }
+//
+//        public String getMake() {
+//            return make;
+//        }
+//
+//        public void setMake(String make) {
+//            this.make = make;
+//        }
+//
+//        public String getModel() {
+//            return model;
+//        }
+//
+//        public void setModel(String model) {
+//            this.model = model;
+//        }
+//
+//        public double getPrice() {
+//            return price;
+//        }
+//
+//        public void setPrice(double price) {
+//            this.price = price;
+//        }
+//    }
 
     @SampleMethod
     private void dragAndDropDifferentSources() {
@@ -1261,9 +1462,6 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
-        table.onAttached(mutationRecord -> {});
-        HTMLElement tEle = table.element();
-
         element.appendChild(Card.create("BASIC TABLE", "By default a table will auto fit columns and allow custom cell content")
                 .setCollapsible()
                 .appendChild(new TableStyleActions(table))
@@ -1622,6 +1820,11 @@ public class DataTableViewImpl extends BaseDemoView<HTMLDivElement> implements D
         DataTable<Contact> multiSelectionTable = new DataTable<>(tableConfig, multiLocalStore);
         multiSelectionTable.addSelectionListener((selectedTableRows, selectedRecords) -> {
             Notification.create(selectedRecords.size() + "").show();
+        });
+
+        multiSelectionTable.addTableEventListener(SelectAllEvent.SELECT_ALL_EVENT, event -> {
+            SelectAllEvent<Contact> evt = (SelectAllEvent<Contact>) event;
+            DomGlobal.console.info(evt.isSelectAll(), evt.getSelectionCondition());
         });
 
 
