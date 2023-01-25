@@ -157,7 +157,7 @@ pre.prettyprint {
     position: fixed;
     right: 8px;
     top: 69px;
-    z-index: 9;
+    z-index: 2;
 }
 
 .open-source .material-icons {
