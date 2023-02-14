@@ -1,7 +1,12 @@
 package org.dominokit.domino.datatable.client.views.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.dominokit.jackson.annotation.JSONMapper;
+
+import java.util.ArrayList;
 import java.util.List;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Contact {
 
     private int index;
@@ -17,7 +22,9 @@ public class Contact {
     private String phone;
     private String address;
     private String about;
-    private List<Contact> friends;
+
+    private int depth =0;
+    private List<Contact> friends = new ArrayList<>();
 
     public Contact() {
     }
@@ -152,6 +159,18 @@ public class Contact {
 
     public List<Contact> getFriends() {
         return friends;
+    }
+
+    public void addFriend(Contact contact){
+        friends.add(contact);
+    }
+
+    public int getDepth() {
+        return depth;
+    }
+
+    public void setDepth(int depth) {
+        this.depth = depth;
     }
 
     @Override
