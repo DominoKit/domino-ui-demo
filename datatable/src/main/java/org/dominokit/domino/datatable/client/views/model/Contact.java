@@ -2,14 +2,12 @@ package org.dominokit.domino.datatable.client.views.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.dominokit.domino.ui.datatable.plugins.tree.IsTreeNode;
-import org.dominokit.jackson.annotation.JSONMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Contact implements IsTreeNode {
+public class Contact {
 
     private int index;
     private boolean active;
@@ -190,8 +188,7 @@ public class Contact implements IsTreeNode {
         this.hasChildren = hasChildren;
     }
 
-    @Override
-    public boolean hasChildren() {
+    public boolean isHasChildren() {
         return hasChildren;
     }
 }

@@ -147,9 +147,10 @@ public class TreeGridLazyPluginViewImpl extends BaseDemoView<HTMLDivElement> imp
                 );
 
         LocalTreeDataStore<Contact> localListDataStore = new LocalTreeDataStore<>((parent, itemsConsumer) -> {
+            // If the friend is in the max depth it will automatically set has children to false, check ContactsProvider.instance.addFriends method
             ContactsProvider.instance.addFriends(parent, 2, 1, 2);
             itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
-        });
+        }, Contact::isHasChildren);
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("LAZY TREE GRID PLUGIN - Full PARENT SPAN", "Render records in tree style with expand and collapse features, ")
@@ -225,9 +226,10 @@ public class TreeGridLazyPluginViewImpl extends BaseDemoView<HTMLDivElement> imp
                 );
 
         LocalTreeDataStore<Contact> localListDataStore = new LocalTreeDataStore<>((parent, itemsConsumer) -> {
+            // If the friend is in the max depth it will automatically set has children to false, check ContactsProvider.instance.addFriends method
             ContactsProvider.instance.addFriends(parent, 5, 1, 5);
             itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
-        });
+        }, Contact::isHasChildren);
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("LAZY TREE GRID PLUGIN - PARENT WITH COLUMNS", "Render records in tree style with expand and collapse features, sub records wont be loaded until the row is expanded.")
