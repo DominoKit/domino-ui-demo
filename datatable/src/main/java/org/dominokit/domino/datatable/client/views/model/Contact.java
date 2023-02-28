@@ -1,13 +1,15 @@
 package org.dominokit.domino.datatable.client.views.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.dominokit.domino.ui.datatable.plugins.tree.IsTreeNode;
 import org.dominokit.jackson.annotation.JSONMapper;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Contact {
+public class Contact implements IsTreeNode {
 
     private int index;
     private boolean active;
@@ -24,6 +26,9 @@ public class Contact {
     private String about;
 
     private int depth =0;
+    @JsonIgnore
+    private boolean hasChildren = true;
+
     private List<Contact> friends = new ArrayList<>();
 
     public Contact() {
@@ -179,5 +184,14 @@ public class Contact {
                 "index=" + index +
                 ", name='" + name + '\'' +
                 '}';
+    }
+
+    public void setHasChildren(boolean hasChildren) {
+        this.hasChildren = hasChildren;
+    }
+
+    @Override
+    public boolean hasChildren() {
+        return hasChildren;
     }
 }

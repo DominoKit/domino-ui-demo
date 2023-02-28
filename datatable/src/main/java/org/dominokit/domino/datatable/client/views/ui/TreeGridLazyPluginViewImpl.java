@@ -8,7 +8,6 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.datatable.client.presenters.MarkerPluginProxy;
 import org.dominokit.domino.datatable.client.presenters.TreeGridLazyPluginProxy;
 import org.dominokit.domino.datatable.client.task.ContactsProvider;
 import org.dominokit.domino.datatable.client.views.DatatableView;
@@ -29,7 +28,6 @@ import org.dominokit.domino.ui.datatable.plugins.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.plugins.SortPlugin;
 import org.dominokit.domino.ui.datatable.plugins.tree.TreeGridPlugin;
 import org.dominokit.domino.ui.datatable.plugins.tree.store.LocalTreeDataStore;
-import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.forms.IntegerBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -42,9 +40,6 @@ import org.dominokit.domino.ui.utils.DominoElement;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
 import static org.jboss.elemento.Elements.a;
@@ -68,7 +63,6 @@ public class TreeGridLazyPluginViewImpl extends BaseDemoView<HTMLDivElement> imp
                         .attr("target", "_blank")
                         .textContent("Data table demo source code").element())
                 .element());
-
 
         lazyTreeGridFullParentSpan();
         element.appendChild(CodeCard.createLazyCodeCard(TreeGridLazyPluginViewImpl_CodeResource.INSTANCE.lazyTreeGridFullParentSpan()).element());

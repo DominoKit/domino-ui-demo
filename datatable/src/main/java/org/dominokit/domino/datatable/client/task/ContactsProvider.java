@@ -41,8 +41,12 @@ public class ContactsProvider {
             for (int leafIndex = 0; leafIndex < leavesCount; leafIndex++) {
                 randomIndex = random.nextInt(contacts.size() - 1);
                 Contact friend = new Contact(contacts.get(randomIndex));
-                friend.setDepth(root.getDepth() + 1);
+                int childDepth = root.getDepth() + 1;
+                friend.setDepth(childDepth);
                 friend.setIndex(leafIndex);
+                if(childDepth == maxDepth){
+                    friend.setHasChildren(false);
+                }
                 root.addFriend(friend);
                 addFriends(friend, leavesCount, depth - 1, maxDepth);
             }
