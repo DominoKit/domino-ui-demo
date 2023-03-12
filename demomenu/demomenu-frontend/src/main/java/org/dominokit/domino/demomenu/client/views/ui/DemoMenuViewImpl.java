@@ -150,6 +150,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Selection plugin", "datatable/selection-plugin"))
                         .appendChild(makeSubMenu("Pagination plugins", "datatable/pagination-plugin"))
                         .appendChild(makeSubMenu("Record details plugin", "datatable/record-details-plugin"))
+                        .appendChild(makeSubMenu("Row menu plugin", "datatable/row-menu-plugin"))
                         .appendChild(makeSubMenu("Sort and search plugins", "datatable/sort-search-plugin"))
                         .appendChild(makeSubMenu("Scroll loading", "datatable/scroll-loading"))
                         .appendChild(makeSubMenu("Summary plugin", "datatable/summary-plugin"))
