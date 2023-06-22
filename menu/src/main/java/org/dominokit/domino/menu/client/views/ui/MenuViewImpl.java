@@ -218,8 +218,8 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                 )
                         )
                         .element());
-    } 
-    
+    }
+
     @SampleMethod
     private void basicMenuSearchableAndAddMissing() {
         element
@@ -778,6 +778,9 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 .setDropMenu(Menu.<String>create()
                                                         .setIcon(Icons.ALL.file_mdi())
                                                         .setTitle("Files")
+                                                        .addCloseHandler(() -> {
+                                                            Notification.create("Closing menu").show();
+                                                        })
                                                         .setDropDirection(new TopRightDropDirection())
                                                         .appendAction(Icons.ALL.folder_key_outline_mdi()
                                                                 .size18()

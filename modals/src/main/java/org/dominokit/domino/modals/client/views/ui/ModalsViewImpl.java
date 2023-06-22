@@ -22,6 +22,7 @@ import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.modals.Window;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.utils.DominoUIConfig;
 import org.dominokit.domino.ui.utils.TextNode;
 
 import static java.util.Objects.nonNull;
@@ -112,6 +113,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                     )
+                                                    .appendFooterChild(Button.create("Click me"))
                                                     .open();
                                         }))
                         )
@@ -126,6 +128,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                     )
+                                                    .appendFooterChild(Button.create("Click me"))
                                                     .open();
                                         }))
                         )
@@ -140,6 +143,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                     )
+                                                    .appendFooterChild(Button.create("Click me"))
                                                     .open();
                                         })))
                         .appendChild(Column.span3()
@@ -152,6 +156,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                             .appendChild(Paragraph.create(SAMPLE_CONTENT))
                                                     )
+                                                    .appendFooterChild(Button.create("Click me"))
                                                     .open();
                                         })))
 
@@ -297,6 +302,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
         // ------------ Default size -------------
 
         ModalDialog defaultSizeModal = createModalDialog();
+        defaultSizeModal.setModal(false);
 //        defaultSizeModal.appendChild(TextBox.create("sample"));
         defaultSizeModal.appendChild(CheckBox.create("sample"));
 

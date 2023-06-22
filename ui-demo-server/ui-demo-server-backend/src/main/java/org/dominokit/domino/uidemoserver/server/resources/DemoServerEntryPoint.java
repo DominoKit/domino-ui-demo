@@ -8,13 +8,18 @@ import org.dominokit.domino.api.server.entrypoint.ServerAppEntryPoint;
 import org.dominokit.domino.api.server.entrypoint.VertxContext;
 import org.dominokit.domino.uidemoserver.shared.model.ContactList;
 import org.dominokit.domino.uidemoserver.shared.model.ContactList_MapperImpl;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.nio.charset.StandardCharsets;
 
 @AutoService(ServerAppEntryPoint.class)
 public class DemoServerEntryPoint implements ServerAppEntryPoint<VertxContext> {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DemoServerEntryPoint.class);
     @Override
     public void onModulesLoaded(VertxContext vertxContext) {
+        LOGGER.info("Executing server entry point...");
         vertxContext
                 .router()
                 .route(HttpMethod.GET, "/service/contacts")
@@ -30,6 +35,16 @@ public class DemoServerEntryPoint implements ServerAppEntryPoint<VertxContext> {
                    event.response()
                            .setStatusCode(200)
                            .end(Json.encode(contactList.getContacts()));
+                });
+
+        vertxContext
+                .router()
+                .route(HttpMethod.POST, "/form")
+                .handler(event -> {
+                    LOGGER.info("Uploading file completed");
+                    event.response()
+                            .setStatusCode(200)
+                            .end();
                 });
     }
 }

@@ -12,9 +12,9 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 
 @PresenterProxy
-@AutoRoute(token = "datatable")
+@AutoRoute(token = "datatable/pagination-plugin")
 @AutoReveal
 @Slot(IsLayout.Slots.CONTENT)
 @DependsOn(@EventsGroup(LayoutEvent.class))
-public class DatatableProxy extends ComponentCasePresenter<DatatableView> {
+public class PaginationPluginProxy extends ComponentCasePresenter<DatatableView> {
 }
