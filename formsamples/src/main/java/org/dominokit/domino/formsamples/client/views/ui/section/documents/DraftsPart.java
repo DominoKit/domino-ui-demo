@@ -17,7 +17,7 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Styles;
@@ -63,7 +63,7 @@ public class DraftsPart implements ImportSection {
                                     .appendChild(TextNode.of(formattedDraftItem(listItem.getValue())))
                             )
                             .appendChild(FlexItem.create()
-                                    .appendChild(Icons.ALL.delete_mdi()
+                                    .appendChild(Icons.delete()
                                             .clickable()
                                             .styler(style -> style
                                                     .setMarginTop("-3px")
@@ -83,7 +83,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.bank_mdi())
+                .addLeftAddOn(Icons.bank())
                 .appendChild(SelectOption.create("Progressoft", "Progressoft"))
                 .appendChild(SelectOption.create("Clusus", "Clusus"))
                 .appendChild(SelectOption.create("Bank XYZ", "Bank XYZ"))
@@ -94,13 +94,13 @@ public class DraftsPart implements ImportSection {
                 .setRequired(true)
                 .setAutoValidation(true)
                 .setHelperText(NUMBERS_ONLY)
-                .addLeftAddOn(Icons.ALL.looks_mdi());
+                .addLeftAddOn(Icons.looks());
 
         documentsRequiredFromSelect = Select.<String>create("From")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.calendar_range_mdi())
+                .addLeftAddOn(Icons.calendar_range())
                 .appendChild(SelectOption.create("shipmentDate", "Shipment Date"))
                 .appendChild(SelectOption.create("commercialDate", "Commercial Date"))
                 .appendChild(SelectOption.create("billOfLading", "Bill Of Lading"));
@@ -120,7 +120,7 @@ public class DraftsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.file_document_box_mdi())
+                .addLeftAddOn(Icons.file_document_box())
                 .appendChild(SelectOption.create("Invoice value", "Invoice value"))
                 .appendChild(SelectOption.create("IC value", "IC value"));
 
@@ -162,9 +162,22 @@ public class DraftsPart implements ImportSection {
                 ).element());
     }
 
+    private String formattedDraftItem(DraftsItem draftsItem) {
+        return draftsItem.formatted(documentsRequiredFromSelect.getSelectedOption().getDisplayValue().toLowerCase(), draftsOf.getValue().toLowerCase());
+    }
+
+    private void revalidate() {
+        if (isInvalidatedCard(draftsCard)) {
+            boolean valid = isValid();
+            if (valid) {
+                markCardValidation(draftsCard, true, false);
+                markWithValidationMessage(valid);
+            }
+        }
+    }
 
     private Button initAddButton() {
-        Button addDraftButton = Button.createDefault(Icons.ALL.plus_mdi()).setContent("ADD").linkify()
+        Button addDraftButton = Button.createDefault(Icons.plus()).setContent("ADD").linkify()
                 .addClickListener(evt -> {
                     if (fieldsGrouping.validate().isValid()) {
 
@@ -185,8 +198,16 @@ public class DraftsPart implements ImportSection {
         return addDraftButton;
     }
 
-    private String formattedDraftItem(DraftsItem draftsItem) {
-        return draftsItem.formatted(documentsRequiredFromSelect.getSelectedOption().getDisplayValue().toLowerCase(), draftsOf.getValue().toLowerCase());
+    private boolean isValid() {
+        return !draftsRequiredSwitch.getValue() || !draftsListGroup.getValues().isEmpty();
+    }
+
+    private void markWithValidationMessage(boolean valid) {
+        if (!valid) {
+            draftsCard.getHeaderDescription().appendChild(validationMessage);
+        } else {
+            validationMessage.remove();
+        }
     }
 
     private DraftsItem makeDraftItem() {
@@ -209,28 +230,6 @@ public class DraftsPart implements ImportSection {
         markCardValidation(draftsCard, valid);
         markWithValidationMessage(valid);
         return valid;
-    }
-
-    private void revalidate() {
-        if (isInvalidatedCard(draftsCard)) {
-            boolean valid = isValid();
-            if (valid) {
-                markCardValidation(draftsCard, true, false);
-                markWithValidationMessage(valid);
-            }
-        }
-    }
-
-    private void markWithValidationMessage(boolean valid) {
-        if (!valid) {
-            draftsCard.getHeaderDescription().appendChild(validationMessage);
-        } else {
-            validationMessage.remove();
-        }
-    }
-
-    private boolean isValid() {
-        return !draftsRequiredSwitch.getValue() || !draftsListGroup.getValues().isEmpty();
     }
 
     @Override

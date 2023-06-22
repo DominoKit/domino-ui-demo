@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -75,7 +75,7 @@ public class CertificateOfOriginPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .addLeftAddOn(Icons.ALL.domain_mdi())
+                .addLeftAddOn(Icons.domain())
                 .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
                 .appendChild(SelectOption.create("Official trade office", "Official trade office"))
                 .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))
@@ -122,6 +122,16 @@ public class CertificateOfOriginPart implements ImportSection {
 
     }
 
+    public void revalidate() {
+        if (isInvalidatedCard(certificateOfOriginCard) && isValid()) {
+            markCardValidation(certificateOfOriginCard, true, false);
+        }
+    }
+
+    private boolean isValid() {
+        return !certificateOfOriginRequiredSwitchButton.getValue() ||
+                fieldsGrouping.validate().isValid();
+    }
 
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
@@ -140,17 +150,6 @@ public class CertificateOfOriginPart implements ImportSection {
         boolean valid = isValid();
         markCardValidation(certificateOfOriginCard, valid);
         return valid;
-    }
-
-    public void revalidate() {
-        if (isInvalidatedCard(certificateOfOriginCard) && isValid()) {
-            markCardValidation(certificateOfOriginCard, true, false);
-        }
-    }
-
-    private boolean isValid() {
-        return !certificateOfOriginRequiredSwitchButton.getValue() ||
-                fieldsGrouping.validate().isValid();
     }
 
     @Override

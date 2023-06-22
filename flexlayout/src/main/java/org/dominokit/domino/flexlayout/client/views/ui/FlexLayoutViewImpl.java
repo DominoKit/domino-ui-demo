@@ -9,36 +9,23 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.flexlayout.client.presenters.FlexLayoutProxy;
 import org.dominokit.domino.flexlayout.client.views.FlexLayoutView;
-import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.Radio;
 import org.dominokit.domino.ui.forms.RadioGroup;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.FlexAlign;
-import org.dominokit.domino.ui.grid.flex.FlexDirection;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.grid.flex.FlexWrap;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.sliders.Slider;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.ui.style.CssClass;
+import org.dominokit.domino.ui.style.LimitOneOfCssClass;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static java.util.Objects.isNull;
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.h;
-import static org.jboss.elemento.Elements.p;
 
 @UiView(presentable = FlexLayoutProxy.class)
 @SampleClass
@@ -52,14 +39,14 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
     protected HTMLDivElement init() {
         element = div().element();
 
-        element.appendChild(LinkToSourceCode.create("flexlayout", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("flexlayout", this.getClass()).element());
         element.appendChild(BlockHeader.create("FLEX LAYOUT").element());
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
                 .style("color: #666;")
-                .add(a().attr("href", "https://css-tricks.com/snippets/css/a-guide-to-flexbox/")
+                .appendChild(a().setAttribute("href", "https://css-tricks.com/snippets/css/a-guide-to-flexbox/")
                         .textContent("here."))
-                .add(TextNode.of(" Or flex documentation on "))
-                .add(a().attr("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/flex")
+                .appendChild(text(" Or flex documentation on "))
+                .appendChild(a().setAttribute("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/flex")
                         .textContent("MDN."))
                 .element());
         layoutPlaygroundCard = Card.create("LAYOUT PLAYGROUND");
@@ -79,34 +66,60 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void initLayoutPlayground() {
-        RadioGroup<String> alignItemsRadioGroup = RadioGroup.<String>create("align-items").hide();
-        CheckBox fillHeightCheckBox = CheckBox.create("Fill height");
-        RadioGroup<String> directionsRadioGroup = RadioGroup.create("direction");
-        RadioGroup<String> justifyContentRadioGroup = RadioGroup.create("justify-content");
+        RadioGroup<CssClass> alignItemsRadioGroup = RadioGroup.create("align-items");
+        RadioGroup<CssClass> directionsRadioGroup = RadioGroup.create("direction");
+        RadioGroup<CssClass> justifyContentRadioGroup = RadioGroup.create("justify-content");
 
         // ********* settings part ********* //
-        Button addBlockButton = Button.create("ADD BLOCK");
-        Button resetButton = Button.create("RESET");
-        RadioGroup<String> wrapRadioGroup = RadioGroup.create("wrap", "Wrap");
-        layoutPlaygroundCard.setBodyPaddingTop("40px")
+        LinkButton addBlockButton = LinkButton.create("ADD BLOCK");
+        LinkButton resetButton = LinkButton.create("RESET");
+        RadioGroup<CssClass> wrapRadioGroup = RadioGroup.create("wrap", "Wrap");
+        LimitOneOfCssClass directionCss = LimitOneOfCssClass.of(
+                dui_flex_row,
+                dui_flex_row_reverse,
+                dui_flex_col,
+                dui_flex_col_reverse
+        );
+
+        LimitOneOfCssClass wrapCss = LimitOneOfCssClass.of(
+                dui_flex_wrap,
+                dui_flex_wrap_reverse,
+                dui_flex_nowrap
+        );
+
+        LimitOneOfCssClass justifyContentCss = LimitOneOfCssClass.of(
+                dui_justify_start,
+                dui_justify_end,
+                dui_justify_center,
+                dui_justify_around,
+                dui_justify_evenly,
+                dui_justify_between
+        );
+
+        LimitOneOfCssClass alignItemsCss = LimitOneOfCssClass.of(
+                dui_items_start,
+                dui_items_end,
+                dui_items_center,
+                dui_items_stretch,
+                dui_items_baseline
+        );
+        layoutPlaygroundCard
                 .appendChild(Row.create()
                         .appendChild(Column.span6()
                                 .appendChild(directionsRadioGroup
                                         .setHelperText("Containers inside Flex Layout can have different directions")
                                         .setLabel("Directions")
-                                        .appendChild(Radio.create(FlexDirection.LEFT_TO_RIGHT.name(), "Left to right").check())
-                                        .appendChild(Radio.create(FlexDirection.RIGHT_TO_LEFT.name(), "Right to left"))
-                                        .appendChild(Radio.create(FlexDirection.TOP_TO_BOTTOM.name(), "Top to bottom"))
-                                        .appendChild(Radio.create(FlexDirection.BOTTOM_TO_TOP.name(), "Bottom to top"))
+                                        .appendChild(Radio.create(dui_flex_row, "Left to right").check())
+                                        .appendChild(Radio.create(dui_flex_row_reverse, "Right to left"))
+                                        .appendChild(Radio.create(dui_flex_col, "Top to bottom"))
+                                        .appendChild(Radio.create(dui_flex_col_reverse, "Bottom to top"))
                                         .horizontal()
                                 ))
-                        .appendChild(Column.span2()
-                                .appendChild(fillHeightCheckBox))
-                        .appendChild(Column.span4()
+                        .appendChild(Column.span6()
                                 .appendChild(wrapRadioGroup
-                                        .appendChild(Radio.create(FlexWrap.NO_WRAP.name(), "No wrap").check())
-                                        .appendChild(Radio.create(FlexWrap.WRAP_TOP_TO_BOTTOM.name(), "Wrap top to bottom"))
-                                        .appendChild(Radio.create(FlexWrap.WRAP_BOTTOM_TO_TOP.name(), "Wrap bottom to top"))
+                                        .appendChild(Radio.create(dui_flex_nowrap, "No wrap").check())
+                                        .appendChild(Radio.create(dui_flex_wrap, "Wrap top to bottom"))
+                                        .appendChild(Radio.create(dui_flex_wrap_reverse, "Wrap bottom to top"))
                                         .horizontal())
                         )
                 )
@@ -115,100 +128,70 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(justifyContentRadioGroup
                                         .setHelperText("Containers inside Flex Layout can be placed in different ways")
                                         .setLabel("Justify Content")
-                                        .appendChild(Radio.create(FlexJustifyContent.START.name(), "Start").check())
-                                        .appendChild(Radio.create(FlexJustifyContent.END.name(), "End"))
-                                        .appendChild(Radio.create(FlexJustifyContent.CENTER.name(), "Center"))
-                                        .appendChild(Radio.create(FlexJustifyContent.SPACE_BETWEEN.name(), "Space between"))
-                                        .appendChild(Radio.create(FlexJustifyContent.SPACE_AROUND.name(), "Space around"))
-                                        .appendChild(Radio.create(FlexJustifyContent.SPACE_EVENLY.name(), "Space evenly"))
+                                        .appendChild(Radio.create(dui_justify_start, "Start").check())
+                                        .appendChild(Radio.create(dui_justify_end, "End"))
+                                        .appendChild(Radio.create(dui_justify_center, "Center"))
+                                        .appendChild(Radio.create(dui_justify_between, "Space between"))
+                                        .appendChild(Radio.create(dui_justify_around, "Space around"))
+                                        .appendChild(Radio.create(dui_justify_evenly, "Space evenly"))
                                         .horizontal()
                                 ))
                         .appendChild(Column.span6()
                                 .appendChild(alignItemsRadioGroup
                                         .setHelperText("Containers inside Flex Layout can be aligned in different ways")
                                         .setLabel("Align items")
-                                        .appendChild(Radio.create(FlexAlign.START.name(), "Start"))
-                                        .appendChild(Radio.create(FlexAlign.END.name(), "End"))
-                                        .appendChild(Radio.create(FlexAlign.CENTER.name(), "Center"))
-                                        .appendChild(Radio.create(FlexAlign.STRETCH.name(), "Stretch").check())
-                                        .appendChild(Radio.create(FlexAlign.BASE_LINE.name(), "Base line"))
+                                        .appendChild(Radio.create(dui_items_start, "Start").check())
+                                        .appendChild(Radio.create(dui_items_end, "End"))
+                                        .appendChild(Radio.create(dui_items_center, "Center"))
+                                        .appendChild(Radio.create(dui_items_stretch, "Stretch"))
+                                        .appendChild(Radio.create(dui_items_baseline, "Base line"))
                                         .horizontal()
                                 )
                         )
                 )
                 .appendChild(Row.create()
-                        .fullSpan(column -> column.appendChild(resetButton.linkify().style().addCss(Styles.pull_right))
-                                .appendChild(addBlockButton.linkify().style().addCss(Styles.pull_right)))
+                        .appendChild(Column.span12()
+                                .appendChild(resetButton.addCss(dui_float_right))
+                                .appendChild(addBlockButton.addCss(dui_float_right)))
                 );
-
         // ********* flex layout part ********* //
-        FlexLayout flexLayout = FlexLayout.create()
-                .style()
-                .addCss("demo-flex-layout-container")
-                .get()
-                .appendChild(FlexItem.create()
-                        .style()
-                        .addCss("demo-flex-layout-block")
-                        .get()
+        DivElement flexLayout = div().addCss(dui_flex, dui_flex_row, dui_h_full, dui_items_start, dui_gap_4)
+                .setCssProperty("counter-reset", "section")
+                .appendChild(div()
+                        .addCss(() -> "demo-flex-layout-block")
                         .appendChild(h(4)))
-                .appendChild(FlexItem.create()
-                        .style()
-                        .addCss("demo-flex-layout-block")
-                        .get()
+                .appendChild(div().addCss(() -> "demo-flex-layout-block")
                         .appendChild(h(4)))
-                .appendChild(FlexItem.create()
-                        .style()
-                        .addCss("demo-flex-layout-block")
-                        .get()
-                        .appendChild(h(4)))
-                .setDirection(FlexDirection.LEFT_TO_RIGHT);
+                .appendChild(div().addCss(() -> "demo-flex-layout-block")
+                        .appendChild(h(4)));
 
         layoutPlaygroundCard.appendChild(div()
-                .css("demo-flex-layout-result-container")
-                .add(flexLayout)
+                .addCss(dui_h_96, dui_bg_accent_d_4)
+                .appendChild(flexLayout)
                 .element());
 
         // ********* listeners part ********* //
-        directionsRadioGroup.addChangeHandler(direction -> {
-            FlexDirection flexDirection = FlexDirection.valueOf(direction);
-            if (fillHeightCheckBox.isChecked() || isVerticalDirection(flexDirection)) {
-                flexLayout.style().addCss("fill-height");
-            } else {
-                flexLayout.style().removeCss("fill-height");
-            }
-            flexLayout.setDirection(flexDirection);
-        });
+        directionsRadioGroup.addChangeListener((old, direction) -> flexLayout.addCss(directionCss.use(direction)));
 
-        fillHeightCheckBox.addChangeHandler(value -> {
-            if (value) {
-                alignItemsRadioGroup.show();
-                flexLayout.style().addCss("fill-height");
-            } else {
-                alignItemsRadioGroup.hide();
-                flexLayout.style().removeCss("fill-height");
-            }
-        });
 
-        justifyContentRadioGroup.addChangeHandler(direction -> flexLayout.setJustifyContent(FlexJustifyContent.valueOf(direction)));
+        justifyContentRadioGroup.addChangeListener((old, justify) -> flexLayout.addCss(justifyContentCss.use(justify)));
 
-        alignItemsRadioGroup.addChangeHandler(direction -> flexLayout.setAlignItems(FlexAlign.valueOf(direction)));
+        alignItemsRadioGroup.addChangeListener((old, align) -> flexLayout.addCss(alignItemsCss.use(align)));
 
-        wrapRadioGroup.addChangeHandler(value -> flexLayout.setWrap(FlexWrap.valueOf(value)));
+        wrapRadioGroup.addChangeListener((old, wrap) -> flexLayout.addCss(wrapCss.use(wrap)));
 
-        List<FlexItem<HTMLDivElement>> dynamicAddedItems = new ArrayList<>();
+        List<DivElement> dynamicAddedItems = new ArrayList<>();
 
         addBlockButton.addClickListener(evt -> {
-            FlexItem<HTMLDivElement> item = FlexItem.create()
-                    .style()
+            DivElement item = div()
                     .addCss("demo-flex-layout-block")
-                    .get()
                     .appendChild(h(4));
             flexLayout.appendChild(item);
             dynamicAddedItems.add(item);
         });
 
         resetButton.addClickListener(evt -> {
-            for (FlexItem<HTMLDivElement> dynamicAddedItem : dynamicAddedItems) {
+            for (DivElement dynamicAddedItem : dynamicAddedItems) {
                 dynamicAddedItem.remove();
             }
             dynamicAddedItems.clear();
@@ -217,14 +200,22 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void initFlexItems() {
-        Slider orderSlider = Slider.create(6);
+        Slider orderSlider = Slider.create(7);
         Slider flexGrowSlider = Slider.create(10);
         Slider flexShrinkSlider = Slider.create(10);
         TextBox flexBasisTextBox = TextBox.create("Flex Basis").setHelperText("Default size of an element before the remaining space is distributed");
         RadioGroup<String> targetBlockRadioGroup = RadioGroup.create("target-block", "Target block # to play with");
-        RadioGroup<String> alignSelfRadioGroup = RadioGroup.create("align-self", "Align self");
+        RadioGroup<CssClass> alignSelfRadioGroup = RadioGroup.create("align-self", "Align self");
 
-        flexItemsCard.setBodyPaddingTop("40px")
+        LimitOneOfCssClass alignSelfCss = LimitOneOfCssClass.of(
+                dui_self_start,
+                dui_self_end,
+                dui_self_center,
+                dui_self_stretch,
+                dui_self_baseline
+        );
+
+        flexItemsCard
                 .appendChild(Row.create()
                         .appendChild(Column.span4()
                                 .appendChild(targetBlockRadioGroup
@@ -257,88 +248,206 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         )
                         .appendChild(Column.span6()
                                 .appendChild(alignSelfRadioGroup
-                                        .appendChild(Radio.create(FlexAlign.START.name(), "Start"))
-                                        .appendChild(Radio.create(FlexAlign.END.name(), "End"))
-                                        .appendChild(Radio.create(FlexAlign.CENTER.name(), "Center"))
-                                        .appendChild(Radio.create(FlexAlign.STRETCH.name(), "Stretch"))
-                                        .appendChild(Radio.create(FlexAlign.BASE_LINE.name(), "Base line"))
+                                        .appendChild(Radio.create(dui_self_start, "Start"))
+                                        .appendChild(Radio.create(dui_self_end, "End"))
+                                        .appendChild(Radio.create(dui_self_center, "Center"))
+                                        .appendChild(Radio.create(dui_self_stretch, "Stretch"))
+                                        .appendChild(Radio.create(dui_self_baseline, "Base line"))
                                         .horizontal()
                                 )
                         )
                 );
 
-        FlexLayout flexLayout = FlexLayout.create()
-                .style()
-                .addCss("demo-flex-layout-container")
-                .addCss("fill-height")
-                .get()
-                .setDirection(FlexDirection.LEFT_TO_RIGHT);
+        DivElement flexLayout = div()
+                .addCss(dui_flex, dui_flex_row, dui_h_full, dui_items_start, dui_gap_4)
+                .setCssProperty("counter-reset", "section");
 
-        Map<String, FlexItem<HTMLDivElement>> items = new HashMap<>();
+        Map<String, DivElement> items = new HashMap<>();
         for (int i = 0; i < 5; i++) {
-            FlexItem<HTMLDivElement> item = FlexItem.create()
-                    .style()
-                    .addCss("demo-flex-layout-block")
-                    .addCss(colorOf(i + 1).getBackground())
-                    .get()
-                    .setAlignSelf(FlexAlign.START)
-                    .setOrder(i + 1)
+            DivElement item = div()
+                    .addCss(dui_self_start, () -> "demo-flex-layout-block", background(i + 1), order(i))
                     .appendChild(h(4));
-            items.put(i + "", item);
+            items.put(String.valueOf(i), item);
             flexLayout.appendChild(item);
         }
 
         flexItemsCard.appendChild(div()
-                .css("demo-flex-layout-result-container")
-                .add(flexLayout)
+                .addCss(()->"demo-flex-layout-result-container", dui_bg_accent_d_4)
+                .appendChild(flexLayout)
                 .element());
 
+        LimitOneOfCssClass orderCss = LimitOneOfCssClass.of(
+                dui_order_1,
+                dui_order_10,
+                dui_order_20,
+                dui_order_30,
+                dui_order_40,
+                dui_order_50,
+                dui_order_60,
+                dui_order_70
+        );
 
-        orderSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
-                .setOrder((int) value));
+        LimitOneOfCssClass growCss = LimitOneOfCssClass.of(
+                dui_grow_0,
+                dui_grow_1,
+                dui_grow_2,
+                dui_grow_3,
+                dui_grow_4,
+                dui_grow_5,
+                dui_grow_6,
+                dui_grow_7,
+                dui_grow_8,
+                dui_grow_9,
+                dui_grow_10,
+                dui_grow_11,
+                dui_grow_12
+        );
 
-        flexGrowSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
-                .setFlexGrow((int) value));
+        LimitOneOfCssClass shrinkCss = LimitOneOfCssClass.of(
+                dui_shrink_0,
+                dui_shrink_1,
+                dui_shrink_2,
+                dui_shrink_3,
+                dui_shrink_4,
+                dui_shrink_5,
+                dui_shrink_6,
+                dui_shrink_7,
+                dui_shrink_8,
+                dui_shrink_9,
+                dui_shrink_10,
+                dui_shrink_11,
+                dui_shrink_12
+        );
+        orderSlider.addChangeListener((old, value) -> items
+                .get(targetBlockRadioGroup.getValue())
+                .addCss(orderCss.use(order(value.intValue())))
+                .setAttribute("dui-demo-order", value.intValue())
+        );
 
-        flexShrinkSlider.addSlideHandler(value -> items.get(targetBlockRadioGroup.getValue())
-                .setFlexShrink((int) value));
+        flexGrowSlider.addChangeListener((old, value) -> items.get(targetBlockRadioGroup.getValue())
+                .addCss(growCss.use(grow(value.intValue())))
+                .setAttribute("dui-demo-grow", value.intValue())
+        );
 
-        alignSelfRadioGroup.addChangeHandler(value -> items.get(targetBlockRadioGroup.getValue())
-                .setAlignSelf(FlexAlign.valueOf(value)));
+        flexShrinkSlider.addChangeListener((old, value) -> items.get(targetBlockRadioGroup.getValue())
+                .addCss(shrinkCss.use(shrink(value.intValue())))
+                .setAttribute("dui-demo-shrink", value.intValue())
+        );
 
-        flexBasisTextBox.addChangeHandler(value -> items.get(targetBlockRadioGroup.getValue())
-                .setFlexBasis(value));
+        alignSelfRadioGroup.addChangeListener((old, value) -> items.get(targetBlockRadioGroup.getValue())
+                .addCss(alignSelfCss.use(value))
+        );
 
-        targetBlockRadioGroup.addChangeHandler(value -> {
-            FlexItem flexItem = items.get(targetBlockRadioGroup.getValue());
-            flexGrowSlider.setValue(flexItem.getFlexGrow());
-            orderSlider.setValue(flexItem.getOrder());
-            flexShrinkSlider.setValue(flexItem.getFlexShrink());
-            flexBasisTextBox.setValue(isNull(flexItem.getFlexBasis()) ? "" : flexItem.getFlexBasis());
-            alignSelfRadioGroup.setValue(flexItem.getAlignSelf().name());
+        flexBasisTextBox.addChangeListener((old, value) -> items.get(targetBlockRadioGroup.getValue())
+                .setCssProperty("flex-basis", value)
+                .setAttribute("dui-demo-basis", value)
+        );
+
+        targetBlockRadioGroup.addChangeListener((old, value) -> {
+            DivElement flexItem = items.get(targetBlockRadioGroup.getValue());
+            flexGrowSlider.setValue( Double.parseDouble(flexItem.getAttribute("dui-demo-grow", "0")));
+            orderSlider.setValue(Double.parseDouble(flexItem.getAttribute("dui-demo-order", value)));
+            flexShrinkSlider.setValue(Double.parseDouble(flexItem.getAttribute("dui-demo-shrink", "0")));
+            flexBasisTextBox.setValue(flexItem.getAttribute("dui-demo-basis", "auto"));
+            alignSelfCss.getActive(flexItem.element())
+                            .ifPresent(alignSelfRadioGroup::setValue);
+
         });
 
         targetBlockRadioGroup.setValue("2");
     }
 
-    private Color colorOf(int i) {
+    private CssClass background(int i) {
         switch (i) {
             case 1:
-                return Color.RED;
+                return dui_bg_accent;
             case 2:
-                return Color.BLUE;
+                return dui_bg_accent_l_1;
             case 3:
-                return Color.GREEN;
+                return dui_bg_accent_l_2;
             case 4:
-                return Color.WHITE;
+                return dui_bg_accent_l_3;
             case 5:
-                return Color.TEAL;
+                return dui_bg_accent_l_4;
             default:
-                return Color.BLACK;
+                return dui_bg_accent_l_5;
         }
     }
 
-    private boolean isVerticalDirection(FlexDirection flexDirection) {
-        return FlexDirection.TOP_TO_BOTTOM.equals(flexDirection) || FlexDirection.BOTTOM_TO_TOP.equals(flexDirection);
+    private CssClass order(int i) {
+        switch (i) {
+            case 0:
+                return dui_order_10;
+            case 1:
+                return dui_order_20;
+            case 2:
+                return dui_order_30;
+            case 3:
+                return dui_order_40;
+            case 4:
+                return dui_order_50;
+            case 5:
+                return dui_order_60;
+            default:
+                return dui_order_70;
+        }
+    }
+
+    private CssClass grow(int i) {
+        switch (i) {
+            case 0:
+                return dui_grow_0;
+            case 1:
+                return dui_grow_1;
+            case 2:
+                return dui_grow_2;
+            case 3:
+                return dui_grow_3;
+            case 4:
+                return dui_grow_4;
+            case 5:
+                return dui_grow_5;
+            case 6:
+                return dui_grow_6;
+            case 7:
+                return dui_grow_7;
+            case 8:
+                return dui_grow_8;
+            case 9:
+                return dui_grow_9;
+            case 10:
+                return dui_grow_10;
+            default:
+                return dui_grow_12;
+        }
+    }
+
+    private CssClass shrink(int i) {
+        switch (i) {
+            case 0:
+                return dui_shrink_0;
+            case 1:
+                return dui_shrink_1;
+            case 2:
+                return dui_shrink_2;
+            case 3:
+                return dui_shrink_3;
+            case 4:
+                return dui_shrink_4;
+            case 5:
+                return dui_shrink_5;
+            case 6:
+                return dui_shrink_6;
+            case 7:
+                return dui_shrink_7;
+            case 8:
+                return dui_shrink_8;
+            case 9:
+                return dui_shrink_9;
+            case 10:
+                return dui_shrink_10;
+            default:
+                return dui_shrink_12;
+        }
     }
 }

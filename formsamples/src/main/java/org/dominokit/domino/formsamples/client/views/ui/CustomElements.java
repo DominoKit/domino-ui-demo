@@ -8,7 +8,7 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.utils.ElementUtil;
 
 import java.util.List;
@@ -21,7 +21,7 @@ public class CustomElements {
     public static final String NUMBER_OF_COPIES = "Number of copies";
 
     public static TextBox createDescriptionField() {
-        return TextBox.create("Description").addLeftAddOn(Icons.ALL.note_mdi())
+        return TextBox.create("Description").addLeftAddOn(Icons.note())
                 .setAutoValidation(true)
                 .setRequired(true);
     }
@@ -36,19 +36,27 @@ public class CustomElements {
     public static TextBox createCopiesField() {
         return numbersOnly(TextBox.create(NUMBER_OF_COPIES))
                 .setHelperText(NUMBERS_ONLY)
-                .addLeftAddOn(Icons.ALL.content_copy_mdi())
+                .addLeftAddOn(Icons.content_copy())
                 .setAutoValidation(true)
                 .setRequired(true);
     }
 
     public static Select<Country> createCountriesSelect(String label, List<Country> countries) {
         Select<Country> countrySelect = Select.create(label);
-        countrySelect.addLeftAddOn(Icons.ALL.map_mdi());
+        countrySelect.addLeftAddOn(Icons.map());
 
         countries.forEach(country -> {
             countrySelect.appendChild(SelectOption.create(country, country.getName()));
         });
         return countrySelect;
+    }
+
+    public static boolean isInvalidatedCard(Card card) {
+        return card.style().containsCss("invalid-section");
+    }
+
+    public static void markCardValidation(Card card, boolean isValid) {
+        markCardValidation(card, isValid, true);
     }
 
     public static void markCardValidation(Card card, boolean isValid, boolean scroll) {
@@ -63,14 +71,6 @@ public class CustomElements {
         } else {
             card.style().removeCss("invalid-section");
         }
-    }
-
-    public static boolean isInvalidatedCard(Card card) {
-        return card.style().containsCss("invalid-section");
-    }
-
-    public static void markCardValidation(Card card, boolean isValid) {
-        markCardValidation(card, isValid, true);
     }
 
     public static ValidationResult validatePercent(TextBox textBox) {

@@ -2,23 +2,16 @@ package org.dominokit.domino.componentcase.client.ui.views;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.span;
-
 public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSourceCode> {
 
-    private HTMLDivElement element = div().css("open-source", "bg-theme", Elevation.LEVEL_1.getStyle())
-            .add(Icons.ALL.codepen_mdi())
-            .add(span().textContent("Source code"))
-            .element();
-
-    public static LinkToSourceCode create(String moduleName, Class impl) {
-        return new LinkToSourceCode(moduleName, impl);
-    }
+    private DivElement element = div().css("open-source", "bg-theme", Elevation.LEVEL_1.getStyle())
+            .appendChild(Icons.codepen())
+            .appendChild(span().textContent("Source code"));
 
     public LinkToSourceCode(String moduleName, Class impl) {
         String fullClassName = impl.getCanonicalName().replace(".", "/") + ".java";
@@ -28,8 +21,12 @@ public class LinkToSourceCode extends BaseDominoElement<HTMLDivElement, LinkToSo
         });
     }
 
+    public static LinkToSourceCode createLink(String moduleName, Class impl) {
+        return new LinkToSourceCode(moduleName, impl);
+    }
+
     @Override
     public HTMLDivElement element() {
-        return element;
+        return element.element();
     }
 }

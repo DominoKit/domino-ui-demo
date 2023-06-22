@@ -7,6 +7,7 @@ import org.dominokit.domino.ui.datatable.RowCell;
 import org.dominokit.domino.ui.datatable.TableRow;
 import org.dominokit.domino.ui.datatable.plugins.DataTablePlugin;
 import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.utils.ElementsFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,12 +16,12 @@ public class ColumnLockPlugin<T> implements DataTablePlugin<T> {
 
     private final int count;
 
-    public static <T> ColumnLockPlugin<T> create(int count) {
-        return new ColumnLockPlugin<>(count);
-    }
-
     public ColumnLockPlugin(int count) {
         this.count = count;
+    }
+
+    public static <T> ColumnLockPlugin<T> create(int count) {
+        return new ColumnLockPlugin<>(count);
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ColumnLockPlugin<T> implements DataTablePlugin<T> {
             ColumnConfig<T> column = cell.getColumnConfig();
             int cellIndex = columns.indexOf(column);
             if (cellIndex - count < 0) {
-                DominoElement<HTMLTableCellElement> cellElement = DominoElement.of(cell.getCellInfo().getElement());
+                DominoElement<HTMLTableCellElement> cellElement = ElementsFactory.elements.elementOf(cell.getCellInfo().getElement());
                 cellElement.css("locked-column");
                 cellElement.setLeft(cellElement.element().offsetLeft - 35 + "px");
             }

@@ -14,27 +14,23 @@ import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.TextNode;
-import org.jboss.elemento.Elements;
+import org.dominokit.domino.ui.style.CssClass;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 import java.util.Arrays;
+
 
 @UiView(presentable = BadgesProxy.class)
 @SampleClass
 public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements BadgesView {
 
-
-    private HTMLDivElement element = Elements.div().element();
+    private HTMLDivElement element = div().element();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("badges", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("badges", this.getClass()).element());
         element.appendChild(BlockHeader.create("BADGES").element());
 
         buttonExample();
@@ -55,27 +51,23 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
 
         element.appendChild(Card.create("BUTTON EXAMPLES")
                 .appendChild(Row.create()
-                        .addColumn(Column.span3().appendChild(Button.createSuccess("SUCCESS ")
-                                .large()
-                                .block()
-                                .appendChild(Badge.create("4"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.createPrimary("PRIMARY")
-                                .large()
-                                .block()
-                                .appendChild(Badge.create("10+"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.createDanger("DANGER")
-                                .large()
-                                .block()
-                                .appendChild(Badge.create("8"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.createWarning("WARNING")
-                                .large()
-                                .block()
-                                .appendChild(Badge.create("3"))
-                                ))
-                        )
+                        .appendChild(Column.span3().appendChild(Button.create("SUCCESS")
+                                .addCss(dui_success)
+                                .appendChild(Badge.create("4").addCss(dui_rounded_full))
+                        ))
+                        .appendChild(Column.span3().appendChild(Button.create("PRIMARY")
+                                .addCss(dui_primary)
+                                .appendChild(Badge.create("10+").addCss(dui_bg_white, dui_fg_grey_d_2, dui_rounded_full))
+                        ))
+                        .appendChild(Column.span3().appendChild(Button.create("DANGER")
+                                .addCss(dui_error)
+                                .appendChild(Badge.create("8").addCss(dui_bg_white, dui_fg_red, dui_rounded_md))
+                        ))
+                        .appendChild(Column.span3().appendChild(Button.create("WARNING")
+                                .addCss(dui_warning)
+                                .appendChild(Badge.create("99999999+").addCss(dui_bg_white, dui_fg_grey_d_2))
+                        ))
+                )
                 .element());
     }
 
@@ -84,33 +76,40 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
 
         this.element.appendChild(Card.create("BUTTON EXAMPLES WITH MATERIAL DESIGN COLORS")
                 .appendChild(Row.create()
-                        .addColumn(Column.span3().appendChild(Button.create("GREEN").setBackground(Color.GREEN).large().block()
-                                .appendChild(Badge.create("2"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("BLUE").setBackground(Color.BLUE).large().block()
-                                .appendChild(Badge.create("10+"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("RED").setBackground(Color.RED).large().block()
-                                .appendChild(Badge.create("13"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("ORANGE").setBackground(Color.ORANGE).large().block()
-                                .appendChild(Badge.create("5"))
-                                ))
+                        .appendChild(Column.span3()
+                                .appendChild(Icons.bell()
+                                        .appendChild(Badge.create("4").addCss(dui_bg_red, dui_rounded_full, dui_fg_white))
+                                )
                         )
-                .appendChild(Row.create()
-                        .addColumn(Column.span3().appendChild(Button.create("PINK").setBackground(Color.PINK).large().block()
-                                .appendChild(Badge.create("14"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("CYAN").setBackground(Color.CYAN).large().block()
-                                .appendChild(Badge.create("99+"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("TEAL").setBackground(Color.TEAL).large().block()
-                                .appendChild(Badge.create("26"))
-                                ))
-                        .addColumn(Column.span3().appendChild(Button.create("PURPLE").setBackground(Color.PURPLE).large().block()
-                                .appendChild(Badge.create("47"))
-                                ))
+                        .appendChild(Column.span3()
+                                .appendChild(Icons.bell()
+                                        .appendChild(Badge.create("9999999999").addCss(dui_bg_red, dui_rounded_full, dui_fg_white))
+                                )
                         )
+                        .appendChild(Column.span3()
+                                .appendChild(Icons.account()
+                                        .appendChild(Badge.create("5")
+                                                .addCss(dui_bg_amber,
+                                                        dui_rounded_md,
+                                                        dui_fg_white,
+                                                        dui_top_14
+                                                )
+                                        )
+                                )
+                        )
+                        .appendChild(Column.span3()
+                                .appendChild(Icons.account()
+                                        .clickable()
+                                        .appendChild(Badge.create("10")
+                                                .addCss(dui_bg_amber,
+                                                        dui_rounded_xl,
+                                                        dui_fg_white,
+                                                        dui_top_14
+                                                )
+                                        )
+                                )
+                        )
+                )
                 .element());
     }
 
@@ -119,25 +118,23 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
 
         ListGroup<BadgeSample> listGroup = ListGroup.<BadgeSample>create()
                 .setItemRenderer((listGroup1, listItem) -> {
-                    listItem.appendChild(FlexLayout.create()
-                            .css(Styles.padding_10)
-                            .appendChild(FlexItem.create()
-                                    .setFlexGrow(1)
-                                    .appendChild(TextNode.of(listItem.getValue().desc))
+                    listItem.appendChild(div().addCss(dui_flex, dui_p_4)
+                            .appendChild(div().addCss(dui_flex, dui_items_center, dui_grow_1)
+                                    .appendChild(text(listItem.getValue().desc))
                             )
-                            .appendChild(FlexItem.create()
+                            .appendChild(div()
                                     .appendChild(Badge.create(listItem.getValue().badgeText)
-                                            .setBackground(listItem.getValue().color)
+                                            .addCss(listItem.getValue().cssClasses)
                                     )
                             )
                     );
                 })
                 .setItems(Arrays.asList(
-                        new BadgeSample("Cras justo odio", "14 new", Color.RED),
-                        new BadgeSample("Dapibus ac facilisis in", "99 unread", Color.CYAN),
-                        new BadgeSample("Morbi leo risus", "99+", Color.TEAL),
-                        new BadgeSample("Porta ac consectetur ac", "21", Color.ORANGE),
-                        new BadgeSample("Vestibulum at eros", "18", Color.PURPLE)
+                        new BadgeSample("Cras justo odio", "14 new", dui_bg_red, dui_rounded_md),
+                        new BadgeSample("Dapibus ac facilisis in", "99 unread", dui_bg_cyan, dui_rounded_full),
+                        new BadgeSample("Morbi leo risus", "99+", dui_bg_teal, dui_border, dui_border_solid, dui_border_teal_d_4),
+                        new BadgeSample("Porta ac consectetur ac", "21", dui_bg_orange, dui_rounded_full, dui_border_1, dui_border_solid, dui_border_amber),
+                        new BadgeSample("Vestibulum at eros", "18", dui_bg_inherit, dui_fg_inherit, dui_border_1, dui_border_solid, dui_border_accent_d_2)
                 ));
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
@@ -145,15 +142,15 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                 .element());
     }
 
-    private static class BadgeSample{
+    private static class BadgeSample {
         private final String desc;
         private final String badgeText;
-        private final Color color;
+        private final CssClass[] cssClasses;
 
-        public BadgeSample(String desc, String badgeText, Color color) {
+        public BadgeSample(String desc, String badgeText, CssClass... cssClasses) {
             this.desc = desc;
             this.badgeText = badgeText;
-            this.color = color;
+            this.cssClasses = cssClasses;
         }
     }
 

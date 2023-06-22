@@ -5,7 +5,7 @@ import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.jboss.elemento.IsElement;
 
 public final class AccountDetails implements IsElement<HTMLDivElement> {
@@ -17,15 +17,15 @@ public final class AccountDetails implements IsElement<HTMLDivElement> {
 
     public AccountDetails() {
         accountNumberHeader = TextBox.create("Account number")
-                .addLeftAddOn(Icons.ALL.wallet_mdi())
+                .addLeftAddOn(Icons.wallet())
                 .setReadOnly(true);
 
         ibanHeader = TextBox.create("IBAN")
-                .addLeftAddOn(Icons.ALL.code_array_mdi())
+                .addLeftAddOn(Icons.code_array())
                 .setReadOnly(true);
 
         currencyHeader = TextBox.create("Currency")
-                .addLeftAddOn(Icons.ALL.home_currency_usd_mdi())
+                .addLeftAddOn(Icons.home_currency_usd())
                 .setReadOnly(true);
 
         element = Row.create()

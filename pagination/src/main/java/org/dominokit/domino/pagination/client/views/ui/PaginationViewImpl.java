@@ -12,59 +12,57 @@ import org.dominokit.domino.pagination.client.presenters.PaginationProxy;
 import org.dominokit.domino.pagination.client.views.PaginationView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.pagination.AdvancedPagination;
 import org.dominokit.domino.ui.pagination.Pager;
 import org.dominokit.domino.ui.pagination.ScrollingPagination;
 import org.dominokit.domino.ui.pagination.SimplePagination;
-
-import static org.jboss.elemento.Elements.b;
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = PaginationProxy.class)
 @SampleClass
 public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements PaginationView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("pagination", this.getClass()).element());
-        element.appendChild(BlockHeader.create("PAGINATION").element());
+        element.appendChild(LinkToSourceCode.createLink("pagination", this.getClass()));
+        element.appendChild(BlockHeader.create("PAGINATION"));
 
         defaultPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultPagination()));
 
         activePageSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activePageSample()));
 
         sizesSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()));
 
         initScrollerPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initScrollerPagination()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initScrollerPagination()));
 
         initAdvancedPagination();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedPagination()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initAdvancedPagination()));
 
-        element.appendChild(BlockHeader.create("PAGER").element());
+        element.appendChild(BlockHeader.create("PAGER"));
         pagerNexPrevSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerNexPrevSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.pagerNexPrevSample()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void defaultPagination() {
         element.appendChild(Card.create("DEFAULT PAGINATION",
-                "Simple pagination inspired by Rdio, great for apps and search results. The large block is hard to miss, easily scalable, and provides large click areas.")
+                        "Simple pagination inspired by Radio, great for apps and search results. The large block is hard to miss, easily scalable, and provides large click areas.")
                 .appendChild(SimplePagination.create(5)
-                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+"")))
-                .element());
+                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber))))
+        );
 
     }
 
@@ -73,9 +71,9 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(Card.create("ACTIVE PAGE", "You can mark the current active page.")
                 .appendChild(SimplePagination.create(5)
                         .markActivePage()
-                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
+                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber)))
                         .gotoPage(3))
-                .element());
+        );
 
 
     }
@@ -85,57 +83,52 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
         element.appendChild(Card.create("PAGINATION SIZE", "There is three sizes for pagination")
                 .appendChild(Row.create()
-                        .addColumn(Column.span4()
+                        .appendChild(Column.span4()
                                 .appendChild(b().textContent("Large"))
                                 .appendChild(SimplePagination.create(5)
+                                        .addCss(dui_large)
                                         .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + ""))
+                                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber)))
                                         .gotoPage(3)
-                                        .large()))
-                        .addColumn(Column.span4()
+                                )
+                        )
+                        .appendChild(Column.span4()
                                 .appendChild(b().textContent("Default"))
                                 .appendChild(SimplePagination.create(5)
                                         .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + ""))
-                                        .gotoPage(3)))
-                        .addColumn(Column.span4()
+                                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber)))
+                                        .gotoPage(3)
+                                )
+                        )
+                        .appendChild(Column.span4()
                                 .appendChild(b().textContent("Small"))
                                 .appendChild(SimplePagination.create(5)
+                                        .addCss(dui_small)
                                         .markActivePage()
-                                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber+""))
+                                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber)))
                                         .gotoPage(3)
-                                        .small()))
-                        .element())
-                .element());
+                                )
+                        )
+                )
+        );
 
 
     }
 
     @SampleMethod
     private void initScrollerPagination() {
-        ScrollingPagination scrollingPagination = ScrollingPagination.create(50, 10, 5);
         element.appendChild(Card.create("SCROLLING PAGINATION", "For large number of pages scrolling pagiation allow viewing a set of pages at a time.")
-                        .appendChild(Button.create("update by 100")
-                                .addClickListener(evt -> scrollingPagination.updatePages(100)))
-                        .appendChild(Button.create("update by 100 not silent")
-                                .addClickListener(evt -> scrollingPagination.updatePages(100, false)))
-                 .appendChild(Button.create("update by 0")
-                                .addClickListener(evt -> scrollingPagination.updatePages(0)))
-                 .appendChild(Button.create("update by 0 not silent")
-                                .addClickListener(evt -> scrollingPagination.updatePages(0, false)))
-                .appendChild(scrollingPagination
-                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
-                .element());
-
-
+                .appendChild(ScrollingPagination.create(500, 10, 5)
+                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber))))
+        );
     }
 
     @SampleMethod
     private void initAdvancedPagination() {
         element.appendChild(Card.create("ADVANCED PAGINATION", "Old style pagination with advanced page select.")
                 .appendChild(AdvancedPagination.create(50, 10)
-                        .onPageChanged(pageNumber -> DomGlobal.console.info(pageNumber + "")))
-                .element());
+                        .addChangeListener((oldPage, pageNumber) -> DomGlobal.console.info(String.valueOf(pageNumber))))
+        );
 
 
     }
@@ -152,7 +145,7 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows())
-                .element());
+        );
 
         element.appendChild(Card.create("PAGER ALIGNED TO EDGES", "Use expand to align the pager to the edges.")
                 .appendChild(Pager.create()
@@ -161,8 +154,8 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
-                        .show())
-                .element());
+                        .spread(true))
+        );
 
 
         element.appendChild(Card.create("PAGER WITH DISABLED LINK", "You can Disable/Enable pager links.")
@@ -172,10 +165,8 @@ public class PaginationViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .nextText("Newer")
                         .previousText("Older")
                         .showArrows()
-                        .show()
                         .disablePrevious())
-                .element());
-
+        );
 
 
     }

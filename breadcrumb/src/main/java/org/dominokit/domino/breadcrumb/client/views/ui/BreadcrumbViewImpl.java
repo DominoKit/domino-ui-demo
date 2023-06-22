@@ -11,23 +11,22 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.breadcrumbs.Breadcrumb;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Color;
-import org.jboss.elemento.Elements;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = BreadcrumbProxy.class)
 @SampleClass
 public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements BreadcrumbView {
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-
-        element = Elements.div().element();
+        element = div();
+        element.appendChild(LinkToSourceCode.createLink("breadcrumb", this.getClass()).element());
         element.appendChild(BlockHeader.create("BREADCRUMBS").element());
 
         basicBreadcrumb();
@@ -46,14 +45,13 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.alignment())
                 .element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void basicBreadcrumb() {
-        element.appendChild(LinkToSourceCode.create("breadcrumb", this.getClass()).element());
         element.appendChild(Row.create()
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("BASIC EXAMPLES", "Separators are automatically added for breadcrumb elements")
                                 .appendChild(Breadcrumb.create()
                                         .appendChild(" Home ", evt -> {
@@ -64,7 +62,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(" Library ", evt -> {
                                         }))
                                 .appendChild(Breadcrumb.create()
-                                        .setAllowNavigation(false)
+                                        .disable()
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -73,22 +71,22 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("WITH ICONS")
                                 .appendChild(Breadcrumb.create()
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         }))
                                 .appendChild(Breadcrumb.create()
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         }))
                                 .appendChild(Breadcrumb.create()
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
                                         })
                                 )
                         ))
@@ -98,17 +96,17 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void coloredBreadcrumb() {
         element.appendChild(Row.create()
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.PINK)
+                                        .addCss(dui_accent_pink)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.CYAN)
+                                        .addCss(dui_accent_cyan)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -117,7 +115,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.TEAL)
+                                        .addCss(dui_accent_teal)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -128,7 +126,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.ORANGE)
+                                        .addCss(dui_accent_orange)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -141,46 +139,46 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.PINK)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_accent_pink)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
-                                        })
-                                )
-                                .appendChild(Breadcrumb.create()
-                                        .setColor(Color.CYAN)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.TEAL)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_accent_cyan)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.attachment_mdi(), " File ", evt -> {
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setColor(Color.ORANGE)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_accent_teal)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.attachment_mdi(), " File ", evt -> {
+                                        .appendChild(Icons.attachment(), " File ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.widgets_mdi(), " Extensions ", evt -> {
+                                )
+                                .appendChild(Breadcrumb.create()
+                                        .addCss(dui_accent_orange)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
+                                        })
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
+                                        })
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
+                                        })
+                                        .appendChild(Icons.attachment(), " File ", evt -> {
+                                        })
+                                        .appendChild(Icons.widgets(), " Extensions ", evt -> {
                                         })
                                 )
                         ))
@@ -190,17 +188,17 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void breadcrumbWithBackground() {
         element.appendChild(Row.create()
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.RED)
+                                        .addCss(dui_bg_red, dui_fg_white)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.CYAN)
+                                        .addCss(dui_bg_cyan, dui_fg_white)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -209,7 +207,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.TEAL)
+                                        .addCss(dui_bg_teal, dui_fg_white)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -220,7 +218,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.ORANGE)
+                                        .addCss(dui_bg_orange, dui_fg_white)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -233,46 +231,46 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                         ))
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.RED)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_bg_red, dui_fg_white)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
-                                        })
-                                )
-                                .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.CYAN)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.TEAL)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_bg_cyan, dui_fg_white)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
-                                        })
-                                        .appendChild(Icons.ALL.attachment_mdi(), " File ", evt -> {
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .setBackground(Color.ORANGE)
-                                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                                        .addCss(dui_bg_teal, dui_fg_white)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.attachment_mdi(), " File ", evt -> {
+                                        .appendChild(Icons.attachment(), " File ", evt -> {
                                         })
-                                        .appendChild(Icons.ALL.widgets_mdi(), " Extensions ", evt -> {
+                                )
+                                .appendChild(Breadcrumb.create()
+                                        .addCss(dui_bg_orange, dui_fg_white)
+                                        .appendChild(Icons.home(), " Home ", evt -> {
+                                        })
+                                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
+                                        })
+                                        .appendChild(Icons.archive(), " Data ", evt -> {
+                                        })
+                                        .appendChild(Icons.attachment(), " File ", evt -> {
+                                        })
+                                        .appendChild(Icons.widgets(), " Extensions ", evt -> {
                                         })
                                 )
                         ))
@@ -284,32 +282,32 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void alignment() {
         element.appendChild(Card.create("ALIGNMENTS")
                 .appendChild(Breadcrumb.create()
-                        .setBackground(Color.RED)
-                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                        .addCss(dui_bg_red, dui_fg_white)
+                        .appendChild(Icons.home(), " Home ", evt -> {
                         })
-                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                         })
                 )
                 .appendChild(Breadcrumb.create()
                         .alignCenter()
-                        .setBackground(Color.CYAN)
-                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                        .addCss(dui_bg_cyan, dui_fg_white)
+                        .appendChild(Icons.home(), " Home ", evt -> {
                         })
-                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                         })
-                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                        .appendChild(Icons.archive(), " Data ", evt -> {
                         })
                 )
                 .appendChild(Breadcrumb.create()
                         .alignRight()
-                        .setBackground(Color.TEAL)
-                        .appendChild(Icons.ALL.home_mdi(), " Home ", evt -> {
+                        .addCss(dui_bg_teal, dui_fg_white)
+                        .appendChild(Icons.home(), " Home ", evt -> {
                         })
-                        .appendChild(Icons.ALL.library_books_mdi(), " Library ", evt -> {
+                        .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                         })
-                        .appendChild(Icons.ALL.archive_mdi(), " Data ", evt -> {
+                        .appendChild(Icons.archive(), " Data ", evt -> {
                         })
-                        .appendChild(Icons.ALL.attachment_mdi(), " File ", evt -> {
+                        .appendChild(Icons.attachment(), " File ", evt -> {
                         })
                 )
                 .element());

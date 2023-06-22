@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
@@ -34,6 +34,7 @@ import static org.jboss.elemento.Elements.*;
 public class PaymentScheduleSection implements ImportSection {
 
     private final HTMLElement validationMessageElement = small().textContent("Total payment schedules should be 100%").css(Color.RED.getStyle()).element();
+    private final Row paymentSchedulerListGroupRow;
     private TextBox numberOfDaysTextBox;
     private Select<String> paymentScheduleAfterSelect;
     private TextBox percentageTextBox;
@@ -44,12 +45,11 @@ public class PaymentScheduleSection implements ImportSection {
     private Card paymentScheduleCard;
     private HTMLDivElement element = div().element();
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
-    private final Row paymentSchedulerListGroupRow;
 
     public PaymentScheduleSection() {
 
         numberOfDaysTextBox = numbersOnly(TextBox.create("No. Of Days")
-                .addLeftAddOn(Icons.ALL.looks_mdi())
+                .addLeftAddOn(Icons.looks())
                 .setHelperText(Constants.NUMBERS_ONLY))
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
@@ -60,7 +60,7 @@ public class PaymentScheduleSection implements ImportSection {
         paymentScheduleAfterSelect = Select.<String>create("After").appendChild(SelectOption.create("Presentation Of Documents", "Presentation Of Documents"))
                 .appendChild(SelectOption.create("Bill Of Lading Date", "Bill Of Lading Date"))
                 .appendChild(SelectOption.create("Commercial Invoice", "Commercial Invoice"))
-                .addLeftAddOn(Icons.ALL.redo_mdi())
+                .addLeftAddOn(Icons.redo())
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true);
 
@@ -87,7 +87,7 @@ public class PaymentScheduleSection implements ImportSection {
 
         paymentScheduleItemsListGroup = ListGroup.<PaymentScheduleItem>create()
                 .setItemRenderer((listGroup, listItem) -> {
-                    MdiIcon delete = Icons.ALL.delete_mdi()
+                    MdiIcon delete = Icons.delete()
                             .clickable()
                             .styler(style -> style
                                     .setMarginTop("-3px")
@@ -154,7 +154,7 @@ public class PaymentScheduleSection implements ImportSection {
                 .horizontal();
 
         paymentScheduleCard = Card.create("Payment Schedule *");
-        addButton = Button.createDefault(Icons.ALL.plus_mdi())
+        addButton = Button.createDefault(Icons.plus())
                 .setContent("ADD")
                 .linkify()
                 .style()
@@ -198,6 +198,18 @@ public class PaymentScheduleSection implements ImportSection {
                 .element());
     }
 
+    private int remainingPercentage() {
+        List<PaymentScheduleItem> allValues = paymentScheduleItemsListGroup.getValues();
+        return 100 - allValues.stream().mapToInt(PaymentScheduleItem::getPercentage).sum();
+    }
+
+    public void revalidate() {
+        if (isInvalidatedCard(paymentScheduleCard) && remainingPercentage() == 0) {
+            markCardValidation(paymentScheduleCard, true, false);
+            markWithValidationMessage(true);
+        }
+    }
+
     private void addPaymentSchedule() {
         PaymentScheduleItem item = new PaymentScheduleItem();
         item.setType(paymentScheduleRadioGroup.getValue());
@@ -230,10 +242,11 @@ public class PaymentScheduleSection implements ImportSection {
 
     }
 
-    public void revalidate() {
-        if (isInvalidatedCard(paymentScheduleCard) && remainingPercentage() == 0) {
-            markCardValidation(paymentScheduleCard, true, false);
-            markWithValidationMessage(true);
+    private void markWithValidationMessage(boolean valid) {
+        if (!valid) {
+            paymentScheduleCard.getHeaderDescription().appendChild(validationMessageElement);
+        } else {
+            validationMessageElement.remove();
         }
     }
 
@@ -243,19 +256,6 @@ public class PaymentScheduleSection implements ImportSection {
         markCardValidation(paymentScheduleCard, valid);
         markWithValidationMessage(valid);
         return valid;
-    }
-
-    private void markWithValidationMessage(boolean valid) {
-        if (!valid) {
-            paymentScheduleCard.getHeaderDescription().appendChild(validationMessageElement);
-        } else {
-            validationMessageElement.remove();
-        }
-    }
-
-    private int remainingPercentage() {
-        List<PaymentScheduleItem> allValues = paymentScheduleItemsListGroup.getValues();
-        return 100 - allValues.stream().mapToInt(PaymentScheduleItem::getPercentage).sum();
     }
 
     @Override

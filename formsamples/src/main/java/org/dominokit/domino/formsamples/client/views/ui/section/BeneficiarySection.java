@@ -14,7 +14,7 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -40,11 +40,11 @@ public class BeneficiarySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.label_mdi())
+                .addLeftAddOn(Icons.label())
                 .addSelectionHandler(option -> revalidate());
 
         accountsSelect = Select.<Account>create("Through")
-                .addLeftAddOn(Icons.ALL.bank_mdi())
+                .addLeftAddOn(Icons.bank())
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)

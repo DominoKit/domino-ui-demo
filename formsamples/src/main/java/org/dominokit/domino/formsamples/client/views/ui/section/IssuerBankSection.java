@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -58,11 +58,11 @@ public class IssuerBankSection implements ImportSection {
         issuerBankInfoRow = Row.create()
                 .addColumn(Column.span6()
                         .appendChild(issuerAddressTextBox
-                                .addLeftAddOn(Icons.ALL.location_enter_mdi())
+                                .addLeftAddOn(Icons.location_enter())
                                 .setReadOnly(true)))
                 .addColumn(Column.span6()
                         .appendChild(issuerContactPersonTextBox
-                                .addLeftAddOn(Icons.ALL.account_mdi())
+                                .addLeftAddOn(Icons.account())
                                 .setReadOnly(true))
                 ).hide();
 

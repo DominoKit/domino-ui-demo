@@ -22,25 +22,22 @@ import org.dominokit.domino.formsamples.shared.model.Country;
 import org.dominokit.domino.formsamples.shared.model.CurrencyData;
 import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.jboss.elemento.IsElement;
+import org.dominokit.domino.ui.utils.BaseDominoElement;
 
 import java.util.List;
 
-import static org.jboss.elemento.Elements.div;
+public class AddLCImportComponent extends BaseDominoElement<HTMLDivElement, AddLCImportComponent> {
 
-public class AddLCImportComponent implements IsElement<HTMLDivElement> {
-
-    private HTMLDivElement element = div().css("content-margin").element();
+    private DivElement element = div();
 
     private CorporateProfile corporateProfile;
     private List<Country> countries;
     private List<Beneficiary> beneficiaries;
     private List<Bank> banks;
     private List<CurrencyData> currencies;
-
     private GeneralSection generalSection;
     private IssuerBankSection issuerBankSection;
     private AuthorizationSection authorizationSection;
@@ -123,10 +120,6 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
                 generalSection.validate();
     }
 
-    public void setUiHandlers(FormSamplesView.FormSamplesUIHandlers uiHandlers) {
-        this.uiHandlers = uiHandlers;
-    }
-
     private LetterOfCredit createLetterOfCredit() {
         LetterOfCredit letterOfCredit = new LetterOfCredit();
         generalSection.collect(letterOfCredit);
@@ -143,6 +136,10 @@ public class AddLCImportComponent implements IsElement<HTMLDivElement> {
         confirmationInstructionsSection.collect(letterOfCredit);
         correspondentChargesInstructionsSection.collect(letterOfCredit);
         return letterOfCredit;
+    }
+
+    public void setUiHandlers(FormSamplesView.FormSamplesUIHandlers uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 
     @Override

@@ -14,377 +14,172 @@ import org.dominokit.domino.tree.client.views.Country;
 import org.dominokit.domino.tree.client.views.TreeView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.icons.StateChangeMdiIcon;
+import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.themes.Theme;
 import org.dominokit.domino.ui.tree.ToggleTarget;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
+import org.dominokit.domino.ui.tree.TreeItemIcon;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 
 import java.util.List;
+import java.util.function.Supplier;
 
-import static org.jboss.elemento.Elements.div;
+import static java.util.Objects.nonNull;
+import static org.dominokit.domino.tree.client.views.Countries.COUNTRIES;
 
 @UiView(presentable = TreeProxy.class)
 @SampleClass
 public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeView {
 
-    private HTMLDivElement element;
-
-    private static final String COUNTRIES = "{\n" +
-            "  \"countries\": [\n" +
-            "    {\n" +
-            "      \"name\": \"Andorra\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Andorra la Vella\",\n" +
-            "        \"Canillo\",\n" +
-            "        \"Encamp\",\n" +
-            "        \"La Massana\",\n" +
-            "        \"Escaldes-Engordany\",\n" +
-            "        \"Ordino\",\n" +
-            "        \"Sant Julia de Loria\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "\n" +
-            "      \"name\": \"United Arab Emirates\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Abu Dhabi\",\n" +
-            "        \"'Ajman\",\n" +
-            "        \"Al Fujayrah\",\n" +
-            "        \"Ash Shariqah (Sharjah)\",\n" +
-            "        \"Dubayy (Dubai)\",\n" +
-            "        \"Ra's al Khaymah\",\n" +
-            "        \"Umm al Qaywayn\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "\n" +
-            "      \"name\": \"Afghanistan\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Kabul\",\n" +
-            "        \"Badakhshan\",\n" +
-            "        \"Farah\",\n" +
-            "        \"Khowst\",\n" +
-            "        \"Konar\",\n" +
-            "        \"Kondoz\",\n" +
-            "        \"Paktika\",\n" +
-            "        \"Parvan\",\n" +
-            "        \"Samangan\",\n" +
-            "        \"Sar-e Pol\",\n" +
-            "        \"Takhar\",\n" +
-            "        \"Vardak\",\n" +
-            "        \"Zabol\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Anguilla\",\n" +
-            "      \"cities\": [\n" +
-            "        \"The Valley\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "\n" +
-            "    {\n" +
-            "      \"name\": \"Cameroon\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Yaounde\",\n" +
-            "        \"Adamaoua\",\n" +
-            "        \"Centre\",\n" +
-            "        \"Est\",\n" +
-            "        \"Extreme-Nord\",\n" +
-            "        \"Littoral\",\n" +
-            "        \"Nord\",\n" +
-            "        \"Nord-Ouest\",\n" +
-            "        \"Ouest\",\n" +
-            "        \"Sud\",\n" +
-            "        \"Sud-Ouest\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"China\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Beijing\",\n" +
-            "        \"Anhui\",\n" +
-            "        \"Chongqing\",\n" +
-            "        \"Fujian\",\n" +
-            "        \"Gansu\",\n" +
-            "        \"Guangdong\",\n" +
-            "        \"Guangxi\",\n" +
-            "        \"Guizhou\",\n" +
-            "        \"Jiangsu\",\n" +
-            "        \"Jiangxi\",\n" +
-            "        \"Jilin\",\n" +
-            "        \"Liaoning\",\n" +
-            "        \"Nei Mongol\",\n" +
-            "        \"Ningxia\",\n" +
-            "        \"Qinghai\",\n" +
-            "        \"Shaanxi\",\n" +
-            "        \"Shandong\",\n" +
-            "        \"Shanghai\",\n" +
-            "        \"Shanxi\",\n" +
-            "        \"Sichuan\",\n" +
-            "        \"Tianjin\",\n" +
-            "        \"Xinjiang\",\n" +
-            "        \"Xizang (Tibet)\",\n" +
-            "        \"Yunnan\",\n" +
-            "        \"Zhejiang\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Colombia\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Bogota\",\n" +
-            "        \"Amazonas\",\n" +
-            "        \"Antioquia\",\n" +
-            "        \"Arauca\",\n" +
-            "        \"Atlantico\",\n" +
-            "        \"Bolivar\",\n" +
-            "        \"Boyaca\",\n" +
-            "        \"Cundinamarca\",\n" +
-            "        \"Guaviare\",\n" +
-            "        \"Huila\",\n" +
-            "        \"La Guajira\",\n" +
-            "        \"Meta\",\n" +
-            "        \"Norte de Santander\",\n" +
-            "        \"Putumayo\",\n" +
-            "        \"Quindio\",\n" +
-            "        \"Risaralda\",\n" +
-            "        \"Santander\",\n" +
-            "        \"Sucre\",\n" +
-            "        \"Tolima\",\n" +
-            "        \"Vichada\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Costa Rica\",\n" +
-            "      \"cities\": [\n" +
-            "        \"San Jose\",\n" +
-            "        \"Alajuela\",\n" +
-            "        \"Cartago\",\n" +
-            "        \"Guanacaste\",\n" +
-            "        \"Heredia\",\n" +
-            "        \"Limon\",\n" +
-            "        \"Puntarenas\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Germany\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Berlin\",\n" +
-            "        \"Baden-Wuerttemberg\",\n" +
-            "        \"Bayern\",\n" +
-            "        \"Berlin\",\n" +
-            "        \"Brandenburg\",\n" +
-            "        \"Bremen\",\n" +
-            "        \"Hamburg\",\n" +
-            "        \"Hessen\",\n" +
-            "        \"Mecklenburg-Vorpommern\",\n" +
-            "        \"Niedersachsen\",\n" +
-            "        \"Nordrhein-Westfalen\",\n" +
-            "        \"Rheinland-Pfalz\",\n" +
-            "        \"Saarland\",\n" +
-            "        \"Sachsen\",\n" +
-            "        \"Sachsen-Anhalt\",\n" +
-            "        \"Schleswig-Holstein\",\n" +
-            "        \"Thueringen\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Djibouti\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Djibouti\",\n" +
-            "        \"'Ali Sabih\",\n" +
-            "        \"Dikhil\",\n" +
-            "        \"Obock\",\n" +
-            "        \"Tadjoura\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Denmark\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Copenhagen (Kobenhavn)\",\n" +
-            "        \"Arhus\",\n" +
-            "        \"Bornholm\",\n" +
-            "        \"Fredericksberg\",\n" +
-            "        \"Frederiksborg\",\n" +
-            "        \"Fyn\",\n" +
-            "        \"Kobenhavns\",\n" +
-            "        \"Nordjylland\",\n" +
-            "        \"Ribe\",\n" +
-            "        \"Ringkobing\",\n" +
-            "        \"Roskilde\",\n" +
-            "        \"Sonderjylland\",\n" +
-            "        \"Storstrom\",\n" +
-            "        \"Vejle\",\n" +
-            "        \"Vestsjalland\",\n" +
-            "        \"Viborg\"\n" +
-            "      ]\n" +
-            "    },\n" +
-            "    {\n" +
-            "      \"name\": \"Dominica\",\n" +
-            "      \"cities\": [\n" +
-            "        \"Roseau\",\n" +
-            "        \"Saint Andrew\",\n" +
-            "        \"Saint David\",\n" +
-            "        \"Saint George\"\n" +
-            "      ]\n" +
-            "    }\n" +
-            "  ]\n" +
-            "}";
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
-        element.appendChild(LinkToSourceCode.create("tree", this.getClass()).element());
-        element.appendChild(BlockHeader.create("Tree").element());
+        element = div();
+        element.appendChild(LinkToSourceCode.createLink("tree", this.getClass()));
+        element.appendChild(BlockHeader.create("Tree"));
 
         simpleTree();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.simpleTree()));
 
         nestedTree();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.nestedTree()));
 
         activeAndExpandIcons();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.activeAndExpandIcons()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void simpleTree() {
-        Tree<String> hardwareTree = Tree.create("HARDWARE")
-                .setToggleTarget(ToggleTarget.ICON)
-                .addItemClickListener(treeItem -> DomGlobal.console.info(treeItem.getValue()))
-                .appendChild(TreeItem.create("Computer", Icons.ALL.laptop_mdi())
+        Tree<String> hardwareTree = Tree.<String>create("HARDWARE")
+                .addSelectionListener((treeItem, selection) -> DomGlobal.console.info(treeItem.get().getValue()))
+                .appendChild(TreeItem.create(Icons.laptop(), "Computer")
                         .addClickListener(evt -> Notification.create("Computer").show()))
-                .appendChild(TreeItem.create("Headset", Icons.ALL.headset_mdi())
+                .appendChild(TreeItem.create(Icons.headset(), "Headset")
                         .addClickListener(evt -> Notification.create("Headset").show()))
-                .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard_mdi())
+                .appendChild(TreeItem.create(Icons.keyboard(), "Keyboard")
                         .addClickListener(evt -> Notification.create("Keyboard").show()))
-                .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse_mdi())
+                .appendChild(TreeItem.create(Icons.mouse(), "Mouse")
                         .addClickListener(evt -> Notification.create("Mouse").show()))
                 .addSeparator()
-                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop_mdi())
+                .appendChild(TreeItem.create(Icons.laptop(), "Laptop")
                         .addClickListener(evt -> Notification.create("Laptop").show()))
-                .appendChild(TreeItem.create("Smart phone", Icons.ALL.cellphone_mdi())
+                .appendChild(TreeItem.create(Icons.cellphone(), "Smart phone")
                         .addClickListener(evt -> Notification.create("Smart phone").show()))
-                .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet_mdi())
+                .appendChild(TreeItem.create(Icons.tablet(), "Tablet")
                         .addClickListener(evt -> Notification.create("Tablet").show()))
-                .appendChild(TreeItem.create("Speaker", Icons.ALL.speaker_mdi())
+                .appendChild(TreeItem.create(Icons.speaker(), "Speaker")
                         .addClickListener(evt -> Notification.create("Speaker").show()));
 
-        Tree<String> filesTree = Tree.create("FILES")
+        Tree<String> filesTree = Tree.<String>create("FILES")
                 .setToggleTarget(ToggleTarget.ICON)
-                .appendChild(TreeItem.create("Folder", Icons.ALL.folder_mdi())
+                .appendChild(TreeItem.create(Icons.folder(), "Folder")
                         .addClickListener(evt -> Notification.create("Folder").show()))
-                .appendChild(TreeItem.create("Folder open", Icons.ALL.folder_open_mdi())
+                .appendChild(TreeItem.create(Icons.folder_open(), "Folder open")
                         .addClickListener(evt -> Notification.create("Folder open").show()))
-                .appendChild(TreeItem.create("Upload", Icons.ALL.file_upload_mdi())
+                .appendChild(TreeItem.create(Icons.file_upload(), "Upload")
                         .addClickListener(evt -> Notification.create("Upload").show()))
-                .appendChild(TreeItem.create("Download", Icons.ALL.file_download_mdi())
+                .appendChild(TreeItem.create(Icons.file_download(), "Download")
                         .addClickListener(evt -> Notification.create("Download").show()))
-                .appendChild(TreeItem.create("New folder", Icons.ALL.folder_plus_mdi())
+                .appendChild(TreeItem.create(Icons.folder_plus(), "New folder")
                         .addClickListener(evt -> Notification.create("New folder").show()))
-                .appendChild(TreeItem.create("Shared", Icons.ALL.folder_account_mdi())
+                .appendChild(TreeItem.create(Icons.folder_account(), "Shared")
                         .addClickListener(evt -> Notification.create("Shared").show()))
-                .appendChild(TreeItem.create("Attachments", Icons.ALL.attachment_mdi())
+                .appendChild(TreeItem.create(Icons.attachment(), "Attachments")
                         .addClickListener(evt -> Notification.create("Attachments").show()))
-                .appendChild(TreeItem.create("Cloud", Icons.ALL.cloud_mdi())
+                .appendChild(TreeItem.create(Icons.cloud(), "Cloud")
                         .addClickListener(evt -> Notification.create("Cloud").show()));
 
         element.appendChild(Card.create("SIMPLE MENU")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6().appendChild(hardwareTree))
-                        .addColumn(Column.span6().appendChild(filesTree))
-                ).element());
+                        .appendChild(Column.span6().appendChild(hardwareTree))
+                        .appendChild(Column.span6().appendChild(filesTree))
+                ));
 
 
     }
 
     @SampleMethod
     private void nestedTree() {
-        Tree hardwareTree = Tree.create("HARDWARE")
-                .appendChild(TreeItem.create("Computer", Icons.ALL.desktop_classic_mdi())
+        Tree<String> hardwareTree = Tree.<String>create("HARDWARE")
+                .appendChild(TreeItem.create(Icons.desktop_classic(), "Computer")
                         .addClickListener(evt -> Notification.create("Computer").show())
-
-                        .appendChild(TreeItem.create("Headset", Icons.ALL.headset_mdi())
+                        .appendChild(TreeItem.create(Icons.headset(), "Headset")
                                 .addClickListener(evt -> Notification.create("Headset").show()))
-                        .appendChild(TreeItem.create("Keyboard", Icons.ALL.keyboard_mdi())
+                        .appendChild(TreeItem.create(Icons.keyboard(), "Keyboard")
                                 .addClickListener(evt -> Notification.create("Keyboard").show()))
-                        .appendChild(TreeItem.create("Mouse", Icons.ALL.mouse_mdi())
+                        .appendChild(TreeItem.create(Icons.mouse(), "Mouse")
                                 .addClickListener(evt -> Notification.create("Mouse").show())))
 
-                .appendChild(TreeItem.create("Laptop", Icons.ALL.laptop_mdi())
+                .appendChild(TreeItem.create(Icons.laptop(), "Laptop")
                         .addClickListener(evt -> Notification.create("Laptop").show())
 
-                        .appendChild(TreeItem.create("Chromebook", Icons.ALL.laptop_chromebook_mdi())
+                        .appendChild(TreeItem.create(Icons.laptop(), "Chromebook")
                                 .addClickListener(evt -> Notification.create("Chromebook").show()))
-                        .appendChild(TreeItem.create("MacBook", Icons.ALL.laptop_mac_mdi())
+                        .appendChild(TreeItem.create(Icons.laptop_account(), "MacBook")
                                 .addClickListener(evt -> Notification.create("MacBook").show())))
 
-                .appendChild(TreeItem.create("Smart phone", Icons.ALL.cellphone_mdi())
+                .appendChild(TreeItem.create(Icons.cellphone(), "Smart phone")
                         .addClickListener(evt -> Notification.create("Smart phone").show())
 
-                        .appendChild(TreeItem.create("Tablet", Icons.ALL.tablet_mdi())
+                        .appendChild(TreeItem.create(Icons.tablet(), "Tablet")
                                 .addClickListener(evt -> Notification.create("Tablet").show()))
-                        .appendChild(TreeItem.create("Android", Icons.ALL.cellphone_android_mdi())
+                        .appendChild(TreeItem.create(Icons.cellphone(), "Android")
                                 .addClickListener(evt -> Notification.create("Android").show()))
-                        .appendChild(TreeItem.create("iPhone", Icons.ALL.cellphone_iphone_mdi())
+                        .appendChild(TreeItem.create(Icons.cellphone_cog(), "iPhone")
                                 .addClickListener(evt -> Notification.create("iPhone").show())));
 
 
-        TreeItem treeItem = TreeItem.create("File 3", Icons.ALL.note_mdi());
-        TreeItem upload = TreeItem.create("Upload", Icons.ALL.cloud_upload_mdi());
-        Tree<String> files = Tree.create("FILES");
-        Tree<String> hardwareMenu2 = files
+        Tree<String> hardwareMenu2 = Tree.<String>create("FILES")
                 .setToggleTarget(ToggleTarget.ICON)
                 .setAutoCollapse(false)
-                .addItemClickListener(treeItem1 -> DomGlobal.console.info(treeItem1.getValue()))
-                .appendChild(TreeItem.create("Folder", Icons.ALL.folder_mdi())
-                        .appendChild(TreeItem.create("My files", Icons.ALL.folder_star_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.note_mdi())
+                .addSelectionListener((treeItem, selection) -> DomGlobal.console.info(treeItem.get().getValue()))
+                .appendChild(TreeItem.create(Icons.folder(), "Folder")
+                        .appendChild(TreeItem.create(Icons.folder_star(), "My files")
+                                .appendChild(TreeItem.create(Icons.note(), "File 1")
                                         .addClickListener(evt -> Notification.create("File 1").show()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.note_mdi())
+                                .appendChild(TreeItem.create(Icons.note(), "File 2")
                                         .addClickListener(evt -> Notification.create("File 2").show()))
-                                .appendChild(treeItem
+                                .appendChild((TreeItem.create(Icons.note(), "File 3"))
                                         .addClickListener(evt -> Notification.create("File 3").show()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.note_mdi())
+                                .appendChild(TreeItem.create(Icons.note(), "File 4")
                                         .addClickListener(evt -> Notification.create("File 4").show()))
                         )
-                        .appendChild(TreeItem.create("Upload", Icons.ALL.file_upload_mdi()))
-                        .appendChild(TreeItem.create("Download", Icons.ALL.file_download_mdi()))
-                        .appendChild(TreeItem.create("New folder", Icons.ALL.folder_plus_mdi()))
-                        .appendChild(TreeItem.create("Shared", Icons.ALL.folder_account_mdi()))
-                        .appendChild(TreeItem.create("Attachments", Icons.ALL.attachment_mdi()))
-                ).appendChild(TreeItem.create("Cloud", Icons.ALL.cloud_mdi())
-                        .appendChild(upload)
-                        .appendChild(TreeItem.create("Download", Icons.ALL.cloud_download_mdi()))
-                        .appendChild(TreeItem.create("Offline", Icons.ALL.cloud_off_outline_mdi()))
-                        .appendChild(TreeItem.create("Queue", Icons.ALL.cloud_question_mdi()))
+                        .appendChild(TreeItem.create(Icons.file_upload(), "Upload"))
+                        .appendChild(TreeItem.create(Icons.file_download(), "Download"))
+                        .appendChild(TreeItem.create(Icons.folder_plus(), "New folder"))
+                        .appendChild(TreeItem.create(Icons.folder_account(), "Shared"))
+                        .appendChild(TreeItem.create(Icons.attachment(), "Attachments"))
+                ).appendChild(TreeItem.create(Icons.cloud(), "Cloud")
+                        .appendChild(TreeItem.create(Icons.cloud_upload(), "Upload"))
+                        .appendChild(TreeItem.create(Icons.cloud_download(), "Download"))
+                        .appendChild(TreeItem.create(Icons.cloud_off_outline(), "Offline"))
+                        .appendChild(TreeItem.create(Icons.cloud_question(), "Queue"))
                 );
 
 
         element.appendChild(Card.create("SIMPLE NESTED MENU")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(BlockHeader.create("Auto collapse"))
-                                .appendChild(hardwareTree))
-                        .addColumn(Column.span6()
+                                .appendChild(hardwareTree)
+                        )
+                        .appendChild(Column.span6()
                                 .appendChild(BlockHeader.create("Auto collapse OFF"))
-                                .appendChild(hardwareMenu2))
-                ).element());
-
-        treeItem.expand(true);
-        treeItem.activate(true);
-        files.collapseAll();
-        files.deactivateAll();
-        upload.expand(true);
-        upload.activate(true);
-
+                                .appendChild(hardwareMenu2)
+                        )
+                ));
     }
 
     @SampleMethod
@@ -392,128 +187,105 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
 
         List<Country> countries = Countries.MAPPER.read(COUNTRIES).getCountries();
 
-        Tree citiesTree = Tree.create("CITIES")
+        Tree<String> citiesTree = Tree.<String>create("CITIES")
                 .setFilter((treeItem, searchToken) -> {
                             boolean result = treeItem.getTitle().toLowerCase().contains(searchToken.toLowerCase());
-                            if(treeItem.getParent().isPresent()) {
-                                result = result || treeItem.getParent().get().getTitle().toLowerCase().contains(searchToken.toLowerCase());
+                            if (treeItem.getParent().isPresent()) {
+                                result = result || treeItem.getParent()
+                                        .map(parent -> nonNull(parent.getValue()) && parent.getValue().toLowerCase().contains(searchToken.toLowerCase()))
+                                        .orElse(false);
                             }
                             return result;
                         }
                 )
                 .setAutoCollapse(false)
-                .enableFolding()
-                .enableSearch()
-                .autoExpandFound();
+                .setFoldable(true)
+                .setSearchable(true)
+                .setAutoExpandFound(true)
+                .apply(tree -> {
+                    countries.forEach(country -> {
+                        tree
+                                .appendChild(TreeItem.<String>create(Icons.map(), country.getName())
+                                        .apply(countryItem -> {
+                                                    countryItem
+                                                            .appendChild(PostfixAddOn.of(Badge.create(String.valueOf(country.getCities().size()))
+                                                                            .addCss(dui_bg_accent_d_2, dui_rounded_full)
+                                                                    )
+                                                            )
+                                                            .appendChild(PostfixAddOn.of(ToggleMdiIcon.create(Icons.plus(), Icons.minus())
+                                                                    .apply(icon -> {
+                                                                        countryItem
+                                                                                .addBeforeCollapseListener(icon::toggle)
+                                                                                .addBeforeExpandListener(icon::toggle);
+                                                                    })
+                                                            ));
 
-        countries.forEach(country -> {
-            TreeItem<String> countryItem = TreeItem.create(country.getName(), Icons.ALL.map_mdi());
-            countryItem
-                    .apply(self -> self
-                            .getIndicatorContainer()
-                            .style().setMinWidth("30px"))
-                    .setIndicatorContent(Badge.create(country.getCities().size() + "")
-                            .setBackground(Theme.currentTheme.getScheme().color())
-                            .styler(style -> style
-                                    .setMinWidth("30px")
-                                    .setDisplay("inline-block"))
-                            .elevate(Elevation.NONE)
-                    );
-            citiesTree.appendChild(countryItem);
-            country.getCities().forEach(city -> {
-                TreeItem cityItem = TreeItem.create(city, Icons.ALL.city_mdi());
-                countryItem.appendChild(cityItem);
-            });
+                                                    country.getCities().forEach(city -> countryItem.appendChild(TreeItem.create(Icons.city(), city)));
+                                                }
+                                        )
+                                );
+                    })
+                    ;
+                });
 
-        });
 
-        Tree foldersExpand = Tree.create("FILES")
+        Tree<String> foldersExpand = Tree.<String>create("FILES")
                 .setAutoCollapse(false)
-                .enableFolding()
-                .enableSearch()
-                .appendChild(TreeItem.create("Folder 1", Icons.ALL.folder_mdi())
-                        .setExpandIcon(Icons.ALL.folder_open_mdi())
-                        .appendChild(TreeItem.create("Folder 1-1", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                        ).appendChild(TreeItem.create("Folder 1-2", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
+                .setFoldable(true)
+                .setSearchable(true)
+                .setTreeItemIconSupplier((item) -> TreeItemIcon.of(Icons.folder(), Icons.folder_open(), Icons.file(), Icons.file_check_outline()))
+                .appendChild(TreeItem.create("Folder 1")
+                        .appendChild(TreeItem.create("Folder 1-1")
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
+                        ).appendChild(TreeItem.create("Folder 1-2")
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
                         )
-                ).appendChild(TreeItem.create("Folder 2", Icons.ALL.folder_mdi())
-                        .setExpandIcon(Icons.ALL.folder_open_mdi())
-                        .appendChild(TreeItem.create("Folder 2-1", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                        ).appendChild(TreeItem.create("Folder 2-2", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
+                ).appendChild(TreeItem.create("Folder 2")
+                        .appendChild(TreeItem.create("Folder 2-1")
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
                         )
-                ).appendChild(TreeItem.create("Folder 3", Icons.ALL.folder_mdi())
-                        .setExpandIcon(Icons.ALL.folder_open_mdi())
-                        .appendChild(TreeItem.create("Folder 3-1", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .show()
-                        ).appendChild(TreeItem.create("Folder 3-2", Icons.ALL.folder_mdi())
-                                .setExpandIcon(Icons.ALL.folder_open_mdi())
-                                .show()
-                                .appendChild(TreeItem.create("File 1", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 2", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 3", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .appendChild(TreeItem.create("File 4", Icons.ALL.file_document_mdi())
-                                        .setActiveIcon(Icons.ALL.note_mdi()))
-                                .show()
-                        ).show()
+                        .appendChild(TreeItem.create("Folder 2-2")
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
+                        )
+                )
+                .appendChild(TreeItem.create("Folder 3")
+                        .appendChild(TreeItem.create("Folder 3-1")
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
+                                .expand()
+                        ).appendChild(TreeItem.create("Folder 3-2")
+                                .expand()
+                                .appendChild(TreeItem.create("File 1"))
+                                .appendChild(TreeItem.create("File 2"))
+                                .appendChild(TreeItem.create("File 3"))
+                                .appendChild(TreeItem.create("File 4"))
+                                .expand()
+                        ).expand()
                 );
 
         element.appendChild(Card.create("ACTIVE/EXPAND ICONS, SEARCH & FOLDING")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(BlockHeader.create("Active icon"))
                                 .appendChild(citiesTree))
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(BlockHeader.create("Expand icon"))
                                 .appendChild(foldersExpand))
-                ).element());
+                ));
 
 
     }

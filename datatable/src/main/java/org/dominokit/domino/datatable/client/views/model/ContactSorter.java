@@ -1,6 +1,6 @@
 package org.dominokit.domino.datatable.client.views.model;
 
-import org.dominokit.domino.ui.datatable.plugins.SortDirection;
+import org.dominokit.domino.ui.datatable.plugins.pagination.SortDirection;
 import org.dominokit.domino.ui.datatable.store.RecordsSorter;
 
 import java.util.Comparator;

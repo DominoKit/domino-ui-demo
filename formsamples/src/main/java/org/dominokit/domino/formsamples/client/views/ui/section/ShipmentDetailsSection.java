@@ -14,7 +14,7 @@ import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import static org.dominokit.domino.formsamples.client.views.ui.Constants.DATE_PATTERN;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
@@ -46,7 +46,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .setPattern(DATE_PATTERN)
                 .setHelperText(DATE_PATTERN)
                 .setLabel("Latest Date Of Shipment")
-                .addLeftAddOn(Icons.ALL.calendar_range_mdi());
+                .addLeftAddOn(Icons.calendar_range());
         latestDateOfShipmentDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
         latestDateOfShipmentDateBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -54,7 +54,7 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.ship_wheel_mdi())
+                .addLeftAddOn(Icons.ship_wheel())
                 .appendChild(SelectOption.create("AIR_FREIGHT", "Air Freight"))
                 .appendChild(SelectOption.create("SEA_FREIGHT", "Sea Freight"))
                 .appendChild(SelectOption.create("LAND", "Land"))
@@ -70,14 +70,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_enter_mdi());
+                .addLeftAddOn(Icons.location_enter());
         shipmentFromTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         shipmentToTextBox = TextBox.create("Shipment To")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_enter_mdi());
+                .addLeftAddOn(Icons.location_enter());
 
         shipmentToTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -85,14 +85,14 @@ public class ShipmentDetailsSection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.location_enter_mdi());
+                .addLeftAddOn(Icons.location_enter());
         placeOfDestinationTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 
         termsOfDeliverySelect = Select.<String>create("Terms Of Delivery (Incoterms 2010)")
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.wallet_membership_mdi())
+                .addLeftAddOn(Icons.wallet_membership())
                 .appendChild(SelectOption.create("EXW", "EXW – Ex Works (named place of delivery)"))
                 .appendChild(SelectOption.create("FCA", "FCA – Free Carrier (named place of delivery)"))
                 .appendChild(SelectOption.create("CPT", "CPT – Carriage Paid To (named place of destination)"))

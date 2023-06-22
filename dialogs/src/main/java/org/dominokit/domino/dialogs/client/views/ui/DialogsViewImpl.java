@@ -1,5 +1,6 @@
 package org.dominokit.domino.dialogs.client.views.ui;
 
+import com.google.gwt.core.client.GWT;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -9,196 +10,179 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.dialogs.client.presenters.DialogsProxy;
 import org.dominokit.domino.dialogs.client.views.DialogsView;
-import org.dominokit.domino.ui.Typography.Paragraph;
-import org.dominokit.domino.ui.animations.Animation;
 import org.dominokit.domino.ui.animations.Transition;
-import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.dialogs.AbstractDialog;
+import org.dominokit.domino.ui.dialogs.AlertMessageDialog;
 import org.dominokit.domino.ui.dialogs.MessageDialog;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.icons.MdiIcon;
-import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.TextNode;
-import org.jboss.elemento.IsElement;
-
-import java.util.Arrays;
-
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.layout.NavBar;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 @UiView(presentable = DialogsProxy.class)
 @SampleClass
 public class DialogsViewImpl extends BaseDemoView<HTMLDivElement> implements DialogsView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("dialogs", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("dialogs", this.getClass()).element());
         element.appendChild(BlockHeader.create("DIALOGS").element());
 
         sample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sample()).element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void sample() {
-        MessageDialog basicMessage = MessageDialog.createMessage("Here's a message!",
-                () -> Notification.create("Dialog closed").show());
+        MessageDialog basicMessage = MessageDialog.create()
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog headerAndMessage = MessageDialog.createMessage("Message header",
-                "Here's a message body!",
-                () -> Notification.create("Dialog closed").show());
+        MessageDialog basicWithHeaderMessage = MessageDialog.create()
+                .setTitle("Message title")
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog successMessage = MessageDialog.createMessage("Success Operation",
-                "Well done! You successfully read this important alert message.",
-                () -> Notification.create("Dialog closed").show())
-                .success();
+        AlertMessageDialog successMessage = AlertMessageDialog.create()
+                .setTitle("Operation completed")
+                .setIconAnimationDuration(500)
+                .setIconStartTransition(Transition.ROTATE_IN)
+                .setIconEndTransition(Transition.PULSE)
+                .setAlertIcon(Icons.check_circle().addCss(dui_fg_green, dui_font_size_32))
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog errorMessage = MessageDialog.createMessage("Failed operation",
-                "Oh snap! Change a few things up and try submitting again.",
-                () -> Notification.create("Dialog closed").show())
-                .error();
+        AlertMessageDialog errorMessage = AlertMessageDialog.create()
+                .setTitle("Operation failed!")
+                .setIconAnimationDuration(500)
+                .setIconStartTransition(Transition.SHAKE)
+                .setIconEndTransition(Transition.TADA)
+                .setAlertIcon(Icons.alert_circle().addCss(dui_fg_error, dui_font_size_32))
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog customColors = MessageDialog.createMessage("Failed operation",
-                "Oh snap! Change a few things up and try submitting again.",
-                () -> Notification.create("Dialog closed").show())
-                .error()
-                .setModalColor(Color.RED)
-                .setIconColor(Color.GREY, Color.WHITE);
+        AlertMessageDialog warningMessage = AlertMessageDialog.create()
+                .setTitle("Attention required!")
+                .setIconAnimationDuration(500)
+                .setIconStartTransition(Transition.PULSE)
+                .setIconEndTransition(Transition.FLASH)
+                .setAlertIcon(Icons.alert_circle().addCss(dui_fg_warning, dui_font_size_32))
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog warningMessage = MessageDialog.createMessage("Warning",
-                "Warning! Better check yourself, you're not looking too good.",
-                () -> Notification.create("Dialog closed").show())
-                .warning();
+        AlertMessageDialog infoMessage = AlertMessageDialog.create()
+                .setTitle("Got an idea?")
+                .setIconAnimationDuration(500)
+                .setIconStartTransition(Transition.FLASH)
+                .setIconEndTransition(Transition.PULSE)
+                .setAlertIcon(Icons.lightbulb_on_outline().addCss(dui_fg_info, dui_font_size_32))
+                .setMessage("You have just opened a message dialog.")
+                .onConfirm(AbstractDialog::close);
 
-        MdiIcon heart = Icons.ALL.star_mdi()
-                .style().addCss(Styles.font_72, Styles.m_b_15, Color.RED.getStyle()).get();
+        AlertMessageDialog customColorsMessage = AlertMessageDialog.create()
+                .addCss(dui_teal)
+                .setTitle("Got an idea?")
+                .setIconAnimationDuration(500)
+                .setIconStartTransition(Transition.FLASH)
+                .setIconEndTransition(Transition.PULSE)
+                .setAlertIcon(Icons.lightbulb_on_outline().addCss(dui_font_size_32))
+                .setMessage("You have just opened a message dialog.")
+                .withConfirmButton((parent, button) -> button.addCss(dui_bg_teal_d_2))
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog customHeaderContent = MessageDialog.createMessage("Custom header",
-                "You can customize the header content",
-                () -> Notification.create("Dialog closed").show())
-                .addOpenListener(() -> Animation.create(heart)
-                        .duration(400)
-                        .infinite()
-                        .transition(Transition.PULSE)
-                        .animate())
-                .appendHeaderChild(heart);
+        AlertMessageDialog customContentMessage = AlertMessageDialog.create()
+                .withHeader((dialog, header) -> {
+                    header
+                            .addCss(dui_orange)
+                            .appendChild(NavBar.create("Custom header")
+                                    .addCss(dui_h_8)
+                                    .appendChild(PostfixAddOn.of(Icons.close_circle()
+                                                    .clickable()
+                                                    .addClickListener(evt -> dialog.close())
+                                            )
+                                    )
+                                    .appendChild(PrefixAddOn.of(Icons.information()))
+                            );
+                })
+                .withContentFooter((parent, footer) -> footer.addCss(dui_bg_orange_l_1, dui_fg_white))
+                .withContentBody((parent, body) -> {
+                    body
+                            .addCss(dui_amber)
+                            .appendChild(img(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg")
+                                    .addCss(dui_image_responsive, dui_m_auto, dui_w_32, dui_h_32)
+                            );
+                })
+                .withConfirmButton((parent, button) -> button.addCss(dui_bg_orange_d_2))
+                .onConfirm(AbstractDialog::close);
 
-        MessageDialog customContent = MessageDialog.createMessage("Custom content",
-                "You can customize the dialog content",
-                () -> Notification.create("Dialog closed").show())
-                .appendChild(ListGroup.<IsElement<?>>create()
-                        .setItemRenderer((listGroup, listItem) -> listItem.appendChild(listItem.getValue()))
-                        .setItems(Arrays.asList(
-                                FlexLayout.create()
-                                        .css(Styles.padding_10)
-                                        .appendChild(FlexItem.create()
-                                                .setFlexGrow(1)
-                                                .appendChild(TextNode.of("Cras justo odio"))
+        element
+                .appendChild(Card.create("EXAMPLES")
+                        .appendChild(Row.create()
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Simple dialog"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> basicMessage.open())
                                         )
-                                        .appendChild(FlexItem.create()
-                                                .appendChild(Badge.create("14 new").setBackground(Color.PINK))
-                                        ),
-                                FlexLayout.create()
-                                        .css(Styles.padding_10)
-                                        .appendChild(FlexItem.create()
-                                                .setFlexGrow(1)
-                                                .appendChild(TextNode.of("Dapibus ac facilisis in"))
+                                )
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Simple dialog with header"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> basicWithHeaderMessage.open())
                                         )
-                                        .appendChild(FlexItem.create()
-                                                .appendChild(Badge.create("99 unread").setBackground(Color.PINK))
-                                        ),
-                                FlexLayout.create()
-                                        .css(Styles.padding_10)
-                                        .appendChild(FlexItem.create()
-                                                .setFlexGrow(1)
-                                                .appendChild(TextNode.of("Morbi leo risus"))
+                                )
+                        )
+                        .appendChild(Row.create()
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Success alert"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> successMessage.open())
                                         )
-                                        .appendChild(FlexItem.create()
-                                                .appendChild(Badge.create("99+").setBackground(Color.CYAN))
-                                        ),
-                                FlexLayout.create()
-                                        .css(Styles.padding_10)
-                                        .appendChild(FlexItem.create()
-                                                .setFlexGrow(1)
-                                                .appendChild(TextNode.of("Porta ac consectetur ac"))
+                                )
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Error message"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> errorMessage.open())
                                         )
-                                        .appendChild(FlexItem.create()
-                                                .appendChild(Badge.create("21").setBackground(Color.ORANGE))
-                                        ),
-                                FlexLayout.create()
-                                        .css(Styles.padding_10)
-                                        .appendChild(FlexItem.create()
-                                                .setFlexGrow(1)
-                                                .appendChild(TextNode.of("Vestibulum at eros"))
+                                )
+                        )
+                        .appendChild(Row.create()
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Warning alert"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> warningMessage.open())
                                         )
-                                        .appendChild(FlexItem.create()
-                                                .appendChild(Badge.create("Pending").setBackground(Color.PURPLE))
+                                )
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Info alert"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> infoMessage.open())
+                                        )
+                                )
+                        )
+                        .appendChild(Row.create()
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Custom colors"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> customColorsMessage.open())
+                                        )
+                                )
+                                .appendChild(Column.span6()
+                                        .appendChild(p().textContent("Custom content"))
+                                        .appendChild(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                                .addClickListener(evt -> customContentMessage.open())
                                         )
                                 )
                         )
                 );
-
-
-        element.appendChild(Card.create("EXAMPLES")
-                .appendChild(Row.create()
-                        .addColumn(Column.span6()
-                                .appendChild(basicMessage)
-                                .appendChild(Paragraph.create("A basic message"))
-                                .appendChild(createDemoButton(basicMessage)))
-                        .addColumn(Column.span6()
-                                .appendChild(headerAndMessage)
-                                .appendChild(Paragraph.create("Message with header"))
-                                .appendChild(createDemoButton(headerAndMessage)))
-                )
-                .appendChild(Row.create()
-                        .addColumn(Column.span6()
-                                .appendChild(successMessage)
-                                .appendChild(Paragraph.create("Success message"))
-                                .appendChild(createDemoButton(successMessage)))
-                        .addColumn(Column.span6()
-                                .appendChild(errorMessage)
-                                .appendChild(Paragraph.create("Error message"))
-                                .appendChild(createDemoButton(errorMessage)))
-                )
-                .appendChild(Row.create()
-                        .addColumn(Column.span6()
-                                .appendChild(warningMessage)
-                                .appendChild(Paragraph.create("Warning message"))
-                                .appendChild(createDemoButton(warningMessage)))
-                        .addColumn(Column.span6()
-                                .appendChild(customColors)
-                                .appendChild(Paragraph.create("Custom colors"))
-                                .appendChild(createDemoButton(customColors)))
-                )
-                .appendChild(Row.create()
-                        .addColumn(Column.span6()
-                                .appendChild(customHeaderContent)
-                                .appendChild(Paragraph.create("Custom header content"))
-                                .appendChild(createDemoButton(customHeaderContent)))
-                        .addColumn(Column.span6()
-                                .appendChild(customContent)
-                                .appendChild(Paragraph.create("Custom content"))
-                                .appendChild(createDemoButton(customContent)))
-                )
-                .element());
-    }
-
-    private Button createDemoButton(MessageDialog dialog) {
-        return Button.createPrimary("CLICK ME")
-                .style().setMinWidth("120px")
-                .get()
-                .addClickListener(evt -> dialog.open());
     }
 }

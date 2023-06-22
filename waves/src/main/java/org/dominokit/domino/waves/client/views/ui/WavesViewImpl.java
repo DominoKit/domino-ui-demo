@@ -1,594 +1,545 @@
 package org.dominokit.domino.waves.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
+import org.dominokit.domino.ui.IsElement;
 import org.dominokit.domino.ui.button.Button;
-import org.dominokit.domino.ui.button.ButtonSize;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.style.WaveColor;
-import org.dominokit.domino.ui.style.WaveStyle;
-import org.dominokit.domino.ui.style.WavesSupport;
-import org.dominokit.domino.ui.utils.TextNode;
+import org.dominokit.domino.ui.style.ColorsCss;
+import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.waves.client.presenters.WavesProxy;
 import org.dominokit.domino.waves.client.views.WavesView;
-import org.jboss.elemento.IsElement;
 
 import java.util.Arrays;
 
-import static org.jboss.elemento.Elements.div;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_accent;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_amber;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_black;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_blue;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_blue_grey;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_brown;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_cyan;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_deep_orange;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_deep_purple;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_green;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_grey;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_indigo;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_light_blue;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_light_green;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_lime;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_orange;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_pink;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_purple;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_red;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_teal;
+import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_yellow;
 
 @UiView(presentable = WavesProxy.class)
 @SampleClass
 public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements WavesView {
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("waves", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("waves", this.getClass()).element());
         element.appendChild(BlockHeader.create("WAVES", "Click effect inspired by Google's Material Design")
                 .element());
 
-        element.appendChild(Row.create()
-                .addColumn(Column.span6()
-                        .appendChild(Card.create("COLOR VARIATIONS")
-                                .appendChild(ListGroup.<IsElement<?>>create()
-                                        .setItemRenderer((listGroup, listItem) -> listItem
-                                                .css(Styles.padding_10)
-                                                .appendChild(listItem.getValue()))
-                                        .setItems(Arrays.asList(
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("Default"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button.createDefault("CLICK ME").style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createPrimary("CLICK ME")
-                                                                        .setWaveColor(WaveColor.LIGHT)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.RED"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.RED)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.PINK"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.PINK)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.PURPLE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.PURPLE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.DEEP_PURPLE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.DEEP_PURPLE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.INDIGO"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.INDIGO)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLUE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.BLUE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT_BLUE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.LIGHT_BLUE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.CYAN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.CYAN)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.TEAL"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.TEAL)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.GREEN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.GREEN)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT_GREEN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.LIGHT_GREEN)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIME"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.LIME)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.YELLOW"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.YELLOW)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.AMBER"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.AMBER)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.ORANGE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.ORANGE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.DEEP_ORANGE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.DEEP_ORANGE)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BROWN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.BROWN)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.GREY"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.GREY)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLUE_GREY"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.BLUE_GREY)
-                                                                        .style().setMinWidth("120px"))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLACK"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault("CLICK ME")
-                                                                        .setWaveColor(WaveColor.BLACK)
-                                                                        .style().setMinWidth("120px"))
-                                                        )
+//        element.appendChild(Button.create("ADD button")
+//                .addClickListener(evt -> element.appendChild(Button
+//                        .create("CLICK ME").addCss(dui_w_28)
+//                        .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_accent))))
+//        );
 
-                                                )
-                                        )
-                                )
-                        )
-                )
-                .addColumn(Column.span6()
-                        .appendChild(Card.create("CIRCLE")
-                                .appendChild(ListGroup.<IsElement<?>>create()
-                                        .setItemRenderer((listGroup, listItem) -> listItem
-                                                .css(Styles.padding_10)
-                                                .appendChild(listItem.getValue()))
-                                        .setItems(Arrays.asList(
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("Default"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button.createDefault(Icons.ALL.microphone_mdi())
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createPrimary(Icons.ALL.keyboard_mdi())
-                                                                        .setWaveColor(WaveColor.LIGHT)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.RED"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.content_cut_mdi())
-                                                                        .setWaveColor(WaveColor.RED)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.PINK"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.content_paste_mdi())
-                                                                        .setWaveColor(WaveColor.PINK)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.PURPLE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.alarm_mdi())
-                                                                        .setWaveColor(WaveColor.PURPLE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.DEEP_PURPLE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.timeline_mdi())
-                                                                        .setWaveColor(WaveColor.DEEP_PURPLE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.INDIGO"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.account_mdi())
-                                                                        .setWaveColor(WaveColor.INDIGO)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLUE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.seat_mdi())
-                                                                        .setWaveColor(WaveColor.BLUE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT_BLUE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.alarm_mdi())
-                                                                        .setWaveColor(WaveColor.LIGHT_BLUE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.CYAN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.air_conditioner_mdi())
-                                                                        .setWaveColor(WaveColor.CYAN)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.TEAL"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.apps_mdi())
-                                                                        .setWaveColor(WaveColor.TEAL)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.GREEN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.assistant_mdi())
-                                                                        .setWaveColor(WaveColor.GREEN)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIGHT_GREEN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.android_mdi())
-                                                                        .setWaveColor(WaveColor.LIGHT_GREEN)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.LIME"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.album_mdi())
-                                                                        .setWaveColor(WaveColor.LIME)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.YELLOW"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.aspect_ratio_mdi())
-                                                                        .setWaveColor(WaveColor.YELLOW)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.AMBER"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.autorenew_mdi())
-                                                                        .setWaveColor(WaveColor.AMBER)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.ORANGE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.plus_mdi())
-                                                                        .setWaveColor(WaveColor.ORANGE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.DEEP_ORANGE"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.location_enter_mdi())
-                                                                        .setWaveColor(WaveColor.DEEP_ORANGE)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BROWN"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.plus_box_mdi())
-                                                                        .setWaveColor(WaveColor.BROWN)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.GREY"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.book_remove_mdi())
-                                                                        .setWaveColor(WaveColor.GREY)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLUE_GREY"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.book_plus_mdi())
-                                                                        .setWaveColor(WaveColor.BLUE_GREY)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        ),
-                                                FlexLayout.create()
-                                                        .appendChild(FlexItem.create()
-                                                                .setFlexGrow(1)
-                                                                .appendChild(TextNode.of("WaveColor.BLACK"))
-                                                        )
-                                                        .appendChild(FlexItem.create()
-                                                                .appendChild(Button
-                                                                        .createDefault(Icons.ALL.adjust_mdi())
-                                                                        .setWaveColor(WaveColor.BLACK)
-                                                                        .circle()
-                                                                        .setSize(ButtonSize.SMALL))
-                                                        )
-
-                                                )
-                                        )
-                                )
-                        )
-                )
-                .element());
+        waves();
 
         element.appendChild(CodeCard.createCodeCard(
                 "//Elements extending WaveElement will have waves by default\n" +
                         "//to add Waves to elements that does not extend from WaveElement use the WaveSupport class\n\n" +
-                        CodeResource.INSTANCE.sample()
-        ).element());
+                        CodeResource.INSTANCE.waves()
+        ));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
-    private void sample() {
-        HTMLElement element = div().element();
-        WavesSupport.addFor(element)
-                .setWaveColor(WaveColor.YELLOW)
-                .applyWaveStyle(WaveStyle.CIRCLE);
+    private void waves() {
+        element.appendChild(Row.create()
+                .appendChild(Column.span6()
+                        .appendChild(Card.create("COLOR VARIATIONS")
+                                .appendChild(ListGroup.<IsElement<?>>create()
+                                        .setSelectable(false)
+                                        .setItemRenderer((listGroup, listItem) -> listItem
+                                                .addCss(dui_p_3)
+                                                .appendChild(listItem.getValue()))
+                                        .setItems(Arrays.asList(
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1)
+                                                                        .appendChild(text("Default"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button.create("CLICK ME").addCss(dui_w_28))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_accent)
+                                                                        .appendChild(text("ACCENT"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_accent)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_red)
+                                                                        .appendChild(text("RED"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_red)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_pink)
+                                                                        .appendChild(text("PINK"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_pink)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_purple)
+                                                                        .appendChild(text("PURPLE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_purple)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_deep_purple)
+                                                                        .appendChild(text("DEEP_PURPLE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_deep_purple)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_indigo)
+                                                                        .appendChild(text("INDIGO"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_indigo)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_blue)
+                                                                        .appendChild(text("BLUE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_blue)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_light_blue)
+                                                                        .appendChild(text("LIGHT_BLUE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_light_blue)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_cyan)
+                                                                        .appendChild(text("CYAN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_cyan)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_teal)
+                                                                        .appendChild(text("TEAL"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_teal)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_green)
+                                                                        .appendChild(text("GREEN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_green)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_light_green)
+                                                                        .appendChild(text("LIGHT_GREEN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_light_green)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_lime)
+                                                                        .appendChild(text("LIME"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_lime)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_yellow)
+                                                                        .appendChild(text("YELLOW"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_yellow)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_amber)
+                                                                        .appendChild(text("AMBER"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_amber)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_orange)
+                                                                        .appendChild(text("ORANGE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_orange)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_deep_orange)
+                                                                        .appendChild(text("DEEP_ORANGE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_deep_orange)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_brown)
+                                                                        .appendChild(text("BROWN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_brown)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_grey)
+                                                                        .appendChild(text("GREY"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_grey)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_blue_grey)
+                                                                        .appendChild(text("BLUE_GREY"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_blue_grey)))
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_black)
+                                                                        .appendChild(text("BLACK"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create("CLICK ME").addCss(dui_w_28)
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_black)))
+                                                                )
+
+                                                )
+                                        )
+                                )
+                        )
+                )
+                .appendChild(Column.span6()
+                        .appendChild(Card.create("CIRCLE")
+                                .appendChild(ListGroup.<IsElement<?>>create()
+                                        .setSelectable(false)
+                                        .setItemRenderer((listGroup, listItem) -> listItem
+                                                .addCss(dui_p_3)
+                                                .appendChild(listItem.getValue()))
+                                        .setItems(Arrays.asList(
+                                                        div().addCss(dui_flex).addCss(dui_items_center).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1)
+                                                                        .appendChild(text("Default"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button.create(Icons.microphone())
+                                                                                .circle()
+                                                                                .withWaves()
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_accent)
+                                                                        .appendChild(text("ACCENT"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button.create(Icons.keyboard())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_accent))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_red)
+                                                                        .appendChild(text("RED"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.content_cut())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_red))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_pink)
+                                                                        .appendChild(text("PINK"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.content_paste())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_pink))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_purple)
+                                                                        .appendChild(text("PURPLE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.alarm())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_purple))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_deep_purple)
+                                                                        .appendChild(text("DEEP_PURPLE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.timeline())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_deep_purple))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_indigo)
+                                                                        .appendChild(text("INDIGO"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.account())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_indigo))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_blue)
+                                                                        .appendChild(text("BLUE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.seat()).circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_blue))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_light_blue)
+                                                                        .appendChild(text("LIGHT_BLUE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.alarm())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_light_blue))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_cyan)
+                                                                        .appendChild(text("CYAN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.air_conditioner())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_cyan))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_teal)
+                                                                        .appendChild(text("TEAL"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.apps())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_teal))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_green)
+                                                                        .appendChild(text("GREEN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.assistant())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_green))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_light_green)
+                                                                        .appendChild(text("LIGHT_GREEN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.android())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_light_green))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_lime)
+                                                                        .appendChild(text("LIME"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.album())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_lime))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_yellow)
+                                                                        .appendChild(text("YELLOW"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.aspect_ratio())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_yellow))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_amber)
+                                                                        .appendChild(text("AMBER"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.autorenew())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_amber))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_orange)
+                                                                        .appendChild(text("ORANGE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.plus())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_orange))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_deep_orange)
+                                                                        .appendChild(text("DEEP_ORANGE"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.location_enter())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_deep_orange))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_brown)
+                                                                        .appendChild(text("BROWN"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.plus_box())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_brown))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_grey)
+                                                                        .appendChild(text("GREY"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.book_remove())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_grey))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_blue_grey)
+                                                                        .appendChild(text("BLUE_GREY"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.book_plus())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_blue_grey))
+                                                                        )
+                                                                ),
+                                                        div().addCss(dui_flex).addCss(dui_items_center)
+                                                                .appendChild(div().addCss(dui_grow_1, dui_fg_black)
+                                                                        .appendChild(text("BLACK"))
+                                                                )
+                                                                .appendChild(div()
+                                                                        .appendChild(Button
+                                                                                .create(Icons.adjust())
+                                                                                .circle()
+                                                                                .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_black))
+                                                                        )
+                                                                )
+                                                )
+                                        )
+                                )
+                        )
+                )
+        );
     }
 }

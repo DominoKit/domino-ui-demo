@@ -1,63 +1,55 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
-import elemental2.dom.HTMLAnchorElement;
-import elemental2.dom.HTMLElement;
+import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.ui.datatable.DataTable;
-import org.dominokit.domino.ui.grid.Column;
-import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.MdiIcon;
-import org.dominokit.domino.ui.style.Style;
-import org.jboss.elemento.IsElement;
+import org.dominokit.domino.ui.icons.ToggleMdiIcon;
+import org.dominokit.domino.ui.utils.BaseDominoElement;
 
-import static org.jboss.elemento.Elements.a;
-
-public class TableStyleActions implements IsElement<HTMLElement> {
+public class TableStyleActions extends BaseDominoElement<HTMLDivElement, TableStyleActions> {
 
     private DataTable<?> dataTable;
-    private Column column = Column.span12();
+    private DivElement root;
 
     public TableStyleActions(DataTable<?> dataTable) {
         this.dataTable = dataTable;
+        this.root = div().addCss(dui_flex, dui_gap_4, dui_justify_end, dui_p_4);
         init();
     }
 
     private void init() {
-        HTMLAnchorElement condenseAnchor = createButton("Condense", "Expand", Icons.ALL.format_line_weight_mdi(), Icons.ALL.format_line_spacing_mdi(), dataTable::condense, dataTable::show, dataTable::isCondensed);
-        HTMLAnchorElement strippedAnchor = createButton("No Stripes", "Stripped", Icons.ALL.power_on_mdi(), Icons.ALL.drag_mdi(), dataTable::striped, dataTable::noStripes, dataTable::isStriped);
-        HTMLAnchorElement borderedAnchor = createButton("No Borders", "Borders", Icons.ALL.border_vertical_mdi(), Icons.ALL.border_none_mdi(), dataTable::bordered, dataTable::noBorder, dataTable::isBordered);
-        HTMLAnchorElement hoveredAnchor = createButton("No Hover", "Hovered", Icons.ALL.blur_off_mdi(), Icons.ALL.blur_mdi(), dataTable::noHover, dataTable::hovered, () -> !dataTable.isHoverable());
+        this.root
+                .appendChild(createAction("Condense", "Expand", Icons.arrow_collapse_vertical(), Icons.arrow_expand_vertical(), ()->dataTable.setCondensed(true), ()->dataTable.setCondensed(false), dataTable::isCondensed))
+                .appendChild(createAction("No Stripes", "Stripped", Icons.view_day_outline(), Icons.view_day(), ()->dataTable.setStriped(true), ()->dataTable.setStriped(false), dataTable::isStriped))
+                .appendChild(createAction("No Borders", "Borders", Icons.border_vertical(), Icons.border_none(), ()->dataTable.setBordered(true), ()->dataTable.setBordered(false), dataTable::isBordered))
+                .appendChild(createAction("No Hover", "Hovered", Icons.blur_off(), Icons.blur(), ()->dataTable.setHover(false), ()->dataTable.setHover(true), () -> !dataTable.isHover()));
 
-        column.appendChild(condenseAnchor);
-        column.appendChild(strippedAnchor);
-        column.appendChild(borderedAnchor);
-        column.appendChild(hoveredAnchor);
     }
 
-    private HTMLAnchorElement createButton(String initialTooltip, String toggeledTooltip, MdiIcon initialIcon, MdiIcon toggeledIcon, Action initialAction, Action toggeledAction, Condition condition) {
-        initialIcon
-                .clickable()
-                .setToggleIcon(toggeledIcon)
+    private ToggleMdiIcon createAction(String initialTooltip, String toggeledTooltip, MdiIcon initialIcon, MdiIcon toggeledIcon, Action initialAction, Action toggeledAction, Condition condition) {
+        return ToggleMdiIcon.create(initialIcon, toggeledIcon)
+                .clickable(true)
                 .setTooltip(initialTooltip)
                 .toggleOnClick(true)
-                .styler(Style::pullRight)
-                .apply(icon -> icon.addClickListener(evt -> {
-                    if (condition.check()) {
-                        toggeledAction.execute();
-                        icon.setTooltip(initialTooltip);
-                    } else {
-                        initialAction.execute();
-                        icon.setTooltip(toggeledTooltip);
-                    }
-                }));
+                .apply(self -> {
+                    self.addClickListener(evt -> {
+                        if (condition.check()) {
+                            toggeledAction.execute();
+                            self.setTooltip(initialTooltip);
+                        } else {
+                            initialAction.execute();
+                            self.setTooltip(toggeledTooltip);
+                        }
+                    });
+                });
 
-        return a().add(initialIcon).element();
     }
 
     @Override
-    public HTMLElement element() {
-        return Style.of(Row.create()
-                .addColumn(column)).get().element();
+    public HTMLDivElement element() {
+        return this.root.element();
     }
 
     @FunctionalInterface

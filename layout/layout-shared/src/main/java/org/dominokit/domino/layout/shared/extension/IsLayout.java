@@ -6,6 +6,9 @@ import org.dominokit.domino.api.shared.extension.IsDominoEvent;
 @EventContext
 public interface IsLayout {
 
+    void spanDown(boolean spanDown);
+    void spanUp(boolean spanUp);
+
     interface Slots{
         String RIGHT_PANEL = "right-panel";
         String CONTENT = "content";

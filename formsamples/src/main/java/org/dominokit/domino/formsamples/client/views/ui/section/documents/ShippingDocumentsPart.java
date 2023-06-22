@@ -16,7 +16,7 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -31,12 +31,11 @@ import static org.jboss.elemento.Elements.div;
 public class ShippingDocumentsPart implements ImportSection {
 
     private final SwitchButton shippingDocumentsSwitchButton;
+    private final Select<Bank> orderOfBankSelect;
+    private final Select<String> freightSelect;
     private TextBox shippingDocumentsCopiesTextBox;
     private TextBox shippingDocumentsDescriptionTextBox;
     private Select<String> shippingDocumentsTypeSelect;
-    private final Select<Bank> orderOfBankSelect;
-    private final Select<String> freightSelect;
-
     private FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
 
@@ -61,7 +60,7 @@ public class ShippingDocumentsPart implements ImportSection {
 
         orderOfBankSelect = Select.<Bank>create("Order of")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.domain_mdi())
+                .addLeftAddOn(Icons.domain())
                 .setAutoValidation(true)
                 .setRequired(true)
                 .addSelectionHandler(option -> revalidate());
@@ -74,7 +73,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .addLeftAddOn(Icons.ALL.credit_card_mdi())
+                .addLeftAddOn(Icons.credit_card())
                 .appendChild(SelectOption.create("Prepaid", "Prepaid"))
                 .appendChild(SelectOption.create("Payable at destination", "Payable at destination"))
                 .addSelectionHandler(option -> revalidate());
@@ -83,7 +82,7 @@ public class ShippingDocumentsPart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.ship_wheel_mdi())
+                .addLeftAddOn(Icons.ship_wheel())
                 .appendChild(SelectOption.create("Ocean bills of lading in", "Ocean bills of lading in"))
                 .appendChild(SelectOption.create("Airway bill in", "Airway bill in"))
                 .appendChild(SelectOption.create("Truck consignment note", "Truck consignment note"))
@@ -121,6 +120,12 @@ public class ShippingDocumentsPart implements ImportSection {
                 .element());
     }
 
+    public void revalidate() {
+        if (isInvalidatedCard(card) && fieldsGrouping.validate().isValid()) {
+            markCardValidation(card, true, false);
+        }
+    }
+
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
         if(shippingDocumentsSwitchButton.getValue()) {
@@ -153,12 +158,6 @@ public class ShippingDocumentsPart implements ImportSection {
         boolean valid = !shippingDocumentsSwitchButton.getValue() || fieldsGrouping.validate().isValid();
         markCardValidation(card, valid);
         return valid;
-    }
-
-    public void revalidate() {
-        if (isInvalidatedCard(card) && fieldsGrouping.validate().isValid()) {
-            markCardValidation(card, true, false);
-        }
     }
 
     @Override

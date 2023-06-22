@@ -9,15 +9,9 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.media.client.presenters.MediaProxy;
 import org.dominokit.domino.media.client.views.MediaView;
-import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.media.MediaObject;
-import org.dominokit.domino.ui.utils.TextNode;
-
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.img;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = MediaProxy.class)
 @SampleClass
@@ -30,7 +24,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
     protected HTMLDivElement init() {
         element = div().element();
 
-        element.appendChild(LinkToSourceCode.create("media", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("media", this.getClass()).element());
         element.appendChild(BlockHeader.create("MEDIA OBJECT").element());
 
         defaultMedia();
@@ -47,39 +41,38 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
         element.appendChild(Card.create("DEFAULT MEDIA", "The default media displays a media object (images, video, audio) to the left or right of a content block.")
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .appendChild(TextNode.of(SAMPLE_TEXT)))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16)))
+                        .appendChild(text(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .appendChild(TextNode.of(SAMPLE_TEXT))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16)))
+                        .appendChild(text(SAMPLE_TEXT))
                         .appendChild(MediaObject.create()
                                 .setHeader("Media heading")
-                                .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                        .attr("width", "64")
-                                        .attr("height", "64")))
-                                .appendChild(TextNode.of(SAMPLE_TEXT))))
+                                .setLeftMedia(a()
+                                        .appendChild(img("http://placehold.it/64x64")
+                                                .addCss(dui_w_16, dui_h_16)))
+                                .appendChild(text(SAMPLE_TEXT))))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setRightMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .appendChild(TextNode.of(SAMPLE_TEXT)))
+                        .setRightMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16)))
+                        .appendChild(text(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setRightMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .appendChild(TextNode.of(SAMPLE_TEXT)))
+                        .setRightMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16)))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16)))
+                        .appendChild(text(SAMPLE_TEXT)))
                 .element());
-
 
     }
 
@@ -89,27 +82,27 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
         element.appendChild(Card.create("MEDIA ALIGNMENT","The images or other media can be aligned top, middle, or bottom. The default is top aligned.")
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .appendChild(Paragraph.create(SAMPLE_TEXT))
-                        .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16, dui_rounded_full)))
+                        .appendChild(p(SAMPLE_TEXT))
+                        .appendChild(p(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .alignLeftMedia(MediaObject.MediaAlign.MIDDLE)
-                        .appendChild(Paragraph.create(SAMPLE_TEXT))
-                        .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16, dui_rounded_full)))
+                                .withLeftMedia((parent, leftMedia) -> leftMedia.addCss(dui_self_center))
+                        .appendChild(p(SAMPLE_TEXT))
+                        .appendChild(p(SAMPLE_TEXT)))
                 .appendChild(MediaObject.create()
                         .setHeader("Media heading")
-                        .setLeftMedia(a().add(img("http://placehold.it/64x64")
-                                .attr("width", "64")
-                                .attr("height", "64")))
-                        .alignLeftMedia(MediaObject.MediaAlign.BOTTOM)
-                        .appendChild(Paragraph.create(SAMPLE_TEXT))
-                        .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                        .setLeftMedia(a()
+                                .appendChild(img("http://placehold.it/64x64")
+                                        .addCss(dui_w_16, dui_h_16, dui_rounded_full)))
+                        .withLeftMedia((parent, leftMedia) -> leftMedia.addCss(dui_self_end))
+                        .appendChild(p(SAMPLE_TEXT))
+                        .appendChild(p(SAMPLE_TEXT)))
                 .element());
 
     }

@@ -29,6 +29,7 @@ import com.squareup.javapoet.FieldSpec;
 import com.squareup.javapoet.MethodSpec;
 import com.squareup.javapoet.TypeSpec;
 import org.apache.commons.io.IOUtils;
+import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.apt.commons.AbstractProcessingStep;
 import org.dominokit.domino.apt.commons.DominoTypeBuilder;
@@ -38,7 +39,6 @@ import org.dominokit.domino.apt.commons.StepBuilder;
 import javax.annotation.processing.ProcessingEnvironment;
 import javax.lang.model.element.Element;
 import javax.lang.model.element.Modifier;
-import javax.tools.Diagnostic;
 import javax.tools.FileObject;
 import javax.tools.StandardLocation;
 import java.io.FileInputStream;
@@ -74,7 +74,7 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
                 InputStream in = null;
                 try {
                     final FileObject tempResource;
-                    tempResource = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", "ignore.tmp");
+                    tempResource = filer.createResource(StandardLocation.SOURCE_OUTPUT, "", element.getSimpleName()+"_ignore.tmp");
                     final URI uri = tempResource.toUri();
                     Path path = Paths.get(uri);
                     while (!path.endsWith("target") && !path.toAbsolutePath().toString().equals("/")) {
@@ -88,10 +88,10 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
                         String[] pathsArray = new String[paths.size()];
                         paths.toArray(pathsArray);
 
-                        TypeSpec.Builder codeResource = DominoTypeBuilder.interfaceBuilder("CodeResource", SampleCodeProcessor.class)
+                        TypeSpec.Builder codeResource = DominoTypeBuilder.interfaceBuilder(getCodeResourceName(element), SampleCodeProcessor.class)
                                 .addSuperinterface(ClientBundle.class)
                                 .addModifiers(Modifier.PUBLIC);
-                        ClassName elementType = ClassName.bestGuess(elements.getPackageOf(element).getQualifiedName().toString() + ".CodeResource");
+                        ClassName elementType = ClassName.bestGuess(elements.getPackageOf(element).getQualifiedName().toString() + "."+getCodeResourceName(element));
                         codeResource.addField(FieldSpec.builder(elementType, "INSTANCE")
                                 .addModifiers(Modifier.PUBLIC, Modifier.STATIC, Modifier.FINAL)
                                 .initializer("$T.create($T.class)", GWT.class, elementType)
@@ -134,13 +134,7 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
                                 }.visit(compilationUnit, null);
                             });
                         }
-
-
-
                         writeSource(Collections.singletonList(codeResource), elements.getPackageOf(element).getQualifiedName().toString());
-
-
-
                     }
 
                 } catch (Exception ex) {
@@ -149,10 +143,17 @@ public class SampleCodeProcessorStep extends AbstractProcessingStep {
                     in.close();
                 }
 
-
             } catch (Exception e) {
                 ExceptionUtil.messageStackTrace(messager, e, element);
             }
         }
+    }
+
+    private String getCodeResourceName(Element element){
+        SampleClass annotation = element.getAnnotation(SampleClass.class);
+        if(annotation.includeClassName()) {
+            return element.getSimpleName().toString() + "_CodeResource";
+        }
+        return "CodeResource";
     }
 }

@@ -11,84 +11,78 @@ import org.dominokit.domino.preloaders.client.presenters.PreloadersProxy;
 import org.dominokit.domino.preloaders.client.views.CodeResource;
 import org.dominokit.domino.preloaders.client.views.PreloadersView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.preloaders.Preloader;
-import org.dominokit.domino.ui.style.Color;
-
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = PreloadersProxy.class)
 @SampleClass
 public class PreloadersViewImpl extends BaseDemoView<HTMLDivElement> implements PreloadersView {
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("preloaders", this.getClass()).element());
-        element.appendChild(BlockHeader.create("PRELOADERS").element());
+        element.appendChild(LinkToSourceCode.createLink("preloaders", this.getClass()));
+        element.appendChild(BlockHeader.create("PRELOADERS"));
 
         sizesSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.sizesSample()));
         colorsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorsSample()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void sizesSample() {
         element.appendChild(Card.create("PRELOADERS - DIFFERENT SIZES")
-                .appendChild(div().css("demo-preloader")
-                        .add(Preloader.create()
-                                .setSize(Preloader.Size.xLarge))
-                        .add(Preloader.create()
-                                .setSize(Preloader.Size.large))
-                        .add(Preloader.create()
-                                .setSize(Preloader.Size.medium))
-                        .add(Preloader.create()
-                                .setSize(Preloader.Size.small))
-                        .add(Preloader.create()
-                                .setSize(Preloader.Size.xSmall)))
-                .element());
-
+                .appendChild(div().addCss(dui_flex, dui_gap_4, dui_items_center)
+                        .appendChild(Preloader.create()
+                                .addCss(dui_xlarge))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_large))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_medium))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_small))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_xsmall))
+                )
+        );
     }
 
     @SampleMethod
     private void colorsSample() {
 
-
-        element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS","You can use the material design colors.")
-                .appendChild(div().css("demo-preloader")
-                        .add(Preloader.create()
-                                .setColor(Color.RED))
-                        .add(Preloader.create()
-                                .setColor(Color.BLACK))
-                        .add(Preloader.create()
-                                .setColor(Color.BLUE_GREY))
-                        .add(Preloader.create()
-                                .setColor(Color.BLUE))
-                        .add(Preloader.create()
-                                .setColor(Color.GREY))
-                        .add(Preloader.create()
-                                .setColor(Color.BROWN))
-                        .add(Preloader.create()
-                                .setColor(Color.DEEP_ORANGE))
-                        .add(Preloader.create()
-                                .setColor(Color.ORANGE))
-                        .add(Preloader.create()
-                                .setColor(Color.LIME))
-                        .add(Preloader.create()
-                                .setColor(Color.LIGHT_GREEN))
-                        .add(Preloader.create()
-                                .setColor(Color.TEAL))
-                        .add(Preloader.create()
-                                .setColor(Color.INDIGO)))
-                .element());
-
-
-
+        element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use the material design colors.")
+                .appendChild(div().addCss(dui_flex, dui_gap_4)
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_red))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_black))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_blue_grey))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_blue))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_grey))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_brown))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_deep_orange))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_orange))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_lime))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_light_green))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_teal))
+                        .appendChild(Preloader.create()
+                                .addCss(dui_fg_indigo)))
+        );
     }
 }

@@ -11,7 +11,7 @@ import org.dominokit.domino.ui.forms.FieldsGrouping;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
@@ -34,7 +34,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         insuranceCompanyTextBox = TextBox.create("Insurance company")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.bank_mdi())
+                .addLeftAddOn(Icons.bank())
                 .setAutoValidation(true)
                 .setRequired(true);
 
@@ -42,7 +42,7 @@ public class InsurancePolicyPart implements ImportSection {
 
         insurancePolicyNumberTextBox = TextBox.create("Insurance policy number")
                 .groupBy(fieldsGrouping)
-                .addLeftAddOn(Icons.ALL.phone_mdi())
+                .addLeftAddOn(Icons.phone())
                 .setAutoValidation(true)
                 .setRequired(true);
 
@@ -79,6 +79,16 @@ public class InsurancePolicyPart implements ImportSection {
                 .element());
     }
 
+    public void revalidate() {
+        if (isInvalidatedCard(insurancePolicyCard) && isValid()) {
+            markCardValidation(insurancePolicyCard, true, false);
+        }
+    }
+
+    private boolean isValid() {
+        return !insurancePolicyRequiredSwitchButton.getValue() || fieldsGrouping.validate().isValid();
+    }
+
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
         DocumentsRequired documentsRequired = letterOfCredit.getDocumentsRequired();
@@ -95,16 +105,6 @@ public class InsurancePolicyPart implements ImportSection {
         boolean valid = isValid();
         markCardValidation(insurancePolicyCard, valid);
         return valid;
-    }
-
-    public void revalidate() {
-        if (isInvalidatedCard(insurancePolicyCard) && isValid()) {
-            markCardValidation(insurancePolicyCard, true, false);
-        }
-    }
-
-    private boolean isValid() {
-        return !insurancePolicyRequiredSwitchButton.getValue() || fieldsGrouping.validate().isValid();
     }
 
     @Override

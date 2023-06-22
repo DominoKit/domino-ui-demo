@@ -1,64 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modules>
         <module>ui-demo-frontend</module>
         <module>ui-demo-backend</module>
         <module>layout</module>
         <module>themes</module>
-<!--        <module>profile</module>-->
-<!--        <module>demomenu</module>-->
-<!--        <module>component-case</module>-->
-<!--        <module>home</module>-->
-<!--        <module>setup</module>-->
-<!--        <module>samples</module>-->
-<!--        <module>appLayout</module>-->
-<!--        <module>gridLayout</module>-->
-<!--        <module>grids</module>-->
-<!--        <module>splitPanel</module>-->
-<!--        <module>flexlayout</module>-->
-<!--        <module>chips</module>-->
-<!--        <module>cards</module>-->
-<!--        <module>infobox</module>-->
-<!--        <module>buttons</module>-->
-<!--        <module>alerts</module>-->
-<!--        <module>badges</module>-->
-<!--        <module>labels</module>-->
-<!--        <module>modals</module>-->
-<!--        <module>lists</module>-->
-<!--        <module>loaders</module>-->
-<!--        <module>breadcrumb</module>-->
-<!--        <module>collapse</module>-->
-<!--        <module>typography</module>-->
-<!--        <module>helpers</module>-->
-<!--        <module>colors</module>-->
-<!--        <module>animation</module>-->
-<!--        <module>notifications</module>-->
-<!--        <module>media</module>-->
-<!--        <module>pagination</module>-->
-<!--        <module>preloaders</module>-->
-<!--        <module>progress</module>-->
-<!--        <module>tabs</module>-->
-<!--        <module>thumbnails</module>-->
-<!--        <module>dialogs</module>-->
-<!--        <module>menu</module>-->
-<!--        <module>popover</module>-->
-<!--        <module>waves</module>-->
-<!--        <module>basic-forms</module>-->
-<!--        <module>datepicker</module>-->
-<!--        <module>advanced-forms</module>-->
-<!--        <module>timepicker</module>-->
-<!--        <module>formsvalidations</module>-->
-<!--        <module>datatable</module>-->
-<!--        <module>sliders</module>-->
-<!--        <module>steppers</module>-->
-<!--        <module>formsamples</module>-->
-<!--        <module>carousel</module>-->
-<!--        <module>tree</module>-->
-<!--        <module>spin</module>-->
-<!--        <module>inputfields</module>-->
-<!--        <module>login</module>-->
-<!--        <module>mdiicons</module>-->
+        <module>profile</module>
+        <module>demomenu</module>
+        <module>component-case</module>
+        <module>home</module>
+        <module>setup</module>
+        <module>samples</module>
+        <module>appLayout</module>
+        <module>gridLayout</module>
+        <module>grids</module>
+        <module>splitPanel</module>
+        <module>flexlayout</module>
+        <module>alerts</module>
+        <module>badges</module>
+        <module>breadcrumb</module>
+        <module>buttons</module>
+        <module>cards</module>
+        <module>carousel</module>
+        <module>chips</module>
+        <module>collapse</module>
+        <module>dialogs</module>
+        <module>dnd</module>
+        <module>infobox</module>
+        <module>labels</module>
+        <module>lists</module>
+        <module>loaders</module>
+        <module>media</module>
+        <module>menu</module>
+        <module>modals</module>
+        <module>notifications</module>
+        <module>pagination</module>
+        <module>preloaders</module>
+        <module>progress</module>
+        <module>sliders</module>
+        <module>spin</module>
+        <module>tabs</module>
+        <module>thumbnails</module>
+        <module>popover</module>
+        <module>tree</module>
+        <module>waves</module>
+        <module>mdiicons</module>
+        <module>typography</module>
+        <module>helpers</module>
+        <module>colors</module>
+        <module>animation</module>
+        <module>basic-forms</module>
+        <module>advanced-forms</module>
+        <module>formsvalidations</module>
+        <module>inputfields</module>
+        <module>steppers</module>
+        <module>datepicker</module>
+        <module>timepicker</module>
+        <!--        <module>formsamples</module>-->
+                <module>datatable</module>
+        <!--        <module>login</module>-->
         <module>sample-processor</module>
         <module>sample-annotations</module>
         <module>ui-demo-server</module>
@@ -82,8 +84,8 @@
         <elemental2.version>1.1.0</elemental2.version>
         <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
         <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
-        <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
-        <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
+        <domino.ui.version>2.0-HEAD-SNAPSHOT</domino.ui.version>
+        <domino.mvp.version>FEATURE-SET</domino.mvp.version>
     </properties>
 
     <repositories>
@@ -281,8 +283,8 @@
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
                             <compilerArgs>
-<!--                                                                <compilerArg>-style</compilerArg>-->
-<!--                                                                <compilerArg>PRETTY</compilerArg>-->
+                                <!--                                                                <compilerArg>-style</compilerArg>-->
+                                <!--                                                                <compilerArg>PRETTY</compilerArg>-->
                                 <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>
@@ -294,14 +296,20 @@
                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>
+                                    /media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>
                                     /media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>
+                                    /media/vegegoku/drive2//Development/Dominokit/domino-ui/domino-ui/src/main/resources
+                                </codeserverArg>
+                                <codeserverArg>-src</codeserverArg>
+                                <codeserverArg>
+                                    /media/vegegoku/drive2/Development/Dominokit/domino-ui/domino-ui-shared/src/main/java
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>
@@ -340,7 +348,8 @@
                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/home/rjeeb/git/domino-ui/domino-ui/src/main/java</codeserverArg>
+                                <codeserverArg>/home/rjeeb/git/domino-ui/domino-ui/src/main/java
+                                </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>
                                     /home/rjeeb/git/domino-ui/domino-ui/target/generated-sources/annotations

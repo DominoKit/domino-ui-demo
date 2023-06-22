@@ -6,7 +6,7 @@ import org.dominokit.domino.formsamples.shared.model.LetterOfCredit;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.TextArea;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.isInvalidatedCard;
 import static org.dominokit.domino.formsamples.client.views.ui.CustomElements.markCardValidation;
@@ -26,7 +26,7 @@ public class GoodsDescriptionSection implements ImportSection {
                 .setRequired(true)
                 .autoSize()
                 .setRows(3)
-                .addLeftAddOn(Icons.ALL.note_mdi());
+                .addLeftAddOn(Icons.note());
 
         goodsDescriptionTextArea.getInputElement().addEventListener("input", evt -> revalidate());
 
@@ -39,6 +39,16 @@ public class GoodsDescriptionSection implements ImportSection {
                 .element());
     }
 
+    public void revalidate(){
+        if(isInvalidatedCard(card) && isValid()){
+            markCardValidation(card, true, false);
+        }
+    }
+
+    private boolean isValid() {
+        return goodsDescriptionTextArea.validate().isValid();
+    }
+
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
         letterOfCredit.setDescriptionOfGoods(goodsDescriptionTextArea.getValue());
@@ -49,16 +59,6 @@ public class GoodsDescriptionSection implements ImportSection {
         boolean valid = isValid();
         markCardValidation(card, valid);
         return valid;
-    }
-
-    public void revalidate(){
-        if(isInvalidatedCard(card) && isValid()){
-            markCardValidation(card, true, false);
-        }
-    }
-
-    private boolean isValid() {
-        return goodsDescriptionTextArea.validate().isValid();
     }
 
     @Override

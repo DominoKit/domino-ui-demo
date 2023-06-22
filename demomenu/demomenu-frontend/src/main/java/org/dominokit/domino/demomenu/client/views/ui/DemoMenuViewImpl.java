@@ -1,60 +1,107 @@
 package org.dominokit.domino.demomenu.client.views.ui;
 
+import elemental2.core.Global;
 import elemental2.dom.HTMLDivElement;
+import elemental2.dom.URL;
 import org.dominokit.domino.api.client.annotations.UiView;
-import org.dominokit.domino.demomenu.client.views.DemoMenuView;
 import org.dominokit.domino.demomenu.client.presenters.DemoMenuProxy;
-import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.icons.MdiIcon;
+import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.icons.lib.MdiTags;
+import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.style.Calc;
-import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.style.SpacingCss;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
+import org.dominokit.domino.ui.tree.TreeItemIcon;
+import org.dominokit.domino.ui.utils.ElementHandler;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.view.BaseElementView;
-
-import static org.dominokit.domino.ui.style.Unit.px;
-import static org.dominokit.domino.ui.style.Unit.vh;
 
 @UiView(presentable = DemoMenuProxy.class)
 public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements DemoMenuView {
 
     private Tree<String> menu;
-    private MdiIcon lockIcon = Icons.ALL.lock_open_mdi()
-            .style()
-            .setMarginBottom("0px")
-            .setMarginTop("0px")
-            .setCursor("pointer")
-            .addCss(Styles.pull_right)
-            .get();
     private boolean locked = false;
-    private Collapsible lockCollapsible = Collapsible.create(lockIcon).show();
+    private boolean spanUp = false;
+    private boolean spanDown = true;
     private MenuUiHandlers uiHandlers;
+    private ToggleMdiIcon lockIcon;
+
+    private static ElementHandler<TreeItem<String>> addToggleIcon() {
+        return self -> {
+            ToggleMdiIcon icon = ToggleMdiIcon.create(Icons.plus(), Icons.minus());
+            self.appendChild(PostfixAddOn.of(icon));
+            self.addBeforeCollapseListener(icon::toggle);
+            self.addBeforeExpandListener(icon::toggle);
+        };
+    }
 
     @Override
     protected HTMLDivElement init() {
-        menu = Tree.create("Demo menu");
+        lockIcon = ToggleMdiIcon.create(Icons.lock_open()
+                        .addCss(SpacingCss.dui_font_size_4)
+                        .clickable(),
+                Icons.lock()
+                        .addCss(SpacingCss.dui_font_size_4)
+                        .clickable());
 
-        menu.getHeader().appendChild(lockIcon.element());
-
-        menu.enableSearch()
-                .autoExpandFound()
-                .style()
-                .setHeight(Calc.sub(vh.of(100), px.of(186))).get();
-
-        lockIcon.addClickListener(evt -> {
-            if (locked) {
-                uiHandlers.onUnLocked();
-                lockIcon.element().textContent = Icons.ALL.lock_mdi().getName();
-                locked = false;
-            } else {
-                uiHandlers.onLocked();
-                lockIcon.element().textContent = Icons.ALL.lock_open_mdi().getName();
-                locked = true;
-            }
-        });
+        menu = Tree.<String>create("Demo menu")
+                .addCss(dui_order_20)
+                .withHeader((self, header) -> {
+                    header
+                            .addCss(dui_h_12)
+                            .appendChild(PostfixAddOn.of(lockIcon
+                                            .apply(icon -> {
+                                                icon.addClickListener(evt -> {
+                                                    if (locked) {
+                                                        uiHandlers.onUnLocked();
+                                                        locked = false;
+                                                    } else {
+                                                        uiHandlers.onLocked();
+                                                        locked = true;
+                                                    }
+                                                    icon.toggle();
+                                                });
+                                            })
+                                    )
+                            )
+                            .appendChild(PostfixAddOn.of(ToggleMdiIcon.create(Icons.arrow_collapse_up()
+                                                            .addCss(SpacingCss.dui_font_size_4)
+                                                            .clickable(),
+                                                    Icons.arrow_collapse_down()
+                                                            .addCss(SpacingCss.dui_font_size_4)
+                                                            .clickable())
+                                            .clickable()
+                                            .apply(icon -> {
+                                                icon.addClickListener(evt -> {
+                                                    uiHandlers.onSpanUp(!spanUp);
+                                                    spanUp = !spanUp;
+                                                    icon.toggle();
+                                                });
+                                            })
+                                    )
+                            )
+                            .appendChild(PostfixAddOn.of(ToggleMdiIcon.create(Icons.arrow_collapse_up()
+                                                            .addCss(SpacingCss.dui_font_size_4)
+                                                            .clickable(),
+                                                    Icons.arrow_collapse_down()
+                                                            .addCss(SpacingCss.dui_font_size_4)
+                                                            .clickable())
+                                            .clickable()
+                                            .apply(icon -> {
+                                                icon.addClickListener(evt -> {
+                                                    uiHandlers.onSpanDown(!spanDown);
+                                                    spanDown = !spanDown;
+                                                    icon.toggle();
+                                                });
+                                            })
+                                    )
+                            );
+                })
+                .setSearchable(true)
+                .setAutoExpandFound(true);
 
         addMenuItems();
         addMediaQueries();
@@ -64,7 +111,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
 
     private void addMenuItems() {
         menu
-                .appendChild(TreeItem.create("Home", Icons.ALL.home_mdi())
+                .appendChild(TreeItem.create(Icons.home(), "Home")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "home"))
                         .addClickListener(evt -> {
@@ -72,7 +119,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("home");
                         })
                 )
-                .appendChild(TreeItem.create("Setup", Icons.ALL.wrench_mdi())
+                .appendChild(TreeItem.create(Icons.wrench(), "Setup")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "setup"))
                         .addClickListener(evt -> {
@@ -80,7 +127,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("setup");
                         })
                 )
-                .appendChild(TreeItem.create("Samples", Icons.ALL.apps_mdi())
+                .appendChild(TreeItem.create(Icons.apps(), "Samples")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "samples"))
                         .addClickListener(evt -> {
@@ -88,14 +135,16 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("samples");
                         })
                 )
-                .appendChild(TreeItem.create("Layout", Icons.ALL.view_dashboard_mdi())
+                .appendChild(TreeItem.create(Icons.view_dashboard(), "Layout")
+                        .apply(addToggleIcon())
                         .appendChild(makeSubMenu("App layout", "layout/app-layout"))
                         .appendChild(makeSubMenu("Grid layout", "layout/grid-layout"))
                         .appendChild(makeSubMenu("Grids", "layout/grids"))
                         .appendChild(makeSubMenu("Split panel", "layout/split-panel"))
                         .appendChild(makeSubMenu("Flex layout", "layout/flex-layout"))
                 )
-                .appendChild(TreeItem.create("Components", Icons.ALL.widgets_mdi())
+                .appendChild(TreeItem.create(Icons.widgets(), "Components")
+                        .apply(addToggleIcon())
                         .appendChild(makeSubMenu("Alerts", "components/alerts"))
                         .appendChild(makeSubMenu("Badges", "components/badges"))
                         .appendChild(makeSubMenu("Breadcrumbs", "components/breadcrumbs"))
@@ -105,6 +154,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Chips", "components/chips"))
                         .appendChild(makeSubMenu("Collapse", "components/collapse"))
                         .appendChild(makeSubMenu("Dialogs", "components/dialogs"))
+                        .appendChild(makeSubMenu("Drag and drop", "components/dnd"))
                         .appendChild(makeSubMenu("Info box", "components/infobox"))
                         .appendChild(makeSubMenu("Labels", "components/labels"))
                         .appendChild(makeSubMenu("Lists", "components/lists"))
@@ -124,7 +174,8 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Tree", "components/tree"))
                         .appendChild(makeSubMenu("Waves", "components/waves"))
                 )
-                .appendChild(TreeItem.create("Forms", Icons.ALL.textbox_mdi())
+                .appendChild(TreeItem.create(Icons.form_textbox(), "Forms")
+                        .apply(addToggleIcon())
                         .appendChild(makeSubMenu("Basic forms", "forms/basic-form-elements"))
                         .appendChild(makeSubMenu("Advanced forms", "forms/advanced-form-elements"))
                         .appendChild(makeSubMenu("Date picker", "forms/datepicker"))
@@ -135,31 +186,60 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Form sample", "forms/form-sample"))
                         .appendChild(makeSubMenu("Login samples", "forms/login-sample"))
                 )
-                .appendChild(TreeItem.create("Data table", Icons.ALL.view_list_mdi())
-                        .apply(self -> self.getClickableElement()
-                                .setAttribute("href", "datatable"))
-                        .addClickListener(evt -> {
-                            evt.preventDefault();
-                            uiHandlers.onMenuItemSelected("datatable");
+                .appendChild(TreeItem.create(Icons.view_list(), "Data table")
+                        .apply(addToggleIcon())
+                        .appendChild(makeSubMenu("Basic table", "datatable/basic-table"))
+                        .appendChild(makeSubMenu("Column resize plugin", "datatable/column-resize-plugin"))
+                        .appendChild(makeSubMenu("Column pin plugin", "datatable/column-pin-plugin"))
+                        .appendChild(makeSubMenu("Column groups", "datatable/column-groups"))
+                        .appendChild(makeSubMenu("Drag-Drop plugin", "datatable/drag-drop-plugin"))
+                        .appendChild(makeSubMenu("Editable table", "datatable/editable-table"))
+                        .appendChild(makeSubMenu("Empty state", "datatable/empty-state"))
+                        .appendChild(makeSubMenu("Fixed table", "datatable/fixed-table"))
+                        .appendChild(makeSubMenu("Grouping plugin", "datatable/grouping-plugin"))
+                        .appendChild(makeSubMenu("Header bar plugin", "datatable/header-bar-plugin"))
+                        .appendChild(makeSubMenu("Marker plugin", "datatable/marker-plugin"))
+                        .appendChild(makeSubMenu("Selection plugin", "datatable/selection-plugin"))
+                        .appendChild(makeSubMenu("Pagination plugins", "datatable/pagination-plugin"))
+                        .appendChild(makeSubMenu("Record details plugin", "datatable/record-details-plugin"))
+                        .appendChild(makeSubMenu("Row menu plugin", "datatable/row-menu-plugin"))
+                        .appendChild(makeSubMenu("Sort and search plugins", "datatable/sort-search-plugin"))
+                        .appendChild(makeSubMenu("Scroll loading", "datatable/scroll-loading"))
+                        .appendChild(makeSubMenu("Summary plugin", "datatable/summary-plugin"))
+                        .appendChild(makeSubMenu("Top panel plugin", "datatable/top-panel-plugin"))
+                        .appendChild(makeSubMenu("Tree plugin - eager", "datatable/eager-tree-plugin"))
+                        .appendChild(makeSubMenu("Tree plugin - Lazy", "datatable/lazy-tree-plugin"))
+                        .appendChild(makeSubMenu("Plugins mix", "datatable/mix-plugins"))
+                )
+                .appendChild(TreeItem.create(Icons.flower(), "MDI Icons")
+                        .apply(addToggleIcon())
+                        .apply(self -> {
+                            self
+                                    .appendChild(TreeItem.create("All Icons")
+                                            .addClickListener(evt -> {
+                                                evt.preventDefault();
+                                                uiHandlers.onMenuItemSelected("mdiicons/all");
+                                            })
+                                    )
+                                    .appendChild(TreeItem.create("Untagged")
+                                            .addClickListener(evt -> {
+                                                evt.preventDefault();
+                                                uiHandlers.onMenuItemSelected("mdiicons/Untagged");
+                                            })
+                                    );
+                            MdiTags.TAGS.forEach(tag -> {
+                                self
+                                        .appendChild(TreeItem.create(tag)
+                                                .addClickListener(evt -> {
+                                                    evt.preventDefault();
+                                                    uiHandlers.onMenuItemSelected("mdiicons/" + Global.encodeURI(tag.replace("/", "--")));
+                                                })
+                                        );
+                            });
+
                         })
                 )
-                .appendChild(TreeItem.create("Icons", Icons.ALL.spa_mdi())
-                        .apply(self -> self.getClickableElement()
-                                .setAttribute("href", "icons"))
-                        .addClickListener(evt -> {
-                            evt.preventDefault();
-                            uiHandlers.onMenuItemSelected("icons");
-                        })
-                )
-                .appendChild(TreeItem.create("MDI Icons", Icons.ALL.flower_mdi())
-                        .apply(self -> self.getClickableElement()
-                                .setAttribute("href", "mdiicons"))
-                        .addClickListener(evt -> {
-                            evt.preventDefault();
-                            uiHandlers.onMenuItemSelected("mdiicons");
-                        })
-                )
-                .appendChild(TreeItem.create("Typography", Icons.ALL.format_font_mdi())
+                .appendChild(TreeItem.create(Icons.format_font(), "Typography")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "typography"))
                         .addClickListener(evt -> {
@@ -167,7 +247,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("typography");
                         })
                 )
-                .appendChild(TreeItem.create("Helper classes", Icons.ALL.layers_mdi())
+                .appendChild(TreeItem.create(Icons.layers(), "Helper classes")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "helpers"))
                         .addClickListener(evt -> {
@@ -175,7 +255,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("helpers");
                         })
                 )
-                .appendChild(TreeItem.create("Colors", Icons.ALL.select_color_mdi())
+                .appendChild(TreeItem.create(Icons.select_color(), "Colors")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "colors"))
                         .addClickListener(evt -> {
@@ -183,7 +263,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                             uiHandlers.onMenuItemSelected("colors");
                         })
                 )
-                .appendChild(TreeItem.create("Animations", Icons.ALL.animation_mdi())
+                .appendChild(TreeItem.create(Icons.animation(), "Animations")
                         .apply(self -> self.getClickableElement()
                                 .setAttribute("href", "animations"))
                         .addClickListener(evt -> {
@@ -193,27 +273,12 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                 );
     }
 
-    private TreeItem<String> makeSubMenu(String title, String token) {
-        return TreeItem.create(title)
-                .setActiveIcon(Icons.ALL.arrow_up_mdi())
-                .apply(self -> self.getClickableElement().setAttribute("href", token))
-                .addClickListener(evt -> {
-                    evt.preventDefault();
-                    uiHandlers.onMenuItemSelected(token);
-                });
-    }
-
-    @Override
-    public void setUiHandlers(MenuUiHandlers uiHandlers) {
-        this.uiHandlers = uiHandlers;
-    }
-
     private void addMediaQueries() {
         MediaQuery.addOnXLargeListener(() -> {
             uiHandlers.onXLargeMedia();
             fix();
             Notification.create("Switched to XLarge screen")
-                    .setPosition(Notification.TOP_CENTER)
+                    .setPosition(Notification.Position.TOP_MIDDLE)
                     .show();
         });
 
@@ -221,14 +286,14 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
             uiHandlers.onLargeMedia();
             fix();
             Notification.create("Switched to Large screen")
-                    .setPosition(Notification.TOP_CENTER)
+                    .setPosition(Notification.Position.TOP_MIDDLE)
                     .show();
         });
         MediaQuery.addOnMediumListener(() -> {
             uiHandlers.onMediumMedia();
             unfix();
             Notification.create("Switched to Medium screen")
-                    .setPosition(Notification.TOP_CENTER)
+                    .setPosition(Notification.Position.TOP_MIDDLE)
                     .show();
         });
 
@@ -236,7 +301,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
             uiHandlers.onSmallMedia();
             unfix();
             Notification.create("Switched to Small screen")
-                    .setPosition(Notification.TOP_CENTER)
+                    .setPosition(Notification.Position.TOP_MIDDLE)
                     .show();
         });
 
@@ -244,18 +309,33 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
             uiHandlers.onXSmallMedia();
             unfix();
             Notification.create("Switched to XSmall screen")
-                    .setPosition(Notification.TOP_CENTER)
+                    .setPosition(Notification.Position.TOP_MIDDLE)
                     .show();
         });
     }
 
+    private TreeItem<String> makeSubMenu(String title, String token) {
+        return TreeItem.create(title)
+                .setIcon(TreeItemIcon.of(Icons.circle_small(), Icons.circle_small(), Icons.circle_small(), Icons.chevron_right()))
+                .apply(self -> self.getClickableElement().setAttribute("href", token))
+                .addClickListener(evt -> {
+                    evt.preventDefault();
+                    uiHandlers.onMenuItemSelected(token);
+                });
+    }
+
     private void fix() {
-        lockCollapsible.show();
+        lockIcon.show();
         locked = true;
     }
 
     private void unfix() {
-        lockCollapsible.hide();
+        lockIcon.hide();
         locked = false;
+    }
+
+    @Override
+    public void setUiHandlers(MenuUiHandlers uiHandlers) {
+        this.uiHandlers = uiHandlers;
     }
 }

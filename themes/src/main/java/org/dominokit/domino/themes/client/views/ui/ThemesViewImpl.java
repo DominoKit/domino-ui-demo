@@ -1,42 +1,61 @@
 package org.dominokit.domino.themes.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLLIElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.themes.client.presenters.ThemesProxy;
 import org.dominokit.domino.themes.client.views.ThemesView;
-import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.ColorScheme;
-import org.dominokit.domino.ui.themes.Theme;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.style.CssClass;
+import org.dominokit.domino.ui.style.SwapCssClass;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.ElementsFactory;
 import org.dominokit.domino.view.BaseElementView;
-import org.jboss.elemento.Elements;
-
-import java.util.HashMap;
-import java.util.Map;
-
-import static java.util.Objects.nonNull;
 
 @UiView(presentable = ThemesProxy.class)
-public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements ThemesView {
+public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements ThemesView, ElementsFactory {
 
-    private ThemesPanel themesPanel = ThemesPanel.create();
-
-    private HTMLLIElement activeTheme;
-    private Map<String, HTMLLIElement> themesElements = new HashMap<>();
-    private Card card;
+    private DivElement root;
     private ThemesUiHandlers uiHandlers;
+    private SwapCssClass themeCss =  SwapCssClass.of();
 
     @Override
     protected HTMLDivElement init() {
-        card = Card.create("Themes", "Select theme to apply.");
 
-        card.addHeaderAction(Icons.ALL.arrow_collapse_left_mdi(), evt -> uiHandlers.onHideThemes());
-        card.style().setMarginBottom("0px");
-        card.fitContent();
-        card.appendChild(themesPanel);
+        root = div().addCss(dui_p_4)
+                .appendChild(BlockHeader.create("Theme accent", "Pick color to change the them accent."))
+                .appendChild(div()
+                        .addCss(dui_flex, dui_flex_wrap, dui_gap_0_5)
+                        .appendChild(themDiv(dui_bg_red, dui_accent_red))
+                        .appendChild(themDiv(dui_bg_pink, dui_accent_pink))
+                        .appendChild(themDiv(dui_bg_purple, dui_accent_purple))
+                        .appendChild(themDiv(dui_bg_deep_purple, dui_accent_deep_purple))
+                        .appendChild(themDiv(dui_bg_indigo, dui_accent_indigo))
+                        .appendChild(themDiv(dui_bg_blue, dui_accent_blue))
+                        .appendChild(themDiv(dui_bg_light_blue, dui_accent_light_blue))
+                        .appendChild(themDiv(dui_bg_cyan, dui_accent_cyan))
+                        .appendChild(themDiv(dui_bg_teal, dui_accent_teal))
+                        .appendChild(themDiv(dui_bg_green, dui_accent_green))
+                        .appendChild(themDiv(dui_bg_light_green, dui_accent_light_green))
+                        .appendChild(themDiv(dui_bg_lime, dui_accent_lime))
+                        .appendChild(themDiv(dui_bg_yellow, dui_accent_yellow))
+                        .appendChild(themDiv(dui_bg_amber, dui_accent_amber))
+                        .appendChild(themDiv(dui_bg_orange, dui_accent_orange))
+                        .appendChild(themDiv(dui_bg_deep_orange, dui_accent_deep_orange))
+                        .appendChild(themDiv(dui_bg_brown, dui_accent_brown))
+                        .appendChild(themDiv(dui_bg_grey, dui_accent_grey))
+                        .appendChild(themDiv(dui_bg_blue_grey, dui_accent_blue_grey))
+                        .appendChild(themDiv(dui_bg_white, dui_accent_white))
+                        .appendChild(themDiv(dui_bg_black, dui_accent_black))
 
-        return card.element();
+                );
+
+        return root.element();
+    }
+
+    private DivElement themDiv(CssClass bg, CssClass accent) {
+        return div()
+                .addCss(bg, dui_w_4, dui_h_4, dui_cursor_pointer)
+                .addClickListener(evt -> body().addCss(themeCss.replaceWith(accent)));
     }
 
     @Override
@@ -44,113 +63,4 @@ public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements T
         this.uiHandlers = uiHandlers;
     }
 
-    @Override
-    public void registerTheme(String theme) {
-        registerTheme(theme, false);
-    }
-
-    @Override
-    public void registerTheme(String theme, boolean active) {
-        addTheme(of(theme), active);
-    }
-
-    private HTMLLIElement addTheme(Theme theme, boolean active) {
-
-        HTMLLIElement themeElement = Elements.li().add(Elements.div().css(theme.getThemeStyle().replace("theme-", ""))).add(Elements.span().textContent(theme.getName())).element();
-        themesElements.put(theme.getName(), themeElement);
-        if (active) {
-            themeElement.classList.add("active");
-            activeTheme = themeElement;
-            applyTheme(theme);
-        }
-        themesPanel.themesContainer.appendChild(themeElement);
-        themeElement.addEventListener("click", evt -> {
-            applyTheme(theme);
-        });
-
-        return themeElement;
-    }
-
-    private void applyTheme(Theme theme) {
-        if (nonNull(activeTheme))
-            activeTheme.classList.remove("active");
-        HTMLLIElement themeElement = themesElements.get(theme.getName());
-        this.activeTheme = themeElement;
-        themeElement.classList.add("active");
-        theme.apply();
-        uiHandlers.onThemeApplied(theme.getName());
-    }
-
-    @Override
-    public void applyTheme(String theme) {
-        if (nonNull(of(theme)))
-            applyTheme(of(theme));
-    }
-
-
-    private static Theme of(String themeKey) {
-        switch (themeKey) {
-            case "red":
-                return ColorScheme.RED.theme();
-
-            case "pink":
-                return ColorScheme.PINK.theme();
-
-            case "purple":
-                return ColorScheme.PURPLE.theme();
-
-            case "deep_purple":
-                return ColorScheme.DEEP_PURPLE.theme();
-
-            case "indigo":
-                return ColorScheme.INDIGO.theme();
-
-            case "blue":
-                return ColorScheme.BLUE.theme();
-
-            case "light_blue":
-                return ColorScheme.LIGHT_BLUE.theme();
-
-            case "cyan":
-                return ColorScheme.CYAN.theme();
-
-            case "teal":
-                return ColorScheme.TEAL.theme();
-
-            case "green":
-                return ColorScheme.GREEN.theme();
-
-            case "light_green":
-                return ColorScheme.LIGHT_GREEN.theme();
-
-            case "lime":
-                return ColorScheme.LIME.theme();
-
-            case "yellow":
-                return ColorScheme.YELLOW.theme();
-
-            case "amber":
-                return ColorScheme.AMBER.theme();
-
-            case "orange":
-                return ColorScheme.ORANGE.theme();
-
-            case "deep_orange":
-                return ColorScheme.DEEP_ORANGE.theme();
-
-            case "brown":
-                return ColorScheme.BROWN.theme();
-
-            case "grey":
-                return ColorScheme.GREY.theme();
-
-            case "blue_grey":
-                return ColorScheme.BLUE_GREY.theme();
-
-            case "black":
-                return ColorScheme.BLACK.theme();
-            default:
-                return Theme.currentTheme;
-        }
-    }
 }

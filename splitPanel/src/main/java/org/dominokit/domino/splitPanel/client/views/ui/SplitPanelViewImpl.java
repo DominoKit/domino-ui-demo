@@ -10,25 +10,24 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.splitPanel.client.presenters.SplitPanelProxy;
 import org.dominokit.domino.splitPanel.client.views.SplitPanelView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.splitpanel.HSplitPanel;
 import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.ColorScheme;
-
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.hr;
+import org.dominokit.domino.ui.style.CssClass;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = SplitPanelProxy.class)
 @SampleClass
 public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements SplitPanelView {
 
+    private final CssClass demo_split_div = () -> "demo-split-div";
     private HTMLDivElement element = div().element();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("splitPanel", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("splitPanel", this.getClass()).element());
         element.appendChild(BlockHeader.create("SPLIT PANEL").element());
 
         horizontalSplitPanel();
@@ -56,10 +55,12 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element.appendChild(Card.create("HORIZONTAL SPLIT PANEL")
                 .appendChild(HSplitPanel.create()
                         .appendChild(SplitPanel.create()
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .setWidth("50%")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
-                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .setWidth("50%")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .element());
     }
@@ -68,16 +69,15 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void verticalSplitPanel() {
         element.appendChild(Card.create("VERTICAL SPLIT PANEL")
                 .appendChild(VSplitPanel.create()
-                        .setColorScheme(ColorScheme.TEAL)
                         .appendChild(SplitPanel.create()
-                                .appendChild(div().css("demo-split-div", Color.GREEN_LIGHTEN_5.getBackground())))
+                                .setHeight("50%")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
-                                .appendChild(div().css("demo-split-div", Color.GREEN_LIGHTEN_4.getBackground())))
-                        .setHeight("400px")
+                                .setHeight("50%")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .element());
-
-
     }
 
     @SampleMethod
@@ -88,11 +88,11 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .setWidth("50%")
                                 .setMinPercent(20)
                                 .setMaxPercent(70)
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
                                 .setWidth("50%")
-                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .appendChild(hr())
                 .appendChild(VSplitPanel.create()
@@ -100,11 +100,11 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .setHeight("50%")
                                 .setMinPercent(20)
                                 .setMaxPercent(70)
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
                                 .setHeight("50%")
-                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .element());
 
@@ -118,31 +118,29 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(SplitPanel.create()
                                 .setWidth("20%")
                                 .appendChild(div()
-                                        .css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                        .addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
                                 .setWidth("50%")
-                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
                         .appendChild(SplitPanel.create()
                                 .setWidth("30%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .appendChild(hr())
                 .appendChild(VSplitPanel.create()
                         .appendChild(SplitPanel.create()
                                 .setHeight("20%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
                                 .setHeight("50%")
-                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
                         .appendChild(SplitPanel.create()
                                 .setHeight("30%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .element());
-
-
     }
 
     @SampleMethod
@@ -151,24 +149,25 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(HSplitPanel.create()
                         .appendChild(SplitPanel.create()
                                 .setWidth("20%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                         .appendChild(SplitPanel.create()
                                 .setWidth("50%")
                                 .appendChild(VSplitPanel.create()
                                         .appendChild(SplitPanel.create()
                                                 .setHeight("20%")
-                                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
+                                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
                                         .appendChild(SplitPanel.create()
                                                 .setHeight("50%")
-                                                .appendChild(div().css("demo-split-div", Color.BLUE_GREY_LIGHTEN_5.getBackground())))
+                                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
                                         .appendChild(SplitPanel.create()
                                                 .setHeight("30%")
-                                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
-                                        .setHeight("100%")))
+                                                .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
+                                        .addCss(dui_h_full, dui_w_full)
+                                ))
                         .appendChild(SplitPanel.create()
                                 .setWidth("30%")
-                                .appendChild(div().css("demo-split-div", Color.INDIGO_LIGHTEN_5.getBackground())))
-                        .setHeight("400px")
+                                .appendChild(div().addCss(demo_split_div,dui_bg_accent_l_2)))
+                        .addCss(dui_h_96, dui_w_full)
                 )
                 .element());
 

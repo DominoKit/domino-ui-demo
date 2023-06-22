@@ -15,7 +15,7 @@ import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -65,7 +65,7 @@ public class ValiditySection implements ImportSection {
                 .setAutoValidation(true)
                 .setPattern(DATE_PATTERN)
                 .setLabel("Expiry Date Of Credit")
-                .addLeftAddOn(Icons.ALL.calendar_range_mdi())
+                .addLeftAddOn(Icons.calendar_range())
                 .setHelperText(DATE_PATTERN);
         validityExpiryDateBox.getInputElement().addEventListener("input", evt -> revalidate());
         validityExpiryDateBox.getDatePicker().addDateSelectionHandler((date, dateTimeFormatInfo) -> revalidate());
@@ -75,7 +75,7 @@ public class ValiditySection implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setRequired(true)
                 .setAutoValidation(true)
-                .addLeftAddOn(Icons.ALL.looks_mdi())
+                .addLeftAddOn(Icons.looks())
                 .setHelperText(Constants.NUMBERS_ONLY);
         daysForShipmentTextBox.getInputElement().addEventListener("input", evt -> revalidate());
 

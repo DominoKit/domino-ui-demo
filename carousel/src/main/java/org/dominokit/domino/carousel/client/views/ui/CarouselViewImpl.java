@@ -13,33 +13,32 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.carousel.Carousel;
 import org.dominokit.domino.ui.carousel.Slide;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = CarouselProxy.class)
 @SampleClass
 public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements CarouselView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("carousel", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("carousel", this.getClass()).element());
         element.appendChild(BlockHeader.create("CAROUSEL").element());
 
         basicSample();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void basicSample() {
         element.appendChild(Row.create()
-                .addColumn(Column.span6().appendChild(
+                .appendChild(Column.span6().appendChild(
                         Card.create()
                                 .appendChild(Carousel.create()
                                         .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg"))
@@ -49,17 +48,33 @@ public class CarouselViewImpl extends BaseDemoView<HTMLDivElement> implements Ca
                                         .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
                                 )
                 ))
-                .addColumn(Column.span6().appendChild(
-                        Card.create()
+                .appendChild(Column.span6()
+                        .appendChild(Card.create()
                                 .appendChild(Carousel.create()
-                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg", "Slide 1", "First slide description"))
-                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg", "Slide 2", "Second slide description"))
-                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg", "Slide 3", "Third slide description"))
-                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg", "Slide 4", "Fourth slide description"))
-                                        .appendChild(Slide.create(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg", "Slide 5", "Fifth slide description"))
+                                        .appendChild(Slide.create(img(GWT.getModuleBaseURL() + "/images/image-gallery/11.jpg"))
+                                                .setLabel("Slide 1")
+                                                .setDescription("First slide description")
+                                        )
+                                        .appendChild(Slide.create(img(GWT.getModuleBaseURL() + "/images/image-gallery/12.jpg"))
+                                                .setLabel("Slide 2")
+                                                .setDescription("Second slide description")
+                                        )
+                                        .appendChild(Slide.create(img(GWT.getModuleBaseURL() + "/images/image-gallery/19.jpg"))
+                                                .setLabel("Slide 3")
+                                                .setDescription("Third slide description")
+                                        )
+                                        .appendChild(Slide.create(img(GWT.getModuleBaseURL() + "/images/image-gallery/9.jpg"))
+                                                .setLabel("Slide 4")
+                                                .setDescription("Fourth slide description")
+                                        )
+                                        .appendChild(Slide.create(img(GWT.getModuleBaseURL() + "/images/image-gallery/6.jpg"))
+                                                .setLabel("Slide 5")
+                                                .setDescription("Fifth slide description")
+                                        )
                                         .startAutoSlide(3000)
                                 )
                         )
-                ).element());
+                )
+        );
     }
 }

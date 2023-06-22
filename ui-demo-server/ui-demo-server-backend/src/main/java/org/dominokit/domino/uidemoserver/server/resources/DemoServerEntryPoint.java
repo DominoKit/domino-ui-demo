@@ -31,5 +31,13 @@ public class DemoServerEntryPoint implements ServerAppEntryPoint<VertxContext> {
                            .setStatusCode(200)
                            .end(Json.encode(contactList.getContacts()));
                 });
+        vertxContext
+                .router()
+                .route(HttpMethod.POST, "/service/upload")
+                .handler(event -> {
+                   event.response()
+                           .setStatusCode(200)
+                           .end();
+                });
     }
 }

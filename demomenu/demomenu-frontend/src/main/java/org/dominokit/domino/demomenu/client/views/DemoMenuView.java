@@ -15,5 +15,9 @@ public interface DemoMenuView extends ContentView, HasUiHandlers<DemoMenuView.Me
         void onSmallMedia();
         void onXSmallMedia();
         void onMenuItemSelected(String token);
+
+        void onSpanDown(boolean spanDown);
+
+        void onSpanUp(boolean spanUp);
     }
 }

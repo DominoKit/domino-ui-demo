@@ -8,49 +8,57 @@ import elemental2.dom.ClipboardEvent;
 import elemental2.dom.DomGlobal;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLPreElement;
-import elemental2.dom.HTMLTextAreaElement;
 import jsinterop.base.Js;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.DisplayCollapseStrategy;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.elements.PreElement;
+import org.dominokit.domino.ui.elements.TextAreaElement;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.DominoDom;
-import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.utils.ElementsFactory;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
-import org.jboss.elemento.Elements;
 
 import java.util.function.Consumer;
 
-import static org.jboss.elemento.Elements.textarea;
-
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
-    private HTMLTextAreaElement copyInput = textarea()
-            .style("visibility:hidden; width: 0px; height: 0px;").element();
+    private TextAreaElement copyInput;
     private String code;
-    private HTMLPreElement codeBlock = Elements.pre().css("prettyprint").element();
+    private PreElement codeBlock;
     private Card card;
 
     public CodeCard() {
-        copyInput.value = code;
+        copyInput = textarea()
+                .style("visibility:hidden; width: 0px; height: 0px;");
+        codeBlock = pre().addCss(()->"prettyprint");
+        copyInput.element().value = code;
         card = Card.create("Source Code")
-                .setCollapsible()
+                .setCollapsible(true)
                 .appendChild(codeBlock);
-        card.addHeaderAction(Icons.ALL.content_copy_mdi()
-                .setTooltip("Copy code"), evt -> {
-            copyInput.select();
-            EventListener copyListener = e -> {
-                ClipboardEvent clipboardEvent = Js.uncheckedCast(e);
-                clipboardEvent.clipboardData.setData("text/plain", code);
-                e.preventDefault();
-            };
-            DomGlobal.document.addEventListener("copy", copyListener);
-            DominoDom.document.execCommand("copy");
-            DomGlobal.document.removeEventListener("copy", copyListener);
-            Notification.createInfo("Code copied to clipboard").show();
-        });
+        card
+                .withHeader((card, header) -> {
+                    header.appendChild(PostfixAddOn.of(Icons.content_copy()
+                            .clickable()
+                            .setTooltip("Copy code")
+                            .addClickListener(evt -> {
+                                copyInput.element().select();
+                                EventListener copyListener = e -> {
+                                    ClipboardEvent clipboardEvent = Js.uncheckedCast(e);
+                                    clipboardEvent.clipboardData.setData("text/plain", code);
+                                    e.preventDefault();
+                                };
+                                DomGlobal.document.addEventListener("copy", copyListener);
+                                DominoDom.document.execCommand("copy");
+                                DomGlobal.document.removeEventListener("copy", copyListener);
+                                Notification.create("Code copied to clipboard")
+                                        .addCss(dui_info)
+                                        .show();
+                            })
+                    ));
+                });
 
         card.appendChild(copyInput);
 
@@ -64,7 +72,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
     public static CodeCard createCodeCard(String code, String lang) {
         CodeCard codeCard = new CodeCard();
         codeCard.getCard().collapse();
-        DominoElement.of(codeCard.codeBlock)
+        codeCard.codeBlock
                 .clearElement()
                 .setInnerHtml(PR.prettyPrintOne(code, lang, false));
         codeCard.code = code;
@@ -83,7 +91,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
                 @Override
                 public void onSuccess(TextResource resource) {
-                    DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
+                    codeCard.codeBlock.setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
                     codeCard.code = resource.getText();
                 }
             });
@@ -96,7 +104,8 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     public static CodeCard createLazyCodeCard(ExternalTextResource codeResource) {
         CodeCard codeCard = new CodeCard();
-        codeCard.getCard().setBodyCollapseStrategy(new DisplayCollapseStrategy());
+        codeCard.getCard()
+                .withBody((parent, body) -> body.setCollapseStrategy(new DisplayCollapseStrategy()));
         codeCard.getCard().collapse();
         codeCard.getCard().addExpandListener(() -> {
             try {
@@ -108,7 +117,7 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
                     @Override
                     public void onSuccess(TextResource resource) {
-                        DominoElement.of(codeCard.codeBlock).setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
+                        codeCard.codeBlock.setInnerHtml(PR.prettyPrintOne(resource.getText().replace("<", "&lt;").replace(">", "&gt;"), null, false));
                         codeCard.code = resource.getText();
                     }
                 });
@@ -117,31 +126,10 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
             }
         });
         codeCard.getCard().addCollapseListener(() -> {
-            DominoElement.of(codeCard.codeBlock).clearElement();
+            codeCard.codeBlock.clearElement();
         });
 
         return codeCard;
-    }
-
-    public CodeCard setCode(String code) {
-        DominoElement.of(this.codeBlock).setInnerHtml(PR.prettyPrintOne(code, null, false));
-        this.code = code;
-        return this;
-    }
-
-
-    public CodeCard setTitle(String title) {
-        card.setTitle(title);
-        return this;
-    }
-
-    public CodeCard setDescription(String description) {
-        card.setDescription(description);
-        return this;
-    }
-
-    public Card getCard() {
-        return card;
     }
 
     public static void completeFetchCode(ExternalTextResource resource, Consumer<String> consumer) {
@@ -162,8 +150,29 @@ public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
         }
     }
 
-    public static HTMLPreElement preBlock(String code) {
-        return Elements.pre().css("prettyprint").innerHtml(new SafeHtmlBuilder().appendHtmlConstant(PR.prettyPrintOne(code, null, false)).toSafeHtml()).element();
+    public static PreElement preBlock(String code) {
+        return ElementsFactory.elements.pre()
+                .addCss("prettyprint").setInnerHtml(new SafeHtmlBuilder().appendHtmlConstant(PR.prettyPrintOne(code, null, false)).toSafeHtml());
+    }
+
+    public Card getCard() {
+        return card;
+    }
+
+    public CodeCard setCode(String code) {
+        this.codeBlock.setInnerHtml(PR.prettyPrintOne(code, null, false));
+        this.code = code;
+        return this;
+    }
+
+    public CodeCard setTitle(String title) {
+        card.setTitle(title);
+        return this;
+    }
+
+    public CodeCard setDescription(String description) {
+        card.setDescription(description);
+        return this;
     }
 
     @Override

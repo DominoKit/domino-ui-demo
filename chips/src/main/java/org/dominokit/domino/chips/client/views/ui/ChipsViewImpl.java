@@ -12,23 +12,22 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.chips.Chip;
 import org.dominokit.domino.ui.chips.ChipsGroup;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.ColorScheme;
-
-import static org.jboss.elemento.Elements.br;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.img;
+import org.dominokit.domino.ui.style.CompositeCssClass;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.ElementHandler;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
+import org.dominokit.domino.ui.utils.meta.ValueMeta;
 
 @UiView(presentable = ChipsProxy.class)
 @SampleClass
 public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements ChipsView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     private Card simpleCard;
     private Card removableCard;
@@ -40,8 +39,8 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
     @Override
     protected HTMLDivElement init() {
 
-        element.appendChild(LinkToSourceCode.create("chips", this.getClass()).element());
-        element.appendChild(BlockHeader.create("CHIPS").element());
+        element.appendChild(LinkToSourceCode.createLink("chips", this.getClass()));
+        element.appendChild(BlockHeader.create("CHIPS"));
         simpleCard = Card.create("SIMPLE CHIPS");
         removableCard = Card.create("REMOVABLE CHIPS");
         iconChipsCard = Card.create("CHIPS WITH ICONS");
@@ -69,88 +68,77 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
         element.appendChild(selectableChipsCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initSelectableChipsExample()).element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void initSimpleExample() {
         simpleCard.appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(Chip.create()
-                                .setValue("Sounds good, let's do that!"))
-                        .appendChild(Chip.create()
-                                .setValue("Yay! I'll be there")
-                                .setColorScheme(ColorScheme.RED))
-                        .appendChild(Chip.create()
-                                .setValue("Hey, how are you?")
-                                .setColorScheme(ColorScheme.ORANGE))
-                        .appendChild(Chip.create()
-                                .setValue("You look handsome today <3")
-                                .setColorScheme(ColorScheme.PURPLE))
-                        .appendChild(Chip.create()
-                                .setValue("I like the weather today!")
-                                .setColorScheme(ColorScheme.GREEN)))
+                .appendChild(Column.span12()
+                        .appendChild(Chip.create("Sounds good, let's do that!"))
+                        .appendChild(Chip.create("Yay! I'll be there").addCss(dui_accent))
+                        .appendChild(Chip.create("Hey, how are you?").addCss(dui_orange))
+                        .appendChild(Chip.create("You look handsome today <3").addCss(dui_purple))
+                        .appendChild(Chip.create("I like the weather today!").addCss(dui_success))
+                )
         );
     }
 
     @SampleMethod
     private void initRemovableExample() {
         removableCard.appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(Chip.create()
+                .appendChild(Column.span12()
+                        .appendChild(Chip.create("Restaurants")
+                                .addCss(dui_grey)
                                 .setRemovable(true)
-                                .setColorScheme(ColorScheme.GREY)
-                                .setValue("Restaurants"))
-                        .appendChild(Chip.create()
+                        )
+                        .appendChild(Chip.create("Coffee shops")
+                                .addCss(dui_info)
                                 .setRemovable(true)
-                                .setColorScheme(ColorScheme.PINK)
-                                .setValue("Coffee shops"))
-                        .appendChild(Chip.create()
+                        )
+                        .appendChild(Chip.create("Libraries")
+                                .addCss(dui_warning)
                                 .setRemovable(true)
-                                .setColorScheme(ColorScheme.AMBER)
-                                .setValue("Libraries"))
-                        .appendChild(Chip.create()
+                        )
+                        .appendChild(Chip.create("Entertainment")
+                                .addCss(dui_brown)
                                 .setRemovable(true)
-                                .setColorScheme(ColorScheme.BROWN)
-                                .setValue("Entertainment"))
-                        .appendChild(Chip.create()
+                        )
+                        .appendChild(Chip.create("Universities")
+                                .addCss(dui_teal)
                                 .setRemovable(true)
-                                .setColorScheme(ColorScheme.TEAL)
-                                .setValue("Universities")))
+                        )
+                )
         );
     }
 
     @SampleMethod
     private void initChipsWithIconsExample() {
         iconChipsCard.appendChild(Row.create()
-                .addColumn(Column.span12()
-                        .appendChild(Chip.create()
-                                .setValue("Add to calendar")
+                .appendChild(Column.span12()
+                        .appendChild(Chip.create("Add to calendar")
                                 .addClickListener(evt -> {
-                                    Notification.createSuccess("Added to your calendar").show();
+                                    Notification.create("Added to your calendar").addCss(dui_success).show();
                                 })
-                                .setLeftIcon(Icons.ALL.calendar_range_mdi())
+                                .appendChild(PrefixAddOn.of(Icons.calendar_range()))
                         )
-                        .appendChild(Chip.create()
-                                .setValue("Bookmark")
+                        .appendChild(Chip.create("Bookmark")
                                 .addClickListener(evt -> {
-                                    Notification.createSuccess("Bookmark added").show();
+                                    Notification.create("Bookmark added").addCss(dui_success).show();
                                 })
-                                .setLeftIcon(Icons.ALL.bookmark_mdi())
+                                .appendChild(PrefixAddOn.of(Icons.bookmark()))
                         )
-                        .appendChild(Chip.create()
-                                .setValue("Set alarm")
+                        .appendChild(Chip.create("Set alarm")
                                 .addClickListener(evt -> {
-                                    Notification.createSuccess("Alarm has been set").show();
+                                    Notification.create("Alarm has been set").addCss(dui_success).show();
                                 })
-                                .setLeftIcon(Icons.ALL.alarm_mdi())
+                                .appendChild(PrefixAddOn.of(Icons.alarm()))
                         )
-                        .appendChild(Chip.create()
-                                .setValue("Get directions")
+                        .appendChild(Chip.create("Get directions")
                                 .addClickListener(evt -> {
-                                    Notification.createSuccess("Directions has been sent to your email").show();
+                                    Notification.create("Directions has been sent to your email").addCss(dui_success).show();
                                 })
-                                .setLeftIcon(Icons.ALL.directions_mdi())
+                                .appendChild(PrefixAddOn.of(Icons.directions()))
                         ))
         );
     }
@@ -158,114 +146,121 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
     @SampleMethod
     private void initChipsWithImagesExample() {
         imagesChipsCard.appendChild(Row.create()
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Schroeder Coleman")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setBorderColor(Color.INDIGO)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/0.jpg"))))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Renee Mcintyre")
-                                .setColorScheme(ColorScheme.GREY)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/1.jpg"))))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Casey Garza")
-                                .setColorScheme(ColorScheme.BLUE)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/2.jpg"))))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Ferguson Hudson")
-                                .setColorScheme(ColorScheme.BLACK)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/3.jpg")))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Schroeder Coleman")
+                                .addCss(dui_transparent, dui_border, dui_border_solid, dui_border_indigo)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/0.jpg"))))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Renee Mcintyre")
+                                .addCss(dui_grey)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/1.jpg"))))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Casey Garza")
+                                .addCss(dui_blue)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/2.jpg"))))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Ferguson Hudson")
+                                .addCss(dui_black)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/3.jpg")))
                 )
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Serrano Green")
-                                .setColorScheme(ColorScheme.CYAN)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/4.jpg")))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Serrano Green")
+                                .addCss(dui_cyan)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/4.jpg")))
                 )
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Camacho Solis")
-                                .setColorScheme(ColorScheme.BLUE_GREY)
-                                .setLeftImg(img("https://randomuser.me/api/portraits/med/men/5.jpg")))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Camacho Solis")
+                                .addCss(dui_blue_grey)
+                                .setImage(img("https://randomuser.me/api/portraits/med/men/5.jpg")))
                 )
         );
     }
 
     @SampleMethod
     private void initChipsWithLettersExample() {
+        CompositeCssClass border_solid = CompositeCssClass.of(dui_border, dui_border_solid);
         lettersChipsCard.appendChild(Row.create()
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Schroeder Coleman")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setLeftBackground(Color.INDIGO)
-                                .setBorderColor(Color.INDIGO)
-                                .setLeftLetter("SC")))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Renee Mcintyre")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setLeftBackground(Color.GREY)
-                                .setBorderColor(Color.GREY)
-                                .setLeftLetter("RM")))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Casey Garza")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setLeftBackground(Color.BLUE)
-                                .setBorderColor(Color.BLUE)
-                                .setLeftLetter("CG")))
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Ferguson Hudson")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setLeftBackground(Color.BLACK)
-                                .setBorderColor(Color.BLACK)
-                                .setLeftLetter("FH"))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Schroeder Coleman")
+                                .addCss(dui_transparent, border_solid, dui_border_indigo)
+                                .withAddon((chip, addon) -> addon.addCss(dui_indigo))
+                                .setLetters("SC")
+                        )
                 )
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Serrano Green")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setLeftBackground(Color.CYAN)
-                                .setBorderColor(Color.CYAN)
-                                .setLeftLetter("SG"))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Renee Mcintyre")
+                                .addCss(dui_transparent, border_solid, dui_border_grey)
+                                .withAddon((chip, addon) -> addon.addCss(dui_grey))
+                                .setLetters("RM")
+                        )
                 )
-                .addColumn(Column.span2()
-                        .appendChild(Chip.create()
-                                .setValue("Camacho Solis")
-                                .setColorScheme(ColorScheme.TRANSPARENT)
-                                .setBorderColor(Color.BLUE_GREY)
-                                .setLeftLetter("CS")
-                                .setLeftBackground(Color.BLUE_GREY))
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Casey Garza")
+                                .addCss(dui_transparent, border_solid, dui_border_blue)
+                                .withAddon((chip, addon) -> addon.addCss(dui_blue))
+                                .setLetters("CG")
+                        )
+                )
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Ferguson Hudson")
+                                .addCss(dui_transparent, border_solid, dui_border_black)
+                                .withAddon((chip, addon) -> addon.addCss(dui_black))
+                                .setLetters("FH")
+                        )
+                )
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Serrano Green")
+                                .addCss(dui_transparent, border_solid, dui_border_cyan)
+                                .withAddon((chip, addon) -> addon.addCss(dui_cyan))
+                                .setLetters("SG")
+                        )
+                )
+                .appendChild(Column.span2()
+                        .appendChild(Chip.create("Camacho Solis")
+                                .addCss(dui_transparent, border_solid, dui_border_blue_grey)
+                                .withAddon((chip, addon) -> addon.addCss(dui_blue_grey))
+                                .setLetters("CS")
+                        )
                 )
         );
     }
 
     @SampleMethod
     private void initSelectableChipsExample() {
-        Chip tops = Chip.create("Tops").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        tops.addSelectionHandler(value -> tops.setLeftIcon(Icons.ALL.check_mdi()));
-        tops.addDeselectionHandler(tops::removeLeftAddon);
+        ElementHandler<Chip> chipSelectionHandler = self -> {
+            self
+                    .addSelectionListener((source, selection) -> {
+                        self.withAddon((parent, addon) -> {
+                            addon.clearElement().appendChild(PrefixAddOn.of(Icons.check()));
+                        });
+                    })
+                    .addDeselectionListener((source, selection) -> {
+                        self.clearAddOn();
+                    });
+        };
+        Chip tops = Chip.create("Tops")
+                .setSelectable(true)
+                .addCss(dui_grey)
+                .apply(chipSelectionHandler);
 
-        Chip bottoms = Chip.create("Bottoms").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        bottoms.addSelectionHandler(value -> bottoms.setLeftIcon(Icons.ALL.check_mdi()));
-        bottoms.addDeselectionHandler(bottoms::removeLeftAddon);
 
-        Chip shoes = Chip.create("Shoes").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        shoes.addSelectionHandler(value -> shoes.setLeftIcon(Icons.ALL.check_mdi()));
-        shoes.addDeselectionHandler(shoes::removeLeftAddon);
+        Chip bottoms = Chip.create("Bottoms")
+                .setSelectable(true)
+                .addCss(dui_grey)
+                .apply(chipSelectionHandler);
 
-        Chip accessories = Chip.create("Accessories").setSelectable(true).setColorScheme(ColorScheme.GREY);
-        accessories.addSelectionHandler(value -> accessories.setLeftIcon(Icons.ALL.check_mdi()));
-        accessories.addDeselectionHandler(accessories::removeLeftAddon);
+        Chip shoes = Chip.create("Shoes").setSelectable(true)
+                .setSelectable(true)
+                .addCss(dui_grey)
+                .apply(chipSelectionHandler);
+
+        Chip accessories = Chip.create("Accessories")
+                .setSelectable(true)
+                .addCss(dui_grey)
+                .apply(chipSelectionHandler);
 
         selectableChipsCard.appendChild(Row.create()
-                .addColumn(Column.span12()
+                .appendChild(Column.span12()
                         .appendChild(tops)
                         .appendChild(bottoms)
                         .appendChild(shoes)
@@ -276,18 +271,25 @@ public class ChipsViewImpl extends BaseDemoView<HTMLDivElement> implements Chips
         selectableChipsCard.appendChild(BlockHeader.create("Choice chips"));
 
         ChipsGroup chipsGroup = ChipsGroup.create()
-                .appendChild(Chip.create("Extra small"))
-                .appendChild(Chip.create("Small"))
-                .appendChild(Chip.create("Medium"))
-                .appendChild(Chip.create("Large"))
-                .appendChild(Chip.create("Extra large"))
-                .setColorScheme(ColorScheme.TEAL);
+                .appendChild(Chip.create("Extra small").applyMeta(ValueMeta.of("EXTRA SMALL")))
+                .appendChild(Chip.create("Small").applyMeta(ValueMeta.of("SMALL")))
+                .appendChild(Chip.create("Medium").applyMeta(ValueMeta.of("MEDIUM")))
+                .appendChild(Chip.create("Large").applyMeta(ValueMeta.of("LARGE")))
+                .appendChild(Chip.create("Extra large").applyMeta(ValueMeta.of("EXTREA LARGE")))
+                .addCss(dui_teal, dui_ignore_bg);
 
         selectableChipsCard.appendChild(Row.create()
-                .addColumn(Column.span12()
+                .appendChild(Column.span12()
                         .appendChild(chipsGroup
-                                .addSelectionHandler(value -> Notification
-                                        .createInfo("Chip [ " + chipsGroup.getSelectedChip().getValue() + " ] is selected").show())
+                                .addSelectionListener((source, selection) -> {
+                                    ValueMeta.<String>get(chipsGroup.getSelectedChips().get(0))
+                                                    .ifPresent(value -> {
+                                                        Notification
+                                                                .create("Chip [ " + value + " ] is selected")
+                                                                .addCss(dui_info)
+                                                                .show();
+                                                    });
+                                })
                                 .selectAt(0)))
         );
     }

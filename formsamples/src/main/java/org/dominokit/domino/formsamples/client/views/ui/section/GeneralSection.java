@@ -10,7 +10,7 @@ import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.Date;
 
@@ -42,7 +42,7 @@ public class GeneralSection implements ImportSection {
                                         .setPattern(DATE_PATTERN)
                                         .setHelperText(DATE_PATTERN)
                                         .setLabel("Date")
-                                        .addLeftAddOn(Icons.ALL.calendar_range_mdi())
+                                        .addLeftAddOn(Icons.calendar_range())
                                         .setReadOnly(true)
                                         .value(new Date())))
                         .addColumn(Column.span6()
@@ -51,7 +51,7 @@ public class GeneralSection implements ImportSection {
                                 .get()
                                 .appendChild(placeTextBox
                                         .setReadOnly(true)
-                                        .addLeftAddOn(Icons.ALL.location_enter_mdi())
+                                        .addLeftAddOn(Icons.location_enter())
                                         .value(corporateProfile.getAddress().getCountryISOCode() + " - " + corporateProfile.getAddress().getCity())))
                 )
                 .element());

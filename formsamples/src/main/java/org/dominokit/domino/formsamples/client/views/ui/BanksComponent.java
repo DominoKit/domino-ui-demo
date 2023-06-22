@@ -2,40 +2,40 @@ package org.dominokit.domino.formsamples.client.views.ui;
 
 import org.dominokit.domino.formsamples.shared.model.Bank;
 import org.dominokit.domino.formsamples.shared.model.Branch;
-import org.dominokit.domino.ui.forms.Select;
-import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.forms.suggest.Select;
+import org.dominokit.domino.ui.forms.suggest.SelectOption;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 import java.util.List;
 
-import static org.jboss.elemento.Elements.i;
 
 public class BanksComponent {
 
     private Select<Bank> banksSelect;
     private Select<Branch> branchesSelect;
 
-    public BanksComponent() {
-        banksSelect = Select.<Bank>create("Bank")
-                .addLeftAddOn(i().css("fas", "fa-university", "fa-lg"));
-        branchesSelect = Select.<Branch>create("Branch")
-                .addLeftAddOn(Icons.ALL.domain_mdi())
-                .disable();
-
-        banksSelect.addSelectionHandler(option -> {
-            branchesSelect.enable();
-            Bank bank = option.getValue();
-            List<Branch> branches = bank.getBranches();
-            branchesSelect.removeAllOptions();
-            for (Branch branch : branches) {
-                branchesSelect.appendChild(SelectOption.create(branch, branch.getName()));
-            }
-        });
-    }
-
     public BanksComponent(List<Bank> banks) {
         this();
         setBanks(banks);
+    }
+
+    public BanksComponent() {
+        banksSelect = Select.<Bank>create("Bank")
+                .appendChild(PrefixAddOn.of(Icons.bank()));
+        branchesSelect = Select.<Branch>create("Branch")
+                .appendChild(PrefixAddOn.of(Icons.domain()))
+                .disable();
+
+        banksSelect
+                .addChangeListener((oldValue, bank) -> {
+                    branchesSelect.enable();
+                    List<Branch> branches = bank.getBranches();
+                    branchesSelect.removeAllOptions();
+                    for (Branch branch : branches) {
+                        branchesSelect.appendChild(SelectOption.create(branch.getName(), branch, branch.getName()));
+                    }
+                });
     }
 
     public static BanksComponent create() {
@@ -49,7 +49,7 @@ public class BanksComponent {
     public BanksComponent setBanks(List<Bank> banks) {
         banksSelect.removeAllOptions();
         for (Bank bank : banks) {
-            banksSelect.appendChild(SelectOption.create(bank, bank.getSwiftCode(), bank.getName()));
+            banksSelect.appendChild(SelectOption.create(bank.getSwiftCode(), bank, bank.getName()));
         }
         return this;
     }

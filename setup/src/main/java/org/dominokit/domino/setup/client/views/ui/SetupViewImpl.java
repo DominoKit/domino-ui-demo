@@ -6,31 +6,31 @@ import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.setup.client.presenters.SetupProxy;
 import org.dominokit.domino.setup.client.views.SetupView;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.utils.DominoElement;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 @UiView(presentable = SetupProxy.class)
 public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements SetupView{
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = DominoElement.div().element();
-        element.appendChild(BlockHeader.create("SETUP",
+        element = div()
+                .appendChild(BlockHeader.create("SETUP",
                 "Steps required to start working with domino ui components").element());
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder()
                 .appendEscaped("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC10</version>\n" +
+                "  <version>1.0.0-RC17</version>\n" +
                 "</dependency>\n" +
                 "<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC10</version>\n" +
+                "  <version>1.0.0-RC17</version>\n" +
                 "  <classifier>sources</classifier>\n" +
                 "</dependency>").toSafeHtml().asString())
                 .setTitle("Maven release dependencies")
@@ -92,7 +92,7 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                 .apply(self -> self.getCard().expand())
                 .element());
 
-        return element;
+        return element.element();
     }
 
 }

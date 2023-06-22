@@ -1,6 +1,5 @@
 package org.dominokit.domino.timepicker.client.views.ui;
 
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -12,263 +11,340 @@ import org.dominokit.domino.timepicker.client.presenters.TimePickerProxy;
 import org.dominokit.domino.timepicker.client.views.TimePickerView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.grid.Column;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.forms.TimeBox;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.modals.ModalDialog;
-import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.popover.Popover;
-import org.dominokit.domino.ui.popover.PopupPosition;
-import org.dominokit.domino.ui.style.ColorScheme;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.timepicker.ClockStyle;
-import org.dominokit.domino.ui.timepicker.InputTimeBox;
-import org.dominokit.domino.ui.timepicker.TimeBox;
 import org.dominokit.domino.ui.timepicker.TimePicker;
-import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_de;
+import org.dominokit.domino.ui.timepicker.TimeStyle;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_ar;
+import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_es;
 
 import java.util.Date;
 
-import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = TimePickerProxy.class)
 @SampleClass
 public class TimePickerViewImpl extends BaseDemoView<HTMLDivElement> implements TimePickerView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
-    private Column column = Column.span4()
-            .centerContent()
-            .style()
-            .addCss(Styles.padding_0).get();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("timepicker", this.getClass()).element());
-        element.appendChild(BlockHeader.create("TIME PICKERS").element());
+        element.appendChild(LinkToSourceCode.createLink("timepicker", this.getClass()));
+        element.appendChild(BlockHeader.create("TIME PICKERS"));
 
-        inline();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inline()).element());
+        inlineTimePicker();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlineTimePicker()));
 
-        popups();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popups()).element());
+        withHeader();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withHeader()));
+
+        withFooter();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withFooter()));
+
+        dropdownTimePicker();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dropdownTimePicker()));
 
         timeBox();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.timeBox()));
 
-        inputTimeBox();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inputTimeBox()).element());
-        return element;
+        return element.element();
     }
 
     @SampleMethod
-    private void inputTimeBox() {
-        Column column = Column.span6()
-                .style()
-                .removeCss(Styles.padding_0).get();
-
-        InputTimeBox timeBox1 = InputTimeBox.create()
-                .setLabel("Clock 12");
-
-        InputTimeBox timeBox2 = InputTimeBox.create()
-                .setLabel("Clock 24")
-                .setClockStyle(ClockStyle._24);
-
-        element.appendChild(Card.create("INPUT TIME BOX")
-                .appendChild(Row.create()
-                        .addColumn(column.copy().appendChild(timeBox1))
-                        .addColumn(column.copy().appendChild(timeBox2))
-                )
-                .element());
+    private void inlineTimePicker(){
+        element
+                .appendChild(Card.create("INLINE TIMEPICKER")
+                        .setCollapsible(true)
+                        .appendChild(BlockHeader.create("Different locales"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create())
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar()))
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es()))
+                        )
+                        .appendChild(BlockHeader.create("With seconds"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setShowSeconds(true)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setShowSeconds(true)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setShowSeconds(true)
+                                )
+                        )
+                        .appendChild(BlockHeader.create("24 hours style"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setTimeStyle(TimeStyle._24)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setTimeStyle(TimeStyle._24)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setTimeStyle(TimeStyle._24)
+                                )
+                        )
+                );
     }
 
     @SampleMethod
-    private void inline() {
-        element.appendChild(Card.create("INLINED")
-                .appendChild(Row.create()
-                        .addColumn(column.copy().appendChild(TimePicker.create()
-                                .fixedWidth("270px")
-                                .showBorder()
-                                .hideClearButton()
-                                .hideCloseButton()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        DomGlobal.console.info(timePicker.getFormattedTime())
-                                )))
-                        .addColumn(column.copy().appendChild(TimePicker.create(new DateTimeFormatInfoImpl_de())
-                                .fixedWidth("270px")
-                                .setColorScheme(ColorScheme.PINK)
-                                .showBorder()
-                                .hideClearButton()
-                                .setShowSwitchers(true)
-                                .hideCloseButton()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        DomGlobal.console.info(timePicker.getFormattedTime()))
-                                .todayButtonText("nu")))
-                        .addColumn(column.copy().appendChild(TimePicker.create()
-                                .fixedWidth("270px")
-                                .setColorScheme(ColorScheme.GREEN)
-                                .setClockStyle(ClockStyle._24)
-                                .showBorder()
-                                .hideClearButton()
-                                .hideCloseButton()
-                                .addTimeSelectionHandler((time, dateTimeFormatInfo, timePicker) ->
-                                        DomGlobal.console.info(timePicker.getFormattedTime())))))
-                .element());
-
-
+    private void withHeader(){
+        element
+                .appendChild(Card.create("INLINE TIMEPICKER", "With header")
+                        .setCollapsible(true)
+                        .appendChild(BlockHeader.create("Different locales"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .withHeader()
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                )
+                        )
+                        .appendChild(BlockHeader.create("With seconds"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                )
+                        )
+                        .appendChild(BlockHeader.create("24 hours style"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                )
+                        )
+                );
+    }
+    @SampleMethod
+    private void withFooter(){
+        element
+                .appendChild(Card.create("INLINE TIMEPICKER", "With footer")
+                        .setCollapsible(true)
+                        .appendChild(BlockHeader.create("Different locales"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .withHeader()
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                        )
+                        .appendChild(BlockHeader.create("With seconds"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setShowSeconds(true)
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                        )
+                        .appendChild(BlockHeader.create("24 hours style"))
+                        .appendChild(Row.create()
+                                .span4(TimePicker.create()
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_ar())
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                        .addCss(dui_accent_blue)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                                .span4(TimePicker.create(new DateTimeFormatInfoImpl_es())
+                                        .setTimeStyle(TimeStyle._24)
+                                        .withHeader()
+                                        .addCss(dui_accent_teal)
+                                        .withFooter((timePicker, footer) -> footer
+                                                .addCss(dui_flex, dui_justify_center)
+                                                .appendChild(Button.create(Icons.clock_outline(), "NOW")
+                                                        .addClickListener(evt -> timePicker.setDate(new Date()))
+                                                )
+                                        )
+                                )
+                        )
+                );
     }
 
     @SampleMethod
-    private void popups() {
-        Button bluePopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.BLUE.color());
-        TimePicker bluePopTimePicker = TimePicker.create()
-                .showBorder()
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-        Popover bluePopover = Popover.create(bluePopupButton, "Wakeup", bluePopTimePicker);
-
-        bluePopTimePicker.addCloseHandler(() -> bluePopover.close());
-        bluePopTimePicker.addClearHandler(() ->
-                Notification.create("a Click on clear button")
-                        .setPosition(Notification.TOP_LEFT)
-                        .setBackground(ColorScheme.BLUE.color())
-                        .show());
-
-
-        Button pinkPopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.PINK.color());
-        TimePicker pinkPopDatePicker = TimePicker.create(new DateTimeFormatInfoImpl_de())
-                .setColorScheme(ColorScheme.PINK)
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-        Popover pinkPopover = Popover.createPicker(pinkPopupButton, pinkPopDatePicker);
-
-        pinkPopDatePicker.addCloseHandler(pinkPopover::close);
-        pinkPopDatePicker.addClearHandler(() ->
-                Notification.create("a Click on clear button")
-                        .setPosition(Notification.TOP_CENTER)
-                        .setBackground(ColorScheme.PINK.color())
-                        .show());
-
-
-        Button greenPopupButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.GREEN.color());
-        TimePicker greenPopDatePicker = TimePicker.create()
-                .setColorScheme(ColorScheme.GREEN)
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-        Popover greenPopover = Popover.createPicker(greenPopupButton, greenPopDatePicker);
-
-        greenPopDatePicker.addCloseHandler(greenPopover::close);
-        greenPopDatePicker.addClearHandler(() ->
-                Notification.create("a Click on clear button")
-                        .setPosition(Notification.TOP_RIGHT)
-                        .setBackground(ColorScheme.GREEN.color())
-                        .show());
-
-
-        Button blueModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.BLUE.color());
-        TimePicker blueDatePicker = TimePicker.create()
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-
-        ModalDialog blueModal = blueDatePicker.createModal("Wakeup");
-        blueDatePicker.addCloseHandler(blueModal::close);
-        blueDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
-                .setPosition(Notification.TOP_LEFT)
-                .setBackground(ColorScheme.BLUE.color())
-                .show());
-
-
-        blueModal.appendChild(blueDatePicker.element());
-        DomGlobal.document.body.appendChild(blueModal.element());
-
-        blueModalButton.addClickListener(evt -> blueModal.open());
-
-
-        Button pinkModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.PINK.color());
-        TimePicker pinkDatePicker = TimePicker.create()
-                .setColorScheme(ColorScheme.PINK)
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-        ModalDialog pinkModal = pinkDatePicker.createModal("Wakeup");
-
-        pinkDatePicker.addCloseHandler(pinkModal::close);
-        pinkDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
-                .setPosition(Notification.TOP_CENTER)
-                .setBackground(ColorScheme.PINK.color())
-                .show());
-
-        pinkModal.appendChild(pinkDatePicker);
-        DomGlobal.document.body.appendChild(pinkModal.element());
-
-        pinkModalButton.addClickListener(evt -> pinkModal.open());
-
-
-        Button greenModalButton = Button.create(Icons.ALL.calendar_mdi()).setBackground(ColorScheme.GREEN.color());
-        TimePicker greenDatePicker = TimePicker.create()
-                .setColorScheme(ColorScheme.GREEN)
-                .addTimeSelectionHandler((time, dateTimeFormatInfo, picker) ->
-                        DomGlobal.console.info(picker.getFormattedTime()));
-        ModalDialog greenModal = greenDatePicker.createModal("Wakeup");
-        greenDatePicker.addCloseHandler(greenModal::close);
-        greenDatePicker.addClearHandler(() -> Notification.create("a Click on clear button")
-                .setPosition(Notification.TOP_RIGHT)
-                .setBackground(ColorScheme.GREEN.color())
-                .show());
-
-        greenModal.appendChild(greenDatePicker);
-        DomGlobal.document.body.appendChild(greenModal.element());
-
-        greenModalButton.addClickListener(evt -> greenModal.open());
-
-
-        element.appendChild(Card.create("POPUP")
-                .appendChild(BlockHeader.create("POP OVER"))
-                .appendChild(Row.create()
-                        .addColumn(column.copy().appendChild(bluePopupButton))
-                        .addColumn(column.copy().appendChild(pinkPopupButton))
-                        .addColumn(column.copy().appendChild(greenPopupButton))
-                )
-                .appendChild(BlockHeader.create("MODAL"))
-                .appendChild(Row.create()
-                        .addColumn(column.copy().appendChild(blueModalButton))
-                        .addColumn(column.copy().appendChild(pinkModalButton))
-                        .addColumn(column.copy().appendChild(greenModalButton))
-                )
-                .element());
-
-
+    private void dropdownTimePicker() {
+        element
+                .appendChild(Card.create("DROP DOWN")
+                        .setCollapsible(true)
+                        .appendChild(Row.create()
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_MIDDLE_UP_DOWN)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_SIDE_UP_DOWN)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_MIDDLE_SIDE)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.MIDDLE_SCREEN)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setModal(true)
+                                                    .setPosition(DropDirection.MIDDLE_SCREEN)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .span2(Button.create(Icons.calendar(), "Pick time")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_FIT_SIDE)
+                                                    .appendChild(TimePicker.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                        )
+                );
     }
 
     @SampleMethod
     private void timeBox() {
-
-        Column column = this.column.copy()
-                .style()
-                .removeCss(Styles.padding_0).get();
-
-        TimeBox timeBox1 = TimeBox.create()
-                .setLabel("Wakeup");
-
-        TimeBox timeBox2 = TimeBox.create("Wakeup", new Date(), new DateTimeFormatInfoImpl_de());
-
-        timeBox2.getTimePicker().setColorScheme(ColorScheme.PINK);
-
-
-        TimeBox timeBox3 = TimeBox.create()
-                .setPopoverPosition(PopupPosition.TOP)
-                .setPickerStyle(TimeBox.PickerStyle.POPOVER)
-                .setPlaceholder("Wakeup");
-
-        timeBox3.getTimePicker().setColorScheme(ColorScheme.GREEN);
-
-
-        element.appendChild(Card.create("TIME BOX")
-                .appendChild(Row.create()
-                        .addColumn(column.copy().appendChild(timeBox1))
-                        .addColumn(column.copy().appendChild(timeBox2))
-                        .addColumn(column.copy().appendChild(timeBox3))
-                )
-                .element());
+        element
+                .appendChild(Card.create("TIME BOX")
+                        .setCollapsible(true)
+                        .appendChild(Row.create()
+                                .span4(TimeBox.create("Default"))
+                                .span4(TimeBox.create("With pattern", new DateTimeFormatInfoImpl_ar())
+                                        .setPattern("HH:mm:ss")
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
+                                        .withTimePicker((parent, timePicker) -> timePicker
+                                                .withHeader())
+                                )
+                                .span4(TimeBox.create("With parse strict", new DateTimeFormatInfoImpl_es())
+                                        .setPattern("HH-mm-ss")
+                                        .setParseStrict(true)
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_teal))
+                                        .withTimePicker((parent, timePicker) -> timePicker
+                                                .withHeader())
+                                )
+                        )
+                );
     }
 }

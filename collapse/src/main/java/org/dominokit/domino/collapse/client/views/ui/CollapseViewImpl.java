@@ -10,7 +10,9 @@ import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.animations.Transition;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.collapsible.Accordion;
 import org.dominokit.domino.ui.collapsible.AccordionPanel;
@@ -19,17 +21,13 @@ import org.dominokit.domino.ui.collapsible.CollapseDuration;
 import org.dominokit.domino.ui.collapsible.Collapsible;
 import org.dominokit.domino.ui.collapsible.DisplayCollapseStrategy;
 import org.dominokit.domino.ui.collapsible.HeightCollapseStrategy;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Styles;
-import org.dominokit.domino.ui.utils.DominoElement;
-import org.dominokit.domino.ui.utils.TextNode;
-
-import static org.jboss.elemento.Elements.b;
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 @UiView(presentable = CollapseProxy.class)
 @SampleClass
@@ -37,86 +35,76 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
 
     private static final String SAMPLE_CONTENT = "Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.";
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("collapse", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("collapse", this.getClass()));
 
         example();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example())
-                .element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.example()));
 
         accordionSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample())
-                .element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.accordionSample()));
 
         colorFullWithIcons();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons())
-                .element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.colorFullWithIcons()));
 
         multiOpenItems();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems())
-                .element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.multiOpenItems()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void example() {
 
         element.appendChild(BlockHeader.create("COLLAPSE").element());
-        HTMLDivElement heightDiv = DominoElement.div()
-                .setHeight("100px")
+        DivElement heightDiv = div()
+                .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .css("well")
-                        .textContent(SAMPLE_CONTENT)
-                        .element())
-                .element();
+                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .textContent(SAMPLE_CONTENT));
 
-        HTMLDivElement displayDiv = DominoElement.div()
-                .setHeight("100px")
+        DivElement displayDiv = div()
+                .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .css("well")
-                        .textContent(SAMPLE_CONTENT)
-                        .element())
-                .element();
+                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .textContent(SAMPLE_CONTENT));
 
-        HTMLDivElement animationDiv = DominoElement.div()
-                .setHeight("100px")
+        DivElement animationDiv = div()
+                .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .css("well")
-                        .textContent(SAMPLE_CONTENT)
-                        .element())
-                .element();
+                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .textContent(SAMPLE_CONTENT));
 
         Collapsible heightCollapsible = Collapsible.create(heightDiv)
-                .setStrategy(new HeightCollapseStrategy());
+                .setStrategy(new HeightCollapseStrategy(CollapseDuration._300ms));
 
         Collapsible displayCollapsible = Collapsible.create(displayDiv)
                 .setStrategy(new DisplayCollapseStrategy());
 
         Collapsible animationCollapsible = Collapsible.create(animationDiv)
-                .setStrategy(new AnimationCollapseStrategy(Transition.SLIDE_IN_LEFT, Transition.SLIDE_OUT_RIGHT, CollapseDuration._500ms));
+                .setStrategy(new AnimationCollapseStrategy(Transition.FADE_IN, Transition.FADE_OUT, CollapseDuration._500ms));
 
         Button heightCollapseButton = Button.create("Height collapse");
-        heightCollapseButton.getClickableElement().addEventListener("click", evt -> heightCollapsible.toggleDisplay());
+        heightCollapseButton.getClickableElement().addEventListener("click", evt -> heightCollapsible.toggleCollapse());
 
         Button displayCollapseButton = Button.create("Display collapse");
-        displayCollapseButton.getClickableElement().addEventListener("click", evt -> displayCollapsible.toggleDisplay());
+        displayCollapseButton.getClickableElement().addEventListener("click", evt -> displayCollapsible.toggleCollapse());
 
         Button animationCollapseButton = Button.create("Animation collapse");
-        animationCollapseButton.getClickableElement().addEventListener("click", evt -> animationCollapsible.toggleDisplay());
+        animationCollapseButton.getClickableElement().addEventListener("click", evt -> animationCollapsible.toggleCollapse());
 
         element
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
+                        .appendChild(Column.span12()
                                 .appendChild(Card.create("EXAMPLE", "click the buttons below to show and hide another element via class changes.")
+                                        .setCollapsible(true)
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
                                                         .appendChild(heightCollapseButton
-                                                                .css(Styles.m_b_15)
-                                                                .setBackground(Color.CYAN)
+                                                                .addCss(dui_accent)
                                                         )
                                                         .appendChild(heightDiv)
                                                 )
@@ -124,18 +112,15 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
                                                         .appendChild(displayCollapseButton
-                                                                .css(Styles.m_b_15)
-                                                                .setBackground(Color.CYAN)
-                                                                .element())
+                                                                .addCss(dui_accent)
+                                                        )
                                                         .appendChild(displayDiv)
                                                 )
                                         )
                                         .appendChild(Row.create()
                                                 .appendChild(Column.span12()
                                                         .appendChild(animationCollapseButton
-                                                                .css(Styles.m_b_15)
-                                                                .setBackground(Color.CYAN)
-                                                                .element()
+                                                                .addCss(dui_accent)
                                                         )
                                                         .appendChild(animationDiv)
                                                 )
@@ -150,112 +135,691 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
     private void accordionSample() {
         element.appendChild(BlockHeader.create("ACCORDION").element());
         element.appendChild(Row.create()
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("BASIC EXAMPLES", "Extend the default collapse behavior to create an accordion with the panel component.")
-                                .setCollapsible()
+                                .setCollapsible(true)
+                                .appendChild(b().textContent("Panel Accent"))
+                                .appendChild(Accordion.create().addCss(dui_accent, dui_ignore_bg, dui_ignore_fg)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
                                 .appendChild(b().textContent("Panel Primary"))
-                                .appendChild(Accordion.create()
-                                        .setPanelCollapseStrategy(new HeightCollapseStrategy())
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .primary())
-                                .appendChild(b().textContent("Panel Success"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .success())
-                                .appendChild(b().textContent("Panel Warning"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .warning())
-                                .appendChild(b().textContent("Panel Danger").element())
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .danger())))
-                .addColumn(Column.span6()
+                                .appendChild(Accordion.create().addCss(dui_primary, dui_ignore_bg, dui_ignore_fg, dui_rounded_md)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                                .appendChild(b().textContent("Panel Orange"))
+                                .appendChild(Accordion.create().addCss(dui_orange, dui_ignore_bg, dui_ignore_fg)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        ))
+                                .appendChild(b().textContent("Panel Teal").element())
+                                .appendChild(Accordion.create().addCss(dui_teal, dui_ignore_bg, dui_ignore_fg)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                        )
+                )
+                .appendChild(Column.span6()
                         .appendChild(Card.create("FULL BODY EXAMPLES", "If you want to also colorful body, you need to use fullBody method.")
-                                .setCollapsible()
+                                .setCollapsible(true)
+                                .appendChild(b().textContent("Panel Accent"))
+                                .appendChild(Accordion.create().addCss(dui_accent)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        ))
                                 .appendChild(b().textContent("Panel Primary"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .primaryFull())
-                                .appendChild(b().textContent("Panel Success"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .successFull())
-                                .appendChild(b().textContent("Panel Warning"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .warningFull())
-                                .appendChild(b().textContent("Panel Danger"))
-                                .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT)))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)))
-                                        .dangerFull())))
-                .element());
-
-
+                                .appendChild(Accordion.create().addCss(dui_primary, dui_rounded_lg)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        ))
+                                .appendChild(b().textContent("Panel Orange"))
+                                .appendChild(Accordion.create().addCss(dui_orange)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                                .appendChild(b().textContent("Panel Teal"))
+                                .appendChild(Accordion.create().addCss(dui_teal)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                        )
+                )
+        );
     }
 
     @SampleMethod
     private void colorFullWithIcons() {
 
         element.appendChild(Row.create()
-                .addColumn(Column.span6()
+                .appendChild(Column.span6()
                         .appendChild(Card.create("COLORFUL PANEL ITEMS WITH ICON")
-                                .setCollapsible()
+                                .setCollapsible(true)
                                 .appendChild(b().textContent("Panel Primary"))
                                 .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show()
-                                                .setIcon(Icons.ALL.contacts_mdi())
-                                                .setHeaderBackground(Color.PINK)
-                                                .show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.cloud_mdi())
-                                                .setHeaderBackground(Color.CYAN))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.contact_phone_mdi())
-                                                .setHeaderBackground(Color.TEAL))
-                                        .appendChild(AccordionPanel.create("Collapsible item 4", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.share_mdi())
-                                                .setHeaderBackground(Color.ORANGE)))))
-                .addColumn(Column.span6()
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_accent)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_primary)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_teal)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 4")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_orange)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                        )
+                )
+                .appendChild(Column.span6()
                         .appendChild(Card.create("FULL BODY COLORFUL PANEL ITEMS WITH ICON")
-                                .setCollapsible()
-                                .appendChild(b().textContent("Panel Primary"))
+                                .setCollapsible(true)
+                                .appendChild(b().textContent("Panel Accent"))
                                 .appendChild(Accordion.create()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show()
-                                                .setIcon(Icons.ALL.contacts_mdi())
-                                                .setHeaderBackground(Color.PINK)
-                                                .setBodyBackground(Color.PINK)
-                                                .show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.cloud_mdi())
-                                                .setHeaderBackground(Color.CYAN)
-                                                .setBodyBackground(Color.CYAN))
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.contact_phone_mdi())
-                                                .setHeaderBackground(Color.TEAL)
-                                                .setBodyBackground(Color.TEAL))
-                                        .appendChild(AccordionPanel.create("Collapsible item 4", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.share_mdi())
-                                                .setHeaderBackground(Color.ORANGE)
-                                                .setBodyBackground(Color.ORANGE)
-                                        ))))
-                .element());
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_bg_accent_d_2, dui_fg_white)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent_d_4)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .withContent((parent, content) -> content.addCss(dui_accent))
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_bg_primary_d_2, dui_fg_white)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_primary_d_4)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .withContent((parent, content) -> content.addCss(dui_primary))
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_bg_teal_d_2, dui_fg_white)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_teal_d_3)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .withContent((parent, content) -> content.addCss(dui_teal))
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 4")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_bg_amber_d_2, dui_fg_white)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_white)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .withContent((parent, content) -> content.addCss(dui_deep_orange))
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                        )
+                )
+        );
 
 
     }
@@ -264,33 +828,95 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
     private void multiOpenItems() {
 
         element.appendChild(Row.create()
-                .addColumn(Column.span12()
+                .appendChild(Column.span12()
                         .appendChild(Card.create("MULTIPLE ITEMS TO BE OPEN")
-                                .setCollapsible()
+                                .setCollapsible(true)
                                 .appendChild(Accordion.create()
-                                        .multiOpen()
-                                        .appendChild(AccordionPanel.create("Collapsible item 1", TextNode.of(SAMPLE_CONTENT)).show()
-                                                .setIcon(Icons.ALL.contacts_mdi())
-                                                .setHeaderBackground(Color.PINK)
-                                                .setBodyBackground(Color.PINK)
-                                                .show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 2", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.cloud_mdi())
-                                                .setHeaderBackground(Color.CYAN)
-                                                .setBodyBackground(Color.CYAN)
+                                        .setMultiOpen(true)
+                                        .appendChild(AccordionPanel.create("Collapsible item 1")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_accent)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                                .expand()
                                         )
-                                        .appendChild(AccordionPanel.create("Collapsible item 3", TextNode.of(SAMPLE_CONTENT)).show()
-                                                .setIcon(Icons.ALL.contact_phone_mdi())
-                                                .setHeaderBackground(Color.TEAL)
-                                                .setBodyBackground(Color.TEAL)
-                                                .show())
-                                        .appendChild(AccordionPanel.create("Collapsible item 4", TextNode.of(SAMPLE_CONTENT))
-                                                .setIcon(Icons.ALL.share_mdi())
-                                                .setHeaderBackground(Color.ORANGE)
-                                                .setBodyBackground(Color.ORANGE)
-                                        ))))
-                .element());
-
-
+                                        .appendChild(AccordionPanel.create("Collapsible item 2")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_primary)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_primary_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 3")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_teal)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_teal_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                        .appendChild(AccordionPanel.create("Collapsible item 4")
+                                                .withHeader((parent, header) -> header
+                                                        .addCss(dui_orange)
+                                                        .appendChild(PrefixAddOn.of(Icons.bus_clock()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_orange_d_3)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_end()))
+                                                )
+                                                .withContentHeader((parent, contentHeader) -> contentHeader
+                                                        .setTitle("Content header")
+                                                        .appendChild(PrefixAddOn.of(Icons.clock_alert_outline()))
+                                                        .appendChild(PostfixAddOn.of(Badge.create("On time").addCss(dui_rounded_full, dui_warning)))
+                                                        .appendChild(PostfixAddOn.of(Icons.clock_in().addCss(dui_fg_accent)))
+                                                )
+                                                .withContentFooter((parent, footer) -> footer
+                                                        .appendChild(PrefixAddOn.of(Icons.dots_vertical().clickable()))
+                                                        .appendChild(PostfixAddOn.of(LinkButton.create("Remove")))
+                                                        .appendChild(PostfixAddOn.of(Button.create("Accept").addCss(dui_success, dui_w_28)))
+                                                )
+                                                .appendChild(text(SAMPLE_CONTENT))
+                                        )
+                                )
+                        )
+                )
+        );
     }
 }

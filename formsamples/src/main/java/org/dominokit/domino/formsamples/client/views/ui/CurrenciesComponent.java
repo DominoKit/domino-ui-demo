@@ -5,7 +5,7 @@ import org.dominokit.domino.formsamples.shared.model.CurrencyData;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.TextBox;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -24,11 +24,15 @@ public class CurrenciesComponent {
                 .addLeftAddOn(i().css("fas", "fa-money-bill-alt", "fa-lg"));
         amountField = numbersOnly(TextBox.create("Amount")
                 .setHelperText("Numbers only")
-                .addLeftAddOn(Icons.ALL.wallet_plus_mdi()));
+                .addLeftAddOn(Icons.wallet_plus()));
 
         amountField.getInputElement().addEventListener("change", evt -> formatAmount(currencySelect.getSelectedOption()));
 
         currencySelect.addSelectionHandler(this::formatAmount);
+    }
+
+    public static CurrenciesComponent create() {
+        return new CurrenciesComponent();
     }
 
     private void formatAmount(SelectOption<CurrencyData> option) {
@@ -48,10 +52,6 @@ public class CurrenciesComponent {
         } catch (Exception ex) {
             return Double.parseDouble(amount);
         }
-    }
-
-    public static CurrenciesComponent create() {
-        return new CurrenciesComponent();
     }
 
     public CurrenciesComponent setCurrencies(List<CurrencyData> currencies) {

@@ -65,4 +65,14 @@ public class DemoMenuProxy extends ViewablePresenter<DemoMenuView> implements De
         this.layout.scrollTop();
         history().fireState(history().currentToken().replaceAllPaths(token).value());
     }
+
+    @Override
+    public void onSpanDown(boolean spanDown) {
+        this.layout.spanDown(spanDown);
+    }
+
+    @Override
+    public void onSpanUp(boolean spanUp) {
+        this.layout.spanUp(spanUp);
+    }
 }

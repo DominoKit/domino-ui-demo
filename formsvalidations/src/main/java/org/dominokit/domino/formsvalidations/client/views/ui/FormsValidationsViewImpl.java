@@ -1,7 +1,6 @@
 package org.dominokit.domino.formsvalidations.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -12,58 +11,47 @@ import org.dominokit.domino.formsvalidations.client.presenters.FormsValidationsP
 import org.dominokit.domino.formsvalidations.client.views.FormsValidationsView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.forms.CheckBox;
-import org.dominokit.domino.ui.forms.FieldsGrouping;
-import org.dominokit.domino.ui.forms.Radio;
-import org.dominokit.domino.ui.forms.RadioGroup;
-import org.dominokit.domino.ui.forms.Select;
-import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.forms.SwitchButton;
-import org.dominokit.domino.ui.forms.TextArea;
-import org.dominokit.domino.ui.forms.TextBox;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.suggest.Select;
+import org.dominokit.domino.ui.forms.suggest.SelectOption;
 import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.icons.MdiIcon;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.popover.Tooltip;
-import org.jboss.elemento.Elements;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 @UiView(presentable = FormsValidationsProxy.class)
 @SampleClass
 public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> implements FormsValidationsView {
 
-    private HTMLDivElement element;
-    private Card helperTextCard;
-    private Card iconsCard;
+    private DivElement element;
     private Card countsCard;
     private Card validationsCard;
     private Card readOnlyCard;
 
     @Override
     protected HTMLDivElement init() {
-        element = Elements.div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("formsvalidations", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("formsvalidations", this.getClass()).element());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").element());
-        helperTextCard = Card.create("HELPER TEXTS");
-        iconsCard = Card.create("ADDONS");
         countsCard = Card.create("WORD COUNTER");
         validationsCard = Card.create("VALIDATIONS");
         readOnlyCard = Card.create("READ ONLY");
 
         initHelperText();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initHelperText()).element());
         initIcons();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIcons()).element());
         initWordCount();
         initValidations();
         initReadOnly();
 
-        element.appendChild(helperTextCard.element());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initHelperText()).element());
-        element.appendChild(iconsCard.element());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initIcons()).element());
         element.appendChild(countsCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initWordCount()).element());
         element.appendChild(validationsCard.element());
@@ -71,50 +59,19 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         element.appendChild(readOnlyCard.element());
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initReadOnly()).element());
 
-        return element;
-    }
-
-
-    @SampleMethod
-    private void initReadOnly() {
-        readOnlyCard
-                .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(TextBox.create("TextBox").value("Mr. Joan").setReadOnly(true)))
-                        .addColumn(Column.span12()
-                                .appendChild(TextArea.create("TextArea").value("CEO of the largest company")
-                                        .setRows(1)
-                                        .setReadOnly(true)))
-                        .addColumn(Column.span12()
-                                .appendChild(Select.create("Select")
-                                        .appendChild(SelectOption.create("english", "English"))
-                                        .appendChild(SelectOption.create("france", "France"))
-                                        .appendChild(SelectOption.create("arabic", "Arabic"))
-                                        .selectAt(0)
-                                        .setReadOnly(true)))
-                        .addColumn(Column.span12()
-                                .appendChild(SwitchButton.create()
-                                        .setOffTitle("Required")
-                                        .check()
-                                        .setReadOnly(true)))
-                        .addColumn(Column.span12()
-                                .appendChild(SwitchButton.create("Required", "Yes", "No")
-                                        .setReadOnly(true)))
-                );
+        return element.element();
     }
 
     @SampleMethod
     private void initHelperText() {
-        helperTextCard
+        element.appendChild(Card.create("HELPER TEXTS")
                 .appendChild(BlockHeader.create("Text Box"))
                 .appendChild(TextBox.create("Task Name")
                         .setHelperText("Each task should have unique name."))
-                .appendChild(Elements.hr())
-                .appendChild(Elements.br())
+                .appendChild(br())
                 .appendChild(BlockHeader.create("Text Area"))
-                .appendChild(TextArea.create("Description").setHelperText("Less than 100 words"))
-                .appendChild(Elements.hr())
-                .appendChild(Elements.br())
+                .appendChild(TextAreaBox.create("Description").setHelperText("Less than 100 words"))
+                .appendChild(br())
                 .appendChild(BlockHeader.create("Select"))
                 .appendChild(Select.<String>create("Task type")
                         .appendChild(SelectOption.create("-- Select a type --", "-- Select a type --"))
@@ -122,13 +79,11 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                         .appendChild(SelectOption.create("Bugfix", "Bugfix"))
                         .appendChild(SelectOption.create("Hotfix", "Hotfix"))
                         .setHelperText("Helps with tracking the issues"))
-                .appendChild(Elements.hr())
-                .appendChild(Elements.br())
+                .appendChild(br())
                 .appendChild(BlockHeader.create("Checkbox"))
                 .appendChild(CheckBox.create("I want to receive an news about this task")
                         .setHelperText("news will be sent via email"))
-                .appendChild(Elements.hr())
-                .appendChild(Elements.br())
+                .appendChild(br())
                 .appendChild(BlockHeader.create("Radio"))
                 .appendChild(RadioGroup.<String>create("estimation", "Estimation")
                         .appendChild(Radio.create("storyPoint", "Story points"))
@@ -136,112 +91,156 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                         .horizontal()
                         .setHelperText("Helps with sprint reports")
                 )
-                .appendChild(Elements.hr())
-                .appendChild(Elements.br())
+                .appendChild(br())
                 .appendChild(BlockHeader.create("Switch"))
                 .appendChild(SwitchButton.create().setOffTitle("Notifications: ")
-                        .setHelperText("Notifications will be sent via the system"));
+                        .setHelperText("Notifications will be sent via the system"))
+        );
     }
 
     @SampleMethod
     private void initIcons() {
-        MdiIcon cancel = Icons.ALL.cancel_mdi();
-
-        TextBox username = TextBox.create("Username")
-                .addLeftAddOn(Icons.ALL.account_circle_mdi())
-                .addRightAddOn(cancel);
-        cancel.addClickListener(evt -> username.clear())
-                .style().setCursor("pointer");
-
-        HTMLElement showIcon = Icons.ALL.eye_off_mdi().clickable()
-                .style()
-                .setCursor("pointer").element();
-        TextBox password = TextBox.password("Password")
-                .addLeftAddOn(Icons.ALL.protocol_mdi().element())
-                .addRightAddOn(showIcon);
-
-        showIcon.addEventListener("mousedown", evt -> password.getInputElement().element().type = "text");
-        showIcon.addEventListener("mouseup", evt -> password.getInputElement().element().type = "password");
-
-        MdiIcon info = Icons.ALL.information_mdi();
-        Tooltip.create(info, "All system pages will be shown in the selected language");
-        iconsCard.appendChild(username)
-                .appendChild(password)
-                .appendChild(TextArea.create("Description")
-                        .addLeftAddOn(Icons.ALL.note_mdi()))
+        element.appendChild(Card.create("ADDONS")
+                .appendChild(TextBox.create("Username")
+                        .appendChild(PrefixAddOn.of(Icons.account_circle()))
+                        .apply(self -> {
+                            self.appendChild(PostfixAddOn.of(Icons.close_circle()
+                                    .clickable()
+                                    .addClickListener(evt -> self.clear())));
+                        }))
+                .appendChild(PasswordBox.create("Password")
+                        .appendChild(PrefixAddOn.of(Icons.shield()))
+                        .apply(self1 -> self1
+                                .appendChild(PostfixAddOn.of(Icons.eye_off()
+                                                .clickable()
+                                                .addEventListener("mousedown", evt1 -> self1.getInputElement().element().type = "text")
+                                                .addEventListener("mouseup", evt1 -> self1.getInputElement().element().type = "password")
+                                        )
+                                )))
+                .appendChild(TextAreaBox.create("Description")
+                        .appendChild(PrefixAddOn.of(Icons.note()))
+                        .appendChild(PostfixAddOn.of(Icons.text()))
+                )
                 .appendChild(Select.<String>create("Language")
-                        .addLeftAddOn(Icons.ALL.earth_mdi())
-                        .addRightAddOn(info)
+                        .appendChild(PrefixAddOn.of(Icons.earth()))
+                        .appendChild(PostfixAddOn.of(Icons.information()
+                                .setTooltip("All system pages will be shown in the selected language", DropDirection.BEST_SIDE_UP_DOWN)
+                        ))
                         .appendChild(SelectOption.create("english", "English"))
                         .appendChild(SelectOption.create("france", "France"))
                         .appendChild(SelectOption.create("arabic", "Arabic"))
-                );
+                )
+        );
     }
 
     @SampleMethod
     private void initWordCount() {
-        countsCard.appendChild(TextBox.create("Name").setMaxLength(10));
-        countsCard.appendChild(TextArea.create("Description").setMaxLength(100));
+        countsCard.appendChild(TextBox.create("Name")
+                .setMaxLength(10)
+        );
+        countsCard.appendChild(TextAreaBox.create("Description").setMaxLength(100));
     }
 
     @SampleMethod
     private void initValidations() {
         FieldsGrouping fieldsGrouping = FieldsGrouping.create();
-        TextBox name = TextBox.create("Name").groupBy(fieldsGrouping);
-        TextBox surename = TextBox.create("Surename").groupBy(fieldsGrouping);
-        TextBox email = TextBox.create("Email").groupBy(fieldsGrouping);
-        RadioGroup<String> gender = RadioGroup.<String>create("gender", "Gender")
-                .appendChild(Radio.create("male", "Male"))
-                .appendChild(Radio.create("female", "Female"))
-                .horizontal()
-                .setShowRequiredIndicator(false)
-                .groupBy(fieldsGrouping);
-        TextArea description = TextArea.create("Description").groupBy(fieldsGrouping);
-        TextBox password = TextBox.password("Password").groupBy(fieldsGrouping);
-        CheckBox termsAndConditions = CheckBox.create("I have read and accept the terms").groupBy(fieldsGrouping);
-        Select language = Select.create("Language")
-                .appendChild(SelectOption.create("english", "English"))
-                .appendChild(SelectOption.create("france", "France"))
-                .appendChild(SelectOption.create("arabic", "Arabic"))
-                .groupBy(fieldsGrouping);
-
-        fieldsGrouping.setAutoValidation(true).setRequired(true);
 
         validationsCard
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(name)))
+                        .appendChild(Column.span12()
+                                .appendChild(TextBox.create("Name")
+                                        .groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(surename)))
+                        .appendChild(Column.span12()
+                                .appendChild(TextBox.create("Surename")
+                                        .groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(email)))
+                        .appendChild(Column.span12()
+                                .appendChild(TextBox.create("Email")
+                                        .groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(gender)))
+                        .appendChild(Column.span12()
+                                .appendChild(RadioGroup.<String>create("gender", "Gender")
+                                        .appendChild(Radio.create("male", "Male"))
+                                        .appendChild(Radio.create("female", "Female"))
+                                        .horizontal()
+                                        .setShowRequiredIndicator(true)
+                                        .groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(description)))
+                        .appendChild(Column.span12()
+                                .appendChild(TextAreaBox.create("Description").groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(password)))
+                        .appendChild(Column.span12()
+                                .appendChild(PasswordBox.create("Password").groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(language)))
+                        .appendChild(Column.span12()
+                                .appendChild(Select.<String>create("Language")
+                                        .appendChild(SelectOption.create("english", "English"))
+                                        .appendChild(SelectOption.create("france", "France"))
+                                        .appendChild(SelectOption.create("arabic", "Arabic"))
+                                        .groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(termsAndConditions)))
+                        .appendChild(Column.span12()
+                                .appendChild(CheckBox.create("I have read and accept the terms").groupBy(fieldsGrouping))))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
-                                .appendChild(Button.createPrimary("REGISTER")
+                        .appendChild(Column.span12()
+                                .appendChild(Button.create("REGISTER")
+                                        .addCss(dui_primary)
                                         .addClickListener(evt -> {
                                             ValidationResult validationResult = fieldsGrouping.validate();
                                             if (validationResult.isValid()) {
                                                 fieldsGrouping.clear();
                                             } else {
-                                                Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
+                                                Notification.create("Error " + validationResult.getErrorMessage())
+                                                        .addCss(dui_error)
+                                                        .show();
                                             }
-                                        }))));
+                                        })
+                                )
+                        )
+                );
+        fieldsGrouping.setAutoValidation(true).setRequired(true);
+    }
+
+    @SampleMethod
+    private void initReadOnly() {
+        readOnlyCard
+                .appendChild(Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(TextBox.create("TextBox")
+                                        .withValue("Mr. Joan")
+                                        .setReadOnly(true)))
+                        .appendChild(Column.span12()
+                                .appendChild(TextAreaBox.create("TextArea")
+                                        .withValue("CEO of the largest company")
+                                        .setRows(1)
+                                        .setReadOnly(true)))
+                        .appendChild(Column.span12()
+                                .appendChild(Select.create("Select")
+                                        .appendChild(SelectOption.create("english", "English"))
+                                        .appendChild(SelectOption.create("france", "France"))
+                                        .appendChild(SelectOption.create("arabic", "Arabic"))
+                                        .selectAt(0)
+                                        .setReadOnly(true)))
+                        .appendChild(Column.span12()
+                                .appendChild(SwitchButton.create()
+                                        .setOffTitle("Required")
+                                        .check()
+                                        .setReadOnly(true)))
+                        .appendChild(Column.span12()
+                                .appendChild(SwitchButton.create("Required", "Yes", "No")
+                                        .setReadOnly(true)))
+                        .appendChild(Column.span12()
+                                .appendChild(CheckBox.create("Readonly checkbox")
+                                        .check()
+                                        .setReadOnly(true)
+                                )
+                        )
+                        .appendChild(Column.span12()
+                                .appendChild(CheckBox.create("Readonly checkbox")
+                                        .setReadOnly(true)
+                                )
+                        )
+                );
     }
 }

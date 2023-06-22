@@ -16,7 +16,7 @@ import org.dominokit.domino.profile.client.views.ProfileView;
 @AutoRoute(routeOnce = true)
 @Singleton()
 @AutoReveal
-@Slot(IsLayout.Slots.PROFILE_PANEL)
+@Slot(IsLayout.Slots.MENU_PANEL)
 @DependsOn(@EventsGroup(LayoutEvent.class))
 public class ProfileProxy extends ViewablePresenter<ProfileView> {
 

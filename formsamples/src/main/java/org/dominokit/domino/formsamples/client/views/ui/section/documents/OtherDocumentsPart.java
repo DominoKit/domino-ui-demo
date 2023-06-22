@@ -14,7 +14,7 @@ import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.lists.ListGroup;
 import org.dominokit.domino.ui.style.Color;
@@ -49,7 +49,7 @@ public class OtherDocumentsPart implements ImportSection {
 
         otherDocumentsItemListGroup = ListGroup.<OtherDocumentsItem>create()
                 .setItemRenderer((listGroup, listItem) -> {
-                    MdiIcon delete = Icons.ALL.delete_mdi()
+                    MdiIcon delete = Icons.delete()
                             .clickable()
                             .styler(style -> style.addCss(Styles.pull_right)
                                     .setMarginTop("-3px")
@@ -77,7 +77,7 @@ public class OtherDocumentsPart implements ImportSection {
 
         Card otherDocumentsCard = Card.create("Other documents").setBodyPaddingTop("40px");
         otherDocumentsCard.getHeaderBar()
-                .appendChild(Button.createDefault(Icons.ALL.plus_mdi())
+                .appendChild(Button.createDefault(Icons.plus())
                         .setContent("ADD")
                         .styler(style -> style.setMarginTop("-10px"))
                         .linkify()
@@ -102,6 +102,13 @@ public class OtherDocumentsPart implements ImportSection {
                 .element());
     }
 
+    private Badge createCopiesBadge(OtherDocumentsItem item) {
+        return Badge.create(item.getNumberOfCopies() + " Copies")
+                .setBackground(Color.GREEN)
+                .style()
+                .addCss(Styles.pull_right).get();
+    }
+
     private void addOtherDocumentItem() {
         OtherDocumentsItem item = makeNewOtherDocument();
         otherDocumentsItemListGroup.addItem(item);
@@ -113,13 +120,6 @@ public class OtherDocumentsPart implements ImportSection {
         otherDocumentsCopiesTextBox.clearInvalid();
         otherDocumentsDescriptionTextBox.clear();
         otherDocumentsDescriptionTextBox.clearInvalid();
-    }
-
-    private Badge createCopiesBadge(OtherDocumentsItem item) {
-        return Badge.create(item.getNumberOfCopies() + " Copies")
-                .setBackground(Color.GREEN)
-                .style()
-                .addCss(Styles.pull_right).get();
     }
 
     private OtherDocumentsItem makeNewOtherDocument() {

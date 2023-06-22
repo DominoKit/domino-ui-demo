@@ -20,7 +20,6 @@ import javax.annotation.PostConstruct;
 @RegisterSlots({
         IsLayout.Slots.CONTENT,
         IsLayout.Slots.MENU_PANEL,
-        IsLayout.Slots.PROFILE_PANEL,
         IsLayout.Slots.TOP_BAR,
         IsLayout.Slots.RIGHT_PANEL
 })
@@ -29,7 +28,6 @@ public class LayoutProxy extends ViewablePresenter<LayoutView> {
     @PostConstruct
     public void onInit(){
         LayoutStoreImpl.INSTANCE.setData(view);
-        LoaderStoreImpl.INSTANCE.setData(view);
     }
 
     @OnReveal

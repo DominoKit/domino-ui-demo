@@ -14,7 +14,7 @@ import org.dominokit.domino.ui.forms.SelectOption;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 
 import java.util.List;
 
@@ -82,7 +82,7 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .groupBy(fieldsGrouping)
                 .setAutoValidation(true)
                 .setRequired(true)
-                .addLeftAddOn(Icons.ALL.domain_mdi())
+                .addLeftAddOn(Icons.domain())
                 .appendChild(SelectOption.create("Chamber of commerce", "Chamber of commerce"))
                 .appendChild(SelectOption.create("Official trade office", "Official trade office"))
                 .appendChild(SelectOption.create("Chamber of industries", "Chamber of industries"))
@@ -125,6 +125,16 @@ public class SignedCommercialInvoicePart implements ImportSection {
                 .element());
     }
 
+    public void revalidate() {
+        if (isInvalidatedCard(signedCommercialInvoiceInCard) && isValid()) {
+            markCardValidation(signedCommercialInvoiceInCard, true, false);
+        }
+    }
+
+    private boolean isValid() {
+        return !signedCommercialInvoiceRequiredSwitchButton.getValue() || fieldsGrouping.validate().isValid();
+    }
+
     @Override
     public void collect(LetterOfCredit letterOfCredit) {
         DocumentsRequired documentsRequired = letterOfCredit.getDocumentsRequired();
@@ -142,16 +152,6 @@ public class SignedCommercialInvoicePart implements ImportSection {
         boolean valid = isValid();
         markCardValidation(signedCommercialInvoiceInCard, valid);
         return valid;
-    }
-
-    public void revalidate() {
-        if (isInvalidatedCard(signedCommercialInvoiceInCard) && isValid()) {
-            markCardValidation(signedCommercialInvoiceInCard, true, false);
-        }
-    }
-
-    private boolean isValid() {
-        return !signedCommercialInvoiceRequiredSwitchButton.getValue() || fieldsGrouping.validate().isValid();
     }
 
     @Override

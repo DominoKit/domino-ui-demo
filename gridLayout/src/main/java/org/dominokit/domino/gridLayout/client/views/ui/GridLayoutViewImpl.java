@@ -8,156 +8,138 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.gridLayout.client.presenters.GridLayoutProxy;
 import org.dominokit.domino.gridLayout.client.views.GridLayoutView;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.CheckBox;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.GridLayout;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.SectionSpan;
-import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.sliders.Slider;
-
-import static org.jboss.elemento.Elements.a;
-import static org.jboss.elemento.Elements.br;
-import static org.jboss.elemento.Elements.div;
-import static org.jboss.elemento.Elements.h;
-import static org.jboss.elemento.Elements.span;
+import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = GridLayoutProxy.class)
 public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements GridLayoutView {
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("gridLayout", this.getClass()).element());
+        element.appendChild(LinkToSourceCode.createLink("gridLayout", this.getClass()).element());
         element.appendChild(BlockHeader.create("GRID LAYOUT", "12 Columns based custom layout.").element());
         initLayoutSamples();
 
-        return element;
+        return element.element();
     }
 
     private void initLayoutSamples() {
         GridLayout gridLayout = GridLayout.create()
-                .style()
-                .setHeight("500px").get();
+                .setHeight("500px");
 
-        gridLayout.getContentElement().style().addCss("demo-layout-section", "demo-content");
-        gridLayout.getHeaderElement().style().addCss("demo-layout-section", "demo-header");
-        gridLayout.getFooterElement().style().addCss("demo-layout-section", "demo-l-footer");
-        gridLayout.getLeftElement().style().addCss("demo-layout-section", "demo-left");
-        gridLayout.getRightElement().style().addCss("demo-layout-section", "demo-right");
+        gridLayout
+                .withContent((parent, content) -> content
+                        .addCss("demo-layout-section", "demo-content")
+                        .appendChild(span().textContent("Content"))
+                )
+                .withHeader((parent, header) -> header
+                        .addCss("demo-layout-section", "demo-header")
+                        .appendChild(span().textContent("Header"))
+                )
+                .withFooter((parent, footer) -> footer
+                        .addCss("demo-layout-section", "demo-l-footer")
+                        .appendChild(span().textContent("Footer"))
+                )
+                .withLeftPanel((parent, leftPanel) -> leftPanel
+                        .addCss("demo-layout-section", "demo-left")
+                        .appendChild(span().textContent("Left"))
+                )
+                .withRightPanel((parent, rightPanel) -> rightPanel
+                        .addCss("demo-layout-section", "demo-right")
+                        .appendChild(span().textContent("Right"))
+                );
 
-        gridLayout.getContentElement().appendChild(span().textContent("Content").element());
-        gridLayout.getHeaderElement().appendChild(span().textContent("Header").element());
-        gridLayout.getFooterElement().appendChild(span().textContent("Footer").element());
-        gridLayout.getLeftElement().appendChild(span().textContent("Left").element());
-        gridLayout.getRightElement().appendChild(span().textContent("Right").element());
 
-        Slider headerSlider = Slider.create(6, 0, 0)
+
+        Slider headerSlider = Slider.create(6, 0, 1)
                 .withThumb()
                 .setStep(1);
-        headerSlider.addChangeHandler(value -> {
-            if (value == 0) {
-                gridLayout.hideHeader();
-            } else {
-                gridLayout.setHeaderSpan(SectionSpan.valueOf("_" + value));
-            }
+        headerSlider.addChangeListener((oldValue, newValue) -> {
+                gridLayout.setHeaderSpan(SectionSpan.valueOf("_" + newValue));
         });
 
-        Slider leftSlider = Slider.create(6, 0, 0)
+        Slider leftSlider = Slider.create(6, 0, 3)
                 .withThumb()
                 .setStep(1);
         CheckBox leftSpanUpCheck = CheckBox.create("Span Up");
         CheckBox leftSpanDownCheck = CheckBox.create("Span Down");
         leftSpanUpCheck
-                .addChangeHandler(value -> {
-                    if (leftSlider.getValue() > 0) {
-                        gridLayout.setLeftSpan(SectionSpan.valueOf("_" + leftSlider.getValue()), value, leftSpanDownCheck.getValue());
-                    }
+                .addChangeListener((oldValue, newValue) -> {
+                        gridLayout.setLeftSpan(SectionSpan.valueOf("_" + leftSlider.getValue()), newValue, leftSpanDownCheck.getValue());
                 });
 
         leftSpanDownCheck
-                .addChangeHandler(value -> {
-                    if (leftSlider.getValue() > 0) {
-                        gridLayout.setLeftSpan(SectionSpan.valueOf("_" + leftSlider.getValue()), leftSpanUpCheck.getValue(), value);
-                    }
+                .addChangeListener((oldValue, newValue) -> {
+                        gridLayout.setLeftSpan(SectionSpan.valueOf("_" + leftSlider.getValue()), leftSpanUpCheck.getValue(), newValue);
                 });
-        leftSlider.addChangeHandler(value -> {
-            if (value == 0) {
-                gridLayout.hideLeft();
-            } else {
-                gridLayout.setLeftSpan(SectionSpan.valueOf("_" + value), leftSpanUpCheck.getValue(), leftSpanDownCheck.getValue());
-            }
+        leftSlider.addChangeListener((oldValue, newValue) -> {
+                gridLayout.setLeftSpan(SectionSpan.valueOf("_" + newValue), leftSpanUpCheck.getValue(), leftSpanDownCheck.getValue());
         });
 
 
-        Slider rightSlider = Slider.create(6, 0, 0)
+        Slider rightSlider = Slider.create(6, 0, 3)
                 .withThumb()
                 .setStep(1);
         CheckBox rightSpanUpCheck = CheckBox.create("Span Up");
         CheckBox rightSpanDownCheck = CheckBox.create("Span Down");
         rightSpanUpCheck
-                .addChangeHandler(value -> {
-                    if (rightSlider.getValue() > 0) {
-                        gridLayout.setRightSpan(SectionSpan.valueOf("_" + rightSlider.getValue()), value, rightSpanDownCheck.getValue());
-                    }
+                .addChangeListener((oldValue, newValue) -> {
+                        gridLayout.setRightSpan(SectionSpan.valueOf("_" + rightSlider.getValue()), newValue, rightSpanDownCheck.getValue());
                 });
 
         rightSpanDownCheck
-                .addChangeHandler(value -> {
-                    if (rightSlider.getValue() > 0) {
-                        gridLayout.setRightSpan(SectionSpan.valueOf("_" + rightSlider.getValue()), rightSpanUpCheck.getValue(), value);
-                    }
+                .addChangeListener((oldValue, newValue) -> {
+                        gridLayout.setRightSpan(SectionSpan.valueOf("_" + rightSlider.getValue()), rightSpanUpCheck.getValue(), newValue);
                 });
-        rightSlider.addChangeHandler(value -> {
-            if (value == 0) {
-                gridLayout.hideRight();
-            } else {
-                gridLayout.setRightSpan(SectionSpan.valueOf("_" + value), rightSpanUpCheck.getValue(), rightSpanDownCheck.getValue());
-            }
+        rightSlider.addChangeListener((oldValue, newValue) -> {
+                gridLayout.setRightSpan(SectionSpan.valueOf("_" + newValue), rightSpanUpCheck.getValue(), rightSpanDownCheck.getValue());
         });
 
 
-        Slider footerSlider = Slider.create(6, 0, 0)
+        Slider footerSlider = Slider.create(6, 0, 1)
                 .withThumb()
                 .setStep(1);
-        footerSlider.addChangeHandler(value -> {
-            if (value == 0) {
-                gridLayout.hideFooter();
-            } else {
-                gridLayout.setFooterSpan(SectionSpan.valueOf("_" + value));
-            }
+        footerSlider.addChangeListener((oldValue, newValue) -> {
+                gridLayout.setFooterSpan(SectionSpan.valueOf("_" + newValue));
         });
 
         Slider gapSlider = Slider.create(10, 0, 0)
                 .withThumb()
                 .setStep(1)
-                .addChangeHandler(value -> gridLayout.setGap(value + "px"));
+                .addChangeListener((oldValue, newValue) -> gridLayout.setGap(newValue + "px"));
 
         element.appendChild(Card.create()
                 .appendChild(Row.create()
-                        .addColumn(Column.span2()
+                        .appendChild(Column.span2()
                                 .appendChild(headerSlider)
                                 .appendChild(h(5).textContent("Header")))
-                        .addColumn(Column.span2()
+                        .appendChild(Column.span2()
                                 .appendChild(leftSlider)
                                 .appendChild(h(5).textContent("Left"))
                                 .appendChild(leftSpanUpCheck)
                                 .appendChild(leftSpanDownCheck)
                         )
-                        .addColumn(Column.span2()
+                        .appendChild(Column.span2()
                                 .appendChild(rightSlider)
                                 .appendChild(h(5).textContent("Right"))
                                 .appendChild(rightSpanUpCheck)
                                 .appendChild(rightSpanDownCheck)
                         )
-                        .addColumn(Column.span2()
+                        .appendChild(Column.span2()
                                 .appendChild(footerSlider)
                                 .appendChild(h(5).textContent("Footer"))
                         )
-                        .addColumn(Column.span2()
+                        .appendChild(Column.span2()
                                 .appendChild(gapSlider)
                                 .appendChild(h(5).textContent("Gap"))
                         )
@@ -166,7 +148,7 @@ public class GridLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .element());
         element.appendChild(Card.create("USAGE")
                 .appendChild(BlockHeader.create("Basic", "Grid layout is a 12 columns grid based layout with a content section and another 4 optional sections: Header. Footer, Left and Right. ")
-                        .appendChild(a().attr("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/grid")
+                        .appendChild(a().setAttribute("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/grid")
                                 .textContent("Please checkout css grid on MDN"))
                         .appendChild(br()))
                 .appendChild(h(5).textContent("The GridLayout is a single div element that can hold up to 5 other divs for each section"))

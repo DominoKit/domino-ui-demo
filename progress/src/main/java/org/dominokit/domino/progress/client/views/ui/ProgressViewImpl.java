@@ -12,58 +12,50 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.progress.client.presenters.ProgressProxy;
 import org.dominokit.domino.progress.client.views.ProgressView;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.header.BlockHeader;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.timer.client.Timer;
-
-import static org.jboss.elemento.Elements.div;
 
 @UiView(presentable = ProgressProxy.class)
 @SampleClass
 public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements ProgressView {
 
-    private HTMLDivElement element;
+    private DivElement element;
     private ProgressBar movingBar;
-    private int animationFrame = 0;
-    private FrameRequestCallback animationFrameCallback;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.create("progress", this.getClass()).element());
-        element.appendChild(BlockHeader.create("PROGRESS BARS").element());
+        element.appendChild(LinkToSourceCode.createLink("progress", this.getClass()));
+        element.appendChild(BlockHeader.create("PROGRESS BARS"));
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()));
 
         contextualAlternatives();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.contextualAlternatives()));
 
         stripedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stripedSample()));
 
         animatedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.animatedSample()));
 
         stackedSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.stackedSample()));
 
         materialDesignColors();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColors()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void basicSample() {
-        movingBar = ProgressBar.create(1000);
-        //we are doing this since we want to move the progress for the demo,
-        // in real use cases progress bar value increases by some data feedback.
-        movingBar.element().style.setProperty("transition", "width 500ms linear", "important");
-
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
@@ -83,18 +75,8 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .textExpression("{value} out of {maxValue} completed")
                                 .setValue(40)))
                 .appendChild(Progress.create()
-                        .appendChild(movingBar))
-                .element());
-
-        animationFrameCallback = p0 -> {
-            if (movingBar.getValue() >= movingBar.getMaxValue()) {
-                movingBar.textExpression("Done");
-            } else
-                movingBar.setValue(movingBar.getValue() + 1);
-
-            animationFrame = DomGlobal.requestAnimationFrame(animationFrameCallback);
-        };
-
+                        .appendChild(movingBar = ProgressBar.create(1000)))
+        );
 
         restartProgress();
     }
@@ -105,26 +87,24 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
-                                .success()
+                                .addCss(dui_success)
                                 .setValue(80)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
-                                .warning()
+                                .addCss(dui_warning)
                                 .setValue(60)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
-                                .info()
+                                .addCss(dui_info)
                                 .setValue(70)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
-                                .danger()
+                                .addCss(dui_error)
                                 .setValue(30)))
-                .element());
-
-
+        );
     }
 
     @SampleMethod
@@ -133,26 +113,24 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .striped()
-                                .success()
+                                .addCss(dui_success)
                                 .setValue(80)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .striped()
-                                .warning()
+                                .addCss(dui_warning)
                                 .setValue(60)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .striped()
-                                .info()
+                                .addCss(dui_info)
                                 .setValue(70)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .striped()
-                                .danger()
+                                .addCss(dui_error)
                                 .setValue(30)))
-                .element());
-
-
+        );
     }
 
     @SampleMethod
@@ -161,26 +139,24 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .animate()
-                                .success()
+                                .addCss(dui_success)
                                 .setValue(80)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .animate()
-                                .warning()
+                                .addCss(dui_warning)
                                 .setValue(60)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .animate()
-                                .info()
+                                .addCss(dui_info)
                                 .setValue(70)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .animate()
-                                .danger()
+                                .addCss(dui_error)
                                 .setValue(30)))
-                .element());
-
-
+        );
     }
 
     @SampleMethod
@@ -189,19 +165,17 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .animate()
-                                .success()
+                                .addCss(dui_success)
                                 .setValue(40))
                         .appendChild(ProgressBar.create(100)
-                                .warning()
+                                .addCss(dui_warning)
                                 .setValue(30))
                         .appendChild(ProgressBar.create(100)
                                 .striped()
-                                .danger()
+                                .addCss(dui_error)
                                 .setValue(20))
-                        .element())
-                .element());
-
-
+                )
+        );
     }
 
     @SampleMethod
@@ -209,39 +183,40 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
         element.appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You use material design colors to style the progress bar.")
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
-                                .setBackground(Color.PINK)
+                                .addCss(dui_pink)
                                 .striped()
                                 .setValue(90)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
-                                .setBackground(Color.PURPLE)
+                                .addCss(dui_purple)
                                 .striped()
                                 .setValue(60)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
-                                .setBackground(Color.TEAL)
+                                .addCss(dui_teal)
                                 .striped()
                                 .setValue(75)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
-                                .setBackground(Color.BROWN)
+                                .addCss(dui_brown)
                                 .striped()
                                 .setValue(40)))
-                .element());
-
+        );
     }
 
     private void restartProgress() {
-            DomGlobal.cancelAnimationFrame(animationFrame);
-            movingBar.setValue(0);
-            movingBar.textExpression("{percent}%");
-            new Timer() {
-                @Override
-                public void run() {
-                    DomGlobal.requestAnimationFrame(animationFrameCallback);
+        movingBar.setValue(0);
+        movingBar.textExpression("{percent}%");
+        new Timer() {
+            @Override
+            public void run() {
+                if (movingBar.getValue() >= movingBar.getMaxValue()) {
+                    movingBar.textExpression("Done");
+                } else {
+                    movingBar.setValue(movingBar.getValue() + 1);
                 }
-            }.schedule(1000);
-
+            }
+        }.scheduleRepeating(10);
     }
 }

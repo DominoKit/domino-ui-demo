@@ -9,26 +9,24 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.tabs.client.presenters.TabsProxy;
 import org.dominokit.domino.tabs.client.views.TabsView;
-import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.animations.Transition;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.header.BlockHeader;
-import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.Elevation;
-import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.style.DisplayCss;
 import org.dominokit.domino.ui.tabs.FillItem;
+import org.dominokit.domino.ui.tabs.HeaderDirection;
 import org.dominokit.domino.ui.tabs.Tab;
+import org.dominokit.domino.ui.tabs.TabsAlign;
+import org.dominokit.domino.ui.tabs.TabsDirection;
+import org.dominokit.domino.ui.tabs.TabsHeaderAlign;
 import org.dominokit.domino.ui.tabs.TabsPanel;
-import org.dominokit.domino.ui.tabs.VerticalTab;
-import org.dominokit.domino.ui.tabs.VerticalTabsPanel;
-import org.dominokit.domino.ui.utils.DominoElement;
-
-import static org.dominokit.domino.ui.style.Unit.px;
-import static org.jboss.elemento.Elements.b;
-import static org.jboss.elemento.Elements.div;
+import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
+import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 @UiView(presentable = TabsProxy.class)
 @SampleClass
@@ -36,41 +34,44 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
 
     private static final String SAMPLE_TEXT = "Lorem ipsum dolor sit amet, ut duo atqui exerci dicunt, ius impedit mediocritatem an. Pri ut tation electram moderatius. Per te suavitate democritum. Duis nemore probatus ne quo, ad liber essent aliquid pro. Et eos nusquam accumsan, vide mentitum fabellas ne est, eu munere gubergren sadipscing mel.";
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
-        element.appendChild(LinkToSourceCode.create("tabs", this.getClass()).element());
-        element.appendChild(BlockHeader.create("TABS").element());
+        element.appendChild(LinkToSourceCode.createLink("tabs", this.getClass()));
+        element.appendChild(BlockHeader.create("TABS"));
 
         basicSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicSample()));
 
         iconsOnly();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.iconsOnly()));
 
         withIconsAndTextSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withIconsAndTextSample()));
+
+        tabsAlignment();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tabsAlignment()));
 
         closableTabsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.closableTabsSample()));
 
         materialDesignColorsSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.materialDesignColorsSample()));
 
         backgroundSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.backgroundSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.backgroundSample()));
 
         initDifferentContentSample();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDifferentContentSample()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDifferentContentSample()));
 
         withAnimation();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withAnimation()));
 
-        verticalTabs();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalTabs()).element());
+        Tabs();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.Tabs()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
@@ -79,208 +80,249 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                 .appendChild(TabsPanel.create()
                         .appendChild(Tab.create("HOME")
                                 .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                         .appendChild(Tab.create("PROFILE")
                                 .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                         .appendChild(Tab.create("MESSAGES")
                                 .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .activate())
                         .appendChild(Tab.create("SETTINGS")
                                 .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                 )
-                .element());
-
-
+        );
     }
 
     @SampleMethod
     private void iconsOnly() {
         element.appendChild(Card.create("TABS WITH ONLY ICON TITLE")
                 .appendChild(TabsPanel.create()
-                        .appendChild(Tab.create(Icons.ALL.home_mdi())
+                        .appendChild(Tab.create(Icons.home())
                                 .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(Tab.create(Icons.ALL.face_mdi())
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.face_man())
                                 .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(Tab.create(Icons.ALL.email_mdi())
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.email())
                                 .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .activate())
-                        .appendChild(Tab.create(Icons.ALL.settings_mdi())
+                        .appendChild(Tab.create(Icons.cog())
                                 .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                 )
-                .element());
-
+        );
     }
 
     @SampleMethod
     private void withIconsAndTextSample() {
         element.appendChild(Card.create("TABS WITH ICON TITLE")
                 .appendChild(TabsPanel.create()
-                        .appendChild(Tab.create(Icons.ALL.home_mdi(), " HOME")
+                        .appendChild(PrefixAddOn.of(Icons.menu().clickable()))
+                        .appendChild(Tab.create(Icons.home(), " HOME")
                                 .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(Tab.create(Icons.ALL.face_mdi(), " PROFILE")
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
                                 .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                        .appendChild(Tab.create(Icons.ALL.email_mdi(), " MESSAGES")
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
                                 .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .activate())
-                        .appendChild(Tab.create(Icons.ALL.settings_mdi(), " SETTINGS")
+                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
                                 .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(FillItem.create())
+                        .appendChild(PostfixAddOn.of(Icons.dots_vertical().clickable()))
                 )
-                .element());
+        );
+    }
 
-
+    @SampleMethod
+    private void tabsAlignment() {
+        element.appendChild(Card.create("TABS ALIGNMENT")
+                .appendChild(TabsPanel.create()
+                        .setTabsAlign(TabsAlign.START)
+                        .appendChild(Tab.create(Icons.home(), " HOME")
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .activate())
+                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                )
+                .appendChild(TabsPanel.create()
+                        .setTabsAlign(TabsAlign.CENTER)
+                        .appendChild(Tab.create(Icons.home(), " HOME")
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .activate())
+                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                )
+                .appendChild(TabsPanel.create()
+                        .setTabsAlign(TabsAlign.END)
+                        .appendChild(Tab.create(Icons.home(), " HOME")
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .activate())
+                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT)))
+                )
+        );
     }
 
     @SampleMethod
     private void closableTabsSample() {
         element.appendChild(Card.create("CLOSABLE TABS")
                 .appendChild(TabsPanel.create()
-                        .appendChild(Tab.create(Icons.ALL.home_mdi(), " HOME")
+                        .appendChild(Tab.create(Icons.home(), " HOME")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("15+").addCss(dui_rounded_full))))
                                 .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .setClosable(true)
                         )
-
-                        .appendChild(Tab.create(Icons.ALL.face_mdi(), " PROFILE")
+                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
                                 .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .setClosable(true)
                         )
-
-                        .appendChild(Tab.create(Icons.ALL.email_mdi(), " MESSAGES")
+                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
                                 .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .activate()
                                 .setClosable(true)
                         )
-
-                        .appendChild(Tab.create(Icons.ALL.settings_mdi(), " SETTINGS")
+                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
                                 .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .setClosable(true)
                         )
                 )
-                .element());
-
-
+        );
     }
 
     @SampleMethod
     private void materialDesignColorsSample() {
         element.appendChild(Card.create("TABS WITH MATERIAL DESIGN COLORS", "You can use Material Design Colors")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.PINK)
+                                        .addCss(dui_accent_pink)
                                 )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.TEAL)
+                                        .addCss(dui_accent_teal)
                                 )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.PURPLE)
+                                        .addCss(dui_accent_purple)
                                 )
                         )
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.RED)
+                                        .addCss(dui_accent_red)
                                 )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.ORANGE)
+                                        .addCss(dui_accent_orange)
                                 )
                                 .appendChild(TabsPanel.create()
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
-                                        .setColor(Color.BLUE_GREY)
+                                        .addCss(dui_accent_blue_grey)
                                 )
                         )
                 )
-                .element());
-
-
+        );
     }
 
     @SampleMethod
     private void backgroundSample() {
         element.appendChild(Card.create("TABS WITH MATERIAL DESIGN BACKGROUNDS", "You can use Material Design backgrounds")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.INDIGO)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_indigo)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                 )
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.RED)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_red)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                 )
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.PINK)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_pink)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                 )
                         )
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.GREEN)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_green)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                 )
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.PURPLE)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_purple)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
                                         .appendChild(Tab.create("SETTINGS"))
                                 )
                                 .appendChild(TabsPanel.create()
-                                        .setBackgroundColor(Color.LIME)
-                                        .setColor(Color.WHITE)
+                                        .addCss(dui_lime)
                                         .appendChild(Tab.create("HOME"))
                                         .appendChild(Tab.create("PROFILE"))
                                         .appendChild(Tab.create("MESSAGES").activate())
@@ -288,37 +330,34 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                 )
                         )
                 )
-                .element());
-
-
+        );
     }
 
     @SampleMethod
     private void initDifferentContentSample() {
-        DominoElement<HTMLDivElement> contentContainer = DominoElement.of(div())
+        DivElement contentContainer = div()
                 .appendChild(BlockHeader.create("TAB CONTENT"))
-                .styler(style -> style.setMarginTop("40px")
-                        .setPadding("20px"))
-                .elevate(Elevation.LEVEL_1);
+                .addCss(dui_m_12, dui_p_6)
+                .addCss(dui_elevation_1);
         element.appendChild(Card.create("TABS WITH CONTENT CONTAINER", "Tabs can have different content container")
                 .appendChild(TabsPanel.create()
                         .setContentContainer(contentContainer)
                         .appendChild(Tab.create("HOME")
                                 .appendChild(b().textContent("Home Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                         .appendChild(Tab.create("PROFILE")
                                 .appendChild(b().textContent("Profile Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                         .appendChild(Tab.create("MESSAGES")
                                 .appendChild(b().textContent("Messages Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                .appendChild(p(SAMPLE_TEXT))
                                 .activate())
                         .appendChild(Tab.create("SETTINGS")
                                 .appendChild(b().textContent("Settings Content"))
-                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                .appendChild(p(SAMPLE_TEXT)))
                 )
                 .appendChild(contentContainer)
-                .element());
+        );
 
 
     }
@@ -327,38 +366,38 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
     private void withAnimation() {
         element.appendChild(Card.create("TABS WITH CUSTOM ANIMATIONS", "Animate the tabs content when they show up.")
                 .appendChild(Row.create()
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
-                                        .appendChild(Tab.create(Icons.ALL.home_mdi(), " HOME")
+                                        .appendChild(Tab.create(Icons.home(), " HOME")
                                                 .appendChild(b().textContent("Home Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(Tab.create(Icons.ALL.face_mdi(), " PROFILE")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
                                                 .appendChild(b().textContent("Profile Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(Tab.create(Icons.ALL.email_mdi(), " MESSAGES")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
                                                 .appendChild(b().textContent("Messages Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
-                                        .appendChild(Tab.create(Icons.ALL.settings_mdi(), " SETTINGS")
+                                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
                                                 .appendChild(b().textContent("Settings Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                                .appendChild(p(SAMPLE_TEXT)))
                                         .setTransition(Transition.ROTATE_IN_UP_LEFT)
                                 ))
-                        .addColumn(Column.span6()
+                        .appendChild(Column.span6()
                                 .appendChild(TabsPanel.create()
-                                        .appendChild(Tab.create(Icons.ALL.home_mdi(), " HOME")
+                                        .appendChild(Tab.create(Icons.home(), " HOME")
                                                 .appendChild(b().textContent("Home Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(Tab.create(Icons.ALL.face_mdi(), " PROFILE")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
                                                 .appendChild(b().textContent("Profile Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(Tab.create(Icons.ALL.email_mdi(), " MESSAGES")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
                                                 .appendChild(b().textContent("Messages Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
-                                        .appendChild(Tab.create(Icons.ALL.settings_mdi(), " SETTINGS")
+                                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
                                                 .appendChild(b().textContent("Settings Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                                .appendChild(p(SAMPLE_TEXT)))
                                         .setTransition(Transition.FADE_IN_RIGHT)
                                 ))
                 )
@@ -368,72 +407,214 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
     }
 
     @SampleMethod
-    private void verticalTabs() {
+    private void Tabs() {
         element.appendChild(Card.create("VERTICAL TABS")
+                .appendChild(BlockHeader.create("TABS ALIGNMENT"))
                 .appendChild(Row.create()
-                        .appendChild(Column.span6()
-                                .appendChild(VerticalTabsPanel.create()
-                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
-                                        .appendChild(VerticalTab.create("HOME")
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabsAlign(TabsAlign.START)
+                                        .appendChild(Tab.create("HOME")
                                                 .appendChild(b().textContent("Home Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("PROFILE")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
                                                 .appendChild(b().textContent("Profile Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("MESSAGES")
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
                                                 .appendChild(b().textContent("Messages Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
-                                        .appendChild(VerticalTab.create("SETTINGS")
+                                        .appendChild(Tab.create("SETTINGS")
                                                 .appendChild(b().textContent("Settings Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                                .appendChild(p(SAMPLE_TEXT)))
                                 )
                         )
-                        .appendChild(Column.span6()
-                                .appendChild(VerticalTabsPanel.create()
-                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
-                                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home_mdi())
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabsAlign(TabsAlign.CENTER)
+                                        .appendChild(Tab.create("HOME")
                                                 .appendChild(b().textContent("Home Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face_mdi())
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
                                                 .appendChild(b().textContent("Profile Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.email_mdi())
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
                                                 .appendChild(b().textContent("Messages Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
-                                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings_mdi())
+                                        .appendChild(Tab.create("SETTINGS")
                                                 .appendChild(b().textContent("Settings Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabsAlign(TabsAlign.END)
+                                        .appendChild(Tab.create("HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create("SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
                                 )
                         )
                 )
+                .appendChild(hr())
+                .appendChild(BlockHeader.create("TABS HEADER ALIGNMENT"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabHeaderAlign(TabsHeaderAlign.LEFT)
+                                        .appendChild(Tab.create("HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create("SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabHeaderAlign(TabsHeaderAlign.CENTER)
+                                        .appendChild(Tab.create("HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create("SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabHeaderAlign(TabsHeaderAlign.RIGHT)
+                                        .appendChild(Tab.create("HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create("SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                )
+                .appendChild(hr())
+                .appendChild(BlockHeader.create("HEADER DIRECTION"))
+                .appendChild(Row.create()
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create(Icons.cog(), "SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setHeaderDirection(HeaderDirection.VERTICAL)
+                                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create(Icons.cog(), "SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                        .appendChild(Column.span4()
+                                .appendChild(TabsPanel.create()
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setHeaderDirection(HeaderDirection.VERTICAL_REVERSED)
+                                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                                .appendChild(b().textContent("Home Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                                .appendChild(b().textContent("Profile Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                                .appendChild(b().textContent("Messages Content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .activate())
+                                        .appendChild(Tab.create(Icons.cog(), "SETTINGS")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                )
+                        )
+                )
+                .appendChild(hr())
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
-                                .appendChild(VerticalTabsPanel.create()
-                                        .styler(style -> style.setHeight(px.of(400)))
-                                        .textBelowIcon()
+                                .appendChild(TabsPanel.create()
+                                        .addCss(dui_h_96)
+                                        .setTabsDirection(TabsDirection.VERTICAL)
+                                        .setTabsAlign(TabsAlign.START)
                                         .setTransition(Transition.FADE_IN)
-                                        .apply(element -> element.getTabsContent().css(Styles.p_l_10))
-                                        .appendChild(VerticalTab.create("HOME", Icons.ALL.home_mdi())
+                                        .appendChild(Tab.create(Icons.home(), "HOME")
                                                 .appendChild(b().textContent("Home Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("PROFILE", Icons.ALL.face_mdi())
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
                                                 .appendChild(b().textContent("Profile Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
-                                        .appendChild(VerticalTab.create("MESSAGES", Icons.ALL.email_mdi())
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
                                                 .appendChild(b().textContent("Messages Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT))
+                                                .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
                                         .appendChild(FillItem.create())
-                                        .appendChild(VerticalTab.create("SETTINGS", Icons.ALL.settings_mdi())
+                                        .appendChild(Tab.create(Icons.cog(), "SETTINGS")
                                                 .appendChild(b().textContent("Settings Content"))
-                                                .appendChild(Paragraph.create(SAMPLE_TEXT)))
+                                                .appendChild(p(SAMPLE_TEXT)))
                                 )
                         )
                 )
-                .element());
-
-
+        );
     }
 }

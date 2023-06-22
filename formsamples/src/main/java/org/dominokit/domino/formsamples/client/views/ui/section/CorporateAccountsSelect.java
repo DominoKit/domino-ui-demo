@@ -5,7 +5,7 @@ import org.dominokit.domino.formsamples.shared.model.CorporateAccount;
 import org.dominokit.domino.formsamples.shared.model.CorporateProfile;
 import org.dominokit.domino.ui.forms.Select;
 import org.dominokit.domino.ui.forms.SelectOption;
-import org.dominokit.domino.ui.icons.Icons;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.MdiIcon;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.Tooltip;
@@ -18,19 +18,15 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
     private Select<CorporateAccount> accountSelect;
     private AccountDetails accountDetails;
 
-    public static CorporateAccountsSelect create(String title, CorporateProfile corporateProfile) {
-        return new CorporateAccountsSelect(title, corporateProfile);
-    }
-
     public CorporateAccountsSelect(String title, CorporateProfile corporateProfile) {
         accountDetails = new AccountDetails();
 
-        MdiIcon correspondentChargesAccountIcon = Style.of(Icons.ALL.information_outline_mdi())
+        MdiIcon correspondentChargesAccountIcon = Style.of(Icons.information_outline())
                 .setCssProperty("cursor", "pointer")
                 .get();
 
         accountSelect = Select.<CorporateAccount>create(title)
-                .addLeftAddOn(Icons.ALL.wallet_mdi())
+                .addLeftAddOn(Icons.wallet())
                 .addRightAddOn(correspondentChargesAccountIcon);
 
         Tooltip.create(correspondentChargesAccountIcon.element(), "Show details");
@@ -44,6 +40,10 @@ public class CorporateAccountsSelect implements IsElement<HTMLElement>, IsCollap
 
         accountSelect.addSelectionHandler(option -> accountDetails.setAccount(option.getValue()));
 
+    }
+
+    public static CorporateAccountsSelect create(String title, CorporateProfile corporateProfile) {
+        return new CorporateAccountsSelect(title, corporateProfile);
     }
 
     public Select<CorporateAccount> getAccountSelect() {
