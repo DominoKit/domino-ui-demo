@@ -233,7 +233,7 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                         .addColumn(Column.span12()
                                 .appendChild(termsAndConditions)))
                 .appendChild(Row.create()
-                        .addColumn(Column.span12()
+                        .addColumn(Column.span6()
                                 .appendChild(Button.createPrimary("REGISTER")
                                         .addClickListener(evt -> {
                                             ValidationResult validationResult = fieldsGrouping.validate();
@@ -242,6 +242,17 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
                                             } else {
                                                 Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
                                             }
-                                        }))));
+                                        })))
+                        .addColumn(Column.span6()
+                                .appendChild(Button.createPrimary("Dry validate")
+                                        .addClickListener(evt -> {
+                                            ValidationResult validationResult = fieldsGrouping.validate(true);
+                                            if (validationResult.isValid()) {
+                                                fieldsGrouping.clear();
+                                            } else {
+                                                Notification.createDanger("Error " + validationResult.getErrorMessage()).show();
+                                            }
+                                        })))
+                );
     }
 }

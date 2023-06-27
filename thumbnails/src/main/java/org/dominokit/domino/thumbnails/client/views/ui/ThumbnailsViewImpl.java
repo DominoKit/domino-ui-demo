@@ -10,7 +10,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.thumbnails.client.presenters.ThumbnailsProxy;
 import org.dominokit.domino.thumbnails.client.views.ThumbnailsView;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;

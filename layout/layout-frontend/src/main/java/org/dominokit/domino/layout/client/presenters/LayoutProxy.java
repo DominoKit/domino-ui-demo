@@ -1,15 +1,20 @@
 package org.dominokit.domino.layout.client.presenters;
 
-import org.dominokit.domino.api.client.annotations.presenter.*;
-import org.dominokit.domino.api.client.mvp.presenter.ViewablePresenter;
+import org.dominokit.domino.api.client.annotations.presenter.AutoReveal;
+import org.dominokit.domino.api.client.annotations.presenter.AutoRoute;
+import org.dominokit.domino.api.client.annotations.presenter.OnReveal;
+import org.dominokit.domino.api.client.annotations.presenter.OnStateChanged;
+import org.dominokit.domino.api.client.annotations.presenter.PresenterProxy;
+import org.dominokit.domino.api.client.annotations.presenter.RegisterSlots;
+import org.dominokit.domino.api.client.annotations.presenter.Singleton;
+import org.dominokit.domino.api.client.annotations.presenter.Slot;
+import org.dominokit.domino.api.client.mvp.Store;
+import org.dominokit.domino.api.client.mvp.StoreRegistry;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.PredefinedSlots;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
-import org.dominokit.domino.layout.shared.extension.LayoutStoreImpl;
-import org.dominokit.domino.layout.shared.extension.LoaderStoreImpl;
-
-import javax.annotation.PostConstruct;
 
 @PresenterProxy
 @AutoRoute(routeOnce = true)
@@ -24,16 +29,12 @@ import javax.annotation.PostConstruct;
         IsLayout.Slots.TOP_BAR,
         IsLayout.Slots.RIGHT_PANEL
 })
-public class LayoutProxy extends ViewablePresenter<LayoutView> {
-
-    @PostConstruct
-    public void onInit(){
-        LayoutStoreImpl.INSTANCE.setData(view);
-        LoaderStoreImpl.INSTANCE.setData(view);
-    }
+public class LayoutProxy extends ViewBaseClientPresenter<LayoutView> {
 
     @OnReveal
     public void onRevealed(){
+        StoreRegistry.INSTANCE.registerStore("layout", new Store<IsLayout>(view));
+        StoreRegistry.INSTANCE.registerStore("loader", new Store<IsLayout.GlobalLoader>(view));
         if(history().currentToken().paths().isEmpty()){
             history().fireState("home");
         }

@@ -5,7 +5,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.samples.client.presenters.SamplesProxy;
 import org.dominokit.domino.samples.client.views.SamplesView;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;

@@ -9,7 +9,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.dialogs.client.presenters.DialogsProxy;
 import org.dominokit.domino.dialogs.client.views.DialogsView;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.animations.Animation;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.badges.Badge;

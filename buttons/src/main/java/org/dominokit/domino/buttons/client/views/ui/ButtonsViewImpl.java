@@ -2,6 +2,7 @@ package org.dominokit.domino.buttons.client.views.ui;
 
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import elemental2.dom.HTMLHeadingElement;
 import org.dominokit.domino.SampleClass;
@@ -29,6 +30,7 @@ import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.style.StyleType;
 import org.dominokit.domino.ui.style.Styles;
+import org.dominokit.domino.ui.utils.ScreenMedia;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -117,6 +119,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
     private void initDropDownPosition() {
         element.appendChild(Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.")
                 .appendChild(DropdownButton.createDefault("TOP")
+                        .disable()
                         .appendChild(DropdownAction.create("Action"))
                         .appendChild(DropdownAction.create("Another action"))
                         .setPosition(DropDownPosition.TOP)
@@ -823,7 +826,8 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .linkify()
                         .style()
                         .setMargin(px.of(5))
-                        .setMinWidth(px.of(120)))
+                        .setMinWidth(px.of(120))
+                )
                 .appendChild(Button.createPrimary("PRIMARY")
                         .style()
                         .setMargin(px.of(5))

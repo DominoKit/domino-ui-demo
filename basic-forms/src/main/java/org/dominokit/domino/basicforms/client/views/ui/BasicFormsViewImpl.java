@@ -1,6 +1,7 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
 import elemental2.dom.CSSProperties;
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -19,12 +20,9 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.icons.Icons;
-import org.dominokit.domino.ui.modals.IsModalDialog;
-import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.popover.PopupPosition;
-import org.dominokit.domino.ui.search.SearchBox;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.utils.DominoElement;
@@ -35,6 +33,7 @@ import static org.jboss.elemento.Elements.*;
 @SampleClass
 public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements BasicFormsView {
 
+    protected BasicFormsCode basicFormsCode;
     private HTMLDivElement element = div().element();
     private Card fieldsStylesCard;
     private Card inputCard;
@@ -43,10 +42,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private Card checkboxCard;
     private Card radioCard;
     private Card switchCard;
-
     private CodeCard basicExamplesCard = new CodeCard();
-
-    protected BasicFormsCode basicFormsCode;
 
     @Override
     protected HTMLDivElement init() {
@@ -249,7 +245,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .addColumn(Column.span3().appendChild(SwitchButton.create("Active", "off", "on")
                         .addChangeHandler(value -> Notification.createInfo("test " + value).show())
                         .setOffTitle("OFF").setOnTitle("ON")))
-                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable())));
+                .addColumn(Column.span3().appendChild(SwitchButton.create().setOffTitle("DISABLED").disable()))
+                .addColumn(Column.span3().appendChild(SwitchButton.create()
+                        .setOffTitle("READ ONLY")
+                        .setReadOnly(true)
+                        .addChangeHandler(value -> {
+                            DomGlobal.console.info("CALLING CHANGE HANDLER : "+value);
+                        })
+                ))
+        );
 
         switchCard.appendChild(h(5).textContent("With Material Design Colors"));
 
@@ -438,7 +442,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(SelectOption.create("value10", "10"))
                                 .appendChild(SelectOption.create("value20", "20"))
                                 .appendChild(SelectOption.create("value30", "30"))
-                                .appendChild(SelectOption.create("value40", "40"))
+                                .appendChild(SelectOption.create("value40", "40").disable())
                                 .appendChild(SelectOption.create("value50", "50"))
                                 .setSearchable(false)
                                 .selectAt(0)

@@ -7,7 +7,7 @@ import org.dominokit.domino.api.client.annotations.presenter.EventsGroup;
 import org.dominokit.domino.api.client.annotations.presenter.PresenterProxy;
 import org.dominokit.domino.api.client.annotations.presenter.Singleton;
 import org.dominokit.domino.api.client.annotations.presenter.Slot;
-import org.dominokit.domino.api.client.mvp.presenter.ViewablePresenter;
+import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.profile.client.views.ProfileView;
@@ -18,6 +18,6 @@ import org.dominokit.domino.profile.client.views.ProfileView;
 @AutoReveal
 @Slot(IsLayout.Slots.PROFILE_PANEL)
 @DependsOn(@EventsGroup(LayoutEvent.class))
-public class ProfileProxy extends ViewablePresenter<ProfileView> {
+public class ProfileProxy extends ViewBaseClientPresenter<ProfileView> {
 
 }

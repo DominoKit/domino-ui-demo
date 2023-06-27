@@ -9,11 +9,11 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.ui.Typography.Strong;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.header.BlockHeader;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.typography.Strong;
 import org.jboss.elemento.Elements;
 
 import static org.jboss.elemento.Elements.a;

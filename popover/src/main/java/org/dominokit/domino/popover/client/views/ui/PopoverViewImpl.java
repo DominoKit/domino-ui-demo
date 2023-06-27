@@ -9,7 +9,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.popover.client.presenters.PopoverProxy;
 import org.dominokit.domino.popover.client.views.PopoverView;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.grid.Column;

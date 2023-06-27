@@ -13,7 +13,7 @@ import org.dominokit.domino.datatable.client.presenters.TreeGridEagerPluginProxy
 import org.dominokit.domino.datatable.client.task.ContactsProvider;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.model.Contact;
-import org.dominokit.domino.ui.Typography.Paragraph;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.CellRenderer;

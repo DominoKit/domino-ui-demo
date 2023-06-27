@@ -11,7 +11,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.modals.client.presenters.ModalsProxy;
 import org.dominokit.domino.modals.client.views.ModalsView;
-import org.dominokit.domino.ui.Typography.Paragraph;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.forms.CheckBox;
@@ -22,6 +21,7 @@ import org.dominokit.domino.ui.modals.IsModalDialog;
 import org.dominokit.domino.ui.modals.ModalDialog;
 import org.dominokit.domino.ui.modals.Window;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.typography.Paragraph;
 import org.dominokit.domino.ui.utils.DominoUIConfig;
 import org.dominokit.domino.ui.utils.TextNode;
 
@@ -287,8 +287,6 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                     ));
                         })
                 ).element());
-
-
     }
 
     private void openDialog(ModalDialog dialog) {

@@ -9,7 +9,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.menu.client.presenters.MenuProxy;
 import org.dominokit.domino.menu.client.views.MenuView;
-import org.dominokit.domino.ui.Typography.Strong;
+import org.dominokit.domino.ui.typography.Strong;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
