@@ -132,7 +132,11 @@ public class SortAndSearchPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                                         .toggleDisplay())
                                 .element())
                         .addActionElement(new HeaderBarPlugin.ClearSearch<>())
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .withSearchBox((parent, searchBox) -> {
+                                    searchBox.addCss(dui_max_w_64, dui_bg_dominant_d_1, dui_rounded_md);
+                                })
+                        )
                 )
                 .addPlugin(contactColumnHeaderFilterPlugin);
 

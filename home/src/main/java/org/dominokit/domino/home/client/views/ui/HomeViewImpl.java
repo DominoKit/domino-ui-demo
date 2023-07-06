@@ -7,24 +7,21 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.history.AppHistory;
 import org.dominokit.domino.history.HistoryToken;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.home.client.presenters.HomeProxy;
 import org.dominokit.domino.home.client.views.HomeView;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.spin.HSpinSelect;
 import org.dominokit.domino.ui.spin.SpinItem;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.ColorScheme;
+import org.dominokit.domino.ui.style.ColorsCss;
 import org.dominokit.domino.ui.style.CompositeCssClass;
-import org.dominokit.domino.ui.style.DisplayCss;
-import org.dominokit.domino.ui.style.Elevation;
 import org.dominokit.domino.ui.style.SpacingCss;
 import org.dominokit.domino.ui.typography.BlockHeader;
-import org.dominokit.domino.ui.utils.DominoElement;
 import org.gwtproject.timer.client.Timer;
 
 import static elemental2.dom.DomGlobal.window;
@@ -32,24 +29,21 @@ import static elemental2.dom.DomGlobal.window;
 @UiView(presentable = HomeProxy.class)
 public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeView {
 
-    private HTMLDivElement element;
+    private DivElement element;
     private int direction = 1;
     private Timer timer;
     private HSpinSelect<String> spinSelect;
-    private CompositeCssClass borderCss;
+    private CompositeCssClass roundedCss;
 
     @Override
     protected HTMLDivElement init() {
-        borderCss = CompositeCssClass.of(dui_border, dui_border_solid, dui_border_accent_l_4);
+        roundedCss = CompositeCssClass.of(dui_rounded_tl_sm, dui_rounded_tr_sm);
 
-        element = div().element();
+        element = div();
 
-        element.appendChild(BlockHeader.create("DOMINO-UI").addCss(dui_fg_accent_d_4)
-                .element());
-        element.appendChild(p().setTextContent("Java based lightweight UI library that in addition to performance and functionality brings elegance to enterprise web applications.")
-                .styler(style -> style.setColor("#666")
-                        .setMarginBottom("30px"))
-                .element());
+        element.appendChild(BlockHeader.create("DOMINO-UI"));
+        element.appendChild(p().textContent("Java based lightweight UI library that in addition to performance and functionality brings elegance to enterprise web applications.")
+                .addCss(ColorsCss.dui_fg_color_1));
         initCards();
 
         quickInsight();
@@ -63,17 +57,17 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
         initFollowUs();
         initPoweredBy();
 
-        return element;
+        return element.element();
     }
 
     private void initPoweredBy() {
 
         element.appendChild(div().addCss(dui_text_center, dui_m_t_3, dui_m_l_3)
                 .appendChild(p().setTextContent("Powered by GWT"))
-                        .appendChild(a("http://www.gwtproject.org/", "_blank")
-                                .appendChild(img("./images/home/gwt-logo.png").addCss(dui_w_16))
-                        )
-                        .element()
+                .appendChild(a("http://www.gwtproject.org/", "_blank")
+                        .appendChild(img("./images/home/gwt-logo.png").addCss(dui_w_16))
+                )
+                .element()
         );
     }
 
@@ -108,7 +102,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         )
 
                 )
-                .appendChild(hr().addCss(borderCss))
+                .appendChild(hr().addCss(roundedCss))
                 .appendChild(div()
                         .addCss(dui_text_center)
                         .appendChild(h(6).textContent("COMMERCIAL SERVICES"))
@@ -303,10 +297,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .appendChild(Column.span3()
                                 .appendChild(Card.create()
                                         .addCss("demo-nav-card")
-                                        .withBody((card, body) -> body.addCss(dui_p_0))
+                                        .withBody((card, body) -> body.addCss(dui_p_0, roundedCss))
                                         .appendChild(div()
                                                 .addCss("gs-background", "demo-getting-started")
-                                                .addCss(borderCss)
+                                                .addCss(roundedCss)
                                                 .setCssProperty("background-image", "linear-gradient(to left bottom, #d54b57, #a73763, #712f61, #3c264f, #111832)")
                                                 .appendChild(img("./images/home/rocket.png")
                                                         .addCss(dui_m_auto, dui_w_48, dui_image_responsive))
@@ -326,10 +320,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .appendChild(Column.span3()
                                 .appendChild(Card.create()
                                         .addCss("demo-nav-card")
-                                        .withBody((card, body) -> body.addCss(dui_p_0))
+                                        .withBody((card, body) -> body.addCss(dui_p_0, roundedCss))
                                         .appendChild(div()
                                                 .addCss("gs-background", "demo-docs")
-                                                .addCss(borderCss)
+                                                .addCss(roundedCss)
                                                 .setCssProperty("background-image", "linear-gradient(to left bottom, #52b46b, #009a8d, #007a8e, #425a70, #414045)")
                                                 .appendChild(img("./images/home/documents.png")
                                                         .addCss(dui_m_auto, dui_w_48, dui_image_responsive))
@@ -349,10 +343,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .appendChild(Column.span3()
                                 .appendChild(Card.create()
                                         .addCss("demo-nav-card")
-                                        .withBody((card, body) -> body.addCss(dui_p_0))
+                                        .withBody((card, body) -> body.addCss(dui_p_0, roundedCss))
                                         .appendChild(div()
                                                 .addCss("gs-background", "demo-sample-apps")
-                                                .addCss(borderCss)
+                                                .addCss(roundedCss)
                                                 .setCssProperty("background-image", "linear-gradient(to left bottom, #dff5fe, #a8c2d1, #7492a6, #45637d, #183856)")
                                                 .appendChild(img("./images/home/apps-2.png")
                                                         .addCss(dui_m_auto, dui_w_48, dui_image_responsive))
@@ -369,10 +363,9 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                                             HistoryToken samples = history
                                                                                     .currentToken()
                                                                                     .replaceLastPath("samples");
-                                                                            history.pushState(samples.value());
+                                                                            history.pushState(StateToken.of(samples.value()));
                                                                             history.fireCurrentStateHistory();
                                                                         })
-
                                                                 ))
                                                 ))
                                 )
@@ -380,10 +373,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                         .appendChild(Column.span3()
                                 .appendChild(Card.create()
                                         .addCss("demo-nav-card")
-                                        .withBody((card, body) -> body.addCss(dui_p_0))
+                                        .withBody((card, body) -> body.addCss(dui_p_0, roundedCss))
                                         .appendChild(div()
                                                 .addCss("gs-background", "demo-github")
-                                                .addCss(borderCss)
+                                                .addCss(roundedCss)
                                                 .setCssProperty("background-image", "linear-gradient(to left bottom, #f4cab1, #bc9a8c, #856d67, #504442, #201f1f)")
                                                 .appendChild(img("./images/home/github.png")
                                                         .addCss(dui_m_auto, dui_h_48, dui_image_responsive))
@@ -412,7 +405,9 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
         element.appendChild(Card.create()
                 .addCss("home-sections", "gs-background", "demo-docs")
                 .withBody((card, body) -> body.addCss(dui_p_0))
-                .appendChild(div().addCss("home-section", "slide-1")
+                .appendChild(div()
+                        .addCss("home-section", "slide-1")
+                        .addCss(dui_bg_dominant)
                         .appendChild(Row.create()
                                 .appendChild(Column.span4()
                                         .appendChild(img("./images/insight/domino-ui-slide-1.png")
@@ -421,9 +416,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                         .appendChild(BlockHeader.create("Type safe"))
                                         .appendChild(p().setTextContent("Domino-ui is Java based compiled to JavaScript, which means during development of the application you have the power to refactor and keep your app maintainable all the time, but also you develop your application with the mature set of all tool chain java can provide, this include extremely powerful IDEs and mature build tools like maven and gradle, use domino-ui and bring your java team to the frontend world."))
                                 ))
-                        .appendChild(div().addCss("breaker"))
 
-                ).appendChild(div().addCss("home-section", "slide-2", "odd")
+                ).appendChild(div()
+                        .addCss("home-section", "slide-2")
+                        .addCss(dui_bg_dominant_l_2)
                         .appendChild(Row.create()
                                 .appendChild(Column.span8().addCss(dui_p_x_8)
                                         .appendChild(BlockHeader.create("Elegant"))
@@ -432,9 +428,10 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                 .appendChild(Column.span4()
                                         .appendChild(img("./images/insight/domino-ui-slide-2.png")
                                                 .addCss(dui_image_responsive, dui_elevation_1))))
-                        .appendChild(div().addCss("breaker"))
                 )
-                .appendChild(div().addCss("home-section", "slide-3")
+                .appendChild(div()
+                        .addCss("home-section", "slide-3")
+                        .addCss(dui_bg_dominant)
                         .appendChild(Row.create()
                                 .appendChild(Column.span4()
                                         .appendChild(img("./images/insight/domino-ui-slide-3.png")
@@ -445,9 +442,9 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                         .appendChild(BlockHeader.create("Rich data table"))
                                         .appendChild(p().setTextContent("Almost every enterprise application uses data tables, domino-ui realise this fact and provides a rich, functional and elegant data table which is extendable with a rich set of ready to use plugins like selection plugin, marker plugin, record details plugin, search plugin and more, but this is not limited since the user can write his own plugins, and even better we are continuously adding more plugins."))
                                 ))
-                        .appendChild(div().addCss("breaker"))
 
-                ).appendChild(div().addCss("home-section", "slide-4", "odd")
+                ).appendChild(div().addCss("home-section", "slide-4")
+                        .addCss(dui_bg_dominant_l_2)
                         .appendChild(Row.create()
                                 .appendChild(Column.span8().addCss(dui_p_x_8)
                                         .appendChild(BlockHeader.create("Rich Forms"))
@@ -459,9 +456,9 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                         )
                                 )
                         )
-                        .appendChild(div().addCss("breaker"))
                 )
                 .appendChild(div().addCss("home-section", "slide-5")
+                        .addCss(dui_bg_dominant)
                         .appendChild(Row.create()
                                 .appendChild(Column.span4()
                                         .appendChild(img("./images/insight/domino-ui-slide-5.png")

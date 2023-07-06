@@ -18,12 +18,9 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.style.ColorsCss;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
-
-import java.util.Date;
 
 @UiView(presentable = CardsProxy.class)
 @SampleClass
@@ -458,7 +455,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                                 .appendChild(Card.create("Card Title", "Description text here...")
                                         .setCollapsible(true)
                                         .setHeaderPosition(HeaderPosition.BOTTOM)
-                                        .addCss(dui_accent, dui_absolute, dui_bottom_0)
+                                        .addCss(dui_accent, dui_absolute)
                                         .appendChild(text(SAMPLE_CONTENT))
                                         .withHeader((card, header) -> {
                                             header.appendChild(PostfixAddOn.of(Icons.dots_vertical()
@@ -509,7 +506,7 @@ public class CardsViewImpl extends BaseDemoView<HTMLDivElement> implements Cards
                                 .appendChild(Card.create("Card Title", "Description text here...")
                                         .setCollapsible(true)
                                         .setHeaderPosition(HeaderPosition.BOTTOM)
-                                        .addCss(dui_accent, dui_absolute, dui_bottom_0)
+                                        .addCss(dui_accent, dui_absolute)
                                         .appendChild(text(SAMPLE_CONTENT))
                                         .withHeader((card, header) -> {
                                             header

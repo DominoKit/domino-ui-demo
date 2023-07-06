@@ -211,10 +211,10 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         cellInfo -> {
                             elementOf(cellInfo.getElement())
                                     .addCss(dui_border,
+                                            dui_border_accent_d_3,
                                             dui_border_solid,
-                                            dui_border_accent_l_4,
                                             dui_p_1,
-                                            dui_bg_accent_l_5
+                                            dui_bg_accent_d_1, dui_fg_white
                                     );
                             return text(cellInfo.getRecord().getGender().getLabel());
                         }));

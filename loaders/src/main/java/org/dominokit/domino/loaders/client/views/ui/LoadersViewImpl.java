@@ -103,7 +103,7 @@ public class LoadersViewImpl extends BaseDemoView<HTMLDivElement> implements Loa
                 public void run() {
                     loader.stop();
                 }
-            }.schedule(7000);
+            }.schedule(700000);
         };
 
         Button button = Button.create(Icons.cursor_default_click(), "CLICK ME").addClickListener(loaderListener);

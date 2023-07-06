@@ -108,10 +108,10 @@ public class GroupingPluginViewImpl extends BaseDemoView<HTMLDivElement> impleme
                         cellInfo -> {
                             elementOf(cellInfo.getElement())
                                     .addCss(dui_border,
-                                            dui_border_accent_d_1,
+                                            dui_border_accent_d_3,
                                             dui_border_solid,
                                             dui_p_1,
-                                            dui_bg_accent, dui_fg_white);
+                                            dui_bg_accent_d_1, dui_fg_white);
                             return text(cellInfo.getRecord().getGender().getLabel());
                         }));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();

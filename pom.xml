@@ -84,8 +84,8 @@
         <elemental2.version>1.1.0</elemental2.version>
         <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
         <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
-        <domino.ui.version>2.0-HEAD-SNAPSHOT</domino.ui.version>
-        <domino.mvp.version>FEATURE-SET</domino.mvp.version>
+        <domino.ui.version>2.0-SNAPSHOT</domino.ui.version>
+        <domino.mvp.version>2.0-SNAPSHOT</domino.mvp.version>
     </properties>
 
     <repositories>
@@ -213,7 +213,7 @@
                 <plugin>
                     <groupId>net.ltgt.gwt.maven</groupId>
                     <artifactId>gwt-maven-plugin</artifactId>
-                    <version>1.0.0</version>
+                    <version>1.0.1</version>
                     <extensions>true</extensions>
                     <configuration>
                         <sourceLevel>11</sourceLevel>
@@ -277,7 +277,7 @@
                     <plugin>
                         <groupId>net.ltgt.gwt.maven</groupId>
                         <artifactId>gwt-maven-plugin</artifactId>
-                        <version>1.0.0</version>
+                        <version>1.0.1</version>
                         <extensions>true</extensions>
                         <configuration>
                             <sourceLevel>1.8</sourceLevel>
@@ -330,7 +330,7 @@
                     <plugin>
                         <groupId>net.ltgt.gwt.maven</groupId>
                         <artifactId>gwt-maven-plugin</artifactId>
-                        <version>1.0.0</version>
+                        <version>1.0.1</version>
                         <extensions>true</extensions>
                         <configuration>
                             <sourceLevel>1.8</sourceLevel>

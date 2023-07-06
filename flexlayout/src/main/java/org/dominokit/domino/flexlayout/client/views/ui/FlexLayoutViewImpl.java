@@ -31,16 +31,16 @@ import java.util.Map;
 @SampleClass
 public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements FlexLayoutView {
 
-    private HTMLDivElement element;
+    private DivElement element;
     private Card layoutPlaygroundCard;
     private Card flexItemsCard;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.createLink("flexlayout", this.getClass()).element());
-        element.appendChild(BlockHeader.create("FLEX LAYOUT").element());
+        element.appendChild(LinkToSourceCode.createLink("flexlayout", this.getClass()));
+        element.appendChild(BlockHeader.create("FLEX LAYOUT"));
         element.appendChild(p().textContent("You can find a complete guide for Flex layout ")
                 .style("color: #666;")
                 .appendChild(a().setAttribute("href", "https://css-tricks.com/snippets/css/a-guide-to-flexbox/")
@@ -48,19 +48,19 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(text(" Or flex documentation on "))
                 .appendChild(a().setAttribute("href", "https://developer.mozilla.org/en-US/docs/Web/CSS/flex")
                         .textContent("MDN."))
-                .element());
+        );
         layoutPlaygroundCard = Card.create("LAYOUT PLAYGROUND");
         flexItemsCard = Card.create("FLEX ITEMS");
 
         initLayoutPlayground();
         initFlexItems();
 
-        element.appendChild(layoutPlaygroundCard.element());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()).element());
-        element.appendChild(flexItemsCard.element());
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()).element());
+        element.appendChild(layoutPlaygroundCard);
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initLayoutPlayground()));
+        element.appendChild(flexItemsCard);
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initFlexItems()));
 
-        return element;
+        return element.element();
     }
 
 
@@ -166,7 +166,7 @@ public class FlexLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(h(4)));
 
         layoutPlaygroundCard.appendChild(div()
-                .addCss(dui_h_96, dui_bg_accent_d_4)
+                .addCss(dui_h_96, dui_bg_accent)
                 .appendChild(flexLayout)
                 .element());
 

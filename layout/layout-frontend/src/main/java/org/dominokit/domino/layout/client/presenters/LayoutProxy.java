@@ -3,6 +3,7 @@ package org.dominokit.domino.layout.client.presenters;
 import org.dominokit.domino.api.client.annotations.presenter.*;
 import org.dominokit.domino.api.client.mvp.presenter.ViewablePresenter;
 import org.dominokit.domino.api.shared.extension.PredefinedSlots;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
@@ -33,7 +34,7 @@ public class LayoutProxy extends ViewablePresenter<LayoutView> {
     @OnReveal
     public void onRevealed(){
         if(history().currentToken().paths().isEmpty()){
-            history().fireState("home");
+            history().fireState(StateToken.of("home"));
         }
     }
 }

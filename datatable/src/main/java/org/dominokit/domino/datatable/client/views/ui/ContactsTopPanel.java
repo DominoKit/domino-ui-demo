@@ -14,6 +14,7 @@ import java.util.List;
 
 import static org.dominokit.domino.ui.style.ColorsCss.*;
 import static org.dominokit.domino.ui.style.DisplayCss.dui_elevation_0;
+import static org.dominokit.domino.ui.style.GenericCss.dui_fg;
 import static org.dominokit.domino.ui.style.SpacingCss.dui_gap_0;
 import static org.dominokit.domino.ui.style.SpacingCss.dui_items_start;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
@@ -23,38 +24,38 @@ public class ContactsTopPanel<T> implements IsElement<HTMLElement> {
 
     private InfoBox loaded_items_count = InfoBox.create(Icons.timelapse(), "LOADED COUNT", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_indigo, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_indigo, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_bg_dominant, dui_fg_indigo_l_1))
+            .addCss(dui_fg_indigo_l_1, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox totalItemsCount = InfoBox.create(Icons.timelapse(), "TOTAL COUNT", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_indigo, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_indigo, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_bg_dominant, dui_fg_indigo_l_1))
+            .addCss(dui_fg_indigo_l_1, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox femaleCount = InfoBox.create(Icons.gender_female(), "FEMALES", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_pink, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_pink, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_fg_pink, dui_bg_dominant))
+            .addCss(dui_fg_pink, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox maleCount = InfoBox.create(Icons.gender_male(), "MALES", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_blue, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_blue, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_fg_blue, dui_bg_dominant))
+            .addCss(dui_fg_blue, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox goodCount = InfoBox.create(Icons.timelapse(), "GOOD BALANCE ", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_green, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_green, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_fg_green, dui_bg_dominant))
+            .addCss(dui_fg_green, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private InfoBox dangerCount = InfoBox.create(Icons.timelapse(), "LOW BALANCE", "0")
             .withContent((parent, self) -> self.addCss(dui_items_start))
-            .withIcon((parent, self) -> self.addCss(dui_fg_red, dui_bg_white))
-            .addCss(dui_bg_white, dui_fg_red, dui_elevation_0)
+            .withIcon((parent, self) -> self.addCss(dui_fg_red, dui_bg_dominant))
+            .addCss(dui_fg_red, dui_elevation_0)
             .setHoverEffect(InfoBox.HoverEffect.ZOOM);
 
     private Row row = Row.create()

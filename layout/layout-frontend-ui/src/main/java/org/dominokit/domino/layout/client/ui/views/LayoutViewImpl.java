@@ -16,15 +16,18 @@ import org.dominokit.domino.ui.layout.AppLayoutStyles;
 import org.dominokit.domino.ui.layout.LeftDrawerSize;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
+import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.scroll.ScrollTop;
-import org.dominokit.domino.ui.style.CompositeCssClass;
-import org.dominokit.domino.ui.style.DominoCss;
-import org.dominokit.domino.ui.style.SwapCssClass;
+import org.dominokit.domino.ui.style.*;
+import org.dominokit.domino.ui.themes.DominoThemeDark;
+import org.dominokit.domino.ui.themes.DominoThemeLight;
+import org.dominokit.domino.ui.themes.DominoThemeManager;
 import org.dominokit.domino.ui.upload.FileItem;
 import org.dominokit.domino.ui.upload.FilePreviewContainer;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.dominokit.domino.ui.utils.ElementsFactory;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.view.BaseElementView;
 import org.dominokit.domino.view.slots.AppendElementSlot;
 import org.dominokit.domino.view.slots.SingleElementSlot;
@@ -71,8 +74,21 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.setLeftDrawerSpanDown(true);
 
         layout.withLeftDrawerContent((parent, drawer) -> {
-            drawer
-                    .addCss(dui_flex, dui_flex_col);
+            drawer.addCss(dui_flex, dui_flex_col);
+        });
+        layout.withNavBar((parent, self) -> {
+            self.appendChild(PostfixAddOn.of(Icons.theme_light_dark()
+                            .setTooltip("Dark mode on/off", DropDirection.BEST_MIDDLE_SIDE)
+                            .clickable()
+                            .addClickListener(evt -> {
+                                if (DominoThemeDark.INSTANCE.isApplied()) {
+                                    DominoThemeManager.INSTANCE.apply(DominoThemeLight.INSTANCE);
+                                } else {
+                                    DominoThemeManager.INSTANCE.apply(DominoThemeDark.INSTANCE);
+                                }
+                            })
+                    )
+            );
         });
 
         loader = Loader.create(layout.getContent(), LoaderEffect.PULSE);
@@ -236,23 +252,4 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         return this;
     }
 
-    public static class SampleContainer extends BaseDominoElement<HTMLDivElement, SampleContainer> implements FilePreviewContainer<HTMLDivElement, SampleContainer> {
-        private DivElement container;
-
-        public SampleContainer() {
-            container = div().addCss(dui_flex, dui_flex_col);
-            init(this);
-        }
-
-        @Override
-        public SampleContainer appendChild(FileItem fileItem) {
-            container.appendChild(fileItem.addCss(dui_grow_1));
-            return this;
-        }
-
-        @Override
-        public HTMLDivElement element() {
-            return container.element();
-        }
-    }
 }

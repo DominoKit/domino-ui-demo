@@ -127,7 +127,11 @@ public class HeaderBarPluginViewImpl extends BaseDemoView<HTMLDivElement> implem
                         .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
                         .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
                         .addActionElement(new HeaderBarPlugin.ShowHideColumnsAction<>())
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<>())
+                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
+                                .withSearchBox((parent, searchBox) -> {
+                                    searchBox.addCss(dui_max_w_64, dui_bg_dominant_d_1, dui_rounded_md);
+                                })
+                        )
                 )
         ;
 

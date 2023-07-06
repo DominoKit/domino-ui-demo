@@ -3,6 +3,7 @@ package org.dominokit.domino.ui.demo;
 import com.google.gwt.core.client.EntryPoint;
 import org.dominokit.domino.api.client.ClientApp;
 import org.dominokit.domino.gwt.client.app.DominoGWT;
+import org.dominokit.domino.ui.themes.DominoThemeManager;
 import org.dominokit.domino.view.DominoViewOptions;
 
 import java.util.logging.Logger;
@@ -13,6 +14,7 @@ public class AppClientModule implements EntryPoint {
 
     public void onModuleLoad() {
         DominoGWT.init(DominoViewOptions.getInstance());
+        DominoThemeManager.INSTANCE.applyUserThemes();
         ClientApp.make().run();
         LOGGER.info("ui-demo Application frontend have been initialized.");
     }

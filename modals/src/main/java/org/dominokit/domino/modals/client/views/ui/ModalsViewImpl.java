@@ -410,9 +410,12 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                     footer.addCss(dui_flex, dui_gap_1, dui_justify_end, dui_bg_d_2);
                     dialog
                             .appendChild(FooterContent.of(Button.create("CLOSE")
+                                            .addCss(dui_bg)
                                     .addClickListener(evt -> dialog.close()))
                             )
-                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")));
+                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                    .addCss(dui_bg)
+                            ));
                 });
 
         SwapCssClass dialogColor = SwapCssClass.of();

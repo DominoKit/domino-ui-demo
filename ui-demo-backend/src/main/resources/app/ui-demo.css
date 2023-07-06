@@ -38,9 +38,9 @@
     border-left: 3px solid #444444;
 }
 
-.home-section.odd {
-    background-color: #efefef;
-}
+/*.home-section.odd {*/
+/*    background-color: #efefef;*/
+/*}*/
 
 .home-section .breaker {
     border-bottom: 1px solid #c1c0c0;
@@ -142,7 +142,7 @@
 .demo-flex-layout-block {
     width: 100px;
     min-height: 100px;
-    background: white;
+    background: var(--dui-clr-dominant);
     margin: 10px;
     line-height: 100px;
 }

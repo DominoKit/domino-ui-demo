@@ -43,7 +43,7 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
                         )
                 )
                 .appendChild(div()
-                        .addCss(dui_bg_accent_l_4, dui_h_48, dui_flex, dui_flex_col, dui_font_size_3_5, dui_p_14)
+                        .addCss(dui_accent, dui_h_48, dui_flex, dui_flex_col, dui_font_size_3_5, dui_p_14)
                         .apply(div-> {
                             try {
                                 CodeResource.INSTANCE.build().getText(new ResourceCallback<TextResource>() {
@@ -57,16 +57,15 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
                                         String[] buildInfo = resource.getText().split(",");
                                         div
                                                 .appendChild(div().addCss(dui_flex, dui_flex_col, dui_p_l_4)
-                                                        .appendChild(LabeledIcon.create(Icons.email().addCss(dui_fg_accent_d_3), "info@dominokit.com"))
-                                                        .appendChild(LabeledIcon.create(Icons.clock_outline().addCss(dui_fg_accent_d_3), buildInfo[0]))
-                                                        .appendChild(LabeledIcon.create(Icons.source_branch().addCss(dui_fg_accent_d_3), buildInfo[1]))
+                                                        .appendChild(LabeledIcon.create(Icons.email(), "info@dominokit.com"))
+                                                        .appendChild(LabeledIcon.create(Icons.clock_outline(), buildInfo[0]))
+                                                        .appendChild(LabeledIcon.create(Icons.source_branch(), buildInfo[1]))
                                                 )
                                                 .appendChild(div()
                                                         .addCss(dui_flex,
                                                                 dui_justify_center,
                                                                 dui_gap_4,
                                                                 dui_font_size_8,
-                                                                dui_fg_accent_d_3,
                                                                 dui_p_t_6)
                                                         .appendChild(Icons.github().clickable())
                                                         .appendChild(Icons.patreon().clickable())

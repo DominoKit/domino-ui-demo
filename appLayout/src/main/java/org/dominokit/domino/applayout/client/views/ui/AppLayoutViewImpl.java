@@ -177,7 +177,7 @@ public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements A
                                     .appendChild(div().addCss(dui_flex, dui_flex_wrap, dui_justify_between)
                                             .apply(self -> {
                                                 for (int i = 0; i < 100; i++) {
-                                                    self.appendChild(div().addCss(dui_w_24, dui_h_24, dui_bg_white, dui_m_2));
+                                                    self.appendChild(div().addCss(dui_w_24, dui_h_24, dui_bg_dominant_d_4, dui_m_2));
                                                 }
                                             })
                                     );

@@ -63,19 +63,19 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
         DivElement heightDiv = div()
                 .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .addCss(dui_accent, dui_p_4)
                         .textContent(SAMPLE_CONTENT));
 
         DivElement displayDiv = div()
                 .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .addCss(dui_accent, dui_p_4)
                         .textContent(SAMPLE_CONTENT));
 
         DivElement animationDiv = div()
                 .addCss(dui_h_24, dui_m_y_4)
                 .appendChild(div()
-                        .addCss(dui_bg_accent_l_5, dui_p_4)
+                        .addCss(dui_accent, dui_p_4)
                         .textContent(SAMPLE_CONTENT));
 
         Collapsible heightCollapsible = Collapsible.create(heightDiv)

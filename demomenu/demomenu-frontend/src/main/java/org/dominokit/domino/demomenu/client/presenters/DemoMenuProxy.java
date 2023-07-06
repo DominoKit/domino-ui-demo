@@ -3,6 +3,7 @@ package org.dominokit.domino.demomenu.client.presenters;
 import org.dominokit.domino.api.client.annotations.presenter.*;
 import org.dominokit.domino.api.client.mvp.presenter.ViewablePresenter;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.layout.shared.extension.LayoutStoreImpl;
@@ -63,7 +64,7 @@ public class DemoMenuProxy extends ViewablePresenter<DemoMenuView> implements De
     @Override
     public void onMenuItemSelected(String token) {
         this.layout.scrollTop();
-        history().fireState(history().currentToken().replaceAllPaths(token).value());
+        history().fireState(StateToken.of(history().currentToken().replaceAllPaths(token).value()));
     }
 
     @Override
