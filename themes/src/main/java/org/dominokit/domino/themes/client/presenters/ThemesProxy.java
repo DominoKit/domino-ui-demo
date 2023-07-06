@@ -13,6 +13,7 @@ import org.dominokit.domino.api.client.annotations.presenter.Slot;
 import org.dominokit.domino.api.client.mvp.StoreRegistry;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.history.HistoryToken;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.themes.client.views.ThemesView;
@@ -81,7 +82,7 @@ public class ThemesProxy extends ViewBaseClientPresenter<ThemesView> implements 
             token.appendParameter("theme", theme);
         }
 
-        history().pushState(token.value());
+        history().pushState(StateToken.of(token.value()));
     }
 
     @Override

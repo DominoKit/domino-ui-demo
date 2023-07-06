@@ -10,6 +10,7 @@ import org.dominokit.domino.api.client.annotations.presenter.Slot;
 import org.dominokit.domino.api.client.mvp.StoreRegistry;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 
@@ -69,6 +70,6 @@ public class DemoMenuProxy extends ViewBaseClientPresenter<DemoMenuView> impleme
     @Override
     public void onMenuItemSelected(String token) {
         this.layout.scrollTop();
-        history().fireState(history().currentToken().replaceAllPaths(token).value());
+        history().fireState(StateToken.of(history().currentToken().replaceAllPaths(token).value()));
     }
 }

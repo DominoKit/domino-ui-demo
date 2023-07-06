@@ -7,6 +7,7 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.history.AppHistory;
 import org.dominokit.domino.history.HistoryToken;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.home.client.presenters.HomeProxy;
 import org.dominokit.domino.home.client.views.HomeView;
 import org.dominokit.domino.ui.typography.Paragraph;
@@ -384,7 +385,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                             HistoryToken samples = history
                                                                     .currentToken()
                                                                     .replaceLastPath("samples");
-                                                            history.pushState(samples.value());
+                                                            history.pushState(StateToken.of(samples.value()));
                                                             history.fireCurrentStateHistory();
 
                                                         })

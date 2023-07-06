@@ -12,6 +12,7 @@ import org.dominokit.domino.api.client.mvp.Store;
 import org.dominokit.domino.api.client.mvp.StoreRegistry;
 import org.dominokit.domino.api.client.mvp.presenter.ViewBaseClientPresenter;
 import org.dominokit.domino.api.shared.extension.PredefinedSlots;
+import org.dominokit.domino.history.StateToken;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
@@ -36,7 +37,7 @@ public class LayoutProxy extends ViewBaseClientPresenter<LayoutView> {
         StoreRegistry.INSTANCE.registerStore("layout", new Store<IsLayout>(view));
         StoreRegistry.INSTANCE.registerStore("loader", new Store<IsLayout.GlobalLoader>(view));
         if(history().currentToken().paths().isEmpty()){
-            history().fireState("home");
+            history().fireState(StateToken.of("home"));
         }
     }
 }

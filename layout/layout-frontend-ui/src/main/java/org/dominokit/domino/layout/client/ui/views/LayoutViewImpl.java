@@ -13,6 +13,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.grid.flex.FlexItem;
 import org.dominokit.domino.ui.icons.Icons;
 import org.dominokit.domino.ui.layout.Layout;
+import org.dominokit.domino.ui.layout.LayoutActionItem;
 import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.menu.Menu;
@@ -62,10 +63,15 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         searchButton.on(EventType.click, event -> search.open());
         layout.getTopBar()
                 .appendChild(li().css(Styles.pull_right).add(searchButton).element());
+        LayoutActionItem btnRefresh = LayoutActionItem.create(Icons.ALL.refresh().setTooltip("Refresh")).addClickListener(l->DomGlobal.console.info("test"));
+        layout.getTopBar().appendChild(btnRefresh);
         layout.getTopBar()
-                .appendChild(DominoElement.of(li().css(Styles.pull_right).style("padding-top: 3px;")
+                .appendChild(DominoElement.of(li()
+                                .css(Styles.pull_right)
+                                .style("padding-top: 3px;")
                                 .add(makeGithubLink())
                         )
+                        .setTooltip("Github")
                         .showOn(ScreenMedia.MEDIUM_AND_UP)
                         .hideOn(ScreenMedia.SMALL_AND_DOWN)
                         .element());
