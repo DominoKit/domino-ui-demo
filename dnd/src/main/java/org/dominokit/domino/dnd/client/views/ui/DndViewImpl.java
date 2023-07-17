@@ -11,6 +11,7 @@ import org.dominokit.domino.dnd.client.presenters.DndProxy;
 import org.dominokit.domino.dnd.client.views.DndView;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.dnd.DragSource;
+import org.dominokit.domino.ui.dnd.Draggable;
 import org.dominokit.domino.ui.dnd.DropZone;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.typography.BlockHeader;
@@ -72,8 +73,8 @@ public class DndViewImpl extends BaseDemoView<HTMLDivElement> implements DndView
         });
 
         DragSource dragSource = new DragSource();
-        dragSource.addDraggable(draggableElement);
-        dragSource.addDraggable(draggableElement1);
+        dragSource.addDraggable(Draggable.of(draggableElement));
+        dragSource.addDraggable(Draggable.of(draggableElement1));
 
 
         element.appendChild(Card

@@ -111,7 +111,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
-                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getUtilityColor()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new TreeGridPlugin<Contact>()
                         .configure(config -> {
                             config
@@ -201,7 +201,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
-                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getUtilityColor()))
+                .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new TreeGridPlugin<Contact>()
                         .configure(config -> {
                             config.setIndentColumnElementSupplier(tableRow -> p(tableRow.getRecord().getName()).addCss(dui_m_0).element())

@@ -204,7 +204,7 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 )
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
                 .addPlugin(new SelectionPlugin<>())
-                .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord()).color().getUtilityColor()))
+                .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),

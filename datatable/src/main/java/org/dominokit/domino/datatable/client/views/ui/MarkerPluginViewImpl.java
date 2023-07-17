@@ -101,7 +101,7 @@ public class MarkerPluginViewImpl extends BaseDemoView<HTMLDivElement> implement
                         .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
                 );
 
-        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getUtilityColor()));
+        tableConfig.addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getContextColor()));
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);
 
