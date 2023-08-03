@@ -13,10 +13,7 @@ import org.dominokit.domino.modals.client.views.ModalsView;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.dialogs.Dialog;
-import org.dominokit.domino.ui.dialogs.DialogSize;
-import org.dominokit.domino.ui.dialogs.DialogType;
-import org.dominokit.domino.ui.dialogs.Window;
+import org.dominokit.domino.ui.dialogs.*;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.suggest.Select;
 import org.dominokit.domino.ui.forms.suggest.SelectOption;
@@ -187,7 +184,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
     private void initSheets() {
 
         Dialog leftSheetDialog = Dialog.create()
-                .setType(DialogType.LEFT_SHEET)
+                .addCss(DialogStyles.dui_left_sheet)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("SHEET DIALOG")
                                 .addCss(dui_h_8, dui_p_0)
