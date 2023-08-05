@@ -21,6 +21,8 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.layout.NavBar;
+import org.dominokit.domino.ui.loaders.Loader;
+import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
 import org.dominokit.domino.ui.style.SwapCssClass;
@@ -62,8 +64,14 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
     private void initModalsSize() {
 
         // ------------ Default size -------------
-        Dialog defaultSizeDialog = Dialog.create()
-                .withHeader((dialog, header) ->
+
+        Dialog defaultSizeDialog = Dialog.create();
+
+        Loader loader   = Loader.create(defaultSizeDialog.getModalElement(),
+                        LoaderEffect.BOUNCE)
+                .setLoadingText("workInProgress");
+
+        defaultSizeDialog.withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("DEFAULT SIZE")
                                 .addCss(dui_h_8, dui_p_0)
                                 .appendChild(PrefixAddOn.of(Icons.dots_vertical()
@@ -94,7 +102,11 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                             .appendChild(FooterContent.of(Button.create("CLOSE")
                                     .addClickListener(evt -> dialog.close()))
                             )
-                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")));
+                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                    .addClickListener(evt -> {
+                                        loader.start();
+                                    })
+                            ));
                 });
 
         Dialog largeSizeDialog = Dialog.create()
