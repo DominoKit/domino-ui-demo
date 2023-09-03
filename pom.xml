@@ -296,16 +296,16 @@
                                                                 <codeserverArg>0.0.0.0</codeserverArg>
 
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/src/main/java
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/v1/domino-ui/domino-ui/src/main/java
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/target/generated-sources/annotations
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/v1/domino-ui/domino-ui/target/generated-sources/annotations
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui/src/main/resources
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/v1/domino-ui/domino-ui/src/main/resources
                                 </codeserverArg>
                                 <codeserverArg>-src</codeserverArg>
-                                <codeserverArg>/media/vegegoku/drive2/Development/Vertispan/domino-ui-uitk/domino-ui/domino-ui-shared/src/main/java
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/v1/domino-ui/domino-ui-shared/src/main/java
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>
