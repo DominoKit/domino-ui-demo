@@ -1,5 +1,6 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
