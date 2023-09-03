@@ -146,7 +146,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("value50", "value50", "50"))
                                         .setSearchable(false)
                                         .selectAt(0)
-                                        .addChangeListener((oldValue, newValue) -> Notification.create("Item selected : Old value[ " + oldValue + " ], New value ["+newValue+"]").show())))
+                                        .addChangeListener((oldValue, newValue) -> Notification.create("Item selected : Old value[ " + oldValue + " ], New value [" + newValue + "]").show())))
                         .appendChild(Column.span6()
                                 .appendChild(Select.<String>create()
                                         .appendChild(SelectOption.create("Disabled", "Disabled", "Disabled"))

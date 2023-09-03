@@ -17,6 +17,7 @@ import org.dominokit.domino.ui.button.DropdownButton;
 import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.button.group.ButtonsGroup;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.HeadingElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -43,11 +44,11 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ButtonsViewImpl.class);
 
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
         uiHandlers.startLoading();
         GWT.runAsync(new RunAsyncCallback() {
@@ -101,7 +102,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
             }
         });
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
@@ -641,7 +642,7 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
 
     @SampleMethod
     private void initSplitButton() {
-        element.appendChild(Card.create("SPLITE BUTTON DROPDOWNS", "Similarly, create split button dropdowns with the same markup changes, only with a separate button.")
+        element.appendChild(Card.create("SPLIT BUTTON DROPDOWNS", "Similarly, create split button dropdowns with the same markup changes, only with a separate button.")
                 .appendChild(ButtonsGroup.create(
                                 Button.create("DEFAULT").addCss(dui_w_28),
                                 DropdownButton.create(
@@ -693,7 +694,8 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
 
     @SampleMethod
     private void initDropDownPosition() {
-        element.appendChild(Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.")
+        element
+                .appendChild(Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.")
                 .appendChild(DropdownButton.create(
                                 LinkButton.create("DEFAULT").addCss(dui_m_1),
                                 Menu.create()

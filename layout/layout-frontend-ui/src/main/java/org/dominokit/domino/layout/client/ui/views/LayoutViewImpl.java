@@ -8,7 +8,6 @@ import org.dominokit.domino.api.client.mvp.slots.IsSlot;
 import org.dominokit.domino.layout.client.presenters.LayoutProxy;
 import org.dominokit.domino.layout.client.views.LayoutView;
 import org.dominokit.domino.layout.shared.extension.IsLayout;
-import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.layout.AppLayout;
@@ -22,9 +21,6 @@ import org.dominokit.domino.ui.style.*;
 import org.dominokit.domino.ui.themes.DominoThemeDark;
 import org.dominokit.domino.ui.themes.DominoThemeLight;
 import org.dominokit.domino.ui.themes.DominoThemeManager;
-import org.dominokit.domino.ui.upload.FileItem;
-import org.dominokit.domino.ui.upload.FilePreviewContainer;
-import org.dominokit.domino.ui.utils.BaseDominoElement;
 import org.dominokit.domino.ui.utils.ElementUtil;
 import org.dominokit.domino.ui.utils.ElementsFactory;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
@@ -41,15 +37,6 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
     private AppLayout layout;
 
     private Loader loader;
-    private SwapCssClass accentClass = SwapCssClass.of(dui_accent_teal);
-    private CompositeCssClass accent_button = CompositeCssClass.of(
-            dui_min_w_8,
-            dui_min_h_8,
-            dui_border_solid,
-            dui_border_2,
-            dui_rounded_full,
-            dui_border_white,
-            dui_border_solid);
 
     @Override
     protected HTMLDivElement init() {

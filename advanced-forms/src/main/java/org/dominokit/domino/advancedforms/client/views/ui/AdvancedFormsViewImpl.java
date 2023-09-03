@@ -91,7 +91,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                                             .addCancelHandler(request -> Notification.create("Starting file upload").addCss(dui_primary).show())
                                             .withOptions((file, options) -> {
                                                 options
-                                                        .setUrl("http://localhost:8080/service/upload");
+                                                        .setUrl("http://localhost:8090/service/upload");
                                             })
                                     ;
                                 })
@@ -114,7 +114,7 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                                             .addCancelHandler(request -> Notification.create("Starting file upload").addCss(dui_primary).show())
                                             .withOptions((file, options) -> {
                                                 options
-                                                        .setUrl("http://localhost:8080/service/upload");
+                                                        .setUrl("http://localhost:8090/service/upload");
                                             })
                                     ;
                                 })
