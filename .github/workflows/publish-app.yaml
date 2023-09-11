@@ -21,6 +21,7 @@ on:
     branches: [ master , version-2 ]
 env:
   MAVEN_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
+  JAVA_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
 
 jobs:
   publish-app:
