@@ -20,7 +20,7 @@ on:
   push:
     branches: [ master , version-2 ]
 env:
-  MAVEN_OPTS: -Xms2048m -Xmx4096m -XX:MaxPermSize=4096m -J-XX:-UseParallelGC -J-XX:+UseSerialGC
+  MAVEN_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
 
 jobs:
   publish-app:
