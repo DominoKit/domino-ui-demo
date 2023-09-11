@@ -18,11 +18,11 @@ name: Publish-app
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master , version-2 ]
 
 jobs:
   publish-app:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         java-version: [ 11 ]
@@ -38,7 +38,7 @@ jobs:
         uses: garygrossgarten/github-action-scp@release
         with:
           local: ui-demo-backend/target/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
-          remote: ../home/ubuntu/apps/domino-ui-demo/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
+          remote: ../home/ubuntu/apps/domino-ui-demo2/ui-demo-backend-HEAD-SNAPSHOT-fat.jar
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
@@ -48,11 +48,11 @@ jobs:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl stop demo
+          script: sudo systemctl stop demo2
       - name: Starting demo app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl start demo
+          script: sudo systemctl start demo2

@@ -607,7 +607,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                 .appendChild(Column
                                         .span4()
                                         .appendChild(BlockHeader.create("Embed menu", "Embed menu with borders"))
-                                        .appendChild(Accordion.create().addCss(dui_accent, dui_ignore_bg, dui_ignore_fg)
+                                        .appendChild(Accordion.create().addCss(dui_accent, dui_ignore_bg)
                                                 .setMultiOpen(true)
                                                 .appendChild(AccordionPanel.create("Collapsible item 1")
                                                         .expand()

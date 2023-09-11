@@ -195,18 +195,16 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void dateBox() {
-        DateBox aDefault = DateBox.create("myDateBox")
-                .setReadOnly(true)
-                .setPattern("dd.MM.yyyy")
-                .setParseStrict(true)
-                .withPopover((parent, popover) -> popover.addCss(dui_accent_blue));
         ;
         element
-                .appendChild(Button.create("clear").addClickListener(evt -> aDefault.clear()))
                 .appendChild(Card.create("DATE BOX")
                         .setCollapsible(true)
                         .appendChild(Row.create()
-                                .span4(aDefault)
+                                .span4(DateBox.create("myDateBox")
+                                        .setReadOnly(true)
+                                        .setPattern("dd.MM.yyyy")
+                                        .setParseStrict(true)
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue)))
                                 .span4(DateBox.create("With pattern", new DateTimeFormatInfoImpl_ar())
                                         .setPattern("dd-MM-yyyy")
                                         .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))

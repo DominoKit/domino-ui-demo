@@ -166,7 +166,8 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .appendChild(p("Text orange color").addCss(dui_overline, dui_fg_orange))
                                 .appendChild(p("Text blue grey color").addCss(dui_overline, dui_fg_blue_grey))
                         )
-                ));
+                )
+        );
     }
 
     @SampleMethod
@@ -187,14 +188,16 @@ public class TypographyViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                     .appendChild(cite().textContent("source title. "))
                                     .appendChild(text("Someone famous in"));
                         })
-                ));
+                )
+        );
 
 
     }
 
     @SampleMethod
     private void lists() {
-        element.appendChild(Row.create()
+        element
+                .appendChild(Row.create()
                 .appendChild(Column.span4()
                         .appendChild(Card.create("UNORDERED LIST")
                                 .setCollapsible(true)

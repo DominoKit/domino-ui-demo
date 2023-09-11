@@ -10,6 +10,7 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.media.client.presenters.MediaProxy;
 import org.dominokit.domino.media.client.views.MediaView;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.media.MediaObject;
 import org.dominokit.domino.ui.typography.BlockHeader;
 
@@ -18,22 +19,22 @@ import org.dominokit.domino.ui.typography.BlockHeader;
 public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements MediaView {
 
     private static final String SAMPLE_TEXT = "Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.";
-    private HTMLDivElement element;
+    private DivElement element;
 
     @Override
     protected HTMLDivElement init() {
-        element = div().element();
+        element = div();
 
-        element.appendChild(LinkToSourceCode.createLink("media", this.getClass()).element());
-        element.appendChild(BlockHeader.create("MEDIA OBJECT").element());
+        element.appendChild(LinkToSourceCode.createLink("media", this.getClass()));
+        element.appendChild(BlockHeader.create("MEDIA OBJECT"));
 
         defaultMedia();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.defaultMedia()));
 
         mediaAlignment();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.mediaAlignment()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
@@ -72,7 +73,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
                                 .appendChild(img("http://placehold.it/64x64")
                                         .addCss(dui_w_16, dui_h_16)))
                         .appendChild(text(SAMPLE_TEXT)))
-                .element());
+                );
 
     }
 
@@ -103,7 +104,7 @@ public class MediaViewImpl extends BaseDemoView<HTMLDivElement> implements Media
                         .withLeftMedia((parent, leftMedia) -> leftMedia.addCss(dui_self_end))
                         .appendChild(p(SAMPLE_TEXT))
                         .appendChild(p(SAMPLE_TEXT)))
-                .element());
+                );
 
     }
 }

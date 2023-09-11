@@ -93,10 +93,8 @@ public class HeaderBarPluginViewImpl extends BaseDemoView<HTMLDivElement> implem
                                         .addCss(dui_green, dui_float_none).element();
                             }
                             return text("");
-                        }));
-
-        tableConfig.addPlugin(new SelectionPlugin<>());
-        tableConfig
+                        }))
+                .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(dataTable -> Icons.close_circle()
                                 .clickable()

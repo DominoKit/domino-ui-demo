@@ -135,10 +135,11 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
 
     @SampleMethod
     private void initWordCount() {
-        countsCard.appendChild(TextBox.create("Name")
-                .setMaxLength(10)
-        );
-        countsCard.appendChild(TextAreaBox.create("Description").setMaxLength(100));
+        countsCard
+                .appendChild(TextBox.create("Name")
+                        .setMaxLength(10)
+                )
+                .appendChild(TextAreaBox.create("Description").setMaxLength(100));
     }
 
     @SampleMethod

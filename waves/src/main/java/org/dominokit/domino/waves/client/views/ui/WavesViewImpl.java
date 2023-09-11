@@ -77,7 +77,8 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
 
     @SampleMethod
     private void waves() {
-        element.appendChild(Row.create()
+        element
+                .appendChild(Row.create()
                 .appendChild(Column.span6()
                         .appendChild(Card.create("COLOR VARIATIONS")
                                 .appendChild(ListGroup.<IsElement<?>>create()

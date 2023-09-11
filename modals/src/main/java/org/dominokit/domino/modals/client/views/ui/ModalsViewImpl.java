@@ -35,7 +35,7 @@ import org.dominokit.domino.ui.utils.PrefixAddOn;
 @SampleClass
 public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements ModalsView {
 
-    private static final String SAMPLE_CONTENT = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc.";
+    private static final String SAMPLE_CONTENT = " Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin sodales orci ante, sed ornare eros vestibulum ut. Ut accumsan vitae eros sit amet tristique. Nullam scelerisque nunc enim, non dignissim nibh faucibus ullamcorper. Fusce pulvinar libero vel ligula iaculis ullamcorper. Integer dapibus, mi ac tempor varius, purus nibh mattis erat, vitae porta nunc nisi non tellus. Vivamus mollis ante non massa egestas fringilla. Vestibulum egestas consectetur nunc at ultricies. Morbi quis consectetur nunc. ";
     private DivElement element;
 
     @Override
@@ -65,13 +65,8 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
 
         // ------------ Default size -------------
 
-        Dialog defaultSizeDialog = Dialog.create();
-
-        Loader loader   = Loader.create(defaultSizeDialog.getModalElement(),
-                        LoaderEffect.BOUNCE)
-                .setLoadingText("workInProgress");
-
-        defaultSizeDialog.withHeader((dialog, header) ->
+        Dialog defaultSizeDialog = Dialog.create()
+                .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("DEFAULT SIZE")
                                 .addCss(dui_h_8, dui_p_0)
                                 .appendChild(PrefixAddOn.of(Icons.dots_vertical()
@@ -102,11 +97,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                             .appendChild(FooterContent.of(Button.create("CLOSE")
                                     .addClickListener(evt -> dialog.close()))
                             )
-                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")
-                                    .addClickListener(evt -> {
-                                        loader.start();
-                                    })
-                            ));
+                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")));
                 });
 
         Dialog largeSizeDialog = Dialog.create()
@@ -419,7 +410,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                     footer.addCss(dui_flex, dui_gap_1, dui_justify_end, dui_bg_d_2);
                     dialog
                             .appendChild(FooterContent.of(Button.create("CLOSE")
-                                            .addCss(dui_bg)
+                                    .addCss(dui_bg)
                                     .addClickListener(evt -> dialog.close()))
                             )
                             .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")
