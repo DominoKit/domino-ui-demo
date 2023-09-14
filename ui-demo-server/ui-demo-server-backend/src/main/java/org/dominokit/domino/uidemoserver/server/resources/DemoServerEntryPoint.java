@@ -4,8 +4,10 @@ import com.google.auto.service.AutoService;
 import io.vertx.core.buffer.Buffer;
 import io.vertx.core.http.HttpMethod;
 import io.vertx.core.json.Json;
+import io.vertx.core.json.JsonObject;
 import org.dominokit.domino.api.server.entrypoint.ServerAppEntryPoint;
 import org.dominokit.domino.api.server.entrypoint.VertxContext;
+import org.dominokit.domino.api.server.plugins.IndexPageContext;
 import org.dominokit.domino.uidemoserver.shared.model.ContactList;
 import org.dominokit.domino.uidemoserver.shared.model.ContactList_MapperImpl;
 
@@ -15,6 +17,9 @@ import java.nio.charset.StandardCharsets;
 public class DemoServerEntryPoint implements ServerAppEntryPoint<VertxContext> {
     @Override
     public void onModulesLoaded(VertxContext vertxContext) {
+        JsonObject indexContext = new JsonObject();
+        indexContext.put("appRootPath", vertxContext.config().getString("app.root.path"));
+        IndexPageContext.INSTANCE.setIndexPageProvider(new DynamicIndexPageProvider(indexContext));
         vertxContext
                 .router()
                 .route(HttpMethod.GET, "/service/contacts")

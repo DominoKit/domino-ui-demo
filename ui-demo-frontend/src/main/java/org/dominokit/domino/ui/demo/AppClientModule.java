@@ -18,15 +18,8 @@ public class AppClientModule implements EntryPoint {
     private static final Logger LOGGER = Logger.getLogger(AppClientModule.class.getName());
 
     public void onModuleLoad() {
-        DominoUIConfig.CONFIG.setElementsFactory(new ElementsFactoryDelegate() {
-            @Override
-            public AnchorElement a() {
-                return new AnchorElement(dom.a())
-                        .setAttribute("tabindex", "0")
-                        .setAttribute("aria-expanded", "true");
-            }
-        });
-        DominoGWT.init(DominoViewOptions.getInstance());
+
+        DominoGWT.init(DominoViewOptions.getInstance().setRootPath("domino-ui/demo/v2"));
         DominoThemeManager.INSTANCE.applyUserThemes();
         ClientApp.make().run();
         LOGGER.info("ui-demo Application frontend have been initialized.");

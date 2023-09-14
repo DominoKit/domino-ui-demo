@@ -25,7 +25,7 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                                 .addCss(dui_text_center)
                                 .appendChild(
                                         Card.create()
-                                                .appendChild(img("./images/samples/dominodo.png")
+                                                .appendChild(img("images/samples/dominodo.png")
                                                         .addCss(dui_image_responsive, dui_elevation_1)
                                                 )
                                                 .appendChild(h(4).textContent("DominoDo"))

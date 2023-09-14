@@ -5,15 +5,15 @@
     <meta charset=UTF-8>
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
-    <link href="/domino-ui/demo/v2/css/domino-ui/domino-ui.css" rel="stylesheet" type="text/css">
-    <link href="/domino-ui/demo/v2/dev.css" rel="stylesheet" type="text/css">
-    <link href="/domino-ui/demo/v2/ui-demo.css" rel="stylesheet" type="text/css">
-    <link href="/domino-ui/demo/v2/prettify/prettify.css" rel="stylesheet" type="text/css">
-    <link href="/domino-ui/demo/v2/prettify/desert.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/css/domino-ui/domino-ui.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/dev.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/ui-demo.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/prettify/prettify.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/prettify/desert.css" rel="stylesheet" type="text/css">
 
     <title>ui-demo</title>
-    <script src="/domino-ui/demo/v2/prettify/prettify.js" type="text/javascript"></script>
-    <script src="/domino-ui/demo/v2/app.nocache.js"></script>
+    <script src="${appRootPath}/prettify/prettify.js" type="text/javascript"></script>
+    <script src="${appRootPath}/app.nocache.js"></script>
 </head>
 
 <body class="">

@@ -1,3 +1,4 @@
 {
-  "http.port": 8090
+  "http.port": 8090,
+  "app.root.path": ""
 }
