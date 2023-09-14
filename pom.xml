@@ -218,6 +218,10 @@
                     <configuration>
                         <sourceLevel>1.8</sourceLevel>
                         <failOnError>true</failOnError>
+                        <jvmArgs>
+                            <jvmArg>-Xms4096m</jvmArg>
+                            <jvmArg>-Xmx6144m</jvmArg>
+                        </jvmArgs>
                     </configuration>
                 </plugin>
                 <plugin>
