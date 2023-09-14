@@ -301,10 +301,9 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
 
         ModalDialog defaultSizeModal = createModalDialog();
         defaultSizeModal.setModal(false);
-//        defaultSizeModal.appendChild(TextBox.create("sample"));
         defaultSizeModal.appendChild(CheckBox.create("sample"));
 
-
+        defaultSizeModal.appendChild(TextNode.of(SAMPLE_CONTENT));
         Button defaultSizeButton = Button.createDefault("MODAL - DEFAULT SIZE");
         defaultSizeButton.addClickListener(e -> openDialog(defaultSizeModal));
 

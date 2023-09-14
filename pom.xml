@@ -79,13 +79,13 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <vertx.version>3.9.0</vertx.version>
+        <vertx.version>3.9.16</vertx.version>
         <elemento.version>1.0.3</elemento.version>
         <elemental2.version>1.1.0</elemental2.version>
-        <domino.jackson.version>HEAD-SNAPSHOT</domino.jackson.version>
-        <domino.history.version>HEAD-SNAPSHOT</domino.history.version>
-        <domino.ui.version>1.0.2-SNAPSHOT</domino.ui.version>
-        <domino.mvp.version>1.0.0</domino.mvp.version>
+        <domino.jackson.version>1.0.0</domino.jackson.version>
+        <domino.history.version>1.0.0</domino.history.version>
+        <domino.ui.version>1.0.3</domino.ui.version>
+        <domino.mvp.version>1.0.1</domino.mvp.version>
     </properties>
 
     <repositories>

@@ -36,7 +36,7 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                                 Card.create()
                                         .styler(style -> style
                                                 .addCss("classy-card"))
-                                        .appendChild(img("./images/samples/dominodo.png")
+                                        .appendChild(img("images/samples/dominodo.png")
                                                 .css(Styles.img_responsive)
                                                 .css(Elevation.LEVEL_1.getStyle()))
                                         .appendChild(h(4).textContent("DominoDo"))
@@ -61,7 +61,7 @@ public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements Sam
                                 Card.create()
                                         .styler(style -> style
                                                 .addCss("classy-card"))
-                                        .appendChild(img("./images/samples/nalu-initializer.png")
+                                        .appendChild(img("images/samples/nalu-initializer.png")
                                                 .css(Styles.img_responsive)
                                                 .css(Elevation.LEVEL_1.getStyle()))
                                         .appendChild(h(4).textContent("Nalu Initializer"))

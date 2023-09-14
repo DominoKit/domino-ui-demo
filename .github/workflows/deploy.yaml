@@ -14,27 +14,30 @@
 # limitations under the License.
 #
 
-name: Deploy
+name: Publish-app
 
 on:
   push:
-    branches: [ master ]
+    branches: [ 1.x.x-development ]
 env:
-  MAVEN_OPTS: -Xms1024m -Xmx2048m -XX:MaxPermSize=2048m
+  MAVEN_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
+  JAVA_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
+
 jobs:
-  deploy:
-    runs-on: ubuntu-18.04
+  publish-app:
+    runs-on: ubuntu-20.04
     strategy:
       matrix:
         java-version: [ 11 ]
     steps:
       - name: Check out Git repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Java and Maven
-        uses: actions/setup-java@v1
+        uses: actions/setup-java@v3
         with:
-          java-version: ${{ matrix.java-version }}
-      - run: mvn verify -T4
+          java-version: 11
+          distribution: 'temurin'
+      - run: mvn verify -T4 -B -e
       - name: Copy jar over ssh
         uses: garygrossgarten/github-action-scp@release
         with:

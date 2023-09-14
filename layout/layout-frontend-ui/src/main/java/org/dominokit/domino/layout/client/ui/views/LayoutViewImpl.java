@@ -79,7 +79,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
                 .appendChild(DominoElement.of(li().add(a()
                                         .attr("href", "https://www.patreon.com/bePatron?u=30748189")
                                         .css("d-patreon")
-                                        .add(img("/images/patreon-2296036-1911995.png"))
+                                        .add(img("images/patreon-2296036-1911995.png"))
                                 ))
                                 .showOn(ScreenMedia.MEDIUM_AND_UP)
                                 .hideOn(ScreenMedia.SMALL_AND_DOWN)
