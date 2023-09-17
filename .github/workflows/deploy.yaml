@@ -49,5 +49,5 @@ jobs:
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
           script: |
-            cd ../home/ubuntu/apps/domino-ui-demo2
+            cd ../home/ubuntu/apps/domino-ui-demo
             ./demo.sh
