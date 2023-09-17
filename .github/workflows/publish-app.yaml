@@ -50,4 +50,4 @@ jobs:
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
           script: |
               cd ../home/ubuntu/apps/domino-ui-demo2
-              sudo ./demo.sh
+              ./demo.sh
