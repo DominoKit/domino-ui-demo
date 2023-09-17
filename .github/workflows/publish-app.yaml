@@ -46,17 +46,12 @@ jobs:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-      - name: Stopping demo app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DEMO_HOST }}
-          username: ${{ secrets.DEMO_SSH_USER }}
-          password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl stop demo2
       - name: Starting demo app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl start demo2
+          script: |
+              cd ../home/ubuntu/apps/domino-ui-demo2
+              sudo ./demo.sh
