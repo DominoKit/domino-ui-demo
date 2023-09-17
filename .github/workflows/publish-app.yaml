@@ -20,8 +20,8 @@ on:
   push:
     branches: [ development ]
 env:
-  MAVEN_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
-  JAVA_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
+  MAVEN_OPTS: -Xms6144m -Xmx8192m -XX:MaxPermSize=8192m
+  JAVA_OPTS: -Xms6144m -Xmx8192m -XX:MaxPermSize=8192m
 
 jobs:
   publish-app:
