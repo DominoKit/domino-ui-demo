@@ -19,10 +19,6 @@ name: Publish-app
 on:
   push:
     branches: [ 1.x.x-development ]
-env:
-  MAVEN_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
-  JAVA_OPTS: -Xms4096m -Xmx6144m -XX:MaxPermSize=6144m
-
 jobs:
   publish-app:
     runs-on: ubuntu-20.04
@@ -46,17 +42,12 @@ jobs:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-      - name: Stopping demo app
-        uses: appleboy/ssh-action@master
-        with:
-          host: ${{ secrets.DEMO_HOST }}
-          username: ${{ secrets.DEMO_SSH_USER }}
-          password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl stop demo
       - name: Starting demo app
         uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.DEMO_HOST }}
           username: ${{ secrets.DEMO_SSH_USER }}
           password: ${{ secrets.DEMO_SSH_PASSWORD }}
-          script: sudo systemctl start demo
+          script: |
+            cd ../home/ubuntu/apps/domino-ui-demo2
+            ./demo.sh

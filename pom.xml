@@ -257,6 +257,10 @@
                 <inherited>false</inherited>
                 <configuration>
                     <launcherDir>${project.build.directory}/gwt/launcherDir</launcherDir>
+                    <jvmArgs>
+                        <jvmArg>-Xms2048m</jvmArg>
+                        <jvmArg>-Xmx4096m</jvmArg>
+                    </jvmArgs>
                 </configuration>
             </plugin>
             <plugin>
