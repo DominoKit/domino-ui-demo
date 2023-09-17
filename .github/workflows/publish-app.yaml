@@ -19,10 +19,6 @@ name: Publish-app
 on:
   push:
     branches: [ development ]
-env:
-  MAVEN_OPTS: -Xms6144m -Xmx8192m -XX:MaxPermSize=8192m
-  JAVA_OPTS: -Xms6144m -Xmx8192m -XX:MaxPermSize=8192m
-
 jobs:
   publish-app:
     runs-on: ubuntu-20.04
