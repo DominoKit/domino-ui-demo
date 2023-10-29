@@ -99,14 +99,14 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Column.span6()
                         .appendChild(Card.create("WITH MATERIAL DESIGN COLORS", "You can use material design colors")
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_pink)
+                                        .addCss(dui_fg_pink)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_cyan)
+                                        .addCss(dui_fg_cyan)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -115,7 +115,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_teal)
+                                        .addCss(dui_fg_teal)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -126,7 +126,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_orange)
+                                        .addCss(dui_fg_orange)
                                         .appendChild(" Home ", evt -> {
                                         })
                                         .appendChild(" Library ", evt -> {
@@ -142,14 +142,14 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Column.span6()
                         .appendChild(Card.create("WITH ICONS & MATERIAL DESIGN COLORS")
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_pink)
+                                        .addCss(dui_fg_color_accent)
                                         .appendChild(Icons.home(), " Home ", evt -> {
                                         })
                                         .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_cyan)
+                                        .addCss(dui_fg_cyan)
                                         .appendChild(Icons.home(), " Home ", evt -> {
                                         })
                                         .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
@@ -158,7 +158,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_teal)
+                                        .addCss(dui_fg_teal)
                                         .appendChild(Icons.home(), " Home ", evt -> {
                                         })
                                         .appendChild(Icons.filmstrip_box(), " Library ", evt -> {
@@ -169,7 +169,7 @@ public class BreadcrumbViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
                                 )
                                 .appendChild(Breadcrumb.create()
-                                        .addCss(dui_accent_orange)
+                                        .addCss(dui_fg_orange)
                                         .appendChild(Icons.home(), " Home ", evt -> {
                                         })
                                         .appendChild(Icons.filmstrip_box(), " Library ", evt -> {

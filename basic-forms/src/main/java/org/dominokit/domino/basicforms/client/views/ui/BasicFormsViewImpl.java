@@ -1,5 +1,6 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;

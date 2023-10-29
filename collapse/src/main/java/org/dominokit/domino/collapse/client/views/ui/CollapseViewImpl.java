@@ -14,13 +14,7 @@ import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.collapsible.Accordion;
-import org.dominokit.domino.ui.collapsible.AccordionPanel;
-import org.dominokit.domino.ui.collapsible.AnimationCollapseStrategy;
-import org.dominokit.domino.ui.collapsible.CollapseDuration;
-import org.dominokit.domino.ui.collapsible.Collapsible;
-import org.dominokit.domino.ui.collapsible.DisplayCollapseStrategy;
-import org.dominokit.domino.ui.collapsible.HeightCollapseStrategy;
+import org.dominokit.domino.ui.collapsible.*;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -79,13 +73,13 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                         .textContent(SAMPLE_CONTENT));
 
         Collapsible heightCollapsible = Collapsible.create(heightDiv)
-                .setStrategy(new HeightCollapseStrategy(CollapseDuration._300ms));
+                .setStrategy(new HeightCollapseStrategy(CollapsibleDuration._300ms));
 
         Collapsible displayCollapsible = Collapsible.create(displayDiv)
                 .setStrategy(new DisplayCollapseStrategy());
 
         Collapsible animationCollapsible = Collapsible.create(animationDiv)
-                .setStrategy(new AnimationCollapseStrategy(Transition.FADE_IN, Transition.FADE_OUT, CollapseDuration._500ms));
+                .setStrategy(new AnimationCollapseStrategy(Transition.FADE_IN, Transition.FADE_OUT, CollapsibleDuration._500ms));
 
         Button heightCollapseButton = Button.create("Height collapse");
         heightCollapseButton.getClickableElement().addEventListener("click", evt -> heightCollapsible.toggleCollapse());
@@ -141,6 +135,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                 .appendChild(b().textContent("Panel Accent"))
                                 .appendChild(Accordion.create().addCss(dui_accent, dui_ignore_bg, dui_ignore_fg)
                                         .appendChild(AccordionPanel.create("Collapsible item 1")
+
                                                 .withHeader((parent, header) -> header
                                                         .appendChild(PrefixAddOn.of(Icons.bus_clock()))
                                                         .appendChild(PostfixAddOn.of(Badge.create("15").addCss(dui_rounded_full, dui_bg_accent_d_3)))

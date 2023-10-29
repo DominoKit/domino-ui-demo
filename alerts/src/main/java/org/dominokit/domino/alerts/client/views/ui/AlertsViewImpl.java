@@ -11,36 +11,42 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.grid.flex.FlexDirection;
+import org.dominokit.domino.ui.grid.flex.FlexItem;
+import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
+import org.dominokit.domino.ui.grid.flex.FlexLayout;
 import org.dominokit.domino.ui.style.Color;
+import org.dominokit.domino.ui.style.CompositeCssClass;
+import org.dominokit.domino.ui.style.DisplayCss;
 import org.dominokit.domino.ui.typography.BlockHeader;
 
 @UiView(presentable = AlertsProxy.class)
 @SampleClass
 public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements AlertsView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
 
-        element.appendChild(LinkToSourceCode.createLink("alerts", AlertsViewImpl.class).element());
+        element.appendChild(LinkToSourceCode.createLink("alerts", AlertsViewImpl.class));
         element.appendChild(BlockHeader.create("Alerts")
                 .element());
 
         basicAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.basicAlerts()));
 
         customBackground();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.customBackground())
-                .element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.customBackground()));
 
         dismissibleAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dismissibleAlerts()));
 
         linksInAlerts();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()).element());
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.linksInAlerts()));
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
@@ -62,7 +68,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                         .addCss(dui_m_b_4)
                         .appendChild(strong().textContent("Oh snap! "))
                         .appendChild("Change a few things up and try submitting again."))
-                .element());
+        );
     }
 
     @SampleMethod
@@ -83,7 +89,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                 .appendChild(Alert.create()
                         .addCss(dui_bg_red, dui_fg_white, dui_m_b_4)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id"))
-                .element());
+        );
     }
 
     @SampleMethod
@@ -106,7 +112,7 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                         .addCss(dui_bg_green, dui_fg_white, dui_m_b_4)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id")
                         .dismissible())
-                .element());
+        );
     }
 
     @SampleMethod
@@ -137,6 +143,6 @@ public class AlertsViewImpl extends BaseDemoView<HTMLDivElement> implements Aler
                         .addCss(dui_bg_pink, dui_fg_white, dui_m_b_4)
                         .appendChild("Lorem ipsum dolor sit amet, id fugit tollit pro, illud nostrud aliquando ad est, quo esse dolorum id ")
                         .appendChild(a().appendChild("alert link.")))
-                .element());
+        );
     }
 }

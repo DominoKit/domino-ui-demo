@@ -11,7 +11,7 @@
     <link href="${appRootPath}/prettify/prettify.css" rel="stylesheet" type="text/css">
     <link href="${appRootPath}/prettify/desert.css" rel="stylesheet" type="text/css">
 
-    <title>ui-demo</title>
+    <title>Domino-ui demo</title>
     <script src="${appRootPath}/prettify/prettify.js" type="text/javascript"></script>
     <script src="${appRootPath}/app.nocache.js"></script>
 </head>
