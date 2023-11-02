@@ -21,6 +21,7 @@ import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.BodyScrollPlugin;
+import org.dominokit.domino.ui.datatable.plugins.pagination.BodyScrollPluginConfig;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortPlugin;
 import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.elements.DivElement;
@@ -103,7 +104,7 @@ public class ScrollLoadingDatatableViewImpl extends BaseDemoView<HTMLDivElement>
                             }
                             return text("");
                         }))
-                .addPlugin(new BodyScrollPlugin<>())
+                .addPlugin(new BodyScrollPlugin<Contact>().setConfig(new BodyScrollPluginConfig(3)))
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table table demonstrating the feature")
                         .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
                         .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())

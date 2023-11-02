@@ -218,16 +218,16 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("nothing", "nothing", "-- please select --")
                                                 .setSearchable(false)
                                         )
-                                        .appendChild(SelectOption.create("USA", "USA", "America (USA)"))
-                                        .appendChild(SelectOption.create("ARG", "ARG", "Argentina"))
-                                        .appendChild(SelectOption.create("BRA", "BRA", "Brazil"))
-                                        .appendChild(SelectOption.create("DEN", "DEN", "Denmark"))
-                                        .appendChild(SelectOption.create("CRO", "CRO", "Croatia"))
-                                        .appendChild(SelectOption.create("IND", "IND", "India"))
-                                        .appendChild(SelectOption.create("SPA", "SPA", "Spain"))
-                                        .appendChild(SelectOption.create("FRA", "FRA", "France"))
-                                        .appendChild(SelectOption.create("JOR", "JOR", "Jordan"))
-                                        .selectAt(0)
+                .appendChild(SelectOption.create("USA", "USA", "America (USA)"))
+                .appendChild(SelectOption.create("ARG", "ARG", "Argentina"))
+                .appendChild(SelectOption.create("BRA", "BRA", "Brazil"))
+                .appendChild(SelectOption.create("DEN", "DEN", "Denmark"))
+                .appendChild(SelectOption.create("CRO", "CRO", "Croatia"))
+                .appendChild(SelectOption.create("IND", "IND", "India"))
+                .appendChild(SelectOption.create("SPA", "SPA", "Spain"))
+                .appendChild(SelectOption.create("FRA", "FRA", "France"))
+                .appendChild(SelectOption.create("JOR", "JOR", "Jordan"))
+                .selectAt(0)
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Item selected [ " + newValue + " ]").show();
                                         })
@@ -329,7 +329,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Icons selected : ")
                                                     .apply(self -> newValue.forEach(self::appendChild))
-                                                    .show();
+                                    .show();
                                         })
                                 )
                         )
