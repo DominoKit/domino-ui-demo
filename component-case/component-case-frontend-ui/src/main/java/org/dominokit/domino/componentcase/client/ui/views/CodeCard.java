@@ -23,6 +23,8 @@ import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
 import java.util.function.Consumer;
 
+import static org.dominokit.domino.ui.utils.Domino.*;
+
 public class CodeCard extends BaseDominoElement<HTMLDivElement, CodeCard> {
 
     private TextAreaElement copyInput;

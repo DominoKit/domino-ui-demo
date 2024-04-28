@@ -11,6 +11,8 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.typography.BlockHeader;
 
+import static org.dominokit.domino.ui.utils.Domino.*;
+
 @UiView(presentable = SamplesProxy.class)
 public class SamplesViewImpl extends BaseDemoView<HTMLDivElement> implements SamplesView {
 

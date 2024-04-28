@@ -18,12 +18,12 @@ import org.dominokit.domino.ui.layout.AppLayout;
 import org.dominokit.domino.ui.layout.NavBar;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
-import org.dominokit.domino.ui.style.ColorsCss;
-import org.dominokit.domino.ui.style.SpacingCss;
 import org.dominokit.domino.ui.thumbnails.Thumbnail;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = AppLayoutProxy.class)
 public class AppLayoutViewImpl extends BaseDemoView<HTMLDivElement> implements AppLayoutView {

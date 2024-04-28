@@ -10,7 +10,6 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.pagination.client.presenters.PaginationProxy;
 import org.dominokit.domino.pagination.client.views.PaginationView;
-import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
@@ -20,6 +19,8 @@ import org.dominokit.domino.ui.pagination.Pager;
 import org.dominokit.domino.ui.pagination.ScrollingPagination;
 import org.dominokit.domino.ui.pagination.SimplePagination;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = PaginationProxy.class)
 @SampleClass

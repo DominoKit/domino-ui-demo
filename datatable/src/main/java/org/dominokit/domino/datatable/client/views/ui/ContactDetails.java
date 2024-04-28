@@ -1,6 +1,7 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.TableRow;

@@ -1,6 +1,5 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -18,7 +17,6 @@ import org.dominokit.domino.ui.datatable.CellTextAlign;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
-import org.dominokit.domino.ui.datatable.events.SelectAllEvent;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.selection.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
@@ -26,6 +24,8 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = SelectionPluginProxy.class)
 @SampleClass(includeClassName = true)

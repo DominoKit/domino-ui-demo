@@ -12,14 +12,9 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.alerts.Alert;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
-import org.dominokit.domino.ui.grid.flex.FlexDirection;
-import org.dominokit.domino.ui.grid.flex.FlexItem;
-import org.dominokit.domino.ui.grid.flex.FlexJustifyContent;
-import org.dominokit.domino.ui.grid.flex.FlexLayout;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.CompositeCssClass;
-import org.dominokit.domino.ui.style.DisplayCss;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = AlertsProxy.class)
 @SampleClass

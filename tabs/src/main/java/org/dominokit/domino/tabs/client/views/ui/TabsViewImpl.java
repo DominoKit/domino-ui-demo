@@ -16,17 +16,12 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
-import org.dominokit.domino.ui.style.DisplayCss;
-import org.dominokit.domino.ui.tabs.FillItem;
-import org.dominokit.domino.ui.tabs.HeaderDirection;
-import org.dominokit.domino.ui.tabs.Tab;
-import org.dominokit.domino.ui.tabs.TabsAlign;
-import org.dominokit.domino.ui.tabs.TabsDirection;
-import org.dominokit.domino.ui.tabs.TabsHeaderAlign;
-import org.dominokit.domino.ui.tabs.TabsPanel;
+import org.dominokit.domino.ui.tabs.*;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = TabsProxy.class)
 @SampleClass

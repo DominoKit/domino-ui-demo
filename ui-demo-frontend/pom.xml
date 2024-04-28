@@ -20,11 +20,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.gwt</groupId>
+            <groupId>org.gwtproject</groupId>
             <artifactId>gwt-user</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.google.gwt</groupId>
+            <groupId>org.gwtproject</groupId>
             <artifactId>gwt-dev</artifactId>
         </dependency>
         <dependency>
@@ -725,11 +725,19 @@
                     <extra>${extra.directory}/gwt/extra</extra>
                     <moduleName>org.dominokit.domino.ui.demo.AppClientModule</moduleName>
                     <moduleShortName>app</moduleShortName>
+                    <systemPropertyVariables>
+                        <gwt.speedtracerlog>log.json</gwt.speedtracerlog>
+                    </systemPropertyVariables>
+<!--                    <jvmArgs>-->
+<!--                        <jvmArg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8005</jvmArg>-->
+<!--                    </jvmArgs>-->
                     <compilerArgs>
+
+<!--                        <compilerArg>-saveSource</compilerArg>-->
                         <compilerArg>-XdisableCastChecking</compilerArg>
                         <!--<compilerArg>-style</compilerArg>-->
                         <!--<compilerArg>PRETTY</compilerArg>-->
-                        <compilerArg>-compileReport</compilerArg>
+<!--                        <compilerArg>-compileReport</compilerArg>-->
                         <compilerArg>-extra</compilerArg>
                         <compilerArg>${project.build.directory}/gwt/extra</compilerArg>
                     </compilerArgs>

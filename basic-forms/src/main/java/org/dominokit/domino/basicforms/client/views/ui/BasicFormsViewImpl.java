@@ -1,6 +1,5 @@
 package org.dominokit.domino.basicforms.client.views.ui;
 
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -20,10 +19,10 @@ import org.dominokit.domino.ui.forms.suggest.Select;
 import org.dominokit.domino.ui.forms.suggest.SelectOption;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.lib.Icons;
-import org.dominokit.domino.ui.icons.lib.IconsMeta;
 import org.dominokit.domino.ui.icons.LabeledIcon;
 import org.dominokit.domino.ui.icons.MdiIcon;
+import org.dominokit.domino.ui.icons.lib.Icons;
+import org.dominokit.domino.ui.icons.lib.IconsMeta;
 import org.dominokit.domino.ui.menu.CustomMenuItem;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.notifications.Notification;
@@ -36,6 +35,8 @@ import java.util.Arrays;
 
 import static org.dominokit.domino.ui.grid.Column.Span._2;
 import static org.dominokit.domino.ui.grid.Column.Span._6;
+import static org.dominokit.domino.ui.utils.Domino.*;
+import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 @UiView(presentable = BasicFormsProxy.class)
 @SampleClass
@@ -182,6 +183,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                                                 onComplete.accept(option);
                                                                                 select.selectOption(option);
                                                                                 popover.close();
+                                                                                popover.detach();
                                                                             }
                                                                         }))
                                                                 )

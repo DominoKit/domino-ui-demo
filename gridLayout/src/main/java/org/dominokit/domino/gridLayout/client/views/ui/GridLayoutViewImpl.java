@@ -1,6 +1,7 @@
 package org.dominokit.domino.gridLayout.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;

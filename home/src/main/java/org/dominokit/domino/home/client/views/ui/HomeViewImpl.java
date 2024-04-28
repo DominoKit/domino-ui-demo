@@ -25,6 +25,7 @@ import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.timer.client.Timer;
 
 import static elemental2.dom.DomGlobal.window;
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = HomeProxy.class)
 public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeView {

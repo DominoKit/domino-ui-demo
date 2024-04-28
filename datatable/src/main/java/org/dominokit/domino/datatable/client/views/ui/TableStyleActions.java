@@ -1,6 +1,7 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.lib.Icons;

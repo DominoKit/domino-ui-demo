@@ -36,7 +36,7 @@ import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 import static java.util.Objects.isNull;
-
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = MdiIconsProxy.class)
 public class MdiIconsViewImpl extends BaseDemoView<HTMLDivElement> implements MdiIconsView {

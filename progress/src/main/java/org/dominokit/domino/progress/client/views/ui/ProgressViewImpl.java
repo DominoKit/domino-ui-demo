@@ -1,7 +1,5 @@
 package org.dominokit.domino.progress.client.views.ui;
 
-import elemental2.dom.DomGlobal;
-import elemental2.dom.FrameRequestCallback;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -15,9 +13,10 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.progress.Progress;
 import org.dominokit.domino.ui.progress.ProgressBar;
-import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.timer.client.Timer;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = ProgressProxy.class)
 @SampleClass

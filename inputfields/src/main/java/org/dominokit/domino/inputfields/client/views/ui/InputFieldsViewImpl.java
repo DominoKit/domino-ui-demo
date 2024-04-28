@@ -1,6 +1,5 @@
 package org.dominokit.domino.inputfields.client.views.ui;
 
-import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -29,9 +28,10 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.typography.BlockHeader;
-import org.dominokit.domino.ui.utils.DominoElement;
 
 import java.math.BigDecimal;
+
+import static org.dominokit.domino.ui.utils.Domino.div;
 
 @UiView(presentable = InputFieldsProxy.class)
 @SampleClass

@@ -1,6 +1,7 @@
 package org.dominokit.domino.notifications.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;

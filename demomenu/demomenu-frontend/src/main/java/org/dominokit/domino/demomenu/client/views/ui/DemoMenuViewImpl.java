@@ -2,13 +2,12 @@ package org.dominokit.domino.demomenu.client.views.ui;
 
 import elemental2.core.Global;
 import elemental2.dom.HTMLDivElement;
-import elemental2.dom.URL;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.demomenu.client.presenters.DemoMenuProxy;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.lib.MdiTags;
-import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.mediaquery.MediaQuery;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.SpacingCss;
@@ -18,6 +17,9 @@ import org.dominokit.domino.ui.tree.TreeItemIcon;
 import org.dominokit.domino.ui.utils.ElementHandler;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.view.BaseElementView;
+
+import static org.dominokit.domino.ui.utils.Domino.dui_h_12;
+import static org.dominokit.domino.ui.utils.Domino.dui_order_20;
 
 @UiView(presentable = DemoMenuProxy.class)
 public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements DemoMenuView {

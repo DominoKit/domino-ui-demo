@@ -17,7 +17,7 @@ import org.dominokit.domino.ui.loaders.Loader;
 import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.scroll.ScrollTop;
-import org.dominokit.domino.ui.style.*;
+import org.dominokit.domino.ui.style.DominoCss;
 import org.dominokit.domino.ui.themes.DominoThemeDark;
 import org.dominokit.domino.ui.themes.DominoThemeLight;
 import org.dominokit.domino.ui.themes.DominoThemeManager;

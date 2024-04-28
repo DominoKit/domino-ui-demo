@@ -46,6 +46,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import static org.dominokit.domino.ui.utils.Domino.*;
+
 
 @UiView(presentable = AdvancedFormsProxy.class)
 @SampleClass

@@ -15,7 +15,6 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.lists.ListGroup;
-import org.dominokit.domino.ui.style.ColorsCss;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.waves.client.presenters.WavesProxy;
 import org.dominokit.domino.waves.client.views.WavesView;
@@ -43,6 +42,7 @@ import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_purple;
 import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_red;
 import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_teal;
 import static org.dominokit.domino.ui.style.WavesStyles.dui_waves_yellow;
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = WavesProxy.class)
 @SampleClass
@@ -57,12 +57,6 @@ public class WavesViewImpl extends BaseDemoView<HTMLDivElement> implements Waves
         element.appendChild(LinkToSourceCode.createLink("waves", this.getClass()).element());
         element.appendChild(BlockHeader.create("WAVES", "Click effect inspired by Google's Material Design")
                 .element());
-
-//        element.appendChild(Button.create("ADD button")
-//                .addClickListener(evt -> element.appendChild(Button
-//                        .create("CLICK ME").addCss(dui_w_28)
-//                        .withWaves(wavesSupport -> wavesSupport.getElement().addCss(dui_waves_accent))))
-//        );
 
         waves();
 

@@ -1,6 +1,5 @@
 package org.dominokit.domino.loaders.client.views.ui;
 
-import elemental2.dom.DomGlobal;
 import elemental2.dom.EventListener;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
@@ -22,6 +21,8 @@ import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.style.Color;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.timer.client.Timer;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = LoadersProxy.class)
 @SampleClass

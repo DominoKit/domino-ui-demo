@@ -7,6 +7,8 @@ import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.style.CssClass;
 import org.dominokit.domino.ui.utils.BaseDominoElement;
 
+import static org.dominokit.domino.ui.utils.Domino.*;
+
 public class SampleComponent extends BaseDominoElement<HTMLDivElement, SampleComponent> {
 
     CssClass dui_flex_grow_1 = ()-> "dui-flex-grow-1";

@@ -10,11 +10,13 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.profile.client.presenters.ProfileProxy;
 import org.dominokit.domino.profile.client.views.ProfileView;
 import org.dominokit.domino.ui.elements.DivElement;
-import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.LabeledIcon;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.style.Calc;
 import org.dominokit.domino.ui.utils.Unit;
 import org.dominokit.domino.view.BaseElementView;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 
 @UiView(presentable = ProfileProxy.class)

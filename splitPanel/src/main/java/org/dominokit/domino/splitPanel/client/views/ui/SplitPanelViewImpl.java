@@ -13,10 +13,10 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.splitpanel.HSplitPanel;
 import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.ColorScheme;
 import org.dominokit.domino.ui.style.CssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = SplitPanelProxy.class)
 @SampleClass

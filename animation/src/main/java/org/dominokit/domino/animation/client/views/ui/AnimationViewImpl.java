@@ -18,10 +18,10 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.style.Color;
-import org.dominokit.domino.ui.style.DisplayCss;
 import org.dominokit.domino.ui.style.Style;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = AnimationProxy.class)
 @SampleClass

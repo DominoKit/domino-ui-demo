@@ -58,9 +58,7 @@
         <module>steppers</module>
         <module>datepicker</module>
         <module>timepicker</module>
-        <!--        <module>formsamples</module>-->
-                <module>datatable</module>
-        <!--        <module>login</module>-->
+        <module>datatable</module>
         <module>sample-processor</module>
         <module>sample-annotations</module>
         <module>ui-demo-server</module>
@@ -81,11 +79,12 @@
 
         <vertx.version>3.9.16</vertx.version>
         <elemento.version>1.0.3</elemento.version>
-        <elemental2.version>1.1.0</elemental2.version>
+        <elemental2.version>1.2.1</elemental2.version>
         <domino.jackson.version>1.0.0</domino.jackson.version>
         <domino.history.version>1.0.0</domino.history.version>
         <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
         <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
+        <gwt.version>2.11.0</gwt.version>
     </properties>
 
     <repositories>
@@ -109,11 +108,21 @@
                 <scope>import</scope>
             </dependency>
             <dependency>
-                <groupId>com.google.gwt</groupId>
+                <groupId>org.gwtproject</groupId>
                 <artifactId>gwt</artifactId>
-                <version>2.10.0</version>
+                <version>${gwt.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.gwtproject</groupId>
+                <artifactId>gwt-user</artifactId>
+                <version>${gwt.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.gwtproject</groupId>
+                <artifactId>gwt-dev</artifactId>
+                <version>${gwt.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.jboss.elemento</groupId>
@@ -143,6 +152,38 @@
                 <!-- Note: use classifier=sources rather than type=java-sources so they're added to the classpath -->
                 <classifier>sources</classifier>
             </dependency>
+            <dependency>
+                <groupId>com.google.auto.service</groupId>
+                <artifactId>auto-service</artifactId>
+                <version>1.1.1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-svg</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-svg</artifactId>
+                <version>${elemental2.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-core</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-core</artifactId>
+                <version>${elemental2.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.google.jsinterop</groupId>
+                <artifactId>base</artifactId>
+                <version>1.0.1</version>
+            </dependency>
         </dependencies>
 
     </dependencyManagement>
@@ -166,7 +207,6 @@
         <dependency>
             <groupId>com.google.auto.service</groupId>
             <artifactId>auto-service</artifactId>
-            <version>1.0-rc7</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -286,6 +326,9 @@
                         <configuration>
                             <sourceLevel>1.8</sourceLevel>
                             <failOnError>true</failOnError>
+<!--                            <jvmArgs>-->
+<!--                                <jvmArg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8005</jvmArg>-->
+<!--                            </jvmArgs>-->
                             <compilerArgs>
                                 <!--                                                                <compilerArg>-style</compilerArg>-->
                                 <!--                                                                <compilerArg>PRETTY</compilerArg>-->

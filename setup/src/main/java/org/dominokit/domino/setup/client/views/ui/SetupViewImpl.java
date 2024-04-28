@@ -10,6 +10,8 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.safehtml.shared.SafeHtmlBuilder;
 
+import static org.dominokit.domino.ui.utils.Domino.div;
+
 @UiView(presentable = SetupProxy.class)
 public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements SetupView{
 

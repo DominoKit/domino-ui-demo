@@ -2,6 +2,7 @@ package org.dominokit.domino.componentcase.client.ui.views;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.style.Elevation;

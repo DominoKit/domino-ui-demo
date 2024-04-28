@@ -6,7 +6,6 @@ import org.dominokit.domino.themes.client.presenters.ThemesProxy;
 import org.dominokit.domino.themes.client.views.ThemesView;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.style.CssClass;
-import org.dominokit.domino.ui.style.SwapCssClass;
 import org.dominokit.domino.ui.themes.DominoThemeAccent;
 import org.dominokit.domino.ui.themes.DominoThemeManager;
 import org.dominokit.domino.ui.themes.IsDominoTheme;
@@ -14,12 +13,13 @@ import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.ElementsFactory;
 import org.dominokit.domino.view.BaseElementView;
 
+import static org.dominokit.domino.ui.utils.Domino.*;
+
 @UiView(presentable = ThemesProxy.class)
 public class ThemesViewImpl extends BaseElementView<HTMLDivElement> implements ThemesView, ElementsFactory {
 
     private DivElement root;
     private ThemesUiHandlers uiHandlers;
-    private SwapCssClass themeCss =  SwapCssClass.of();
 
     @Override
     protected HTMLDivElement init() {
