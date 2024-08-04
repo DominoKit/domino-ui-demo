@@ -135,7 +135,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -220,7 +220,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -307,7 +307,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -384,7 +384,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -481,7 +481,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -590,7 +590,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -705,7 +705,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                                 )
                                                                 .addSelectionListener((source, selectedItems) -> {
                                                                     source.ifPresent(menuItem -> {
-                                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                                     });
                                                                 })
                                                         )
@@ -806,7 +806,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                                 )
                                                                 .addSelectionListener((source, selectedItems) -> {
                                                                     source.ifPresent(menuItem -> {
-                                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                                     });
                                                                 })
                                                         )
@@ -924,7 +924,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                         )
                                                         .addSelectionListener((source, selectedItems) -> {
                                                             source.ifPresent(menuItem -> {
-                                                                Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                             });
                                                         })
                                                 )
@@ -1023,7 +1023,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                         )
                                                         .addSelectionListener((source, selectedItems) -> {
                                                             source.ifPresent(menuItem -> {
-                                                                Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                             });
                                                         })
                                                 )
@@ -1122,7 +1122,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                         )
                                                         .addSelectionListener((source, selectedItems) -> {
                                                             source.ifPresent(menuItem -> {
-                                                                Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                             });
                                                         })
                                                 )
@@ -1245,7 +1245,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                         )
                                         .addSelectionListener((source, selectedItems) -> {
                                             source.ifPresent(menuItem -> {
-                                                Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                             });
                                         })
                                 )
@@ -1384,7 +1384,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                 )
                                                 .addSelectionListener((source, selectedItems) -> {
                                                     source.ifPresent(menuItem -> {
-                                                        Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                        Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                     });
                                                 })
                                         )
@@ -1515,7 +1515,7 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                                         )
                                                         .addSelectionListener((source, selectedItems) -> {
                                                             source.ifPresent(menuItem -> {
-                                                                Notification.create("Key : " + menuItem + ", value : " + menuItem.getValue()).show();
+                                                                Notification.create("Key : " + menuItem.getKey() + ", value : " + menuItem.getValue()).show();
                                                             });
                                                         })
                                                 )

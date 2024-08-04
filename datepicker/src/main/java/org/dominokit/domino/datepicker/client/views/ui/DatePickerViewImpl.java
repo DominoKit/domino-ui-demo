@@ -13,6 +13,7 @@ import org.dominokit.domino.datepicker.client.views.DatePickerView;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datepicker.Calendar;
+import org.dominokit.domino.ui.datepicker.CalendarInitConfig;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.DateBox;
 import org.dominokit.domino.ui.grid.Row;
@@ -23,6 +24,7 @@ import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_ar;
 import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_es;
 
+import java.util.Arrays;
 import java.util.Date;
 
 @UiView(presentable = DatePickerProxy.class)
@@ -60,9 +62,20 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void inlineCalendar() {
         element
                 .appendChild(Card.create("INLINE CALENDAR", "Different locales")
+                        .appendChild(Calendar.create(new CalendarInitConfig()
+                                        .addPlugin(new DisableWeekendDaysPlugin())
+                                        .addPlugin(new SimpleEventsPlugin(Arrays.asList(SimpleEventsPlugin.CalendarEvent.of("My best friend birthday", new Date()))))
+                                )
+                                .addCss(dui_w_full)
+                        )
+                )
+                .appendChild(Card.create("INLINE CALENDAR", "Different locales")
                         .setCollapsible(true)
                         .appendChild(Row.create()
-                                .span4(Calendar.create())
+                                .span4(Calendar.create(new CalendarInitConfig()
+                                                .addPlugin(new DisableWeekendDaysPlugin())
+                                        )
+                                )
                                 .span4(Calendar.create(new DateTimeFormatInfoImpl_ar()))
                                 .span4(Calendar.create(new DateTimeFormatInfoImpl_es()))
                         )

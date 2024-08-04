@@ -15,7 +15,7 @@ public class AppClientModule implements EntryPoint {
     public void onModuleLoad() {
         if (System.getProperty("superdevmode").equals("on")) {
             DominoGWT.init(DominoViewOptions.getInstance());
-        }else {
+        } else {
             DominoGWT.init(DominoViewOptions.getInstance().setRootPath("domino-ui/demo/v2"));
         }
         DominoThemeManager.INSTANCE.applyUserThemes();

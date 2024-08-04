@@ -58,6 +58,7 @@ public class BasicDataTableViewImpl extends BaseDemoView<HTMLDivElement> impleme
                         .setTextAlign(CellTextAlign.RIGHT)
                         .setHeaderTextAlign(CellTextAlign.RIGHT)
                         .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
