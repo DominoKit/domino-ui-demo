@@ -16,12 +16,15 @@ import org.dominokit.domino.ui.datepicker.Calendar;
 import org.dominokit.domino.ui.datepicker.CalendarInitConfig;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.DateBox;
+import org.dominokit.domino.ui.forms.DateRangeBox;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Popover;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_ar;
+import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_de;
 import org.gwtproject.i18n.shared.cldr.impl.DateTimeFormatInfoImpl_es;
 
 import java.util.Arrays;
@@ -62,7 +65,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void inlineCalendar() {
         element
                 .appendChild(Card.create("INLINE CALENDAR", "Different locales")
-                        .appendChild(Calendar.create(new CalendarInitConfig()
+                        .appendChild(Calendar.create(new DateTimeFormatInfoImpl_de(), new CalendarInitConfig()
                                         .addPlugin(new DisableWeekendDaysPlugin())
                                         .addPlugin(new SimpleEventsPlugin(Arrays.asList(SimpleEventsPlugin.CalendarEvent.of("My best friend birthday", new Date()))))
                                 )
@@ -214,11 +217,14 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Card.create("DATE BOX")
                         .setCollapsible(true)
                         .appendChild(Row.create()
-                                .span4(DateBox.create("myDateBox")
-                                        .setReadOnly(true)
+                                .span4(DateBox.create("Date Box")
                                         .setPattern("dd.MM.yyyy")
                                         .setParseStrict(true)
-                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue)))
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
+                                        .addChangeListener((oldValue, newValue) -> {
+                                            Notification.create("Value changed : old [" + oldValue + "] new [" + newValue + "]").show();
+                                        })
+                                )
                                 .span4(DateBox.create("With pattern", new DateTimeFormatInfoImpl_ar())
                                         .setPattern("dd-MM-yyyy")
                                         .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
@@ -230,6 +236,33 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .setParseStrict(true)
                                         .withPopover((parent, popover) -> popover.addCss(dui_accent_teal))
                                         .withCalendar((parent, calendar) -> calendar
+                                                .withHeader())
+                                )
+                        )
+                        .appendChild(Row.create()
+                                .span4(DateRangeBox.create("Date range box")
+                                        .setPattern("dd.MM.yyyy")
+                                        .setParseStrict(true)
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
+                                        .addChangeListener((oldValue, newValue) -> {
+                                            Notification.create("Value changed : old [" + oldValue.getFrom() + " - " +oldValue.getTo() + "] new ["  + newValue.getFrom() + " - " +newValue.getTo() + "]").show();
+                                        })
+                                )
+                                .span4(DateRangeBox.create("Date range with pattern", new DateTimeFormatInfoImpl_ar())
+                                        .setPattern("dd-MM-yyyy")
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
+                                        .withFromCalendar((parent, calendar) -> calendar
+                                                .withHeader())
+                                        .withToCalendar((parent, calendar) -> calendar
+                                                .withHeader())
+                                )
+                                .span4(DateRangeBox.create("Date range with parse strict", new DateTimeFormatInfoImpl_es())
+                                        .setPattern("dd-MM-yyyy")
+                                        .setParseStrict(true)
+                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_teal))
+                                        .withFromCalendar((parent, calendar) -> calendar
+                                                .withHeader())
+                                        .withToCalendar((parent, calendar) -> calendar
                                                 .withHeader())
                                 )
                         )

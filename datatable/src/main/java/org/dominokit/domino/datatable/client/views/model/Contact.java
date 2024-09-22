@@ -23,6 +23,7 @@ public class Contact {
     private String address;
     private String about;
 
+    @JsonIgnore
     private int depth =0;
     @JsonIgnore
     private boolean hasChildren = true;
@@ -156,12 +157,12 @@ public class Contact {
         return "$"+balance;
     }
 
-    public void setFriends(List<Contact> subList) {
-        this.friends = subList;
-    }
-
     public List<Contact> getFriends() {
         return friends;
+    }
+
+    public void setFriends(List<Contact> subList) {
+        this.friends = subList;
     }
 
     public void addFriend(Contact contact){
@@ -184,11 +185,11 @@ public class Contact {
                 '}';
     }
 
-    public void setHasChildren(boolean hasChildren) {
-        this.hasChildren = hasChildren;
-    }
-
     public boolean isHasChildren() {
         return hasChildren;
+    }
+
+    public void setHasChildren(boolean hasChildren) {
+        this.hasChildren = hasChildren;
     }
 }
