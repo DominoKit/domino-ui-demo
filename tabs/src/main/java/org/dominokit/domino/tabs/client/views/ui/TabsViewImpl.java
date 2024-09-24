@@ -11,6 +11,7 @@ import org.dominokit.domino.tabs.client.presenters.TabsProxy;
 import org.dominokit.domino.tabs.client.views.TabsView;
 import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.badges.Badge;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
@@ -65,6 +66,10 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
 
         Tabs();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.Tabs()));
+
+        tabsOverflow();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.tabsOverflow()));
+
 
         return element.element();
     }
@@ -193,24 +198,56 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
     private void closableTabsSample() {
         element.appendChild(Card.create("CLOSABLE TABS")
                 .appendChild(TabsPanel.create()
-                        .appendChild(Tab.create(Icons.home(), " HOME")
+                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                .setKey("HOME")
                                 .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("15+").addCss(dui_rounded_full))))
                                 .appendChild(b().textContent("Home Content"))
                                 .appendChild(p(SAMPLE_TEXT))
                                 .setClosable(true)
                         )
-                        .appendChild(Tab.create(Icons.face_man(), " PROFILE")
+                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                .setKey("PROFILE")
                                 .appendChild(b().textContent("Profile Content"))
                                 .appendChild(p(SAMPLE_TEXT))
                                 .setClosable(true)
                         )
-                        .appendChild(Tab.create(Icons.email(), " MESSAGES")
+                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                .setKey("HOME")
                                 .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.cog(), "SETTINGS-0")
+                                .setKey("SETTINGS-0")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.cog(), "SETTINGS-1")
+                                .setKey("SETTINGS-1")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.cog(), "SETTINGS-2")
+                                .setKey("SETTINGS-2")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Settings Content-3"))
                                 .appendChild(p(SAMPLE_TEXT))
                                 .activate()
                                 .setClosable(true)
                         )
-                        .appendChild(Tab.create(Icons.cog(), " SETTINGS")
+                        .appendChild(Tab.create(Icons.cog(), "SETTINGS-3")
+                                .setKey("SETTINGS-3")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Settings Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.cog(), "SETTINGS-4")
+                                .setKey("SETTINGS-4")
                                 .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("new").addCss(dui_rounded_full))))
                                 .appendChild(b().textContent("Settings Content"))
                                 .appendChild(p(SAMPLE_TEXT))
@@ -408,6 +445,9 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                 .appendChild(Row.create()
                         .appendChild(Column.span4()
                                 .appendChild(TabsPanel.create()
+                                        .apply(self -> {
+                                            new TabsDropDownHandler().apply(self);
+                                        })
                                         .setTabsDirection(TabsDirection.VERTICAL)
                                         .setTabsAlign(TabsAlign.START)
                                         .appendChild(Tab.create("HOME")
@@ -420,7 +460,22 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                                 .appendChild(b().textContent("Messages Content"))
                                                 .appendChild(p(SAMPLE_TEXT))
                                                 .activate())
-                                        .appendChild(Tab.create("SETTINGS")
+                                        .appendChild(Tab.create("SETTINGS-0")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("SETTINGS-1")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("SETTINGS-2")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("SETTINGS-3")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("SETTINGS-4")
+                                                .appendChild(b().textContent("Settings Content"))
+                                                .appendChild(p(SAMPLE_TEXT)))
+                                        .appendChild(Tab.create("SETTINGS-5")
                                                 .appendChild(b().textContent("Settings Content"))
                                                 .appendChild(p(SAMPLE_TEXT)))
                                 )
@@ -608,6 +663,102 @@ public class TabsViewImpl extends BaseDemoView<HTMLDivElement> implements TabsVi
                                                 .appendChild(b().textContent("Settings Content"))
                                                 .appendChild(p(SAMPLE_TEXT)))
                                 )
+                        )
+                )
+        );
+    }
+
+
+    @SampleMethod
+    private void tabsOverflow() {
+        TabsPanel horizontalTabs = TabsPanel.create();
+        TabsPanel verticalTabs = TabsPanel.create();
+
+        element.appendChild(Card.create("Tabs overflow")
+                .appendChild(div().addCss(dui_flex, dui_gap_4, dui_p_2)
+                        .appendChild(Button.create("Add tab")
+                                .setAttribute("dui-data", "0")
+                                .apply(btn -> {
+                                    btn.addClickListener(evt -> {
+                                        horizontalTabs.appendChild(Tab.create(Icons.circle(), "Tab - " + btn.getAttribute("dui-data"))
+                                                .appendChild(b().textContent("Tab - " + btn.getAttribute("dui-data") + " content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .setKey("Tab - " + btn.getAttribute("dui-data"))
+                                                .setClosable(true)
+                                        );
+
+                                        btn.setAttribute("dui-data", Integer.parseInt(btn.getAttribute("dui-data")) + 1);
+                                    });
+                                })
+
+                        )
+                        .appendChild(Button.create("OVERFLOW WRAP").addClickListener(evt -> horizontalTabs.setTabsOverflow(TabsOverflow.WRAP)))
+                        .appendChild(Button.create("OVERFLOW SCROLL").addClickListener(evt -> horizontalTabs.setTabsOverflow(TabsOverflow.SCROLL)))
+                        .appendChild(Button.create("OVERFLOW DROP DOWN").addClickListener(evt -> horizontalTabs.setTabsOverflow(TabsOverflow.DROPDOWN)))
+                )
+                .appendChild(horizontalTabs
+                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                .setKey("HOME")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("15+").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                .setKey("PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                .setKey("HOME")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                )
+                .appendChild(div().addCss(dui_flex, dui_gap_4, dui_p_2)
+                        .appendChild(Button.create("Add tab")
+                                .setAttribute("dui-data", "0")
+                                .apply(btn -> {
+                                    btn.addClickListener(evt -> {
+                                        verticalTabs.appendChild(Tab.create(Icons.circle(), "Tab - " + btn.getAttribute("dui-data"))
+                                                .appendChild(b().textContent("Tab - " + btn.getAttribute("dui-data") + " content"))
+                                                .appendChild(p(SAMPLE_TEXT))
+                                                .setKey("Tab - " + btn.getAttribute("dui-data"))
+                                                .setClosable(true)
+                                        );
+
+                                        btn.setAttribute("dui-data", Integer.parseInt(btn.getAttribute("dui-data")) + 1);
+                                    });
+                                })
+
+                        )
+                        .appendChild(Button.create("OVERFLOW WRAP").addClickListener(evt -> verticalTabs.setTabsOverflow(TabsOverflow.WRAP)))
+                        .appendChild(Button.create("OVERFLOW SCROLL").addClickListener(evt -> verticalTabs.setTabsOverflow(TabsOverflow.SCROLL)))
+                        .appendChild(Button.create("OVERFLOW DROP DOWN").addClickListener(evt -> verticalTabs.setTabsOverflow(TabsOverflow.DROPDOWN)))
+                )
+                .appendChild(verticalTabs
+                        .addCss(dui_h_48)
+                        .addCss(dui_vertical)
+                        .appendChild(Tab.create(Icons.home(), "HOME")
+                                .setKey("HOME")
+                                .withHeader((parent, header) -> header.appendChild(PostfixAddOn.of(Badge.create("15+").addCss(dui_rounded_full))))
+                                .appendChild(b().textContent("Home Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.face_man(), "PROFILE")
+                                .setKey("PROFILE")
+                                .appendChild(b().textContent("Profile Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
+                        )
+                        .appendChild(Tab.create(Icons.email(), "MESSAGES")
+                                .setKey("HOME")
+                                .appendChild(b().textContent("Messages Content"))
+                                .appendChild(p(SAMPLE_TEXT))
+                                .setClosable(true)
                         )
                 )
         );

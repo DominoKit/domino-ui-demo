@@ -185,8 +185,6 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Field decoration", "forms/fields-decoration"))
                         .appendChild(makeSubMenu("Input fields", "forms/input-fields"))
                         .appendChild(makeSubMenu("Steppers", "forms/steppers"))
-                        .appendChild(makeSubMenu("Form sample", "forms/form-sample"))
-                        .appendChild(makeSubMenu("Login samples", "forms/login-sample"))
                 )
                 .appendChild(TreeItem.create(Icons.view_list(), "Data table")
                         .apply(addToggleIcon())

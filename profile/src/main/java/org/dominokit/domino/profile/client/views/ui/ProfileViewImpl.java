@@ -31,7 +31,7 @@ public class ProfileViewImpl extends BaseElementView<HTMLDivElement> implements 
                 .addCss(dui_flex, dui_flex_col, dui_order_10, dui_overflow_visible)
                 .appendChild(div()
                         .addCss(dui_bg_accent_d_1, dui_h_16, dui_relative)
-                        .appendChild(img(GWT.getModuleBaseURL() + "/images/logo/128.png")
+                        .appendChild(img(GWT.getModuleBaseURL() + "images/logo/128.png")
                                 .addCss(dui_bg_yellow_d_1,
                                         dui_border_4,
                                         dui_border_accent_l_4,
