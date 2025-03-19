@@ -1,3 +1,17 @@
 .dui-mark-weekend-day {
     background: var(--dui-clr-grey-l-3);
 }
+
+.dui-selected-option {
+    margin: 0 var(--dui-spc-1);
+}
+
+.dui-form-select .dui-field-input .dui-selected-option:not(:last-child):after {
+    content: "";
+    position: absolute;
+    width: var(--dui-spc-1);
+    background-color: black;
+    height: 1px;
+    bottom: 50%;
+    margin: 0 var(--dui-spc-1);
+}
