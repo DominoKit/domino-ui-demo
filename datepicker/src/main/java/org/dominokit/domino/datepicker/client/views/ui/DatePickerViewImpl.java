@@ -66,10 +66,10 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element
                 .appendChild(Card.create("INLINE CALENDAR", "Different locales")
                         .appendChild(Calendar.create(new DateTimeFormatInfoImpl_de(), new CalendarInitConfig()
-                                        .addPlugin(new DisableWeekendDaysPlugin())
-                                        .addPlugin(new SimpleEventsPlugin(Arrays.asList(SimpleEventsPlugin.CalendarEvent.of("My best friend birthday", new Date()))))
-                                )
-                                .addCss(dui_w_full)
+                                                .addPlugin(new DisableWeekendDaysPlugin())
+                                                .addPlugin(new SimpleEventsPlugin(Arrays.asList(SimpleEventsPlugin.CalendarEvent.of("My best friend birthday", new Date()))))
+                                        )
+                                        .addCss(dui_w_full)
                         )
                 )
                 .appendChild(Card.create("INLINE CALENDAR", "Different locales")
@@ -150,17 +150,67 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
         element
                 .appendChild(Card.create("DROP DOWN")
                         .setCollapsible(true)
-                        .appendChild(Row.create()
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                        .appendChild(BlockHeader.create("Left up is preferred if there is enough space"))
+                        .appendChild(div().addCss(dui_flex, dui_gap_4, dui_w_full, dui_justify_between, dui_m_y_4)
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
                                         .apply(button -> {
                                             Popover.create(button)
-                                                    .setPosition(DropDirection.BEST_MIDDLE_UP_DOWN)
+                                                    .setPosition(DropDirection.LEFT_UP)
                                                     .appendChild(Calendar.create()
                                                             .withHeader()
                                                     );
                                         })
                                 )
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.LEFT_UP)
+                                                    .appendChild(Calendar.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.LEFT_UP)
+                                                    .appendChild(Calendar.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                        )
+                        .appendChild(div().addCss(dui_flex, dui_gap_4, dui_w_full, dui_justify_between, dui_m_y_4)
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_MIDDLE_DOWN_UP)
+                                                    .appendChild(Calendar.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_MIDDLE_DOWN_UP)
+                                                    .appendChild(Calendar.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                                .appendChild(Button.create(Icons.calendar(), "LEFT UP")
+                                        .apply(button -> {
+                                            Popover.create(button)
+                                                    .setPosition(DropDirection.BEST_MIDDLE_DOWN_UP)
+                                                    .appendChild(Calendar.create()
+                                                            .withHeader()
+                                                    );
+                                        })
+                                )
+                        )
+                        .appendChild(div().addCss(dui_flex, dui_gap_4)
+                                .appendChild(Button.create(Icons.calendar(), "BEST SIDE UP/DOWN")
                                         .apply(button -> {
                                             Popover.create(button)
                                                     .setPosition(DropDirection.BEST_SIDE_UP_DOWN)
@@ -169,7 +219,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     );
                                         })
                                 )
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                                .appendChild(Button.create(Icons.calendar(), "BEST MIDDLE SIDE")
                                         .apply(button -> {
                                             Popover.create(button)
                                                     .setPosition(DropDirection.BEST_MIDDLE_SIDE)
@@ -178,7 +228,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     );
                                         })
                                 )
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                                .appendChild(Button.create(Icons.calendar(), "MIDDLE SCREEN")
                                         .apply(button -> {
                                             Popover.create(button)
                                                     .setPosition(DropDirection.MIDDLE_SCREEN)
@@ -187,7 +237,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     );
                                         })
                                 )
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                                .appendChild(Button.create(Icons.calendar(), "MIDDLE SCREEN MODAL")
                                         .apply(button -> {
                                             Popover.create(button)
                                                     .setModal(true)
@@ -197,7 +247,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                                     );
                                         })
                                 )
-                                .span2(Button.create(Icons.calendar(), "Pick date")
+                                .appendChild(Button.create(Icons.calendar(), "BEST FIT SIDE")
                                         .apply(button -> {
                                             Popover.create(button)
                                                     .setPosition(DropDirection.BEST_FIT_SIDE)
@@ -245,7 +295,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .setParseStrict(true)
                                         .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
                                         .addChangeListener((oldValue, newValue) -> {
-                                            Notification.create("Value changed : old [" + oldValue.getFrom() + " - " +oldValue.getTo() + "] new ["  + newValue.getFrom() + " - " +newValue.getTo() + "]").show();
+                                            Notification.create("Value changed : old [" + oldValue.getFrom() + " - " + oldValue.getTo() + "] new [" + newValue.getFrom() + " - " + newValue.getTo() + "]").show();
                                         })
                                 )
                                 .span4(DateRangeBox.create("Date range with pattern", new DateTimeFormatInfoImpl_ar())

@@ -2,7 +2,6 @@ package org.dominokit.domino.tree.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -18,12 +17,9 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
-import org.dominokit.domino.ui.icons.lib.Icons;
-import org.dominokit.domino.ui.icons.StateChangeMdiIcon;
 import org.dominokit.domino.ui.icons.ToggleMdiIcon;
+import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
-import org.dominokit.domino.ui.style.Elevation;
-import org.dominokit.domino.ui.themes.Theme;
 import org.dominokit.domino.ui.tree.ToggleTarget;
 import org.dominokit.domino.ui.tree.Tree;
 import org.dominokit.domino.ui.tree.TreeItem;
@@ -32,10 +28,11 @@ import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 
 import java.util.List;
-import java.util.function.Supplier;
+import java.util.Optional;
 
 import static java.util.Objects.nonNull;
 import static org.dominokit.domino.tree.client.views.Countries.COUNTRIES;
+import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = TreeProxy.class)
 @SampleClass
@@ -234,8 +231,9 @@ public class TreeViewImpl extends BaseDemoView<HTMLDivElement> implements TreeVi
                 .setAutoCollapse(false)
                 .setFoldable(true)
                 .setSearchable(true)
-                .setTreeItemIconSupplier((item) -> TreeItemIcon.of(Icons.folder(), Icons.folder_open(), Icons.file(), Icons.file_check_outline()))
+                .setNodeIconSupplier((item) -> TreeItemIcon.of(Icons.folder(), Icons.folder_open(), Icons.file(), Icons.file_check_outline()))
                 .appendChild(TreeItem.create("Folder 1")
+
                         .appendChild(TreeItem.create("Folder 1-1")
                                 .appendChild(TreeItem.create("File 1"))
                                 .appendChild(TreeItem.create("File 2"))

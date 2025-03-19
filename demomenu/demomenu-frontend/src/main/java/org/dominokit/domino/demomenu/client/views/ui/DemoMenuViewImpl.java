@@ -5,6 +5,7 @@ import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.demomenu.client.presenters.DemoMenuProxy;
 import org.dominokit.domino.demomenu.client.views.DemoMenuView;
+import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.icons.ToggleMdiIcon;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.icons.lib.MdiTags;
@@ -150,30 +151,38 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Alerts", "components/alerts"))
                         .appendChild(makeSubMenu("Badges", "components/badges"))
                         .appendChild(makeSubMenu("Breadcrumbs", "components/breadcrumbs"))
+                        .appendChild(makeSubMenu("Boards", "components/boards", true))
                         .appendChild(makeSubMenu("Buttons", "components/buttons"))
                         .appendChild(makeSubMenu("Cards", "components/cards"))
                         .appendChild(makeSubMenu("Carousel", "components/carousel"))
                         .appendChild(makeSubMenu("Chips", "components/chips"))
                         .appendChild(makeSubMenu("Collapse", "components/collapse"))
+                        .appendChild(makeSubMenu("Color picker", "components/color-picker", true))
+                        .appendChild(makeSubMenu("Counters", "components/counters", true))
                         .appendChild(makeSubMenu("Dialogs", "components/dialogs"))
                         .appendChild(makeSubMenu("Drag and drop", "components/dnd"))
+                        .appendChild(makeSubMenu("Empty state", "components/emptystate"))
                         .appendChild(makeSubMenu("Info box", "components/infobox"))
                         .appendChild(makeSubMenu("Labels", "components/labels"))
                         .appendChild(makeSubMenu("Lists", "components/lists"))
                         .appendChild(makeSubMenu("Loaders", "components/loaders"))
                         .appendChild(makeSubMenu("Media objects", "components/media"))
                         .appendChild(makeSubMenu("Menu", "components/menu"))
+                        .appendChild(makeSubMenu("Menu bar", "components/menu-bar", true))
                         .appendChild(makeSubMenu("Modals", "components/modals"))
+                        .appendChild(makeSubMenu("Navigation bar", "components/navbar"))
                         .appendChild(makeSubMenu("Notifications", "components/notifications"))
                         .appendChild(makeSubMenu("Pagination", "components/pagination"))
                         .appendChild(makeSubMenu("Preloaders", "components/preloaders"))
                         .appendChild(makeSubMenu("Progress bars", "components/progress"))
+                        .appendChild(makeSubMenu("Range slider", "components/range-slider", true))
                         .appendChild(makeSubMenu("Sliders", "components/sliders"))
                         .appendChild(makeSubMenu("Spin", "components/spin"))
                         .appendChild(makeSubMenu("Tabs", "components/tabs"))
                         .appendChild(makeSubMenu("Thumbnails", "components/thumbnails"))
                         .appendChild(makeSubMenu("Tooltip & Popover", "components/tooltips-popover"))
                         .appendChild(makeSubMenu("Tree", "components/tree"))
+                        .appendChild(makeSubMenu("Check Tree", "components/check-tree", true))
                         .appendChild(makeSubMenu("Waves", "components/waves"))
                 )
                 .appendChild(TreeItem.create(Icons.form_textbox(), "Forms")
@@ -184,11 +193,14 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Time picker", "forms/timepicker"))
                         .appendChild(makeSubMenu("Field decoration", "forms/fields-decoration"))
                         .appendChild(makeSubMenu("Input fields", "forms/input-fields"))
+                        .appendChild(makeSubMenu("Input mask", "components/input-mask", true))
                         .appendChild(makeSubMenu("Steppers", "forms/steppers"))
                 )
                 .appendChild(TreeItem.create(Icons.view_list(), "Data table")
                         .apply(addToggleIcon())
                         .appendChild(makeSubMenu("Basic table", "datatable/basic-table"))
+                        .appendChild(makeSubMenu("Benchmark table", "datatable/benchmark-table"))
+//                        .appendChild(makeSubMenu("Grid table", "datatable/grid-table"))
                         .appendChild(makeSubMenu("Column resize plugin", "datatable/column-resize-plugin"))
                         .appendChild(makeSubMenu("Column pin plugin", "datatable/column-pin-plugin"))
                         .appendChild(makeSubMenu("Column groups", "datatable/column-groups"))
@@ -198,6 +210,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .appendChild(makeSubMenu("Fixed table", "datatable/fixed-table"))
                         .appendChild(makeSubMenu("Grouping plugin", "datatable/grouping-plugin"))
                         .appendChild(makeSubMenu("Header bar plugin", "datatable/header-bar-plugin"))
+                        .appendChild(makeSubMenu("Live grid", "datatable/live-grid", true))
                         .appendChild(makeSubMenu("Marker plugin", "datatable/marker-plugin"))
                         .appendChild(makeSubMenu("Selection plugin", "datatable/selection-plugin"))
                         .appendChild(makeSubMenu("Pagination plugins", "datatable/pagination-plugin"))
@@ -315,9 +328,18 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
     }
 
     private TreeItem<String> makeSubMenu(String title, String token) {
+        return makeSubMenu(title, token, false);
+    }
+
+    private TreeItem<String> makeSubMenu(String title, String token, boolean pro) {
         return TreeItem.create(title)
                 .setIcon(TreeItemIcon.of(Icons.circle_small(), Icons.circle_small(), Icons.circle_small(), Icons.chevron_right()))
                 .apply(self -> self.getClickableElement().setAttribute("href", token))
+                .apply(self -> {
+                    if(pro){
+                        self.appendChild(PostfixAddOn.of(Badge.create("Pro")));
+                    }
+                })
                 .addClickListener(evt -> {
                     evt.preventDefault();
                     uiHandlers.onMenuItemSelected(token);

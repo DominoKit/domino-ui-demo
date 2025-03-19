@@ -16,6 +16,7 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.lists.ListGroup;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.uidemoserver.shared.model.Contact;
@@ -50,11 +51,11 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
         element.appendChild(Card.create()
                 .appendChild(Row.create()
                         .appendChild(Column.span6()
-                                        .appendChild(h(4).textContent("Single select"))
+                                        .appendChild(BlockHeader.create("Single select").setDescription("Only one list item can be selected."))
                                         .appendChild(singleSelectList = ListGroup.<Contact>create()
                                                         .setItemRenderer((listGroup, item) -> {
                                                             item
-                                                                    .setSelectable(true)
+                                                                    .setSelectable(item.getValue().isActive())
                                                                     .appendChild(div().addCss(dui_flex, dui_items_center, dui_h_16, BooleanCssClass.of(dui_opacity_50, !item.getValue().isActive()))
                                                                             .appendChild(span().addCss(dui_h_full, dui_w_1, dui_self_stretch, ContactUiUtils.getColor(item.getValue()).getBackground()))
                                                                             .appendChild(img(ContactUiUtils.getAvatarUrl(item.getValue()))
@@ -72,19 +73,25 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                                                             .appendChild(ContactUiUtils.getGenderElement(item.getValue()))
                                                                     )
                                                                     .setDisabled(!item.getValue().isActive())
+                                                                    .addDeselectionListener((source, selection) -> {
+                                                                        item.removeCss(dui_bg_accent_l_4);
+                                                                    })
                                                                     .addSelectionListener((source, selection) -> {
-                                                                        item.addCss(BooleanCssClass.of(dui_bg_accent_l_4, selection.contains(item)));
+                                                                        item.addCss(dui_bg_accent_l_4);
+                                                                    })
+                                                                    .addClickListener(evt -> {
+                                                                        Notification.create("Clicked").show();
                                                                     });
                                                         })
                                         )
                         )
                         .appendChild(Column.span6()
-                                .appendChild(h(4).textContent("Multi select"))
+                                .appendChild(BlockHeader.create("Multi select").setDescription("Use CTRL and SHIFT keys to control the selection."))
                                 .appendChild(multiSelectList = ListGroup.<Contact>create()
                                         .setMultiSelect(true)
                                         .setItemRenderer((listGroup, item) -> {
                                             item
-                                                    .setSelectable(true)
+                                                    .setSelectable(item.getValue().isActive())
                                                     .appendChild(div().addCss(dui_flex, dui_items_center, dui_h_16, BooleanCssClass.of(dui_opacity_50, !item.getValue().isActive()))
                                                             .appendChild(span().addCss(dui_h_full, dui_w_1, dui_self_stretch, ContactUiUtils.getColor(item.getValue()).getBackground()))
                                                             .appendChild(img(ContactUiUtils.getAvatarUrl(item.getValue()))
@@ -102,8 +109,11 @@ public class ListsViewImpl extends BaseDemoView<HTMLDivElement> implements Lists
                                                             .appendChild(ContactUiUtils.getGenderElement(item.getValue()))
                                                     )
                                                     .setDisabled(!item.getValue().isActive())
+                                                    .addDeselectionListener((source, selection) -> {
+                                                        item.removeCss(dui_bg_accent_l_4);
+                                                    })
                                                     .addSelectionListener((source, selection) -> {
-                                                        item.addCss(BooleanCssClass.of(dui_bg_accent_l_4, selection.contains(item)));
+                                                        item.addCss(dui_bg_accent_l_4);
                                                     });
                                         })
                                 )

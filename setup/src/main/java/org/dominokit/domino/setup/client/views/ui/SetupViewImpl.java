@@ -27,15 +27,16 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
                 .appendEscaped("<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC17</version>\n" +
+                "  <version>${domino.ui.version}</version>\n" +
                 "</dependency>\n" +
                 "<dependency>\n" +
                 "  <groupId>org.dominokit</groupId>\n" +
                 "  <artifactId>domino-ui</artifactId>\n" +
-                "  <version>1.0.0-RC17</version>\n" +
+                "  <version>${domino.ui.version}</version>\n" +
                 "  <classifier>sources</classifier>\n" +
                 "</dependency>").toSafeHtml().asString())
                 .setTitle("Maven release dependencies")
+                .setDescription("Replace ${domino.ui.version} with the actual version.")
                 .apply(self -> self.getCard().expand())
                 .element());
 
@@ -87,8 +88,7 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/themes/all-themes.css\">").toSafeHtml().asString())
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">").toSafeHtml().asString())
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
                 .apply(self -> self.getCard().expand())

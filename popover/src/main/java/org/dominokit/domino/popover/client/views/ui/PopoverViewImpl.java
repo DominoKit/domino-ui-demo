@@ -27,6 +27,24 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
 
     private DivElement element;
 
+    private Button popOverButton(String text, DropDirection direction) {
+        return Button.create(text)
+                .addCss(dui_bg_accent)
+                .apply(button -> {
+                    Popover.create(button)
+                            .addCss(dui_bg_accent, dui_rounded_sm)
+                            .setPosition(direction)
+                            .appendChild(Card.create(text)
+                                    .setIcon(Icons.message_settings_outline())
+                                    .addCss(dui_bg_accent, dui_fg, dui_elevation_0, dui_m_2px, dui_rounded_sm)
+                                    .appendChild(PostfixAddOn.of(Icons.dots_vertical().clickable()))
+                                    .appendChild(h(4).addCss(dui_m_t_0).appendChild("Headline here"))
+                                    .appendChild(p("Vivamus sagittis lacus vel augue laoreet rutrum faucibus."))
+                            );
+                });
+    }
+
+
     @Override
     protected HTMLDivElement init() {
         element = div();
@@ -39,6 +57,9 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
 
         popover();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.popover()));
+
+        dropDirection();
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dropDirection()));
 
         return element.element();
     }
@@ -60,9 +81,12 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
                                 )
                         )
                         .appendChild(Column.span3()
-                                .appendChild(Button.create("TOOLTIP ON BOTTOM")
+                                .appendChild(Button.create("TOOLTIP ON BOTTOM 1s delay")
                                         .addCss(dui_bg_accent)
-                                        .setTooltip("Tooltip on bottom", DropDirection.BOTTOM_MIDDLE)
+                                        .setTooltip("Tooltip on bottom with 1s delay", DropDirection.BOTTOM_MIDDLE)
+                                        .withToolTip((parent, self) -> self.ifPresent(tooltip -> {
+                                            tooltip.setOpenDelay(1000);
+                                        }))
                                 )
                         )
                         .appendChild(Column.span3()
@@ -147,6 +171,126 @@ public class PopoverViewImpl extends BaseDemoView<HTMLDivElement> implements Pop
                                         })
                                 )
                         )
+                )
+        );
+    }
+
+    @SampleMethod
+    private void dropDirection() {
+        element.appendChild(Card.create("DROP DIRECTION", "Drop direction will try to best fit with a preferred position")
+                .appendChild(Row.create()
+                        .span3(popOverButton("BEST FIT SIDE", DropDirection.BEST_FIT_SIDE))
+                        .span3(popOverButton("BEST FIT SIDE", DropDirection.BEST_FIT_SIDE))
+                        .span3(popOverButton("BEST FIT SIDE", DropDirection.BEST_FIT_SIDE))
+                        .span3(popOverButton("BEST FIT SIDE", DropDirection.BEST_FIT_SIDE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BEST MIDDLE DOWN/UP", DropDirection.BEST_MIDDLE_DOWN_UP))
+                        .span3(popOverButton("BEST MIDDLE DOWN/UP", DropDirection.BEST_MIDDLE_DOWN_UP))
+                        .span3(popOverButton("BEST MIDDLE DOWN/UP", DropDirection.BEST_MIDDLE_DOWN_UP))
+                        .span3(popOverButton("BEST MIDDLE DOWN/UP", DropDirection.BEST_MIDDLE_DOWN_UP))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BEST MIDDLE UP/DOWN", DropDirection.BEST_MIDDLE_UP_DOWN))
+                        .span3(popOverButton("BEST MIDDLE UP/DOWN", DropDirection.BEST_MIDDLE_UP_DOWN))
+                        .span3(popOverButton("BEST MIDDLE UP/DOWN", DropDirection.BEST_MIDDLE_UP_DOWN))
+                        .span3(popOverButton("BEST MIDDLE UP/DOWN", DropDirection.BEST_MIDDLE_UP_DOWN))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BEST MIDDLE SIDE", DropDirection.BEST_MIDDLE_SIDE))
+                        .span3(popOverButton("BEST MIDDLE SIDE", DropDirection.BEST_MIDDLE_SIDE))
+                        .span3(popOverButton("BEST MIDDLE SIDE", DropDirection.BEST_MIDDLE_SIDE))
+                        .span3(popOverButton("BEST MIDDLE SIDE", DropDirection.BEST_MIDDLE_SIDE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BEST SIDE UP/DOWN", DropDirection.BEST_SIDE_UP_DOWN))
+                        .span3(popOverButton("BEST SIDE UP/DOWN", DropDirection.BEST_SIDE_UP_DOWN))
+                        .span3(popOverButton("BEST SIDE UP/DOWN", DropDirection.BEST_SIDE_UP_DOWN))
+                        .span3(popOverButton("BEST SIDE UP/DOWN", DropDirection.BEST_SIDE_UP_DOWN))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BOTTOM LEFT", DropDirection.BOTTOM_LEFT))
+                        .span3(popOverButton("BOTTOM LEFT", DropDirection.BOTTOM_LEFT))
+                        .span3(popOverButton("BOTTOM LEFT", DropDirection.BOTTOM_LEFT))
+                        .span3(popOverButton("BOTTOM LEFT", DropDirection.BOTTOM_LEFT))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BOTTOM MIDDLE", DropDirection.BOTTOM_MIDDLE))
+                        .span3(popOverButton("BOTTOM MIDDLE", DropDirection.BOTTOM_MIDDLE))
+                        .span3(popOverButton("BOTTOM MIDDLE", DropDirection.BOTTOM_MIDDLE))
+                        .span3(popOverButton("BOTTOM MIDDLE", DropDirection.BOTTOM_MIDDLE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("BOTTOM RIGHT", DropDirection.BOTTOM_RIGHT))
+                        .span3(popOverButton("BOTTOM RIGHT", DropDirection.BOTTOM_RIGHT))
+                        .span3(popOverButton("BOTTOM RIGHT", DropDirection.BOTTOM_RIGHT))
+                        .span3(popOverButton("BOTTOM RIGHT", DropDirection.BOTTOM_RIGHT))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("LEFT DOWN", DropDirection.LEFT_DOWN))
+                        .span3(popOverButton("LEFT DOWN", DropDirection.LEFT_DOWN))
+                        .span3(popOverButton("LEFT DOWN", DropDirection.LEFT_DOWN))
+                        .span3(popOverButton("LEFT DOWN", DropDirection.LEFT_DOWN))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("LEFT MIDDLE", DropDirection.LEFT_MIDDLE))
+                        .span3(popOverButton("LEFT MIDDLE", DropDirection.LEFT_MIDDLE))
+                        .span3(popOverButton("LEFT MIDDLE", DropDirection.LEFT_MIDDLE))
+                        .span3(popOverButton("LEFT MIDDLE", DropDirection.LEFT_MIDDLE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("LEFT UP", DropDirection.LEFT_UP))
+                        .span3(popOverButton("LEFT UP", DropDirection.LEFT_UP))
+                        .span3(popOverButton("LEFT UP", DropDirection.LEFT_UP))
+                        .span3(popOverButton("LEFT UP", DropDirection.LEFT_UP))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("MIDDLE SCREEN", DropDirection.MIDDLE_SCREEN))
+                        .span3(popOverButton("MIDDLE SCREEN", DropDirection.MIDDLE_SCREEN))
+                        .span3(popOverButton("MIDDLE SCREEN", DropDirection.MIDDLE_SCREEN))
+                        .span3(popOverButton("MIDDLE SCREEN", DropDirection.MIDDLE_SCREEN))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("MOUSE BEST FIT", DropDirection.BEST_MOUSE_FIT))
+                        .span3(popOverButton("MOUSE BEST FIT", DropDirection.BEST_MOUSE_FIT))
+                        .span3(popOverButton("MOUSE BEST FIT", DropDirection.BEST_MOUSE_FIT))
+                        .span3(popOverButton("MOUSE BEST FIT", DropDirection.BEST_MOUSE_FIT))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("RIGHT DOWN", DropDirection.RIGHT_DOWN))
+                        .span3(popOverButton("RIGHT DOWN", DropDirection.RIGHT_DOWN))
+                        .span3(popOverButton("RIGHT DOWN", DropDirection.RIGHT_DOWN))
+                        .span3(popOverButton("RIGHT DOWN", DropDirection.RIGHT_DOWN))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("RIGHT MIDDLE", DropDirection.RIGHT_MIDDLE))
+                        .span3(popOverButton("RIGHT MIDDLE", DropDirection.RIGHT_MIDDLE))
+                        .span3(popOverButton("RIGHT MIDDLE", DropDirection.RIGHT_MIDDLE))
+                        .span3(popOverButton("RIGHT MIDDLE", DropDirection.RIGHT_MIDDLE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("RIGHT UP", DropDirection.RIGHT_UP))
+                        .span3(popOverButton("RIGHT UP", DropDirection.RIGHT_UP))
+                        .span3(popOverButton("RIGHT UP", DropDirection.RIGHT_UP))
+                        .span3(popOverButton("RIGHT UP", DropDirection.RIGHT_UP))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("TOP LEFT", DropDirection.TOP_LEFT))
+                        .span3(popOverButton("TOP LEFT", DropDirection.TOP_LEFT))
+                        .span3(popOverButton("TOP LEFT", DropDirection.TOP_LEFT))
+                        .span3(popOverButton("TOP LEFT", DropDirection.TOP_LEFT))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("TOP MIDDLE", DropDirection.TOP_MIDDLE))
+                        .span3(popOverButton("TOP MIDDLE", DropDirection.TOP_MIDDLE))
+                        .span3(popOverButton("TOP MIDDLE", DropDirection.TOP_MIDDLE))
+                        .span3(popOverButton("TOP MIDDLE", DropDirection.TOP_MIDDLE))
+                )
+                .appendChild(Row.create()
+                        .span3(popOverButton("TOP RIGHT", DropDirection.TOP_RIGHT))
+                        .span3(popOverButton("TOP RIGHT", DropDirection.TOP_RIGHT))
+                        .span3(popOverButton("TOP RIGHT", DropDirection.TOP_RIGHT))
+                        .span3(popOverButton("TOP RIGHT", DropDirection.TOP_RIGHT))
                 )
         );
     }

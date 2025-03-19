@@ -21,6 +21,7 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.chips.Chip;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.SpanElement;
+import org.dominokit.domino.ui.forms.CheckBox;
 import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.forms.suggest.LocalSuggestionsStore;
 import org.dominokit.domino.ui.forms.suggest.MultiSuggestBox;
@@ -34,6 +35,7 @@ import org.dominokit.domino.ui.forms.validations.ValidationResult;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.upload.DefaultFileUploadDecoration;
 import org.dominokit.domino.ui.upload.FileUpload;
@@ -46,6 +48,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Consumer;
 
+import static org.dominokit.domino.ui.forms.FormsStyles.dui_from_field_inlined_label;
 import static org.dominokit.domino.ui.utils.Domino.*;
 
 
@@ -127,7 +130,16 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
 
     @SampleMethod
     private void initTagsInputExample() {
-        Card card = Card.create("TAGS INPUT");
+        Card card = Card.create("TAGS INPUT")
+                .withPostfixElement((c, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        c.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                });
         element
                 .appendChild(card
                         .appendChild(BlockHeader.create("FREE TEXT TAGS", "Free text tags accept any text value"))
@@ -281,7 +293,16 @@ public class AdvancedFormsViewImpl extends BaseDemoView<HTMLDivElement> implemen
                     );
                 });
 
-        Card card = Card.create("SUGGEST BOX");
+        Card card = Card.create("SUGGEST BOX")
+                .withPostfixElement((c, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        c.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                });
         element
                 .appendChild(card
                         .appendChild(BlockHeader.create("Local suggestions"))

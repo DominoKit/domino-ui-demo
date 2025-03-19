@@ -33,7 +33,12 @@ public class LoadContactsStartupTask extends AsyncClientStartupTask<List<Contact
                 public void onSuccess(TextResource resource) {
                     ContactList contactList = ContactList.MAPPER.read(resource.getText());
 
-                    List<Contact> contacts = contactList.getContacts();
+                    List<Contact> contacts = new ArrayList<>();
+                    for(int i =0; i < 100; i++){
+                        contacts.addAll(contactList.getContacts());
+                    }
+
+                    DomGlobal.console.info("Loaded " + contacts.size() + " contacts");
                     ContactsProvider.setContacts(contacts);
                     complete(contacts);
                 }

@@ -14,6 +14,7 @@ import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.suggest.CheckOption;
 import org.dominokit.domino.ui.forms.suggest.MultiSelect;
 import org.dominokit.domino.ui.forms.suggest.Select;
 import org.dominokit.domino.ui.forms.suggest.SelectOption;
@@ -27,12 +28,14 @@ import org.dominokit.domino.ui.menu.CustomMenuItem;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.popover.Popover;
+import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
 
 import java.util.Arrays;
 
+import static org.dominokit.domino.ui.forms.FormsStyles.dui_from_field_inlined_label;
 import static org.dominokit.domino.ui.grid.Column.Span._2;
 import static org.dominokit.domino.ui.grid.Column.Span._6;
 import static org.dominokit.domino.ui.utils.Domino.*;
@@ -70,6 +73,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     private void initBasicExamples() {
         element
                 .appendChild(Card.create("INPUT", "Different sizes and widths.")
+                        .withPostfixElement((card, postfix) -> {
+                            postfix
+                                    .appendChild(CheckBox.create("Inlined labels")
+                                            .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                            .addChangeListener((oldValue, newValue) -> {
+                                                card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                            })
+                                    );
+                        })
                         .setCollapsible(true)
                         .appendChild(BlockHeader.create("Basic Example"))
                         .appendChild(Row.create()
@@ -123,6 +135,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initBasicTextAreaExample() {
         element.appendChild(Card.create("TEXTAREA")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .setCollapsible(true)
                 .appendChild(BlockHeader.create("Basic Examples"))
                 .appendChild(TextAreaBox.create().setPlaceholder("Start typing here..."))
@@ -136,6 +157,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initSelectExample() {
         element.appendChild(Card.create("SELECT")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .setCollapsible(true)
                 .appendChild(Row.create()
                         .appendChild(Column.span6()
@@ -148,7 +178,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("value50", "value50", "50"))
                                         .setSearchable(false)
                                         .selectAt(0)
-                                        .addChangeListener((oldValue, newValue) -> Notification.create("Item selected : Old value[ " + oldValue + " ], New value [" + newValue + "]").show())))
+                                        .addChangeListener((oldValue, newValue) -> Notification.create("Item selected : Old value[ " + oldValue + " ], New value [" + newValue + "]").show()))
+                        )
                         .appendChild(Column.span6()
                                 .appendChild(Select.<String>create()
                                         .appendChild(SelectOption.create("Disabled", "Disabled", "Disabled"))
@@ -220,16 +251,16 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("nothing", "nothing", "-- please select --")
                                                 .setSearchable(false)
                                         )
-                .appendChild(SelectOption.create("USA", "USA", "America (USA)"))
-                .appendChild(SelectOption.create("ARG", "ARG", "Argentina"))
-                .appendChild(SelectOption.create("BRA", "BRA", "Brazil"))
-                .appendChild(SelectOption.create("DEN", "DEN", "Denmark"))
-                .appendChild(SelectOption.create("CRO", "CRO", "Croatia"))
-                .appendChild(SelectOption.create("IND", "IND", "India"))
-                .appendChild(SelectOption.create("SPA", "SPA", "Spain"))
-                .appendChild(SelectOption.create("FRA", "FRA", "France"))
-                .appendChild(SelectOption.create("JOR", "JOR", "Jordan"))
-                .selectAt(0)
+                                        .appendChild(SelectOption.create("USA", "USA", "America (USA)"))
+                                        .appendChild(SelectOption.create("ARG", "ARG", "Argentina"))
+                                        .appendChild(SelectOption.create("BRA", "BRA", "Brazil"))
+                                        .appendChild(SelectOption.create("DEN", "DEN", "Denmark"))
+                                        .appendChild(SelectOption.create("CRO", "CRO", "Croatia"))
+                                        .appendChild(SelectOption.create("IND", "IND", "India"))
+                                        .appendChild(SelectOption.create("SPA", "SPA", "Spain"))
+                                        .appendChild(SelectOption.create("FRA", "FRA", "France"))
+                                        .appendChild(SelectOption.create("JOR", "JOR", "Jordan"))
+                                        .selectAt(0)
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Item selected [ " + newValue + " ]").show();
                                         })
@@ -299,18 +330,24 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(Column.span6()
                                 .appendChild(BlockHeader.create("Multi select"))
                                 .appendChild(MultiSelect.<String>create("Country")
-                                        .appendChild(SelectOption.create("USA", "USA", "America (USA)"))
-                                        .appendChild(SelectOption.create("ARG", "ARG", "Argentina"))
-                                        .appendChild(SelectOption.create("BRA", "BRA", "Brazil"))
-                                        .appendChild(SelectOption.create("DEN", "DEN", "Denmark"))
-                                        .appendChild(SelectOption.create("CRO", "CRO", "Croatia"))
-                                        .appendChild(SelectOption.create("IND", "IND", "India"))
-                                        .appendChild(SelectOption.create("SPA", "SPA", "Spain"))
-                                        .appendChild(SelectOption.create("FRA", "FRA", "France"))
-                                        .appendChild(SelectOption.create("JOR", "JOR", "Jordan"))
+                                        .appendChild(CheckOption.create("USA", "USA", "America (USA)"))
+                                        .appendChild(CheckOption.create("ARG", "ARG", "Argentina"))
+                                        .appendChild(CheckOption.create("BRA", "BRA", "Brazil"))
+                                        .appendChild(CheckOption.create("DEN", "DEN", "Denmark"))
+                                        .appendChild(CheckOption.create("CRO", "CRO", "Croatia"))
+                                        .appendChild(CheckOption.create("IND", "IND", "India"))
+                                        .appendChild(CheckOption.create("SPA", "SPA", "Spain"))
+                                        .appendChild(CheckOption.create("FRA", "FRA", "France"))
+                                        .appendChild(CheckOption.create("JOR", "JOR", "Jordan"))
                                         .selectAt(0)
+                                        .setAutoCloseOnSelect(false)
+                                        .setShowSelectionCount(true)
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Item selected [ " + newValue + " ]").show();
+                                        })
+                                        .apply(self -> {
+                                            self.getOptionsMenu()
+                                                    .setCloseOnBlur(true);
                                         })
                                 )
                         )
@@ -331,7 +368,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Icons selected : ")
                                                     .apply(self -> newValue.forEach(self::appendChild))
-                                    .show();
+                                                    .show();
                                         })
                                 )
                         )
@@ -342,6 +379,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initCheckboxExample() {
         element.appendChild(Card.create("CHECKBOX")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .setCollapsible(true)
                 .appendChild(h(5).textContent("Basic Examples"))
                 .appendChild(Row.create()
@@ -417,6 +463,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initRadioExample() {
         element.appendChild(Card.create("RADIO")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .setCollapsible(true)
                 .appendChild(h(5).textContent("Basic Examples"))
                 .appendChild(Row.create()
@@ -502,6 +557,15 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
     @SampleMethod
     private void initSwitchExample() {
         element.appendChild(Card.create("SWITCH BUTTONS")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .setCollapsible(true)
                 .appendChild(h(5).textContent("Basic Examples").style("margin-bottom: 25px;"))
                 .appendChild(Row.create()

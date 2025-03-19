@@ -14,6 +14,10 @@ public class ContactsProvider {
 
     static List<Contact> contacts;
 
+    public List<Contact> getContacts() {
+        return contacts;
+    }
+
     public static void setContacts(List<Contact> contacts) {
         ContactsProvider.contacts = contacts;
     }
@@ -24,7 +28,7 @@ public class ContactsProvider {
         int randomIndex;
         Random random = new Random(new Date().getTime());
         for (int rootIndex = 0; rootIndex < count; rootIndex++) {
-            randomIndex = random.nextInt(contacts.size() - 1);
+            randomIndex = random.nextInt(Math.max(1, contacts.size() - 1));
             Contact root = new Contact(contacts.get(randomIndex));
             root.setDepth(0);
             root.setIndex(rootIndex);

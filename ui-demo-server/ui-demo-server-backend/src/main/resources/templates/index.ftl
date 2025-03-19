@@ -6,6 +6,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <link href="${appRootPath}/css/domino-ui/domino-ui.css" rel="stylesheet" type="text/css">
+    <link href="${appRootPath}/css/domino-ui/domino-ui-pro.css" rel="stylesheet" type="text/css">
     <link href="${appRootPath}/dev.css" rel="stylesheet" type="text/css">
     <link href="${appRootPath}/ui-demo.css" rel="stylesheet" type="text/css">
     <link href="${appRootPath}/prettify/prettify.css" rel="stylesheet" type="text/css">

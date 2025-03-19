@@ -313,7 +313,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                         .span12(div()
                                                                 .addCss(dui_text_center, dui_m_t_5)
                                                                 .appendChild(LinkButton.create("GO").addCss(dui_min_w_32)
-                                                                        .addClickListener(evt -> window.open("https://github.com/DominoKit/domino-ui/wiki/Getting-started", "_blank"))
+                                                                        .addClickListener(evt -> window.open("https://dominokit.com/solutions/domino-ui/v2/docs/getting-started", "_blank"))
                                                                 ))
                                                 ))
                                 )
@@ -336,7 +336,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                         .span12(div()
                                                                 .addCss(dui_text_center, dui_m_t_5)
                                                                 .appendChild(LinkButton.create("GO").addCss(dui_min_w_32)
-                                                                        .addClickListener(evt -> Notification.create("Coming soon ...").addCss(dui_info).show())
+                                                                        .addClickListener(evt -> window.open("https://dominokit.com/solutions/domino-ui/v2/docs/getting-started", "_blank"))
                                                                 ))
                                                 ))
                                 )
@@ -359,14 +359,7 @@ public class HomeViewImpl extends BaseDemoView<HTMLDivElement> implements HomeVi
                                                         .span12(div()
                                                                 .addCss(dui_text_center, dui_m_t_5)
                                                                 .appendChild(LinkButton.create("GO").addCss(dui_min_w_32)
-                                                                        .addClickListener(evt -> {
-                                                                            AppHistory history = Js.uncheckedCast(ClientApp.make().getHistory());
-                                                                            HistoryToken samples = history
-                                                                                    .currentToken()
-                                                                                    .replaceLastPath("samples");
-                                                                            history.pushState(StateToken.of(samples.value()));
-                                                                            history.fireCurrentStateHistory();
-                                                                        })
+                                                                        .addClickListener(evt -> window.open("https://dominokit.com/solutions/domino-ui/v2/docs/getting-started/demo", "_blank"))
                                                                 ))
                                                 ))
                                 )

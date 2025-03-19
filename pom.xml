@@ -28,12 +28,14 @@
         <module>collapse</module>
         <module>dialogs</module>
         <module>dnd</module>
+        <module>emptystate</module>
         <module>infobox</module>
         <module>labels</module>
         <module>lists</module>
         <module>loaders</module>
         <module>media</module>
         <module>menu</module>
+        <module>navbar</module>
         <module>modals</module>
         <module>notifications</module>
         <module>pagination</module>
@@ -78,13 +80,13 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
         <vertx.version>3.9.16</vertx.version>
-        <elemento.version>1.0.3</elemento.version>
-        <elemental2.version>1.2.1</elemental2.version>
+        <elemental2.version>1.2.3</elemental2.version>
         <domino.jackson.version>1.0.0</domino.jackson.version>
         <domino.history.version>1.0.0</domino.history.version>
         <domino.ui.version>HEAD-SNAPSHOT</domino.ui.version>
+        <domino.ui.pro.version>HEAD-SNAPSHOT</domino.ui.pro.version>
         <domino.mvp.version>HEAD-SNAPSHOT</domino.mvp.version>
-        <gwt.version>2.11.0</gwt.version>
+        <gwt.version>2.12.2</gwt.version>
     </properties>
 
     <repositories>
@@ -96,6 +98,11 @@
                 <updatePolicy>always</updatePolicy>
                 <checksumPolicy>fail</checksumPolicy>
             </snapshots>
+        </repository>
+        <repository>
+            <id>gwt-staging</id>
+            <name>gwt-staging</name>
+            <url>https://oss.sonatype.org/content/repositories/orggwtproject-1070/</url>
         </repository>
     </repositories>
     <dependencyManagement>
@@ -125,11 +132,6 @@
                 <version>${gwt.version}</version>
             </dependency>
             <dependency>
-                <groupId>org.jboss.elemento</groupId>
-                <artifactId>elemento-core</artifactId>
-                <version>${elemento.version}</version>
-            </dependency>
-            <dependency>
                 <groupId>org.dominokit</groupId>
                 <artifactId>domino-ui</artifactId>
                 <version>${domino.ui.version}</version>
@@ -138,6 +140,17 @@
                 <groupId>org.dominokit</groupId>
                 <artifactId>domino-ui</artifactId>
                 <version>${domino.ui.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>org.dominokit</groupId>
+                <artifactId>domino-ui-pro</artifactId>
+                <version>${domino.ui.pro.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.dominokit</groupId>
+                <artifactId>domino-ui-pro</artifactId>
+                <version>${domino.ui.pro.version}</version>
                 <classifier>sources</classifier>
             </dependency>
             <dependency>
@@ -176,6 +189,28 @@
             <dependency>
                 <groupId>com.google.elemental2</groupId>
                 <artifactId>elemental2-core</artifactId>
+                <version>${elemental2.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-dom</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-dom</artifactId>
+                <version>${elemental2.version}</version>
+                <classifier>sources</classifier>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-promise</artifactId>
+                <version>${elemental2.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.elemental2</groupId>
+                <artifactId>elemental2-promise</artifactId>
                 <version>${elemental2.version}</version>
                 <classifier>sources</classifier>
             </dependency>
@@ -259,8 +294,8 @@
                         <sourceLevel>11</sourceLevel>
                         <failOnError>true</failOnError>
                         <jvmArgs>
-                            <jvmArg>-Xms2048m</jvmArg>
-                            <jvmArg>-Xmx4096m</jvmArg>
+                            <jvmArg>-Xms4096m</jvmArg>
+                            <jvmArg>-Xmx8192m</jvmArg>
                         </jvmArgs>
                     </configuration>
                 </plugin>
@@ -324,11 +359,11 @@
                         <version>1.0.1</version>
                         <extensions>true</extensions>
                         <configuration>
-                            <sourceLevel>1.8</sourceLevel>
+                            <sourceLevel>11</sourceLevel>
                             <failOnError>true</failOnError>
-<!--                            <jvmArgs>-->
-<!--                                <jvmArg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8005</jvmArg>-->
-<!--                            </jvmArgs>-->
+                            <!--                            <jvmArgs>-->
+                            <!--                                <jvmArg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8005</jvmArg>-->
+                            <!--                            </jvmArgs>-->
                             <compilerArgs>
                                 <!--                                                                <compilerArg>-style</compilerArg>-->
                                 <!--                                                                <compilerArg>PRETTY</compilerArg>-->
@@ -357,6 +392,9 @@
                                 <codeserverArg>-src</codeserverArg>
                                 <codeserverArg>
                                     /mnt/drive2/Development/Dominokit/domino-ui/domino-ui-shared/src/main/java
+                                </codeserverArg>
+                                <codeserverArg>-src</codeserverArg>
+                                <codeserverArg>/mnt/drive2/Development/Dominokit/domino-ui-pro/src/main/java
                                 </codeserverArg>
                             </codeserverArgs>
                         </configuration>
@@ -407,5 +445,26 @@
                 </plugins>
             </build>
         </profile>
+        <profile>
+            <id>pro</id>
+            <activation>
+                <property>
+                    <name>pro</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <modules>
+                <module>color-picker</module>
+                <module>rangeslider</module>
+                <module>counters</module>
+                <module>boards</module>
+                <module>inputmask</module>
+                <module>menu-bar</module>
+                <module>checktree</module>
+                <module>datatable-pro</module>
+            </modules>
+        </profile>
     </profiles>
+
+
 </project>

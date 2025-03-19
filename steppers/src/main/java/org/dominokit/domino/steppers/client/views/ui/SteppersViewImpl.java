@@ -69,7 +69,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                         .setCollapsible(true)
                         .appendChild(BlockHeader.create("SIMPLE").addCss(dui_m_y_8))
                         .appendChild(simpleTrack = StepperTrack.create()
-                                .addCss(dui_m_y_4)
+                                .addCss(dui_m_y_4, ()->"dui-responsive")
                                 .appendChild(StepTracker.create("Step 1")
                                         .addStateListener(trackerListener)
                                 )
@@ -627,7 +627,7 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
         element.appendChild(Card.create("HORIZONTAL STEPPER")
                 .setCollapsible(true)
                 .appendChild(Stepper.create()
-                        .addCss(dui_reversed)
+                        .addCss(dui_reversed, dui_responsive)
                         .appendChild(Step.create("Name and Nickname")
                                 .withTracker((parent, tracker) -> tracker.appendChild(p("1. Personal info").addCss(dui_m_0, dui_p_l_2)))
                                 .withHeader((parent, header) -> {

@@ -17,6 +17,7 @@ import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.sliders.Slider;
+import org.dominokit.domino.ui.sliders.ThumbStyle;
 import org.dominokit.domino.ui.typography.BlockHeader;
 
 import static org.dominokit.domino.ui.utils.Domino.*;
@@ -59,12 +60,28 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
         basicCard
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
-                                .appendChild(BlockHeader.create("SIMPLE SLIDERS")))
+                                .appendChild(Slider.create(200)
+                                        .setShowThumb(true)
+                                        .setAutoHideThumb(false)
+                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                )
+                        )
                 )
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(Slider.create(200)
                                         .setShowThumb(true)
+                                        .setAutoHideThumb(false)
+                                        .setValue(50)
+                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                )
+                        )
+                )
+                .appendChild(Row.create()
+                        .appendChild(Column.span12()
+                                .appendChild(Slider.create(10000000)
+                                        .setShowThumb(true)
+                                        .setThumbStyle(ThumbStyle.FLAT)
                                         .addChangeListener((oldValue, newValue) -> showNotification(newValue))
                                 )
                         )

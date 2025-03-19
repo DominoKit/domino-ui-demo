@@ -58,7 +58,15 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
         element.appendChild(Card.create("BASIC EXAMPLES")
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
-                                .setValue(90)))
+                                .setValue(90)
+                                .setAttribute("dui-value", "90")
+                                .apply(self -> {
+                                    self.onAttributeChange("dui-value", (e,mutationRecord) -> {
+                                        self.setValue(Double.parseDouble(self.getAttribute("dui-value")));
+                                    });
+                                })
+                        )
+                )
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
@@ -67,7 +75,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                         .appendChild(ProgressBar.create(100)
                                 .showText()
                                 .textExpression("{value} out of {maxValue} completed")
-                                .setValue(75)))
+                                .setValue(5)))
                 .appendChild(Progress.create()
                         .appendChild(ProgressBar.create(100)
                                 .showText()
@@ -206,7 +214,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
 
     private void restartProgress() {
         movingBar.setValue(0);
-        movingBar.textExpression("{percent}%");
+        movingBar.textExpression("Operation in progress {percent}% completed so far");
         new Timer() {
             @Override
             public void run() {

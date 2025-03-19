@@ -2,6 +2,8 @@ package org.dominokit.domino.modals.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
+
+import static org.dominokit.domino.ui.dialogs.DialogStyles.*;
 import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -11,6 +13,7 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.modals.client.presenters.ModalsProxy;
 import org.dominokit.domino.modals.client.views.ModalsView;
+import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
@@ -68,6 +71,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
         // ------------ Default size -------------
 
         Dialog defaultSizeDialog = Dialog.create()
+                .setAutoClose(true)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("DEFAULT SIZE")
                                 .addCss(dui_h_8, dui_p_0)
@@ -76,13 +80,14 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                                 .setDropMenu(Menu.<String>create()
                                                         .appendChild(MenuItem.create("ACTION 1"))
                                                         .appendChild(MenuItem.create("ACTION 2"))
-                                                        .appendChild(MenuItem.create("ACTION 3"))
+                                                        .appendChild(MenuItem.<String>create("ACTION 3").setTooltip("ACTION"))
                                                 )
                                         )
                                 )
                                 .appendChild(PostfixAddOn.of(Badge.create("15+").addCss(dui_accent, dui_rounded_full)))
                                 .appendChild(PostfixAddOn.of(Icons.close()
                                                 .addCss(dui_fg_red)
+                                                .setTooltip("Close")
                                                 .clickable()
                                                 .addClickListener(evt -> dialog.close())
                                         )
@@ -121,6 +126,7 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                                 .appendChild(PostfixAddOn.of(Icons.close()
                                                 .addCss(dui_fg_red)
                                                 .clickable()
+                                                .setTooltip("Close")
                                                 .addClickListener(evt -> dialog.close())
                                         )
                                 )
@@ -133,7 +139,10 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                             .appendChild(FooterContent.of(Button.create("CLOSE")
                                     .addClickListener(evt -> dialog.close()))
                             )
-                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")));
+                            .appendChild(FooterContent.of(Button.create(Icons.cursor_default_click(), "CLICK ME")
+                                            .addClickListener(evt -> defaultSizeDialog.open())
+                            )
+                            );
                 });
 
         Dialog smallSizeDialog = Dialog.create()
@@ -190,6 +199,8 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
 
         Dialog leftSheetDialog = Dialog.create()
                 .addCss(DialogStyles.dui_left_sheet)
+                .setOpenTransition(Transition.SLIDE_IN_LEFT)
+                .setCloseTransition(Transition.SLIDE_OUT_LEFT)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("SHEET DIALOG")
                                 .addCss(dui_h_8, dui_p_0)
@@ -232,7 +243,9 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                 });
 
         Dialog rightSheetDialog = Dialog.create()
-                .setType(DialogType.RIGHT_SHEET)
+                .addCss(dui_right_sheet)
+                .setOpenTransition(Transition.SLIDE_IN_RIGHT)
+                .setCloseTransition(Transition.SLIDE_OUT_RIGHT)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("SHEET DIALOG")
                                 .addCss(dui_h_8, dui_p_0)
@@ -275,7 +288,9 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                 });
 
         Dialog topSheetDialog = Dialog.create()
-                .setType(DialogType.TOP_SHEET)
+                .addCss(dui_top_sheet)
+                .setOpenTransition(Transition.SLIDE_IN_DOWN)
+                .setCloseTransition(Transition.SLIDE_OUT_DOWN)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("SHEET DIALOG")
                                 .addCss(dui_h_8, dui_p_0)
@@ -318,7 +333,9 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                 });
 
         Dialog bottomSheetDialog = Dialog.create()
-                .setType(DialogType.BOTTOM_SHEET)
+                .addCss(dui_bottom_sheet)
+                .setOpenTransition(Transition.SLIDE_IN_UP)
+                .setCloseTransition(Transition.SLIDE_OUT_DOWN)
                 .withHeader((dialog, header) ->
                         header.appendChild(NavBar.create("SHEET DIALOG")
                                 .addCss(dui_h_8, dui_p_0)

@@ -331,6 +331,17 @@
         </dependency>
         <dependency>
             <groupId>org.dominokit</groupId>
+            <artifactId>emptystate</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>emptystate</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
             <artifactId>infobox</artifactId>
             <version>${project.version}</version>
         </dependency>
@@ -392,6 +403,17 @@
         <dependency>
             <groupId>org.dominokit</groupId>
             <artifactId>menu</artifactId>
+            <version>${project.version}</version>
+            <classifier>sources</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>navbar</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.dominokit</groupId>
+            <artifactId>navbar</artifactId>
             <version>${project.version}</version>
             <classifier>sources</classifier>
         </dependency>
@@ -681,40 +703,6 @@
             <artifactId>datatable</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>formsamples</artifactId>-->
-        <!--            <version>${project.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>formsamples</artifactId>-->
-        <!--            <version>${project.version}</version>-->
-        <!--            <classifier>sources</classifier>-->
-        <!--        </dependency>-->
-
-
-
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>domino-ui</artifactId>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>domino-ui</artifactId>-->
-        <!--            <classifier>sources</classifier>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>login</artifactId>-->
-        <!--            <version>${project.version}</version>-->
-        <!--        </dependency>-->
-        <!--        <dependency>-->
-        <!--            <groupId>org.dominokit</groupId>-->
-        <!--            <artifactId>login</artifactId>-->
-        <!--            <version>${project.version}</version>-->
-        <!--            <classifier>sources</classifier>-->
-        <!--        </dependency>-->
     </dependencies>
     <build>
         <plugins>
@@ -761,4 +749,109 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>pro</id>
+            <activation>
+                <property>
+                    <name>pro</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <dependencies>
+
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>boards</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>boards</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>datatable-pro</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>datatable-pro</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>rangeslider</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>rangeslider</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>counters</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>counters</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>inputmask</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>inputmask</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>color-picker</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>color-picker</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>menu-bar</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>menu-bar</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>checktree</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>checktree</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+            </dependencies>
+        </profile>
+    </profiles>
 </project>

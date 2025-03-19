@@ -1,6 +1,8 @@
 package org.dominokit.domino.formsvalidations.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+
+import static org.dominokit.domino.ui.forms.FormsStyles.dui_from_field_inlined_label;
 import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -22,6 +24,7 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.BooleanCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
@@ -38,7 +41,6 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
     @Override
     protected HTMLDivElement init() {
         element = div();
-
         element.appendChild(LinkToSourceCode.createLink("formsvalidations", this.getClass()).element());
         element.appendChild(BlockHeader.create("FIELDS DECORATION").element());
         countsCard = Card.create("WORD COUNTER");
@@ -66,6 +68,15 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
     @SampleMethod
     private void initHelperText() {
         element.appendChild(Card.create("HELPER TEXTS")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .appendChild(BlockHeader.create("Text Box"))
                 .appendChild(TextBox.create("Task Name")
                         .setHelperText("Each task should have unique name."))
@@ -102,6 +113,15 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
     @SampleMethod
     private void initIcons() {
         element.appendChild(Card.create("ADDONS")
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .appendChild(TextBox.create("Username")
                         .appendChild(PrefixAddOn.of(Icons.account_circle()))
                         .apply(self -> {
@@ -148,6 +168,15 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
         FieldsGrouping fieldsGrouping = FieldsGrouping.create();
 
         validationsCard
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(TextBox.create("Name")
@@ -207,6 +236,15 @@ public class FormsValidationsViewImpl extends BaseDemoView<HTMLDivElement> imple
     @SampleMethod
     private void initReadOnly() {
         readOnlyCard
+                .withPostfixElement((card, postfix) -> {
+                    postfix
+                            .appendChild(CheckBox.create("Inlined labels")
+                                    .addCss(dui_w_48, dui_hide_label, dui_m_0)
+                                    .addChangeListener((oldValue, newValue) -> {
+                                        card.addCss(BooleanCssClass.of(dui_from_field_inlined_label, newValue));
+                                    })
+                            );
+                })
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(TextBox.create("TextBox")

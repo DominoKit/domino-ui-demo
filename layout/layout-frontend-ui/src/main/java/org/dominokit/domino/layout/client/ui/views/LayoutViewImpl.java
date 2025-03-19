@@ -63,6 +63,8 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
         layout.withLeftDrawerContent((parent, drawer) -> {
             drawer.addCss(dui_flex, dui_flex_col);
         });
+
+        layout.setRightDrawerToggleIcon(Icons.arrow_left().setTooltip("Open right drawer icon"));
         layout.withNavBar((parent, self) -> {
             self.appendChild(PostfixAddOn.of(Icons.theme_light_dark()
                             .setTooltip("Dark mode on/off", DropDirection.BEST_MIDDLE_SIDE)
