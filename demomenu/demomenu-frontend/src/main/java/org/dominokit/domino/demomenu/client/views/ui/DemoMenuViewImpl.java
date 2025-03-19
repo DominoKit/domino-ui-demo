@@ -200,7 +200,7 @@ public class DemoMenuViewImpl extends BaseElementView<HTMLDivElement> implements
                         .apply(addToggleIcon())
                         .appendChild(makeSubMenu("Basic table", "datatable/basic-table"))
                         .appendChild(makeSubMenu("Benchmark table", "datatable/benchmark-table"))
-//                        .appendChild(makeSubMenu("Grid table", "datatable/grid-table"))
+                        .appendChild(makeSubMenu("Grid table", "datatable/grid-table"))
                         .appendChild(makeSubMenu("Column resize plugin", "datatable/column-resize-plugin"))
                         .appendChild(makeSubMenu("Column pin plugin", "datatable/column-pin-plugin"))
                         .appendChild(makeSubMenu("Column groups", "datatable/column-groups"))
