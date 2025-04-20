@@ -11,7 +11,10 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
+import org.dominokit.domino.ui.button.LinkButton;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.collapsible.Accordion;
+import org.dominokit.domino.ui.collapsible.AccordionPanel;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.forms.*;
 import org.dominokit.domino.ui.forms.suggest.CheckOption;
@@ -146,7 +149,10 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 })
                 .setCollapsible(true)
                 .appendChild(BlockHeader.create("Basic Examples"))
-                .appendChild(TextAreaBox.create().setPlaceholder("Start typing here..."))
+                .appendChild(TextAreaBox.create()
+                        .setPlaceholder("Start typing here...")
+                        .setMaxLength(100)
+                )
                 .appendChild(BlockHeader.create("Auto Growing Vertical Direction"))
                 .appendChild(TextAreaBox.create().setPlaceholder("Start typing here...").autoSize())
                 .appendChild(BlockHeader.create("Text Area With Label"))
@@ -176,6 +182,11 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(SelectOption.create("value30", "value30", "30"))
                                         .appendChild(SelectOption.create("value40", "value40", "40"))
                                         .appendChild(SelectOption.create("value50", "value50", "50"))
+                                        .apply(self -> {
+                                            for(int i=60; i<=600; i+=10){
+                                              self.appendChild(SelectOption.create("value"+i, "value"+i, String.valueOf(i)));
+                                            }
+                                        })
                                         .setSearchable(false)
                                         .selectAt(0)
                                         .addChangeListener((oldValue, newValue) -> Notification.create("Item selected : Old value[ " + oldValue + " ], New value [" + newValue + "]").show()))
@@ -339,7 +350,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(CheckOption.create("SPA", "SPA", "Spain"))
                                         .appendChild(CheckOption.create("FRA", "FRA", "France"))
                                         .appendChild(CheckOption.create("JOR", "JOR", "Jordan"))
-                                        .selectAt(0)
+                                        .selectAt(0, 1, 2)
                                         .setAutoCloseOnSelect(false)
                                         .setShowSelectionCount(true)
                                         .addChangeListener((oldValue, newValue) -> {
@@ -477,7 +488,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(BlockHeader.create("Horizontal group"))
-                                .appendChild(RadioGroup.<String>create("test").setReadOnly(true)
+                                .appendChild(RadioGroup.<String>create("test")
                                         .appendChild(Radio.create("radio1", "Radio - 1").check())
                                         .appendChild(Radio.create("radio2", "Radio - 2"))
                                         .appendChild(Radio.create("radio2", "Radio - 3"))
@@ -486,7 +497,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(Column.span12()
                                 .appendChild(BlockHeader.create("Horizontal group", "With gap"))
                                 .appendChild(RadioGroup.<String>create("test")
-                                        .appendChild(Radio.create("radio1_gap", "Radio 1 - With Gap").setReadOnly(true))
+                                        .withGap(true)
+                                        .appendChild(Radio.create("radio1_gap", "Radio 1 - With Gap"))
                                         .appendChild(Radio.create("radio2_gap", "Radio 2 - With Gap"))
                                         .appendChild(Radio.create("radio2_gap", "Radio 2 - With Gap"))
                                         .horizontal())

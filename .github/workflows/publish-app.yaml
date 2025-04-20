@@ -21,7 +21,7 @@ on:
     branches: [ development ]
 jobs:
   publish-app:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-24.04
     strategy:
       matrix:
         java-version: [ 11 ]

@@ -7,9 +7,9 @@ import org.dominokit.domino.layout.shared.extension.IsLayout;
 import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 
 @PresenterProxy
-@AutoRoute(token = "datatable/grid-table")
+@AutoRoute(token = "datatable/data-list")
 @AutoReveal
 @Slot(IsLayout.Slots.CONTENT)
 @DependsOn(@EventsGroup(LayoutEvent.class))
-public class GridDatatableProxy extends ComponentCasePresenter<DatatableView> {
+public class DataListProxy extends ComponentCasePresenter<DatatableView> {
 }

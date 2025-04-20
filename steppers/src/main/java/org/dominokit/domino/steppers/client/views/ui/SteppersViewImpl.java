@@ -83,7 +83,6 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                         .addStateListener(trackerListener)
                                 )
                                 .appendChild(StepTracker.create("Step 5")
-                                        .disable()
                                         .setState(StepState.DISABLED)
                                         .addStateListener(trackerListener)
                                 )
@@ -110,11 +109,16 @@ public class SteppersViewImpl extends BaseDemoView<HTMLDivElement> implements St
                                     });
                                 }))
                                 .appendChild(Button.create("Complete and Skip next").addClickListener(evt -> {
-                                    simpleTrack.getNextTracker().ifPresent(stepTracker -> stepTracker.setState(StepState.SKIPPED));
+                                    simpleTrack.getNextTracker().ifPresent(stepTracker -> {
+                                        if(!stepTracker.isDisabled()) {
+                                            stepTracker.setState(StepState.SKIPPED);
+                                        }
+                                    });
                                     simpleTrack.next(1, (deactivated, activated) -> {
                                         deactivated.ifPresent(stepTracker -> stepTracker.setState(StepState.COMPLETED));
                                         activated.ifPresent(stepTracker -> stepTracker.setState(StepState.ACTIVE));
                                     });
+
                                 }))
                                 .appendChild(Button.create("Warning and next").addClickListener(evt -> {
                                     simpleTrack.next((deactivated, activated) -> {

@@ -262,7 +262,6 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void dateBox() {
-        ;
         element
                 .appendChild(Card.create("DATE BOX")
                         .setCollapsible(true)

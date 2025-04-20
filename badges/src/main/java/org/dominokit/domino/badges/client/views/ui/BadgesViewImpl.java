@@ -1,7 +1,9 @@
 package org.dominokit.domino.badges.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+
 import static org.dominokit.domino.ui.utils.Domino.*;
+
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -13,6 +15,7 @@ import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
@@ -27,7 +30,7 @@ import java.util.Arrays;
 @SampleClass
 public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements BadgesView {
 
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
@@ -44,7 +47,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.listExample())
                 .element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
@@ -69,7 +72,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                                 .appendChild(Badge.create("99999999+").addCss(dui_bg_white, dui_fg_grey_d_2))
                         ))
                 )
-                .element());
+        );
     }
 
     @SampleMethod
@@ -111,7 +114,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                                 )
                         )
                 )
-                .element());
+        );
     }
 
     @SampleMethod
@@ -139,8 +142,7 @@ public class BadgesViewImpl extends BaseDemoView<HTMLDivElement> implements Badg
                 ));
 
         element.appendChild(Card.create("LIST EXAMPLE", "You can also put badge to list and use the material design colors.")
-                .appendChild(listGroup)
-                .element());
+                .appendChild(listGroup));
     }
 
     private static class BadgeSample {
