@@ -15,3 +15,17 @@
     bottom: 50%;
     margin: 0 var(--dui-spc-1);
 }
+/* -------------------  */
+
+@media screen and (max-width: 992px) {
+    .dui-stepper.dui-responsive .dui-step-track {
+        width: 100%;
+    }
+
+    .dui-stepper.dui-responsive .dui-tracker-content {
+        text-align: right;
+    }
+}
+
+/* --------------------------------------- */
+

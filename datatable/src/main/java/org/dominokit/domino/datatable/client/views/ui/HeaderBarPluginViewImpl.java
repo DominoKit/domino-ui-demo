@@ -1,7 +1,6 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -18,12 +17,30 @@ import org.dominokit.domino.ui.datatable.CellTextAlign;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
-import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.BordersTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.CondenseTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.HoverTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.NavigationBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.SearchTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.ShowHideColumnsAction;
+import org.dominokit.domino.ui.datatable.plugins.header.StripesTableAction;
 import org.dominokit.domino.ui.datatable.plugins.selection.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
+
+import static org.dominokit.domino.ui.utils.Domino.a;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_dominant_d_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_green_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_red_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_float_none;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_max_w_64;
+import static org.dominokit.domino.ui.utils.Domino.dui_rounded_md;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 @UiView(presentable = HeaderBarPluginProxy.class)
 @SampleClass(includeClassName = true)
@@ -96,43 +113,49 @@ public class HeaderBarPluginViewImpl extends BaseDemoView<HTMLDivElement> implem
                             return text("");
                         }))
                 .addPlugin(new SelectionPlugin<>())
-                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
-                        .addActionElement(dataTable -> Icons.close_circle()
-                                .clickable()
-                                .setTooltip("Select Inactive")
-                                .addClickListener(evt ->
-                                        dataTable.getRows().forEach(item -> {
-                                            if (!item.getRecord().isActive()) {
-                                                item.select();
-                                            } else {
-                                                item.deselect();
+                .addPlugin(new NavigationBarPlugin<>((dataTable, navBar) -> {
+                    navBar
+                            .setTitle("Demo table")
+                            .setDescription("this a sample table with all features")
+                            .appendChild(PostfixAddOn.of(Icons.close_circle()
+                                            .clickable()
+                                            .setTooltip("Select Inactive")
+                                            .addClickListener(evt ->
+                                                    dataTable.getRows().forEach(item -> {
+                                                        if (!item.getRecord().isActive()) {
+                                                            item.select();
+                                                        } else {
+                                                            item.deselect();
+                                                        }
+                                                    })
+                                            )
+                                    )
+                            )
+                            .appendChild(PostfixAddOn.of(Icons.check_circle()
+                                            .clickable()
+                                            .setTooltip("Select Active")
+                                            .addClickListener(evt ->
+                                                    dataTable.getRows().forEach(tableRow -> {
+                                                        if (tableRow.getRecord().isActive()) {
+                                                            tableRow.select();
+                                                        } else {
+                                                            tableRow.deselect();
+                                                        }
+                                                    }))
+                                    )
+                            )
+                            .appendChild(PostfixAddOn.of(HoverTableAction.create(dataTable)))
+                            .appendChild(PostfixAddOn.of(CondenseTableAction.create(dataTable)))
+                            .appendChild(PostfixAddOn.of(StripesTableAction.create(dataTable)))
+                            .appendChild(PostfixAddOn.of(BordersTableAction.create(dataTable)))
+                            .appendChild(PostfixAddOn.of(ShowHideColumnsAction.create(dataTable)))
+                            .appendChild(PostfixAddOn.of(SearchTableAction.create(dataTable)
+                                    .withSearchBox((parent, searchBox) -> {
+                                                searchBox.addCss(dui_max_w_64, dui_bg_dominant_d_1, dui_rounded_md);
                                             }
-                                        }))
-                                .element())
-                        .addActionElement(dataTable -> Icons.check_circle()
-                                .clickable()
-                                .setTooltip("Select Active")
-                                .addClickListener(evt ->
-                                        dataTable.getRows().forEach(tableRow -> {
-                                            if (tableRow.getRecord().isActive()) {
-                                                tableRow.select();
-                                            } else {
-                                                tableRow.deselect();
-                                            }
-                                        }))
-                                .element())
-                        .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.ShowHideColumnsAction<>())
-                        .addActionElement(new HeaderBarPlugin.SearchTableAction<Contact>()
-                                .withSearchBox((parent, searchBox) -> {
-                                    searchBox.addCss(dui_max_w_64, dui_bg_dominant_d_1, dui_rounded_md);
-                                })
-                        )
-                )
-        ;
+                                    )))
+                    ;
+                }));
 
         LocalListDataStore<Contact> localListDataStore = new LocalListDataStore<>();
         DataTable<Contact> defaultTable = new DataTable<>(tableConfig, localListDataStore);

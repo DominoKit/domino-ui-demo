@@ -365,8 +365,8 @@
                             <!--                                <jvmArg>-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=8005</jvmArg>-->
                             <!--                            </jvmArgs>-->
                             <compilerArgs>
-                                <!--                                                                <compilerArg>-style</compilerArg>-->
-                                <!--                                                                <compilerArg>PRETTY</compilerArg>-->
+<!--                                                                                                <compilerArg>-style</compilerArg>-->
+<!--                                                                                                <compilerArg>PRETTY</compilerArg>-->
                                 <compilerArg>-XdisableCastChecking</compilerArg>
                             </compilerArgs>
                             <codeserverArgs>

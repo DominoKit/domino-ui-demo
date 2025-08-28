@@ -100,7 +100,7 @@ public class CountersViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                     Counter counter = Counter.countFrom(1)
                                             .countTo(100)
                                             .every(200)
-                                            .incrementBy(1)
+                                            .step(1)
                                             .onCount(self::setValue)
                                             .startCounting();
                                     self.withInnerContainer((parent, container) -> {
@@ -127,7 +127,7 @@ public class CountersViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                     Counter counter = Counter.countFrom(1)
                                             .countTo(100)
                                             .every(100)
-                                            .incrementBy(1)
+                                            .step(1)
                                             .onCount(self::setValue)
                                             .startCounting();
                                     self.withInnerContainer((parent, container) -> {
@@ -157,7 +157,7 @@ public class CountersViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                     Counter counter = Counter.countFrom(100)
                                             .countTo(1)
                                             .every(100)
-                                            .incrementBy(1)
+                                            .step(1)
                                             .onCount(self::setValue)
                                             .startCounting();
                                     self.withInnerContainer((parent, container) -> {

@@ -262,7 +262,6 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
 
     @SampleMethod
     private void dateBox() {
-        ;
         element
                 .appendChild(Card.create("DATE BOX")
                         .setCollapsible(true)
@@ -293,10 +292,15 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .span4(DateRangeBox.create("Date range box")
                                         .setPattern("dd.MM.yyyy")
                                         .setParseStrict(true)
-                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
-                                        .addChangeListener((oldValue, newValue) -> {
-                                            Notification.create("Value changed : old [" + oldValue.getFrom() + " - " + oldValue.getTo() + "] new [" + newValue.getFrom() + " - " + newValue.getTo() + "]").show();
+                                        .withPopover((parent, popover) -> {
+                                            popover.addCss(dui_accent_blue);
+                                            popover.appendChild(Button.create("Clear").addClickListener(evt -> parent.clear()));
                                         })
+
+                                        .addChangeListener((oldValue, newValue) -> {
+                                            Notification.create("Value changed : old [" + oldValue+"] new [" + newValue + "]").show();
+                                        })
+                                        .apply(self -> element.appendChild(Button.create("Clear").addClickListener(evt -> self.clear())))
                                 )
                                 .span4(DateRangeBox.create("Date range with pattern", new DateTimeFormatInfoImpl_ar())
                                         .setPattern("dd-MM-yyyy")

@@ -55,9 +55,7 @@ public class LayoutViewImpl extends BaseElementView<HTMLDivElement> implements L
             );
         });
 
-        DomGlobal.document.body.appendChild(ScrollTop.create(Icons.arrow_up())
-                .setBottom(60)
-                .element());
+        body().appendChild(ScrollTop.create(Icons.arrow_up()).setBottom(60));
         layout.setLeftDrawerSpanDown(true);
 
         layout.withLeftDrawerContent((parent, drawer) -> {

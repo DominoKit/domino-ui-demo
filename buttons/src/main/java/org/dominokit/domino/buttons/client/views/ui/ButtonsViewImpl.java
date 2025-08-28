@@ -3,7 +3,6 @@ package org.dominokit.domino.buttons.client.views.ui;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.RunAsyncCallback;
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -26,8 +25,6 @@ import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
 import org.dominokit.domino.ui.typography.BlockHeader;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import static org.dominokit.domino.ui.grid.Column.Span._12;
 import static org.dominokit.domino.ui.grid.Column.Span._3;
@@ -38,12 +35,33 @@ import static org.dominokit.domino.ui.menu.direction.DropDirection.BOTTOM_RIGHT;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_LEFT;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_MIDDLE;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_RIGHT;
+import static org.dominokit.domino.ui.utils.BaseDominoElement.LOGGER;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent;
+import static org.dominokit.domino.ui.utils.Domino.dui_error;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_white;
+import static org.dominokit.domino.ui.utils.Domino.dui_font_size_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_info;
+import static org.dominokit.domino.ui.utils.Domino.dui_large;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_t_6;
+import static org.dominokit.domino.ui.utils.Domino.dui_primary;
+import static org.dominokit.domino.ui.utils.Domino.dui_purple;
+import static org.dominokit.domino.ui.utils.Domino.dui_small;
+import static org.dominokit.domino.ui.utils.Domino.dui_success;
+import static org.dominokit.domino.ui.utils.Domino.dui_text_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_vertical;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_28;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_32;
+import static org.dominokit.domino.ui.utils.Domino.dui_warning;
+import static org.dominokit.domino.ui.utils.Domino.dui_xsmall;
+import static org.dominokit.domino.ui.utils.Domino.h;
 
 @UiView(presentable = ButtonsProxy.class)
 @SampleClass
 public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements ButtonsView {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ButtonsViewImpl.class);
 
     private DivElement element;
 
@@ -121,7 +139,8 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
                         .addCss(dui_warning, dui_w_28, dui_m_1))
                 .appendChild(Button.create("DANGER")
                         .addCss(dui_error, dui_w_28, dui_m_1))
-                .element());
+
+        );
     }
 
     @SampleMethod

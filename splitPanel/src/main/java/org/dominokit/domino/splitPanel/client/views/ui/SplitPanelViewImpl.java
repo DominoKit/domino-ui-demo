@@ -9,7 +9,9 @@ import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
 import org.dominokit.domino.splitPanel.client.presenters.SplitPanelProxy;
 import org.dominokit.domino.splitPanel.client.views.SplitPanelView;
+import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
+import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.splitpanel.HSplitPanel;
 import org.dominokit.domino.ui.splitpanel.SplitPanel;
 import org.dominokit.domino.ui.splitpanel.VSplitPanel;
@@ -23,7 +25,7 @@ import static org.dominokit.domino.ui.utils.Domino.*;
 public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements SplitPanelView {
 
     private final CssClass demo_split_div = () -> "demo-split-div";
-    private HTMLDivElement element = div().element();
+    private DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
@@ -46,23 +48,31 @@ public class SplitPanelViewImpl extends BaseDemoView<HTMLDivElement> implements 
         combined();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.combined()).element());
 
-        return element;
+        return element.element();
     }
 
     @SampleMethod
     private void horizontalSplitPanel() {
 
+        SplitPanel panelLeft = SplitPanel.create();
+        SplitPanel panelRight = SplitPanel.create();
+        HSplitPanel splitPanel = HSplitPanel.create();
         element.appendChild(Card.create("HORIZONTAL SPLIT PANEL")
-                .appendChild(HSplitPanel.create()
-                        .appendChild(SplitPanel.create()
+                .appendChild(splitPanel
+                        .appendChild(panelLeft
                                 .setWidth("50%")
                                 .appendChild(div().addCss(demo_split_div, dui_bg_accent_l_2)))
-                        .appendChild(SplitPanel.create()
+                        .appendChild(panelRight
                                 .setWidth("50%")
                                 .appendChild(div().addCss(demo_split_div, dui_bg_accent_d_2)))
                         .addCss(dui_h_96, dui_w_full)
-                )
-                .element());
+                ))
+                .appendChild(Button.create("Hide panel").addClickListener(evt -> {
+                    panelRight.hide();
+                }))
+                .appendChild(Button.create("update size").addClickListener(evt -> {
+                    splitPanel.updatePanelsSize();
+                }));
     }
 
     @SampleMethod

@@ -61,7 +61,7 @@ public class ProgressViewImpl extends BaseDemoView<HTMLDivElement> implements Pr
                                 .setValue(90)
                                 .setAttribute("dui-value", "90")
                                 .apply(self -> {
-                                    self.onAttributeChange("dui-value", (e,mutationRecord) -> {
+                                    self.onAttributeChange("dui-value", mutationRecord -> {
                                         self.setValue(Double.parseDouble(self.getAttribute("dui-value")));
                                     });
                                 })

@@ -1,5 +1,6 @@
 package org.dominokit.domino.collapse.client.views.ui;
 
+import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -136,6 +137,7 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                 .setCollapsible(true)
                                 .appendChild(b().textContent("Panel Accent"))
                                 .appendChild(Accordion.create().addCss(dui_accent, dui_ignore_bg, dui_ignore_fg)
+                                        .setMultiOpen(true)
                                         .appendChild(AccordionPanel.create("Collapsible item 1")
 
                                                 .withHeader((parent, header) -> header
@@ -156,6 +158,14 @@ public class CollapseViewImpl extends BaseDemoView<HTMLDivElement> implements Co
                                                 )
                                                 .appendChild(text(SAMPLE_CONTENT))
                                                 .expand()
+                                                .addCollapseListener(()-> DomGlobal.console.info("Accordion item 1 collapsed"))
+                                                .addCloseListener(self -> DomGlobal.console.info("Accordion item 1 closed"))
+                                                .addExpandListener(() -> {
+                                                    DomGlobal.console.info("Accordion item 1 expanded");
+                                                })
+                                                .addOpenListener(self -> {
+                                                    DomGlobal.console.info("Accordion item 1 opened");
+                                                })
                                         )
                                         .appendChild(AccordionPanel.create("Collapsible item 2")
                                                 .withHeader((parent, header) -> header

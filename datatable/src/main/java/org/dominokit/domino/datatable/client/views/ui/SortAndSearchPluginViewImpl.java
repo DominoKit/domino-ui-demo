@@ -92,6 +92,9 @@ public class SortAndSearchPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                         .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
                         .setTextAlign(CellTextAlign.CENTER)
                         .applyMeta(ColumnFilterMeta.of(SelectHeaderFilter.<Contact>create()
+                                        .withSelect((parent, self) -> {
+                                            self.<String>appendItems(item-> SelectOption.<String>create(item, item, item), "blue", "brown", "green");
+                                        })
                                 .appendChild(SelectOption.create("blue","blue", "Blue"))
                                 .appendChild(SelectOption.create("brown","brown", "Brown"))
                                 .appendChild(SelectOption.create("green","green", "Green"))
@@ -123,7 +126,11 @@ public class SortAndSearchPluginViewImpl extends BaseDemoView<HTMLDivElement> im
 
         ColumnHeaderFilterPlugin<Contact> contactColumnHeaderFilterPlugin = ColumnHeaderFilterPlugin.<Contact>create();
         tableConfig
-                .addPlugin(new SortPlugin<>())
+                .addPlugin(new SortPlugin<Contact>()
+                        .configure(sortPluginConfig -> {
+                            sortPluginConfig.setShowIconOnSortedColumnOnly(true);
+                            sortPluginConfig.setShowSortOptionsInColumnMenu(true);
+                        }))
                 .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "this a sample table with all features")
                         .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
                         .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())

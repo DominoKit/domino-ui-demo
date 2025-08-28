@@ -2,9 +2,6 @@ package org.dominokit.domino.modals.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
-
-import static org.dominokit.domino.ui.dialogs.DialogStyles.*;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -17,24 +14,64 @@ import org.dominokit.domino.ui.animations.Transition;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.dialogs.*;
+import org.dominokit.domino.ui.dialogs.Dialog;
+import org.dominokit.domino.ui.dialogs.DialogSize;
+import org.dominokit.domino.ui.dialogs.DialogStyles;
+import org.dominokit.domino.ui.dialogs.Window;
 import org.dominokit.domino.ui.elements.DivElement;
+import org.dominokit.domino.ui.elements.SpanElement;
+import org.dominokit.domino.ui.forms.DoubleBox;
+import org.dominokit.domino.ui.forms.suggest.LocalSuggestionsStore;
 import org.dominokit.domino.ui.forms.suggest.Select;
 import org.dominokit.domino.ui.forms.suggest.SelectOption;
+import org.dominokit.domino.ui.forms.suggest.SuggestBox;
+import org.dominokit.domino.ui.forms.suggest.SuggestOption;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.layout.NavBar;
-import org.dominokit.domino.ui.loaders.Loader;
-import org.dominokit.domino.ui.loaders.LoaderEffect;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
-import org.dominokit.domino.ui.style.SpacingCss;
+import org.dominokit.domino.ui.notifications.Notification;
 import org.dominokit.domino.ui.style.SwapCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.FooterContent;
 import org.dominokit.domino.ui.utils.PostfixAddOn;
 import org.dominokit.domino.ui.utils.PrefixAddOn;
+
+import java.util.Optional;
+
+import static org.dominokit.domino.ui.dialogs.DialogStyles.dui_bottom_sheet;
+import static org.dominokit.domino.ui.dialogs.DialogStyles.dui_right_sheet;
+import static org.dominokit.domino.ui.dialogs.DialogStyles.dui_top_sheet;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_blue;
+import static org.dominokit.domino.ui.utils.Domino.dui_deep_purple;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_red;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex_wrap;
+import static org.dominokit.domino.ui.utils.Domino.dui_gap_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_gap_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_h_8;
+import static org.dominokit.domino.ui.utils.Domino.dui_indigo;
+import static org.dominokit.domino.ui.utils.Domino.dui_justify_between;
+import static org.dominokit.domino.ui.utils.Domino.dui_justify_end;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_b_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_orange;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_0;
+import static org.dominokit.domino.ui.utils.Domino.dui_pink;
+import static org.dominokit.domino.ui.utils.Domino.dui_purple;
+import static org.dominokit.domino.ui.utils.Domino.dui_red;
+import static org.dominokit.domino.ui.utils.Domino.dui_rounded_full;
+import static org.dominokit.domino.ui.utils.Domino.dui_teal;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_32;
+import static org.dominokit.domino.ui.utils.Domino.elementOf;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 @UiView(presentable = ModalsProxy.class)
 @SampleClass
@@ -68,6 +105,17 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
     @SampleMethod
     private void initModalsSize() {
 
+        LocalSuggestionsStore<String, SpanElement, SuggestOption<String>> localStore = LocalSuggestionsStore.<String, SpanElement, SuggestOption<String>>create()
+                .addSuggestion(SuggestOption.create("Ahmad bawaneh"))
+                .addSuggestion(SuggestOption.create("Ahmad Ali"))
+                .addSuggestion(SuggestOption.create("Ali omar"))
+                .addSuggestion(SuggestOption.create("Ali hasan"))
+                .addSuggestion(SuggestOption.create("Schroeder Coleman"))
+                .addSuggestion(SuggestOption.create("Renee Mcintyre"))
+                .addSuggestion(SuggestOption.create("Casey Garza"))
+                .setMissingEntryProvider(inputValue -> Optional.of(SuggestOption.create(inputValue)))
+                .setMissingValueProvider(missingValue -> Optional.of(SuggestOption.create(missingValue)));
+
         // ------------ Default size -------------
 
         Dialog defaultSizeDialog = Dialog.create()
@@ -97,7 +145,14 @@ public class ModalsViewImpl extends BaseDemoView<HTMLDivElement> implements Moda
                 .appendChild(text(SAMPLE_CONTENT))
                 .appendChild(Select.<Integer>create("Sample")
                         .appendItems(item -> SelectOption.create(String.valueOf(item), item, String.valueOf(item)), 1, 2, 3)
+                        .setTooltip("Sample")
                 )
+                .appendChild(SuggestBox.create(localStore)
+                        .setLabel("Suggested friend")
+                        .setHelperText("Type to see suggestions")
+                        .addChangeListener((oldValue, newValue) -> {
+                            Notification.create("OLD[" + oldValue + "], NEW[" + newValue + "]").show();
+                        }))
                 .withContentFooter((dialog, footer) -> {
                     footer.addCss(dui_flex, dui_gap_1, dui_justify_end);
                     dialog

@@ -120,7 +120,7 @@ public class SummaryPluginViewImpl extends BaseDemoView<HTMLDivElement> implemen
                             return text("");
                         })
                 )
-                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table table demonstrating the feature")
+                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table demonstrating the feature")
                         .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
                         .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())
                         .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
@@ -141,7 +141,10 @@ public class SummaryPluginViewImpl extends BaseDemoView<HTMLDivElement> implemen
         double sum = contacts.stream().mapToDouble(Contact::getBalance).sum();
         OptionalDouble balanceAverage = contacts.stream().mapToDouble(Contact::getBalance).average();
         OptionalDouble ageAverage = contacts.stream().mapToInt(Contact::getAge).average();
-        summaryPlugin.setSummaryRecords(Arrays.asList(new ContactSummary("Sum", sum, -1), new ContactSummary("Average", balanceAverage.orElse(0), Double.valueOf(ageAverage.orElse(-1)).intValue())));
+        summaryPlugin.setSummaryRecords(Arrays.asList(
+                new ContactSummary("Sum", sum, -1),
+                new ContactSummary("Average", balanceAverage.orElse(0), Double.valueOf(ageAverage.orElse(-1)).intValue()))
+        );
     }
 
 }

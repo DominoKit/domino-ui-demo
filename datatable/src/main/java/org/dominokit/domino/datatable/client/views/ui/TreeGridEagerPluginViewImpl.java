@@ -1,7 +1,6 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -12,9 +11,18 @@ import org.dominokit.domino.datatable.client.presenters.TreeGridEagerPluginProxy
 import org.dominokit.domino.datatable.client.task.ContactsProvider;
 import org.dominokit.domino.datatable.client.views.DatatableView;
 import org.dominokit.domino.datatable.client.views.model.Contact;
+import org.dominokit.domino.datatable.client.views.model.ContactSearchFilter;
 import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.cards.Card;
-import org.dominokit.domino.ui.datatable.*;
+import org.dominokit.domino.ui.datatable.CellRenderer;
+import org.dominokit.domino.ui.datatable.CellTextAlign;
+import org.dominokit.domino.ui.datatable.ColumnConfig;
+import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.RowCell;
+import org.dominokit.domino.ui.datatable.TableConfig;
+import org.dominokit.domino.ui.datatable.plugins.column.ColumnFilterMeta;
+import org.dominokit.domino.ui.datatable.plugins.column.ColumnHeaderFilterPlugin;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.marker.RowMarkerPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortPlugin;
@@ -31,6 +39,16 @@ import java.util.Collections;
 import java.util.Optional;
 
 import static org.dominokit.domino.ui.datatable.DataTableStyles.dui_datatable_td;
+import static org.dominokit.domino.ui.utils.Domino.a;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_green_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_red_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_float_none;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_0;
+import static org.dominokit.domino.ui.utils.Domino.p;
+import static org.dominokit.domino.ui.utils.Domino.td;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 @UiView(presentable = TreeGridEagerPluginProxy.class)
 @SampleClass(includeClassName = true)
@@ -86,10 +104,12 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                         .setTextAlign(CellTextAlign.CENTER))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getPhone())))
@@ -109,6 +129,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                             .setSortable(true, "id");
                 })
                 .setMultiSelect(true)
+                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
@@ -139,6 +160,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
             ContactsProvider.instance.addFriends(parent, 2, 1, 2);
             itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
         });
+
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
 
         element.appendChild(Card.create("TREE GRID PLUGIN - Full PARENT SPAN", "Render records in tree style with expand and collapse features")
@@ -179,7 +201,9 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                         .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail())))
+                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail()))
+                        .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
+                )
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                         .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getPhone())))
@@ -199,6 +223,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                             .setTitle("First name");
                 })
                 .setMultiSelect(true)
+                .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
@@ -221,7 +246,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
             itemsConsumer.accept(Optional.ofNullable(parent.getFriends()));
         });
         DataTable<Contact> table = new DataTable<>(tableConfig, localListDataStore);
-
+        localListDataStore.setSearchFilter(new ContactSearchFilter());
         element.appendChild(Card.create("TREE GRID PLUGIN - PARENT WITH COLUMNS", "Render records in tree style with expand and collapse features")
                 .setCollapsible(true)
                 .appendChild(table)

@@ -97,7 +97,7 @@ public class InfoBoxViewImpl extends BaseDemoView<HTMLDivElement> implements Inf
         counter = Counter.countFrom(0)
                 .countTo(125)
                 .every(60)
-                .incrementBy(5)
+                .step(5)
                 .onCount(count -> {
                     new_orders.getInfo().setTextContent(Integer.toString(count));
                     new_members.getInfo().setTextContent(Integer.toString(count));

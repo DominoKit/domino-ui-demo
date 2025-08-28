@@ -13,7 +13,13 @@ import org.dominokit.domino.ui.badges.Badge;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
-import org.dominokit.domino.ui.forms.*;
+import org.dominokit.domino.ui.forms.CheckBox;
+import org.dominokit.domino.ui.forms.PasswordBox;
+import org.dominokit.domino.ui.forms.Radio;
+import org.dominokit.domino.ui.forms.RadioGroup;
+import org.dominokit.domino.ui.forms.SwitchButton;
+import org.dominokit.domino.ui.forms.TextAreaBox;
+import org.dominokit.domino.ui.forms.TextBox;
 import org.dominokit.domino.ui.forms.suggest.CheckOption;
 import org.dominokit.domino.ui.forms.suggest.MultiSelect;
 import org.dominokit.domino.ui.forms.suggest.Select;
@@ -38,7 +44,35 @@ import java.util.Arrays;
 import static org.dominokit.domino.ui.forms.FormsStyles.dui_from_field_inlined_label;
 import static org.dominokit.domino.ui.grid.Column.Span._2;
 import static org.dominokit.domino.ui.grid.Column.Span._6;
-import static org.dominokit.domino.ui.utils.Domino.*;
+import static org.dominokit.domino.ui.utils.Domino.br;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_amber;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_blue;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_deep_purple;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_indigo;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_red;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_teal;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_blue;
+import static org.dominokit.domino.ui.utils.Domino.dui_elevation_0;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex;
+import static org.dominokit.domino.ui.utils.Domino.dui_gap_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_grow_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_h_8;
+import static org.dominokit.domino.ui.utils.Domino.dui_hide_label;
+import static org.dominokit.domino.ui.utils.Domino.dui_info;
+import static org.dominokit.domino.ui.utils.Domino.dui_items_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_justify_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_0;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_2px;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_x_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_rounded_full;
+import static org.dominokit.domino.ui.utils.Domino.dui_rounded_sm;
+import static org.dominokit.domino.ui.utils.Domino.dui_teal;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_48;
+import static org.dominokit.domino.ui.utils.Domino.h;
 import static org.dominokit.domino.ui.utils.ElementsFactory.elements;
 
 @UiView(presentable = BasicFormsProxy.class)
@@ -339,7 +373,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         .appendChild(CheckOption.create("SPA", "SPA", "Spain"))
                                         .appendChild(CheckOption.create("FRA", "FRA", "France"))
                                         .appendChild(CheckOption.create("JOR", "JOR", "Jordan"))
-                                        .selectAt(0)
+                                        .selectAt(0, 1, 2)
                                         .setAutoCloseOnSelect(false)
                                         .setShowSelectionCount(true)
                                         .addChangeListener((oldValue, newValue) -> {
@@ -477,7 +511,7 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
                                 .appendChild(BlockHeader.create("Horizontal group"))
-                                .appendChild(RadioGroup.<String>create("test").setReadOnly(true)
+                                .appendChild(RadioGroup.<String>create("test")
                                         .appendChild(Radio.create("radio1", "Radio - 1").check())
                                         .appendChild(Radio.create("radio2", "Radio - 2"))
                                         .appendChild(Radio.create("radio2", "Radio - 3"))
@@ -486,7 +520,8 @@ public class BasicFormsViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .appendChild(Column.span12()
                                 .appendChild(BlockHeader.create("Horizontal group", "With gap"))
                                 .appendChild(RadioGroup.<String>create("test")
-                                        .appendChild(Radio.create("radio1_gap", "Radio 1 - With Gap").setReadOnly(true))
+                                        .withGap(true)
+                                        .appendChild(Radio.create("radio1_gap", "Radio 1 - With Gap"))
                                         .appendChild(Radio.create("radio2_gap", "Radio 2 - With Gap"))
                                         .appendChild(Radio.create("radio2_gap", "Radio 2 - With Gap"))
                                         .horizontal())

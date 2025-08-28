@@ -12,7 +12,7 @@ import org.dominokit.domino.layout.shared.extension.LayoutEvent;
 import org.dominokit.domino.media.client.views.MediaView;
 
 @PresenterProxy
-@AutoRoute(token = "media")
+@AutoRoute(token = "components/media")
 @AutoReveal
 @Slot(IsLayout.Slots.CONTENT)
 @DependsOn(@EventsGroup(LayoutEvent.class))

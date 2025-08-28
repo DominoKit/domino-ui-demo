@@ -20,7 +20,38 @@ import org.dominokit.domino.ui.sliders.Slider;
 import org.dominokit.domino.ui.sliders.ThumbStyle;
 import org.dominokit.domino.ui.typography.BlockHeader;
 
-import static org.dominokit.domino.ui.utils.Domino.*;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_gap_12;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_h_72;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_justify_around;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_justify_center;
+import static org.dominokit.domino.ui.utils.Domino.br;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_blue;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_cyan;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_orange;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_purple;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent_red;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_blue_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_cyan_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_green_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_orange_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_purple_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_red_d_2;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex_col;
+import static org.dominokit.domino.ui.utils.Domino.dui_gap_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_grow_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_h_full;
+import static org.dominokit.domino.ui.utils.Domino.dui_info;
+import static org.dominokit.domino.ui.utils.Domino.dui_items_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_10;
+import static org.dominokit.domino.ui.utils.Domino.dui_vertical;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_full;
+import static org.dominokit.domino.ui.utils.Domino.h;
+import static org.dominokit.domino.ui.utils.Domino.hr;
+import static org.dominokit.domino.ui.utils.Domino.span;
 
 @UiView(presentable = SlidersProxy.class)
 @SampleClass
@@ -28,6 +59,7 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
 
     private DivElement element;
     private Card basicCard;
+    private Card verticalCard;
     private Card colorsSlidersCard;
     private Card sampleCard;
 
@@ -37,16 +69,20 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
 
         element.appendChild(LinkToSourceCode.createLink("sliders", this.getClass()));
         basicCard = Card.create("BASIC SLIDERS");
+        verticalCard = Card.create("VERTICAL SLIDERS");
         colorsSlidersCard = Card.create("SLIDERS WITH COLORS");
         sampleCard = Card.create("SLIDERS EXAMPLE");
 
         initBasic();
+        verticalSliders();
         initColors();
         initExample();
 
         element.appendChild(BlockHeader.create("SLIDERS"));
         element.appendChild(basicCard);
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initBasic()));
+        element.appendChild(verticalCard);
+        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.verticalSliders()));
         element.appendChild(colorsSlidersCard);
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initColors()));
         element.appendChild(sampleCard);
@@ -60,7 +96,7 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
         basicCard
                 .appendChild(Row.create()
                         .appendChild(Column.span12()
-                                .appendChild(Slider.create(200)
+                                .appendChild(Slider.create(99999999)
                                         .setShowThumb(true)
                                         .setAutoHideThumb(false)
                                         .addChangeListener((oldValue, newValue) -> showNotification(newValue))
@@ -171,6 +207,110 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                                 )
                         )
                 );
+    }
+
+    @SampleMethod
+    private void verticalSliders() {
+        verticalCard
+                .appendChild(div().addCss(dui_flex, dui_flex_col, dui_gap_12, dui_justify_center)
+                        .appendChild(div()
+                                .addCss(dui_flex, dui_gap_4, dui_justify_around, dui_h_72)
+                                .appendChild(Slider.create(200)
+                                        .addCss(dui_vertical)
+                                        .setShowThumb(true)
+                                        .setAutoHideThumb(false)
+                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                )
+                                .appendChild(Slider.create(200)
+                                        .addCss(dui_vertical)
+                                        .setShowThumb(true)
+                                        .setAutoHideThumb(false)
+                                        .setValue(50)
+                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                )
+                                .appendChild(Slider.create(10000000)
+                                        .addCss(dui_vertical)
+                                        .setShowThumb(true)
+                                        .setThumbStyle(ThumbStyle.FLAT)
+                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                )
+                        )
+                        .appendChild(div()
+                                .addCss(dui_flex, dui_gap_4, dui_justify_around)
+                                .appendChild(div()
+                                        .addCss(dui_flex, dui_flex_col, dui_items_center, dui_gap_4)
+                                        .appendChild(BlockHeader.create("SLIDERS WITH THUMB"))
+                                        .appendChild(div().addCss(dui_h_72)
+                                                .appendChild(Slider.create(200, 20)
+                                                        .addCss(dui_vertical)
+                                                        .setValue(50)
+                                                        .setReadOnly(true)
+                                                        .withThumb()
+                                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                                )
+                                        )
+                                )
+                                .appendChild(div()
+                                        .addCss(dui_flex, dui_flex_col, dui_items_center, dui_gap_4)
+                                        .appendChild(BlockHeader.create("SLIDERS CAN HAVE MIN AND MAX VALUES")
+                                                .appendChild(div().addCss(dui_flex, dui_gap_4)
+                                                        .appendChild(span().textContent("Min: 100"))
+                                                        .appendChild(span().textContent("Max: 200"))
+                                                )
+                                        )
+                                        .appendChild(div().addCss(dui_h_72)
+                                                .appendChild(Slider.create(200, 100)
+                                                        .addCss(dui_vertical)
+                                                        .setValue(150)
+                                                        .withThumb()
+                                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                                )
+                                        )
+
+                                )
+                                .appendChild(div()
+                                        .addCss(dui_flex, dui_flex_col, dui_items_center, dui_gap_4)
+                                        .appendChild(BlockHeader.create("SLIDERS WITH STEP")
+                                                .appendChild(div().addCss(dui_flex, dui_gap_4)
+                                                        .appendChild(span().textContent("STEP: 10"))
+                                                        .appendChild(span().textContent("MIN: 100"))
+                                                        .appendChild(span().textContent("MAX: 200"))
+                                                )
+                                        )
+                                        .appendChild(div().addCss(dui_h_72)
+                                                .appendChild(Slider.create(200, 100)
+                                                        .addCss(dui_vertical)
+                                                        .setStep(10)
+                                                        .withThumb()
+                                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                                )
+                                        )
+                                )
+                        )
+                        .appendChild(div()
+                                .addCss(dui_flex, dui_gap_4, dui_justify_around)
+                                .appendChild(div()
+                                        .addCss(dui_flex, dui_flex_col, dui_items_center, dui_gap_4)
+                                        .appendChild(BlockHeader.create("SLIDERS WITH ANY STEP")
+                                                .appendChild(div().addCss(dui_flex, dui_gap_4)
+                                                        .appendChild(span().textContent("MIN: 100"))
+                                                        .appendChild(span().textContent("MAX: 200"))
+                                                        .appendChild(span().textContent("STEP: ANY"))
+                                                )
+                                        )
+                                        .appendChild(div().addCss(dui_h_72)
+                                                .appendChild(Slider.create(200, 100)
+                                                        .addCss(dui_vertical)
+                                                        .anyStep()
+                                                        .setShowThumb(true)
+                                                        .addChangeListener((oldValue, newValue) -> showNotification(newValue))
+                                                )
+                                        )
+
+                                )
+                        )
+                )
+        ;
     }
 
     @SampleMethod
@@ -287,11 +427,11 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
         Slider greenSlider = Slider.create(255, 0)
                 .addCss(dui_accent_green)
                 .anyStep()
-                .setShowThumb(false);;
+                .setShowThumb(false);
         Slider blueSlider = Slider.create(255, 0)
                 .addCss(dui_accent_blue)
                 .anyStep()
-                .setShowThumb(false);;
+                .setShowThumb(false);
 
         TextBox redTextBox = TextBox.create()
                 .addChangeListener((oldValue, value) -> {
@@ -310,24 +450,24 @@ public class SlidersViewImpl extends BaseDemoView<HTMLDivElement> implements Sli
                 });
 
 
-        redSlider.addChangeListener((oldValue,value) -> {
+        redSlider.addChangeListener((oldValue, value) -> {
             updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
-        redSlider.addChangeListener((oldValue,value) -> {
-            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
-        });
-
-        greenSlider.addChangeListener((oldValue,value) -> {
-            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
-        });
-        greenSlider.addChangeListener((oldValue,value) -> {
+        redSlider.addChangeListener((oldValue, value) -> {
             updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
 
-        blueSlider.addChangeListener((oldValue,value) -> {
+        greenSlider.addChangeListener((oldValue, value) -> {
             updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
-        blueSlider.addChangeListener((oldValue,value) -> {
+        greenSlider.addChangeListener((oldValue, value) -> {
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
+        });
+
+        blueSlider.addChangeListener((oldValue, value) -> {
+            updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
+        });
+        blueSlider.addChangeListener((oldValue, value) -> {
             updateColorAndTextBoxes(rgbColorsDiv, redSlider, greenSlider, blueSlider, redTextBox, greenTextBox, blueTextBox);
         });
 

@@ -1,7 +1,6 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -22,7 +21,6 @@ import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
-import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.header.TopPanelPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.BodyScrollPlugin;
@@ -31,8 +29,18 @@ import org.dominokit.domino.ui.datatable.store.LocalListScrollingDataSource;
 import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.DominoEvent;
 
 import java.util.List;
+
+import static org.dominokit.domino.ui.utils.Domino.a;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_green_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_red_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_float_none;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.elementOf;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 @UiView(presentable = TopPanelPluginProxy.class)
 @SampleClass(includeClassName = true)
@@ -123,7 +131,7 @@ public class TopPanelPluginViewImpl extends BaseDemoView<HTMLDivElement> impleme
                     }
 
                     @Override
-                    public void handleEvent(TableEvent event) {
+                    public void handleEvent(DominoEvent event) {
                         if (TableDataUpdatedEvent.DATA_UPDATED.equals(event.getType())) {
                             topPanel.update((TableDataUpdatedEvent<Contact>) event);
                         }

@@ -1,7 +1,6 @@
 package org.dominokit.domino.datatable.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-import static org.dominokit.domino.ui.utils.Domino.*;
 import elemental2.dom.HTMLElement;
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
@@ -23,10 +22,16 @@ import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.events.TableDataUpdatedEvent;
-import org.dominokit.domino.ui.datatable.events.TableEvent;
 import org.dominokit.domino.ui.datatable.plugins.column.ColumnFilterMeta;
 import org.dominokit.domino.ui.datatable.plugins.column.ColumnHeaderFilterPlugin;
-import org.dominokit.domino.ui.datatable.plugins.filter.header.*;
+import org.dominokit.domino.ui.datatable.plugins.column.PinColumnMeta;
+import org.dominokit.domino.ui.datatable.plugins.column.PinColumnsPlugin;
+import org.dominokit.domino.ui.datatable.plugins.column.ResizeColumnsPlugin;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.BooleanHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.DoubleHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.EnumHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.SelectHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
 import org.dominokit.domino.ui.datatable.plugins.grouping.GroupingPlugin;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
 import org.dominokit.domino.ui.datatable.plugins.header.TopPanelPlugin;
@@ -41,8 +46,26 @@ import org.dominokit.domino.ui.forms.suggest.SelectOption;
 import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.DominoEvent;
 
 import java.util.List;
+
+import static org.dominokit.domino.ui.utils.Domino.a;
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_align_middle;
+import static org.dominokit.domino.ui.utils.Domino.dui_bg_accent_d_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_border;
+import static org.dominokit.domino.ui.utils.Domino.dui_border_accent_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_border_solid;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_green_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_red_d_3;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_white;
+import static org.dominokit.domino.ui.utils.Domino.dui_float_none;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_1;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_24;
+import static org.dominokit.domino.ui.utils.Domino.elementOf;
+import static org.dominokit.domino.ui.utils.Domino.text;
 
 @UiView(presentable = PluginsMixProxy.class)
 @SampleClass(includeClassName = true)
@@ -92,6 +115,7 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                     }
                                 })
                                 .applyMeta(ColumnFilterMeta.of(BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both")))
+                                .applyMeta(PinColumnMeta.left())
 
                         )
                         .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
@@ -150,6 +174,7 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                             }
                             return text("");
                         })
+                        .applyMeta(PinColumnMeta.right())
                 )
                 .addPlugin(scrollingPaginationPlugin)
                 .addPlugin(new TopPanelPlugin<Contact>() {
@@ -160,7 +185,7 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                     }
 
                     @Override
-                    public void handleEvent(TableEvent event) {
+                    public void handleEvent(DominoEvent event) {
                         if (TableDataUpdatedEvent.DATA_UPDATED.equals(event.getType())) {
                             topPanel.update((TableDataUpdatedEvent<Contact>) event);
                         }
@@ -218,7 +243,11 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                             dui_bg_accent_d_1, dui_fg_white
                                     );
                             return text(cellInfo.getRecord().getGender().getLabel());
-                        }));
+                        }))
+                .addPlugin(new ResizeColumnsPlugin<Contact>()
+                        .configure(config -> config.setClipContent(true)))
+                .addPlugin(new PinColumnsPlugin<Contact>().configure(config -> config.setShowPinMenu(true).setShowPinIcon(true)))
+        ;
 
         LocalListDataStore<Contact> localListDataSource = new LocalListDataStore<Contact>()
                 .setSearchFilter(new ContactSearchFilter())
