@@ -783,6 +783,17 @@
                     <artifactId>datatable-pro</artifactId>
                     <version>${project.version}</version>
                 </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>data-pro</artifactId>
+                    <version>${project.version}</version>
+                    <classifier>sources</classifier>
+                </dependency>
+                <dependency>
+                    <groupId>org.dominokit</groupId>
+                    <artifactId>data-pro</artifactId>
+                    <version>${project.version}</version>
+                </dependency>
 
                 <dependency>
                     <groupId>org.dominokit</groupId>

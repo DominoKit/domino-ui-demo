@@ -55,13 +55,13 @@ public class ColumnLockPlugin<T> implements DataTablePlugin<T> {
         List<ColumnConfig<T>> columns = dataTable.getTableConfig().getColumns();
         List<RowCell<T>> cells = new ArrayList<>(tableRow.getRowCells().values());
         cells.forEach(cell -> {
-            ColumnConfig<T> column = cell.getColumnConfig();
-            int cellIndex = columns.indexOf(column);
-            if (cellIndex - count < 0) {
-                DominoElement<HTMLTableCellElement> cellElement = ElementsFactory.elements.elementOf(cell.getCellInfo().getElement());
-                cellElement.css("locked-column");
-                cellElement.setLeft(cellElement.element().offsetLeft - 35 + "px");
-            }
+            cell.getColumnConfig().ifPresent(column-> {
+                int cellIndex = columns.indexOf(column);
+                if (cellIndex - count < 0) {
+                    cell.addCss("locked-column");
+                    cell.setLeft(cell.element().offsetLeft - 35 + "px");
+                }
+            });
         });
     }
 }

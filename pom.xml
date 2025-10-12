@@ -462,6 +462,7 @@
                 <module>menu-bar</module>
                 <module>checktree</module>
                 <module>datatable-pro</module>
+                <module>data-pro</module>
             </modules>
         </profile>
     </profiles>

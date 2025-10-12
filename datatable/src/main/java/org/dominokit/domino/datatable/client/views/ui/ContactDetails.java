@@ -4,7 +4,9 @@ import elemental2.dom.HTMLDivElement;
 import static org.dominokit.domino.ui.utils.Domino.*;
 import org.dominokit.domino.datatable.client.views.model.Contact;
 import org.dominokit.domino.ui.datatable.CellRenderer;
+import org.dominokit.domino.ui.datatable.RowCell;
 import org.dominokit.domino.ui.datatable.TableRow;
+import org.dominokit.domino.ui.datatable.plugins.row.RecordDetailsCell;
 import org.dominokit.domino.ui.forms.SwitchButton;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
@@ -16,9 +18,9 @@ public class ContactDetails extends BaseDominoElement<HTMLDivElement, ContactDet
 
     private Row rowElement = Row.create()
             .addCss(dui_m_0);
-    private CellRenderer.CellInfo<Contact> cell;
+    private RecordDetailsCell<Contact> cell;
 
-    public ContactDetails(CellRenderer.CellInfo<Contact> cell) {
+    public ContactDetails(RecordDetailsCell<Contact> cell) {
         this.cell = cell;
         initDetails();
     }

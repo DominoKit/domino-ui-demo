@@ -24,6 +24,7 @@ import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.datatable.CellRenderer;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
+import org.dominokit.domino.ui.datatable.RowCell;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.model.Category;
 import org.dominokit.domino.ui.datatable.model.Filter;
@@ -77,28 +78,26 @@ public class LiveGridDataTableViewImpl extends BaseDemoView<HTMLDivElement> impl
         TableConfig<Car> tableConfig = new TableConfig<Car>()
                 .setFixed(true)
                 .addColumn(ColumnConfig.<Car>create("index", "ID")
-                        .setCellRenderer(
-                                cell -> text("" + cell.getRecord().getId())
+                        .setRenderer(cell -> cell.appendChild(text("" + cell.getRecord().getId()))
                         )
                         .setWidth("64px")
                 )
                 .addColumn(ColumnConfig.<Car>create("make", "Make")
                         .setWidth("200px")
-                        .setCellRenderer(
-                                cell -> text(cell.getTableRow().getRecord().getMake())
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getMake()))
                         )
                         .applyMeta(ColumnFilterMeta.<Car>of(TextHeaderFilter.create()))
                 )
                 .addColumn(ColumnConfig.<Car>create("model", "Model")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getModel()))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getModel())))
                         .setWidth("400px")
                 )
                 .addColumn(ColumnConfig.<Car>create("price", "Price")
-                        .setCellRenderer(this::priceRenderer)
+                        .setRenderer(this::priceRenderer)
                         .setWidth("200px")
                 )
                 .addColumn(ColumnConfig.<Car>create("color", "Color")
-                        .setCellRenderer(cell -> text(cell.getRecord().getColor().getLabel()))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getRecord().getColor().getLabel())))
                         .setWidth("200px")
                 )
                 .addPlugin(new SelectionPlugin<>())
@@ -164,10 +163,10 @@ public class LiveGridDataTableViewImpl extends BaseDemoView<HTMLDivElement> impl
         );
     }
 
-    private Node priceRenderer(CellRenderer.CellInfo<Car> cell) {
-        return text(
+    private void priceRenderer(RowCell<Car> cell) {
+        cell.appendChild(text(
                 NumberFormat.getFormat("$##,##0.00")
-                        .format(cell.getRecord().getPrice()));
+                        .format(cell.getRecord().getPrice())));
     }
 
     private List<Car> generateData(int records) {

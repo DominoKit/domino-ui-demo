@@ -19,14 +19,21 @@ import org.dominokit.domino.ui.datatable.CellTextAlign;
 import org.dominokit.domino.ui.datatable.ColumnConfig;
 import org.dominokit.domino.ui.datatable.DataTable;
 import org.dominokit.domino.ui.datatable.RowCell;
+import org.dominokit.domino.ui.datatable.RowCellInfo;
 import org.dominokit.domino.ui.datatable.TableConfig;
 import org.dominokit.domino.ui.datatable.plugins.column.ColumnFilterMeta;
 import org.dominokit.domino.ui.datatable.plugins.column.ColumnHeaderFilterPlugin;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
+import org.dominokit.domino.ui.datatable.plugins.header.BordersTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.CondenseTableAction;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.HoverTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.NavigationBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.StripesTableAction;
 import org.dominokit.domino.ui.datatable.plugins.marker.RowMarkerPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortPlugin;
 import org.dominokit.domino.ui.datatable.plugins.row.RecordDetailsPlugin;
+import org.dominokit.domino.ui.datatable.plugins.row.RecordDetailsRenderer;
 import org.dominokit.domino.ui.datatable.plugins.selection.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.plugins.tree.TreeGridPlugin;
 import org.dominokit.domino.ui.datatable.plugins.tree.store.LocalTreeDataStore;
@@ -34,6 +41,7 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.elements.TDElement;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.typography.BlockHeader;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 
 import java.util.Collections;
 import java.util.Optional;
@@ -84,44 +92,44 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .setTextAlign(CellTextAlign.RIGHT)
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getIndex() + 1 + ""))))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .setTextAlign(CellTextAlign.CENTER)
-                        .setCellRenderer(cell -> {
+                        .setRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Icons.check_circle().addCss(dui_fg_green_d_3).element();
+                                cell.appendChild(Icons.check_circle().addCss(dui_fg_green_d_3));
                             } else {
-                                return Icons.close_circle().addCss(dui_fg_red_d_3).element();
+                                cell.appendChild(Icons.close_circle().addCss(dui_fg_red_d_3));
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getGenderElement(cell.getRecord())))
                         .setTextAlign(CellTextAlign.CENTER))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getEyeColorElement(cell.getRecord())))
                         .setTextAlign(CellTextAlign.CENTER))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getBalanceElement(cell.getRecord())))
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail()))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getEmail())))
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getPhone())))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getPhone()))))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                        .setCellRenderer(cell -> {
+                        .setRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
-                                return Badge.create("Young")
-                                        .addCss(dui_green, dui_float_none)
-                                        .element();
+                                cell.appendChild(Badge.create("Young")
+                                        .addCss(dui_green, dui_float_none));
+                            }else{
+                            cell.appendChild(text(""));
                             }
-                            return text("");
                         }))
                 .onUtilityColumn(utilityColumn -> {
                     utilityColumn
@@ -132,7 +140,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                 .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
-                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RecordDetailsPlugin<>((RecordDetailsRenderer<Contact>)  cell -> cell.appendChild(new ContactDetails(cell))))
                 .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new TreeGridPlugin<Contact>()
                         .configure(config -> {
@@ -142,19 +150,22 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                                         TDElement cellElement = td().addCss(dui_datatable_td)
                                                 .setAttribute("colspan", "8");
                                         RowCell<Contact> rowCell =
-                                                new RowCell<>(new CellRenderer.CellInfo<>(tableRow, cellElement.element()), dataTable.getTableConfig().getColumnByName("id"));
+                                                new RowCell<>(new RowCellInfo<>(tableRow, cellElement.element()), dataTable.getTableConfig().getColumnByName("id"));
                                         return Collections.singletonList(rowCell);
                                     })
                                     .setIndent(60)
                                     .setLazy(false);
                         })
                 )
-                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table table demonstrating the feature")
-                        .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
-                );
+                .addPlugin(new NavigationBarPlugin<>((datatable, navBar) -> {
+                    navBar
+                            .setTitle("Demo table")
+                            .setDescription("Sample table table demonstrating the feature")
+                            .appendChild(PostfixAddOn.of(HoverTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(CondenseTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(StripesTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(BordersTableAction.create(datatable)));
+                }));
 
         LocalTreeDataStore<Contact> localListDataStore = new LocalTreeDataStore<>((parent, itemsConsumer) -> {
             ContactsProvider.instance.addFriends(parent, 2, 1, 2);
@@ -178,44 +189,44 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .setTextAlign(CellTextAlign.RIGHT)
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getIndex() + 1 + ""))))
 
                 .addColumn(ColumnConfig.<Contact>create("status", "Status")
                         .setTextAlign(CellTextAlign.CENTER)
-                        .setCellRenderer(cell -> {
+                        .setRenderer(cell -> {
                             if (cell.getTableRow().getRecord().isActive()) {
-                                return Icons.check_circle().addCss(dui_fg_green_d_3).element();
+                                cell.appendChild(Icons.check_circle().addCss(dui_fg_green_d_3));
                             } else {
-                                return Icons.close_circle().addCss(dui_fg_red_d_3).element();
+                                cell.appendChild(Icons.close_circle().addCss(dui_fg_red_d_3));
                             }
                         }))
                 .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
-                        .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getGenderElement(cell.getRecord())))
                         .setTextAlign(CellTextAlign.CENTER))
 
                 .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                        .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getEyeColorElement(cell.getRecord())))
                         .setTextAlign(CellTextAlign.CENTER))
 
                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
-                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord())))
+                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getBalanceElement(cell.getRecord()))))
 
                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail()))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getEmail())))
                         .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
                 )
 
                 .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getPhone())))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getPhone()))))
 
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                        .setCellRenderer(cell -> {
+                        .setRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
-                                return Badge.create("Young")
-                                        .addCss(dui_green, dui_float_none)
-                                        .element();
+                                cell.appendChild(Badge.create("Young")
+                                        .addCss(dui_green, dui_float_none));
+                            }else{
+                            cell.appendChild(text(""));
                             }
-                            return text("");
                         }))
                 .onUtilityColumn(utilityColumn -> {
                     utilityColumn
@@ -226,7 +237,7 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                 .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(new SelectionPlugin<>())
-                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                .addPlugin(new RecordDetailsPlugin<>((RecordDetailsRenderer<Contact>) cell -> cell.appendChild(new ContactDetails(cell))))
                 .addPlugin(new RowMarkerPlugin<>(tableCellInfo -> ContactUiUtils.getBalanceColor(tableCellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new TreeGridPlugin<Contact>()
                         .configure(config -> {
@@ -234,12 +245,15 @@ public class TreeGridEagerPluginViewImpl extends BaseDemoView<HTMLDivElement> im
                                     .setIndent(60);
                         })
                 )
-                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table table demonstrating the feature")
-                        .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
-                );
+                .addPlugin(new NavigationBarPlugin<>((datatable, navBar) -> {
+                    navBar
+                            .setTitle("Demo table")
+                            .setDescription("Sample table table demonstrating the feature")
+                            .appendChild(PostfixAddOn.of(HoverTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(CondenseTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(StripesTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(BordersTableAction.create(datatable)));
+                }));
 
         LocalTreeDataStore<Contact> localListDataStore = new LocalTreeDataStore<>((parent, itemsConsumer) -> {
             ContactsProvider.instance.addFriends(parent, 2, 1, 2);

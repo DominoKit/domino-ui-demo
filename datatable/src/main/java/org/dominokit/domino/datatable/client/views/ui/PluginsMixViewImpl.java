@@ -33,12 +33,18 @@ import org.dominokit.domino.ui.datatable.plugins.filter.header.EnumHeaderFilter;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.SelectHeaderFilter;
 import org.dominokit.domino.ui.datatable.plugins.filter.header.TextHeaderFilter;
 import org.dominokit.domino.ui.datatable.plugins.grouping.GroupingPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.BordersTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.CondenseTableAction;
 import org.dominokit.domino.ui.datatable.plugins.header.HeaderBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.HoverTableAction;
+import org.dominokit.domino.ui.datatable.plugins.header.NavigationBarPlugin;
+import org.dominokit.domino.ui.datatable.plugins.header.StripesTableAction;
 import org.dominokit.domino.ui.datatable.plugins.header.TopPanelPlugin;
 import org.dominokit.domino.ui.datatable.plugins.marker.RowMarkerPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.ScrollingPaginationPlugin;
 import org.dominokit.domino.ui.datatable.plugins.pagination.SortPlugin;
 import org.dominokit.domino.ui.datatable.plugins.row.RecordDetailsPlugin;
+import org.dominokit.domino.ui.datatable.plugins.row.RecordDetailsRenderer;
 import org.dominokit.domino.ui.datatable.plugins.selection.SelectionPlugin;
 import org.dominokit.domino.ui.datatable.store.LocalListDataStore;
 import org.dominokit.domino.ui.elements.DivElement;
@@ -47,6 +53,7 @@ import org.dominokit.domino.ui.icons.Icon;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.typography.BlockHeader;
 import org.dominokit.domino.ui.utils.DominoEvent;
+import org.dominokit.domino.ui.utils.PostfixAddOn;
 
 import java.util.List;
 
@@ -98,20 +105,20 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
         tableConfig
                 .addColumn(ColumnConfig.<Contact>create("id", "#")
                         .sortable()
-                        .styleCell(cellElement -> elementOf(cellElement).addCss(dui_align_middle))
+                        .onCellReady(cell-> cell.addCss(dui_align_middle))
                         .setTextAlign(CellTextAlign.RIGHT)
-                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getIndex() + 1 + ""))
+                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getIndex() + 1 + "")))
                         .setWidth("70px")
                 )
                 .addColumn(ColumnConfig.<Contact>create("group 1", "Group 1")
                         .addColumn(ColumnConfig.<Contact>create("status", "Status")
                                 .setWidth("80px")
                                 .setTextAlign(CellTextAlign.CENTER)
-                                .setCellRenderer(cell -> {
+                                .setRenderer(cell -> {
                                     if (cell.getTableRow().getRecord().isActive()) {
-                                        return Icons.check_circle().addCss(dui_fg_green_d_3).element();
+                                        cell.appendChild(Icons.check_circle().addCss(dui_fg_green_d_3));
                                     } else {
-                                        return Icons.close_circle().addCss(dui_fg_red_d_3).element();
+                                        cell.appendChild(Icons.close_circle().addCss(dui_fg_red_d_3));
                                     }
                                 })
                                 .applyMeta(ColumnFilterMeta.of(BooleanHeaderFilter.<Contact>create("Active", "Inactive", "Both")))
@@ -120,7 +127,7 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         )
                         .addColumn(ColumnConfig.<Contact>create("firstName", "First name")
                                 .sortable()
-                                .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getName()))
+                                .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getName())))
                                 .setWidth("200px")
                                 .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
                         )
@@ -128,13 +135,13 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                 .addColumn(ColumnConfig.<Contact>create("group 2", "Group 2")
                         .addColumn(ColumnConfig.<Contact>create("gender", "Gender")
                                 .setWidth("100px")
-                                .setCellRenderer(cell -> ContactUiUtils.getGenderElement(cell.getRecord()))
+                                .setRenderer(cell -> cell.appendChild(ContactUiUtils.getGenderElement(cell.getRecord())))
                                 .setTextAlign(CellTextAlign.CENTER)
                                 .applyMeta(ColumnFilterMeta.of(EnumHeaderFilter.<Contact, Gender>create(Gender.values())))
                         )
                         .addColumn(ColumnConfig.<Contact>create("eyeColor", "Eye color")
-                                .styleHeader(head -> elementOf(head).addCss(dui_w_24))
-                                .setCellRenderer(cell -> ContactUiUtils.getEyeColorElement(cell.getRecord()))
+                                .onHeaderReady(column-> column.getHeadElement().addCss(dui_w_24))
+                                .setRenderer(cell -> cell.appendChild(ContactUiUtils.getEyeColorElement(cell.getRecord())))
                                 .setTextAlign(CellTextAlign.CENTER)
                                 .maxWidth("120px")
                                 .applyMeta(ColumnFilterMeta.of(SelectHeaderFilter.<Contact>create()
@@ -149,30 +156,30 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         .addColumn(ColumnConfig.<Contact>create("group 2", "Group 2")
                                 .addColumn(ColumnConfig.<Contact>create("balance", "Balance")
                                         .sortable()
-                                        .setCellRenderer(cellInfo -> ContactUiUtils.getBalanceElement(cellInfo.getRecord()))
+                                        .setRenderer(cell -> cell.appendChild(ContactUiUtils.getBalanceElement(cell.getRecord())))
                                         .setWidth("200px")
                                         .applyMeta(ColumnFilterMeta.of(DoubleHeaderFilter.<Contact>create()))
                                 )
                                 .addColumn(ColumnConfig.<Contact>create("email", "Email")
                                         .setWidth("250px")
-                                        .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getEmail()))
+                                        .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getEmail())))
                                         .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
                                 )
                         )
                         .addColumn(ColumnConfig.<Contact>create("phone", "Phone")
                                 .setWidth("200px")
-                                .setCellRenderer(cell -> text(cell.getTableRow().getRecord().getPhone()))
+                                .setRenderer(cell -> cell.appendChild(text(cell.getTableRow().getRecord().getPhone())))
                                 .applyMeta(ColumnFilterMeta.of(TextHeaderFilter.<Contact>create()))
                         )
                 )
                 .addColumn(ColumnConfig.<Contact>create("badges", "Badges")
-                        .setCellRenderer(cell -> {
+                        .setRenderer(cell -> {
                             if (cell.getTableRow().getRecord().getAge() < 35) {
-                                return Badge.create("Young")
-                                        .addCss(dui_green, dui_float_none)
-                                        .element();
+                                cell.appendChild(Badge.create("Young")
+                                        .addCss(dui_green, dui_float_none));
+                            }else{
+                            cell.appendChild(text(""));
                             }
-                            return text("");
                         })
                         .applyMeta(PinColumnMeta.right())
                 )
@@ -191,51 +198,46 @@ public class PluginsMixViewImpl extends BaseDemoView<HTMLDivElement> implements 
                         }
                     }
                 })
-                .addPlugin(new HeaderBarPlugin<Contact>("Demo table", "Sample table table demonstrating the feature")
-                        .addActionElement(new HeaderBarPlugin.HoverTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.CondenseTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.StripesTableAction<>())
-                        .addActionElement(new HeaderBarPlugin.BordersTableAction<>())
-                        .addActionElement(dataTable -> {
-                            Icon<?> selectInactiveIcon = Icons.close_circle()
+                .addPlugin(new NavigationBarPlugin<>((datatable, navBar) -> {
+                    navBar
+                            .setTitle("Demo table")
+                            .setDescription("Sample table table demonstrating the feature")
+                            .appendChild(PostfixAddOn.of(HoverTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(CondenseTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(StripesTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(BordersTableAction.create(datatable)))
+                            .appendChild(PostfixAddOn.of(Icons.close_circle()
                                     .clickable()
                                     .setTooltip("Select Inactive")
                                     .addClickListener(evt ->
-                                            dataTable.getRows().forEach(item -> {
+                                            datatable.getRows().forEach(item -> {
                                                 if (!item.getRecord().isActive()) {
                                                     item.select();
                                                 } else {
                                                     item.deselect();
                                                 }
-                                            }));
-
-                            return a().appendChild(selectInactiveIcon).element();
-                        })
-                        .addActionElement(dataTable -> {
-                            Icon<?> selectInactiveIcon = Icons.check_circle()
+                                            }))))
+                            .appendChild(PostfixAddOn.of(Icons.check_circle()
                                     .clickable()
                                     .setTooltip("Select Active")
                                     .addClickListener(evt ->
-                                            dataTable.getRows().forEach(tableRow -> {
+                                            datatable.getRows().forEach(tableRow -> {
                                                 if (tableRow.getRecord().isActive()) {
                                                     tableRow.select();
                                                 } else {
                                                     tableRow.deselect();
                                                 }
-                                            }));
-
-                            return a().appendChild(selectInactiveIcon).element();
-
-                        })
-                )
-                .addPlugin(new RecordDetailsPlugin<>(cell -> new ContactDetails(cell).element()))
+                                            }))))
+                    ;
+                }))
+                .addPlugin(new RecordDetailsPlugin<>((RecordDetailsRenderer<Contact>)  cell -> cell.appendChild(new ContactDetails(cell))))
                 .addPlugin(new SelectionPlugin<>())
                 .addPlugin(new RowMarkerPlugin<>(cellInfo -> ContactUiUtils.getBalanceColor(cellInfo.getRecord()).color().getContextColor()))
                 .addPlugin(new SortPlugin<>())
                 .addPlugin(ColumnHeaderFilterPlugin.<Contact>create())
                 .addPlugin(new GroupingPlugin<>(tableRow -> tableRow.getRecord().getGender().toString(),
                         cellInfo -> {
-                            elementOf(cellInfo.getElement())
+                            cellInfo
                                     .addCss(dui_border,
                                             dui_border_accent_d_3,
                                             dui_border_solid,

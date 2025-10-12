@@ -1,4 +1,4 @@
-package org.dominokit.domino.datatable.client.views.ui;
+package org.dominokit.domino.data.client.views.ui;
 
 import elemental2.dom.DomGlobal;
 import elemental2.dom.HTMLDivElement;
@@ -8,10 +8,10 @@ import org.dominokit.domino.api.client.annotations.UiView;
 import org.dominokit.domino.componentcase.client.ui.views.BaseDemoView;
 import org.dominokit.domino.componentcase.client.ui.views.CodeCard;
 import org.dominokit.domino.componentcase.client.ui.views.LinkToSourceCode;
-import org.dominokit.domino.datatable.client.presenters.DataListProxy;
-import org.dominokit.domino.datatable.client.views.DatatableView;
-import org.dominokit.domino.datatable.client.views.model.ContactGenerator;
-import org.dominokit.domino.datatable.client.views.model.DemoContact;
+import org.dominokit.domino.data.client.presenters.DataListProxy;
+import org.dominokit.domino.data.client.views.DataView;
+import org.dominokit.domino.data.client.views.model.ContactGenerator;
+import org.dominokit.domino.data.client.views.model.DemoContact;
 import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
@@ -30,10 +30,9 @@ import static org.dominokit.domino.ui.utils.Domino.*;
 
 @UiView(presentable = DataListProxy.class)
 @SampleClass(includeClassName = true)
-public class DataListViewImpl extends BaseDemoView<HTMLDivElement> implements DatatableView {
+public class DataListViewImpl extends BaseDemoView<HTMLDivElement> implements DataView {
 
     private DivElement element;
-
 
     @Override
     protected HTMLDivElement init() {
@@ -58,7 +57,7 @@ public class DataListViewImpl extends BaseDemoView<HTMLDivElement> implements Da
 
     @SampleMethod
     private void basicDataList() {
-        DataList<DemoContact> scrollPanel = DataList.<DemoContact>create(record ->
+        DataList<DemoContact, DataListItem<DemoContact>> scrollPanel = DataList.<DemoContact, DataListItem<DemoContact>>create(record ->
                         DataListItem.create(record.getFirstName(), record)
                                 .addCss(dui_p_2, dui_border_b_grey_l_2, dui_border_b, dui_border_0, dui_border_solid)
 
@@ -85,7 +84,7 @@ public class DataListViewImpl extends BaseDemoView<HTMLDivElement> implements Da
 
     @SampleMethod
     private void dataList() {
-        DataList<DemoContact> scrollPanel = new DataList<DemoContact>(record ->
+        DataList<DemoContact, DataListItem<DemoContact>> scrollPanel = new DataList<DemoContact, DataListItem<DemoContact>>(record ->
                 CheckableDataListItem.create(record.getFirstName(), record)
                         .appendChild(small().textContent(record.getEmail()))
                         .appendChild(PrefixAddOn.of(Icons.drag_vertical()))
@@ -125,9 +124,9 @@ public class DataListViewImpl extends BaseDemoView<HTMLDivElement> implements Da
                                                     boolean toggled = icon.isToggled();
                                                     DomGlobal.setTimeout(p0 -> {
                                                         if (toggled) {
-                                                            menu.deselectAll();
-                                                        } else {
                                                             menu.selectAll();
+                                                        } else {
+                                                            menu.deselectAll();
                                                         }
                                                     });
                                                 })

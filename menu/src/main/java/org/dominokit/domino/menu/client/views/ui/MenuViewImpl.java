@@ -1,9 +1,6 @@
 package org.dominokit.domino.menu.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
-
-import static org.dominokit.domino.ui.utils.Domino.*;
-
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -22,7 +19,11 @@ import org.dominokit.domino.ui.elements.DivElement;
 import org.dominokit.domino.ui.grid.Column;
 import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
-import org.dominokit.domino.ui.menu.*;
+import org.dominokit.domino.ui.menu.CustomMenuItem;
+import org.dominokit.domino.ui.menu.DropTarget;
+import org.dominokit.domino.ui.menu.Menu;
+import org.dominokit.domino.ui.menu.MenuItem;
+import org.dominokit.domino.ui.menu.MenuItemsGroup;
 import org.dominokit.domino.ui.menu.direction.BottomLeftDropDirection;
 import org.dominokit.domino.ui.menu.direction.DropDirection;
 import org.dominokit.domino.ui.menu.direction.TopMiddleDropDirection;
@@ -35,11 +36,40 @@ import org.dominokit.domino.ui.utils.PrefixAddOn;
 import org.dominokit.domino.ui.utils.Separator;
 import org.dominokit.domino.ui.utils.SubheaderAddon;
 
+import static org.dominokit.domino.ui.utils.Domino.div;
+import static org.dominokit.domino.ui.utils.Domino.dui_accent;
+import static org.dominokit.domino.ui.utils.Domino.dui_border;
+import static org.dominokit.domino.ui.utils.Domino.dui_border_0;
+import static org.dominokit.domino.ui.utils.Domino.dui_border_2px;
+import static org.dominokit.domino.ui.utils.Domino.dui_border_dashed;
+import static org.dominokit.domino.ui.utils.Domino.dui_fg_grey;
+import static org.dominokit.domino.ui.utils.Domino.dui_flex;
+import static org.dominokit.domino.ui.utils.Domino.dui_font_size_12;
+import static org.dominokit.domino.ui.utils.Domino.dui_font_size_4;
+import static org.dominokit.domino.ui.utils.Domino.dui_font_size_5;
+import static org.dominokit.domino.ui.utils.Domino.dui_gap_6;
+import static org.dominokit.domino.ui.utils.Domino.dui_green;
+import static org.dominokit.domino.ui.utils.Domino.dui_h_12;
+import static org.dominokit.domino.ui.utils.Domino.dui_h_96;
+import static org.dominokit.domino.ui.utils.Domino.dui_hover_disabled;
+import static org.dominokit.domino.ui.utils.Domino.dui_ignore_bg;
+import static org.dominokit.domino.ui.utils.Domino.dui_items_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_justify_between;
+import static org.dominokit.domino.ui.utils.Domino.dui_justify_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_b_8;
+import static org.dominokit.domino.ui.utils.Domino.dui_m_t_8;
+import static org.dominokit.domino.ui.utils.Domino.dui_orange;
+import static org.dominokit.domino.ui.utils.Domino.dui_p_0;
+import static org.dominokit.domino.ui.utils.Domino.dui_red;
+import static org.dominokit.domino.ui.utils.Domino.dui_text_center;
+import static org.dominokit.domino.ui.utils.Domino.dui_w_full;
+import static org.dominokit.domino.ui.utils.Domino.strong;
+
 @UiView(presentable = MenuProxy.class)
 @SampleClass
 public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuView {
 
-    private DivElement element = div();
+    private final DivElement element = div();
 
     @Override
     protected HTMLDivElement init() {
@@ -1218,7 +1248,6 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                 )
                         )
                 );
-        ;
     }
 
     @SampleMethod
@@ -1462,22 +1491,22 @@ public class MenuViewImpl extends BaseDemoView<HTMLDivElement> implements MenuVi
                                 .span3(div()
                                         .addCss(menuTargetCss)
                                         .setTextContent("Right click")
-                                        .apply(self -> dropMenu.addTarget(MenuTarget.of(self.element())))
+                                        .apply(self -> dropMenu.addTarget(DropTarget.of(self.element())))
                                 )
                                 .span3(div()
                                         .addCss(menuTargetCss)
                                         .setTextContent("Right click")
-                                        .apply(self -> dropMenu.addTarget(MenuTarget.of(self.element())))
+                                        .apply(self -> dropMenu.addTarget(DropTarget.of(self.element())))
                                 )
                                 .span3(div()
                                         .addCss(menuTargetCss)
                                         .setTextContent("Right click")
-                                        .apply(self -> dropMenu.addTarget(MenuTarget.of(self.element())))
+                                        .apply(self -> dropMenu.addTarget(DropTarget.of(self.element())))
                                 )
                                 .span3(div()
                                         .addCss(menuTargetCss)
                                         .setTextContent("Right click")
-                                        .apply(self -> dropMenu.addTarget(MenuTarget.of(self.element())))
+                                        .apply(self -> dropMenu.addTarget(DropTarget.of(self.element())))
                                 )
                         )
                 );

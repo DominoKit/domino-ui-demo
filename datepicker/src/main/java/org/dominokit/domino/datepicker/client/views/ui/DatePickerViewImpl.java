@@ -1,7 +1,9 @@
 package org.dominokit.domino.datepicker.client.views.ui;
 
 import elemental2.dom.HTMLDivElement;
+
 import static org.dominokit.domino.ui.utils.Domino.*;
+
 import org.dominokit.domino.SampleClass;
 import org.dominokit.domino.SampleMethod;
 import org.dominokit.domino.api.client.annotations.UiView;
@@ -40,20 +42,20 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
     protected HTMLDivElement init() {
         element = div();
 
-        element.appendChild(LinkToSourceCode.createLink("datepicker", this.getClass()));
-        element.appendChild(BlockHeader.create("DATE PICKERS"));
-
-        inlineCalendar();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlineCalendar()));
-
-        withHeader();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withHeader()));
-
-        withFooter();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withFooter()));
-
-        dropdownCalendar();
-        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dropdownCalendar()));
+//        element.appendChild(LinkToSourceCode.createLink("datepicker", this.getClass()));
+//        element.appendChild(BlockHeader.create("DATE PICKERS"));
+//
+//        inlineCalendar();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.inlineCalendar()));
+//
+//        withHeader();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withHeader()));
+//
+//        withFooter();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.withFooter()));
+//
+//        dropdownCalendar();
+//        element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dropdownCalendar()));
 
         dateBox();
         element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.dateBox()));
@@ -269,9 +271,14 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                 .span4(DateBox.create("Date Box")
                                         .setPattern("dd.MM.yyyy")
                                         .setParseStrict(true)
-                                        .withPopover((parent, popover) -> popover.addCss(dui_accent_blue))
                                         .addChangeListener((oldValue, newValue) -> {
                                             Notification.create("Value changed : old [" + oldValue + "] new [" + newValue + "]").show();
+                                        })
+                                        .addExpandListener(() -> {
+                                            Notification.create("Calendar expanded...").show();
+                                        })
+                                        .addBeforeExpandListener(() -> {
+                                            Notification.create("Calendar before expanded...").show();
                                         })
                                 )
                                 .span4(DateBox.create("With pattern", new DateTimeFormatInfoImpl_ar())
@@ -298,7 +305,7 @@ public class DatePickerViewImpl extends BaseDemoView<HTMLDivElement> implements 
                                         })
 
                                         .addChangeListener((oldValue, newValue) -> {
-                                            Notification.create("Value changed : old [" + oldValue+"] new [" + newValue + "]").show();
+                                            Notification.create("Value changed : old [" + oldValue + "] new [" + newValue + "]").show();
                                         })
                                         .apply(self -> element.appendChild(Button.create("Clear").addClickListener(evt -> self.clear())))
                                 )

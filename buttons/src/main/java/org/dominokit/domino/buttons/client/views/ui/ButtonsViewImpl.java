@@ -15,6 +15,8 @@ import org.dominokit.domino.ui.button.Button;
 import org.dominokit.domino.ui.button.ButtonsToolbar;
 import org.dominokit.domino.ui.button.DropdownButton;
 import org.dominokit.domino.ui.button.LinkButton;
+import org.dominokit.domino.ui.button.ToggleButton;
+import org.dominokit.domino.ui.button.ToggleButtonsGroup;
 import org.dominokit.domino.ui.button.group.ButtonsGroup;
 import org.dominokit.domino.ui.cards.Card;
 import org.dominokit.domino.ui.elements.DivElement;
@@ -24,7 +26,11 @@ import org.dominokit.domino.ui.grid.Row;
 import org.dominokit.domino.ui.icons.lib.Icons;
 import org.dominokit.domino.ui.menu.Menu;
 import org.dominokit.domino.ui.menu.MenuItem;
+import org.dominokit.domino.ui.notifications.Notification;
+import org.dominokit.domino.ui.style.CompositeCssClass;
 import org.dominokit.domino.ui.typography.BlockHeader;
+
+import java.util.stream.Collectors;
 
 import static org.dominokit.domino.ui.grid.Column.Span._12;
 import static org.dominokit.domino.ui.grid.Column.Span._3;
@@ -35,6 +41,11 @@ import static org.dominokit.domino.ui.menu.direction.DropDirection.BOTTOM_RIGHT;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_LEFT;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_MIDDLE;
 import static org.dominokit.domino.ui.menu.direction.DropDirection.TOP_RIGHT;
+import static org.dominokit.domino.ui.style.ColorsCss.dui_bg_blue;
+import static org.dominokit.domino.ui.style.ColorsCss.dui_bg_red;
+import static org.dominokit.domino.ui.style.DisplayCss.dui_flex;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_flex_wrap;
+import static org.dominokit.domino.ui.style.SpacingCss.dui_gap_4;
 import static org.dominokit.domino.ui.utils.BaseDominoElement.LOGGER;
 import static org.dominokit.domino.ui.utils.Domino.div;
 import static org.dominokit.domino.ui.utils.Domino.dui_accent;
@@ -116,6 +127,9 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
 
                 initDropDownPosition();
                 element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initDropDownPosition()).element());
+
+                initToggleButtons();
+                element.appendChild(CodeCard.createCodeCard(CodeResource.INSTANCE.initToggleButtons()).element());
 
                 uiHandlers.stopLoading();
             }
@@ -716,55 +730,98 @@ public class ButtonsViewImpl extends BaseDemoView<HTMLDivElement> implements But
     private void initDropDownPosition() {
         element
                 .appendChild(Card.create("DROPUP VARIATION", "Trigger dropdown menus above elements.")
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(TOP_MIDDLE)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(TOP_MIDDLE)
+                                )
                         )
-                )
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(BOTTOM_MIDDLE)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(BOTTOM_MIDDLE)
+                                )
                         )
-                )
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(TOP_LEFT)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(TOP_LEFT)
+                                )
                         )
-                )
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(TOP_RIGHT)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(TOP_RIGHT)
+                                )
                         )
-                )
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(BOTTOM_LEFT)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(BOTTOM_LEFT)
+                                )
                         )
-                )
-                .appendChild(DropdownButton.create(
-                                LinkButton.create("DEFAULT").addCss(dui_m_1),
-                                Menu.create()
-                                        .appendChild(MenuItem.create("Action"))
-                                        .appendChild(MenuItem.create("Another action"))
-                                        .setDropDirection(BOTTOM_RIGHT)
+                        .appendChild(DropdownButton.create(
+                                        LinkButton.create("DEFAULT").addCss(dui_m_1),
+                                        Menu.create()
+                                                .appendChild(MenuItem.create("Action"))
+                                                .appendChild(MenuItem.create("Another action"))
+                                                .setDropDirection(BOTTOM_RIGHT)
+                                )
                         )
-                )
-                .element());
+                        .element());
+    }
+
+    @SampleMethod
+    private void initToggleButtons() {
+        element
+                .appendChild(Card.create("TOGGLE BUTTONS", "Buttons with toggle state")
+                        .appendChild(div()
+                                .addCss(dui_flex, dui_flex_wrap, dui_gap_4)
+                                .appendChild(ToggleButton.create("TOGGLE")
+                                        .addChangeListener((oldValue, newValue) -> {
+                                            Notification.create("Toggled [" + newValue + "]").show();
+                                        })
+                                )
+                                .appendChild(ToggleButton.create("TOGGLE")
+                                        .setToggleCssClass(CompositeCssClass.of(dui_bg_blue, dui_fg_white))
+                                        .addChangeListener((oldValue, newValue) -> Notification.create("Toggled [" + newValue + "]").show())
+                                )
+                                .appendChild(ToggleButtonsGroup.create(
+                                                        ToggleButton.create("TOGGLE-0").setKey("toggle-0"),
+                                                        ToggleButton.create("TOGGLE-1").setKey("toggle-1"),
+                                                        ToggleButton.create("TOGGLE-2").setKey("toggle-2"),
+                                                        ToggleButton.create("TOGGLE-3").setKey("toggle-3"),
+                                                        ToggleButton.create("TOGGLE-4").setKey("toggle-4")
+                                                )
+                                                .addChangeListener((oldValue, newValue) -> {
+                                                    Notification.create("Toggled [" + newValue.stream().map(b->(b.getKey() +":"+ b.isToggled())).collect(Collectors.joining(",")) + "]").show();
+                                                })
+                                )
+                                .appendChild(ToggleButtonsGroup.create(
+                                                        ToggleButton.create("TOGGLE-0")
+                                                                .setKey("toggle-0")
+                                                                .addCss(dui_bg_red),
+                                                        ToggleButton.create("TOGGLE-1").setKey("toggle-1"),
+                                                        ToggleButton.create("TOGGLE-2").setKey("toggle-2"),
+                                                        ToggleButton.create("TOGGLE-3").setKey("toggle-3"),
+                                                        ToggleButton.create("TOGGLE-4").setKey("toggle-4")
+                                                )
+                                                .setMultipleToggle(true)
+                                                .addChangeListener((oldValue, newValue) -> {
+                                                    Notification.create("Toggled [" + newValue.stream().map(b->(b.getKey() +":"+ b.isToggled())).collect(Collectors.joining(",")) + "]").show();
+                                                })
+                                )
+                        ));
     }
 
     private HeadingElement heading(String content) {
