@@ -88,7 +88,7 @@ public class SetupViewImpl extends BaseDemoView<HTMLDivElement> implements Setup
 
         element.appendChild(CodeCard.createCodeCard(new SafeHtmlBuilder().appendEscaped("<meta content=\"width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no\" name=\"viewport\">\n" +
                 "\n" +
-                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui.css\">").toSafeHtml().asString())
+                "<link type=\"text/css\" rel=\"stylesheet\" href=\"{module-short-name}/css/domino-ui/domino-ui.css\">").toSafeHtml().asString())
                 .setTitle("Html page required imports")
                 .setDescription("The path depends on your module and index page setup.")
                 .apply(self -> self.getCard().expand())
